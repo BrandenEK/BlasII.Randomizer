@@ -1,6 +1,5 @@
 ﻿using Il2CppTGK.Game;
 using Il2CppTGK.Game.Components.StatsSystem.Data;
-using Il2CppTGK.Game.Managers;
 using Il2CppTGK.Game.PlayerSpawn;
 using UnityEngine;
 
@@ -68,19 +67,11 @@ public class Debugger
 
         if (Input.GetKeyDown(KeyCode.F7))
         {
-            //foreach (Room room in CoreCache.Room.rooms.Values)
-            //{
-            //    Main.Randomizer.LogWarning("Room: " + room.Name);
-            //    if (room.Name == "Z0505")
-            //    {
-
-            //    }
-            //        CoreCache.PlayerSpawn.TeleportPlayer()
-            //}
-
-            SceneEntryID entry = new SceneEntryID();
-            entry.scene = "Z0505";
-            entry.entryId = 0;
+            var entry = new SceneEntryID
+            {
+                scene = "Z1918",
+                entryId = 0
+            };
             CoreCache.PlayerSpawn.TeleportPlayer(entry, false, null);
         }
     }
