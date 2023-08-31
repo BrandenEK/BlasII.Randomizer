@@ -45,7 +45,10 @@ namespace BlasII.Randomizer.Items
             if (__instance.lootType != Loot.LootType.Item)
                 return true;
 
-            Main.Randomizer.LogError("Loot.GiveLoot " + __instance.itemIdRef);
+            Main.Randomizer.LogError("Loot.GiveLoot");
+
+            string locationId = "ITEM_???"; // + __instance.itemIdRef.LoadAsset().Result.name;
+            Main.Randomizer.ItemHandler.GiveItemAtLocation(locationId);
             return true;
         }
     }
@@ -56,7 +59,10 @@ namespace BlasII.Randomizer.Items
     {
         public static bool Prefix(AddItem __instance)
         {
-            Main.Randomizer.LogError("AddItem.OnEnter: " + __instance.itemID.name);
+            Main.Randomizer.LogError("AddItem.OnEnter");
+
+            string locationId = "ITEM_" + __instance.itemID.name;
+            Main.Randomizer.ItemHandler.GiveItemAtLocation(locationId);
             return true;
         }
     }
@@ -67,7 +73,10 @@ namespace BlasII.Randomizer.Items
     {
         public static bool Prefix(UnlockWeapon __instance)
         {
-            Main.Randomizer.LogError("UnlockWeapon.OnEnter: " + __instance.weaponID.Value.Cast<WeaponID>().name);
+            Main.Randomizer.LogError("UnlockWeapon.OnEnter");
+
+            string locationId = "WEAPON_" + __instance.weaponID.Value.Cast<WeaponID>().name;
+            Main.Randomizer.ItemHandler.GiveItemAtLocation(locationId);
             return true;
         }
     }
@@ -78,7 +87,10 @@ namespace BlasII.Randomizer.Items
     {
         public static bool Prefix(UnlockAbility __instance)
         {
-            Main.Randomizer.LogError("UnlockAbility.OnEnter: " + __instance.AbilityTypeRef.Value.Cast<IAbilityTypeRef>().name);
+            Main.Randomizer.LogError("UnlockAbility.OnEnter");
+
+            string locationId = "ABILITY_" + __instance.AbilityTypeRef.Value.Cast<IAbilityTypeRef>().name;
+            Main.Randomizer.ItemHandler.GiveItemAtLocation(locationId);
             return true;
         }
     }

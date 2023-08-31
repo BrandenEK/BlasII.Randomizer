@@ -10,7 +10,7 @@ namespace BlasII.Randomizer.Items
 
         public void GiveItemAtLocation(string locationId)
         {
-
+            Main.Randomizer.LogWarning("Giving location: " +  locationId);
         }
     }
 }
