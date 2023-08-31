@@ -1,5 +1,5 @@
 ﻿using BlasII.ModdingAPI;
-using BlasII.Randomizer.Debug;
+using BlasII.Randomizer.Debugging;
 using BlasII.Randomizer.Items;
 using Il2CppTGK.Game;
 using Il2CppTGK.Game.Components.Inventory;
@@ -12,8 +12,9 @@ namespace BlasII.Randomizer
         public Randomizer() : base(ModInfo.MOD_ID, ModInfo.MOD_NAME, ModInfo.MOD_AUTHOR, ModInfo.MOD_VERSION) { }
 
         public DataStorage Data { get; } = new();
-        public ItemHandler ItemHandler { get; } = new();
         public Debugger Debugger { get; } = new();
+
+        public ItemHandler ItemHandler { get; } = new();
 
         protected override void OnInitialize()
         {
