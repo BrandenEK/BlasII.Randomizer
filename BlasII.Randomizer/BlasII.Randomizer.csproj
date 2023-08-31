@@ -1,0 +1,87 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <Nullable>disable</Nullable>
+
+    <TargetName>Randomizer</TargetName>
+    <Product>Randomizer</Product>
+    <Company>Damocles</Company>
+    <Version>0.1.0</Version>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="BlasII.ModdingReferences" Version="1.0.5" />
+    <PackageReference Include="Il2CppInterop.Runtime" Version="1.4.5" />
+    <PackageReference Include="LavaGang.MelonLoader" Version="0.6.1" />
+    <PackageReference Include="Lib.Harmony" Version="2.2.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="ModdingAPI">
+      <HintPath>..\lib\ModdingAPI.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <Target Name="Development" AfterTargets="PostBuildEvent">
+
+    <!-- Get resource files -->
+    <PropertyGroup>
+      <ResourcesFolder>$(SolutionDir)resources\</ResourcesFolder>
+    </PropertyGroup>
+    <ItemGroup>
+      <DataDlls Include="$(ResourcesFolder)data\*" />
+      <DataFiles Include="$(ResourcesFolder)data\$(Product)\*" />
+      <Keybindings Include="$(ResourcesFolder)keybindings\*" />
+      <Levels Include="$(ResourcesFolder)levels\$(Product)\*" />
+      <Localization Include="$(ResourcesFolder)localization\*" />
+    </ItemGroup>
+
+    <!-- Copy plugin & resources to development folder -->
+    <PropertyGroup>
+      <DevFolder>C:\Program Files (x86)\Steam\steamapps\common\Blasphemous 2\Modding\</DevFolder>
+    </PropertyGroup>
+    <Copy SourceFiles="$(TargetPath)" DestinationFolder="$(DevFolder)plugins" />
+    <Copy SourceFiles="@(Config)" DestinationFolder="$(DevFolder)config" />
+    <Copy SourceFiles="@(DataDlls)" DestinationFolder="$(DevFolder)data" />
+    <Copy SourceFiles="@(DataFiles)" DestinationFolder="$(DevFolder)data\$(Product)" />
+    <Copy SourceFiles="@(Keybindings)" DestinationFolder="$(DevFolder)keybindings" />
+    <Copy SourceFiles="@(Levels)" DestinationFolder="$(DevFolder)levels\$(Product)" />
+    <Copy SourceFiles="@(Localization)" DestinationFolder="$(DevFolder)localization" />
+
+    <!-- Export & zip all mod files -->
+    <PropertyGroup>
+      <ExportFolder>$(SolutionDir)publish\$(TargetName)\</ExportFolder>
+    </PropertyGroup>
+    <Copy SourceFiles="$(TargetPath)" DestinationFolder="$(ExportFolder)plugins" />
+    <Copy SourceFiles="@(Config)" DestinationFolder="$(ExportFolder)config" />
+    <Copy SourceFiles="@(DataDlls)" DestinationFolder="$(ExportFolder)data" />
+    <Copy SourceFiles="@(DataFiles)" DestinationFolder="$(ExportFolder)data\$(Product)" />
+    <Copy SourceFiles="@(Keybindings)" DestinationFolder="$(ExportFolder)keybindings" />
+    <Copy SourceFiles="@(Levels)" DestinationFolder="$(ExportFolder)levels\$(Product)" />
+    <Copy SourceFiles="@(Localization)" DestinationFolder="$(ExportFolder)localization" />
+    <ZipDirectory SourceDirectory="$(ExportFolder)" DestinationFile="$(ExportFolder)..\$(TargetName).zip" Overwrite="true" />
+
+  </Target>
+
+  <Target Name="AddGeneratedFile" BeforeTargets="BeforeCompile;CoreCompile" Inputs="$(MSBuildAllProjects)" Outputs="$(IntermediateOutputPath)GeneratedFile.cs">
+
+    <!-- Create ModInfo class from relevant data -->
+    <PropertyGroup>
+      <GeneratedText>
+        <![CDATA[ namespace $(RootNamespace) { public static class ModInfo { public const string MOD_ID = "$(AssemblyName)"%3B public const string MOD_NAME = "$(Product)"%3B public const string MOD_AUTHOR = "$(Company)"%3B public const string MOD_VERSION = "$(Version)"%3B } } ]]>
+      </GeneratedText>
+      <GeneratedFilePath>$(IntermediateOutputPath)ModInfo.cs</GeneratedFilePath>
+    </PropertyGroup>
+
+    <!-- Write ModInfo data to intermediate output -->
+    <ItemGroup>
+      <Compile Include="$(GeneratedFilePath)" />
+      <FileWrites Include="$(GeneratedFilePath)" />
+    </ItemGroup>
+    <WriteLinesToFile Lines="$(GeneratedText)" File="$(GeneratedFilePath)" WriteOnlyWhenDifferent="true" Overwrite="true" />
+
+  </Target>
+
+</Project>
