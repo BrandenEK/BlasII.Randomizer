@@ -54,48 +54,12 @@ namespace BlasII.Randomizer.Items
             if (__instance.lootType != Loot.LootType.Item)
                 return true;
 
-            ItemID item = __instance.itemIdRef.LoadAsset().WaitForCompletion();
-            string locationId = "ITEM_" + item.name;
+            // FO tear/mark shrines, I need index in transform (i0.D2001) so maybe use lootinteractable.otherfunction ?
+
+            string locationId = "ITEM_" + __instance.itemIdRef.LoadAsset().WaitForCompletion().name;
             Main.Randomizer.ItemHandler.GiveItemAtLocation(locationId);
 
-
-            //window.OnShow();
-
-            //PopupMessageLogic message = Object.FindObjectOfType<PopupMessageLogic>();
-            //Main.Randomizer.Log("Found message: " + (message != null));
-
-            //message.ShowMessageAndWait(new Il2CppTGK.Game.PopupMessages.PopupMessage() { message = "Test" });
-
-            //return false;
-
-            //if (prevref == null)
-            //{
-            //    prevref = __instance.itemIdRef;
-            //    Main.Randomizer.Log("Storing id asset");
-            //}
-            //else
-            //{
-            //    Main.Randomizer.AssetLoader.AddLoader(prevref.LoadAsset(), CheckLocation);
-            //    Main.Randomizer.AssetLoader.AddLoader(__instance.itemIdRef.LoadAsset(), CheckLocation);
-            //}
-
-            //AsyncOperationHandle<ItemID> handle = __instance.itemIdRef.LoadAsset();
-            //ItemID item = handle.WaitForCompletion();
-            //Main.Randomizer.LogWarning("Item: " + item.name);
-
-            //Main.Randomizer.AssetLoader.AddLoader(__instance.itemIdRef.LoadAsset(), CheckLocation);
-            //Main.Randomizer.AssetLoader.AddLoader(__instance.itemIdRef.LoadAsset(), CheckLocation);
-
-
-            return true;
-        }
-
-        private static ItemIDAssetReference prevref;
-
-        private static void CheckLocation(ItemID item)
-        {
-            string locationId = "ITEM_" + item.name;
-            Main.Randomizer.ItemHandler.GiveItemAtLocation(locationId);
+            return false;
         }
     }
 
@@ -110,33 +74,7 @@ namespace BlasII.Randomizer.Items
             string locationId = "ITEM_" + __instance.itemID.name;
             Main.Randomizer.ItemHandler.GiveItemAtLocation(locationId);
 
-            //ItemPopupWindowLogic window = Object.FindObjectOfType<ItemPopupWindowLogic>(true);
-            //if (window == null)
-            //{
-            //    Main.Randomizer.LogError("Failed to find window");
-            //    return true;
-            //}
-                    ItemID item = __instance.itemID;
-
-            //ItemPopupWindowLogic window = CoreCache.UINavigationHelper.itemPopupWindowLogic;
-            //Main.Randomizer.LogWarning("Window exists: " + (window != null));
-
-            //window.ShowPopup("Found item: ", item.caption, item.image);
-
-            //__instance.showPopup = false;
             __instance.Finish();
-
-            CoreCache.UINavigationHelper.ShowItemPopup("Found item: ", item.caption, item.image);
-            //foreach (UIWindowLogic window in CoreCache.UIManager.orderedWindows)
-            //{
-            //    Main.Randomizer.LogWarning("Window: " + window.name);
-            //    if (window is ItemPopupWindowLogic itemWindow)
-            //    {
-            //        itemWindow.ShowPopup("Found item: ", item.caption, item.image);
-            //    }
-            //}
-
-
             return false;
         }
     }
@@ -151,7 +89,9 @@ namespace BlasII.Randomizer.Items
 
             string locationId = "WEAPON_" + __instance.weaponID.Value.Cast<WeaponID>().name;
             Main.Randomizer.ItemHandler.GiveItemAtLocation(locationId);
-            return true;
+
+            __instance.Finish();
+            return false;
         }
     }
 
@@ -165,7 +105,9 @@ namespace BlasII.Randomizer.Items
 
             string locationId = "ABILITY_" + __instance.AbilityTypeRef.Value.Cast<IAbilityTypeRef>().name;
             Main.Randomizer.ItemHandler.GiveItemAtLocation(locationId);
-            return true;
+
+            __instance.Finish();
+            return false;
         }
     }
 }
