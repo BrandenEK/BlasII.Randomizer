@@ -76,11 +76,31 @@ namespace BlasII.Randomizer
 
         // Loading
 
-        public void LoadAllObjects()
+        public void Initialize()
         {
-            if (_loaded)
-                return;
+            LoadAllJsonData();
+            LoadAllObjectData();
+        }
 
+        private void LoadAllJsonData()
+        {
+            if (Main.Randomizer.FileHandler.LoadDataAsJson("items.json", out Item[] items))
+            {
+                foreach (var item in items)
+                    _allItems.Add(item.id, item);
+            }
+            Main.Randomizer.Log($"Loaded {_allItems.Count} items!");
+
+            if (Main.Randomizer.FileHandler.LoadDataAsJson("item-locations.json", out ItemLocation[] itemLocations))
+            {
+                foreach (var itemLocation in itemLocations)
+                    _allItemLocations.Add(itemLocation.id, itemLocation);
+            }
+            Main.Randomizer.Log($"Loaded {_allItemLocations.Count} item locations!");
+        }
+
+        private void LoadAllObjectData()
+        {
             // Items
             LoadObjectsOfType(_rosaryBeads);
             LoadObjectsOfType(_prayers);
@@ -97,8 +117,6 @@ namespace BlasII.Randomizer
             // Weapons
             LoadObjectsOfType(_weapons);
             LoadObjectsOfType(_armors);
-
-            _loaded = true;
         }
 
         private void LoadObjectsOfType<T>(Dictionary<string, T> storage) where T : ScriptableObject

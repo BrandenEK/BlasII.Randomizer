@@ -20,7 +20,7 @@ namespace BlasII.Randomizer
 
         protected override void OnInitialize()
         {
-            LogError("Randomizer is initialized");
+            Data.Initialize();
         }
 
         protected override void OnUpdate()
@@ -31,8 +31,6 @@ namespace BlasII.Randomizer
 
         protected override void OnSceneLoaded(string sceneName)
         {
-            if (sceneName == "MainMenu")
-                Data.LoadAllObjects();
         }
 
         private StatsComponent _playerStats;
