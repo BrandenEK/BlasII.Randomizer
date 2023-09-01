@@ -65,6 +65,11 @@ public class Debugger
                 CoreCache.EquipmentManager.Unlock(weapon);
         }
 
+        if (Input.GetKeyDown(KeyCode.F6))
+        {
+            CoreCache.Dialog.isShowing = false;
+        }
+
         if (Input.GetKeyDown(KeyCode.F7))
         {
             var entry = new SceneEntryID
