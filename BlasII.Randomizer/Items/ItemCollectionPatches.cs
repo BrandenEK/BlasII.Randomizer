@@ -36,7 +36,7 @@ namespace BlasII.Randomizer.Items
         {
             Main.Randomizer.LogError("LootInteractable.UseLootByInteractor");
 
-            string locationId = $"l{__instance.transform.GetSiblingIndex()}.{CoreCache.Room.CurrentRoom.Name}";
+            string locationId = $"{CoreCache.Room.CurrentRoom.Name}.l{__instance.transform.GetSiblingIndex()}";
             Main.Randomizer.ItemHandler.GiveItemAtLocation(locationId);
 
             //__instance.loot = null;
@@ -52,7 +52,7 @@ namespace BlasII.Randomizer.Items
         {
             Main.Randomizer.LogError("AddItem.OnEnter");
 
-            string locationId = $"i{__instance.owner.transform.GetSiblingIndex()}.{CoreCache.Room.CurrentRoom.Name}";
+            string locationId = $"{CoreCache.Room.CurrentRoom.Name}.i{__instance.owner.transform.GetSiblingIndex()}";
             Main.Randomizer.ItemHandler.GiveItemAtLocation(locationId);
 
             //__instance.Finish();
@@ -68,7 +68,7 @@ namespace BlasII.Randomizer.Items
         {
             Main.Randomizer.LogError("UnlockWeapon.OnEnter");
 
-            string locationId = $"w0.{CoreCache.Room.CurrentRoom.Name}";
+            string locationId = $"{CoreCache.Room.CurrentRoom.Name}.w0";
             Main.Randomizer.ItemHandler.GiveItemAtLocation(locationId);
 
             //__instance.Finish();
@@ -84,7 +84,7 @@ namespace BlasII.Randomizer.Items
         {
             Main.Randomizer.LogError("UnlockAbility.OnEnter");
 
-            string locationId = $"a0.{CoreCache.Room.CurrentRoom.Name}";
+            string locationId = $"{CoreCache.Room.CurrentRoom.Name}.a0";
             Main.Randomizer.ItemHandler.GiveItemAtLocation(locationId);
 
             //__instance.Finish();

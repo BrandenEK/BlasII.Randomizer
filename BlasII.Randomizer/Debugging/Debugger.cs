@@ -62,7 +62,11 @@ public class Debugger
 
             // Weapons
             foreach (var weapon in Main.Randomizer.Data.GetAllWeapons())
+            {
                 CoreCache.EquipmentManager.Unlock(weapon);
+                CoreCache.WeaponMemoryManager.UpgradeWeaponTier(weapon);
+                CoreCache.WeaponMemoryManager.UpgradeWeaponTier(weapon);
+            }
         }
 
         if (Input.GetKeyDown(KeyCode.F6))
