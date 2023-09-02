@@ -17,7 +17,7 @@ namespace BlasII.Randomizer.Items
         {
             if (_mappedItems.TryGetValue(locationId, out string item))
             {
-                return null; // Data.items
+                return Main.Randomizer.Data.GetItem(item);
             }
             else
             {
@@ -34,7 +34,7 @@ namespace BlasII.Randomizer.Items
             if (item == null)
                 return;
 
-            // Set for and set location id flag
+            // Check for and set location id flag
 
             item.GiveReward();
             DisplayItem(item);
@@ -42,7 +42,7 @@ namespace BlasII.Randomizer.Items
 
         public void DisplayItem(Item item)
         {
-            CoreCache.UINavigationHelper.ShowItemPopup("You have obtained:", item.name, item.Image);
+            CoreCache.UINavigationHelper.ShowItemPopup("Obtained:", item.name, item.Image);
         }
     }
 }

@@ -1,18 +1,22 @@
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 namespace BlasII.Randomizer.Items
 {
     public class ItemLocation
     {
-        public readonly string id;
+        [JsonProperty] public readonly string id;
 
-        public readonly string name;
-        public readonly string hint;
+        [JsonProperty] public readonly string name;
+        [JsonProperty] public readonly string hint;
 
-        public readonly string room;
-        public readonly ItemLocationType type;
-        public readonly string originalItem;
+        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonProperty] public readonly ItemLocationType type;
 
-        public readonly string logic;
+        [JsonProperty] public readonly string room;
+        [JsonProperty] public readonly string originalItem;
+
+        [JsonProperty] public readonly string logic;
 
         public enum ItemLocationType
         {

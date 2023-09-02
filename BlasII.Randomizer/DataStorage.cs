@@ -11,8 +11,6 @@ namespace BlasII.Randomizer
 {
     public class DataStorage
     {
-        private bool _loaded = false;
-
         // Items
         private readonly Dictionary<string, Item> _allItems = new();
 

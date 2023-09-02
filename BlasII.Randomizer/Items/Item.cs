@@ -1,17 +1,21 @@
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using UnityEngine;
 
 namespace BlasII.Randomizer.Items
 {
     public class Item
     {
-        public readonly string id;
+        [JsonProperty] public readonly string id;
 
-        public readonly string name;
-        public readonly string hint;
+        [JsonProperty] public readonly string name;
+        [JsonProperty] public readonly string hint;
 
-        public readonly ItemType type;
-        public readonly bool progression;
-        public readonly int count;
+        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonProperty] public readonly ItemType type;
+
+        [JsonProperty] public readonly bool progression;
+        [JsonProperty] public readonly int count;
 
         public Sprite Image
         {
