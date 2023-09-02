@@ -40,7 +40,7 @@ namespace BlasII.Randomizer.Items
             string locationId = $"{CoreCache.Room.CurrentRoom.Name}.l{__instance.transform.GetSiblingIndex()}";
             Main.Randomizer.ItemHandler.GiveItemAtLocation(locationId);
 
-            //__instance.loot = null;
+            __instance.loot = null;
         }
 
     }
@@ -56,8 +56,8 @@ namespace BlasII.Randomizer.Items
             string locationId = $"{CoreCache.Room.CurrentRoom.Name}.i{__instance.owner.transform.GetSiblingIndex()}";
             Main.Randomizer.ItemHandler.GiveItemAtLocation(locationId);
 
-            //__instance.Finish();
-            return true;
+            __instance.Finish();
+            return false;
         }
     }
 
@@ -72,8 +72,8 @@ namespace BlasII.Randomizer.Items
             string locationId = $"{CoreCache.Room.CurrentRoom.Name}.w0";
             Main.Randomizer.ItemHandler.GiveItemAtLocation(locationId);
 
-            //__instance.Finish();
-            return true;
+            __instance.Finish();
+            return false;
         }
     }
 
@@ -88,8 +88,8 @@ namespace BlasII.Randomizer.Items
             string locationId = $"{CoreCache.Room.CurrentRoom.Name}.w0";
             Main.Randomizer.ItemHandler.GiveItemAtLocation(locationId);
 
-            //__instance.Finish();
-            return true;
+            __instance.Finish();
+            return false;
         }
     }
 
@@ -104,8 +104,8 @@ namespace BlasII.Randomizer.Items
             string locationId = $"{CoreCache.Room.CurrentRoom.Name}.a0";
             Main.Randomizer.ItemHandler.GiveItemAtLocation(locationId);
 
-            //__instance.Finish();
-            return true;
+            __instance.Finish();
+            return false;
         }
     }
 }

@@ -19,6 +19,7 @@ namespace BlasII.Randomizer
         protected override void OnInitialize()
         {
             Data.Initialize();
+            ItemHandler.FakeShuffle();
         }
 
         protected override void OnUpdate()

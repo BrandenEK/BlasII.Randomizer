@@ -1,3 +1,242 @@
 [
-
+    {
+        "id": "Z0203.l6",
+        "name": "Bell door altar"
+    },
+    {
+        "id": "Z0203.l8",
+        "name": "Prayer tree"
+    },
+    {
+        "id": "Z0203.l7",
+        "name": "Altar near prayer tree"
+    },
+    {
+        "id": "Z0204.l3",
+        "name": "Bone floor chest"
+    },
+    {
+        "id": "Z0204.l4",
+        "name": "Bone floor arena"
+    },
+    {
+        "id": "Z05BZ04.l0",
+        "name": "West city upper house chest"
+    },
+    {
+        "id": "Z05BZ02.i0",
+        "name": "Sculptor initial gift"
+    },
+    {
+        "id": "Z05BZ05.l1",
+        "name": "West city upper house floor"
+    },
+    {
+        "id": "Z0503.l4",
+        "name": "East city altar"
+    },
+    {
+        "id": "Z05BZ06",
+        "name": "East city upper house altar"
+    },
+    {
+        "id": "Z0602.l2",
+        "name": "Ledge up high"
+    },
+    {
+        "id": "Z0612.l6",
+        "name": "Dungeon 2 chest"
+    },
+    {
+        "id": "Z0605.l11",
+        "name": "Big house bone floor altar"
+    },
+    {
+        "id": "Z0605.l10",
+        "name": "Big house bone wall altar"
+    },
+    {
+        "id": "Z0614.l7",
+        "name": "Dungeon 3 chest"
+    },
+    {
+        "id": "Z1901.l0",
+        "name": "Entrance shaft altar"
+    },
+    {
+        "id": "Z1903.l0",
+        "name": "Center shaft high ledge"
+    },
+    {
+        "id": "Z1909.l0",
+        "name": "Procession high ledge"
+    },
+    {
+        "id": "Z1907.i0",
+        "name": "Yerma initial gift"
+    },
+    {
+        "id": "Z1918.l2",
+        "name": "Altar above ivy"
+    },
+    {
+        "id": "Z1919.a0",
+        "name": "Ivy statue"
+    },
+    {
+        "id": "Z1919.l3",
+        "name": "Chest after ivy"
+    },
+    {
+        "id": "Z1917.l3",
+        "name": "Ledge over sea"
+    },
+    {
+        "id": "Z1913.l1",
+        "name": "Ledge under well"
+    },
+    {
+        "id": "Z0301.l10",
+        "name": "Entrance room high altar"
+    },
+    {
+        "id": "Z0308.l27",
+        "name": "Exit shortcut altar 2"
+    },
+    {
+        "id": "Z0301.l11",
+        "name": "Bell shaft puzzle"
+    },
+    {
+        "id": "Z0303.l6",
+        "name": "Cherub ring altar"
+    },
+    {
+        "id": "Z0304.l4",
+        "name": "Arena chest"
+    },
+    {
+        "id": "Z0304.l9",
+        "name": "Spike gap puzzle"
+    },
+    {
+        "id": "Z0305.l6",
+        "name": "Airdash arena"
+    },
+    {
+        "id": "Z0305.l5",
+        "name": "DJ chest under ledge"
+    },
+    {
+        "id": "Z0306.l12",
+        "name": "Ledge under breaking floor"
+    },
+    {
+        "id": "Z0409.l7",
+        "name": "High ledge before weapon"
+    },
+    {
+        "id": "Z0402.l15",
+        "name": "Entrance right ledge"
+    },
+    {
+        "id": "Z0402.l13",
+        "name": "Entrance left ledge"
+    },
+    {
+        "id": "Z0412.l1",
+        "name": "Airdash altar"
+    },
+    {
+        "id": "Z0412.l2",
+        "name": "Bone wall chest"
+    },
+    {
+        "id": "Z0410.l6",
+        "name": "Bell floor chest"
+    },
+    {
+        "id": "Z0414.l4",
+        "name": "Above bell shortcut altar"
+    },
+    {
+        "id": "Z0415.l1",
+        "name": "Box room right"
+    },
+    {
+        "id": "Z0415.l3",
+        "name": "Box room left"
+    },
+    {
+        "id": "Z0307.l8",
+        "name": "Exit shortcut altar 1"
+    },
+    {
+        "id": "Z0308.l26",
+        "name": "Bell cherub puzzle"
+    },
+    {
+        "id": "Z0313.l9",
+        "name": "Bell airdash puzzle"
+    },
+    {
+        "id": "Z0814.l6",
+        "name": "Bell floor chest"
+    },
+    {
+        "id": "Z0903.l2",
+        "name": "Entrance room high ledge"
+    },
+    {
+        "id": "Z0905.l2",
+        "name": "Bell floor chest"
+    },
+    {
+        "id": "Z0912.l8",
+        "name": "Rapier bone floor puzzle"
+    },
+    {
+        "id": "Z0909.l5",
+        "name": "Lantern ledge chest"
+    },
+    {
+        "id": "Z0915.l9",
+        "name": "Ledge shaft puzzle"
+    },
+    {
+        "id": "Z0926.a0",
+        "name": "Wind statue"
+    },
+    {
+        "id": "Z0927.l4",
+        "name": "Long hallway altar"
+    },
+    {
+        "id": "Z0908.l9",
+        "name": "Rapier lullaby shaft"
+    },
+    {
+        "id": "Z0901.l3",
+        "name": "Entrance shaft lower"
+    },
+    {
+        "id": "Z0901.l1",
+        "name": "Entrance shaft upper"
+    },
+    {
+        "id": "Z0811.w0",
+        "name": "Rapier statue"
+    },
+    {
+        "id": "Z0805.l0",
+        "name": "Spikestall puzzle"
+    },
+    {
+        "id": "Z1045.l0",
+        "name": "Two Moons bridge"
+    },
+    {
+        "id": "Z0723.l2",
+        "name": "Moving rapier chest"
+    }
 ]

@@ -1,5 +1,7 @@
 using Il2CppTGK.Game;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace BlasII.Randomizer.Items
 {
@@ -43,6 +45,19 @@ namespace BlasII.Randomizer.Items
         public void DisplayItem(Item item)
         {
             CoreCache.UINavigationHelper.ShowItemPopup("Obtained:", item.name, item.Image);
+        }
+
+        public void FakeShuffle()
+        {
+            IEnumerable<Item> allItems = Main.Randomizer.Data.GetAllItems();
+
+            Random rng = new Random();
+            foreach (ItemLocation location in Main.Randomizer.Data.GetAllItemLocations())
+            {
+                int rand = rng.Next(0, allItems.Count());
+                Item item = allItems.ElementAt(rand);
+                _mappedItems.Add(location.id, item.id);
+            }
         }
     }
 }
