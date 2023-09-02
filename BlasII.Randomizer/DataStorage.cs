@@ -113,25 +113,48 @@ namespace BlasII.Randomizer
             LoadObjectsOfType(_questItems);
 
             // Abilities
-            LoadObjectsOfType(_abilities);
+            LoadObjectsOfType(_abilities, _abilityLookup);
 
             // Stats
             LoadObjectsOfType(_valueStats);
             LoadObjectsOfType(_rangeStats);
 
             // Weapons
-            LoadObjectsOfType(_weapons);
+            LoadObjectsOfType(_weapons, _weaponLookup);
             LoadObjectsOfType(_weaponMemories);
             LoadObjectsOfType(_armors);
         }
 
         private void LoadObjectsOfType<T>(Dictionary<string, T> storage) where T : ScriptableObject
         {
-            storage.Clear();
             foreach (T obj in Resources.FindObjectsOfTypeAll<T>())
             {
                 storage.Add(obj.name, obj);
             }
         }
+
+        private void LoadObjectsOfType<T>(Dictionary<string, T> storage, Dictionary<string, string> lookup) where T : ScriptableObject
+        {
+            foreach (T obj in Resources.FindObjectsOfTypeAll<T>())
+            {
+                if (lookup.TryGetValue(obj.name, out string id))
+                    storage.Add(id, obj);
+            }
+        }
+
+        private readonly Dictionary<string, string> _weaponLookup = new()
+        {
+            { "Censer", "WE01" },
+            { "Rosary Blade", "WE02" },
+            { "Rapier", "WE03" },
+        };
+
+        private readonly Dictionary<string, string> _abilityLookup = new()
+        {
+            { "Wall Climb Ability Type Ref", "AB01" },
+            { "Air Jump Type Ref", "AB02" },
+            { "Air Dash Type Ref", "AB03" },
+            { "Magic Ring Climb Type Ref", "AB04" },
+        };
     }
 }
