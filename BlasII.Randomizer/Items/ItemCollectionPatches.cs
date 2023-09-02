@@ -1,74 +1,94 @@
 using HarmonyLib;
-using Il2CppLightbug.Kinematic2D.Implementation;
+using Il2CppPlaymaker.Characters;
 using Il2CppPlaymaker.Inventory;
-using Il2CppTGK.Game.Components.Attack.Data;
+using Il2CppTGK.Game;
 using Il2CppTGK.Game.Components.Interactables;
-using Il2CppTGK.Game.Components.Inventory;
-using Il2CppTGK.Game.Components.StatsSystem;
-using Il2CppTGK.Game.Components.StatsSystem.Data;
 using Il2CppTGK.Game.Inventory.PlayMaker;
-using Il2CppTGK.Game.Loot;
-using Il2CppTGK.Game.Managers;
-using Il2CppTGK.Inventory;
 
 namespace BlasII.Randomizer.Items
 {
-    [HarmonyPatch(typeof(InventoryComponent), nameof(InventoryComponent.AddItemAsync))]
-    class test2
+    // When an item interactable is picked up
+    //[HarmonyPatch(typeof(Loot), nameof(Loot.GiveLoot))]
+    //class Loot_Give_Patch
+    //{
+    //    public static bool Prefix(Loot __instance)
+    //    {
+    //        Main.Randomizer.LogError("Loot.GiveLoot");
+    //        Main.Randomizer.LogError("Type: " + __instance.lootType.ToString());
+
+    //        if (__instance.lootType != Loot.LootType.Item)
+    //            return true;
+
+    //        // FO tear/mark shrines, I need index in transform (i0.D2001) so maybe use lootinteractable.otherfunction ?
+
+    //        string locationId = "ITEM_" + __instance.itemIdRef.LoadAsset().WaitForCompletion().name;
+    //        Main.Randomizer.ItemHandler.GiveItemAtLocation(locationId);
+
+    //        return false;
+    //    }
+    //}
+
+    // When an item interactable is picked up
+    [HarmonyPatch(typeof(LootInteractable), nameof(LootInteractable.UseLootByInteractor))]
+    class LootInteractable_Use_Patch
     {
-        public static void Postfix(ref ItemID itemID)
+        public static void Prefix(LootInteractable __instance)
         {
-            Main.Randomizer.LogWarning("InventoryComponent.AddItemAsync: " + itemID.name);
+            Main.Randomizer.LogError("LootInteractable.UseLootByInteractor");
+
+            string locationId = $"l{__instance.transform.GetSiblingIndex()}.{CoreCache.Room.CurrentRoom.Name}";
+            Main.Randomizer.ItemHandler.GiveItemAtLocation(locationId);
+
+            //__instance.loot = null;
         }
+
     }
 
+    // When an item if given through playermaker, such as dialog
     [HarmonyPatch(typeof(AddItem), nameof(AddItem.OnEnter))]
-    class test
+    class PlayerMaker_AddItem_Patch
     {
-        public static void Postfix(AddItem __instance)
+        public static bool Prefix(AddItem __instance)
         {
-            Main.Randomizer.LogError("AddItem.OnEnter: " + __instance.itemID.name);
+            Main.Randomizer.LogError("AddItem.OnEnter");
+
+            string locationId = $"i{__instance.owner.transform.GetSiblingIndex()}.{CoreCache.Room.CurrentRoom.Name}";
+            Main.Randomizer.ItemHandler.GiveItemAtLocation(locationId);
+
+            //__instance.Finish();
+            return true;
         }
     }
 
-    [HarmonyPatch(typeof(AbilityLockManager), nameof(AbilityLockManager.SetAbility))]
-    class test5
-    {
-        public static void Postfix(IAbilityTypeRef abilityID)
-        {
-            Main.Randomizer.LogError("AbilityLockManager.SetAbility: " + abilityID.name);
-        }
-    }
-
+    // When a weapon is unlocked
     [HarmonyPatch(typeof(UnlockWeapon), nameof(UnlockWeapon.OnEnter))]
-    class test6
+    class PlayerMaker_UnlockWeapon_Patch
     {
-        public static void Postfix(UnlockWeapon __instance)
+        public static bool Prefix(UnlockWeapon __instance)
         {
-            Main.Randomizer.LogError("UnlockWeapon.OnEnter: " + __instance.weaponID.Value.Cast<WeaponID>().name);
+            Main.Randomizer.LogError("UnlockWeapon.OnEnter");
+
+            string locationId = $"w0.{CoreCache.Room.CurrentRoom.Name}";
+            Main.Randomizer.ItemHandler.GiveItemAtLocation(locationId);
+
+            //__instance.Finish();
+            return true;
         }
     }
 
-    [HarmonyPatch(typeof(LootInteractable), nameof(LootInteractable.GiveLoot))]
-    class ntest
+    // When an ability is unlocked
+    [HarmonyPatch(typeof(UnlockAbility), nameof(UnlockAbility.OnEnter))]
+    class PlayMaker_UnlockAbility_Patch
     {
-        public static void Prefix()
+        public static bool Prefix(UnlockAbility __instance)
         {
-            Main.Randomizer.LogError("Giving loot");
-        }
-        public static void Postfix()
-        {
-            Main.Randomizer.LogError("Giving loot");
-        }
-    }
+            Main.Randomizer.LogError("UnlockAbility.OnEnter");
 
-    [HarmonyPatch(typeof(Loot), nameof(Loot.GiveLoot))]
-    class n2test
-    {
-        public static bool Prefix(Loot __instance)
-        {
-            Main.Randomizer.LogError("Loot.GiveLoot " + __instance.lootType);
-            return false;
+            string locationId = $"a0.{CoreCache.Room.CurrentRoom.Name}";
+            Main.Randomizer.ItemHandler.GiveItemAtLocation(locationId);
+
+            //__instance.Finish();
+            return true;
         }
     }
 }

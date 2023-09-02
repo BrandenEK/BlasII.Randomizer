@@ -1,16 +1,22 @@
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 namespace BlasII.Randomizer.Doors
 {
     public class DoorLocation
     {
-        public readonly string id;
+        [JsonProperty] public readonly string id;
 
-        public readonly string room;
-        public readonly DoorLocationType type;
-        public readonly string originalDoor;
-        public readonly Direction direction;
+        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonProperty] public readonly DoorLocationType type;
 
-        public readonly string logic;
+        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonProperty] public readonly Direction direction;
+
+        [JsonProperty] public readonly string room;
+        [JsonProperty] public readonly string originalDoor;
+
+        [JsonProperty] public readonly string logic;
 
         public enum DoorLocationType
         {

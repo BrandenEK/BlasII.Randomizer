@@ -1,0 +1,37 @@
+[
+	{
+		"id": "RB01",
+		"name": "Test bead 1",
+		"type": "RosaryBead",
+		"progression": false,
+		"count": 1
+	},
+	{
+		"id": "RB02",
+		"name": "Test bead 2",
+		"type": "RosaryBead",
+		"progression": false,
+		"count": 1
+	},
+	{
+		"id": "RB03",
+		"name": "Test bead 3",
+		"type": "RosaryBead",
+		"progression": false,
+		"count": 1
+	},
+	{
+		"id": "RB04",
+		"name": "Test bead 4",
+		"type": "RosaryBead",
+		"progression": false,
+		"count": 1
+	},
+	{
+		"id": "RB05",
+		"name": "Test bead 5",
+		"type": "RosaryBead",
+		"progression": false,
+		"count": 1
+	},
+]
