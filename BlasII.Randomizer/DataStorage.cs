@@ -3,6 +3,7 @@ using Il2CppLightbug.Kinematic2D.Implementation;
 using Il2CppTGK.Game.Components.Attack.Data;
 using Il2CppTGK.Game.Components.Defense.Data;
 using Il2CppTGK.Game.Components.StatsSystem.Data;
+using Il2CppTGK.Game.WeaponMemory;
 using Il2CppTGK.Inventory;
 using System.Collections.Generic;
 using UnityEngine;
@@ -59,6 +60,12 @@ namespace BlasII.Randomizer
         public bool TryGetWeapon(string id, out WeaponID weapon) => _weapons.TryGetValue(id, out weapon);
         public IEnumerable<WeaponID> GetAllWeapons() => _weapons.Values;
 
+        // Weapon memories
+        private readonly Dictionary<string, WeaponMemoryID> _weaponMemories = new();
+
+        public bool TryGetWeaponMemory(string id, out WeaponMemoryID weaponMemory) => _weaponMemories.TryGetValue(id, out weaponMemory);
+        public IEnumerable<WeaponMemoryID> GetAllWeaponMemories() => _weaponMemories.Values;
+
         // Armors
         private readonly Dictionary<string, ArmorID> _armors = new();
 
@@ -114,6 +121,7 @@ namespace BlasII.Randomizer
 
             // Weapons
             LoadObjectsOfType(_weapons);
+            LoadObjectsOfType(_weaponMemories);
             LoadObjectsOfType(_armors);
         }
 

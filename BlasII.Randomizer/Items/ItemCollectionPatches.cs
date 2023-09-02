@@ -1,6 +1,7 @@
 using HarmonyLib;
 using Il2CppPlaymaker.Characters;
 using Il2CppPlaymaker.Inventory;
+using Il2CppPlaymaker.PrieDieu;
 using Il2CppTGK.Game;
 using Il2CppTGK.Game.Components.Interactables;
 using Il2CppTGK.Game.Inventory.PlayMaker;
@@ -46,7 +47,7 @@ namespace BlasII.Randomizer.Items
 
     // When an item if given through playermaker, such as dialog
     [HarmonyPatch(typeof(AddItem), nameof(AddItem.OnEnter))]
-    class PlayerMaker_AddItem_Patch
+    class PlayMaker_AddItem_Patch
     {
         public static bool Prefix(AddItem __instance)
         {
@@ -62,11 +63,27 @@ namespace BlasII.Randomizer.Items
 
     // When a weapon is unlocked
     [HarmonyPatch(typeof(UnlockWeapon), nameof(UnlockWeapon.OnEnter))]
-    class PlayerMaker_UnlockWeapon_Patch
+    class PlayMaker_UnlockWeapon_Patch
     {
         public static bool Prefix(UnlockWeapon __instance)
         {
             Main.Randomizer.LogError("UnlockWeapon.OnEnter");
+
+            string locationId = $"{CoreCache.Room.CurrentRoom.Name}.w0";
+            Main.Randomizer.ItemHandler.GiveItemAtLocation(locationId);
+
+            //__instance.Finish();
+            return true;
+        }
+    }
+
+    // When a weapon is upgraded
+    [HarmonyPatch(typeof(UpgradeWeaponTier), nameof(UpgradeWeaponTier.OnEnter))]
+    class PlayMaker_UpgradeWeapon_Patch
+    {
+        public static bool Prefix(UpgradeWeaponTier __instance)
+        {
+            Main.Randomizer.LogError("UpgradeWeaponTier.OnEnter");
 
             string locationId = $"{CoreCache.Room.CurrentRoom.Name}.w0";
             Main.Randomizer.ItemHandler.GiveItemAtLocation(locationId);
