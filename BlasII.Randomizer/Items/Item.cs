@@ -86,7 +86,12 @@ namespace BlasII.Randomizer.Items
                 case ItemType.Weapon:
                     {
                         if (Main.Randomizer.Data.TryGetWeapon(id, out var weapon))
-                            CoreCache.EquipmentManager.Unlock(weapon);
+                        {
+                            if (CoreCache.EquipmentManager.IsUnlocked(weapon))
+                                CoreCache.WeaponMemoryManager.UpgradeWeaponTier(weapon);
+                            else
+                                CoreCache.EquipmentManager.Unlock(weapon);
+                        }
                         break;
                     }
                 case ItemType.Ability:
