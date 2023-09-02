@@ -48,6 +48,7 @@ public class Debugger
         // Add all items
         else if (Input.GetKeyDown(KeyCode.F5))
         {
+            Main.Randomizer.Log("Adding lots of stuff");
             // Items
             foreach (var bead in Main.Randomizer.Data.GetAllRosaryBeads())
                 Main.Randomizer.PlayerInventory.AddRosaryBeadAsync(bead, 0, 0, false);
@@ -71,10 +72,16 @@ public class Debugger
 
         if (Input.GetKeyDown(KeyCode.F6))
         {
+            Main.Randomizer.Log("Fully upgrading prie dieus");
+            foreach (var upgrade in CoreCache.PrieDieuManager.config.upgrades)
+            {
+                CoreCache.PrieDieuManager.Upgrade(upgrade);
+            }
         }
 
         if (Input.GetKeyDown(KeyCode.F7))
         {
+            Main.Randomizer.Log("Teleporting player");
             var entry = new SceneEntryID
             {
                 scene = "Z1918",
