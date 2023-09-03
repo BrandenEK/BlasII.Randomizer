@@ -16,6 +16,10 @@ namespace BlasII.Randomizer
 
         public ItemHandler ItemHandler { get; } = new();
 
+        // This is only used to prevent excessively logging quests on main menu
+        private bool _leftMainMenu = false;
+        public bool HasLeftMainMenu => _leftMainMenu;
+
         protected override void OnInitialize()
         {
             Data.Initialize();
@@ -29,6 +33,14 @@ namespace BlasII.Randomizer
 
         protected override void OnSceneLoaded(string sceneName)
         {
+            if (sceneName == "MainMenu")
+                _leftMainMenu = false;
+        }
+
+        protected override void OnSceneUnloaded(string sceneName)
+        {
+            if (sceneName == "MainMenu")
+                _leftMainMenu = true;
         }
 
         private StatsComponent _playerStats;

@@ -69,8 +69,8 @@ public class Debugger
                 CoreCache.WeaponMemoryManager.UpgradeWeaponTier(weapon);
             }
         }
-
-        if (Input.GetKeyDown(KeyCode.F6))
+        // Upgrade prie dieus
+        else if (Input.GetKeyDown(KeyCode.F6))
         {
             Main.Randomizer.Log("Fully upgrading prie dieus");
             foreach (var upgrade in CoreCache.PrieDieuManager.config.upgrades)
@@ -78,8 +78,8 @@ public class Debugger
                 CoreCache.PrieDieuManager.Upgrade(upgrade);
             }
         }
-
-        if (Input.GetKeyDown(KeyCode.F7))
+        // Teleport
+        else if (Input.GetKeyDown(KeyCode.F7))
         {
             Main.Randomizer.Log("Teleporting player");
             var entry = new SceneEntryID
@@ -88,6 +88,19 @@ public class Debugger
                 entryId = 0
             };
             CoreCache.PlayerSpawn.TeleportPlayer(entry, false, null);
+        }
+        // Testing
+        else if (Input.GetKeyDown(KeyCode.F8))
+        {
+            //foreach (QuestDataInternal quest in CoreCache.Quest.quests.Values)
+            //{
+            //    Main.Randomizer.LogWarning($"Id: {quest.ID}, Name: {quest.Name}");
+
+            //    foreach (QuestVariable variable in quest.vars.Values)
+            //    {
+            //        Main.Randomizer.LogError($"Id: {variable.IntId}, Status: {variable.GetStringValue()}, Desc: {variable.description}");
+            //    }
+            //}
         }
     }
 }
