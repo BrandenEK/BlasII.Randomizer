@@ -48,6 +48,7 @@ public class Debugger
         // Add all items
         else if (Input.GetKeyDown(KeyCode.F5))
         {
+            Main.Randomizer.Log("Adding lots of stuff");
             // Items
             foreach (var bead in Main.Randomizer.Data.GetAllRosaryBeads())
                 Main.Randomizer.PlayerInventory.AddRosaryBeadAsync(bead, 0, 0, false);
@@ -62,21 +63,48 @@ public class Debugger
 
             // Weapons
             foreach (var weapon in Main.Randomizer.Data.GetAllWeapons())
+            {
                 CoreCache.EquipmentManager.Unlock(weapon);
+                CoreCache.WeaponMemoryManager.UpgradeWeaponTier(weapon);
+                CoreCache.WeaponMemoryManager.UpgradeWeaponTier(weapon);
+            }
         }
-
-        if (Input.GetKeyDown(KeyCode.F6))
+        // Upgrade prie dieus
+        else if (Input.GetKeyDown(KeyCode.F6))
         {
+            Main.Randomizer.Log("Fully upgrading prie dieus");
+            foreach (var upgrade in CoreCache.PrieDieuManager.config.upgrades)
+            {
+                CoreCache.PrieDieuManager.Upgrade(upgrade);
+            }
         }
-
-        if (Input.GetKeyDown(KeyCode.F7))
+        // Teleport
+        else if (Input.GetKeyDown(KeyCode.F7))
         {
+            Main.Randomizer.Log("Teleporting player");
             var entry = new SceneEntryID
             {
                 scene = "Z1918",
                 entryId = 0
             };
             CoreCache.PlayerSpawn.TeleportPlayer(entry, false, null);
+        }
+        // Testing
+        else if (Input.GetKeyDown(KeyCode.F8))
+        {
+            //foreach (QuestDataInternal quest in CoreCache.Quest.quests.Values)
+            //{
+            //    Main.Randomizer.LogWarning($"Id: {quest.ID}, Name: {quest.Name}");
+
+            //    foreach (QuestVariable variable in quest.vars.Values)
+            //    {
+            //        Main.Randomizer.LogError($"Id: {variable.IntId}, Status: {variable.GetStringValue()}, Desc: {variable.description}");
+            //    }
+            //}
+            //foreach (Animator anim in Object.FindObjectsOfType<Animator>())
+            //{
+            //    Main.Randomizer.Log($"{anim.name}: {anim.GetCurrentAnimatorStateInfo(0).m_Name}");
+            //}
         }
     }
 }

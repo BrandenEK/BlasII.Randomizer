@@ -1,6 +1,7 @@
 using HarmonyLib;
 using Il2CppPlaymaker.Characters;
 using Il2CppPlaymaker.Inventory;
+using Il2CppPlaymaker.PrieDieu;
 using Il2CppTGK.Game;
 using Il2CppTGK.Game.Components.Interactables;
 using Il2CppTGK.Game.Inventory.PlayMaker;
@@ -34,45 +35,80 @@ namespace BlasII.Randomizer.Items
     {
         public static void Prefix(LootInteractable __instance)
         {
-            Main.Randomizer.LogError("LootInteractable.UseLootByInteractor");
+            string locationId = $"{CoreCache.Room.CurrentRoom.Name}.l{__instance.transform.GetSiblingIndex()}";
+            Main.Randomizer.LogError("LootInteractable.UseLootByInteractor - " + locationId);
 
-            string locationId = $"l{__instance.transform.GetSiblingIndex()}.{CoreCache.Room.CurrentRoom.Name}";
-            Main.Randomizer.ItemHandler.GiveItemAtLocation(locationId);
-
-            //__instance.loot = null;
+            if (Main.Randomizer.ItemHandler.IsLocationRandomized(locationId))
+            {
+                Main.Randomizer.ItemHandler.GiveItemAtLocation(locationId);
+                __instance.loot = null;
+            }
         }
-
     }
 
     // When an item if given through playermaker, such as dialog
     [HarmonyPatch(typeof(AddItem), nameof(AddItem.OnEnter))]
-    class PlayerMaker_AddItem_Patch
+    class PlayMaker_AddItem_Patch
     {
         public static bool Prefix(AddItem __instance)
         {
-            Main.Randomizer.LogError("AddItem.OnEnter");
+            string locationId = $"{CoreCache.Room.CurrentRoom.Name}.i{__instance.owner.transform.GetSiblingIndex()}";
+            Main.Randomizer.LogError("AddItem.OnEnter - " + locationId);
 
-            string locationId = $"i{__instance.owner.transform.GetSiblingIndex()}.{CoreCache.Room.CurrentRoom.Name}";
-            Main.Randomizer.ItemHandler.GiveItemAtLocation(locationId);
-
-            //__instance.Finish();
-            return true;
+            if (Main.Randomizer.ItemHandler.IsLocationRandomized(locationId))
+            {
+                Main.Randomizer.ItemHandler.GiveItemAtLocation(locationId);
+                __instance.Finish();
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
     }
 
     // When a weapon is unlocked
     [HarmonyPatch(typeof(UnlockWeapon), nameof(UnlockWeapon.OnEnter))]
-    class PlayerMaker_UnlockWeapon_Patch
+    class PlayMaker_UnlockWeapon_Patch
     {
         public static bool Prefix(UnlockWeapon __instance)
         {
-            Main.Randomizer.LogError("UnlockWeapon.OnEnter");
+            string locationId = $"{CoreCache.Room.CurrentRoom.Name}.w0";
+            Main.Randomizer.LogError("UnlockWeapon.OnEnter - " + locationId);
 
-            string locationId = $"w0.{CoreCache.Room.CurrentRoom.Name}";
-            Main.Randomizer.ItemHandler.GiveItemAtLocation(locationId);
+            if (Main.Randomizer.ItemHandler.IsLocationRandomized(locationId))
+            {
+                Main.Randomizer.ItemHandler.GiveItemAtLocation(locationId);
+                __instance.Finish();
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+    }
 
-            //__instance.Finish();
-            return true;
+    // When a weapon is upgraded
+    [HarmonyPatch(typeof(UpgradeWeaponTier), nameof(UpgradeWeaponTier.OnEnter))]
+    class PlayMaker_UpgradeWeapon_Patch
+    {
+        public static bool Prefix(UpgradeWeaponTier __instance)
+        {
+            string locationId = $"{CoreCache.Room.CurrentRoom.Name}.w0";
+            Main.Randomizer.LogError("UpgradeWeaponTier.OnEnter - " + locationId);
+
+            if (Main.Randomizer.ItemHandler.IsLocationRandomized(locationId))
+            {
+                Main.Randomizer.ItemHandler.GiveItemAtLocation(locationId);
+                __instance.Finish();
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
     }
 
@@ -82,13 +118,19 @@ namespace BlasII.Randomizer.Items
     {
         public static bool Prefix(UnlockAbility __instance)
         {
-            Main.Randomizer.LogError("UnlockAbility.OnEnter");
+            string locationId = $"{CoreCache.Room.CurrentRoom.Name}.a0";
+            Main.Randomizer.LogError("UnlockAbility.OnEnter - " + locationId);
 
-            string locationId = $"a0.{CoreCache.Room.CurrentRoom.Name}";
-            Main.Randomizer.ItemHandler.GiveItemAtLocation(locationId);
-
-            //__instance.Finish();
-            return true;
+            if (Main.Randomizer.ItemHandler.IsLocationRandomized(locationId))
+            {
+                Main.Randomizer.ItemHandler.GiveItemAtLocation(locationId);
+                __instance.Finish();
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
     }
 }
