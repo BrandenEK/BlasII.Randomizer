@@ -35,8 +35,8 @@ namespace BlasII.Randomizer.Items
     {
         public static void Prefix(LootInteractable __instance)
         {
-            Main.Randomizer.LogError("LootInteractable.UseLootByInteractor");
             string locationId = $"{CoreCache.Room.CurrentRoom.Name}.l{__instance.transform.GetSiblingIndex()}";
+            Main.Randomizer.LogError("LootInteractable.UseLootByInteractor - " + locationId);
 
             if (Main.Randomizer.ItemHandler.IsLocationRandomized(locationId))
             {
@@ -52,8 +52,8 @@ namespace BlasII.Randomizer.Items
     {
         public static bool Prefix(AddItem __instance)
         {
-            Main.Randomizer.LogError("AddItem.OnEnter");
             string locationId = $"{CoreCache.Room.CurrentRoom.Name}.i{__instance.owner.transform.GetSiblingIndex()}";
+            Main.Randomizer.LogError("AddItem.OnEnter - " + locationId);
 
             if (Main.Randomizer.ItemHandler.IsLocationRandomized(locationId))
             {
@@ -74,8 +74,8 @@ namespace BlasII.Randomizer.Items
     {
         public static bool Prefix(UnlockWeapon __instance)
         {
-            Main.Randomizer.LogError("UnlockWeapon.OnEnter");
             string locationId = $"{CoreCache.Room.CurrentRoom.Name}.w0";
+            Main.Randomizer.LogError("UnlockWeapon.OnEnter - " + locationId);
 
             if (Main.Randomizer.ItemHandler.IsLocationRandomized(locationId))
             {
@@ -96,8 +96,8 @@ namespace BlasII.Randomizer.Items
     {
         public static bool Prefix(UpgradeWeaponTier __instance)
         {
-            Main.Randomizer.LogError("UpgradeWeaponTier.OnEnter");
             string locationId = $"{CoreCache.Room.CurrentRoom.Name}.w0";
+            Main.Randomizer.LogError("UpgradeWeaponTier.OnEnter - " + locationId);
 
             if (Main.Randomizer.ItemHandler.IsLocationRandomized(locationId))
             {
@@ -118,8 +118,8 @@ namespace BlasII.Randomizer.Items
     {
         public static bool Prefix(UnlockAbility __instance)
         {
-            Main.Randomizer.LogError("UnlockAbility.OnEnter");
             string locationId = $"{CoreCache.Room.CurrentRoom.Name}.a0";
+            Main.Randomizer.LogError("UnlockAbility.OnEnter - " + locationId);
 
             if (Main.Randomizer.ItemHandler.IsLocationRandomized(locationId))
             {
