@@ -29,4 +29,16 @@ namespace BlasII.Randomizer
             return false;
         }
     }
+
+    [HarmonyPatch(typeof(ShowQuote), nameof(ShowQuote.OnEnter))]
+    class Quote_Skip_Patch
+    {
+        public static bool Prefix(ShowQuote __instance)
+        {
+            Main.Randomizer.LogWarning("Skipping quote: " + __instance.Owner.name);
+
+            __instance.Finish();
+            return false;
+        }
+    }
 }

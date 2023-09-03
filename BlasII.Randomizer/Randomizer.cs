@@ -1,9 +1,12 @@
 ﻿using BlasII.ModdingAPI;
 using BlasII.Randomizer.Debugging;
 using BlasII.Randomizer.Items;
+using Il2Cpp;
 using Il2CppTGK.Game;
+using Il2CppTGK.Game.Components.Interactables;
 using Il2CppTGK.Game.Components.Inventory;
 using Il2CppTGK.Game.Components.StatsSystem;
+using UnityEngine;
 
 namespace BlasII.Randomizer
 {
@@ -35,6 +38,8 @@ namespace BlasII.Randomizer
         {
             if (sceneName == "MainMenu")
                 _leftMainMenu = false;
+            else if (sceneName == "Z1506")
+                LoadWeaponSelectRoom();
         }
 
         protected override void OnSceneUnloaded(string sceneName)
@@ -62,6 +67,37 @@ namespace BlasII.Randomizer
                 if (_playerInventory == null)
                     _playerInventory = CoreCache.PlayerSpawn.PlayerInstance.GetComponent<InventoryComponent>();
                 return _playerInventory;
+            }
+        }
+
+        private void LoadWeaponSelectRoom()
+        {
+            Log("Loading weapon room");
+
+            foreach (var statue in Object.FindObjectsOfType<QuestVarTrigger>())
+            {
+                int weapon = -1;
+                if (statue.name.EndsWith("CENSER"))
+                    weapon = 0;
+                else if (statue.name.EndsWith("ROSARY"))
+                    weapon = 1;
+                else if (statue.name.EndsWith("RAPIER"))
+                    weapon = 2;
+                if (weapon == -1)
+                    continue;
+
+                bool isWeapon = weapon == 1;
+
+                //int[] enabled = new int[] { 955320154, 1433134813, -1637171818 };
+                //int[] destroyed = new int[] { -1929948352, 1827061954, 1677515379 };
+                int[] disabledAnimations = new int[] { -1322956020, -786038676, -394840968 };
+
+                if (!isWeapon)
+                {
+                    Object.Destroy(statue.GetComponent<BoxCollider2D>());
+                    Object.Destroy(statue.GetComponent<PlayMakerFSM>());
+                    statue.transform.Find("sprite").GetComponent<Animator>().Play(disabledAnimations[weapon]);
+                }
             }
         }
     }

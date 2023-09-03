@@ -101,6 +101,10 @@ public class Debugger
             //        Main.Randomizer.LogError($"Id: {variable.IntId}, Status: {variable.GetStringValue()}, Desc: {variable.description}");
             //    }
             //}
+            //foreach (Animator anim in Object.FindObjectsOfType<Animator>())
+            //{
+            //    Main.Randomizer.Log($"{anim.name}: {anim.GetCurrentAnimatorStateInfo(0).m_Name}");
+            //}
         }
     }
 }
