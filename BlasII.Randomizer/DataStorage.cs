@@ -6,6 +6,7 @@ using Il2CppTGK.Game.Components.StatsSystem.Data;
 using Il2CppTGK.Game.WeaponMemory;
 using Il2CppTGK.Inventory;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace BlasII.Randomizer
@@ -30,43 +31,43 @@ namespace BlasII.Randomizer
         private readonly Dictionary<string, RosaryBeadItemID> _rosaryBeads = new();
 
         public bool TryGetRosaryBead(string id, out RosaryBeadItemID bead) => _rosaryBeads.TryGetValue(id, out bead);
-        public IEnumerable<RosaryBeadItemID> GetAllRosaryBeads() => _rosaryBeads.Values;
+        public IEnumerable<RosaryBeadItemID> GetAllRosaryBeads() => _rosaryBeads.OrderBy(x => x.Key).Select(x => x.Value);
 
         // Prayers
         private readonly Dictionary<string, PrayerItemID> _prayers = new();
 
         public bool TryGetPrayer(string id, out PrayerItemID prayer) => _prayers.TryGetValue(id, out prayer);
-        public IEnumerable<PrayerItemID> GetAllPrayers() => _prayers.Values;
+        public IEnumerable<PrayerItemID> GetAllPrayers() => _prayers.OrderBy(x => x.Key).Select(x => x.Value);
 
         // Figurines
         private readonly Dictionary<string, FigureItemID> _figurines = new();
 
         public bool TryGetFigurine(string id, out FigureItemID figurine) => _figurines.TryGetValue(id, out figurine);
-        public IEnumerable<FigureItemID> GetAllFigurines() => _figurines.Values;
+        public IEnumerable<FigureItemID> GetAllFigurines() => _figurines.OrderBy(x => x.Key).Select(x => x.Value);
 
         // Quest items
         private readonly Dictionary<string, QuestItemID> _questItems = new();
 
         public bool TryGetQuestItem(string id, out QuestItemID questItem) => _questItems.TryGetValue(id, out questItem);
-        public IEnumerable<QuestItemID> GetAllQuestItems() => _questItems.Values;
+        public IEnumerable<QuestItemID> GetAllQuestItems() => _questItems.OrderBy(x => x.Key).Select(x => x.Value);
 
         // Abilities
         private readonly Dictionary<string, IAbilityTypeRef> _abilities = new();
 
         public bool TryGetAbility(string id, out IAbilityTypeRef ability) => _abilities.TryGetValue(id, out ability);
-        public IEnumerable<IAbilityTypeRef> GetAllAbilities() => _abilities.Values;
+        public IEnumerable<IAbilityTypeRef> GetAllAbilities() => _abilities.OrderBy(x => x.Key).Select(x => x.Value);
 
         // Weapons
         private readonly Dictionary<string, WeaponID> _weapons = new();
 
         public bool TryGetWeapon(string id, out WeaponID weapon) => _weapons.TryGetValue(id, out weapon);
-        public IEnumerable<WeaponID> GetAllWeapons() => _weapons.Values;
+        public IEnumerable<WeaponID> GetAllWeapons() => _weapons.OrderBy(x => x.Key).Select(x => x.Value);
 
         // Weapon memories
         private readonly Dictionary<string, WeaponMemoryID> _weaponMemories = new();
 
         public bool TryGetWeaponMemory(string id, out WeaponMemoryID weaponMemory) => _weaponMemories.TryGetValue(id, out weaponMemory);
-        public IEnumerable<WeaponMemoryID> GetAllWeaponMemories() => _weaponMemories.Values;
+        public IEnumerable<WeaponMemoryID> GetAllWeaponMemories() => _weaponMemories.OrderBy(x => x.Key).Select(x => x.Value);
 
         // Armors
         private readonly Dictionary<string, ArmorID> _armors = new();

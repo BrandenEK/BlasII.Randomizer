@@ -86,19 +86,18 @@ namespace BlasII.Randomizer
                 if (weapon == -1)
                     continue;
 
-                bool isWeapon = weapon == 1;
-
-                //int[] enabled = new int[] { 955320154, 1433134813, -1637171818 };
-                //int[] destroyed = new int[] { -1929948352, 1827061954, 1677515379 };
-                int[] disabledAnimations = new int[] { -1322956020, -786038676, -394840968 };
-
-                if (!isWeapon)
+                if (weapon != CHOSEN_WEAPON)
                 {
+                    int[] disabledAnimations = new int[] { -1322956020, -786038676, -394840968 };
+
                     Object.Destroy(statue.GetComponent<BoxCollider2D>());
                     Object.Destroy(statue.GetComponent<PlayMakerFSM>());
                     statue.transform.Find("sprite").GetComponent<Animator>().Play(disabledAnimations[weapon]);
                 }
             }
         }
+
+        // Will soon be from config
+        public const int CHOSEN_WEAPON = 1;
     }
 }

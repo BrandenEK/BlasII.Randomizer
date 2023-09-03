@@ -12,7 +12,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="BlasII.ModdingReferences" Version="1.0.5.1" />
+    <PackageReference Include="BlasII.ModdingReferences" Version="1.0.5.2" />
     <PackageReference Include="Il2CppInterop.Runtime" Version="1.4.5" />
     <PackageReference Include="LavaGang.MelonLoader" Version="0.6.1" />
     <PackageReference Include="Lib.Harmony" Version="2.2.2" />
@@ -22,15 +22,6 @@
   <ItemGroup>
     <Reference Include="ModdingAPI">
       <HintPath>..\lib\ModdingAPI.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.AnimationModule">
-      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Blasphemous 2\MelonLoader\Il2CppAssemblies\UnityEngine.AnimationModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.Physics2DModule">
-      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Blasphemous 2\MelonLoader\Il2CppAssemblies\UnityEngine.Physics2DModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.PhysicsModule">
-      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Blasphemous 2\MelonLoader\Il2CppAssemblies\UnityEngine.PhysicsModule.dll</HintPath>
     </Reference>
   </ItemGroup>
 
