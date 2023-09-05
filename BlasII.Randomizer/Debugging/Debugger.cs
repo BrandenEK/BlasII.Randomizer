@@ -1,4 +1,5 @@
-﻿using Il2CppTGK.Game;
+﻿using BlasII.ModdingAPI.Storage;
+using Il2CppTGK.Game;
 using Il2CppTGK.Game.Components.StatsSystem.Data;
 using Il2CppTGK.Game.PlayerSpawn;
 using UnityEngine;
@@ -12,37 +13,37 @@ public class Debugger
         // Restore health
         if (Input.GetKeyDown(KeyCode.F1))
         {
-            if (Main.Randomizer.Data.TryGetRangeStat("Health", out RangeStatID health))
+            if (StatStorage.TryGetRangeStat("Health", out RangeStatID health))
             {
                 Main.Randomizer.Log("Restoring health");
-                Main.Randomizer.PlayerStats.SetCurrentToMax(health);
+                StatStorage.PlayerStats.SetCurrentToMax(health);
             }
         }
         // Restore fervour
         else if (Input.GetKeyDown(KeyCode.F2))
         {
-            if (Main.Randomizer.Data.TryGetRangeStat("Fervour", out RangeStatID fervour))
+            if (StatStorage.TryGetRangeStat("Fervour", out RangeStatID fervour))
             {
                 Main.Randomizer.Log("Restoring fervour");
-                Main.Randomizer.PlayerStats.SetCurrentToMax(fervour);
+                StatStorage.PlayerStats.SetCurrentToMax(fervour);
             }
         }
         // Add tears
         else if (Input.GetKeyDown(KeyCode.F3))
         {
-            if (Main.Randomizer.Data.TryGetValueStat("Tears", out ValueStatID tears))
+            if (StatStorage.TryGetValueStat("Tears", out ValueStatID tears))
             {
                 Main.Randomizer.Log("Adding 5000 tears");
-                Main.Randomizer.PlayerStats.AddToCurrentValue(tears, 5000);
+                StatStorage.PlayerStats.AddToCurrentValue(tears, 5000);
             }
         }
         // Add marks
         else if (Input.GetKeyDown(KeyCode.F4))
         {
-            if (Main.Randomizer.Data.TryGetValueStat("Orbs", out ValueStatID orbs))
+            if (StatStorage.TryGetValueStat("Orbs", out ValueStatID orbs))
             {
                 Main.Randomizer.Log("Adding 1 mark");
-                Main.Randomizer.PlayerStats.AddToCurrentValue(orbs, 1);
+                StatStorage.PlayerStats.AddToCurrentValue(orbs, 1);
             }
         }
         // Add all items
@@ -50,23 +51,23 @@ public class Debugger
         {
             Main.Randomizer.Log("Adding lots of stuff");
             // Items
-            foreach (var bead in Main.Randomizer.Data.GetAllRosaryBeads())
-                Main.Randomizer.PlayerInventory.AddRosaryBeadAsync(bead, 0, 0, false);
-            foreach (var prayer in Main.Randomizer.Data.GetAllPrayers())
-                Main.Randomizer.PlayerInventory.AddPrayerAsync(prayer, 0, 0, false);
-            foreach (var figurine in Main.Randomizer.Data.GetAllFigurines())
-                Main.Randomizer.PlayerInventory.AddFigureAsync(figurine, 0, 0, false);
+            foreach (var bead in ItemStorage.GetAllRosaryBeads())
+                ItemStorage.PlayerInventory.AddRosaryBeadAsync(bead.Value, 0, 0, false);
+            foreach (var prayer in ItemStorage.GetAllPrayers())
+                ItemStorage.PlayerInventory.AddPrayerAsync(prayer.Value, 0, 0, false);
+            foreach (var figure in ItemStorage.GetAllFigures())
+                ItemStorage.PlayerInventory.AddFigureAsync(figure.Value, 0, 0, false);
 
             // Abilities
-            foreach (var ability in Main.Randomizer.Data.GetAllAbilities())
-                CoreCache.AbilitiesUnlockManager.SetAbility(ability, true);
+            foreach (var ability in AbilityStorage.GetAllAbilities())
+                CoreCache.AbilitiesUnlockManager.SetAbility(ability.Value, true);
 
             // Weapons
-            foreach (var weapon in Main.Randomizer.Data.GetAllWeapons())
+            foreach (var weapon in WeaponStorage.GetAllWeapons())
             {
-                CoreCache.EquipmentManager.Unlock(weapon);
-                CoreCache.WeaponMemoryManager.UpgradeWeaponTier(weapon);
-                CoreCache.WeaponMemoryManager.UpgradeWeaponTier(weapon);
+                CoreCache.EquipmentManager.Unlock(weapon.Value);
+                CoreCache.WeaponMemoryManager.UpgradeWeaponTier(weapon.Value);
+                CoreCache.WeaponMemoryManager.UpgradeWeaponTier(weapon.Value);
             }
         }
         // Upgrade prie dieus
