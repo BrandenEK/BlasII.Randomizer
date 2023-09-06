@@ -6,15 +6,11 @@ on:
     branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
-    
-env:
-  # This is the only line that has to be changed on a per-project basis
-  MOD_NAME: "Randomizer"
 
 jobs:
   build:
     runs-on: ubuntu-latest
-
+    
     steps:
     - name: Checkout
       uses: actions/checkout@v3
@@ -29,9 +25,11 @@ jobs:
       
     - name: Build
       run: dotnet build --configuration Release --no-restore
-
+      
     - name: Export
       run: |
+        MOD_NAME=$(grep -oP '<TargetName>\K[^<]+' ${{ github.event.repository.name }}/${{ github.event.repository.name }}.csproj)
+        echo "MOD_NAME=$MOD_NAME" >> $GITHUB_ENV
         MOD_VERSION=$(grep -oP '<Version>\K[^<]+' ${{ github.event.repository.name }}/${{ github.event.repository.name }}.csproj)
         echo "MOD_VERSION=$MOD_VERSION" >> $GITHUB_ENV
       
