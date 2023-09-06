@@ -29,11 +29,16 @@ jobs:
       
     - name: Build
       run: dotnet build --configuration Release --no-restore
+
+    - name: Export
+      run: |
+        MOD_VERSION=$(grep -oP '<Version>\K[^<]+' ${{ github.event.repository.name }}/${{ github.event.repository.name }}.csproj)
+        echo "MOD_VERSION=$MOD_VERSION" >> $GITHUB_ENV
       
     - name: Upload
       uses: actions/upload-artifact@v3
       with:
-        name: ${{env.MOD_NAME}}
+        name: ${{ env.MOD_NAME }} v${{ env.MOD_VERSION }}
         path: publish/${{env.MOD_NAME}}/
         retention-days: 30
         if-no-files-found: error
