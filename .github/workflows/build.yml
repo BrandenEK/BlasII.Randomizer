@@ -9,7 +9,7 @@ on:
     
 env:
   # This is the only line that has to be changed on a per-project basis
-  MOD_NAME: "Randomizer"
+  MOD_NAME: "xRandomizer"
 
 jobs:
   build:
@@ -31,4 +31,5 @@ jobs:
       with:
         name: ${{env.MOD_NAME}}
         path: publish/${{env.MOD_NAME}}/
-        retention-days: 20
+        retention-days: 30
+        if-no-files-found: error
