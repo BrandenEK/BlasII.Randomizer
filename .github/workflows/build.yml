@@ -32,11 +32,13 @@ jobs:
         echo "MOD_NAME=$MOD_NAME" >> $GITHUB_ENV
         MOD_VERSION=$(grep -oP '<Version>\K[^<]+' ${{ github.event.repository.name }}/${{ github.event.repository.name }}.csproj)
         echo "MOD_VERSION=$MOD_VERSION" >> $GITHUB_ENV
+        BUILD_DATE=$(date +'%Y-%m-%d')
+        echo "BUILD_DATE=$BUILD_DATE" >> $GITHUB_ENV
       
     - name: Upload
       uses: actions/upload-artifact@v3
       with:
-        name: ${{ env.MOD_NAME }} v${{ env.MOD_VERSION }}
-        path: publish/${{env.MOD_NAME}}/
+        name: ${{ env.MOD_NAME }} v${{ env.MOD_VERSION }} (${{ env.BUILD_DATE }})
+        path: publish/${{ env.MOD_NAME }}/
         retention-days: 30
         if-no-files-found: error
