@@ -44,7 +44,7 @@ namespace BlasII.Randomizer.Items
 
         public void DisplayItem(Item item)
         {
-            CoreCache.UINavigationHelper.ShowItemPopup("Obtained:", item.name, item.Image);
+            CoreCache.UINavigationHelper.ShowItemPopup("Obtained", item.name, item.Image);
         }
 
         public bool IsLocationRandomized(string locationId)
