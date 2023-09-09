@@ -1,7 +1,6 @@
 ﻿using BlasII.ModdingAPI;
 using BlasII.Randomizer.Items;
 using Il2Cpp;
-using Il2CppTGK.Framework.Quest;
 using Il2CppTGK.Game;
 using Il2CppTGK.Game.Components.Interactables;
 using UnityEngine;
@@ -16,10 +15,6 @@ namespace BlasII.Randomizer
 
         public ItemHandler ItemHandler { get; } = new();
 
-        // This is only used to prevent excessively logging quests on main menu
-        private bool _leftMainMenu = false;
-        public bool HasLeftMainMenu => _leftMainMenu;
-
         protected override void OnInitialize()
         {
             Data.Initialize();
@@ -28,38 +23,18 @@ namespace BlasII.Randomizer
 
         protected override void OnUpdate()
         {
-            //if (Input.GetKeyDown(KeyCode.Escape))
-            //{
-            //    foreach (var quest in Resources.FindObjectsOfTypeAll<QuestData>())
-            //    {
-            //        LogWarning(quest.name + ": " + quest.description);
-            //        Log("Status: " + quest.currentStatus.currentValue);
-            //        foreach (var variable in quest.variables)
-            //        {
-            //            Log(variable.id + ": " + variable.description + " - " + variable.currentValue + " - " + variable.GetStringValue());
-            //            Log(variable.variableType.ToString());
-            //        }
-            //    }
-            //}
-            //else if (Input.GetKeyDown(KeyCode.P))
-            //{
-            //    InputQuestVar q = CoreCache.Quest.GetInputQuestVar("ST00", "Z12_ACCESS");
-            //    CoreCache.Quest.SetQuestVarValue(q.questID, q.varID, true);
-            //}
+
         }
 
         protected override void OnSceneLoaded(string sceneName)
         {
-            if (sceneName == "MainMenu")
-                _leftMainMenu = false;
-            else if (sceneName == "Z1506")
+            if (sceneName == "Z1506")
                 LoadWeaponSelectRoom();
         }
 
         protected override void OnSceneUnloaded(string sceneName)
         {
-            if (sceneName == "MainMenu")
-                _leftMainMenu = true;
+
         }
 
         private void LoadWeaponSelectRoom()

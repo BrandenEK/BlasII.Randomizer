@@ -1,82 +1,29 @@
 ﻿using HarmonyLib;
-using Il2CppTGK.Framework.Quest;
-using Il2CppTGK.Game;
+using Il2CppTGK.Game.Managers;
+using System.Reflection;
 
 namespace BlasII.Randomizer
 {
-    //[HarmonyPatch(typeof(QuestVariable), nameof(QuestVariable.Set), typeof(string))]
-    //class QuestSet_String_Patch
-    //{
-    //    public static void Postfix(QuestVariable __instance, string value)
-    //    {
-    //        if (Main.Randomizer.HasLeftMainMenu)
-    //        {
-    //            string quest = QuestGet_String_Patch.GetQuestFromVariable(__instance);
-    //            Main.Randomizer.Log($"Setting quest {quest}.{__instance.id} = {value}");
-    //        }
-    //    }
-    //}
+    [HarmonyPatch(typeof(QuestManager), nameof(QuestManager.GetQuestVarBoolValue))]
+    class QuestManager_GetVarBool_Patch
+    {
+        public static void Postfix(int questId, int varId, bool __result)
+        {
+            Main.Randomizer.LogWarning($"Getting quest: {Main.Randomizer.GetQuestName(questId, varId)} ({__result})");
+        }
+    }
 
-    //[HarmonyPatch(typeof(QuestVariable), nameof(QuestVariable.Set), typeof(float))]
-    //class QuestSet_Float_Patch
-    //{
-    //    public static void Postfix(QuestVariable __instance, float value)
-    //    {
-    //        if (Main.Randomizer.HasLeftMainMenu)
-    //        {
-    //            string quest = QuestGet_String_Patch.GetQuestFromVariable(__instance);
-    //            Main.Randomizer.Log($"Setting quest {quest}.{__instance.id} = {value}");
-    //        }
-    //    }
-    //}
+    [HarmonyPatch]
+    class QuestManager_SetQuest_Patch
+    {
+        public static MethodInfo TargetMethod()
+        {
+            return typeof(QuestManager).GetMethod("SetQuestVarValue").MakeGenericMethod(typeof(bool));
+        }
 
-    //[HarmonyPatch(typeof(QuestVariable), nameof(QuestVariable.Set), typeof(int))]
-    //class QuestSet_Int_Patch
-    //{
-    //    public static void Postfix(QuestVariable __instance, int value)
-    //    {
-    //        if (Main.Randomizer.HasLeftMainMenu)
-    //        {
-    //            string quest = QuestGet_String_Patch.GetQuestFromVariable(__instance);
-    //            Main.Randomizer.Log($"Setting quest {quest}.{__instance.id} = {value}");
-    //        }
-    //    }
-    //}
-
-    //[HarmonyPatch(typeof(QuestVariable), nameof(QuestVariable.Set), typeof(bool))]
-    //class QuestSet_Bool_Patch
-    //{
-    //    public static void Postfix(QuestVariable __instance, bool value)
-    //    {
-    //        if (Main.Randomizer.HasLeftMainMenu)
-    //        {
-    //            string quest = QuestGet_String_Patch.GetQuestFromVariable(__instance);
-    //            Main.Randomizer.Log($"Setting quest {quest}.{__instance.id} = {value}");
-    //        }
-    //    }
-    //}
-
-    //[HarmonyPatch(typeof(QuestVariable), nameof(QuestVariable.GetStringValue))]
-    //class QuestGet_String_Patch
-    //{
-    //    public static void Postfix(QuestVariable __instance, string __result)
-    //    {
-    //        if (Main.Randomizer.HasLeftMainMenu)
-    //        {
-    //            string quest = GetQuestFromVariable(__instance);
-    //            Main.Randomizer.Log($"Checking quest {quest}.{__instance.id} = {__result}");
-    //        }
-    //    }
-
-    //    public static string GetQuestFromVariable(QuestVariable variable)
-    //    {
-    //        foreach (QuestDataInternal quest in CoreCache.Quest.quests.Values)
-    //        {
-    //            if (quest.currentStatus == variable || quest.vars.ContainsValue(variable))
-    //                return quest.Name;
-    //        }
-
-    //        return "Unknown";
-    //    }
-    //}
+        public static void Postfix(int questId, int varId, bool value)
+        {
+            Main.Randomizer.LogWarning($"Setting quest: {Main.Randomizer.GetQuestName(questId, varId)} ({value})");
+        }
+    }
 }
