@@ -1,6 +1,8 @@
 ﻿using BlasII.ModdingAPI;
 using BlasII.Randomizer.Items;
 using Il2Cpp;
+using Il2CppTGK.Framework.Quest;
+using Il2CppTGK.Game;
 using Il2CppTGK.Game.Components.Interactables;
 using UnityEngine;
 
@@ -26,7 +28,24 @@ namespace BlasII.Randomizer
 
         protected override void OnUpdate()
         {
-
+            //if (Input.GetKeyDown(KeyCode.Escape))
+            //{
+            //    foreach (var quest in Resources.FindObjectsOfTypeAll<QuestData>())
+            //    {
+            //        LogWarning(quest.name + ": " + quest.description);
+            //        Log("Status: " + quest.currentStatus.currentValue);
+            //        foreach (var variable in quest.variables)
+            //        {
+            //            Log(variable.id + ": " + variable.description + " - " + variable.currentValue + " - " + variable.GetStringValue());
+            //            Log(variable.variableType.ToString());
+            //        }
+            //    }
+            //}
+            //else if (Input.GetKeyDown(KeyCode.P))
+            //{
+            //    InputQuestVar q = CoreCache.Quest.GetInputQuestVar("ST00", "Z12_ACCESS");
+            //    CoreCache.Quest.SetQuestVarValue(q.questID, q.varID, true);
+            //}
         }
 
         protected override void OnSceneLoaded(string sceneName)
@@ -68,6 +87,14 @@ namespace BlasII.Randomizer
                     statue.transform.Find("sprite").GetComponent<Animator>().Play(disabledAnimations[weapon]);
                 }
             }
+        }
+
+        public string GetQuestName(int questId, int varId)
+        {
+            var quest = CoreCache.Quest.GetQuestData(questId, string.Empty);
+            var variable = quest.GetVariable(varId);
+
+            return $"{quest.Name}.{variable.id}";
         }
 
         // Will soon be from config
