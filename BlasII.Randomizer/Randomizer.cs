@@ -1,6 +1,7 @@
 ﻿using BlasII.ModdingAPI;
 using BlasII.Randomizer.Items;
 using Il2Cpp;
+using Il2CppTGK.Game;
 using Il2CppTGK.Game.Components.Interactables;
 using UnityEngine;
 
@@ -13,10 +14,6 @@ namespace BlasII.Randomizer
         public DataStorage Data { get; } = new();
 
         public ItemHandler ItemHandler { get; } = new();
-
-        // This is only used to prevent excessively logging quests on main menu
-        private bool _leftMainMenu = false;
-        public bool HasLeftMainMenu => _leftMainMenu;
 
         protected override void OnInitialize()
         {
@@ -31,16 +28,13 @@ namespace BlasII.Randomizer
 
         protected override void OnSceneLoaded(string sceneName)
         {
-            if (sceneName == "MainMenu")
-                _leftMainMenu = false;
-            else if (sceneName == "Z1506")
+            if (sceneName == "Z1506")
                 LoadWeaponSelectRoom();
         }
 
         protected override void OnSceneUnloaded(string sceneName)
         {
-            if (sceneName == "MainMenu")
-                _leftMainMenu = true;
+
         }
 
         private void LoadWeaponSelectRoom()
@@ -68,6 +62,14 @@ namespace BlasII.Randomizer
                     statue.transform.Find("sprite").GetComponent<Animator>().Play(disabledAnimations[weapon]);
                 }
             }
+        }
+
+        public string GetQuestName(int questId, int varId)
+        {
+            var quest = CoreCache.Quest.GetQuestData(questId, string.Empty);
+            var variable = quest.GetVariable(varId);
+
+            return $"{quest.Name}.{variable.id}";
         }
 
         // Will soon be from config

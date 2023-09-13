@@ -1,82 +1,29 @@
 ﻿using HarmonyLib;
-using Il2CppTGK.Framework.Quest;
-using Il2CppTGK.Game;
+using Il2CppTGK.Game.Managers;
+using System.Reflection;
 
 namespace BlasII.Randomizer
 {
-    [HarmonyPatch(typeof(QuestVariable), nameof(QuestVariable.Set), typeof(string))]
-    class QuestSet_String_Patch
+    [HarmonyPatch(typeof(QuestManager), nameof(QuestManager.GetQuestVarBoolValue))]
+    class QuestManager_GetVarBool_Patch
     {
-        public static void Postfix(QuestVariable __instance, string value)
+        public static void Postfix(int questId, int varId, bool __result)
         {
-            if (Main.Randomizer.HasLeftMainMenu)
-            {
-                string quest = QuestGet_String_Patch.GetQuestFromVariable(__instance);
-                Main.Randomizer.Log($"Setting quest {quest}.{__instance.id} = {value}");
-            }
+            Main.Randomizer.LogWarning($"Getting quest: {Main.Randomizer.GetQuestName(questId, varId)} ({__result})");
         }
     }
 
-    [HarmonyPatch(typeof(QuestVariable), nameof(QuestVariable.Set), typeof(float))]
-    class QuestSet_Float_Patch
+    [HarmonyPatch]
+    class QuestManager_SetQuest_Patch
     {
-        public static void Postfix(QuestVariable __instance, float value)
+        public static MethodInfo TargetMethod()
         {
-            if (Main.Randomizer.HasLeftMainMenu)
-            {
-                string quest = QuestGet_String_Patch.GetQuestFromVariable(__instance);
-                Main.Randomizer.Log($"Setting quest {quest}.{__instance.id} = {value}");
-            }
-        }
-    }
-
-    [HarmonyPatch(typeof(QuestVariable), nameof(QuestVariable.Set), typeof(int))]
-    class QuestSet_Int_Patch
-    {
-        public static void Postfix(QuestVariable __instance, int value)
-        {
-            if (Main.Randomizer.HasLeftMainMenu)
-            {
-                string quest = QuestGet_String_Patch.GetQuestFromVariable(__instance);
-                Main.Randomizer.Log($"Setting quest {quest}.{__instance.id} = {value}");
-            }
-        }
-    }
-
-    [HarmonyPatch(typeof(QuestVariable), nameof(QuestVariable.Set), typeof(bool))]
-    class QuestSet_Bool_Patch
-    {
-        public static void Postfix(QuestVariable __instance, bool value)
-        {
-            if (Main.Randomizer.HasLeftMainMenu)
-            {
-                string quest = QuestGet_String_Patch.GetQuestFromVariable(__instance);
-                Main.Randomizer.Log($"Setting quest {quest}.{__instance.id} = {value}");
-            }
-        }
-    }
-
-    [HarmonyPatch(typeof(QuestVariable), nameof(QuestVariable.GetStringValue))]
-    class QuestGet_String_Patch
-    {
-        public static void Postfix(QuestVariable __instance, string __result)
-        {
-            if (Main.Randomizer.HasLeftMainMenu)
-            {
-                string quest = GetQuestFromVariable(__instance);
-                Main.Randomizer.Log($"Checking quest {quest}.{__instance.id} = {__result}");
-            }
+            return typeof(QuestManager).GetMethod("SetQuestVarValue").MakeGenericMethod(typeof(bool));
         }
 
-        public static string GetQuestFromVariable(QuestVariable variable)
+        public static void Postfix(int questId, int varId, bool value)
         {
-            foreach (QuestDataInternal quest in CoreCache.Quest.quests.Values)
-            {
-                if (quest.currentStatus == variable || quest.vars.ContainsValue(variable))
-                    return quest.Name;
-            }
-
-            return "Unknown";
+            Main.Randomizer.LogWarning($"Setting quest: {Main.Randomizer.GetQuestName(questId, varId)} ({value})");
         }
     }
 }
