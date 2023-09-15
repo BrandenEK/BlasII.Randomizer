@@ -1,4 +1,5 @@
 ﻿using BlasII.ModdingAPI;
+using BlasII.ModdingAPI.Storage;
 using BlasII.Randomizer.Items;
 using Il2Cpp;
 using Il2CppTGK.Game;
@@ -23,7 +24,13 @@ namespace BlasII.Randomizer
 
         protected override void OnUpdate()
         {
-
+            if (Input.GetKeyDown(KeyCode.Keypad7))
+                DisplayAllFSMsInScene();
+            else if (Input.GetKeyDown(KeyCode.Keypad8))
+            {
+                if (StatStorage.TryGetModifiableStat("BasePhysicalattack", out var stat))
+                    StatStorage.PlayerStats.AddBonus(stat, "test", 100, 0);
+            }
         }
 
         protected override void OnSceneLoaded(string sceneName)
@@ -72,7 +79,29 @@ namespace BlasII.Randomizer
             return $"{quest.Name}.{variable.id}";
         }
 
+        public bool GetQuestBool(string questId, string varId)
+        {
+            var input = CoreCache.Quest.GetInputQuestVar(questId, varId);
+            return CoreCache.Quest.GetQuestVarBoolValue(input.questID, input.varID);
+        }
+
         // Will soon be from config
         public const int CHOSEN_WEAPON = 1;
+
+        public void DisplayAllFSMsInScene()
+        {
+            foreach (var fsm in Object.FindObjectsOfType<PlayMakerFSM>())
+            {
+                LogWarning("FMS: " + fsm.name);
+                foreach (var state in fsm.FsmStates)
+                {
+                    Log("State: " + state.Name);
+                    foreach (var action in state.Actions)
+                    {
+                        LogError("Action: " + action.Name + ", " + action.GetIl2CppType().Name);
+                    }
+                }
+            }
+        }
     }
 }

@@ -41,4 +41,40 @@ namespace BlasII.Randomizer
             return false;
         }
     }
+
+    [HarmonyPatch(typeof(ShowMapDestinationTutorial), nameof(ShowMapDestinationTutorial.OnEnter))]
+    class Map_Skip_Patch
+    {
+        public static bool Prefix(ShowMapDestinationTutorial __instance)
+        {
+            Main.Randomizer.LogWarning("Skipping map: " + __instance.Owner.name);
+
+            __instance.Finish();
+            return false;
+        }
+    }
+
+    [HarmonyPatch(typeof(ShowSorrowsPopup), nameof(ShowSorrowsPopup.OnEnter))]
+    class Sorrows_Skip_Patch
+    {
+        public static bool Prefix(ShowSorrowsPopup __instance)
+        {
+            Main.Randomizer.LogWarning("Skipping sorrows: " + __instance.Owner.name);
+
+            __instance.Finish();
+            return false;
+        }
+    }
+
+    [HarmonyPatch(typeof(ShowDovePopup), nameof(ShowDovePopup.OnEnter))]
+    class Dove_Skip_Patch
+    {
+        public static bool Prefix(ShowDovePopup __instance)
+        {
+            Main.Randomizer.LogWarning("Skipping dove: " + __instance.Owner.name);
+
+            __instance.Finish();
+            return false;
+        }
+    }
 }
