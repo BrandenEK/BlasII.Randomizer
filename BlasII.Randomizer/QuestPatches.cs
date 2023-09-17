@@ -21,8 +21,14 @@ namespace BlasII.Randomizer
                 __result = true;
             }
 
+            // Always have sand emptied
+            else if (quest.StartsWith("Z04"))
+            {
+                __result = true;
+            }
+
             // Only unlock CR once all bosses are dead
-            if (scene == "Z2501" && quest == "Bosses.BS07_DEAD")
+            else if (scene == "Z2501" && quest == "Bosses.BS07_DEAD")
             {
                 __result = __result &&
                     Main.Randomizer.GetQuestBool("Bosses", "BS04_DEAD") &&
