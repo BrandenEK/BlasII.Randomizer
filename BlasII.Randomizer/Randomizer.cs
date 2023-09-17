@@ -44,6 +44,26 @@ namespace BlasII.Randomizer
 
         }
 
+        protected override void OnNewGame(int slot)
+        {
+            Log("Shuffling items with seed (Not yet)");
+        }
+
+        protected override void OnSaveGame(int slot)
+        {
+            Log("Saving shuffled items to file (Not yet)");
+        }
+
+        protected override void OnLoadGame(int slot)
+        {
+            Log("Loading shuffled items from file (Not yet)");
+        }
+
+        protected override void OnResetGame()
+        {
+            Log("Reseting shuffled items (Not yet)");
+        }
+
         private void LoadWeaponSelectRoom()
         {
             Log("Loading weapon room");
