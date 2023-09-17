@@ -25,7 +25,12 @@ namespace BlasII.Randomizer
         protected override void OnUpdate()
         {
             if (Input.GetKeyDown(KeyCode.Keypad7))
-                DisplayAllFSMsInScene();
+            {
+                foreach (var fsm in Object.FindObjectsOfType<PlayMakerFSM>())
+                {
+                    fsm.DisplayActions();
+                }
+            }
             else if (Input.GetKeyDown(KeyCode.Keypad8))
             {
                 if (StatStorage.TryGetModifiableStat("BasePhysicalattack", out var stat))
@@ -107,21 +112,5 @@ namespace BlasII.Randomizer
 
         // Will soon be from config
         public const int CHOSEN_WEAPON = 1;
-
-        public void DisplayAllFSMsInScene()
-        {
-            foreach (var fsm in Object.FindObjectsOfType<PlayMakerFSM>())
-            {
-                LogWarning("FMS: " + fsm.name);
-                foreach (var state in fsm.FsmStates)
-                {
-                    Log("State: " + state.Name);
-                    foreach (var action in state.Actions)
-                    {
-                        LogError("Action: " + action.Name + ", " + action.GetIl2CppType().Name);
-                    }
-                }
-            }
-        }
     }
 }
