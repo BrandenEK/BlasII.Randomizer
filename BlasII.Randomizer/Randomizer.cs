@@ -16,10 +16,15 @@ namespace BlasII.Randomizer
 
         public ItemHandler ItemHandler { get; } = new();
 
+        // Loaded at init and never changes
+        public TempConfig TempConfig { get; private set; }
+
         protected override void OnInitialize()
         {
             Data.Initialize();
             ItemHandler.FakeShuffle();
+
+            TempConfig = FileHandler.LoadConfig<TempConfig>();
         }
 
         protected override void OnUpdate()
@@ -85,7 +90,7 @@ namespace BlasII.Randomizer
                 if (weapon == -1)
                     continue;
 
-                if (weapon != CHOSEN_WEAPON)
+                if (weapon != TempConfig.startingWeapon)
                 {
                     int[] disabledAnimations = new int[] { -1322956020, -786038676, -394840968 };
 
@@ -109,8 +114,5 @@ namespace BlasII.Randomizer
             var input = CoreCache.Quest.GetInputQuestVar(questId, varId);
             return CoreCache.Quest.GetQuestVarBoolValue(input.questID, input.varID);
         }
-
-        // Will soon be from config
-        public const int CHOSEN_WEAPON = 1;
     }
 }
