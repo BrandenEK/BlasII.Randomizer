@@ -1,4 +1,5 @@
 ﻿using BlasII.ModdingAPI;
+using BlasII.ModdingAPI.Storage;
 using BlasII.Randomizer.Items;
 using Il2Cpp;
 using Il2CppTGK.Game;
@@ -23,7 +24,18 @@ namespace BlasII.Randomizer
 
         protected override void OnUpdate()
         {
-
+            if (Input.GetKeyDown(KeyCode.Keypad7))
+            {
+                foreach (var fsm in Object.FindObjectsOfType<PlayMakerFSM>())
+                {
+                    fsm.DisplayActions();
+                }
+            }
+            else if (Input.GetKeyDown(KeyCode.Keypad8))
+            {
+                if (StatStorage.TryGetModifiableStat("BasePhysicalattack", out var stat))
+                    StatStorage.PlayerStats.AddBonus(stat, "test", 100, 0);
+            }
         }
 
         protected override void OnSceneLoaded(string sceneName)
@@ -35,6 +47,26 @@ namespace BlasII.Randomizer
         protected override void OnSceneUnloaded(string sceneName)
         {
 
+        }
+
+        protected override void OnNewGame(int slot)
+        {
+            Log("Shuffling items with seed (Not yet)");
+        }
+
+        protected override void OnSaveGame(int slot)
+        {
+            Log("Saving shuffled items to file (Not yet)");
+        }
+
+        protected override void OnLoadGame(int slot)
+        {
+            Log("Loading shuffled items from file (Not yet)");
+        }
+
+        protected override void OnResetGame()
+        {
+            Log("Reseting shuffled items (Not yet)");
         }
 
         private void LoadWeaponSelectRoom()
@@ -70,6 +102,12 @@ namespace BlasII.Randomizer
             var variable = quest.GetVariable(varId);
 
             return $"{quest.Name}.{variable.id}";
+        }
+
+        public bool GetQuestBool(string questId, string varId)
+        {
+            var input = CoreCache.Quest.GetInputQuestVar(questId, varId);
+            return CoreCache.Quest.GetQuestVarBoolValue(input.questID, input.varID);
         }
 
         // Will soon be from config

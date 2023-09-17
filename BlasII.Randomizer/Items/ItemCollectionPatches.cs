@@ -1,6 +1,7 @@
 using HarmonyLib;
 using Il2CppPlaymaker.Characters;
 using Il2CppPlaymaker.Inventory;
+using Il2CppPlaymaker.Loot;
 using Il2CppPlaymaker.PrieDieu;
 using Il2CppTGK.Game;
 using Il2CppTGK.Game.Components.Interactables;
@@ -54,6 +55,28 @@ namespace BlasII.Randomizer.Items
         {
             string locationId = $"{CoreCache.Room.CurrentRoom.Name}.i{__instance.owner.transform.GetSiblingIndex()}";
             Main.Randomizer.LogError("AddItem.OnEnter - " + locationId);
+
+            if (Main.Randomizer.ItemHandler.IsLocationRandomized(locationId))
+            {
+                Main.Randomizer.ItemHandler.GiveItemAtLocation(locationId);
+                __instance.Finish();
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+    }
+
+    // When a different reward if given through playermaker, such as boss defeat
+    [HarmonyPatch(typeof(GiveReward), nameof(GiveReward.OnEnter))]
+    class PlayMaker_GiveReward_Patch
+    {
+        public static bool Prefix(GiveReward __instance)
+        {
+            string locationId = $"{CoreCache.Room.CurrentRoom.Name}.r{__instance.owner.transform.GetSiblingIndex()}";
+            Main.Randomizer.LogError("GiveReward.OnEnter - " + locationId);
 
             if (Main.Randomizer.ItemHandler.IsLocationRandomized(locationId))
             {
