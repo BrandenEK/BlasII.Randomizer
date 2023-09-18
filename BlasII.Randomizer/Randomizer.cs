@@ -23,7 +23,6 @@ namespace BlasII.Randomizer
         protected override void OnInitialize()
         {
             Data.Initialize();
-            ItemHandler.FakeShuffle();
 
             TempConfig = FileHandler.LoadConfig<TempConfig>();
         }
@@ -58,6 +57,7 @@ namespace BlasII.Randomizer
         protected override void OnNewGameStarted()
         {
             Log("Shuffling items with seed (Not yet)");
+            ItemHandler.FakeShuffle();
         }
 
         public SaveData SaveGame()
