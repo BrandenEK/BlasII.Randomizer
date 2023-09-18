@@ -6,11 +6,12 @@ using System.Threading.Tasks;
 
 namespace BlasII.Randomizer.Items
 {
-    internal class ItemShuffler
+    internal class ItemShuffler : BaseShuffler
     {
         public bool Shuffle(uint seed, Dictionary<string, string> mappedItems)
         {
             mappedItems.Clear();
+            Initialize(seed);
 
             // Create list of all locations to randomize
             var locations = new List<ItemLocation>();
