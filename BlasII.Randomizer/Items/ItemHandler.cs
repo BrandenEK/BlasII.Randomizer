@@ -1,7 +1,5 @@
 using Il2CppTGK.Game;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace BlasII.Randomizer.Items
 {
@@ -56,13 +54,7 @@ namespace BlasII.Randomizer.Items
         {
             IEnumerable<Item> allItems = Main.Randomizer.Data.GetAllItems();
 
-            //Random rng = new Random();
-            //foreach (ItemLocation location in Main.Randomizer.Data.GetAllItemLocations())
-            //{
-            //    int rand = rng.Next(0, allItems.Count());
-            //    Item item = allItems.ElementAt(rand);
-            //    _mappedItems.Add(location.id, item.id);
-            //}
+            // Create full list of items, take last one out and place it at random location
         }
     }
 }

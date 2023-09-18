@@ -1,4 +1,5 @@
 ﻿using BlasII.ModdingAPI;
+using BlasII.ModdingAPI.Persistence;
 using BlasII.ModdingAPI.Storage;
 using BlasII.Randomizer.Items;
 using Il2Cpp;
@@ -8,7 +9,7 @@ using UnityEngine;
 
 namespace BlasII.Randomizer
 {
-    public class Randomizer : BlasIIMod
+    public class Randomizer : BlasIIMod, IPersistentMod
     {
         public Randomizer() : base(ModInfo.MOD_ID, ModInfo.MOD_NAME, ModInfo.MOD_AUTHOR, ModInfo.MOD_VERSION) { }
 
@@ -16,10 +17,14 @@ namespace BlasII.Randomizer
 
         public ItemHandler ItemHandler { get; } = new();
 
+        // Loaded at init and never changes
+        public TempConfig TempConfig { get; private set; }
+
         protected override void OnInitialize()
         {
             Data.Initialize();
-            ItemHandler.FakeShuffle();
+
+            TempConfig = FileHandler.LoadConfig<TempConfig>();
         }
 
         protected override void OnUpdate()
@@ -49,24 +54,34 @@ namespace BlasII.Randomizer
 
         }
 
-        protected override void OnNewGame(int slot)
+        protected override void OnNewGameStarted()
         {
             Log("Shuffling items with seed (Not yet)");
+            ItemHandler.FakeShuffle();
         }
 
-        protected override void OnSaveGame(int slot)
+        public SaveData SaveGame()
         {
             Log("Saving shuffled items to file (Not yet)");
+            return new RandomizerSaveData()
+            {
+                mappedItems = ItemHandler.MappedItems,
+                tempConfig = TempConfig,
+                collectedLocations = null,
+            };
         }
 
-        protected override void OnLoadGame(int slot)
+        public void LoadGame(SaveData data)
         {
             Log("Loading shuffled items from file (Not yet)");
+            RandomizerSaveData randomizerData = data as RandomizerSaveData;
+            ItemHandler.MappedItems = randomizerData.mappedItems;
         }
 
-        protected override void OnResetGame()
+        public void ResetGame()
         {
-            Log("Reseting shuffled items (Not yet)");
+            Log("Resetting shuffled items (Not yet)");
+            ItemHandler.MappedItems.Clear();
         }
 
         private void LoadWeaponSelectRoom()
@@ -85,7 +100,7 @@ namespace BlasII.Randomizer
                 if (weapon == -1)
                     continue;
 
-                if (weapon != CHOSEN_WEAPON)
+                if (weapon != TempConfig.startingWeapon)
                 {
                     int[] disabledAnimations = new int[] { -1322956020, -786038676, -394840968 };
 
@@ -109,8 +124,5 @@ namespace BlasII.Randomizer
             var input = CoreCache.Quest.GetInputQuestVar(questId, varId);
             return CoreCache.Quest.GetQuestVarBoolValue(input.questID, input.varID);
         }
-
-        // Will soon be from config
-        public const int CHOSEN_WEAPON = 1;
     }
 }
