@@ -1,16 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace BlasII.Randomizer.Items
 {
     internal class ItemShuffler : BaseShuffler
     {
-        public bool Shuffle(uint seed, Dictionary<string, string> mappedItems)
+        public override bool Shuffle(uint seed, TempConfig config, Dictionary<string, string> output)
         {
-            mappedItems.Clear();
+            output.Clear();
             Initialize(seed);
 
             // Create list of all locations to randomize
@@ -22,7 +18,7 @@ namespace BlasII.Randomizer.Items
             CreateItemPool(items, locations.Count);
 
             // Place an item at a location until both empty
-            PlaceItemsAtLocations(locations, items, mappedItems);
+            PlaceItemsAtLocations(locations, items, output);
 
             return locations.Count == 0 && items.Count == 0;
         }
@@ -65,9 +61,21 @@ namespace BlasII.Randomizer.Items
             }
         }
 
-        private void PlaceItemsAtLocations(List<ItemLocation> locations, List<Item> items, Dictionary<string, string> map)
+        private void PlaceItemsAtLocations(List<ItemLocation> locations, List<Item> items, Dictionary<string, string> output)
         {
+            ShuffleList(items);
 
+            while (locations.Count > 0 && items.Count > 0)
+            {
+                int locationIdx = RandomInteger(locations.Count);
+                int itemIdx = items.Count - 1;
+
+                Main.Randomizer.LogWarning($"Placing {items[itemIdx].id} at {locations[locationIdx].id}");
+                output.Add(locations[locationIdx].id, items[itemIdx].id);
+
+                locations.RemoveAt(locationIdx);
+                items.RemoveAt(itemIdx);
+            }
         }
     }
 }

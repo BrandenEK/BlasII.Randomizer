@@ -7,6 +7,8 @@ namespace BlasII.Randomizer
     {
         private Random rng;
 
+        public abstract bool Shuffle(uint seed, TempConfig config, Dictionary<string, string> output);
+
         protected void Initialize(uint seed) => rng = new Random((int)seed);
 
         protected int RandomInteger(int max) => rng.Next(max);

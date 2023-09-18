@@ -308,6 +308,336 @@
         "count": 1
     },
     {
+        "id": "FG03",
+        "name": "The Punished One",
+        "type": "Figurine",
+        "count": 1
+    },
+    {
+        "id": "FG04",
+        "name": "The Purified One",
+        "type": "Figurine",
+        "count": 1
+    },
+    {
+        "id": "FG05",
+        "name": "The Tempest",
+        "type": "Figurine",
+        "count": 1
+    },
+    {
+        "id": "FG06",
+        "name": "The Alchemist",
+        "type": "Figurine",
+        "count": 1
+    },
+    {
+        "id": "FG07",
+        "name": "The Guide",
+        "type": "Figurine",
+        "count": 1
+    },
+    {
+        "id": "FG11",
+        "name": "The Thurifer",
+        "type": "Figurine",
+        "count": 1
+    },
+    {
+        "id": "FG12",
+        "name": "The Demented One",
+        "type": "Figurine",
+        "count": 1
+    },
+    {
+        "id": "FG13",
+        "name": "The Pilgrim",
+        "type": "Figurine",
+        "count": 1
+    },
+    {
+        "id": "FG14",
+        "name": "The Pillager",
+        "type": "Figurine",
+        "count": 1
+    },
+    {
+        "id": "FG16",
+        "name": "The Ecstatic Novice",
+        "type": "Figurine",
+        "count": 1
+    },
+    {
+        "id": "FG19",
+        "name": "The Confessor",
+        "type": "Figurine",
+        "count": 1
+    },
+    {
+        "id": "FG21",
+        "name": "Nacimiento",
+        "type": "Figurine",
+        "count": 1
+    },
+    {
+        "id": "FG24",
+        "name": "La Doncella",
+        "type": "Figurine",
+        "count": 1
+    },
+    {
+        "id": "FG25",
+        "name": "The Traitor",
+        "type": "Figurine",
+        "count": 1
+    },
+    {
+        "id": "FG27",
+        "name": "Tirso",
+        "type": "Figurine",
+        "count": 1
+    },
+    {
+        "id": "FG28",
+        "name": "The Thirst",
+        "type": "Figurine",
+        "count": 1
+    },
+    {
+        "id": "FG30",
+        "name": "Cierzo",
+        "type": "Figurine",
+        "count": 1
+    },
+    {
+        "id": "FG31",
+        "name": "Gregal",
+        "type": "Figurine",
+        "count": 1
+    },
+    {
+        "id": "FG32",
+        "name": "Lebeche",
+        "type": "Figurine",
+        "count": 1
+    },
+    {
+        "id": "FG44",
+        "name": "Crisanta",
+        "type": "Figurine",
+        "count": 1
+    },
+    {
+        "id": "FG45",
+        "name": "Cobijada Mayor",
+        "type": "Figurine",
+        "count": 1
+    },
+    {
+        "id": "QI05",
+        "name": "Regula's Cloth",
+        "type": "QuestItem",
+        "count": 1
+    },
+    {
+        "id": "QI06",
+        "name": "Remembrance of Regula",
+        "type": "QuestItem",
+        "count": 1
+    },
+    {
+        "id": "QI07",
+        "name": "Scroll of the Elder",
+        "type": "QuestItem",
+        "count": 1
+    },
+    {
+        "id": "QI08",
+        "name": "Cloth of the Old Woman",
+        "type": "QuestItem",
+        "count": 1
+    },
+    {
+        "id": "QI09",
+        "name": "Remembrance of Trifon",
+        "type": "QuestItem",
+        "count": 1
+    },
+    {
+        "id": "QI10",
+        "name": "Remembrance of Castula",
+        "type": "QuestItem",
+        "count": 1
+    },
+    {
+        "id": "QI13",
+        "name": "Sealed Envelope",
+        "type": "QuestItem",
+        "count": 1
+    },
+    {
+        "id": "QI15",
+        "name": "Sealed Envelope",
+        "type": "QuestItem",
+        "count": 1
+    },
+    {
+        "id": "QI17",
+        "name": "Sealed Envelope",
+        "type": "QuestItem",
+        "count": 1
+    },
+    {
+        "id": "QI19",
+        "name": "Sealed Envelope",
+        "type": "QuestItem",
+        "count": 1
+    },
+    {
+        "id": "QI21",
+        "name": "Sealed Envelope",
+        "type": "QuestItem",
+        "count": 1
+    },
+    {
+        "id": "QI27",
+        "name": "Lullaby of the White Shore",
+        "type": "QuestItem",
+        "count": 1
+    },
+    {
+        "id": "QI28",
+        "name": "Broken Key",
+        "type": "QuestItem",
+        "count": 1
+    },
+    {
+        "id": "QI54",
+        "name": "Giant Rattle",
+        "type": "QuestItem",
+        "count": 1
+    },
+    {
+        "id": "QI55",
+        "name": "Remembrance of Proximo",
+        "type": "QuestItem",
+        "count": 1
+    },
+    {
+        "id": "QI62",
+        "name": "Remembrance of Cesareo",
+        "type": "QuestItem",
+        "count": 1
+    },
+    {
+        "id": "QI63",
+        "name": "Key of the Pilgrim",
+        "type": "QuestItem",
+        "count": 1
+    },
+    {
+        "id": "QI64",
+        "name": "Key of Endless Orison",
+        "type": "QuestItem",
+        "count": 1
+    },
+    {
+        "id": "QI65",
+        "name": "Key of Salt",
+        "type": "QuestItem",
+        "count": 1
+    },
+    {
+        "id": "QI66",
+        "name": "Key of the Council",
+        "type": "QuestItem",
+        "count": 1
+    },
+    {
+        "id": "QI67",
+        "name": "Mirrored Key",
+        "type": "QuestItem",
+        "count": 1
+    },
+    {
+        "id": "QI68",
+        "name": "Holy Oil of Everlasting Anointment",
+        "type": "QuestItem",
+        "count": 1
+    },
+    {
+        "id": "QI69",
+        "name": "Incense of the Envoys",
+        "type": "QuestItem",
+        "count": 1
+    },
+    {
+        "id": "QI70",
+        "name": "Steely Battle Lance",
+        "type": "QuestItem",
+        "count": 1
+    },
+    {
+        "id": "QI71",
+        "name": "Remembrance of Crisanta",
+        "type": "QuestItem",
+        "count": 1
+    },
+    {
+        "id": "ST",
+        "name": "Sculptor Tools",
+        "type": "QuestItem",
+        "count": 5
+    },
+    {
+        "id": "UL",
+        "name": "Unfinished Lullaby",
+        "type": "QuestItem",
+        "count": 5
+    },
+    {
+        "id": "FT",
+        "name": "Forgotten Tribute",
+        "type": "QuestItem",
+        "count": 3
+    },
+    {
+        "id": "RK",
+        "name": "Abandoned Rosary Knot",
+        "type": "QuestItem",
+        "count": 4
+    },
+    {
+        "id": "FK",
+        "name": "Fervent Kiss",
+        "type": "QuestItem",
+        "count": 5
+    },
+    {
+        "id": "OC",
+        "name": "Ornate Chalice",
+        "type": "QuestItem",
+        "count": 5
+    },
+    {
+        "id": "ER",
+        "name": "Empty Receptacle",
+        "type": "QuestItem",
+        "count": 4
+    },
+    {
+        "id": "CS",
+        "name": "Silver-Clad Crystal Shard",
+        "type": "QuestItem",
+        "count": 3
+    },
+    {
+        "id": "WS",
+        "name": "Wax Seed",
+        "type": "QuestItem",
+        "count": 6
+    },
+    {
         "id": "WE01",
         "name": "Veredicto",
         "type": "Weapon",
@@ -315,7 +645,7 @@
         "count": 3
     },
     {
-        "id": "WE02",
+        "id": "WE04",
         "name": "Ruego Al Alba",
         "type": "Weapon",
         "progression": true,
@@ -329,7 +659,7 @@
         "count": 3
     },
     {
-        "id": "AB01",
+        "id": "AB45",
         "name": "Ivy of Ascension",
         "type": "Ability",
         "progression": true,
@@ -343,25 +673,18 @@
         "count": 1
     },
     {
-        "id": "AB03",
+        "id": "AB01",
         "name": "Mercy of the Wind",
         "type": "Ability",
         "progression": true,
         "count": 1
     },
     {
-        "id": "AB04",
+        "id": "AB35",
         "name": "Scions’ Protection",
         "type": "Ability",
         "progression": true,
         "count": 1
-    },
-    {
-        "id": "Tears[5000]",
-        "name": "5000 Tears of Atonement",
-        "type": "Tears",
-        "progression": false,
-        "count": 6
     },
     {
         "id": "Marks[5]",
@@ -369,5 +692,75 @@
         "type": "Marks",
         "progression": false,
         "count": 6
+    },
+    {
+        "id": "Marks[4]",
+        "name": "4 Marks of Martyrdom",
+        "type": "Marks",
+        "progression": false,
+        "count": 3
+    },
+    {
+        "id": "Marks[3]",
+        "name": "3 Marks of Martyrdom",
+        "type": "Marks",
+        "progression": false,
+        "count": 4
+    },
+    {
+        "id": "Marks[2]",
+        "name": "2 Marks of Martyrdom",
+        "type": "Marks",
+        "progression": false,
+        "count": 3
+    },
+    {
+        "id": "Marks[1]",
+        "name": "1 Mark of Martyrdom",
+        "type": "Marks",
+        "progression": false,
+        "count": 32
+    },
+    {
+        "id": "Tears[5000]",
+        "name": "5000 Tears of Atonement",
+        "type": "Tears",
+        "progression": false,
+        "count": 5
+    },
+    {
+        "id": "Tears[3500]",
+        "name": "3500 Tears of Atonement",
+        "type": "Tears",
+        "progression": false,
+        "count": 3
+    },
+    {
+        "id": "Tears[2000]",
+        "name": "2000 Tears of Atonement",
+        "type": "Tears",
+        "progression": false,
+        "count": 5
+    },
+    {
+        "id": "Tears[1800]",
+        "name": "1800 Tears of Atonement",
+        "type": "Tears",
+        "progression": false,
+        "count": 2
+    },
+    {
+        "id": "Tears[1200]",
+        "name": "1200 Tears of Atonement",
+        "type": "Tears",
+        "progression": false,
+        "count": 3
+    },
+    {
+        "id": "Tears[800]",
+        "name": "800 Tears of Atonement",
+        "type": "Tears",
+        "progression": false,
+        "count": 8
     }
 ]

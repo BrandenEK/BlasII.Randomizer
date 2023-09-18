@@ -7,7 +7,7 @@ namespace BlasII.Randomizer.Items
     {
         private Dictionary<string, string> _mappedItems = new();
 
-        private readonly ItemShuffler _itemShuffle = new();
+        private readonly ItemShuffler _shuffler = new();
 
         public Dictionary<string, string> MappedItems
         {
@@ -52,9 +52,9 @@ namespace BlasII.Randomizer.Items
             return _mappedItems.ContainsKey(locationId);
         }
 
-        public void FakeShuffle(uint seed)
+        public void FakeShuffle(uint seed, TempConfig config)
         {
-            if (_itemShuffle.Shuffle(seed, _mappedItems))
+            if (_shuffler.Shuffle(seed, config, _mappedItems))
             {
                 Main.Randomizer.Log($"Shuffled {_mappedItems.Count} items!");
             }
