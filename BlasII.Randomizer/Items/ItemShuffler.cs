@@ -15,7 +15,7 @@ namespace BlasII.Randomizer.Items
 
             // Create list of all items to randomize
             var items = new List<Item>();
-            CreateItemPool(items, locations.Count);
+            CreateItemPool(items, locations.Count, config);
 
             // Place an item at a location until both empty
             PlaceItemsAtLocations(locations, items, output);
@@ -31,7 +31,7 @@ namespace BlasII.Randomizer.Items
             }
         }
 
-        private void CreateItemPool(List<Item> items, int numOfLocations)
+        private void CreateItemPool(List<Item> items, int numOfLocations, TempConfig config)
         {
             foreach (var item in Main.Randomizer.Data.GetAllItems())
             {
@@ -47,6 +47,16 @@ namespace BlasII.Randomizer.Items
                     }
                 }
             }
+
+            // Remove the extra starting weapon
+            string startingWeaponId = config.startingWeapon switch
+            {
+                0 => "WE01",
+                1 => "WE04",
+                2 => "WE03",
+                _ => throw new System.Exception("Invalid starting weapon in the config")
+            };
+            items.Remove(Main.Randomizer.Data.GetItem(startingWeaponId));
 
             // Remove tear items until pools are equal
             while (items.Count > numOfLocations)
