@@ -422,12 +422,6 @@
         "count": 1
     },
     {
-        "id": "FG44",
-        "name": "Crisanta",
-        "type": "Figurine",
-        "count": 1
-    },
-    {
         "id": "FG45",
         "name": "Cobijada Mayor",
         "type": "Figurine",
@@ -691,7 +685,7 @@
         "name": "5 Marks of Martyrdom",
         "type": "Marks",
         "progression": false,
-        "count": 6
+        "count": 2
     },
     {
         "id": "Marks[4]",
