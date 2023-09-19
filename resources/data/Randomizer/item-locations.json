@@ -192,7 +192,7 @@
         "logic": "canBeatRadames"
     },
     {
-        "id": "Z0423.w0",
+        "id": "Z0423.l1",
         "name": "Veredicto statue",
         "originalItem": "WE01"
     },
@@ -321,7 +321,7 @@
         "originalItem": "FK"
     },
     {
-        "id": "Z0709.w0",
+        "id": "Z0709.l1",
         "name": "Rapier statue",
         "originalItem": "WE03"
     },
@@ -450,7 +450,7 @@
         "originalItem": "PR14"
     },
     {
-        "id": "Z0913.w0",
+        "id": "Z0913.l1",
         "name": "Ruego statue",
         "originalItem": "WE04"
     },
