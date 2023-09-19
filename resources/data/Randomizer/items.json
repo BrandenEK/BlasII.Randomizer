@@ -3,308 +3,264 @@
         "id": "RB01",
         "name": "Vitrified Lightning Bolt",
         "type": "RosaryBead",
-        "progression": false,
         "count": 1
     },
     {
         "id": "RB02",
         "name": "Earring of Regret",
         "type": "RosaryBead",
-        "progression": false,
         "count": 1
     },
     {
         "id": "RB03",
         "name": "Sphere Kissed by the Storm",
         "type": "RosaryBead",
-        "progression": false,
         "count": 1
     },
     {
         "id": "RB04",
         "name": "Lips of the Golden Mask",
         "type": "RosaryBead",
-        "progression": false,
         "count": 1
     },
     {
         "id": "RB05",
         "name": "Scorched Lily",
         "type": "RosaryBead",
-        "progression": false,
         "count": 1
     },
     {
         "id": "RB06",
         "name": "Imprint of Scalopendra",
         "type": "RosaryBead",
-        "progression": false,
         "count": 1
     },
     {
         "id": "RB07",
         "name": "Perforated Liar's Tongue",
         "type": "RosaryBead",
-        "progression": false,
         "count": 1
     },
     {
         "id": "RB08",
         "name": "Ill-fated Cord",
         "type": "RosaryBead",
-        "progression": false,
         "count": 1
     },
     {
         "id": "RB09",
         "name": "Compass of the Stranded",
         "type": "RosaryBead",
-        "progression": false,
         "count": 1
     },
     {
         "id": "RB10",
         "name": "Broken Bell",
         "type": "RosaryBead",
-        "progression": false,
         "count": 1
     },
     {
         "id": "RB11",
         "name": "Bead of Whimsical Essence",
         "type": "RosaryBead",
-        "progression": false,
         "count": 1
     },
     {
         "id": "RB12",
         "name": "Scratched Face from the Canvas",
         "type": "RosaryBead",
-        "progression": false,
         "count": 1
     },
     {
         "id": "RB13",
         "name": "Votive Offering of the Miserable",
         "type": "RosaryBead",
-        "progression": false,
         "count": 1
     },
     {
         "id": "RB14",
         "name": "Votive Offering of a Hopeful Mother",
         "type": "RosaryBead",
-        "progression": false,
         "count": 1
     },
     {
         "id": "RB15",
         "name": "Votive Offering Claimed by Rust",
         "type": "RosaryBead",
-        "progression": false,
         "count": 1
     },
     {
         "id": "RB16",
         "name": "Scratched Lead Sphere",
         "type": "RosaryBead",
-        "progression": false,
         "count": 1
     },
     {
         "id": "RB17",
         "name": "Salt-covered Spear Point",
         "type": "RosaryBead",
-        "progression": false,
         "count": 1
     },
     {
         "id": "RB18",
         "name": "Pewter Tears",
         "type": "RosaryBead",
-        "progression": false,
         "count": 1
     },
     {
         "id": "RB19",
         "name": "Price of Blood",
         "type": "RosaryBead",
-        "progression": false,
         "count": 1
     },
     {
         "id": "RB20",
         "name": "Obolus of Proximo",
         "type": "RosaryBead",
-        "progression": false,
         "count": 1
     },
     {
         "id": "RB21",
         "name": "Deformed Rat Skull",
         "type": "RosaryBead",
-        "progression": false,
         "count": 1
     },
     {
         "id": "RB22",
         "name": "Embossed Rat Skull",
         "type": "RosaryBead",
-        "progression": false,
         "count": 1
     },
     {
         "id": "RB23",
         "name": "Imperfect Sphere of Guilt",
         "type": "RosaryBead",
-        "progression": false,
         "count": 1
     },
     {
         "id": "RB24",
         "name": "Concentrated Sphere of Guilt",
         "type": "RosaryBead",
-        "progression": false,
         "count": 1
     },
     {
         "id": "RB25",
         "name": "Senior Embroiderer's Thimble",
         "type": "RosaryBead",
-        "progression": false,
         "count": 1
     },
     {
         "id": "RB26",
         "name": "Miniature Pincushion",
         "type": "RosaryBead",
-        "progression": false,
         "count": 1
     },
     {
         "id": "RB27",
         "name": "Chisel-Engraved Wounds",
         "type": "RosaryBead",
-        "progression": false,
         "count": 1
     },
     {
         "id": "PR01",
         "name": "Galera of the Living Briar",
         "type": "Prayer",
-        "progression": true,
         "count": 1
     },
     {
         "id": "PR02",
         "name": "Debla of the Lights",
         "type": "Prayer",
-        "progression": true,
         "count": 1
     },
     {
         "id": "PR03",
         "name": "Chime of the Twisted One",
         "type": "Prayer",
-        "progression": true,
         "count": 1
     },
     {
         "id": "PR04",
         "name": "Bleeding Miracle",
         "type": "Prayer",
-        "progression": true,
         "count": 1
     },
     {
         "id": "PR05",
         "name": "Taranto to My Sister",
         "type": "Prayer",
-        "progression": true,
         "count": 1
     },
     {
         "id": "PR06",
         "name": "Aubade to the Sleepless Iron",
         "type": "Prayer",
-        "progression": true,
         "count": 1
     },
     {
         "id": "PR07",
         "name": "Liviana of the Blighted Blades",
         "type": "Prayer",
-        "progression": true,
         "count": 1
     },
     {
         "id": "PR08",
         "name": "Martinete of Forge and Thunder",
         "type": "Prayer",
-        "progression": true,
         "count": 1
     },
     {
         "id": "PR09",
         "name": "Rosa of the Three Stars",
         "type": "Prayer",
-        "progression": true,
         "count": 1
     },
     {
         "id": "PR10",
         "name": "Zejel of the Cruelest Thorn",
         "type": "Prayer",
-        "progression": true,
         "count": 1
     },
     {
         "id": "PR11",
         "name": "Serrana of the Kindled Hearth",
         "type": "Prayer",
-        "progression": true,
         "count": 1
     },
     {
         "id": "PR12",
         "name": "Bleeding Crown",
         "type": "Prayer",
-        "progression": true,
         "count": 1
     },
     {
         "id": "PR14",
         "name": "Jabera to the Poison of Jealousy",
         "type": "Prayer",
-        "progression": true,
         "count": 1
     },
     {
         "id": "PR15",
         "name": "Seguiriya to the Memory of your Eyes",
         "type": "Prayer",
-        "progression": true,
         "count": 1
     },
     {
         "id": "PR16",
         "name": "Tiento to your Thorned Hairs",
         "type": "Prayer",
-        "progression": true,
         "count": 1
     },
     {
         "id": "PR17",
         "name": "Mirabras of the Return to Port",
         "type": "Prayer",
-        "progression": true,
         "count": 1
     },
     {
         "id": "PR18",
         "name": "Peteneras to the Burial of the Lights",
         "type": "Prayer",
-        "progression": true,
         "count": 1
     },
     {
