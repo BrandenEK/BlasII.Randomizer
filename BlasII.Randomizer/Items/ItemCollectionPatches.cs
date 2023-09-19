@@ -3,13 +3,17 @@ using Il2CppPlaymaker.Characters;
 using Il2CppPlaymaker.Inventory;
 using Il2CppPlaymaker.Loot;
 using Il2CppPlaymaker.PrieDieu;
+using Il2CppPlaymaker.UI;
 using Il2CppTGK.Game;
 using Il2CppTGK.Game.Components.Interactables;
 using Il2CppTGK.Game.Inventory.PlayMaker;
 
 namespace BlasII.Randomizer.Items
 {
-    // When an item interactable is picked up
+    // ===============
+    // Item collection
+    // ===============
+
     [HarmonyPatch(typeof(LootInteractable), nameof(LootInteractable.UseLootByInteractor))]
     class LootInteractable_Use_Patch
     {
@@ -25,8 +29,6 @@ namespace BlasII.Randomizer.Items
             }
         }
     }
-
-    // When an item if given through playermaker, such as dialog
     [HarmonyPatch(typeof(AddItem), nameof(AddItem.OnEnter))]
     class PlayMaker_AddItem_Patch
     {
@@ -48,7 +50,10 @@ namespace BlasII.Randomizer.Items
         }
     }
 
-    // When a different reward if given through playermaker, such as boss defeat
+    // =================
+    // Defeat boss marks
+    // =================
+
     [HarmonyPatch(typeof(GiveReward), nameof(GiveReward.OnEnter))]
     class PlayMaker_GiveReward_Patch
     {
@@ -69,8 +74,20 @@ namespace BlasII.Randomizer.Items
             }
         }
     }
+    [HarmonyPatch(typeof(ShowOrbsRewardPopup), nameof(ShowOrbsRewardPopup.OnEnter))]
+    class Marks_Skip_Patch
+    {
+        public static bool Prefix(ShowOrbsRewardPopup __instance)
+        {
+            __instance.Finish();
+            return false;
+        }
+    }
 
-    // When a weapon is unlocked
+    // =====================
+    // Weapon unlock statues
+    // =====================
+
     [HarmonyPatch(typeof(UnlockWeapon), nameof(UnlockWeapon.OnEnter))]
     class PlayMaker_UnlockWeapon_Patch
     {
@@ -91,8 +108,20 @@ namespace BlasII.Randomizer.Items
             }
         }
     }
+    [HarmonyPatch(typeof(ShowWeaponPopup), nameof(ShowWeaponPopup.OnEnter))]
+    class WeaponFind_Skip_Patch
+    {
+        public static bool Prefix(ShowWeaponPopup __instance)
+        {
+            __instance.Finish();
+            return false;
+        }
+    }
 
-    // When a weapon is upgraded
+    // ======================
+    // Weapon upgrade statues
+    // ======================
+
     [HarmonyPatch(typeof(UpgradeWeaponTier), nameof(UpgradeWeaponTier.OnEnter))]
     class PlayMaker_UpgradeWeapon_Patch
     {
@@ -113,8 +142,20 @@ namespace BlasII.Randomizer.Items
             }
         }
     }
+    [HarmonyPatch(typeof(ShowWeaponTierPopup), nameof(ShowWeaponTierPopup.OnEnter))]
+    class WeaponUpgrade_Skip_Patch
+    {
+        public static bool Prefix(ShowWeaponTierPopup __instance)
+        {
+            __instance.Finish();
+            return false;
+        }
+    }
 
-    // When an ability is unlocked
+    // ======================
+    // Ability unlock statues
+    // ======================
+
     [HarmonyPatch(typeof(UnlockAbility), nameof(UnlockAbility.OnEnter))]
     class PlayMaker_UnlockAbility_Patch
     {
@@ -133,6 +174,15 @@ namespace BlasII.Randomizer.Items
             {
                 return true;
             }
+        }
+    }
+    [HarmonyPatch(typeof(ShowUnlockAbilityPopup), nameof(ShowUnlockAbilityPopup.OnEnter))]
+    class Ability_Skip_Patch
+    {
+        public static bool Prefix(ShowUnlockAbilityPopup __instance)
+        {
+            __instance.Finish();
+            return false;
         }
     }
 }
