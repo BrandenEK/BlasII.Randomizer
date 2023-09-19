@@ -23,6 +23,10 @@ namespace BlasII.Randomizer
     {
         public static bool Prefix(PlayCutscene __instance)
         {
+            // Don't skip Eviterno defeat cutscene
+            if (__instance.cutsceneId?.name == "CTS17_id")
+                return true;
+            
             Main.Randomizer.LogWarning("Skipping cutscene: " + __instance.cutsceneId?.name);
 
             __instance.Finish();

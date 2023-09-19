@@ -27,6 +27,18 @@ namespace BlasII.Randomizer
                 __result = true;
             }
 
+            // Skip all tutorials
+            else if (quest.StartsWith("Tutorials"))
+            {
+                __result = true;
+            }
+
+            // Skip all boss intros
+            else if (quest.StartsWith("BossesIntro"))
+            {
+                __result = true;
+            }
+
             // Only unlock CR once all bosses are dead
             else if (scene == "Z2501" && quest == "Bosses.BS07_DEAD")
             {
