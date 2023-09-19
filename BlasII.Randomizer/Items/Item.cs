@@ -89,9 +89,17 @@ namespace BlasII.Randomizer.Items
                         if (WeaponStorage.TryGetWeapon(id, out var weapon))
                         {
                             if (CoreCache.EquipmentManager.IsUnlocked(weapon))
+                            {
+                                // Upgrade the weapon
                                 CoreCache.WeaponMemoryManager.UpgradeWeaponTier(weapon);
+                            }
                             else
+                            {
+                                // Unlock the weapon and give the switching ability
                                 CoreCache.EquipmentManager.Unlock(weapon);
+                                if (AbilityStorage.TryGetAbility("AB10", out var ability))
+                                    CoreCache.AbilitiesUnlockManager.SetAbility(ability, true);
+                            }
                         }
                         break;
                     }
