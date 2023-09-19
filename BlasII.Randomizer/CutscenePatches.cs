@@ -77,40 +77,4 @@ namespace BlasII.Randomizer
             return false;
         }
     }
-
-    [HarmonyPatch(typeof(ShowUnlockAbilityPopup), nameof(ShowUnlockAbilityPopup.OnEnter))]
-    class Ability_Skip_Patch
-    {
-        public static bool Prefix(ShowUnlockAbilityPopup __instance)
-        {
-            Main.Randomizer.LogWarning("Skipping ability: " + __instance.Owner.name);
-
-            __instance.Finish();
-            return false;
-        }
-    }
-
-    [HarmonyPatch(typeof(ShowWeaponPopup), nameof(ShowWeaponPopup.OnEnter))]
-    class WeaponFind_Skip_Patch
-    {
-        public static bool Prefix(ShowWeaponPopup __instance)
-        {
-            Main.Randomizer.LogWarning("Skipping weapon find: " + __instance.Owner.name);
-
-            __instance.Finish();
-            return false;
-        }
-    }
-
-    [HarmonyPatch(typeof(ShowWeaponTierPopup), nameof(ShowWeaponTierPopup.OnEnter))]
-    class WeaponUpgrade_Skip_Patch
-    {
-        public static bool Prefix(ShowWeaponTierPopup __instance)
-        {
-            Main.Randomizer.LogWarning("Skipping weapon upgrade: " + __instance.Owner.name);
-
-            __instance.Finish();
-            return false;
-        }
-    }
 }
