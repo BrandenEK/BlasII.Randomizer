@@ -57,7 +57,7 @@ namespace BlasII.Randomizer
         protected override void OnNewGameStarted()
         {
             Log("Shuffling items with seed (Not yet)");
-            ItemHandler.FakeShuffle();
+            ItemHandler.FakeShuffle(TempConfig.seed, TempConfig);
         }
 
         public SaveData SaveGame()
