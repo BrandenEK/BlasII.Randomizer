@@ -13,33 +13,52 @@
 
 ---
 
-<h2 align="center">
-  Contributors
-</h2>
+<h2 align="center"> Contributors </h2>
 
-<div align="center" style="display: flex">
-    <!-- Damocles -->
-    <kbd><div>
-      <img src="https://images.weserv.nl/?url=github.com/BrandenEK.png?v=4&w=80&h=80&fit=cover&mask=circle" />
-      <span>
-        <h3><a href="https://github.com/BrandenEK">@BrandenEK</a></h3>
-        <p>programming</p>
-      </span>
-    </div></kbd>
-    <!-- Jimmy Diamonds -->
-    <kbd><div>
-      <img src="https://images.weserv.nl/?url=github.com/JimmyDiamonds.png?v=4&w=80&h=80&fit=cover&mask=circle" />
-      <span>
-        <h3><a href="https://github.com/JimmyDiamonds">@JimmyDiamonds</a></h3>
-        <p>logo design</p>
-      </span>
-    </div></kbd>
-    <!-- Luce Scarlet -->
-    <kbd><div>
-      <img src="https://images.weserv.nl/?url=github.com/LuceScarlet.png?v=4&w=80&h=80&fit=cover&mask=circle" />
-      <span>
-        <h3><a href="https://github.com/LuceScarlet">@LuceScarlet</a></h3>
-        <p>gameplay testing, logic</p>
-      </span>
-    </div></kbd>
+<table align="center">
+
+<tr>
+<th colspan="3">
+<img width="950" height="1" />
+</th>
+</tr>
+
+<tr>
+
+<!-- Damocles -->
+<td>
+<div align="left" style="float: left">
+<img align="left" src="https://images.weserv.nl/?url=github.com/BrandenEK.png?v=4&w=80&h=80&fit=cover&mask=circle" />
+<b><a href="https://github.com/BrandenEK">@BrandenEK</a></b> <br>
+programming
 </div>
+</td>
+
+<!-- Jimmy Diamonds -->
+<td>
+<div align="left" style="float: left">
+<img align="left" src="https://images.weserv.nl/?url=github.com/JimmyDiamonds.png?v=4&w=80&h=80&fit=cover&mask=circle" />
+<b><a href="https://github.com/JimmyDiamonds">@JimmyDiamonds</a></b> <br>
+logo design
+</div>
+</td>
+
+<!-- Luce Scarlet -->
+<td>
+<div align="left" style="float: left">
+<img align="left" src="https://images.weserv.nl/?url=github.com/LuceScarlet.png?v=4&w=80&h=80&fit=cover&mask=circle" />
+<b><a href="https://github.com/LuceScarlet">@LuceScarlet</a></b> <br>
+gameplay testing, logic
+</div>
+</td>
+
+</tr>
+
+<tr>
+<th colspan="3">
+<img width="950" height="1" />
+</th>
+</tr>
+
+</table>
+
