@@ -51,7 +51,7 @@ gameplay testing, logic
 
 <tr>
 <th colspan="3">
-<img width="700" height="1" />
+<img width="750" height="1" />
 </th>
 </tr>
 
