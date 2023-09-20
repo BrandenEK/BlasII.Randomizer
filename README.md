@@ -50,9 +50,9 @@ gameplay testing and logic
 </tr>
 
 <tr>
-<td> <img width="250" height="1" /> </td>
-<td> <img width="250" height="1" /> </td>
-<td> <img width="250" height="1" /> </td>
+<td> <img width="248" height="1" /> </td>
+<td> <img width="248" height="1" /> </td>
+<td> <img width="248" height="1" /> </td>
 </tr>
 
 </table>
