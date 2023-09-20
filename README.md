@@ -1,5 +1,4 @@
 <p align="center">
-  <!-- Logo created by Jimmy Diamonds -->
   <img src="logo.png">
 </p>
 
@@ -13,15 +12,11 @@
 
 ---
 
-<h2 align="center"> Contributors </h2>
+<h2 align="center">
+  Contributors
+</h2>
 
 <table align="center">
-
-<tr>
-<th colspan="3">
-<img width="950" height="1" />
-</th>
-</tr>
 
 <tr>
 
@@ -61,4 +56,3 @@ gameplay testing, logic
 </tr>
 
 </table>
-
