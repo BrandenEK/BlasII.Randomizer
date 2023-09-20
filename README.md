@@ -17,8 +17,29 @@
   Contributors
 </h2>
 
-<p align="center">
-  <b><a href="https://github.com/BrandenEK">@BrandenEK</a></b> - programming <br>
-  <b><a href="https://github.com/JimmyDiamonds">@JimmyDiamonds</a></b> - logo design <br>
-  <b><a href="https://github.com/LuceScarlet">@LuceScarlet</a></b> - gameplay testing, logic <br>
-</p>
+<div align="center" style="display: flex">
+    <!-- Damocles -->
+    <kbd><div>
+      <img src="https://images.weserv.nl/?url=github.com/BrandenEK.png?v=4&w=80&h=80&fit=cover&mask=circle" />
+      <span>
+        <h3><a href="https://github.com/BrandenEK">@BrandenEK</a></h3>
+        <p>programming</p>
+      </span>
+    </div></kbd>
+    <!-- Jimmy Diamonds -->
+    <kbd><div>
+      <img src="https://images.weserv.nl/?url=github.com/JimmyDiamonds.png?v=4&w=80&h=80&fit=cover&mask=circle" />
+      <span>
+        <h3><a href="https://github.com/JimmyDiamonds">@JimmyDiamonds</a></h3>
+        <p>logo design</p>
+      </span>
+    </div></kbd>
+    <!-- Luce Scarlet -->
+    <kbd><div>
+      <img src="https://images.weserv.nl/?url=github.com/LuceScarlet.png?v=4&w=80&h=80&fit=cover&mask=circle" />
+      <span>
+        <h3><a href="https://github.com/LuceScarlet">@LuceScarlet</a></h3>
+        <p>gameplay testing, logic</p>
+      </span>
+    </div></kbd>
+</div>
