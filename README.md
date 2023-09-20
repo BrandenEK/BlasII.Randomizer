@@ -22,8 +22,8 @@
 
 <!-- Damocles -->
 <td>
-<div align="left" style="float: left">
-<img align="left" src="https://images.weserv.nl/?url=github.com/BrandenEK.png?v=4&w=80&h=80&fit=cover&mask=circle" />
+<div style="float: left">
+<img align="left" src="https://images.weserv.nl/?url=github.com/BrandenEK.png?v=4&w=65&h=65&fit=cover&mask=circle" />
 <b><a href="https://github.com/BrandenEK">@BrandenEK</a></b> <br>
 programming
 </div>
@@ -31,8 +31,8 @@ programming
 
 <!-- Jimmy Diamonds -->
 <td>
-<div align="left" style="float: left">
-<img align="left" src="https://images.weserv.nl/?url=github.com/JimmyDiamonds.png?v=4&w=80&h=80&fit=cover&mask=circle" />
+<div style="float: left">
+<img align="left" src="https://images.weserv.nl/?url=github.com/JimmyDiamonds.png?v=4&w=65&h=65&fit=cover&mask=circle" />
 <b><a href="https://github.com/JimmyDiamonds">@JimmyDiamonds</a></b> <br>
 logo design
 </div>
@@ -40,19 +40,19 @@ logo design
 
 <!-- Luce Scarlet -->
 <td>
-<div align="left" style="float: left">
-<img align="left" src="https://images.weserv.nl/?url=github.com/LuceScarlet.png?v=4&w=80&h=80&fit=cover&mask=circle" />
+<div style="float: left">
+<img align="left" src="https://images.weserv.nl/?url=github.com/LuceScarlet.png?v=4&w=65&h=65&fit=cover&mask=circle" />
 <b><a href="https://github.com/LuceScarlet">@LuceScarlet</a></b> <br>
-gameplay testing, logic
+gameplay testing and logic
 </div>
 </td>
 
 </tr>
 
 <tr>
-<th colspan="3">
-<img width="750" height="1" />
-</th>
+<td> <img width="250" height="1" /> </td>
+<td> <img width="250" height="1" /> </td>
+<td> <img width="250" height="1" /> </td>
 </tr>
 
 </table>
