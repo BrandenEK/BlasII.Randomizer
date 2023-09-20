@@ -18,7 +18,7 @@
 </h2>
 
 <p align="center">
-  @BrandenEK - programming <br>
-  @JimmyDiamonds - logo design <br>
-  @LuceScarlet - gameplay testing, logic <br>
+  <b><a href="https://github.com/BrandenEK">@BrandenEK</a></b> - programming <br>
+  <b><a href="https://github.com/JimmyDiamonds">@JimmyDiamonds</a></b> - logo design <br>
+  <b><a href="https://github.com/LuceScarlet">@LuceScarlet</a></b> - gameplay testing, logic <br>
 </p>
