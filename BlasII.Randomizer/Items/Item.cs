@@ -18,11 +18,28 @@ namespace BlasII.Randomizer.Items
 
         [JsonProperty] public readonly bool progression;
         [JsonProperty] public readonly int count;
+        [JsonProperty] public readonly string[] subItems;
+
+        private int Amount
+        {
+            get
+            {
+                int leftBracket = id.IndexOf('['), rightBracket = id.IndexOf(']');
+                return int.Parse(id.Substring(leftBracket + 1, rightBracket - leftBracket - 1));
+            }
+        }
+
+        private bool IsProgressiveItem => subItems != null;
 
         public Sprite Image
         {
             get
             {
+                if (IsProgressiveItem)
+                {
+                    return GetNextSubItem().Image;
+                }
+
                 switch (type)
                 {
                     case ItemType.RosaryBead:
@@ -47,17 +64,14 @@ namespace BlasII.Randomizer.Items
             }
         }
 
-        private int Amount
-        {
-            get
-            {
-                int leftBracket = id.IndexOf('['), rightBracket = id.IndexOf(']');
-                return int.Parse(id.Substring(leftBracket + 1, rightBracket - leftBracket - 1));
-            }
-        }
-
         public void GiveReward()
         {
+            if (IsProgressiveItem)
+            {
+                GetNextSubItem().GiveReward();
+                return;
+            }
+
             switch (type)
             {
                 case ItemType.RosaryBead:
@@ -120,6 +134,13 @@ namespace BlasII.Randomizer.Items
                         break;
                     }
             }
+
+            Main.Randomizer.ItemHandler.SetItemCollectedFlag(id);
+        }
+
+        private Item GetNextSubItem()
+        {
+
         }
 
         public enum ItemType
