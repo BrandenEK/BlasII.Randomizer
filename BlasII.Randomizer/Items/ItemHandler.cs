@@ -46,7 +46,7 @@ namespace BlasII.Randomizer.Items
 
         public void DisplayItem(Item item)
         {
-            CoreCache.UINavigationHelper.ShowItemPopup("Obtained", item.name, item.Image);
+            CoreCache.UINavigationHelper.ShowItemPopup("Obtained", item.name, item.CurrentImage);
         }
 
         public bool IsLocationRandomized(string locationId)
@@ -67,9 +67,14 @@ namespace BlasII.Randomizer.Items
             }
         }
 
-        public void SetItemCollectedFlag(string itemId)
+        public void SetItemCollected(string itemId)
         {
             _collectedItems.Add(itemId);
+        }
+
+        public bool IsItemCollected(string itemId)
+        {
+            return _collectedItems.Contains(itemId);
         }
 
         // Save data

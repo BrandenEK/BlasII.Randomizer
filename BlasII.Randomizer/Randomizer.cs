@@ -41,6 +41,14 @@ namespace BlasII.Randomizer
                 if (StatStorage.TryGetModifiableStat("BasePhysicalattack", out var stat))
                     StatStorage.PlayerStats.AddBonus(stat, "test", 100, 0);
             }
+
+            // Testing
+            if (Input.GetKeyDown(KeyCode.Keypad1))
+            {
+            }
+            if (Input.GetKeyDown(KeyCode.Keypad2))
+            {
+            }
         }
 
         protected override void OnSceneLoaded(string sceneName)

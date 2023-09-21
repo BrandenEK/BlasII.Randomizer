@@ -31,13 +31,13 @@ namespace BlasII.Randomizer.Items
 
         private bool IsProgressiveItem => subItems != null;
 
-        public Sprite Image
+        public Sprite CurrentImage
         {
             get
             {
                 if (IsProgressiveItem)
                 {
-                    return GetNextSubItem().Image;
+                    return CurrentSubItem?.CurrentImage;
                 }
 
                 switch (type)
@@ -64,11 +64,24 @@ namespace BlasII.Randomizer.Items
             }
         }
 
+        public Sprite UpgradedImage
+        {
+            get
+            {
+                if (IsProgressiveItem)
+                {
+                    return UpgradedSubItem?.CurrentImage;
+                }
+
+                return CurrentImage;
+            }
+        }
+
         public void GiveReward()
         {
             if (IsProgressiveItem)
             {
-                GetNextSubItem().GiveReward();
+                UpgradedSubItem?.GiveReward();
                 return;
             }
 
@@ -135,12 +148,52 @@ namespace BlasII.Randomizer.Items
                     }
             }
 
-            Main.Randomizer.ItemHandler.SetItemCollectedFlag(id);
+            Main.Randomizer.ItemHandler.SetItemCollected(id);
         }
 
-        private Item GetNextSubItem()
+        private int GetSubItemLevel(bool upgraded)
         {
+            for (int i = 0; i < subItems.Length; i++)
+            {
+                if (!Main.Randomizer.ItemHandler.IsItemCollected(subItems[i]))
+                {
+                    return i - (upgraded ? 0 : 1);
+                }
+            }
 
+            return subItems.Length - (upgraded ? 0 : 1);
+        }
+
+        private Item CurrentSubItem
+        {
+            get
+            {
+                int currentLevel = GetSubItemLevel(false);
+
+                if (currentLevel < 0)
+                {
+                    Main.Randomizer.LogError("Trying to access current subitem that hasn't been collected yet!");
+                    return null;
+                }
+
+                return Main.Randomizer.Data.GetItem(subItems[currentLevel]);
+            }
+        }
+
+        private Item UpgradedSubItem
+        {
+            get
+            {
+                int upgradedLevel = GetSubItemLevel(true);
+
+                if (upgradedLevel >= subItems.Length)
+                {
+                    Main.Randomizer.LogError("Trying to access upgraded subitem that is already fully collected!");
+                    return null;
+                }
+
+                return Main.Randomizer.Data.GetItem(subItems[upgradedLevel]);
+            }
         }
 
         public enum ItemType
