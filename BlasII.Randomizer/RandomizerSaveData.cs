@@ -7,7 +7,9 @@ namespace BlasII.Randomizer
     {
         public Dictionary<string, string> mappedItems;
 
+        public List<string> collectedLocations;
+        public List<string> collectedItems;
+
         public TempConfig tempConfig;
-        public string[] collectedLocations;
     }
 }

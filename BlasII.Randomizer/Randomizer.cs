@@ -56,32 +56,37 @@ namespace BlasII.Randomizer
 
         protected override void OnNewGameStarted()
         {
-            Log("Shuffling items with seed (Not yet)");
+            Log($"Shuffling items with seed {TempConfig.seed}");
             ItemHandler.FakeShuffle(TempConfig.seed, TempConfig);
         }
 
         public SaveData SaveGame()
         {
-            Log("Saving shuffled items to file (Not yet)");
+            Log($"Saved file with {ItemHandler.CollectedLocations.Count} collected locations");
             return new RandomizerSaveData()
             {
                 mappedItems = ItemHandler.MappedItems,
+                collectedLocations = ItemHandler.CollectedLocations,
+                collectedItems = ItemHandler.CollectedItems,
                 tempConfig = TempConfig,
-                collectedLocations = null,
             };
         }
 
         public void LoadGame(SaveData data)
         {
-            Log("Loading shuffled items from file (Not yet)");
             RandomizerSaveData randomizerData = data as RandomizerSaveData;
             ItemHandler.MappedItems = randomizerData.mappedItems;
+            ItemHandler.CollectedLocations = randomizerData.collectedLocations;
+            ItemHandler.CollectedItems = randomizerData.collectedItems;
+
+            Log($"Loaded file with {randomizerData.collectedLocations.Count} collected locations");
         }
 
         public void ResetGame()
         {
-            Log("Resetting shuffled items (Not yet)");
             ItemHandler.MappedItems.Clear();
+            ItemHandler.CollectedLocations.Clear();
+            ItemHandler.CollectedItems.Clear();
         }
 
         private void LoadWeaponSelectRoom()

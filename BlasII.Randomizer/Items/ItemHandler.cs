@@ -7,13 +7,10 @@ namespace BlasII.Randomizer.Items
     {
         private Dictionary<string, string> _mappedItems = new();
 
-        private readonly ItemShuffler _shuffler = new();
+        private List<string> _collectedLocations = new();
+        private List<string> _collectedItems = new();
 
-        public Dictionary<string, string> MappedItems
-        {
-            get => _mappedItems;
-            set => _mappedItems = value ?? new Dictionary<string, string>();
-        }
+        private readonly ItemShuffler _shuffler = new();
 
         public Item GetItemAtLocation(string locationId)
         {
@@ -31,13 +28,18 @@ namespace BlasII.Randomizer.Items
         public void GiveItemAtLocation(string locationId)
         {
             Main.Randomizer.LogWarning("Giving item at location: " +  locationId);
-            Item item = GetItemAtLocation(locationId);
 
+            if (_collectedLocations.Contains(locationId))
+            {
+                Main.Randomizer.LogError(locationId + " has already been collected!");
+                return;
+            }
+
+            Item item = GetItemAtLocation(locationId);
             if (item == null)
                 return;
 
-            // Check for and set location id flag
-
+            _collectedLocations.Add(locationId);
             item.GiveReward();
             DisplayItem(item);
         }
@@ -63,6 +65,31 @@ namespace BlasII.Randomizer.Items
                 Main.Randomizer.LogError("Failed to shuffle items!");
                 _mappedItems.Clear();
             }
+        }
+
+        public void SetItemCollectedFlag(string itemId)
+        {
+            _collectedItems.Add(itemId);
+        }
+
+        // Save data
+
+        public Dictionary<string, string> MappedItems
+        {
+            get => _mappedItems;
+            set => _mappedItems = value ?? new Dictionary<string, string>();
+        }
+
+        public List<string> CollectedLocations
+        {
+            get => _collectedLocations;
+            set => _collectedLocations = value ?? new List<string>();
+        }
+
+        public List<string> CollectedItems
+        {
+            get => _collectedItems;
+            set => _collectedItems = value ?? new List<string>();
         }
     }
 }
