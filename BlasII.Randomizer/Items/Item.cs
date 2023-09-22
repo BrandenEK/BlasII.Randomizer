@@ -19,10 +19,30 @@ namespace BlasII.Randomizer.Items
         [JsonProperty] public readonly bool progression;
         [JsonProperty] public readonly int count;
 
+        [JsonProperty] public readonly string[] subItems;
+        [JsonProperty] public readonly bool removePrevious;
+
+        private int Amount
+        {
+            get
+            {
+                int leftBracket = id.IndexOf('['), rightBracket = id.IndexOf(']');
+                return int.Parse(id.Substring(leftBracket + 1, rightBracket - leftBracket - 1));
+            }
+        }
+
+        private bool IsProgressiveItem => subItems != null;
+
+        public Item Current => IsProgressiveItem ? CurrentSubItem : this;
+        public Item Upgraded => IsProgressiveItem ? UpgradedSubItem : this;
+
         public Sprite Image
         {
             get
             {
+                if (IsProgressiveItem)
+                    throw new System.Exception("Accessing a progressive item directly!");
+
                 switch (type)
                 {
                     case ItemType.RosaryBead:
@@ -34,11 +54,24 @@ namespace BlasII.Randomizer.Items
                     case ItemType.QuestItem:
                         return ItemStorage.TryGetQuestItem(id, out var quest) ? quest.image : null;
                     case ItemType.Weapon:
-                        return null;
+                        return id switch
+                        {
+                            "WE01" => Main.Randomizer.Data.GetImage(DataStorage.ImageType.Censer),
+                            "WE04" => Main.Randomizer.Data.GetImage(DataStorage.ImageType.Blade),
+                            "WE03" => Main.Randomizer.Data.GetImage(DataStorage.ImageType.Rapier),
+                            _ => null,
+                        };
                     case ItemType.Ability:
-                        return null;
+                        return id switch
+                        {
+                            "AB44" => Main.Randomizer.Data.GetImage(DataStorage.ImageType.WallClimb),
+                            "AB02" => Main.Randomizer.Data.GetImage(DataStorage.ImageType.DoubleJump),
+                            "AB01" => Main.Randomizer.Data.GetImage(DataStorage.ImageType.AirDash),
+                            "AB35" => Main.Randomizer.Data.GetImage(DataStorage.ImageType.CherubRing),
+                            _ => null,
+                        };
                     case ItemType.Tears:
-                        return null;
+                        return Main.Randomizer.Data.GetImage(DataStorage.ImageType.Tears);
                     case ItemType.Marks:
                         return ItemStorage.TryGetQuestItem("QI99", out var marks) ? marks.image : null;
                     default:
@@ -47,17 +80,11 @@ namespace BlasII.Randomizer.Items
             }
         }
 
-        private int Amount
-        {
-            get
-            {
-                int leftBracket = id.IndexOf('['), rightBracket = id.IndexOf(']');
-                return int.Parse(id.Substring(leftBracket + 1, rightBracket - leftBracket - 1));
-            }
-        }
-
         public void GiveReward()
         {
+            if (IsProgressiveItem)
+                throw new System.Exception("Accessing a progressive item directly!");
+
             switch (type)
             {
                 case ItemType.RosaryBead:
@@ -119,6 +146,72 @@ namespace BlasII.Randomizer.Items
                         StatStorage.PlayerStats.AddRewardOrbs(Amount, true);
                         break;
                     }
+            }
+
+            Main.Randomizer.ItemHandler.SetItemCollected(id);
+        }
+
+        public void RemovePreviousItem()
+        {
+            if (!IsProgressiveItem || !removePrevious)
+                return;
+
+            Item currentItem = CurrentSubItem;
+            if (currentItem == null)
+                return;
+
+            // Only used for quest items right now
+            if (ItemStorage.TryGetQuestItem(currentItem.id, out var item))
+            {
+                Main.Randomizer.Log($"Removing previous subitem for {id}: {currentItem.id}");
+                ItemStorage.PlayerInventory.RemoveItem(item);
+            }
+        }
+
+        private int GetSubItemLevel(bool upgraded)
+        {
+            for (int i = 0; i < subItems.Length; i++)
+            {
+                if (!Main.Randomizer.ItemHandler.IsItemCollected(subItems[i]))
+                {
+                    return i - (upgraded ? 0 : 1);
+                }
+            }
+
+            return subItems.Length - (upgraded ? 0 : 1);
+        }
+
+        private Item CurrentSubItem
+        {
+            get
+            {
+                int currentLevel = GetSubItemLevel(false);
+
+                if (currentLevel < 0)
+                {
+                    Main.Randomizer.LogError("Trying to access current subitem that hasn't been collected yet!");
+                    return null;
+                }
+
+                Main.Randomizer.Log($"Getting current subitem for {id}: {subItems[currentLevel]}");
+                return Main.Randomizer.Data.GetItem(subItems[currentLevel]);
+            }
+        }
+
+        private Item UpgradedSubItem
+        {
+            get
+            {
+                int upgradedLevel = GetSubItemLevel(true);
+
+                if (upgradedLevel >= subItems.Length)
+                {
+                    Main.Randomizer.LogError("Trying to access upgraded subitem that is already fully collected!");
+                    return null;
+                }
+
+                Main.Randomizer.Log($"Getting upgraded subitem for {id}: {subItems[upgradedLevel]}");
+                return Main.Randomizer.Data.GetItem(subItems[upgradedLevel]);
             }
         }
 

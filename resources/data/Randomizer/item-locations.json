@@ -197,18 +197,6 @@
         "originalItem": "WE01"
     },
     {
-        "id": "Z0502.i1",
-        "name": "Middle city letter",
-        "originalItem": "QI17",
-        "logic": "letters >= x"
-    },
-    {
-        "id": "Z0503.i9",
-        "name": "East city letter",
-        "originalItem": "QI21",
-        "logic": "letters >= x"
-    },
-    {
         "id": "Z0503.l4",
         "name": "East city altar",
         "originalItem": "Marks[1]",
@@ -640,11 +628,6 @@
         "originalItem": "WS"
     },
     {
-        "id": "Z1326.i0",
-        "name": "Inverted Mirror Letter",
-        "originalItem": "QI15"
-    },
-    {
         "id": "Z1327.r7",
         "name": "Defeat Susona",
         "originalItem": "Marks[4]"
@@ -713,11 +696,6 @@
         "id": "Z1424.l3",
         "name": "Miriam chest",
         "originalItem": "PR08"
-    },
-    {
-        "id": "Z1427.l0",
-        "name": "Secret lullaby",
-        "originalItem": "QI19"
     },
     {
         "id": "Z1501.i0",
@@ -805,11 +783,6 @@
         "originalItem": "Marks[1]"
     },
     {
-        "id": "Z1715.l0",
-        "name": "Room after Scions' puzzle",
-        "originalItem": "QI13"
-    },
-    {
         "id": "Z1718.l0",
         "name": "Altar room",
         "originalItem": "Tears[800]"
@@ -842,12 +815,12 @@
     {
         "id": "Z1808.i6",
         "name": "Eviterno reward",
-        "originalItem": "???"
+        "originalItem": "QI71"
     },
     {
         "id": "Z1808.r6",
         "name": "Defeat Eviterno",
-        "originalItem": "???"
+        "originalItem": "Marks[5]"
     },
     {
         "id": "Z1901.l0",
@@ -896,7 +869,7 @@
     },
     {
         "id": "Z1917.i0",
-        "name": "Last letter",
+        "name": "Cursed letter quest jump",
         "originalItem": "PR15"
     },
     {
