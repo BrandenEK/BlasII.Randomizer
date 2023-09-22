@@ -40,13 +40,13 @@ namespace BlasII.Randomizer.Items
                 return;
 
             _collectedLocations.Add(locationId);
-            item.GiveReward();
+            item.Upgraded?.GiveReward();
             DisplayItem(item);
         }
 
         public void DisplayItem(Item item)
         {
-            CoreCache.UINavigationHelper.ShowItemPopup("Obtained", item.name, item.CurrentImage);
+            CoreCache.UINavigationHelper.ShowItemPopup("Obtained", item.Current?.name, item.Current?.Image);
         }
 
         public bool IsLocationRandomized(string locationId)

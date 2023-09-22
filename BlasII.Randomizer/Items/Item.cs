@@ -31,14 +31,15 @@ namespace BlasII.Randomizer.Items
 
         private bool IsProgressiveItem => subItems != null;
 
-        public Sprite CurrentImage
+        public Item Current => IsProgressiveItem ? CurrentSubItem : this;
+        public Item Upgraded => IsProgressiveItem ? UpgradedSubItem : this;
+
+        public Sprite Image
         {
             get
             {
                 if (IsProgressiveItem)
-                {
-                    return CurrentSubItem?.CurrentImage;
-                }
+                    throw new System.Exception("Accessing a progressive item directly!");
 
                 switch (type)
                 {
@@ -77,26 +78,10 @@ namespace BlasII.Randomizer.Items
             }
         }
 
-        public Sprite UpgradedImage
-        {
-            get
-            {
-                if (IsProgressiveItem)
-                {
-                    return UpgradedSubItem?.CurrentImage;
-                }
-
-                return CurrentImage;
-            }
-        }
-
         public void GiveReward()
         {
             if (IsProgressiveItem)
-            {
-                UpgradedSubItem?.GiveReward();
-                return;
-            }
+                throw new System.Exception("Accessing a progressive item directly!");
 
             switch (type)
             {
