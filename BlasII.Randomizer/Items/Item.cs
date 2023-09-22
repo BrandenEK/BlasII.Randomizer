@@ -51,11 +51,24 @@ namespace BlasII.Randomizer.Items
                     case ItemType.QuestItem:
                         return ItemStorage.TryGetQuestItem(id, out var quest) ? quest.image : null;
                     case ItemType.Weapon:
-                        return null;
+                        return id switch
+                        {
+                            "WE01" => Main.Randomizer.Data.GetImage(DataStorage.ImageType.Censer),
+                            "WE04" => Main.Randomizer.Data.GetImage(DataStorage.ImageType.Blade),
+                            "WE03" => Main.Randomizer.Data.GetImage(DataStorage.ImageType.Rapier),
+                            _ => null,
+                        };
                     case ItemType.Ability:
-                        return null;
+                        return id switch
+                        {
+                            "AB44" => Main.Randomizer.Data.GetImage(DataStorage.ImageType.WallClimb),
+                            "AB02" => Main.Randomizer.Data.GetImage(DataStorage.ImageType.DoubleJump),
+                            "AB01" => Main.Randomizer.Data.GetImage(DataStorage.ImageType.AirDash),
+                            "AB35" => Main.Randomizer.Data.GetImage(DataStorage.ImageType.CherubRing),
+                            _ => null,
+                        };
                     case ItemType.Tears:
-                        return null;
+                        return Main.Randomizer.Data.GetImage(DataStorage.ImageType.Tears);
                     case ItemType.Marks:
                         return ItemStorage.TryGetQuestItem("QI99", out var marks) ? marks.image : null;
                     default:

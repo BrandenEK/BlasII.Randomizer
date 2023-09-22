@@ -1,5 +1,6 @@
 ﻿using BlasII.Randomizer.Items;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace BlasII.Randomizer
 {
@@ -19,11 +20,18 @@ namespace BlasII.Randomizer
         public bool DoesItemLocationExist(string id) => _allItemLocations.ContainsKey(id);
         public IEnumerable<ItemLocation> GetAllItemLocations() => _allItemLocations.Values;
 
+        // Images
+
+        private readonly Dictionary<ImageType, Sprite> _images = new();
+
+        public Sprite GetImage(ImageType type) => _images.TryGetValue(type, out var sprite) ? sprite : null;
+
         // Loading
 
         public void Initialize()
         {
             LoadAllJsonData();
+            LoadAllImages();
         }
 
         private void LoadAllJsonData()
@@ -41,6 +49,31 @@ namespace BlasII.Randomizer
                     _allItemLocations.Add(itemLocation.id, itemLocation);
             }
             Main.Randomizer.Log($"Loaded {_allItemLocations.Count} item locations!");
+        }
+
+        private void LoadAllImages()
+        {
+            if (Main.Randomizer.FileHandler.LoadDataAsTexture("rando-items.png", out Sprite[] images, 30, 32, true))
+            {
+                for (int i = 0; i < images.Length; i++)
+                {
+                    _images.Add((ImageType)i, images[i]);
+                }
+            }
+            Main.Randomizer.Log($"Loaded {_images.Count} images!");
+        }
+
+        public enum ImageType
+        {
+            Cherub = 0,
+            WallClimb = 1,
+            DoubleJump = 2,
+            AirDash = 3,
+            CherubRing = 4,
+            Censer = 5,
+            Blade = 6,
+            Rapier = 7,
+            Tears = 8,
         }
     }
 }
