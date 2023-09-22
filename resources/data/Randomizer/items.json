@@ -384,6 +384,31 @@
         "count": 1
     },
     {
+        "id": "ST",
+        "name": "Sculptor Tools",
+        "type": "QuestItem",
+        "count": 5,
+		"subItems": [ "QI01", "QI02", "QI03", "QI11", "QI12" ]
+    },
+    {
+        "id": "QI01",
+        "name": "Tears of Sap",
+        "type": "QuestItem",
+        "count": 0
+    },
+    {
+        "id": "QI02",
+        "name": "Immaculate Mother-of-Pearl Gouge",
+        "type": "QuestItem",
+        "count": 0
+    },
+    {
+        "id": "QI03",
+        "name": "Oils of the Blessed Mixture",
+        "type": "QuestItem",
+        "count": 0
+    },
+    {
         "id": "QI05",
         "name": "Regula's Cloth",
         "type": "QuestItem",
@@ -420,46 +445,245 @@
         "count": 1
     },
     {
-        "id": "QI13",
-        "name": "Sealed Envelope",
+        "id": "QI11",
+        "name": "Silver Shell File",
         "type": "QuestItem",
-        "count": 1
+        "count": 0
     },
     {
-        "id": "QI15",
-        "name": "Sealed Envelope",
+        "id": "QI12",
+        "name": "Sculptor's Resonant Gavel",
         "type": "QuestItem",
-        "count": 1
+        "count": 0
     },
     {
-        "id": "QI17",
-        "name": "Sealed Envelope",
+        "id": "UL",
+        "name": "Piece of the Lullaby",
         "type": "QuestItem",
-        "count": 1
+        "count": 5,
+		"subItems": [ "QI23", "QI24", "QI25", "QI26", "QI27" ]
     },
     {
-        "id": "QI19",
-        "name": "Sealed Envelope",
+        "id": "QI23",
+        "name": "Unfinished Lullaby",
         "type": "QuestItem",
-        "count": 1
+        "count": 0
     },
     {
-        "id": "QI21",
-        "name": "Sealed Envelope",
+        "id": "QI24",
+        "name": "Unfinished Lullaby",
         "type": "QuestItem",
-        "count": 1
+        "count": 0
+    },
+    {
+        "id": "QI25",
+        "name": "Unfinished Lullaby",
+        "type": "QuestItem",
+        "count": 0
+    },
+    {
+        "id": "QI26",
+        "name": "Unfinished Lullaby",
+        "type": "QuestItem",
+        "count": 0
     },
     {
         "id": "QI27",
         "name": "Lullaby of the White Shore",
         "type": "QuestItem",
-        "count": 1
+        "count": 0
     },
     {
         "id": "QI28",
         "name": "Broken Key",
         "type": "QuestItem",
         "count": 1
+    },
+    {
+        "id": "FT",
+        "name": "Forgotten Tribute",
+        "type": "QuestItem",
+        "count": 3,
+		"subItems": [ "QI29", "QI30", "QI31" ]
+    },
+    {
+        "id": "QI29",
+        "name": "Forgotten Tribute",
+        "type": "QuestItem",
+        "count": 0
+    },
+    {
+        "id": "QI30",
+        "name": "Forgotten Tribute",
+        "type": "QuestItem",
+        "count": 0
+    },
+    {
+        "id": "QI31",
+        "name": "Forgotten Tribute",
+        "type": "QuestItem",
+        "count": 0
+    },
+    {
+        "id": "RK",
+        "name": "Abandoned Rosary Knot",
+        "type": "QuestItem",
+        "count": 4,
+		"subItems": [ "QI32", "QI33", "QI34", "QI35" ]
+    },
+    {
+        "id": "QI32",
+        "name": "Abandoned Rosary Knot",
+        "type": "QuestItem",
+        "count": 0
+    },
+    {
+        "id": "QI33",
+        "name": "Abandoned Rosary Knot",
+        "type": "QuestItem",
+        "count": 0
+    },
+    {
+        "id": "QI34",
+        "name": "Abandoned Rosary Knot",
+        "type": "QuestItem",
+        "count": 0
+    },
+    {
+        "id": "QI35",
+        "name": "Abandoned Rosary Knot",
+        "type": "QuestItem",
+        "count": 0
+    },
+    {
+        "id": "FK",
+        "name": "Fervent Kiss",
+        "type": "QuestItem",
+        "count": 5,
+		"subItems": [ "QI37", "QI38", "QI39", "QI40", "QI41" ]
+    },
+    {
+        "id": "QI37",
+        "name": "Fervent Kiss",
+        "type": "QuestItem",
+        "count": 0
+    },
+    {
+        "id": "QI38",
+        "name": "Fervent Kiss",
+        "type": "QuestItem",
+        "count": 0
+    },
+    {
+        "id": "QI39",
+        "name": "Fervent Kiss",
+        "type": "QuestItem",
+        "count": 0
+    },
+    {
+        "id": "QI40",
+        "name": "Fervent Kiss",
+        "type": "QuestItem",
+        "count": 0
+    },
+    {
+        "id": "QI41",
+        "name": "Fervent Kiss",
+        "type": "QuestItem",
+        "count": 0
+    },
+    {
+        "id": "OC",
+        "name": "Ornate Chalice",
+        "type": "QuestItem",
+        "count": 5,
+		"subItems": [ "QI42", "QI43", "QI44", "QI45", "QI46" ]
+    },
+    {
+        "id": "QI42",
+        "name": "Ornate Chalice",
+        "type": "QuestItem",
+        "count": 0
+    },
+    {
+        "id": "QI43",
+        "name": "Ornate Chalice",
+        "type": "QuestItem",
+        "count": 0
+    },
+    {
+        "id": "QI44",
+        "name": "Ornate Chalice",
+        "type": "QuestItem",
+        "count": 0
+    },
+    {
+        "id": "QI45",
+        "name": "Ornate Chalice",
+        "type": "QuestItem",
+        "count": 0
+    },
+    {
+        "id": "QI46",
+        "name": "Ornate Chalice",
+        "type": "QuestItem",
+        "count": 0
+    },
+    {
+        "id": "ER",
+        "name": "Empty Receptacle",
+        "type": "QuestItem",
+        "count": 4,
+		"subItems": [ "QI47", "QI48", "QI49", "QI50" ]
+    },
+    {
+        "id": "QI47",
+        "name": "Empty Receptacle",
+        "type": "QuestItem",
+        "count": 0
+    },
+    {
+        "id": "QI48",
+        "name": "Empty Receptacle",
+        "type": "QuestItem",
+        "count": 0
+    },
+    {
+        "id": "QI49",
+        "name": "Empty Receptacle",
+        "type": "QuestItem",
+        "count": 0
+    },
+    {
+        "id": "QI50",
+        "name": "Empty Receptacle",
+        "type": "QuestItem",
+        "count": 0
+    },
+    {
+        "id": "CS",
+        "name": "Silver-Clad Crystal Shard",
+        "type": "QuestItem",
+        "count": 3,
+		"subItems": [ "QI51", "QI52", "QI53" ]
+    },
+    {
+        "id": "QI51",
+        "name": "Silver-Clad Crystal Shard",
+        "type": "QuestItem",
+        "count": 0
+    },
+    {
+        "id": "QI52",
+        "name": "Silver-Clad Crystal Shard",
+        "type": "QuestItem",
+        "count": 0
+    },
+    {
+        "id": "QI53",
+        "name": "Silver-Clad Crystal Shard",
+        "type": "QuestItem",
+        "count": 0
     },
     {
         "id": "QI54",
@@ -472,6 +696,49 @@
         "name": "Remembrance of Proximo",
         "type": "QuestItem",
         "count": 1
+    },
+    {
+        "id": "WS",
+        "name": "Wax Seed",
+        "type": "QuestItem",
+        "count": 6,
+		"subItems": [ "QI56", "QI57", "QI58", "QI59", "QI60", "QI61" ]
+    },
+    {
+        "id": "QI56",
+        "name": "Wax Seed",
+        "type": "QuestItem",
+        "count": 0
+    },
+    {
+        "id": "QI57",
+        "name": "Wax Seed",
+        "type": "QuestItem",
+        "count": 0
+    },
+    {
+        "id": "QI58",
+        "name": "Wax Seed",
+        "type": "QuestItem",
+        "count": 0
+    },
+    {
+        "id": "QI59",
+        "name": "Wax Seed",
+        "type": "QuestItem",
+        "count": 0
+    },
+    {
+        "id": "QI60",
+        "name": "Wax Seed",
+        "type": "QuestItem",
+        "count": 0
+    },
+    {
+        "id": "QI61",
+        "name": "Wax Seed",
+        "type": "QuestItem",
+        "count": 0
     },
     {
         "id": "QI62",
@@ -532,60 +799,6 @@
         "name": "Remembrance of Crisanta",
         "type": "QuestItem",
         "count": 1
-    },
-    {
-        "id": "ST",
-        "name": "Sculptor Tools",
-        "type": "QuestItem",
-        "count": 5
-    },
-    {
-        "id": "UL",
-        "name": "Unfinished Lullaby",
-        "type": "QuestItem",
-        "count": 5
-    },
-    {
-        "id": "FT",
-        "name": "Forgotten Tribute",
-        "type": "QuestItem",
-        "count": 3
-    },
-    {
-        "id": "RK",
-        "name": "Abandoned Rosary Knot",
-        "type": "QuestItem",
-        "count": 4
-    },
-    {
-        "id": "FK",
-        "name": "Fervent Kiss",
-        "type": "QuestItem",
-        "count": 5
-    },
-    {
-        "id": "OC",
-        "name": "Ornate Chalice",
-        "type": "QuestItem",
-        "count": 5
-    },
-    {
-        "id": "ER",
-        "name": "Empty Receptacle",
-        "type": "QuestItem",
-        "count": 4
-    },
-    {
-        "id": "CS",
-        "name": "Silver-Clad Crystal Shard",
-        "type": "QuestItem",
-        "count": 3
-    },
-    {
-        "id": "WS",
-        "name": "Wax Seed",
-        "type": "QuestItem",
-        "count": 6
     },
     {
         "id": "WE01",
