@@ -18,7 +18,9 @@ namespace BlasII.Randomizer.Items
 
         [JsonProperty] public readonly bool progression;
         [JsonProperty] public readonly int count;
+
         [JsonProperty] public readonly string[] subItems;
+        [JsonProperty] public readonly bool removePrevious;
 
         private int Amount
         {
@@ -149,6 +151,23 @@ namespace BlasII.Randomizer.Items
             Main.Randomizer.ItemHandler.SetItemCollected(id);
         }
 
+        public void RemovePreviousItem()
+        {
+            if (!IsProgressiveItem || !removePrevious)
+                return;
+
+            Item currentItem = CurrentSubItem;
+            if (currentItem == null)
+                return;
+
+            // Only used for quest items right now
+            if (ItemStorage.TryGetQuestItem(currentItem.id, out var item))
+            {
+                Main.Randomizer.Log($"Removing previous subitem for {id}: {currentItem.id}");
+                ItemStorage.PlayerInventory.RemoveItem(item);
+            }
+        }
+
         private int GetSubItemLevel(bool upgraded)
         {
             for (int i = 0; i < subItems.Length; i++)
@@ -174,6 +193,7 @@ namespace BlasII.Randomizer.Items
                     return null;
                 }
 
+                Main.Randomizer.Log($"Getting current subitem for {id}: {subItems[currentLevel]}");
                 return Main.Randomizer.Data.GetItem(subItems[currentLevel]);
             }
         }
@@ -190,6 +210,7 @@ namespace BlasII.Randomizer.Items
                     return null;
                 }
 
+                Main.Randomizer.Log($"Getting upgraded subitem for {id}: {subItems[upgradedLevel]}");
                 return Main.Randomizer.Data.GetItem(subItems[upgradedLevel]);
             }
         }

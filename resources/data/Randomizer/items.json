@@ -388,7 +388,8 @@
         "name": "Sculptor Tools",
         "type": "QuestItem",
         "count": 5,
-		"subItems": [ "QI01", "QI02", "QI03", "QI11", "QI12" ]
+        "subItems": [ "QI01", "QI02", "QI03", "QI11", "QI12" ],
+        "removePrevious": false
     },
     {
         "id": "QI01",
@@ -461,7 +462,8 @@
         "name": "Piece of the Lullaby",
         "type": "QuestItem",
         "count": 5,
-		"subItems": [ "QI23", "QI24", "QI25", "QI26", "QI27" ]
+        "subItems": [ "QI23", "QI24", "QI25", "QI26", "QI27" ],
+        "removePrevious": true
     },
     {
         "id": "QI23",
@@ -504,7 +506,8 @@
         "name": "Forgotten Tribute",
         "type": "QuestItem",
         "count": 3,
-		"subItems": [ "QI29", "QI30", "QI31" ]
+        "subItems": [ "QI29", "QI30", "QI31" ],
+        "removePrevious": false
     },
     {
         "id": "QI29",
@@ -529,7 +532,8 @@
         "name": "Abandoned Rosary Knot",
         "type": "QuestItem",
         "count": 4,
-		"subItems": [ "QI32", "QI33", "QI34", "QI35" ]
+        "subItems": [ "QI32", "QI33", "QI34", "QI35" ],
+        "removePrevious": false
     },
     {
         "id": "QI32",
@@ -560,7 +564,8 @@
         "name": "Fervent Kiss",
         "type": "QuestItem",
         "count": 5,
-		"subItems": [ "QI37", "QI38", "QI39", "QI40", "QI41" ]
+        "subItems": [ "QI37", "QI38", "QI39", "QI40", "QI41" ],
+        "removePrevious": false
     },
     {
         "id": "QI37",
@@ -597,7 +602,8 @@
         "name": "Ornate Chalice",
         "type": "QuestItem",
         "count": 5,
-		"subItems": [ "QI42", "QI43", "QI44", "QI45", "QI46" ]
+        "subItems": [ "QI42", "QI43", "QI44", "QI45", "QI46" ],
+        "removePrevious": false
     },
     {
         "id": "QI42",
@@ -634,7 +640,8 @@
         "name": "Empty Receptacle",
         "type": "QuestItem",
         "count": 4,
-		"subItems": [ "QI47", "QI48", "QI49", "QI50" ]
+        "subItems": [ "QI47", "QI48", "QI49", "QI50" ],
+        "removePrevious": false
     },
     {
         "id": "QI47",
@@ -665,7 +672,8 @@
         "name": "Silver-Clad Crystal Shard",
         "type": "QuestItem",
         "count": 3,
-		"subItems": [ "QI51", "QI52", "QI53" ]
+        "subItems": [ "QI51", "QI52", "QI53" ],
+        "removePrevious": false
     },
     {
         "id": "QI51",
@@ -702,7 +710,8 @@
         "name": "Wax Seed",
         "type": "QuestItem",
         "count": 6,
-		"subItems": [ "QI56", "QI57", "QI58", "QI59", "QI60", "QI61" ]
+        "subItems": [ "QI56", "QI57", "QI58", "QI59", "QI60", "QI61" ],
+        "removePrevious": false
     },
     {
         "id": "QI56",

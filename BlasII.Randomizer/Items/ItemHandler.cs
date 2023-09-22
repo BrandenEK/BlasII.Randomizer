@@ -40,6 +40,7 @@ namespace BlasII.Randomizer.Items
                 return;
 
             _collectedLocations.Add(locationId);
+            item.RemovePreviousItem(); // Eventually change this to have different classes for prog items
             item.Upgraded?.GiveReward();
             DisplayItem(item);
         }
