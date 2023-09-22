@@ -388,7 +388,7 @@
         "name": "Sculptor Tools",
         "type": "QuestItem",
         "count": 5,
-        "subItems": [ "QI01", "QI02", "QI03", "QI11", "QI12" ],
+        "subItems": [ "QI12", "QI02", "QI11", "QI03", "QI01" ],
         "removePrevious": false
     },
     {
