@@ -57,7 +57,7 @@ namespace BlasII.Randomizer.Items
                         return id switch
                         {
                             "WE01" => Main.Randomizer.Data.GetImage(DataStorage.ImageType.Censer),
-                            "WE04" => Main.Randomizer.Data.GetImage(DataStorage.ImageType.Blade),
+                            "WE02" => Main.Randomizer.Data.GetImage(DataStorage.ImageType.Blade),
                             "WE03" => Main.Randomizer.Data.GetImage(DataStorage.ImageType.Rapier),
                             _ => null,
                         };
