@@ -558,11 +558,6 @@
         "originalItem": "Marks[3]"
     },
     {
-        "id": "Z1113.i8",
-        "name": "Benedicta Key",
-        "originalItem": "QI64"
-    },
-    {
         "id": "Z1203.i2",
         "name": "Eastern arena",
         "originalItem": "OC"
@@ -588,14 +583,9 @@
         "originalItem": "Marks[1]"
     },
     {
-        "id": "Z1216.i9",
-        "name": "Odon key",
-        "originalItem": "Marks[3]"
-    },
-    {
         "id": "Z1216.r9",
         "name": "Defeat Odon",
-        "originalItem": "QI65"
+        "originalItem": "Marks[3]"
     },
     {
         "id": "Z1307.l7",
@@ -631,11 +621,6 @@
         "id": "Z1327.r7",
         "name": "Defeat Susona",
         "originalItem": "Marks[4]"
-    },
-    {
-        "id": "Z1327.i7",
-        "name": "Susona Key",
-        "originalItem": "QI67"
     },
     {
         "id": "Z1327.l3",
@@ -766,11 +751,6 @@
         "id": "Z1622.r6",
         "name": "Defeat Sínodo",
         "originalItem": "Marks[4]"
-    },
-    {
-        "id": "Z1622.i6",
-        "name": "Sinodo Key",
-        "originalItem": "QI66"
     },
     {
         "id": "Z1625.i2",

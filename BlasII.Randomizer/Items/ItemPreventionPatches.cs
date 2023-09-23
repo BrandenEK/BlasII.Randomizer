@@ -67,7 +67,8 @@ namespace BlasII.Randomizer.Items
             string scene = CoreCache.Room.CurrentRoom?.Name;
             string quest = Main.Randomizer.GetQuestName(questId, varId);
 
-            Main.Randomizer.LogWarning($"Getting quest: {quest} ({__result})");
+            if (!quest.StartsWith("ST18"))
+                Main.Randomizer.LogWarning($"Getting quest: {quest} ({__result})");
 
             // Always have zones unlocked
             if (quest.StartsWith("ST00.Z") && quest.EndsWith("_ACCESS"))
@@ -166,7 +167,7 @@ namespace BlasII.Randomizer.Items
                 Main.Randomizer.SetQuestValue("ST00", "DREAM_RETURN", true); // Not working ?
                 sceneEntry = new SceneEntryID()
                 {
-                    scene = currentScene,
+                    scene = currentScene == "Z1113" ? "Z1104" : currentScene,
                     entryId = entry
                 };
             }
@@ -178,7 +179,7 @@ namespace BlasII.Randomizer.Items
             { "Z0730", 685874534 },
             { "Z0921", -777454601 },
             { "Z2304", 1157051513 },
-            { "Z1104", 1928462977 },
+            { "Z1113", 1928462977 },
             { "Z1216", -1794395 },
             { "Z1622", 887137572 },
             { "Z1327", -284092948 },
