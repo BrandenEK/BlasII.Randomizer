@@ -52,7 +52,7 @@ namespace BlasII.Randomizer.Items
 
         public bool IsLocationRandomized(string locationId)
         {
-            bool isBossKey =
+            bool isBossKey = // Prevent these locations from giving an item
                 locationId == "Z1113.i8" ||
                 locationId == "Z1216.i9" ||
                 locationId == "Z1327.i7" ||

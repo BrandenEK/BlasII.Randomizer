@@ -981,5 +981,45 @@
         "id": "Z2402.l2",
         "name": "Cherub top hidden chest",
         "originalItem": "FG31"
+    },
+    {
+        "id": "Z0421.key",
+        "name": "Radames",
+        "type": "BossKey"
+    },
+    {
+        "id": "Z0730.key",
+        "name": "Orospina",
+        "type": "BossKey"
+    },
+    {
+        "id": "Z0921.key",
+        "name": "Lesmes",
+        "type": "BossKey"
+    },
+    {
+        "id": "Z2304.key",
+        "name": "Afilaor",
+        "type": "BossKey"
+    },
+    {
+        "id": "Z1104.key",
+        "name": "Bendicta",
+        "type": "BossKey"
+    },
+    {
+        "id": "Z1216.key",
+        "name": "Odon",
+        "type": "BossKey"
+    },
+    {
+        "id": "Z1622.key",
+        "name": "Sinodo",
+        "type": "BossKey"
+    },
+    {
+        "id": "Z1327.key",
+        "name": "Svsona",
+        "type": "BossKey"
     }
 ]

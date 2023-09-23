@@ -10,12 +10,15 @@ namespace BlasII.Randomizer.Items
             Initialize(seed);
 
             // Create list of all locations to randomize
-            var locations = new List<ItemLocation>();
-            CreateLocationPool(locations);
+            List<ItemLocation> locations = new(), bossKeyLocations = new();
+            CreateLocationPool(locations, bossKeyLocations);
 
             // Create list of all items to randomize
-            var items = new List<Item>();
-            CreateItemPool(items, locations.Count, config);
+            List<Item> items = new(), bossKeyItems = new();
+            CreateItemPool(items, bossKeyItems, locations.Count, config);
+
+            // Place a boss key at 5 locations, discard the rest
+            PlaceItemsAtLocations(bossKeyLocations, bossKeyItems, output);
 
             // Place an item at a location until both empty
             PlaceItemsAtLocations(locations, items, output);
@@ -23,19 +26,26 @@ namespace BlasII.Randomizer.Items
             return locations.Count == 0 && items.Count == 0;
         }
 
-        private void CreateLocationPool(List<ItemLocation> locations)
+        private void CreateLocationPool(List<ItemLocation> locations, List<ItemLocation> bossKeyLocations)
         {
             foreach (var location in Main.Randomizer.Data.GetAllItemLocations())
             {
-                locations.Add(location);
+                if (location.type == ItemLocation.ItemLocationType.BossKey)
+                    bossKeyLocations.Add(location);
+                else
+                    locations.Add(location);
             }
         }
 
-        private void CreateItemPool(List<Item> items, int numOfLocations, TempConfig config)
+        private void CreateItemPool(List<Item> items, List<Item> bossKeyItems, int numOfLocations, TempConfig config)
         {
             foreach (var item in Main.Randomizer.Data.GetAllItems())
             {
-                if (item.count == 1)
+                if (item.type == Item.ItemType.BossKey)
+                {
+                    bossKeyItems.Add(item);
+                }
+                else if (item.count == 1)
                 {
                     items.Add(item);
                 }

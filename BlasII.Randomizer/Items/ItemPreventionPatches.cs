@@ -1,4 +1,5 @@
-﻿using HarmonyLib;
+﻿using BlasII.ModdingAPI.Storage;
+using HarmonyLib;
 using Il2CppPlaymaker.Inventory;
 using Il2CppTGK.Game;
 using Il2CppTGK.Game.Components.Attack.Data;
@@ -94,14 +95,15 @@ namespace BlasII.Randomizer.Items
                 __result = true;
             }
 
-            // Only unlock CR once all bosses are dead
+            // Only unlock CR once all keys are owned
             else if (scene == "Z2501" && quest == "Bosses.BS07_DEAD")
             {
-                __result = __result &&
-                    Main.Randomizer.GetQuestBool("Bosses", "BS04_DEAD") &&
-                    Main.Randomizer.GetQuestBool("Bosses", "BS05_DEAD") &&
-                    Main.Randomizer.GetQuestBool("Bosses", "BS06_DEAD") &&
-                    Main.Randomizer.GetQuestBool("Bosses", "BS08_DEAD");
+                __result =
+                    ItemStorage.TryGetQuestItem("QI63", out var key1) && ItemStorage.PlayerInventory.HasItem(key1) &&
+                    ItemStorage.TryGetQuestItem("QI64", out var key2) && ItemStorage.PlayerInventory.HasItem(key2) &&
+                    ItemStorage.TryGetQuestItem("QI65", out var key3) && ItemStorage.PlayerInventory.HasItem(key3) &&
+                    ItemStorage.TryGetQuestItem("QI66", out var key4) && ItemStorage.PlayerInventory.HasItem(key4) &&
+                    ItemStorage.TryGetQuestItem("QI67", out var key5) && ItemStorage.PlayerInventory.HasItem(key5);
             }
         }
     }

@@ -758,32 +758,32 @@
     {
         "id": "QI63",
         "name": "Key of the Pilgrim",
-        "type": "QuestItem",
-        "count": 0
+        "type": "BossKey",
+        "count": 1
     },
     {
         "id": "QI64",
         "name": "Key of Endless Orison",
-        "type": "QuestItem",
-        "count": 0
+        "type": "BossKey",
+        "count": 1
     },
     {
         "id": "QI65",
         "name": "Key of Salt",
-        "type": "QuestItem",
-        "count": 0
+        "type": "BossKey",
+        "count": 1
     },
     {
         "id": "QI66",
         "name": "Key of the Council",
-        "type": "QuestItem",
-        "count": 0
+        "type": "BossKey",
+        "count": 1
     },
     {
         "id": "QI67",
         "name": "Mirrored Key",
-        "type": "QuestItem",
-        "count": 0
+        "type": "BossKey",
+        "count": 1
     },
     {
         "id": "QI68",
