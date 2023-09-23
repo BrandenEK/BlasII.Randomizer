@@ -55,6 +55,8 @@ namespace BlasII.Randomizer
         {
             if (sceneName == "Z1506")
                 LoadWeaponSelectRoom();
+            else if (sceneName == "Z2501")
+                LoadChapelRoom();
             else if (GetQuestBool("ST00", "DREAM_RETURN"))
                 LoadBossKeyRoom(sceneName);
         }
@@ -99,6 +101,8 @@ namespace BlasII.Randomizer
             ItemHandler.CollectedItems.Clear();
         }
 
+        // Special rooms
+
         private void LoadWeaponSelectRoom()
         {
             Log("Loading weapon room");
@@ -126,11 +130,25 @@ namespace BlasII.Randomizer
             }
         }
 
+        private void LoadChapelRoom()
+        {
+            foreach (var fsm in Object.FindObjectsOfType<PlayMakerFSM>())
+            {
+                if (fsm.name == "NPC13_ST09_PILGRIM")
+                {
+                    // Remove this npc so that he cant give you a key
+                    Object.Destroy(fsm.gameObject);
+                }
+            }
+        }
+
         private void LoadBossKeyRoom(string sceneName)
         {
             Log("Granting boss key for room: " + sceneName);
             ItemHandler.GiveItemAtLocation(sceneName + ".key");
         }
+
+        // Quests
 
         public string GetQuestName(int questId, int varId)
         {
