@@ -164,7 +164,7 @@ namespace BlasII.Randomizer.Items
 
             if (sceneEntry.scene.StartsWith("Z15") && bossRooms.TryGetValue(currentScene, out int entry))
             {
-                Main.Randomizer.SetQuestValue("ST00", "DREAM_RETURN", true); // Not working ?
+                Main.Randomizer.SetQuestValue("ST00", "DREAM_RETURN", true);
                 sceneEntry = new SceneEntryID()
                 {
                     scene = currentScene == "Z1113" ? "Z1104" : currentScene,

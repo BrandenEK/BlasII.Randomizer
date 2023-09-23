@@ -55,6 +55,8 @@ namespace BlasII.Randomizer
         {
             if (sceneName == "Z1506")
                 LoadWeaponSelectRoom();
+            else if (GetQuestBool("ST00", "DREAM_RETURN"))
+                LoadBossKeyRoom(sceneName);
         }
 
         protected override void OnSceneUnloaded(string sceneName)
@@ -122,6 +124,12 @@ namespace BlasII.Randomizer
                     statue.transform.Find("sprite").GetComponent<Animator>().Play(disabledAnimations[weapon]);
                 }
             }
+        }
+
+        private void LoadBossKeyRoom(string sceneName)
+        {
+            Log("Granting boss key for room: " + sceneName);
+            // Based on probably mappedlocations, give the corresponding item
         }
 
         public string GetQuestName(int questId, int varId)
