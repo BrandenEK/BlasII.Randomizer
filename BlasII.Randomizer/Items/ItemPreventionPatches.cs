@@ -4,6 +4,8 @@ using Il2CppTGK.Game;
 using Il2CppTGK.Game.Components.Attack.Data;
 using Il2CppTGK.Game.Inventory.PlayMaker;
 using Il2CppTGK.Game.Managers;
+using Il2CppTGK.Game.PlayerSpawn;
+using System.Collections.Generic;
 
 namespace BlasII.Randomizer.Items
 {
@@ -144,5 +146,43 @@ namespace BlasII.Randomizer.Items
                 }
             }
         }
+    }
+
+    // ==========
+    // Boss rooms
+    // ==========
+
+    [HarmonyPatch(typeof(PlayerSpawnManager), nameof(PlayerSpawnManager.TeleportPlayer))]
+    class Teleport_Dream_Patch
+    {
+        public static void Prefix(ref SceneEntryID sceneEntry)
+        {
+            Main.Randomizer.Log($"Teleporting to: {sceneEntry.scene} ({sceneEntry.entryId})");
+
+            string currentScene = CoreCache.Room.CurrentRoom?.Name;
+
+            if (sceneEntry.scene.StartsWith("Z15") && bossRooms.TryGetValue(currentScene, out int entry))
+            {
+                Main.Randomizer.SetQuestValue("ST00", "DREAM_RETURN", true); // Not working ?
+                sceneEntry = new SceneEntryID()
+                {
+                    scene = currentScene,
+                    entryId = entry
+                };
+            }
+        }
+
+        private static readonly Dictionary<string, int> bossRooms = new()
+        {
+            { "Z0421", 685874534 },
+            { "Z0730", 685874534 },
+            { "Z0921", -777454601 },
+            { "Z2304", 1157051513 },
+            { "Z1104", 1928462977 },
+            { "Z1216", -1794395 },
+            { "Z1622", 887137572 },
+            { "Z1327", -284092948 },
+            // Z2501: -784211135
+        };
     }
 }
