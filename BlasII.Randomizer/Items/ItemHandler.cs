@@ -52,7 +52,13 @@ namespace BlasII.Randomizer.Items
 
         public bool IsLocationRandomized(string locationId)
         {
-            return _mappedItems.ContainsKey(locationId);
+            bool isBossKey = // Prevent these locations from giving an item
+                locationId == "Z1113.i8" ||
+                locationId == "Z1216.i9" ||
+                locationId == "Z1327.i7" ||
+                locationId == "Z1622.i6";
+
+            return _mappedItems.ContainsKey(locationId) || isBossKey;
         }
 
         public void FakeShuffle(uint seed, TempConfig config)

@@ -22,6 +22,7 @@ namespace BlasII.Randomizer.Items
         {
             Normal,
             Vanilla,
+            BossKey,
         }
     }
 }

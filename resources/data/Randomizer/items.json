@@ -758,31 +758,31 @@
     {
         "id": "QI63",
         "name": "Key of the Pilgrim",
-        "type": "QuestItem",
+        "type": "BossKey",
         "count": 1
     },
     {
         "id": "QI64",
         "name": "Key of Endless Orison",
-        "type": "QuestItem",
+        "type": "BossKey",
         "count": 1
     },
     {
         "id": "QI65",
         "name": "Key of Salt",
-        "type": "QuestItem",
+        "type": "BossKey",
         "count": 1
     },
     {
         "id": "QI66",
         "name": "Key of the Council",
-        "type": "QuestItem",
+        "type": "BossKey",
         "count": 1
     },
     {
         "id": "QI67",
         "name": "Mirrored Key",
-        "type": "QuestItem",
+        "type": "BossKey",
         "count": 1
     },
     {
@@ -817,7 +817,7 @@
         "count": 3
     },
     {
-        "id": "WE04",
+        "id": "WE02",
         "name": "Ruego Al Alba",
         "type": "Weapon",
         "progression": true,
@@ -831,7 +831,7 @@
         "count": 3
     },
     {
-        "id": "AB45",
+        "id": "AB44",
         "name": "Ivy of Ascension",
         "type": "Ability",
         "progression": true,
