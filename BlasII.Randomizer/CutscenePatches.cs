@@ -70,8 +70,21 @@ namespace BlasII.Randomizer
         }
     }
 
+    [HarmonyPatch(typeof(ShowTutorial), nameof(ShowTutorial.OnEnter))]
+    class Tutorial_Skip1_Patch
+    {
+        public static bool Prefix(ShowTutorial __instance)
+        {
+            TutorialID tutorial = __instance.tutorial.Value.Cast<TutorialID>();
+            Main.Randomizer.LogWarning("Skipping tutorial: " + tutorial?.name);
+
+            __instance.Finish();
+            return false;
+        }
+    }
+
     [HarmonyPatch(typeof(TutorialManager), nameof(TutorialManager.ShowTutorialAsync))]
-    class Tutorial_Skip_Patch
+    class Tutorial_Skip2_Patch
     {
         public static bool Prefix(TutorialID tutorialID)
         {
