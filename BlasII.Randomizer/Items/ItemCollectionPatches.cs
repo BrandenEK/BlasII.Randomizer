@@ -35,7 +35,8 @@ namespace BlasII.Randomizer.Items
         public static bool Prefix(AddItem __instance)
         {
             string locationId = $"{CoreCache.Room.CurrentRoom.Name}.i{__instance.owner.transform.GetSiblingIndex()}";
-            Main.Randomizer.LogError("AddItem.OnEnter - " + locationId);
+            locationId = CalculateSpecialLocationId(locationId, __instance.itemID.name);
+            Main.Randomizer.LogError($"AddItem.OnEnter - {locationId} ({__instance.itemID.name})");
 
             if (Main.Randomizer.ItemHandler.IsLocationRandomized(locationId))
             {
@@ -47,6 +48,25 @@ namespace BlasII.Randomizer.Items
             {
                 return true;
             }
+        }
+
+        private static string CalculateSpecialLocationId(string locationId, string originalItem)
+        {
+            // Battle arenas
+            if (locationId.StartsWith("Z15"))
+            {
+                return originalItem switch
+                {
+                    "FG27" => "Z1501.s0",
+                    "FG28" => "Z1501.s1",
+                    "QI49" => "Z1501.s2",
+                    "QI46" => "Z1501.s3",
+                    "FG32" => "Z1501.s4",
+                    _ => string.Empty
+                };
+            }
+
+            return locationId;
         }
     }
 
