@@ -14,11 +14,17 @@
 
 <div align="center">
   <h2>Contributors</h2>
-  <p>A very special thank you to everyone who has contributed to the randomizer</p>
-
-  <h4> <b><a href="https://github.com/BrandenEK">@BrandenEK</a></b> - programming </h4>
-  <h4> <b><a href="https://github.com/JimmyDiamonds">@JimmyDiamonds</a></b> - logo design </h4>
-  <h4> <b><a href="https://github.com/LuceScarlet">@LuceScarlet</a></b> - gameplay testing and logic </h4>
+  
+  <table>
+    <tr>
+      <td align="center" colspan="3"> <p><b> A very special thank you to everyone who has contributed to the randomizer </b></p> </td>
+    </tr>
+    <tr>
+      <td align="center"> <b><a href="https://github.com/BrandenEK">@BrandenEK</a></b> - programming </td>
+      <td align="center"> <b><a href="https://github.com/JimmyDiamonds">@JimmyDiamonds</a></b> - logo design </td>
+      <td align="center"> <b><a href="https://github.com/LuceScarlet">@LuceScarlet</a></b> - gameplay testing and logic </td>
+    </tr>
+  </table>
 </div>
 
 ---
