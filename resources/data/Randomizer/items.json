@@ -496,12 +496,6 @@
         "count": 0
     },
     {
-        "id": "QI28",
-        "name": "Broken Key",
-        "type": "QuestItem",
-        "count": 1
-    },
-    {
         "id": "FT",
         "name": "Forgotten Tribute",
         "type": "QuestItem",
