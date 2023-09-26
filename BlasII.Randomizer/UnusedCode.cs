@@ -150,3 +150,34 @@
 //        Main.Randomizer.LogError(action.name + ": " + action.GetIl2CppType().Name);
 //    }
 //}
+
+// Testing
+//if (Input.GetKeyDown(KeyCode.Keypad1))
+//{
+//    Log("Found: " + Object.FindObjectsOfType<CurrentStatsLabel>(true).Length);
+//    foreach (var comp in Object.FindObjectsOfType<CurrentStatsLabel>(true))
+//    {
+//        comp.enabled = true;
+//        comp.gameObject.SetActive(true);
+//    }
+//}
+//if (Input.GetKeyDown(KeyCode.Keypad2))
+//{
+//    var attacks = Resources.FindObjectsOfTypeAll<AttackTypeID>();
+
+//    foreach (var comp in Object.FindObjectsOfType<StatsComponent>())
+//    {
+//        LogWarning(comp.name);
+
+
+//        string output = "";
+//        foreach (var att in attacks)
+//        {
+//            output += att.name + ": " + comp.GetResistance(att) + ", ";
+//        }
+//        Log(output);
+
+//        if (StatStorage.TryGetRangeStat("Health", out var stat))
+//            LogError("Max health: " + comp.GetMaxValue(stat));
+//    }
+//}
