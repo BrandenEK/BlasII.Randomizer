@@ -66,6 +66,17 @@ namespace BlasII.Randomizer.Items
                 };
             }
 
+            // Palace elders
+            if (locationId.StartsWith("Z0722"))
+            {
+                return originalItem switch
+                {
+                    "QI09" => "Z0722.s0",
+                    "QI10" => "Z0722.s1",
+                    _ => string.Empty
+                };
+            }
+
             return locationId;
         }
     }

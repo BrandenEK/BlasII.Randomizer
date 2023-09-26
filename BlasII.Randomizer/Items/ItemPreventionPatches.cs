@@ -105,6 +105,12 @@ namespace BlasII.Randomizer.Items
                     ItemStorage.TryGetQuestItem("QI66", out var key4) && ItemStorage.PlayerInventory.HasItem(key4) &&
                     ItemStorage.TryGetQuestItem("QI67", out var key5) && ItemStorage.PlayerInventory.HasItem(key5);
             }
+
+            // Allow giving both the scroll & cloth to the elders
+            else if (quest == "ST03.TRIFON_DEAD" || quest == "ST03.CAYA_DEAD")
+            {
+                __result = false;
+            }
         }
     }
 
