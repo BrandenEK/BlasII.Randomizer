@@ -5,9 +5,9 @@
 ---
 
 <p align="center">
-  <img src="https://img.shields.io/github/v/release/BrandenEK/BlasII.Randomizer">
-  <img src="https://img.shields.io/github/last-commit/BrandenEK/BlasII.Randomizer?color=important">
-  <img src="https://img.shields.io/github/downloads/BrandenEK/BlasII.Randomizer/total?color=success">
+  <img src="https://img.shields.io/github/v/release/BrandenEK/BlasII.Randomizer?style=for-the-badge">
+  <img src="https://img.shields.io/github/last-commit/BrandenEK/BlasII.Randomizer?color=important&style=for-the-badge">
+  <img src="https://img.shields.io/github/downloads/BrandenEK/BlasII.Randomizer/total?color=success&style=for-the-badge">
 </p>
 
 ---
