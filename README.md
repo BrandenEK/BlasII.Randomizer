@@ -17,12 +17,15 @@
   
   <table>
     <tr>
-      <td align="center" colspan="3"> <p><b> A very special thank you to everyone who has contributed to the randomizer </b></p> </td>
+      <td align="center" colspan="3"> <p><b> A very special thank you to everyone who has helped with the randomizer </b></p> </td>
     </tr>
     <tr>
       <td align="center"> <b><a href="https://github.com/BrandenEK">@BrandenEK</a></b> - programming </td>
       <td align="center"> <b><a href="https://github.com/JimmyDiamonds">@JimmyDiamonds</a></b> - logo design </td>
-      <td align="center"> <b><a href="https://github.com/LuceScarlet">@LuceScarlet</a></b> - gameplay testing and logic </td>
+    </tr>
+    <tr>
+      <td align="center"> <b><a href="https://github.com/LuceScarlet">@LuceScarlet</a></b> - gameplay testing and debugging </td>
+      <td align="center"> <b><a href="#">@Chemigoku</a></b> - logic gathering </td>
     </tr>
   </table>
 </div>
