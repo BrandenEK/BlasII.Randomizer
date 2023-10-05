@@ -1,14 +1,10 @@
-﻿using BlasII.ModdingAPI.Storage;
-using HarmonyLib;
-using Il2CppTGK.Game;
+﻿using HarmonyLib;
 using Il2CppTGK.Game.Components.UI;
 using Il2CppTGK.Game.Managers;
 using Il2CppTGK.Game.ShopSystem;
-using Il2CppTGK.Inventory;
 using Il2CppTGK.UI;
 using UnityEngine;
 using UnityEngine.UI;
-using static MelonLoader.MelonLogger;
 
 namespace BlasII.Randomizer.Items
 {
@@ -69,10 +65,10 @@ namespace BlasII.Randomizer.Items
         {
             string locationId = $"{Object.FindObjectOfType<ShopWindowLogic>().currentShop.name}.o{__instance.OrbIdx}";
             Main.Randomizer.LogWarning("Setting data for " + locationId);
-            var lance = Main.Randomizer.Data.GetItem("QI70"); // Get random item
 
-            __instance.Caption = lance.Upgraded.name;
-            __instance.Description = lance.Description;
+            var item = Main.Randomizer.ItemHandler.GetItemAtLocation(locationId);
+            __instance.Caption = item.Upgraded.name;
+            __instance.Description = item.Upgraded.Description;
         }
     }
 
@@ -86,9 +82,9 @@ namespace BlasII.Randomizer.Items
         {
             string locationId = $"{Object.FindObjectOfType<ShopWindowLogic>().currentShop.name}.o{data.obj.GetComponent<ShopListItem>().OrbIdx}";
             Main.Randomizer.LogWarning("Setting image for " + locationId);
-            var lance = Main.Randomizer.Data.GetItem("QI70"); // Get random item
 
-            data.obj.transform.Find("Image").GetComponent<Image>().sprite = lance.Upgraded.Image;
+            var item = Main.Randomizer.ItemHandler.GetItemAtLocation(locationId);
+            data.obj.transform.Find("Image").GetComponent<Image>().sprite = item.Upgraded.Image;
         }
     }
 }
