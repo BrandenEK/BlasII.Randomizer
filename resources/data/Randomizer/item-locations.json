@@ -978,6 +978,174 @@
         "originalItem": "FG31"
     },
     {
+        "id": "SHOPHAND.o0",
+        "name": "Hand shop item 1",
+        "originalItem": "FG15",
+        "logic": "wallClimb"
+    },
+    {
+        "id": "SHOPHAND.o1",
+        "name": "Hand shop item 2",
+        "originalItem": "FG17",
+        "logic": "wallClimb"
+    },
+    {
+        "id": "SHOPHAND.o2",
+        "name": "Hand shop item 3",
+        "originalItem": "FG18",
+        "logic": "wallClimb"
+    },
+    {
+        "id": "SHOPHAND.o3",
+        "name": "Hand shop item 4",
+        "originalItem": "FG22",
+        "logic": "wallClimb"
+    },
+    {
+        "id": "SHOPHAND.o4",
+        "name": "Hand shop item 5",
+        "originalItem": "FG26",
+        "logic": "wallClimb"
+    },
+    {
+        "id": "SHOPHAND.o5",
+        "name": "Hand shop item 6",
+        "originalItem": "RB02",
+        "logic": "wallClimb"
+    },
+    {
+        "id": "SHOPHAND.o6",
+        "name": "Hand shop item 7",
+        "originalItem": "RB11",
+        "logic": "wallClimb"
+    },
+    {
+        "id": "SHOPHAND.o7",
+        "name": "Hand shop item 8",
+        "originalItem": "RB21",
+        "logic": "wallClimb"
+    },
+    {
+        "id": "SHOPHAND.o8",
+        "name": "Hand shop item 9",
+        "originalItem": "RK",
+        "logic": "wallClimb"
+    },
+    {
+        "id": "SHOPHAND.o9",
+        "name": "Hand shop item 10",
+        "originalItem": "WS",
+        "logic": "wallClimb"
+    },
+    {
+        "id": "SHOPHAND.o10",
+        "name": "Hand shop item 11",
+        "originalItem": "Marks[1]",
+        "logic": "wallClimb"
+    },
+    {
+        "id": "SHOPHAND.o11",
+        "name": "Hand shop item 12",
+        "originalItem": "Marks[1]",
+        "logic": "wallClimb"
+    },
+    {
+        "id": "SHOPITINERANT.o0",
+        "name": "Traveling shop item 1",
+        "originalItem": "PR01",
+        "logic": "wallClimb"
+    },
+    {
+        "id": "SHOPITINERANT.o1",
+        "name": "Traveling shop item 2",
+        "originalItem": "FG08",
+        "logic": "wallClimb"
+    },
+    {
+        "id": "SHOPITINERANT.o2",
+        "name": "Traveling shop item 3",
+        "originalItem": "RB05",
+        "logic": "???"
+    },
+    {
+        "id": "SHOPITINERANT.o3",
+        "name": "Traveling shop item 4",
+        "originalItem": "RB08",
+        "logic": "???"
+    },
+    {
+        "id": "SHOPITINERANT.o4",
+        "name": "Traveling shop item 5",
+        "originalItem": "PR02",
+        "logic": "???"
+    },
+    {
+        "id": "SHOPITINERANT.o5",
+        "name": "Traveling shop item 6",
+        "originalItem": "Marks[1]",
+        "logic": "???"
+    },
+    {
+        "id": "SHOPITINERANT.o6",
+        "name": "Traveling shop item 7",
+        "originalItem": "WS",
+        "logic": "???"
+    },
+    {
+        "id": "SHOPITINERANT.o7",
+        "name": "Traveling shop item 8",
+        "originalItem": "FG33",
+        "logic": "Z18_S"
+    },
+    {
+        "id": "SHOPMISSABLES.o0",
+        "name": "Patio shop item 1",
+        "originalItem": "OC",
+        "logic": "Z17_W + doubleJump"
+    },
+    {
+        "id": "SHOPMISSABLES.o1",
+        "name": "Patio shop item 2",
+        "originalItem": "PR12",
+        "logic": "Z17_W + doubleJump"
+    },
+    {
+        "id": "SHOPMISSABLES.o2",
+        "name": "Patio shop item 3",
+        "originalItem": "FG01",
+        "logic": "Z17_W + doubleJump"
+    },
+    {
+        "id": "SHOPMISSABLES.o3",
+        "name": "Patio shop item 4",
+        "originalItem": "FG02",
+        "logic": "Z17_W + doubleJump"
+    },
+    {
+        "id": "SHOPMISSABLES.o4",
+        "name": "Patio shop item 5",
+        "originalItem": "FG03",
+        "logic": "Z17_W + doubleJump"
+    },
+    {
+        "id": "SHOPMISSABLES.o5",
+        "name": "Patio shop item 6",
+        "originalItem": "QI28",
+        "logic": "Z17_W + doubleJump + kisses >= 5"
+    },
+    {
+        "id": "SHOPMISSABLES.o6",
+        "name": "Patio shop item 7",
+        "originalItem": "PR10",
+        "logic": "Z17_W + doubleJump + Z13_E + blade + censer + rapier"
+    },
+    {
+        "id": "SHOPMISSABLES.o7",
+        "name": "Patio shop item 8",
+        "originalItem": "QI36",
+        "logic": "Z17_W + doubleJump + ???"
+    },
+    {
         "id": "Z0421.key",
         "name": "Radames",
         "type": "BossKey"
