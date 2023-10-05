@@ -19,8 +19,6 @@ namespace BlasII.Randomizer.Items
             {
                 Main.Randomizer.LogWarning($"{item.Key}: {item.Value.itemID.name} for {item.Value.price}");
             }
-            // SHOPHAND
-            // SHOPITINERANT
 
             // Clear all previous items from list
             __instance.cachedIds.Clear();
@@ -28,15 +26,18 @@ namespace BlasII.Randomizer.Items
             __instance.cachedShopDataByType.Clear();
             __instance.orbs.Clear();
 
+            // Get list of costs based on shop id
+            int[] costs = __instance.name switch
+            {
+                "SHOPHAND" => new int[] { 3000, 3000, 3000, 3000, 3000, 3000, 3000, 6000, 12000, 12000, 17500, 32000 },
+                "SHOPITINERANT" => new int[] { 3000, 3000, 6000, 6000, 17500, 12000, 6000, 6000 },
+                "SHOPMISSABLES" => new int[] { 6000, 6000, 12000, 12000, 12000, 6000, 6000 },
+                _ => System.Array.Empty<int>()
+            };
+
             // Add orbs for each price
-            __instance.orbs.Add(50);
-            __instance.orbs.Add(50);
-            __instance.orbs.Add(50);
-            __instance.orbs.Add(3000);
-            __instance.orbs.Add(3000);
-            __instance.orbs.Add(3000);
-            __instance.orbs.Add(3000);
-            __instance.orbs.Add(3000);
+            foreach (int cost in costs)
+                __instance.orbs.Add(cost);
         }
     }
 
