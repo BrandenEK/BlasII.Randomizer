@@ -1140,12 +1140,6 @@
         "logic": "Z17_W + doubleJump + Z13_E + blade + censer + rapier"
     },
     {
-        "id": "SHOPMISSABLES.o7",
-        "name": "Patio shop item 8",
-        "originalItem": "QI36",
-        "logic": "Z17_W + doubleJump + ???"
-    },
-    {
         "id": "Z0421.key",
         "name": "Radames",
         "type": "BossKey"
