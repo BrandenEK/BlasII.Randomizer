@@ -21,8 +21,6 @@ namespace BlasII.Randomizer.Items
         public enum ItemLocationType
         {
             Normal,
-            Vanilla,
-            BossKey,
         }
     }
 }
