@@ -30,7 +30,7 @@ namespace BlasII.Randomizer.Items
         {
             foreach (var location in Main.Randomizer.Data.GetAllItemLocations())
             {
-                if (location.type == ItemLocation.ItemLocationType.BossKey)
+                if (location.id.EndsWith(".key"))
                     bossKeyLocations.Add(location);
                 else
                     locations.Add(location);
@@ -41,11 +41,7 @@ namespace BlasII.Randomizer.Items
         {
             foreach (var item in Main.Randomizer.Data.GetAllItems())
             {
-                if (item.type == Item.ItemType.BossKey)
-                {
-                    bossKeyItems.Add(item);
-                }
-                else if (item.count == 1)
+                if (item.count == 1)
                 {
                     items.Add(item);
                 }
@@ -56,13 +52,17 @@ namespace BlasII.Randomizer.Items
                         items.Add(item);
                     }
                 }
+                else if (item.id == "BK")
+                {
+                    bossKeyItems.AddRange(new Item[] { item, item, item, item, item });
+                }
             }
 
             // Remove the extra starting weapon
             string startingWeaponId = config.startingWeapon switch
             {
                 0 => "WE01",
-                1 => "WE04",
+                1 => "WE02",
                 2 => "WE03",
                 _ => throw new System.Exception("Invalid starting weapon in the config")
             };

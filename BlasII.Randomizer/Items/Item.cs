@@ -41,7 +41,6 @@ namespace BlasII.Randomizer.Items
                         return ItemStorage.TryGetPrayer(id, out var prayer) ? prayer.image : null;
                     case ItemType.Figurine:
                         return ItemStorage.TryGetFigure(id, out var figure) ? figure.image : null;
-                    case ItemType.BossKey:
                     case ItemType.QuestItem:
                         return ItemStorage.TryGetQuestItem(id, out var quest) ? quest.image : null;
                     case ItemType.Weapon:
@@ -86,7 +85,6 @@ namespace BlasII.Randomizer.Items
                         return ItemStorage.TryGetPrayer(id, out var prayer) ? prayer.description : null;
                     case ItemType.Figurine:
                         return ItemStorage.TryGetFigure(id, out var figure) ? figure.description : null;
-                    case ItemType.BossKey:
                     case ItemType.QuestItem:
                         return ItemStorage.TryGetQuestItem(id, out var quest) ? quest.description : null;
                     case ItemType.Weapon:
@@ -152,7 +150,6 @@ namespace BlasII.Randomizer.Items
                             ItemStorage.PlayerInventory.AddItemAsync(figure, 0, true);
                         break;
                     }
-                case ItemType.BossKey:
                 case ItemType.QuestItem:
                     {
                         if (ItemStorage.TryGetQuestItem(id, out var quest))
@@ -280,7 +277,6 @@ namespace BlasII.Randomizer.Items
             Ability = 5,
             Tears = 20,
             Marks = 21,
-            BossKey = 99,
         }
     }
 }
