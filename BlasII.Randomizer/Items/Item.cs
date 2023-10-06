@@ -81,6 +81,51 @@ namespace BlasII.Randomizer.Items
             }
         }
 
+        public string Description
+        {
+            get
+            {
+                if (IsProgressiveItem)
+                    throw new System.Exception("Accessing a progressive item directly!");
+
+                switch (type)
+                {
+                    case ItemType.RosaryBead:
+                        return ItemStorage.TryGetRosaryBead(id, out var bead) ? bead.description : null;
+                    case ItemType.Prayer:
+                        return ItemStorage.TryGetPrayer(id, out var prayer) ? prayer.description : null;
+                    case ItemType.Figurine:
+                        return ItemStorage.TryGetFigure(id, out var figure) ? figure.description : null;
+                    case ItemType.BossKey:
+                    case ItemType.QuestItem:
+                        return ItemStorage.TryGetQuestItem(id, out var quest) ? quest.description : null;
+                    case ItemType.Weapon:
+                        return id switch
+                        {
+                            "WE01" => "A weapon that can be used to ring bronze bells",
+                            "WE02" => "A weapon that can be used to pierce bone blockades",
+                            "WE03" => "A weapon that can be used to activate magic mirrors",
+                            _ => null,
+                        };
+                    case ItemType.Ability:
+                        return id switch
+                        {
+                            "AB44" => "The ability to climb up large walls",
+                            "AB02" => "The ability to jump twice while in the air",
+                            "AB01" => "The ability to dash while in the air",
+                            "AB35" => "The ability to spawn cherubs rings",
+                            _ => null,
+                        };
+                    case ItemType.Tears:
+                        return "Can be used to buy stuff";
+                    case ItemType.Marks:
+                        return "Can be used to buy more stuff";
+                    default:
+                        return null;
+                }
+            }
+        }
+
         public void GiveReward()
         {
             if (IsProgressiveItem)
