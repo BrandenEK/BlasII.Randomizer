@@ -8,6 +8,8 @@ namespace BlasII.Randomizer.Items
 {
     public class Item
     {
+        // Static data
+
         [JsonProperty] public readonly string id;
 
         [JsonProperty] public readonly string name;
@@ -22,19 +24,7 @@ namespace BlasII.Randomizer.Items
         [JsonProperty] public readonly string[] subItems;
         [JsonProperty] public readonly bool removePrevious;
 
-        private int Amount
-        {
-            get
-            {
-                int leftBracket = id.IndexOf('['), rightBracket = id.IndexOf(']');
-                return int.Parse(id.Substring(leftBracket + 1, rightBracket - leftBracket - 1));
-            }
-        }
-
-        private bool IsProgressiveItem => subItems != null;
-
-        public Item Current => IsProgressiveItem ? CurrentSubItem : this;
-        public Item Upgraded => IsProgressiveItem ? UpgradedSubItem : this;
+        // Calculated data
 
         public Sprite Image
         {
@@ -126,6 +116,17 @@ namespace BlasII.Randomizer.Items
             }
         }
 
+        private int Amount
+        {
+            get
+            {
+                int leftBracket = id.IndexOf('['), rightBracket = id.IndexOf(']');
+                return int.Parse(id.Substring(leftBracket + 1, rightBracket - leftBracket - 1));
+            }
+        }
+
+        // Obtaining item stuff
+
         public void GiveReward()
         {
             if (IsProgressiveItem)
@@ -197,6 +198,13 @@ namespace BlasII.Randomizer.Items
 
             Main.Randomizer.ItemHandler.SetItemCollected(id);
         }
+
+        // Progressive item stuff
+
+        private bool IsProgressiveItem => subItems != null;
+
+        public Item Current => IsProgressiveItem ? CurrentSubItem : this;
+        public Item Upgraded => IsProgressiveItem ? UpgradedSubItem : this;
 
         public void RemovePreviousItem()
         {
