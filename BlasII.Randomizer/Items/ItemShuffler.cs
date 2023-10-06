@@ -9,77 +9,119 @@ namespace BlasII.Randomizer.Items
             output.Clear();
             Initialize(seed);
 
-            // Create list of all locations to randomize
-            List<ItemLocation> locations = new(), bossKeyLocations = new();
-            CreateLocationPool(locations, bossKeyLocations);
+            // Create pools of all locations to randomize
+            List<ItemLocation> mainLocations = new(), bossKeyLocations = new();
+            CreateLocationPool(mainLocations, bossKeyLocations);
 
-            // Create list of all items to randomize
-            List<Item> items = new(), bossKeyItems = new();
-            CreateItemPool(items, bossKeyItems, locations.Count, config);
+            // Create pools of all items to randomize
+            List<Item> progressionItems = new(), junkItems = new(), bossKeyItems = new();
+            CreateItemPool(progressionItems, junkItems, bossKeyItems, mainLocations.Count, config);
 
-            // Place a boss key at 5 locations, discard the rest
-            PlaceItemsAtLocations(bossKeyLocations, bossKeyItems, output);
+            // Place boss key items at boss key locations
+            FillBossKeyItems(bossKeyLocations, bossKeyItems, output);
 
-            // Place an item at a location until both empty
-            PlaceItemsAtLocations(locations, items, output);
+            // Place progression items at main locations
+            FillProgressionItems(mainLocations, progressionItems, output, inventory);
 
-            return locations.Count == 0 && items.Count == 0;
+            // Place junk items at main locations
+            FillJunkItems(mainLocations, junkItems, output);
+
+            return false;
         }
 
-        private void CreateLocationPool(List<ItemLocation> locations, List<ItemLocation> bossKeyLocations)
+        /// <summary>
+        /// Fills the two location pools
+        /// </summary>
+        private void CreateLocationPool(List<ItemLocation> mainLocations, List<ItemLocation> bossKeyLocations)
         {
             foreach (var location in Main.Randomizer.Data.GetAllItemLocations())
             {
-                if (location.id.EndsWith(".key"))
-                    bossKeyLocations.Add(location);
-                else
-                    locations.Add(location);
+                AddLocationToPool(mainLocations, bossKeyLocations, location);
             }
         }
 
-        private void CreateItemPool(List<Item> items, List<Item> bossKeyItems, int numOfLocations, TempConfig config)
+        /// <summary>
+        /// Takes a single location data and adds it to the correct list based on its id
+        /// </summary>
+        private void AddLocationToPool(List<ItemLocation> mainLocations, List<ItemLocation> bossKeyLocations, ItemLocation location)
+        {
+            // Add the location to either main or boss key lists
+            List<ItemLocation> locationPool = location.id.EndsWith(".key") ? bossKeyLocations : mainLocations;
+            locationPool.Add(location);
+        }
+
+        /// <summary>
+        /// Fills the three item pools to match the number of locations
+        /// </summary>
+        private void CreateItemPool(List<Item> progressionItems, List<Item> junkItems, List<Item> bossKeyItems, int numOfLocations, TempConfig config)
         {
             foreach (var item in Main.Randomizer.Data.GetAllItems())
             {
-                if (item.count == 1)
-                {
-                    items.Add(item);
-                }
-                else if (item.count > 1)
-                {
-                    for (int i = 0; i < item.count; i++)
-                    {
-                        items.Add(item);
-                    }
-                }
-                else if (item.id == "BK")
-                {
-                    bossKeyItems.AddRange(new Item[] { item, item, item, item, item });
-                }
+                AddItemToPool(progressionItems, junkItems, bossKeyItems, item);
             }
 
-            // Remove the extra starting weapon
-            string startingWeaponId = config.startingWeapon switch
-            {
-                0 => "WE01",
-                1 => "WE02",
-                2 => "WE03",
-                _ => throw new System.Exception("Invalid starting weapon in the config")
-            };
-            items.Remove(Main.Randomizer.Data.GetItem(startingWeaponId));
+            RemoveStartingItemsFromItemPool(progressionItems, config);
+            BalanceItemPool(progressionItems, junkItems, numOfLocations);
+        }
 
-            // Remove tear items until pools are equal
-            while (items.Count > numOfLocations)
+        /// <summary>
+        /// Takes a single item data and adds it to the correct list based on its count
+        /// </summary>
+        private void AddItemToPool(List<Item> progressionItems, List<Item> junkItems, List<Item> bossKeyItems, Item item)
+        {
+            // Add boss keys to separate list
+            if (item.id == "BK")
             {
-                items.RemoveAt(items.Count - 1);
+                bossKeyItems.AddRange(new Item[] { item, item, item, item, item });
+                return;
+            }
+
+            // Add the item to either progression or junk lists
+            List<Item> itemPool = item.progression ? progressionItems : junkItems;
+            for (int i = 0; i < item.count; i++)
+            {
+                itemPool.Add(item);
+            }
+        }
+
+        /// <summary>
+        /// Removes the starting weapon from the item pool
+        /// </summary>
+        private void RemoveStartingItemsFromItemPool(List<Item> items, TempConfig config)
+        {
+            // Remove the extra starting weapon
+            items.Remove(Main.Randomizer.Data.GetItem(GetStartingWeaponId(config)));
+        }
+
+        /// <summary>
+        /// After creating the item pool, add or remove junk items to make it equal to the number of locations
+        /// </summary>
+        private void BalanceItemPool(List<Item> progressionItems, List<Item> junkItems, int numOfLocations)
+        {
+            // Remove tear items until pools are equal
+            while (progressionItems.Count + junkItems.Count > numOfLocations)
+            {
+                junkItems.RemoveAt(junkItems.Count - 1);
             }
 
             // Add tear items until pools are equal
-            while (items.Count < numOfLocations)
+            while (progressionItems.Count + junkItems.Count < numOfLocations)
             {
-                items.Add(Main.Randomizer.Data.GetItem("Tears[800]"));
+                junkItems.Add(Main.Randomizer.Data.GetItem("Tears[800]"));
             }
         }
+
+        /// <summary>
+        /// Calculates the item id of the chosen starting weapon
+        /// </summary>
+        private string GetStartingWeaponId(TempConfig config)
+        {
+            return "WE0" + (config.startingWeapon + 1);
+        }
+
+
+
+
 
         private void PlaceItemsAtLocations(List<ItemLocation> locations, List<Item> items, Dictionary<string, string> output)
         {
@@ -96,6 +138,21 @@ namespace BlasII.Randomizer.Items
                 locations.RemoveAt(locationIdx);
                 items.RemoveAt(itemIdx);
             }
+        }
+
+        private void FillBossKeyItems(List<ItemLocation> locations, List<Item> items, Dictionary<string, string> output)
+        {
+
+        }
+
+        private void FillProgressionItems(List<ItemLocation> locations, List<Item> items, Dictionary<string, string> output, Blas2Inventory inventory)
+        {
+
+        }
+
+        private void FillJunkItems(List<ItemLocation> locations, List<Item> items, Dictionary<string, string> output)
+        {
+
         }
     }
 }
