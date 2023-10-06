@@ -1,4 +1,5 @@
-﻿using HarmonyLib;
+﻿using BlasII.ModdingAPI.Storage;
+using HarmonyLib;
 using Il2CppTGK.Game.Components.UI;
 using Il2CppTGK.Game.Managers;
 using Il2CppTGK.Game.ShopSystem;
@@ -53,6 +54,9 @@ namespace BlasII.Randomizer.Items
             Main.Randomizer.LogError("ShopManager.SellOrb - " + locationId);
 
             Main.Randomizer.ItemHandler.GiveItemAtLocation(locationId);
+
+            // When selling an "orb", it still displays and give an orb.  So take one away from the player, and patch the display method
+            StatStorage.PlayerStats.AddToCurrentValue(StatStorage.TryGetValueStat("Orbs", out var stat) ? stat : null, -1);
         }
     }
 
@@ -65,7 +69,6 @@ namespace BlasII.Randomizer.Items
         public static void Postfix(ShopListItem __instance)
         {
             string locationId = $"{Object.FindObjectOfType<ShopWindowLogic>().currentShop.name}.o{__instance.OrbIdx}";
-            Main.Randomizer.LogWarning("Setting data for " + locationId);
 
             var item = Main.Randomizer.ItemHandler.GetItemAtLocation(locationId);
             __instance.Caption = item.Upgraded.name;
@@ -82,10 +85,23 @@ namespace BlasII.Randomizer.Items
         public static void Postfix(UINavigableScrollableList.ScrollableListData data)
         {
             string locationId = $"{Object.FindObjectOfType<ShopWindowLogic>().currentShop.name}.o{data.obj.GetComponent<ShopListItem>().OrbIdx}";
-            Main.Randomizer.LogWarning("Setting image for " + locationId);
 
             var item = Main.Randomizer.ItemHandler.GetItemAtLocation(locationId);
             data.obj.transform.Find("Image").GetComponent<Image>().sprite = item.Upgraded.Image;
+        }
+    }
+
+    /// <summary>
+    /// When displaying an orb item, instantly hide it
+    /// </summary>
+    [HarmonyPatch(typeof(OrbsRewardPopupLogic), nameof(OrbsRewardPopupLogic.ShowPopup))]
+    class Shop_Display_Patch
+    {
+        public static void Prefix(OrbsRewardPopupLogic __instance)
+        {
+            __instance.timeToShowMessage = 0;
+            __instance.fadeInTime = 0;
+            __instance.fadeOutTime = 0;
         }
     }
 }
