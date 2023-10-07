@@ -47,10 +47,10 @@ namespace BlasII.Randomizer.Items
 
         protected override object GetVariable(string variable)
         {
-            // Temporary just to allow passing logic right now
-            if (variable.StartsWith("Z") || variable == "???")
+            // Door variable
+            if (Main.Randomizer.Data.DoesDoorExist(variable))
             {
-                return true;
+                return Evaluate(Main.Randomizer.Data.GetDoor(variable).logic);
             }
 
             // Regular variable
@@ -97,6 +97,7 @@ namespace BlasII.Randomizer.Items
                 "elderScroll" => elderScroll,
                 "elderCloth" => elderCloth,
 
+                "???" => false,
                 _ => throw new System.Exception("Unknown variable: " + variable)
             };
         }
