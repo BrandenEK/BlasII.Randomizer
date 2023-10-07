@@ -45,8 +45,16 @@ namespace BlasII.Randomizer.Items
         bool elderScroll = false;
         bool elderCloth = false;
 
-        protected override object GetVariable(string variable) =>
-            variable switch
+        protected override object GetVariable(string variable)
+        {
+            // Temporary just to allow passing logic right now
+            if (variable.StartsWith("Z") || variable == "???")
+            {
+                return true;
+            }
+
+            // Regular variable
+            return variable switch
             {
                 // Weapons
                 "censer" => censer > 0,
@@ -91,6 +99,7 @@ namespace BlasII.Randomizer.Items
 
                 _ => throw new System.Exception("Unknown variable: " + variable)
             };
+        }
 
         public void AddItem(Item item)
         {

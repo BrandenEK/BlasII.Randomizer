@@ -160,7 +160,10 @@ namespace BlasII.Randomizer.Items
 
         private void FillProgressionItems(List<ItemLocation> locations, List<Item> items, Dictionary<string, string> output, Blas2Inventory inventory)
         {
-
+            foreach (var location in locations)
+            {
+                Main.Randomizer.Log(location.id + ": " + inventory.Evaluate(location.logic));
+            }
         }
 
         private void FillJunkItems(List<ItemLocation> locations, List<Item> items, Dictionary<string, string> output)
