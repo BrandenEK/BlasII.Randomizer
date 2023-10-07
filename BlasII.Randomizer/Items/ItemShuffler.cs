@@ -172,6 +172,7 @@ namespace BlasII.Randomizer.Items
             // Place boss key item at remaining ones
             foreach (var location in locations)
             {
+                Main.Randomizer.Log("Placing boss key at: " + location.id);
                 output.Add(location.id, item.id);
             }
         }
@@ -187,13 +188,15 @@ namespace BlasII.Randomizer.Items
                 Item item = items[^1];
 
                 locations.Remove(location);
-                items.Remove(item);
+                items.RemoveAt(items.Count - 1);
 
                 inventory.AddItem(item);
                 output.Add(location.id, item.id);
+                Main.Randomizer.Log($"Placing prog item {item.id} at: {location.id}");
 
                 CheckBossKeyLocations(bossKeyLocations, inventory);
                 reachableLocations = FindReachableLocations(locations, inventory);
+                Main.Randomizer.LogWarning("Reachable locations: " + reachableLocations.Count);
             }
         }
 
@@ -210,6 +213,7 @@ namespace BlasII.Randomizer.Items
                 items.RemoveAt(items.Count - 1);
 
                 output.Add(location.id, item.id);
+                Main.Randomizer.Log($"Placing junk item {item.id} at: {location.id}");
             }
         }
     }
