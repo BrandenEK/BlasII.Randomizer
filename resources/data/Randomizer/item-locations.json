@@ -29,7 +29,7 @@
     {
         "id": "Z0204.l3",
         "name": "Bone floor chest",
-        "logic": "(Z02_N | doubleJump) + blade"
+        "logic": "(Z02[N] | doubleJump) + blade"
     },
     {
         "id": "Z0204.l4",
@@ -39,132 +39,132 @@
     {
         "id": "Z0301.l10",
         "name": "Entrance room high altar",
-        "logic": "Z03_SE + airDash"
+        "logic": "Z03[SE] + airDash"
     },
     {
         "id": "Z0301.l11",
         "name": "Bell shaft puzzle",
-        "logic": "Z03_SE + censer + rapier"
+        "logic": "Z03[SE] + censer + rapier"
     },
     {
         "id": "Z0303.l6",
         "name": "Cherub ring altar",
-        "logic": "Z03_SE + doubleJump + cherubRings"
+        "logic": "Z03[SE] + doubleJump + cherubRings"
     },
     {
         "id": "Z0304.l4",
         "name": "Arena chest",
-        "logic": "Z03_SE"
+        "logic": "Z03[SE]"
     },
     {
         "id": "Z0304.l9",
         "name": "Spike gap puzzle",
-        "logic": "Z03_SE"
+        "logic": "Z03[SE]"
     },
     {
         "id": "Z0305.l5",
         "name": "DJ chest under ledge",
-        "logic": "Z03_SE + (doubleJump | airDash)"
+        "logic": "Z03[SE] + (doubleJump | airDash)"
     },
     {
         "id": "Z0305.l6",
         "name": "Airdash arena",
-        "logic": "Z03_SE + airDash"
+        "logic": "Z03[SE] + airDash"
     },
     {
         "id": "Z0306.l12",
         "name": "Ledge under breaking floor",
-        "logic": "Z03_SE + cherubRings + doubleJump"
+        "logic": "Z03[SE] + cherubRings + doubleJump"
     },
     {
         "id": "Z0307.l8",
         "name": "Exit shortcut altar 1",
-        "logic": "Z03_SW + censer + blade"
+        "logic": "Z03[SW] + censer + blade"
     },
     {
         "id": "Z0308.l26",
         "name": "Bell cherub puzzle",
-        "logic": "Z03_SW + censer + doubleJump + cherubRings"
+        "logic": "Z03[SW] + censer + doubleJump + cherubRings"
     },
     {
         "id": "Z0308.l27",
         "name": "Exit shortcut altar 2",
-        "logic": "Z03_SE + censer"
+        "logic": "Z03[SE] + censer"
     },
     {
         "id": "Z0313.l9",
         "name": "Bell airdash puzzle",
-        "logic": "(Z03_S | Z03_SW) + wallClimb + doubleJump + airDash + censer"
+        "logic": "(Z03[S] | Z03[SW]) + wallClimb + doubleJump + airDash + censer"
     },
     {
         "id": "Z0402.l13",
         "name": "Entrance left ledge",
-        "logic": "Z04_NE + censer"
+        "logic": "Z04[NE] + censer"
     },
     {
         "id": "Z0402.l15",
         "name": "Entrance right ledge",
-        "logic": "Z04_NE + censer + rapier"
+        "logic": "Z04[NE] + censer + rapier"
     },
     {
         "id": "Z0406.l4",
         "name": "Tall shaft bottom",
-        "logic": "Z04_NE"
+        "logic": "Z04[NE]"
     },
     {
         "id": "Z0409.l7",
         "name": "High ledge before weapon",
-        "logic": "Z04_NE + censer + doubleJump"
+        "logic": "Z04[NE] + censer + doubleJump"
     },
     {
         "id": "Z0410.l6",
         "name": "Bell floor chest",
-        "logic": "Z04_NE + censer"
+        "logic": "Z04[NE] + censer"
     },
     {
         "id": "Z0412.l1",
         "name": "Airdash altar",
-        "logic": "Z04_NE + (censer | doubleJump) + airDash"
+        "logic": "Z04[NE] + (censer | doubleJump) + airDash"
     },
     {
         "id": "Z0412.l2",
         "name": "Bone wall chest",
-        "logic": "Z04_NE + (censer | doubleJump) + blade"
+        "logic": "Z04[NE] + (censer | doubleJump) + blade"
     },
     {
         "id": "Z0413.l0",
         "name": "Secret wall Lullaby",
-        "logic": "Z04_NE"
+        "logic": "Z04[NE]"
     },
     {
         "id": "Z0414.l4",
         "name": "Above bell shortcut altar",
-        "logic": "Z04_NE"
+        "logic": "Z04[NE]"
     },
     {
         "id": "Z0415.l1",
         "name": "Box room right",
-        "logic": "Z04_NE"
+        "logic": "Z04[NE]"
     },
     {
         "id": "Z0415.l3",
         "name": "Box room left",
-        "logic": "Z04_NE + doubleJump"
+        "logic": "Z04[NE] + doubleJump"
     },
     {
         "id": "Z0417.l4",
         "name": "Tower entrance chest",
-        "logic": "Z04_SW + doubleJump + blade"
+        "logic": "Z04[SW] + doubleJump + blade"
     },
     {
         "id": "Z0421.r8",
         "name": "Defeat Radames",
-        "logic": "Z04_NE"
+        "logic": "Z04[NE]"
     },
     {
         "id": "Z0423.l1",
         "name": "Veredicto statue",
-        "logic": "Z04_NE + censer + doubleJump"
+        "logic": "Z04[NE] + censer + doubleJump"
     },
     {
         "id": "Z0503.l4",
@@ -174,12 +174,12 @@
     {
         "id": "Z0506.i0",
         "name": "Cobijada's Final Reward",
-        "logic": "Z05_T + ???"
+        "logic": "Z05[T] + ???"
     },
     {
         "id": "Z0511.l0",
         "name": "Bell tower secret chest",
-        "logic": "Z05_T + doubleJump + cherubRings + censer"
+        "logic": "Z05[T] + doubleJump + cherubRings + censer"
     },
     {
         "id": "Z05BZ01.l0",
@@ -220,407 +220,407 @@
     {
         "id": "Z0602.l2",
         "name": "Ledge up high",
-        "logic": "Z06_W + doubleJump"
+        "logic": "Z06[W] + doubleJump"
     },
     {
         "id": "Z0605.l10",
         "name": "Big house bone wall altar",
-        "logic": "Z06_W + doubleJump + cherubRings + blade"
+        "logic": "Z06[W] + doubleJump + cherubRings + blade"
     },
     {
         "id": "Z0605.l11",
         "name": "Big house bone floor altar",
-        "logic": "Z06_W + blade + (doubleJump | airDash)"
+        "logic": "Z06[W] + blade + (doubleJump | airDash)"
     },
     {
         "id": "Z0611.l2",
         "name": "Dungeon 1 shortcut",
-        "logic": "Z06_SW"
+        "logic": "Z06[SW]"
     },
     {
         "id": "Z0611.r2",
         "name": "Dungeon 1 arena",
-        "logic": "Z06_W"
+        "logic": "Z06[W]"
     },
     {
         "id": "Z0612.l6",
         "name": "Dungeon 2 chest",
-        "logic": "Z06_W"
+        "logic": "Z06[W]"
     },
     {
         "id": "Z0614.l6",
         "name": "Dungeon 3 shortcut",
-        "logic": "Z06_S"
+        "logic": "Z06[S]"
     },
     {
         "id": "Z0614.l7",
         "name": "Dungeon 3 chest",
-        "logic": "Z06_W"
+        "logic": "Z06[W]"
     },
     {
         "id": "Z0615.r2",
         "name": "Northwest arena",
-        "logic": "Z06_W + (doubleJump | rapier)"
+        "logic": "Z06[W] + (doubleJump | rapier)"
     },
     {
         "id": "Z0707.i2",
         "name": "Eastern arena",
-        "logic": "Z07_W + rapier"
+        "logic": "Z07[W] + rapier"
     },
     {
         "id": "Z0709.l1",
         "name": "Rapier statue",
-        "logic": "Z07_W"
+        "logic": "Z07[W]"
     },
     {
         "id": "Z0711.l2",
         "name": "Northwest chest",
-        "logic": "Z07_W + rapier"
+        "logic": "Z07[W] + rapier"
     },
     {
         "id": "Z0721.i2",
         "name": "Northern arena",
-        "logic": "Z07_W + rapier + blade"
+        "logic": "Z07[W] + rapier + blade"
     },
     {
         "id": "Z0722.s0",
         "name": "Give scroll to Cástula",
-        "logic": "Z07_W + rapier + elderScroll"
+        "logic": "Z07[W] + rapier + elderScroll"
     },
     {
         "id": "Z0722.s1",
         "name": "Give cloth to Trifón",
-        "logic": "Z07_W + rapier + elderCloth"
+        "logic": "Z07[W] + rapier + elderCloth"
     },
     {
         "id": "Z0723.l2",
         "name": "Moving rapier chest",
-        "logic": "Z07_W + rapier"
+        "logic": "Z07[W] + rapier"
     },
     {
         "id": "Z0725.i1",
         "name": "Northwest arena",
-        "logic": "Z07_W + rapier + censer"
+        "logic": "Z07[W] + rapier + censer"
     },
     {
         "id": "Z0728.i2",
         "name": "Southeast arena",
-        "logic": "Z07_W + blade"
+        "logic": "Z07[W] + blade"
     },
     {
         "id": "Z0730.r6",
         "name": "Defeat Orospina",
-        "logic": "Z07_W + rapier"
+        "logic": "Z07[W] + rapier"
     },
     {
         "id": "Z0730.l2",
         "name": "Orospina altar",
-        "logic": "Z07_W + rapier"
+        "logic": "Z07[W] + rapier"
     },
     {
         "id": "Z0805.l0",
         "name": "Spikestall puzzle",
-        "logic": "doubleJump + airDash + (Z08_W + wallClimb | Z08_P)"
+        "logic": "doubleJump + airDash + (Z08[W] + wallClimb | Z08[P])"
     },
     {
         "id": "Z0810.l0",
         "name": "1st tribute leftover",
-        "logic": "Z08_W + (wallClimb | doubleJump) + tributes >= 1"
+        "logic": "Z08[W] + (wallClimb | doubleJump) + tributes >= 1"
     },
     {
         "id": "Z0811.w0",
         "name": "Rapier statue",
-        "logic": "Z08_W + wallClimb + doubleJump + rapier"
+        "logic": "Z08[W] + wallClimb + doubleJump + rapier"
     },
     {
         "id": "Z0814.l6",
         "name": "Bell floor chest",
-        "logic": "Z08_W + (wallClimb | doubleJump) + censer"
+        "logic": "Z08[W] + (wallClimb | doubleJump) + censer"
     },
     {
         "id": "Z0815.i0",
         "name": "Honey dude",
-        "logic": "Z08_W + (wallClimb | doubleJump) + rapier"
+        "logic": "Z08[W] + (wallClimb | doubleJump) + rapier"
     },
     {
         "id": "Z0817.l0",
         "name": "3rd tribute leftover",
-        "logic": "Z08_P + tributes >= 3"
+        "logic": "Z08[P] + tributes >= 3"
     },
     {
         "id": "Z0901.l1",
         "name": "Entrance shaft upper",
-        "logic": "Z09_W + wallClimb + blade + cherubRings + doubleJump"
+        "logic": "Z09[W] + wallClimb + blade + cherubRings + doubleJump"
     },
     {
         "id": "Z0901.l3",
         "name": "Entrance shaft lower",
-        "logic": "Z09_W + wallClimb + blade"
+        "logic": "Z09[W] + wallClimb + blade"
     },
     {
         "id": "Z0903.l2",
         "name": "Entrance room high ledge",
-        "logic": "Z09_W + wallClimb"
+        "logic": "Z09[W] + wallClimb"
     },
     {
         "id": "Z0905.l2",
         "name": "Bell floor chest",
-        "logic": "Z09_W + doubleJump + censer"
+        "logic": "Z09[W] + doubleJump + censer"
     },
     {
         "id": "Z0908.l9",
         "name": "Rapier lullaby shaft",
-        "logic": "Z09_W + wallClimb + blade + censer + rapier"
+        "logic": "Z09[W] + wallClimb + blade + censer + rapier"
     },
     {
         "id": "Z0909.l5",
         "name": "Lantern ledge chest",
-        "logic": "Z09_W + wallClimb + blade"
+        "logic": "Z09[W] + wallClimb + blade"
     },
     {
         "id": "Z0912.l8",
         "name": "Rapier bone floor puzzle",
-        "logic": "Z09_W + wallClimb + blade + rapier"
+        "logic": "Z09[W] + wallClimb + blade + rapier"
     },
     {
         "id": "Z0913.l1",
         "name": "Ruego statue",
-        "logic": "Z09_W"
+        "logic": "Z09[W]"
     },
     {
         "id": "Z0915.l9",
         "name": "Ledge shaft puzzle",
-        "logic": "Z09_W + wallClimb + blade"
+        "logic": "Z09[W] + wallClimb + blade"
     },
     {
         "id": "Z0921.r14",
         "name": "Defeat Lesmes",
-        "logic": "Z09_W + wallClimb + blade"
+        "logic": "Z09[W] + wallClimb + blade"
     },
     {
         "id": "Z0926.a0",
         "name": "Wind statue",
-        "logic": "rapier + (Z09_W + airDash | Z09_N)"
+        "logic": "rapier + (Z09[W] + airDash | Z09[N])"
     },
     {
         "id": "Z0927.l4",
         "name": "Long hallway altar",
-        "logic": "Z09_W + wallClimb + blade"
+        "logic": "Z09[W] + wallClimb + blade"
     },
     {
         "id": "Z0929.w0",
         "name": "Ruego upgrade",
-        "logic": "Z09_W + wallClimb + blade + doubleJump + airDash"
+        "logic": "Z09[W] + wallClimb + blade + doubleJump + airDash"
     },
     {
         "id": "Z1003.l0",
         "name": "Southeast chest",
-        "logic": "Z10_S + wallClimb + (doubleJump | airDash)"
+        "logic": "Z10[S] + wallClimb + (doubleJump | airDash)"
     },
     {
         "id": "Z1004.l10",
         "name": "Mirror and Bell puzzle",
-        "logic": "Z10_S + wallClimb + blade"
+        "logic": "Z10[S] + wallClimb + blade"
     },
     {
         "id": "Z1007.l2",
         "name": "Bone floor PrieDieu",
-        "logic": "Z10_S + blade"
+        "logic": "Z10[S] + blade"
     },
     {
         "id": "Z1011.l4",
         "name": "Wall Climb Mirror",
-        "logic": "Z10_S + wallClimb + doubleJump"
+        "logic": "Z10[S] + wallClimb + doubleJump"
     },
     {
         "id": "Z1015.l0",
         "name": "Southwest chest",
-        "logic": "Z10_S + wallClimb + blade"
+        "logic": "Z10[S] + wallClimb + blade"
     },
     {
         "id": "Z1015.l1",
         "name": "Cherub tower exit",
-        "logic": "Z10_W"
+        "logic": "Z10[W]"
     },
     {
         "id": "Z1017.w0",
         "name": "Veredicto statue",
-        "logic": "Z10_S + wallClimb + blade"
+        "logic": "Z10[S] + wallClimb + blade"
     },
     {
         "id": "Z1018.l3",
         "name": "Cherubs Rings",
-        "logic": "Z10_S + wallClimb + blade + doubleJump + airDash + cherubRings"
+        "logic": "Z10[S] + wallClimb + blade + doubleJump + airDash + cherubRings"
     },
     {
         "id": "Z1019.l9",
         "name": "Air dash chest",
-        "logic": "Z10_S + wallClimb + blade + doubleJump + airDash"
+        "logic": "Z10[S] + wallClimb + blade + doubleJump + airDash"
     },
     {
         "id": "Z1023.l8",
         "name": "Northeast cherub puzzle",
-        "logic": "Z10_S + wallClimb + blade + doubleJump + cherubRings + airDash"
+        "logic": "Z10[S] + wallClimb + blade + doubleJump + cherubRings + airDash"
     },
     {
         "id": "Z1045.l0",
         "name": "Two Moons bridge",
-        "logic": "Z10_S + wallClimb + blade + doubleJump"
+        "logic": "Z10[S] + wallClimb + blade + doubleJump"
     },
     {
         "id": "Z1050.l7",
         "name": "Mirror shaft altar",
-        "logic": "Z10_S"
+        "logic": "Z10[S]"
     },
     {
         "id": "Z1063.w0",
         "name": "Rapier statue",
-        "logic": "Z10_S + wallClimb + blade + doubleJump + cherubRings"
+        "logic": "Z10[S] + wallClimb + blade + doubleJump + cherubRings"
     },
     {
         "id": "Z1103.l1",
         "name": "Southeast altar",
-        "logic": "Z11_S + doubleJump + airDash"
+        "logic": "Z11[S] + doubleJump + airDash"
     },
     {
         "id": "Z1107.l5",
         "name": "Western chest",
-        "logic": "Z11_S + doubleJump + airDash + rapier"
+        "logic": "Z11[S] + doubleJump + airDash + rapier"
     },
     {
         "id": "Z1109.l0",
         "name": "Eastern lullaby",
-        "logic": "Z11_S + doubleJump + airDash + rapier + censer"
+        "logic": "Z11[S] + doubleJump + airDash + rapier + censer"
     },
     {
         "id": "Z1113.r8",
         "name": "Defeat Benedicta",
-        "logic": "Z11_S + doubleJump + airDash + rapier + censer"
+        "logic": "Z11[S] + doubleJump + airDash + rapier + censer"
     },
     {
         "id": "Z1203.i2",
         "name": "Eastern arena",
-        "logic": "Z12_E"
+        "logic": "Z12[E]"
     },
     {
         "id": "Z1205.w0",
         "name": "Eastern censer statue",
-        "logic": "Z12_E + censer"
+        "logic": "Z12[E] + censer"
     },
     {
         "id": "Z1209.l1",
         "name": "Southwest chest",
-        "logic": "Z12_E"
+        "logic": "Z12[E]"
     },
     {
         "id": "Z1209.l2",
         "name": "Western altar",
-        "logic": "Z12_E"
+        "logic": "Z12[E]"
     },
     {
         "id": "Z1210.l2",
         "name": "Northwest altar",
-        "logic": "Z12_E + cherubRings"
+        "logic": "Z12[E] + cherubRings"
     },
     {
         "id": "Z1216.r9",
         "name": "Defeat Odon",
-        "logic": "Z12_E"
+        "logic": "Z12[E]"
     },
     {
         "id": "Z1307.l7",
         "name": "Eastern altar",
-        "logic": "Z13_E + blade"
+        "logic": "Z13[E] + blade"
     },
     {
         "id": "Z1308.l7",
         "name": "Inverted backtracking",
-        "logic": "Z13_E + blade + censer + rapier"
+        "logic": "Z13[E] + blade + censer + rapier"
     },
     {
         "id": "Z1310.l0",
         "name": "Inverted dash puzzle",
-        "logic": "Z13_E"
+        "logic": "Z13[E]"
     },
     {
         "id": "Z1311.l7",
         "name": "Laser puzzle",
-        "logic": "Z13_E + censer + blade"
+        "logic": "Z13[E] + censer + blade"
     },
     {
         "id": "Z1312.l4",
         "name": "Laser puzzle inverted",
-        "logic": "Z13_E"
+        "logic": "Z13[E]"
     },
     {
         "id": "Z1314.l6",
         "name": "Inverted near priedieu",
-        "logic": "Z13_E + blade + censer + rapier"
+        "logic": "Z13[E] + blade + censer + rapier"
     },
     {
         "id": "Z1327.r7",
         "name": "Defeat Susona",
-        "logic": "Z13_E + blade + censer + rapier"
+        "logic": "Z13[E] + blade + censer + rapier"
     },
     {
         "id": "Z1327.l3",
         "name": "Yerma's corpse",
-        "logic": "Z13_E + blade + censer + rapier"
+        "logic": "Z13[E] + blade + censer + rapier"
     },
     {
         "id": "Z1329.l0",
         "name": "Western altar",
-        "logic": "Z13_W"
+        "logic": "Z13[W]"
     },
     {
         "id": "Z1330.l5",
         "name": "Western altar inverted",
-        "logic": "Z13_E + blade + censer + rapier"
+        "logic": "Z13[E] + blade + censer + rapier"
     },
     {
         "id": "Z1404.l8",
         "name": "Northeast altar",
-        "logic": "Z14_N + (censer | doubleJump)"
+        "logic": "Z14[N] + (censer | doubleJump)"
     },
     {
         "id": "Z1404.l15",
         "name": "Southeast shortcut",
-        "logic": "Z14_N + censer + rapier + blade + (wallClimb | doubleJump + airDash)"
+        "logic": "Z14[N] + censer + rapier + blade + (wallClimb | doubleJump + airDash)"
     },
     {
         "id": "Z1405.l3",
         "name": "Central altar",
-        "logic": "Z14_N + censer"
+        "logic": "Z14[N] + censer"
     },
     {
         "id": "Z1407.l1",
         "name": "Central hidden chest",
-        "logic": "Z14_N + censer"
+        "logic": "Z14[N] + censer"
     },
     {
         "id": "Z1418.l5",
         "name": "Cherubs Altar",
-        "logic": "Z14_N + doubleJump + airDash + wallClimb + cherubRings"
+        "logic": "Z14[N] + doubleJump + airDash + wallClimb + cherubRings"
     },
     {
         "id": "Z1419.l2",
         "name": "Northwest altar",
-        "logic": "Z14_N + doubleJump"
+        "logic": "Z14[N] + doubleJump"
     },
     {
         "id": "Z1421.l1",
         "name": "Chime symbols chest",
-        "logic": "Z14_N + (wallClimb | doubleJump)"
+        "logic": "Z14[N] + (wallClimb | doubleJump)"
     },
     {
         "id": "Z1422.l8",
         "name": "Southwest puzzle",
-        "logic": "Z14_N + censer + rapier + blade + (wallClimb | doubleJump)"
+        "logic": "Z14[N] + censer + rapier + blade + (wallClimb | doubleJump)"
     },
     {
         "id": "Z1424.l3",
         "name": "Miriam chest",
-        "logic": "Z14_N + wallClimb + (censer | doubleJump)"
+        "logic": "Z14[N] + wallClimb + (censer | doubleJump)"
     },
     {
         "id": "Z1501.s0",
@@ -650,52 +650,52 @@
     {
         "id": "Z1602.l2",
         "name": "Entrance altar",
-        "logic": "Z16_S"
+        "logic": "Z16[S]"
     },
     {
         "id": "Z1603.i2",
         "name": "Entrance arena",
-        "logic": "Z16_S"
+        "logic": "Z16[S]"
     },
     {
         "id": "Z1605.l5",
         "name": "Shortcut cherub altar",
-        "logic": "Z16_S + rapier + cherubRings"
+        "logic": "Z16[S] + rapier + cherubRings"
     },
     {
         "id": "Z1610.l4",
         "name": "Lullaby slide",
-        "logic": "Z16_S + rapier"
+        "logic": "Z16[S] + rapier"
     },
     {
         "id": "Z1615.a0",
         "name": "Scion statue",
-        "logic": "Z16_S + rapier"
+        "logic": "Z16[S] + rapier"
     },
     {
         "id": "Z1616.i1",
         "name": "Cesareo's gift",
-        "logic": "Z16_S + rapier + cherubRings + waxSeeds >= 6"
+        "logic": "Z16[S] + rapier + cherubRings + waxSeeds >= 6"
     },
     {
         "id": "Z1619.l6",
         "name": "Upper entrance altar",
-        "logic": "Z16_P + airDash"
+        "logic": "Z16[P] + airDash"
     },
     {
         "id": "Z1621.l1",
         "name": "3rd tribute reward",
-        "logic": "Z16_P"
+        "logic": "Z16[P]"
     },
     {
         "id": "Z1622.r6",
         "name": "Defeat Sínodo",
-        "logic": "Z16_S + rapier + cherubRings"
+        "logic": "Z16[S] + rapier + cherubRings"
     },
     {
         "id": "Z1625.i2",
         "name": "Cherub arena",
-        "logic": "Z16_S + rapier + cherubRings"
+        "logic": "Z16[S] + rapier + cherubRings"
     },
     {
         "id": "Z1709.l0",
@@ -705,57 +705,57 @@
     {
         "id": "Z1715.l0",
         "name": "Envelope room",
-        "logic": "Z17_W + doubleJump + cherubRings"
+        "logic": "Z17[W] + doubleJump + cherubRings"
     },
     {
         "id": "Z1718.l0",
         "name": "Altar room",
-        "logic": "Z17_W + doubleJump"
+        "logic": "Z17[W] + doubleJump"
     },
     {
         "id": "Z1719.l3",
         "name": "Mirror puzzle",
-        "logic": "Z17_W + doubleJump + airDash + rapier"
+        "logic": "Z17[W] + doubleJump + airDash + rapier"
     },
     {
         "id": "Z1801.l1",
         "name": "Section 1",
-        "logic": "Z18_S + airDash + cherubRings"
+        "logic": "Z18[S] + airDash + cherubRings"
     },
     {
         "id": "Z1802.l10",
         "name": "Section 2",
-        "logic": "Z18_S + airDash + cherubRings"
+        "logic": "Z18[S] + airDash + cherubRings"
     },
     {
         "id": "Z1803.l7",
         "name": "Section 3",
-        "logic": "Z18_S + airDash + cherubRings"
+        "logic": "Z18[S] + airDash + cherubRings"
     },
     {
         "id": "Z1804.l2",
         "name": "Section 4",
-        "logic": "Z18_S + airDash + cherubRings"
+        "logic": "Z18[S] + airDash + cherubRings"
     },
     {
         "id": "Z1808.i6",
         "name": "Eviterno reward",
-        "logic": "Z18_S + airDash + cherubRings"
+        "logic": "Z18[S] + airDash + cherubRings"
     },
     {
         "id": "Z1808.r6",
         "name": "Defeat Eviterno",
-        "logic": "Z18_S + airDash + cherubRings"
+        "logic": "Z18[S] + airDash + cherubRings"
     },
     {
         "id": "Z1901.l0",
         "name": "Entrance shaft altar",
-        "logic": "Z19_N + wallClimb | doubleJump | airDash"
+        "logic": "Z19[N] + wallClimb | doubleJump | airDash"
     },
     {
         "id": "Z1903.l0",
         "name": "Center shaft high ledge",
-        "logic": "Z19_N + doubleJump"
+        "logic": "Z19[N] + doubleJump"
     },
     {
         "id": "Z1906.i1",
@@ -765,32 +765,32 @@
     {
         "id": "Z1907.i0",
         "name": "Yerma initial gift",
-        "logic": "Z19_N"
+        "logic": "Z19[N]"
     },
     {
         "id": "Z1909.l0",
         "name": "Procession high ledge",
-        "logic": "doubleJump + airDash + (Z19_N + censer + rapier | Z19_P)"
+        "logic": "doubleJump + airDash + (Z19[N] + censer + rapier | Z19[P])"
     },
     {
         "id": "Z1910.l0",
         "name": "2nd tribute leftover",
-        "logic": "Z19_P + tributes >= 2"
+        "logic": "Z19[P] + tributes >= 2"
     },
     {
         "id": "Z1910.l4",
         "name": "1st tribute reward",
-        "logic": "Z19_P"
+        "logic": "Z19[P]"
     },
     {
         "id": "Z1913.l1",
         "name": "Ledge under well",
-        "logic": "Z19_N + wallClimb"
+        "logic": "Z19[N] + wallClimb"
     },
     {
         "id": "Z1914.i2",
         "name": "Gauntlet under well",
-        "logic": "Z19_N + wallClimb"
+        "logic": "Z19[N] + wallClimb"
     },
     {
         "id": "Z1917.i0",
@@ -800,132 +800,132 @@
     {
         "id": "Z1917.l3",
         "name": "Ledge over sea",
-        "logic": "Z19_N + wallClimb"
+        "logic": "Z19[N] + wallClimb"
     },
     {
         "id": "Z1918.l2",
         "name": "Altar above ivy",
-        "logic": "Z19_N + doubleJump + airDash"
+        "logic": "Z19[N] + doubleJump + airDash"
     },
     {
         "id": "Z1919.a0",
         "name": "Ivy statue",
-        "logic": "Z19_N"
+        "logic": "Z19[N]"
     },
     {
         "id": "Z1919.l3",
         "name": "Chest after ivy",
-        "logic": "Z19_N + (wallClimb | doubleJump)"
+        "logic": "Z19[N] + (wallClimb | doubleJump)"
     },
     {
         "id": "Z2001.l1",
         "name": "Bridge entrance",
-        "logic": "Z20_N | Z20_E"
+        "logic": "Z20[N] | Z20[E]"
     },
     {
         "id": "Z2102.l0",
         "name": "Entrance chest",
-        "logic": "Z21_N"
+        "logic": "Z21[N]"
     },
     {
         "id": "Z2103.l0",
         "name": "Entrance altar",
-        "logic": "Z21_N"
+        "logic": "Z21[N]"
     },
     {
         "id": "Z2104.l7",
         "name": "East Puzzle chest",
-        "logic": "Z21_N + blade + censer + wallClimb"
+        "logic": "Z21[N] + blade + censer + wallClimb"
     },
     {
         "id": "Z2106.l4",
         "name": "Hidden wall puzzle",
-        "logic": "Z21_N + blade"
+        "logic": "Z21[N] + blade"
     },
     {
         "id": "Z2112.l0",
         "name": "West puzzle chest",
-        "logic": "Z21_N + blade + wallClimb"
+        "logic": "Z21[N] + blade + wallClimb"
     },
     {
         "id": "Z2116.l2",
         "name": "Cherub puzzle",
-        "logic": "Z21_N + blade + wallClimb + cherubRings"
+        "logic": "Z21[N] + blade + wallClimb + cherubRings"
     },
     {
         "id": "Z2117.l1",
         "name": "Labyrinth secret",
-        "logic": "Z21_N + blade"
+        "logic": "Z21[N] + blade"
     },
     {
         "id": "Z2119.i0",
         "name": "Regula reward",
-        "logic": "Z21_N + blade + regulaCloth"
+        "logic": "Z21[N] + blade + regulaCloth"
     },
     {
         "id": "Z2120.i2",
         "name": "Regula gift",
-        "logic": "Z21_N + blade"
+        "logic": "Z21[N] + blade"
     },
     {
         "id": "Z2123.l2",
         "name": "Beneath teleporter",
-        "logic": "Z21_N + blade + wallClimb"
+        "logic": "Z21[N] + blade + wallClimb"
     },
     {
         "id": "Z2301.l16",
         "name": "Center shaft",
-        "logic": "Z23_N + (doubleJump | airDash)"
+        "logic": "Z23[N] + (doubleJump | airDash)"
     },
     {
         "id": "Z2304.r15",
         "name": "Defeat Alifaor",
-        "logic": "Z23_N"
+        "logic": "Z23[N]"
     },
     {
         "id": "Z2308.a0",
         "name": "Ash statue",
-        "logic": "Z23_N"
+        "logic": "Z23[N]"
     },
     {
         "id": "Z2310.w0",
         "name": "Ruego statue",
-        "logic": "Z23_N + (doubleJump | airDash)"
+        "logic": "Z23[N] + (doubleJump | airDash)"
     },
     {
         "id": "Z2401.i0",
         "name": "Proximo reward",
-        "logic": "Z24_W + cherubs >= 33 + rattle"
+        "logic": "Z24[W] + cherubs >= 33 + rattle"
     },
     {
         "id": "Z2401.l3",
         "name": "Cherub platform 1",
-        "logic": "Z24_W + cherubs >= 10"
+        "logic": "Z24[W] + cherubs >= 10"
     },
     {
         "id": "Z2401.l4",
         "name": "Cherub platform 2",
-        "logic": "Z24_W + cherubs >= 17"
+        "logic": "Z24[W] + cherubs >= 17"
     },
     {
         "id": "Z2401.l2",
         "name": "Cherub platform 3",
-        "logic": "Z24_W + cherubs >= 29 + doubleJump + airDash"
+        "logic": "Z24[W] + cherubs >= 29 + doubleJump + airDash"
     },
     {
         "id": "Z2402.l0",
         "name": "Cherub top floor",
-        "logic": "Z24_W + cherubs >= 33 + doubleJump + airDash + cherubRings"
+        "logic": "Z24[W] + cherubs >= 33 + doubleJump + airDash + cherubRings"
     },
     {
         "id": "Z2402.l1",
         "name": "Cherub top altar",
-        "logic": "Z24_W + cherubs >= 33 + doubleJump + airDash + cherubRings"
+        "logic": "Z24[W] + cherubs >= 33 + doubleJump + airDash + cherubRings"
     },
     {
         "id": "Z2402.l2",
         "name": "Cherub top hidden chest",
-        "logic": "Z24_W + cherubs >= 33 + doubleJump + airDash + cherubRings"
+        "logic": "Z24[W] + cherubs >= 33 + doubleJump + airDash + cherubRings"
     },
     {
         "id": "SHOPHAND.o0",
@@ -1025,81 +1025,81 @@
     {
         "id": "SHOPITINERANT.o7",
         "name": "Traveling shop item 8",
-        "logic": "Z18_S"
+        "logic": "Z18[S]"
     },
     {
         "id": "SHOPMISSABLES.o0",
         "name": "Patio shop item 1",
-        "logic": "Z17_W + doubleJump"
+        "logic": "Z17[W] + doubleJump"
     },
     {
         "id": "SHOPMISSABLES.o1",
         "name": "Patio shop item 2",
-        "logic": "Z17_W + doubleJump"
+        "logic": "Z17[W] + doubleJump"
     },
     {
         "id": "SHOPMISSABLES.o2",
         "name": "Patio shop item 3",
-        "logic": "Z17_W + doubleJump"
+        "logic": "Z17[W] + doubleJump"
     },
     {
         "id": "SHOPMISSABLES.o3",
         "name": "Patio shop item 4",
-        "logic": "Z17_W + doubleJump"
+        "logic": "Z17[W] + doubleJump"
     },
     {
         "id": "SHOPMISSABLES.o4",
         "name": "Patio shop item 5",
-        "logic": "Z17_W + doubleJump"
+        "logic": "Z17[W] + doubleJump"
     },
     {
         "id": "SHOPMISSABLES.o5",
         "name": "Patio shop item 6",
-        "logic": "Z17_W + doubleJump + kisses >= 5"
+        "logic": "Z17[W] + doubleJump + kisses >= 5"
     },
     {
         "id": "SHOPMISSABLES.o6",
         "name": "Patio shop item 7",
-        "logic": "Z17_W + doubleJump + Z13_E + blade + censer + rapier"
+        "logic": "Z17[W] + doubleJump + Z13[E] + blade + censer + rapier"
     },
     {
         "id": "Z0421.key",
         "name": "Radames",
-        "logic": "Z04_NE"
+        "logic": "Z04[NE]"
     },
     {
         "id": "Z0730.key",
         "name": "Orospina",
-        "logic": "Z07_W + rapier"
+        "logic": "Z07[W] + rapier"
     },
     {
         "id": "Z0921.key",
         "name": "Lesmes",
-        "logic": "Z09_W + wallClimb + blade"
+        "logic": "Z09[W] + wallClimb + blade"
     },
     {
         "id": "Z2304.key",
         "name": "Afilaor",
-        "logic": "Z23_N"
+        "logic": "Z23[N]"
     },
     {
         "id": "Z1104.key",
         "name": "Bendicta",
-        "logic": "Z11_S + doubleJump + airDash + rapier + censer"
+        "logic": "Z11[S] + doubleJump + airDash + rapier + censer"
     },
     {
         "id": "Z1216.key",
         "name": "Odon",
-        "logic": "Z12_E"
+        "logic": "Z12[E]"
     },
     {
         "id": "Z1622.key",
         "name": "Sinodo",
-        "logic": "Z16_S + rapier + cherubRings"
+        "logic": "Z16[S] + rapier + cherubRings"
     },
     {
         "id": "Z1327.key",
         "name": "Svsona",
-        "logic": "Z13_E + blade + censer + rapier"
+        "logic": "Z13[E] + blade + censer + rapier"
     }
 ]
