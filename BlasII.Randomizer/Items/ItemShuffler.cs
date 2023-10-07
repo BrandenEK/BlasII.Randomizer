@@ -9,6 +9,10 @@ namespace BlasII.Randomizer.Items
             output.Clear();
             Initialize(seed);
 
+            // Create inventory with starting items
+            var inventory = new Blas2Inventory();
+            AddStartingItemsToInventory(inventory, config);
+
             // Create pools of all locations to randomize
             List<ItemLocation> mainLocations = new(), bossKeyLocations = new();
             CreateLocationPool(mainLocations, bossKeyLocations);
@@ -27,6 +31,15 @@ namespace BlasII.Randomizer.Items
             FillJunkItems(mainLocations, junkItems, output);
 
             return false;
+        }
+
+        /// <summary>
+        /// Adds the starting weapon to the initial inventory
+        /// </summary>
+        private void AddStartingItemsToInventory(Blas2Inventory inventory, TempConfig config)
+        {
+            // Add the starting weapon
+            inventory.AddItem(Main.Randomizer.Data.GetItem(GetStartingWeaponId(config)));
         }
 
         /// <summary>
