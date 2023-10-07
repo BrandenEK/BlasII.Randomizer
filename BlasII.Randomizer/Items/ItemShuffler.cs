@@ -27,10 +27,15 @@ namespace BlasII.Randomizer.Items
             // Place progression items at main locations
             FillProgressionItems(mainLocations, progressionItems, output, inventory);
 
+            // Verify that all progression items were placed
+            if (progressionItems.Count > 0)
+                return false;
+
             // Place junk items at main locations
             FillJunkItems(mainLocations, junkItems, output);
 
-            return false;
+            // Verify that all remaining items were placed
+            return junkItems.Count == 0;
         }
 
         /// <summary>
@@ -132,26 +137,24 @@ namespace BlasII.Randomizer.Items
             return "WE0" + (config.startingWeapon + 1);
         }
 
-
-
-
-
-        private void PlaceItemsAtLocations(List<ItemLocation> locations, List<Item> items, Dictionary<string, string> output)
+        /// <summary>
+        /// Calculates a subset of the given locations that are reachable with the current inventory
+        /// </summary>
+        private List<ItemLocation> FindReachableLocations(List<ItemLocation> locations, Blas2Inventory inventory)
         {
-            ShuffleList(items);
-
-            while (locations.Count > 0 && items.Count > 0)
+            var reachableLocations = new List<ItemLocation>();
+            foreach (var location in locations)
             {
-                int locationIdx = RandomInteger(locations.Count);
-                int itemIdx = items.Count - 1;
-
-                Main.Randomizer.LogWarning($"Placing {items[itemIdx].id} at {locations[locationIdx].id}");
-                output.Add(locations[locationIdx].id, items[itemIdx].id);
-
-                locations.RemoveAt(locationIdx);
-                items.RemoveAt(itemIdx);
+                if (inventory.Evaluate(location.logic))
+                    reachableLocations.Add(location);
             }
+            return reachableLocations;
         }
+
+
+
+
+
 
         private void FillBossKeyItems(List<ItemLocation> locations, List<Item> items, Dictionary<string, string> output)
         {
@@ -160,15 +163,37 @@ namespace BlasII.Randomizer.Items
 
         private void FillProgressionItems(List<ItemLocation> locations, List<Item> items, Dictionary<string, string> output, Blas2Inventory inventory)
         {
-            foreach (var location in locations)
+            ShuffleList(items);
+            List<ItemLocation> reachableLocations = FindReachableLocations(locations, inventory);
+
+            while (reachableLocations.Count > 0 && items.Count > 0)
             {
-                Main.Randomizer.Log(location.id + ": " + inventory.Evaluate(location.logic));
+                ItemLocation location = reachableLocations[RandomInteger(reachableLocations.Count)];
+                Item item = items[^1];
+
+                locations.Remove(location);
+                items.Remove(item);
+
+                reachableLocations = FindReachableLocations(locations, inventory);
+                inventory.AddItem(item);
+                output.Add(location.id, item.id);
             }
         }
 
         private void FillJunkItems(List<ItemLocation> locations, List<Item> items, Dictionary<string, string> output)
         {
+            ShuffleList(items);
 
+            while (locations.Count > 0 && items.Count > 0)
+            {
+                ItemLocation location = locations[^1];
+                Item item = items[^1];
+
+                locations.RemoveAt(locations.Count - 1);
+                items.RemoveAt(items.Count - 1);
+
+                output.Add(location.id, item.id);
+            }
         }
     }
 }
