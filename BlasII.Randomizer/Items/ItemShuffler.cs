@@ -166,7 +166,7 @@ namespace BlasII.Randomizer.Items
             // Remove extra locations until there are only five
             while (locations.Count > 5)
             {
-                locations.Remove(RandomElement(locations));
+                RemoveRandom(locations);
             }
 
             // Place boss key item at remaining ones
@@ -184,11 +184,8 @@ namespace BlasII.Randomizer.Items
 
             while (reachableLocations.Count > 0 && items.Count > 0)
             {
-                ItemLocation location = RandomElement(reachableLocations);
-                Item item = items[^1];
-
-                locations.Remove(location);
-                items.RemoveAt(items.Count - 1);
+                ItemLocation location = RemoveRandomFromOther(reachableLocations, locations);
+                Item item = RemoveLast(items);
 
                 inventory.AddItem(item);
                 output.Add(location.id, item.id);
@@ -206,11 +203,8 @@ namespace BlasII.Randomizer.Items
 
             while (locations.Count > 0 && items.Count > 0)
             {
-                ItemLocation location = locations[^1];
-                Item item = items[^1];
-
-                locations.RemoveAt(locations.Count - 1);
-                items.RemoveAt(items.Count - 1);
+                ItemLocation location = RemoveLast(locations);
+                Item item = RemoveLast(items);
 
                 output.Add(location.id, item.id);
                 Main.Randomizer.Log($"Placing junk item {item.id} at: {location.id}");

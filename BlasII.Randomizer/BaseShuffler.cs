@@ -27,5 +27,31 @@ namespace BlasII.Randomizer
                 list[upperIdx] = value;
             }
         }
+
+        protected T RemoveRandom<T>(List<T> list)
+        {
+            int index = RandomInteger(list.Count);
+            T element = list[index];
+
+            list.RemoveAt(index);
+            return element;
+        }
+
+        protected T RemoveRandomFromOther<T>(List<T> list, List<T> other)
+        {           
+            T element = RandomElement(list);
+
+            other.Remove(element);
+            return element;
+        }
+
+        protected T RemoveLast<T>(List<T> list)
+        {
+            int index = list.Count - 1;
+            T element = list[index];
+
+            list.RemoveAt(index);
+            return element;
+        }
     }
 }
