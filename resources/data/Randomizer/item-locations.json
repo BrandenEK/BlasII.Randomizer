@@ -183,15 +183,18 @@
     },
     {
         "id": "Z05BZ01.l0",
-        "name": "Confessor 1st gift"
+        "name": "Confessor 1st gift",
+        "logic": "???"
     },
     {
         "id": "Z05BZ01.l16",
-        "name": "Confessor 2nd gift"
+        "name": "Confessor 2nd gift",
+        "logic": "???"
     },
     {
         "id": "Z05BZ01.i0",
-        "name": "Confessor 3rd gift"
+        "name": "Confessor 3rd gift",
+        "logic": "???"
     },
     {
         "id": "Z05BZ02.i0",

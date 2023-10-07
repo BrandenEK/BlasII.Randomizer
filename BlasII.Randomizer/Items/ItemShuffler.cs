@@ -158,6 +158,15 @@ namespace BlasII.Randomizer.Items
             }
         }
 
+        /// <summary>
+        /// After shuffling the list of progression items, move the wall climb ability to the end to prevent failing seeds
+        /// </summary>        
+        private void MovePriorityItems(List<Item> progressionItems)
+        {
+            Item wallClimb = Main.Randomizer.Data.GetItem("AB44");
+            progressionItems.Remove(wallClimb);
+            progressionItems.Add(wallClimb);
+        }
 
 
 
@@ -180,6 +189,7 @@ namespace BlasII.Randomizer.Items
         private void FillProgressionItems(List<ItemLocation> locations, List<Item> items, List<ItemLocation> bossKeyLocations, Dictionary<string, string> output, Blas2Inventory inventory)
         {
             ShuffleList(items);
+            MovePriorityItems(items);
             List<ItemLocation> reachableLocations = FindReachableLocations(locations, inventory);
 
             while (reachableLocations.Count > 0 && items.Count > 0)
