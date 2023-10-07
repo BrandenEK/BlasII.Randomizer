@@ -22,7 +22,8 @@ namespace BlasII.Randomizer.Items
             CreateItemPool(progressionItems, junkItems, mainLocations.Count, config);
 
             // Place boss key items at boss key locations
-            FillBossKeyItems(bossKeyLocations, output);
+            Item bossKeyItem = Main.Randomizer.Data.GetItem("BK");
+            FillBossKeyItems(bossKeyLocations, bossKeyItem, output);
 
             // Place progression items at main locations
             FillProgressionItems(mainLocations, progressionItems, bossKeyLocations, output, inventory);
@@ -145,28 +146,34 @@ namespace BlasII.Randomizer.Items
         }
 
         /// <summary>
-        /// Every cycle through the progression fill, check if boss key locations are reachable and fill them
+        /// Every cycle through the progression fill, check if boss key locations are reachable and add them to inventory
         /// </summary>
-        private void CheckBossKeyLocations(List<ItemLocation> bossKeyLocations, Dictionary<string, string> output, Blas2Inventory inventory)
+        private void CheckBossKeyLocations(List<ItemLocation> bossKeyLocations, Blas2Inventory inventory)
         {
-            for (int i = 0; i < bossKeyLocations.Count; i++)
+            List<ItemLocation> reachableLocations = FindReachableLocations(bossKeyLocations, inventory);
+            foreach (var location in reachableLocations)
             {
-                ItemLocation location = bossKeyLocations[i];
-                if (!inventory.Evaluate(location.logic))
-                    continue;
-
-                bossKeyLocations.RemoveAt(i); i--;
+                bossKeyLocations.Remove(location);
                 inventory.AddItem(Main.Randomizer.Data.GetItem("BK"));
-                output.Add(location.id, "BK");
             }
         }
 
 
 
 
-        private void FillBossKeyItems(List<ItemLocation> locations, List<Item> items, Dictionary<string, string> output)
+        private void FillBossKeyItems(List<ItemLocation> locations, Item item, Dictionary<string, string> output)
         {
+            // Remove extra locations until there are only five
+            while (locations.Count > 5)
+            {
+                locations.Remove(RandomElement(locations));
+            }
 
+            // Place boss key item at remaining ones
+            foreach (var location in locations)
+            {
+                output.Add(location.id, item.id);
+            }
         }
 
         private void FillProgressionItems(List<ItemLocation> locations, List<Item> items, List<ItemLocation> bossKeyLocations, Dictionary<string, string> output, Blas2Inventory inventory)
@@ -182,11 +189,11 @@ namespace BlasII.Randomizer.Items
                 locations.Remove(location);
                 items.Remove(item);
 
-                CheckBossKeyLocations(bossKeyLocations, output, inventory);
-                reachableLocations = FindReachableLocations(locations, inventory);
-
                 inventory.AddItem(item);
                 output.Add(location.id, item.id);
+
+                CheckBossKeyLocations(bossKeyLocations, inventory);
+                reachableLocations = FindReachableLocations(locations, inventory);
             }
         }
 
