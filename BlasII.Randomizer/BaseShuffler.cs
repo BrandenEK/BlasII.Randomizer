@@ -13,6 +13,8 @@ namespace BlasII.Randomizer
 
         protected int RandomInteger(int max) => rng.Next(max);
 
+        protected T RandomElement<T>(List<T> list) => list[RandomInteger(list.Count)];
+
         protected void ShuffleList<T>(List<T> list)
         {
             int upperIdx = list.Count;
