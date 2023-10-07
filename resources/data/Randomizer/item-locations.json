@@ -1064,34 +1064,42 @@
     },
     {
         "id": "Z0421.key",
-        "name": "Radames"
+        "name": "Radames",
+        "logic": "Z04_NE"
     },
     {
         "id": "Z0730.key",
-        "name": "Orospina"
+        "name": "Orospina",
+        "logic": "Z07_W + rapier"
     },
     {
         "id": "Z0921.key",
-        "name": "Lesmes"
+        "name": "Lesmes",
+        "logic": "Z09_W + wallClimb + blade"
     },
     {
         "id": "Z2304.key",
-        "name": "Afilaor"
+        "name": "Afilaor",
+        "logic": "Z23_N"
     },
     {
         "id": "Z1104.key",
-        "name": "Bendicta"
+        "name": "Bendicta",
+        "logic": "Z11_S + doubleJump + airDash + rapier + censer"
     },
     {
         "id": "Z1216.key",
-        "name": "Odon"
+        "name": "Odon",
+        "logic": "Z12_E"
     },
     {
         "id": "Z1622.key",
-        "name": "Sinodo"
+        "name": "Sinodo",
+        "logic": "Z16_S + rapier + cherubRings"
     },
     {
         "id": "Z1327.key",
-        "name": "Svsona"
+        "name": "Svsona",
+        "logic": "Z13_E + blade + censer + rapier"
     }
 ]
