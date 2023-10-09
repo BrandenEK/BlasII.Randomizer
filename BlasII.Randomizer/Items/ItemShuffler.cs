@@ -203,7 +203,6 @@ namespace BlasII.Randomizer.Items
 
                 CheckBossKeyLocations(bossKeyLocations, inventory);
                 reachableLocations = FindReachableLocations(locations, inventory);
-                Main.Randomizer.LogWarning("Reachable locations: " + reachableLocations.Count);
             }
         }
 
