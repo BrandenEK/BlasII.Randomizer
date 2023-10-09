@@ -1,4 +1,5 @@
-﻿using BlasII.Randomizer.Items;
+﻿using BlasII.Randomizer.Doors;
+using BlasII.Randomizer.Items;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -19,6 +20,13 @@ namespace BlasII.Randomizer
         public ItemLocation GetItemLocation(string id) => _allItemLocations.TryGetValue(id, out var itemLocation) ? itemLocation : null;
         public bool DoesItemLocationExist(string id) => _allItemLocations.ContainsKey(id);
         public IEnumerable<ItemLocation> GetAllItemLocations() => _allItemLocations.Values;
+
+        // Doors
+        private readonly Dictionary<string, DoorLocation> _allDoors = new();
+
+        public DoorLocation GetDoor(string id) => _allDoors.TryGetValue(id, out var door) ? door : null;
+        public bool DoesDoorExist(string id) => _allDoors.ContainsKey(id);
+        public IEnumerable<DoorLocation> GetAllDoors() => _allDoors.Values;
 
         // Images
 
@@ -49,6 +57,13 @@ namespace BlasII.Randomizer
                     _allItemLocations.Add(itemLocation.id, itemLocation);
             }
             Main.Randomizer.Log($"Loaded {_allItemLocations.Count} item locations!");
+
+            if (Main.Randomizer.FileHandler.LoadDataAsJson("doors.json", out DoorLocation[] doors))
+            {
+                foreach (var door in doors)
+                    _allDoors.Add(door.id, door);
+            }
+            Main.Randomizer.Log($"Loaded {_allDoors.Count} doors!");
         }
 
         private void LoadAllImages()
