@@ -79,6 +79,8 @@ namespace BlasII.Randomizer.Items
         private void GenerateSpoiler(uint seed)
         {
             StringBuilder header = new(), footer = new();
+            header.AppendLine($"Version: {ModInfo.MOD_VERSION}");
+            header.AppendLine($"Date: {System.DateTime.Now.ToString("MM/dd/yyyy")}");
             header.AppendLine($"Seed: {seed}\n");
             header.AppendLine("- Boss Keys -\n");
 
@@ -86,10 +88,10 @@ namespace BlasII.Randomizer.Items
             foreach (var location in Main.Randomizer.Data.GetAllItemLocations())
             {
                 // Add boss key section to header
-                if (location.id.EndsWith(".key"))
+                if (location.id.EndsWith(".key")) // Change to boss key type
                 {
                     if (_mappedItems.ContainsKey(location.id))
-                        header.AppendLine(location.name); // Change to boss key type
+                        header.AppendLine(location.name);
                     continue;
                 }
 
