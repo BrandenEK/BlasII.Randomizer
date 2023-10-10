@@ -1,5 +1,6 @@
 using Il2CppTGK.Game;
 using System.Collections.Generic;
+using System.Text;
 
 namespace BlasII.Randomizer.Items
 {
@@ -66,7 +67,7 @@ namespace BlasII.Randomizer.Items
             if (_shuffler.Shuffle(seed, config, _mappedItems))
             {
                 Main.Randomizer.Log($"Shuffled {_mappedItems.Count} items!");
-                GenerateSpoiler();
+                GenerateSpoiler(seed);
             }
             else
             {
@@ -75,12 +76,25 @@ namespace BlasII.Randomizer.Items
             }
         }
 
-        private void GenerateSpoiler()
+        private void GenerateSpoiler(uint seed)
         {
-            string spoilerText = "spoiler";
+            var spoiler = new StringBuilder();
+            spoiler.AppendLine($"Seed: {seed}");
+
+            foreach (var location in Main.Randomizer.Data.GetAllItemLocations())
+            {
+                //if (location.type == ItemLocation.ItemLocationType.BossKey)
+                //    continue;
+
+                Item item = GetItemAtLocation(location.id);
+                if (item == null)
+                    continue;
+
+                spoiler.AppendLine($"{location.name}: {item.name}");
+            }
+
             string fileName = $"spoiler_{CoreCache.SaveData.CurrentSaveSlot}.txt";
-            
-            Main.Randomizer.FileHandler.WriteToFile(fileName, spoilerText);
+            Main.Randomizer.FileHandler.WriteToFile(fileName, spoiler.ToString());
         }
 
         public void SetItemCollected(string itemId)
