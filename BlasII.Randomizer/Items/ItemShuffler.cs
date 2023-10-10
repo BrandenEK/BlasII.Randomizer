@@ -26,7 +26,7 @@ namespace BlasII.Randomizer.Items
             FillBossKeyItems(bossKeyLocations, bossKeyItem, output);
 
             // Place progression items at main locations
-            FillProgressionItems(mainLocations, progressionItems, bossKeyLocations, output, inventory);
+            FillProgressionItems(mainLocations, progressionItems, bossKeyLocations, output, inventory, config);
 
             // Verify that all progression items were placed
             if (progressionItems.Count > 0)
@@ -65,7 +65,7 @@ namespace BlasII.Randomizer.Items
         private void AddLocationToPool(List<ItemLocation> mainLocations, List<ItemLocation> bossKeyLocations, ItemLocation location)
         {
             // Add the location to either main or boss key lists
-            List<ItemLocation> locationPool = location.id.EndsWith(".key") ? bossKeyLocations : mainLocations;
+            List<ItemLocation> locationPool = location.type == ItemLocation.ItemLocationType.BossKey ? bossKeyLocations : mainLocations;
             locationPool.Add(location);
         }
 
@@ -134,12 +134,12 @@ namespace BlasII.Randomizer.Items
         /// <summary>
         /// Calculates a subset of the given locations that are reachable with the current inventory
         /// </summary>
-        private List<ItemLocation> FindReachableLocations(List<ItemLocation> locations, Blas2Inventory inventory)
+        private List<ItemLocation> FindReachableLocations(List<ItemLocation> locations, Blas2Inventory inventory, TempConfig config)
         {
             var reachableLocations = new List<ItemLocation>();
             foreach (var location in locations)
             {
-                if (inventory.Evaluate(location.logic))
+                if (location.ShouldBeShuffled(config) && inventory.Evaluate(location.logic))
                     reachableLocations.Add(location);
             }
             return reachableLocations;
@@ -148,9 +148,9 @@ namespace BlasII.Randomizer.Items
         /// <summary>
         /// Every cycle through the progression fill, check if boss key locations are reachable and add them to inventory
         /// </summary>
-        private void CheckBossKeyLocations(List<ItemLocation> bossKeyLocations, Blas2Inventory inventory)
+        private void CheckBossKeyLocations(List<ItemLocation> bossKeyLocations, Blas2Inventory inventory, TempConfig config)
         {
-            List<ItemLocation> reachableLocations = FindReachableLocations(bossKeyLocations, inventory);
+            List<ItemLocation> reachableLocations = FindReachableLocations(bossKeyLocations, inventory, config);
             foreach (var location in reachableLocations)
             {
                 bossKeyLocations.Remove(location);
@@ -186,11 +186,11 @@ namespace BlasII.Randomizer.Items
             }
         }
 
-        private void FillProgressionItems(List<ItemLocation> locations, List<Item> items, List<ItemLocation> bossKeyLocations, Dictionary<string, string> output, Blas2Inventory inventory)
+        private void FillProgressionItems(List<ItemLocation> locations, List<Item> items, List<ItemLocation> bossKeyLocations, Dictionary<string, string> output, Blas2Inventory inventory, TempConfig config)
         {
             ShuffleList(items);
             MovePriorityItems(items);
-            List<ItemLocation> reachableLocations = FindReachableLocations(locations, inventory);
+            List<ItemLocation> reachableLocations = FindReachableLocations(locations, inventory, config);
 
             while (reachableLocations.Count > 0 && items.Count > 0)
             {
@@ -201,8 +201,8 @@ namespace BlasII.Randomizer.Items
                 output.Add(location.id, item.id);
                 Main.Randomizer.Log($"Placing prog item {item.id} at: {location.id}");
 
-                CheckBossKeyLocations(bossKeyLocations, inventory);
-                reachableLocations = FindReachableLocations(locations, inventory);
+                CheckBossKeyLocations(bossKeyLocations, inventory, config);
+                reachableLocations = FindReachableLocations(locations, inventory, config);
             }
         }
 
