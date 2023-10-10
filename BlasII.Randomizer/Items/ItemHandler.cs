@@ -1,5 +1,6 @@
 using Il2CppTGK.Game;
 using System.Collections.Generic;
+using System.Text;
 
 namespace BlasII.Randomizer.Items
 {
@@ -66,12 +67,54 @@ namespace BlasII.Randomizer.Items
             if (_shuffler.Shuffle(seed, config, _mappedItems))
             {
                 Main.Randomizer.Log($"Shuffled {_mappedItems.Count} items!");
+                GenerateSpoiler(seed);
             }
             else
             {
                 Main.Randomizer.LogError("Failed to shuffle items!");
                 _mappedItems.Clear();
             }
+        }
+
+        private void GenerateSpoiler(uint seed)
+        {
+            StringBuilder header = new(), footer = new();
+            header.AppendLine($"Version: {ModInfo.MOD_VERSION}");
+            header.AppendLine($"Date: {System.DateTime.Now.ToString("MM/dd/yyyy")}");
+            header.AppendLine($"Seed: {seed}\n");
+            header.AppendLine("- Boss Keys -\n");
+
+            string currentZoneId = string.Empty;
+            foreach (var location in Main.Randomizer.Data.GetAllItemLocations())
+            {
+                // Add boss key section to header
+                if (location.id.EndsWith(".key")) // Change to boss key type
+                {
+                    if (_mappedItems.ContainsKey(location.id))
+                        header.AppendLine(location.name);
+                    continue;
+                }
+
+                // Make sure it has a valid item
+                Item item = GetItemAtLocation(location.id);
+                if (item == null)
+                    continue;
+
+                // Display new zone section if different
+                string locationZoneId = location.id[..3];
+                if (currentZoneId != locationZoneId && Main.Randomizer.Data.GetZoneName(locationZoneId, out string locationZoneName))
+                {
+                    footer.AppendLine($"\n - {locationZoneName} -\n");
+                    currentZoneId = locationZoneId;
+                }
+
+                // Add location to footer
+                footer.AppendLine($"{location.name}: {item.name}");
+            }
+
+            // Save text to file
+            string fileName = $"spoiler_{CoreCache.SaveData.CurrentSaveSlot}.txt";
+            Main.Randomizer.FileHandler.WriteToFile(fileName, header.ToString() + footer.ToString());
         }
 
         public void SetItemCollected(string itemId)
