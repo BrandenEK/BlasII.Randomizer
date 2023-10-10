@@ -66,12 +66,21 @@ namespace BlasII.Randomizer.Items
             if (_shuffler.Shuffle(seed, config, _mappedItems))
             {
                 Main.Randomizer.Log($"Shuffled {_mappedItems.Count} items!");
+                GenerateSpoiler();
             }
             else
             {
                 Main.Randomizer.LogError("Failed to shuffle items!");
                 _mappedItems.Clear();
             }
+        }
+
+        private void GenerateSpoiler()
+        {
+            string spoilerText = "spoiler";
+            string fileName = $"spoiler_{CoreCache.SaveData.CurrentSaveSlot}.txt";
+            
+            Main.Randomizer.FileHandler.WriteToFile(fileName, spoilerText);
         }
 
         public void SetItemCollected(string itemId)
