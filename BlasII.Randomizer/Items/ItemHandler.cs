@@ -78,23 +78,41 @@ namespace BlasII.Randomizer.Items
 
         private void GenerateSpoiler(uint seed)
         {
-            var spoiler = new StringBuilder();
-            spoiler.AppendLine($"Seed: {seed}");
+            StringBuilder header = new(), footer = new();
+            header.AppendLine($"Seed: {seed}\n");
+            header.AppendLine("- Boss Keys -\n");
 
+            string currentZoneId = string.Empty;
             foreach (var location in Main.Randomizer.Data.GetAllItemLocations())
             {
-                //if (location.type == ItemLocation.ItemLocationType.BossKey)
-                //    continue;
+                // Add boss key section to header
+                if (location.id.EndsWith(".key"))
+                {
+                    if (_mappedItems.ContainsKey(location.id))
+                        header.AppendLine(location.name); // Change to boss key type
+                    continue;
+                }
 
+                // Make sure it has a valid item
                 Item item = GetItemAtLocation(location.id);
                 if (item == null)
                     continue;
 
-                spoiler.AppendLine($"{location.name}: {item.name}");
+                // Display new zone section if different
+                string locationZoneId = location.id[..3];
+                if (currentZoneId != locationZoneId && Main.Randomizer.Data.GetZoneName(locationZoneId, out string locationZoneName))
+                {
+                    footer.AppendLine($"\n - {locationZoneName} -\n");
+                    currentZoneId = locationZoneId;
+                }
+
+                // Add location to footer
+                footer.AppendLine($"{location.name}: {item.name}");
             }
 
+            // Save text to file
             string fileName = $"spoiler_{CoreCache.SaveData.CurrentSaveSlot}.txt";
-            Main.Randomizer.FileHandler.WriteToFile(fileName, spoiler.ToString());
+            Main.Randomizer.FileHandler.WriteToFile(fileName, header.ToString() + footer.ToString());
         }
 
         public void SetItemCollected(string itemId)
