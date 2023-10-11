@@ -210,7 +210,7 @@
         "id": "Z0506.i0",
         "name": "Cobijada's Final Reward",
         "type": "LongQuest",
-        "logic": "Z05[T] + ???"
+        "logic": "Z05[T] + wallClimb + doubleJump + airDash + censer + blade + rapier + tributes >= 3"
     },
     {
         "id": "Z0511.l0",
@@ -752,31 +752,31 @@
         "id": "Z1501.s0",
         "name": "Arena 1",
         "type": "Normal",
-        "logic": "???"
+        "logic": "Z17[W] + daughterRooms >= 1"
     },
     {
         "id": "Z1501.s1",
         "name": "Arena 2",
         "type": "Normal",
-        "logic": "???"
+        "logic": "Z17[W] + daughterRooms >= 2"
     },
     {
         "id": "Z1501.s2",
         "name": "Arena 3",
         "type": "Normal",
-        "logic": "???"
+        "logic": "Z17[W] + daughterRooms >= 3"
     },
     {
         "id": "Z1501.s3",
         "name": "Arena 4",
         "type": "Normal",
-        "logic": "???"
+        "logic": "Z17[W] + daughterRooms >= 4"
     },
     {
         "id": "Z1501.s4",
         "name": "Arena 5",
         "type": "Normal",
-        "logic": "???"
+        "logic": "Z17[W] + daughterRooms >= 5"
     },
     {
         "id": "Z1602.l2",

@@ -88,7 +88,7 @@ namespace BlasII.Randomizer.Items
             foreach (var location in Main.Randomizer.Data.GetAllItemLocations())
             {
                 // Add boss key section to header
-                if (location.id.EndsWith(".key")) // Change to boss key type
+                if (location.type == ItemLocation.ItemLocationType.BossKey)
                 {
                     if (_mappedItems.ContainsKey(location.id))
                         header.AppendLine(location.name);

@@ -45,6 +45,21 @@ namespace BlasII.Randomizer.Items
         bool elderScroll = false;
         bool elderCloth = false;
 
+        int daughterRooms
+        {
+            get
+            {
+                int rooms = 0;
+                if (wallClimb && doubleJump) rooms++;
+                if (wallClimb && doubleJump && censer > 0 && blade > 0 && rapier > 0) rooms++;
+                if (wallClimb && doubleJump && airDash && blade > 0) rooms++;
+                if (doubleJump && airDash && cherubRings) rooms++;
+                if (wallClimb && doubleJump && airDash && cherubRings && censer > 0 && blade > 0 && rapier > 0) rooms++;
+
+                return rooms;
+            }
+        }
+
         protected override object GetVariable(string variable)
         {
             // Door variable
@@ -96,6 +111,9 @@ namespace BlasII.Randomizer.Items
                 // Elder quest
                 "elderScroll" => elderScroll,
                 "elderCloth" => elderCloth,
+
+                // Rooms
+                "daughterRooms" => daughterRooms,
 
                 "???" => false,
                 _ => throw new System.Exception("Unknown variable: " + variable)
