@@ -14,26 +14,27 @@ namespace BlasII.Randomizer.Items
             AddStartingItemsToInventory(inventory, config);
 
             // Create pools of all locations to randomize
-            List<ItemLocation> mainLocations = new(), bossKeyLocations = new();
-            CreateLocationPool(mainLocations, bossKeyLocations);
+            List<ItemLocation> progressionLocations = new(), junkLocations = new(), bossKeyLocations = new();
+            CreateLocationPool(progressionLocations, junkLocations, bossKeyLocations, config);
 
             // Create pools of all items to randomize
             List<Item> progressionItems = new(), junkItems = new();
-            CreateItemPool(progressionItems, junkItems, mainLocations.Count, config);
+            CreateItemPool(progressionItems, junkItems, progressionLocations.Count + junkLocations.Count, config);
 
             // Place boss key items at boss key locations
             Item bossKeyItem = Main.Randomizer.Data.GetItem("BK");
             FillBossKeyItems(bossKeyLocations, bossKeyItem, output);
 
-            // Place progression items at main locations
-            FillProgressionItems(mainLocations, progressionItems, bossKeyLocations, output, inventory);
+            // Place progression items at progression locations
+            FillProgressionItems(progressionLocations, progressionItems, bossKeyLocations, output, inventory);
 
             // Verify that all progression items were placed
             if (progressionItems.Count > 0)
                 return false;
 
-            // Place junk items at main locations
-            FillJunkItems(mainLocations, junkItems, output);
+            // Place junk items at junk locations and remaining progression locations
+            junkLocations.AddRange(progressionLocations);
+            FillJunkItems(junkLocations, junkItems, output);
 
             // Verify that all remaining items were placed
             return junkItems.Count == 0;
@@ -49,24 +50,36 @@ namespace BlasII.Randomizer.Items
         }
 
         /// <summary>
-        /// Fills the two location pools
+        /// Fills the three location pools
         /// </summary>
-        private void CreateLocationPool(List<ItemLocation> mainLocations, List<ItemLocation> bossKeyLocations)
+        private void CreateLocationPool(List<ItemLocation> progressionLocations, List<ItemLocation> junkLocations, List<ItemLocation> bossKeyLocations, TempConfig config)
         {
             foreach (var location in Main.Randomizer.Data.GetAllItemLocations())
             {
-                AddLocationToPool(mainLocations, bossKeyLocations, location);
+                AddLocationToPool(progressionLocations, junkLocations, bossKeyLocations, location, config);
             }
         }
 
         /// <summary>
-        /// Takes a single location data and adds it to the correct list based on its id
+        /// Takes a single location data and adds it to the correct list based on its type
         /// </summary>
-        private void AddLocationToPool(List<ItemLocation> mainLocations, List<ItemLocation> bossKeyLocations, ItemLocation location)
+        private void AddLocationToPool(List<ItemLocation> progressionLocations, List<ItemLocation> junkLocations, List<ItemLocation> bossKeyLocations, ItemLocation location, TempConfig config)
         {
-            // Add the location to either main or boss key lists
-            List<ItemLocation> locationPool = location.id.EndsWith(".key") ? bossKeyLocations : mainLocations;
-            locationPool.Add(location);
+            if (location.type == ItemLocation.ItemLocationType.BossKey)
+            {
+                // Boss keys go to special list
+                bossKeyLocations.Add(location);
+            }
+            else if (location.ShouldBeShuffled(config))
+            {
+                // Only locations that should be shuffled will have progression items
+                progressionLocations.Add(location);
+            }
+            else
+            {
+                // Everything else can only have junk
+                junkLocations.Add(location);
+            }
         }
 
         /// <summary>
@@ -203,7 +216,6 @@ namespace BlasII.Randomizer.Items
 
                 CheckBossKeyLocations(bossKeyLocations, inventory);
                 reachableLocations = FindReachableLocations(locations, inventory);
-                Main.Randomizer.LogWarning("Reachable locations: " + reachableLocations.Count);
             }
         }
 
