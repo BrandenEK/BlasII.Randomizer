@@ -70,6 +70,7 @@ namespace BlasII.Randomizer
         {
             Log($"Shuffling items with seed {TempConfig.seed}");
             ItemHandler.FakeShuffle(TempConfig.seed, TempConfig);
+            AllowPrieDieuWarp();
         }
 
         public SaveData SaveGame()
@@ -99,6 +100,15 @@ namespace BlasII.Randomizer
             ItemHandler.MappedItems.Clear();
             ItemHandler.CollectedLocations.Clear();
             ItemHandler.CollectedItems.Clear();
+        }
+
+        private void AllowPrieDieuWarp()
+        {
+            foreach (var upgrade in CoreCache.PrieDieuManager.config.upgrades)
+            {
+                if (upgrade.name == "TeleportToAnotherPrieuDieuUpgrade")
+                    CoreCache.PrieDieuManager.Upgrade(upgrade);
+            }
         }
 
         // Special rooms
