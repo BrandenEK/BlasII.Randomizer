@@ -115,7 +115,6 @@ namespace BlasII.Randomizer.Items
                 // Rooms
                 "daughterRooms" => daughterRooms,
 
-                "???" => false,
                 _ => throw new System.Exception("Unknown variable: " + variable)
             };
         }

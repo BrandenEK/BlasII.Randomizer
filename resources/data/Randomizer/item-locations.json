@@ -842,13 +842,7 @@
         "id": "Z1709.l0",
         "name": "Hand Room",
         "type": "Normal",
-        "logic": "???"
-    },
-    {
-        "id": "Z1715.l0",
-        "name": "Envelope room",
-        "type": "Normal",
-        "logic": "Z17[W] + doubleJump + cherubRings"
+        "logic": "Z17[W] + brokenKey"
     },
     {
         "id": "Z1718.l0",
@@ -914,7 +908,7 @@
         "id": "Z1906.i1",
         "name": "Lullaby quest",
         "type": "Normal",
-        "logic": "???"
+        "logic": "Z19[N] + lullabies >= 5 + doubleJump + airDash + censer + rapier"
     },
     {
         "id": "Z1907.i0",
@@ -955,8 +949,8 @@
     {
         "id": "Z1917.i0",
         "name": "Cursed letter quest jump",
-        "type": "Normal",
-        "logic": "???"
+        "type": "LongQuest",
+        "logic": "Z19[N] + wallClimb + doubleJump + airDash + blade + censer + rapier"
     },
     {
         "id": "Z1917.l3",
@@ -1202,31 +1196,31 @@
         "id": "SHOPITINERANT.o2",
         "name": "Traveling shop item 3",
         "type": "Shop",
-        "logic": "???"
+        "logic": "wallClimb"
     },
     {
         "id": "SHOPITINERANT.o3",
         "name": "Traveling shop item 4",
         "type": "Shop",
-        "logic": "???"
+        "logic": "wallClimb"
     },
     {
         "id": "SHOPITINERANT.o4",
         "name": "Traveling shop item 5",
         "type": "Shop",
-        "logic": "???"
+        "logic": "wallClimb"
     },
     {
         "id": "SHOPITINERANT.o5",
         "name": "Traveling shop item 6",
         "type": "Shop",
-        "logic": "???"
+        "logic": "wallClimb"
     },
     {
         "id": "SHOPITINERANT.o6",
         "name": "Traveling shop item 7",
         "type": "Shop",
-        "logic": "???"
+        "logic": "wallClimb"
     },
     {
         "id": "SHOPITINERANT.o7",
