@@ -13,6 +13,7 @@ namespace BlasII.Randomizer
         public Item GetItem(string id) => _allItems.TryGetValue(id, out var item) ? item : null;
         public bool DoesItemExist(string id) => _allItems.ContainsKey(id);
         public IEnumerable<Item> GetAllItems() => _allItems.Values;
+        public Item InvalidItem => _allItems["INVALID"];
 
         // Item locations
         private readonly Dictionary<string, ItemLocation> _allItemLocations = new();
@@ -89,6 +90,7 @@ namespace BlasII.Randomizer
             Blade = 6,
             Rapier = 7,
             Tears = 8,
+            Invalid = 9,
         }
 
         // Special data

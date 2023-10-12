@@ -24,11 +24,11 @@ namespace BlasII.Randomizer.Items
             string locationId = $"{CoreCache.Room.CurrentRoom.Name}.l{__instance.transform.GetSiblingIndex()}";
             Main.Randomizer.LogError("LootInteractable.UseLootByInteractor - " + locationId);
 
-            if (Main.Randomizer.ItemHandler.IsLocationRandomized(locationId))
-            {
-                Main.Randomizer.ItemHandler.GiveItemAtLocation(locationId);
-                __instance.loot = null;
-            }
+            if (Main.Randomizer.ItemHandler.IsVanillaLocation(locationId))
+                return;
+
+            Main.Randomizer.ItemHandler.GiveItemAtLocation(locationId);
+            __instance.loot = null;
         }
     }
     [HarmonyPatch(typeof(AddItem), nameof(AddItem.OnEnter))]
@@ -40,16 +40,12 @@ namespace BlasII.Randomizer.Items
             locationId = CalculateSpecialLocationId(locationId, __instance.itemID.name);
             Main.Randomizer.LogError($"AddItem.OnEnter - {locationId} ({__instance.itemID.name})");
 
-            if (Main.Randomizer.ItemHandler.IsLocationRandomized(locationId))
-            {
-                Main.Randomizer.ItemHandler.GiveItemAtLocation(locationId);
-                __instance.Finish();
-                return false;
-            }
-            else
-            {
+            if (Main.Randomizer.ItemHandler.IsVanillaLocation(locationId))
                 return true;
-            }
+
+            Main.Randomizer.ItemHandler.GiveItemAtLocation(locationId);
+            __instance.Finish();
+            return false;
         }
 
         private static string CalculateSpecialLocationId(string locationId, string originalItem)
@@ -95,16 +91,12 @@ namespace BlasII.Randomizer.Items
             string locationId = $"{CoreCache.Room.CurrentRoom.Name}.r{__instance.owner.transform.GetSiblingIndex()}";
             Main.Randomizer.LogError("GiveReward.OnEnter - " + locationId);
 
-            if (Main.Randomizer.ItemHandler.IsLocationRandomized(locationId))
-            {
-                Main.Randomizer.ItemHandler.GiveItemAtLocation(locationId);
-                __instance.Finish();
-                return false;
-            }
-            else
-            {
+            if (Main.Randomizer.ItemHandler.IsVanillaLocation(locationId))
                 return true;
-            }
+
+            Main.Randomizer.ItemHandler.GiveItemAtLocation(locationId);
+            __instance.Finish();
+            return false;
         }
     }
     [HarmonyPatch(typeof(ShowOrbsRewardPopup), nameof(ShowOrbsRewardPopup.OnEnter))]
@@ -129,16 +121,12 @@ namespace BlasII.Randomizer.Items
             string locationId = $"{CoreCache.Room.CurrentRoom.Name}.w0";
             Main.Randomizer.LogError("UnlockWeapon.OnEnter - " + locationId);
 
-            if (Main.Randomizer.ItemHandler.IsLocationRandomized(locationId))
-            {
-                Main.Randomizer.ItemHandler.GiveItemAtLocation(locationId);
-                __instance.Finish();
-                return false;
-            }
-            else
-            {
+            if (Main.Randomizer.ItemHandler.IsVanillaLocation(locationId))
                 return true;
-            }
+
+            Main.Randomizer.ItemHandler.GiveItemAtLocation(locationId);
+            __instance.Finish();
+            return false;
         }
     }
     [HarmonyPatch(typeof(ShowWeaponPopup), nameof(ShowWeaponPopup.OnEnter))]
@@ -163,16 +151,12 @@ namespace BlasII.Randomizer.Items
             string locationId = $"{CoreCache.Room.CurrentRoom.Name}.w0";
             Main.Randomizer.LogError("UpgradeWeaponTier.OnEnter - " + locationId);
 
-            if (Main.Randomizer.ItemHandler.IsLocationRandomized(locationId))
-            {
-                Main.Randomizer.ItemHandler.GiveItemAtLocation(locationId);
-                __instance.Finish();
-                return false;
-            }
-            else
-            {
+            if (Main.Randomizer.ItemHandler.IsVanillaLocation(locationId))
                 return true;
-            }
+
+            Main.Randomizer.ItemHandler.GiveItemAtLocation(locationId);
+            __instance.Finish();
+            return false;
         }
     }
     [HarmonyPatch(typeof(ShowWeaponTierPopup), nameof(ShowWeaponTierPopup.OnEnter))]
@@ -197,16 +181,12 @@ namespace BlasII.Randomizer.Items
             string locationId = $"{CoreCache.Room.CurrentRoom.Name}.a0";
             Main.Randomizer.LogError("UnlockAbility.OnEnter - " + locationId);
 
-            if (Main.Randomizer.ItemHandler.IsLocationRandomized(locationId))
-            {
-                Main.Randomizer.ItemHandler.GiveItemAtLocation(locationId);
-                __instance.Finish();
-                return false;
-            }
-            else
-            {
+            if (Main.Randomizer.ItemHandler.IsVanillaLocation(locationId))
                 return true;
-            }
+
+            Main.Randomizer.ItemHandler.GiveItemAtLocation(locationId);
+            __instance.Finish();
+            return false;
         }
     }
     [HarmonyPatch(typeof(ShowUnlockAbilityPopup), nameof(ShowUnlockAbilityPopup.OnEnter))]
@@ -245,6 +225,10 @@ namespace BlasII.Randomizer.Items
             // Otherwise, give a random item
             string locationId = $"{CoreCache.Room.CurrentRoom.Name}.c0";
             Main.Randomizer.LogError("QuestManager.SetQuestVarValue - " + locationId);
+
+            if (Main.Randomizer.ItemHandler.IsVanillaLocation(locationId))
+                return true;
+
             Main.Randomizer.ItemHandler.GiveItemAtLocation(locationId);
             return false;
         }
