@@ -129,6 +129,7 @@ namespace BlasII.Randomizer.Items
                 case Item.ItemType.QuestItem: AddQuestItem(item.id); break;
                 case Item.ItemType.Weapon: AddWeapon(item.id); break;
                 case Item.ItemType.Ability: AddAbility(item.id); break;
+                case Item.ItemType.Cherub: cherubs++; break;
                 case Item.ItemType.Tears: break;
                 case Item.ItemType.Marks: break;
             }

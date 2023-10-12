@@ -7,6 +7,8 @@ using Il2CppPlaymaker.UI;
 using Il2CppTGK.Game;
 using Il2CppTGK.Game.Components.Interactables;
 using Il2CppTGK.Game.Inventory.PlayMaker;
+using Il2CppTGK.Game.Managers;
+using System.Reflection;
 
 namespace BlasII.Randomizer.Items
 {
@@ -211,6 +213,48 @@ namespace BlasII.Randomizer.Items
     class Ability_Skip_Patch
     {
         public static bool Prefix(ShowUnlockAbilityPopup __instance)
+        {
+            __instance.Finish();
+            return false;
+        }
+    }
+
+    // =============
+    // Caged cherubs
+    // =============
+
+    [HarmonyPatch]
+    class QuestManager_SetQuestInt_Patch
+    {
+        public static MethodInfo TargetMethod()
+        {
+            return typeof(QuestManager).GetMethod("SetQuestVarValue").MakeGenericMethod(typeof(int));
+        }
+
+        public static bool Prefix(int questId, int varId, int value)
+        {
+            string questName = Main.Randomizer.GetQuestName(questId, varId);
+
+            // If this a different quest or an actual cherub item, increase the flag
+            if (questName != "ST16.FREED_CHERUBS" || CherubQuestFlag)
+            {
+                Main.Randomizer.LogWarning($"Setting quest: {questName} ({value})");
+                return true;
+            }
+
+            // Otherwise, give a random item
+            string locationId = $"{CoreCache.Room.CurrentRoom.Name}.c0";
+            Main.Randomizer.LogError("QuestManager.SetQuestVarValue - " + locationId);
+            Main.Randomizer.ItemHandler.GiveItemAtLocation(locationId);
+            return false;
+        }
+
+        public static bool CherubQuestFlag { get; set; }
+    }
+    [HarmonyPatch(typeof(ShowCherubPopup), nameof(ShowCherubPopup.OnEnter))]
+    class Cherub_Skip_Patch
+    {
+        public static bool Prefix(ShowCherubPopup __instance)
         {
             __instance.Finish();
             return false;

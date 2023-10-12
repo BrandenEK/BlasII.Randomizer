@@ -176,6 +176,10 @@ namespace BlasII.Randomizer.Items
         /// </summary>        
         private void MovePriorityItems(List<Item> progressionItems)
         {
+            Item lance = Main.Randomizer.Data.GetItem("QI70");
+            progressionItems.Remove(lance);
+            progressionItems.Add(lance);
+
             Item wallClimb = Main.Randomizer.Data.GetItem("AB44");
             progressionItems.Remove(wallClimb);
             progressionItems.Add(wallClimb);

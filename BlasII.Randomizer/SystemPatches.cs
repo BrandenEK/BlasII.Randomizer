@@ -8,7 +8,7 @@ namespace BlasII.Randomizer
     /// Log when a quest flag is being set
     /// </summary>
     [HarmonyPatch]
-    class QuestManager_SetQuest_Patch
+    class QuestManager_SetQuestBool_Patch
     {
         public static MethodInfo TargetMethod()
         {
