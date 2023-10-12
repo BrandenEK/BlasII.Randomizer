@@ -17,6 +17,12 @@
         "logic": "doubleJump"
     },
     {
+        "id": "Z0203.c0",
+        "name": "Rings cherub",
+        "type": "Normal",
+        "logic": "doubleJump + cherubRings"
+    },
+    {
         "id": "Z0203.l6",
         "name": "Bell door altar",
         "type": "Normal",
@@ -30,6 +36,11 @@
     {
         "id": "Z0203.l8",
         "name": "Prayer tree",
+        "type": "Normal"
+    },
+    {
+        "id": "Z0204.c0",
+        "name": "Ledge cherub",
         "type": "Normal"
     },
     {
@@ -55,6 +66,12 @@
         "name": "Bell shaft puzzle",
         "type": "Normal",
         "logic": "Z03[SE] + censer + rapier"
+    },
+    {
+        "id": "Z0302.c0",
+        "name": "Northeast cherub",
+        "type": "Normal",
+        "logic": "Z03[SE]"
     },
     {
         "id": "Z0303.l6",
@@ -99,6 +116,12 @@
         "logic": "Z03[SW] + censer + blade"
     },
     {
+        "id": "Z0308.c0",
+        "name": "Exit shortcut cherub",
+        "type": "Normal",
+        "logic": "Z03[SW] + censer"
+    },
+    {
         "id": "Z0308.l26",
         "name": "Bell cherub puzzle",
         "type": "Normal",
@@ -109,6 +132,12 @@
         "name": "Exit shortcut altar 2",
         "type": "Normal",
         "logic": "Z03[SE] + censer"
+    },
+    {
+        "id": "Z0312.c0",
+        "name": "Entrance cherub",
+        "type": "Normal",
+        "logic": "censer + (wallClimb | doubleJump)"
     },
     {
         "id": "Z0313.l9",
@@ -127,6 +156,12 @@
         "name": "Entrance right ledge",
         "type": "Normal",
         "logic": "Z04[NE] + censer + rapier"
+    },
+    {
+        "id": "Z0406.c0",
+        "name": "Northern cherub",
+        "type": "Normal",
+        "logic": "Z04[NE] + (doubleJump | airDash)"
     },
     {
         "id": "Z0406.l4",
@@ -201,10 +236,28 @@
         "logic": "Z04[NE] + censer + doubleJump"
     },
     {
+        "id": "Z0501.c0",
+        "name": "West side cherub",
+        "type": "Normal",
+        "logic": "doubleJump | wallClimb + airDash"
+    },
+    {
+        "id": "Z0502.c0",
+        "name": "Central room cherub",
+        "type": "Normal",
+        "logic": "wallClimb"
+    },
+    {
+        "id": "Z0503.c0",
+        "name": "East side cherub",
+        "type": "Normal",
+        "logic": "doubleJump + airDash + censer"
+    },
+    {
         "id": "Z0503.l4",
         "name": "East city altar",
         "type": "Normal",
-        "logic": "(wallClimb | doubleJump + airDash) + censer + doubleJump + airDash"
+        "logic": "censer + doubleJump + airDash"
     },
     {
         "id": "Z0506.i0",
@@ -281,6 +334,12 @@
         "logic": "Z06[W] + blade + (doubleJump | airDash)"
     },
     {
+        "id": "Z0608.c0",
+        "name": "Northern cherub",
+        "type": "Normal",
+        "logic": "Z06[W]"
+    },
+    {
         "id": "Z0611.l2",
         "name": "Dungeon 1 shortcut",
         "type": "Normal",
@@ -331,6 +390,12 @@
     {
         "id": "Z0711.l2",
         "name": "Northwest chest",
+        "type": "Normal",
+        "logic": "Z07[W] + rapier"
+    },
+    {
+        "id": "Z0715.c0",
+        "name": "Northeast cherub",
         "type": "Normal",
         "logic": "Z07[W] + rapier"
     },
@@ -387,6 +452,18 @@
         "name": "Spikestall puzzle",
         "type": "Normal",
         "logic": "doubleJump + airDash + (Z08[W] + wallClimb | Z08[P])"
+    },
+    {
+        "id": "Z0806.c0",
+        "name": "Northeast cherub",
+        "type": "Normal",
+        "logic": "Z08[W] + (wallClimb | doubleJump)"
+    },
+    {
+        "id": "Z0809.c0",
+        "name": "Southeast cherub",
+        "type": "Normal",
+        "logic": "Z08[W] + wallClimb"
     },
     {
         "id": "Z0810.l0",
@@ -479,6 +556,12 @@
         "logic": "Z09[W] + wallClimb + blade"
     },
     {
+        "id": "Z0923.c0",
+        "name": "Prie Dieu cherub",
+        "type": "Normal",
+        "logic": "Z09[W] + doubleJump + (censer | wallClimb)"
+    },
+    {
         "id": "Z0926.a0",
         "name": "Wind statue",
         "type": "Normal",
@@ -487,6 +570,12 @@
     {
         "id": "Z0927.l4",
         "name": "Long hallway altar",
+        "type": "Normal",
+        "logic": "Z09[W] + wallClimb + blade"
+    },
+    {
+        "id": "Z0928.c0",
+        "name": "Northern cherub",
         "type": "Normal",
         "logic": "Z09[W] + wallClimb + blade"
     },
@@ -545,8 +634,20 @@
         "logic": "Z10[S] + wallClimb + blade + doubleJump + airDash + cherubRings"
     },
     {
+        "id": "Z1019.c0",
+        "name": "Northwest cherub",
+        "type": "Normal",
+        "logic": "Z10[S] + wallClimb + blade + doubleJump"
+    },
+    {
         "id": "Z1019.l9",
         "name": "Air dash chest",
+        "type": "Normal",
+        "logic": "Z10[S] + wallClimb + blade + doubleJump + airDash"
+    },
+    {
+        "id": "Z1023.c0",
+        "name": "Northeast cherub",
         "type": "Normal",
         "logic": "Z10[S] + wallClimb + blade + doubleJump + airDash"
     },
@@ -563,10 +664,22 @@
         "logic": "Z10[S] + wallClimb + blade + doubleJump"
     },
     {
+        "id": "Z1050.c0",
+        "name": "Mirror shaft",
+        "type": "Normal",
+        "logic": "Z10[S]"
+    },
+    {
         "id": "Z1050.l7",
         "name": "Mirror shaft altar",
         "type": "Normal",
         "logic": "Z10[S]"
+    },
+    {
+        "id": "Z1058.c0",
+        "name": "Tower entrance cherub",
+        "type": "Normal",
+        "logic": "Z10[S] + wallClimb + blade + doubleJump"
     },
     {
         "id": "Z1063.w0",
@@ -597,6 +710,18 @@
         "name": "Defeat Benedicta",
         "type": "Normal",
         "logic": "Z11[S] + doubleJump + airDash + rapier + censer"
+    },
+    {
+        "id": "Z1114.c0",
+        "name": "Elevator cherub",
+        "type": "Normal",
+        "logic": "Z11[S] + doubleJump + airDash + rapier + censer"
+    },
+    {
+        "id": "Z1202.c0",
+        "name": "Eastern cherub",
+        "type": "Normal",
+        "logic": "Z12[E] + (doubleJump | airDash)"
     },
     {
         "id": "Z1203.i2",
@@ -633,6 +758,18 @@
         "name": "Defeat Odon",
         "type": "Normal",
         "logic": "Z12[E]"
+    },
+    {
+        "id": "Z1303.c0",
+        "name": "Large room cherub",
+        "type": "Normal",
+        "logic": "Z13[E] + blade + censer + rapier + cherubRings"
+    },
+    {
+        "id": "Z1304.c0",
+        "name": "Inverted large room cherub",
+        "type": "Normal",
+        "logic": "Z13[E] + blade + censer + rapier"
     },
     {
         "id": "Z1307.l7",
@@ -695,6 +832,12 @@
         "logic": "Z13[E] + blade + censer + rapier"
     },
     {
+        "id": "Z1404.c0",
+        "name": "Eastern cherub",
+        "type": "Normal",
+        "logic": "Z14[N] + censer + (doubleJump | airDash)"
+    },
+    {
         "id": "Z1404.l8",
         "name": "Northeast altar",
         "type": "Normal",
@@ -717,6 +860,12 @@
         "name": "Central hidden chest",
         "type": "Normal",
         "logic": "Z14[N] + censer"
+    },
+    {
+        "id": "Z1408.c0",
+        "name": "Rapier cherub",
+        "type": "Normal",
+        "logic": "Z14[N] + censer + rapier"
     },
     {
         "id": "Z1418.l5",
@@ -791,6 +940,12 @@
         "logic": "Z16[S]"
     },
     {
+        "id": "Z1605.c0",
+        "name": "Shortcut cherub cherub",
+        "type": "Normal",
+        "logic": "Z16[S] + rapier + cherubRings"
+    },
+    {
         "id": "Z1605.l5",
         "name": "Shortcut cherub altar",
         "type": "Normal",
@@ -833,10 +988,22 @@
         "logic": "Z16[S] + rapier + cherubRings"
     },
     {
+        "id": "Z1623.c0",
+        "name": "Exit shortcut cherub",
+        "type": "Normal",
+        "logic": "Z16[S] + rapier"
+    },
+    {
         "id": "Z1625.i2",
         "name": "Cherub arena",
         "type": "Normal",
         "logic": "Z16[S] + rapier + cherubRings"
+    },
+    {
+        "id": "Z1701.c0",
+        "name": "Western cherub",
+        "type": "Normal",
+        "logic": "Z17[W] + doubleJump + airDash"
     },
     {
         "id": "Z1709.l0",
@@ -903,6 +1070,12 @@
         "name": "Center shaft high ledge",
         "type": "Normal",
         "logic": "Z19[N] + doubleJump"
+    },
+    {
+        "id": "Z1905.c0",
+        "name": "Bell mirror cherub",
+        "type": "Normal",
+        "logic": "Z19[N] + censer"
     },
     {
         "id": "Z1906.i1",
@@ -983,6 +1156,12 @@
         "logic": "Z20[N] | Z20[E]"
     },
     {
+        "id": "Z2004.c0",
+        "name": "Cathedral cherub",
+        "type": "Normal",
+        "logic": "(Z20[N] | Z20[E]) + doubleJump + airDash + censer"
+    },
+    {
         "id": "Z2102.l0",
         "name": "Entrance chest",
         "type": "Normal",
@@ -1013,10 +1192,22 @@
         "logic": "Z21[N] + blade + wallClimb"
     },
     {
+        "id": "Z2115.c0",
+        "name": "Tower cherub",
+        "type": "Normal",
+        "logic": "Z21[N] + blade + wallClimb"
+    },
+    {
         "id": "Z2116.l2",
         "name": "Cherub puzzle",
         "type": "Normal",
         "logic": "Z21[N] + blade + wallClimb + cherubRings"
+    },
+    {
+        "id": "Z2117.c0",
+        "name": "Labyrinth cherub",
+        "type": "Normal",
+        "logic": "Z21[N] + blade"
     },
     {
         "id": "Z2117.l1",
@@ -1053,6 +1244,12 @@
         "name": "Defeat Alifaor",
         "type": "Normal",
         "logic": "Z23[N]"
+    },
+    {
+        "id": "Z2306.c0",
+        "name": "Western cherub",
+        "type": "Normal",
+        "logic": "Z23[N] + wallClimb + doubleJump"
     },
     {
         "id": "Z2308.a0",
