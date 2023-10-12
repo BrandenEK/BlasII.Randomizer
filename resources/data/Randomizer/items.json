@@ -1118,5 +1118,10 @@
         "type": "Tears",
         "progression": false,
         "count": 8
+    },
+    {
+        "id": "INVALID",
+        "name": "Invalid Item",
+        "type": "Invalid"
     }
 ]

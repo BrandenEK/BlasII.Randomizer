@@ -22,7 +22,7 @@ namespace BlasII.Randomizer.Items
             else
             {
                 Main.Randomizer.LogError(locationId + " does not have a mapped item!");
-                return null;
+                return Main.Randomizer.Data.InvalidItem;
             }
         }
 
@@ -30,17 +30,18 @@ namespace BlasII.Randomizer.Items
         {
             Main.Randomizer.LogWarning("Giving item at location: " +  locationId);
 
+            Item item;
             if (_collectedLocations.Contains(locationId))
             {
                 Main.Randomizer.LogError(locationId + " has already been collected!");
-                return;
+                item = Main.Randomizer.Data.InvalidItem;
+            }
+            else
+            {
+                _collectedLocations.Add(locationId);
+                item = GetItemAtLocation(locationId);
             }
 
-            Item item = GetItemAtLocation(locationId);
-            if (item == null)
-                return;
-
-            _collectedLocations.Add(locationId);
             item.RemovePreviousItem(); // Eventually change this to have different classes for prog items
             item.Upgraded?.GiveReward();
             DisplayItem(item);

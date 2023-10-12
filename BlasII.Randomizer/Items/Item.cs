@@ -187,11 +187,6 @@ namespace BlasII.Randomizer.Items
                         StatStorage.PlayerStats.AddRewardOrbs(Amount, true);
                         break;
                     }
-                case ItemType.Invalid:
-                    {
-                        Main.Randomizer.LogError("Adding an invalid item!");
-                        break;
-                    }
             }
 
             Main.Randomizer.ItemHandler.SetItemCollected(id);
