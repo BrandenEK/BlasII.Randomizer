@@ -8,7 +8,7 @@ namespace BlasII.Randomizer
     /// Log when a quest flag is being set
     /// </summary>
     [HarmonyPatch]
-    class QuestManager_SetQuest_Patch
+    class QuestManager_SetQuestBool_Patch
     {
         public static MethodInfo TargetMethod()
         {
@@ -16,6 +16,19 @@ namespace BlasII.Randomizer
         }
 
         public static void Postfix(int questId, int varId, bool value)
+        {
+            Main.Randomizer.LogWarning($"Setting quest: {Main.Randomizer.GetQuestName(questId, varId)} ({value})");
+        }
+    }
+    [HarmonyPatch]
+    class QuestManager_SetQuestInt_Patch
+    {
+        public static MethodInfo TargetMethod()
+        {
+            return typeof(QuestManager).GetMethod("SetQuestVarValue").MakeGenericMethod(typeof(int));
+        }
+
+        public static void Postfix(int questId, int varId, int value)
         {
             Main.Randomizer.LogWarning($"Setting quest: {Main.Randomizer.GetQuestName(questId, varId)} ({value})");
         }

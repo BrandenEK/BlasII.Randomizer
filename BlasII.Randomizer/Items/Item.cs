@@ -33,40 +33,31 @@ namespace BlasII.Randomizer.Items
                 if (IsProgressiveItem)
                     throw new System.Exception("Accessing a progressive item directly!");
 
-                switch (type)
+                return type switch
                 {
-                    case ItemType.RosaryBead:
-                        return ItemStorage.TryGetRosaryBead(id, out var bead) ? bead.image : null;
-                    case ItemType.Prayer:
-                        return ItemStorage.TryGetPrayer(id, out var prayer) ? prayer.image : null;
-                    case ItemType.Figurine:
-                        return ItemStorage.TryGetFigure(id, out var figure) ? figure.image : null;
-                    case ItemType.QuestItem:
-                        return ItemStorage.TryGetQuestItem(id, out var quest) ? quest.image : null;
-                    case ItemType.Weapon:
-                        return id switch
-                        {
-                            "WE01" => Main.Randomizer.Data.GetImage(DataStorage.ImageType.Censer),
-                            "WE02" => Main.Randomizer.Data.GetImage(DataStorage.ImageType.Blade),
-                            "WE03" => Main.Randomizer.Data.GetImage(DataStorage.ImageType.Rapier),
-                            _ => null,
-                        };
-                    case ItemType.Ability:
-                        return id switch
-                        {
-                            "AB44" => Main.Randomizer.Data.GetImage(DataStorage.ImageType.WallClimb),
-                            "AB02" => Main.Randomizer.Data.GetImage(DataStorage.ImageType.DoubleJump),
-                            "AB01" => Main.Randomizer.Data.GetImage(DataStorage.ImageType.AirDash),
-                            "AB35" => Main.Randomizer.Data.GetImage(DataStorage.ImageType.CherubRing),
-                            _ => null,
-                        };
-                    case ItemType.Tears:
-                        return Main.Randomizer.Data.GetImage(DataStorage.ImageType.Tears);
-                    case ItemType.Marks:
-                        return ItemStorage.TryGetQuestItem("QI99", out var marks) ? marks.image : null;
-                    default:
-                        return null;
-                }
+                    ItemType.RosaryBead => ItemStorage.TryGetRosaryBead(id, out var bead) ? bead.image : null,
+                    ItemType.Prayer => ItemStorage.TryGetPrayer(id, out var prayer) ? prayer.image : null,
+                    ItemType.Figurine => ItemStorage.TryGetFigure(id, out var figure) ? figure.image : null,
+                    ItemType.QuestItem => ItemStorage.TryGetQuestItem(id, out var quest) ? quest.image : null,
+                    ItemType.Weapon => id switch
+                    {
+                        "WE01" => Main.Randomizer.Data.GetImage(DataStorage.ImageType.Censer),
+                        "WE02" => Main.Randomizer.Data.GetImage(DataStorage.ImageType.Blade),
+                        "WE03" => Main.Randomizer.Data.GetImage(DataStorage.ImageType.Rapier),
+                        _ => null,
+                    },
+                    ItemType.Ability => id switch
+                    {
+                        "AB44" => Main.Randomizer.Data.GetImage(DataStorage.ImageType.WallClimb),
+                        "AB02" => Main.Randomizer.Data.GetImage(DataStorage.ImageType.DoubleJump),
+                        "AB01" => Main.Randomizer.Data.GetImage(DataStorage.ImageType.AirDash),
+                        "AB35" => Main.Randomizer.Data.GetImage(DataStorage.ImageType.CherubRing),
+                        _ => null,
+                    },
+                    ItemType.Tears => Main.Randomizer.Data.GetImage(DataStorage.ImageType.Tears),
+                    ItemType.Marks => ItemStorage.TryGetQuestItem("QI99", out var marks) ? marks.image : null,
+                    _ => null,
+                };
             }
         }
 
@@ -77,40 +68,31 @@ namespace BlasII.Randomizer.Items
                 if (IsProgressiveItem)
                     throw new System.Exception("Accessing a progressive item directly!");
 
-                switch (type)
+                return type switch
                 {
-                    case ItemType.RosaryBead:
-                        return ItemStorage.TryGetRosaryBead(id, out var bead) ? bead.description : null;
-                    case ItemType.Prayer:
-                        return ItemStorage.TryGetPrayer(id, out var prayer) ? prayer.description : null;
-                    case ItemType.Figurine:
-                        return ItemStorage.TryGetFigure(id, out var figure) ? figure.description : null;
-                    case ItemType.QuestItem:
-                        return ItemStorage.TryGetQuestItem(id, out var quest) ? quest.description : null;
-                    case ItemType.Weapon:
-                        return id switch
-                        {
-                            "WE01" => "A weapon that can be used to ring bronze bells",
-                            "WE02" => "A weapon that can be used to pierce bone blockades",
-                            "WE03" => "A weapon that can be used to activate magic mirrors",
-                            _ => null,
-                        };
-                    case ItemType.Ability:
-                        return id switch
-                        {
-                            "AB44" => "The ability to climb up large walls",
-                            "AB02" => "The ability to jump twice while in the air",
-                            "AB01" => "The ability to dash while in the air",
-                            "AB35" => "The ability to spawn cherubs rings",
-                            _ => null,
-                        };
-                    case ItemType.Tears:
-                        return "Can be used to buy stuff";
-                    case ItemType.Marks:
-                        return "Can be used to buy more stuff";
-                    default:
-                        return null;
-                }
+                    ItemType.RosaryBead => ItemStorage.TryGetRosaryBead(id, out var bead) ? bead.description : null,
+                    ItemType.Prayer => ItemStorage.TryGetPrayer(id, out var prayer) ? prayer.description : null,
+                    ItemType.Figurine => ItemStorage.TryGetFigure(id, out var figure) ? figure.description : null,
+                    ItemType.QuestItem => ItemStorage.TryGetQuestItem(id, out var quest) ? quest.description : null,
+                    ItemType.Weapon => id switch
+                    {
+                        "WE01" => "A weapon that can be used to ring bronze bells",
+                        "WE02" => "A weapon that can be used to pierce bone blockades",
+                        "WE03" => "A weapon that can be used to activate magic mirrors",
+                        _ => null,
+                    },
+                    ItemType.Ability => id switch
+                    {
+                        "AB44" => "The ability to climb up large walls",
+                        "AB02" => "The ability to jump twice while in the air",
+                        "AB01" => "The ability to dash while in the air",
+                        "AB35" => "The ability to spawn cherubs rings",
+                        _ => null,
+                    },
+                    ItemType.Tears => "Can be used to buy stuff",
+                    ItemType.Marks => "Can be used to buy more stuff",
+                    _ => null,
+                };
             }
         }
 
