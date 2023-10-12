@@ -61,7 +61,8 @@ namespace BlasII.Randomizer.Items
         public bool IsVanillaLocation(string locationId)
         {
             return locationId == "Z1506.w0"
-                || locationId == "Z1506.a0";
+                || locationId == "Z1506.a0"
+                || locationId == "Z1064.i0";
         }
 
         /// <summary>
