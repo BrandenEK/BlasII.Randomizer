@@ -30,6 +30,9 @@ namespace BlasII.Randomizer.Items
         {
             Main.Randomizer.LogWarning("Giving item at location: " +  locationId);
 
+            if (IsRemovedLocation(locationId))
+                return;
+
             Item item;
             if (_collectedLocations.Contains(locationId))
             {
@@ -52,15 +55,25 @@ namespace BlasII.Randomizer.Items
             CoreCache.UINavigationHelper.ShowItemPopup("Obtained", item.Current?.name, item.Current?.Image);
         }
 
-        public bool IsLocationRandomized(string locationId)
+        /// <summary>
+        /// Checks if the location should do normal execution (Weapon select room)
+        /// </summary>
+        public bool IsVanillaLocation(string locationId)
         {
-            bool isBossKey = // Prevent these locations from giving an item
-                locationId == "Z1113.i8" ||
-                locationId == "Z1216.i9" ||
-                locationId == "Z1327.i7" ||
-                locationId == "Z1622.i6";
+            return locationId == "Z1506.w0"
+                || locationId == "Z1506.a0"
+                || locationId == "Z0102.key";
+        }
 
-            return _mappedItems.ContainsKey(locationId) || isBossKey;
+        /// <summary>
+        /// Checks if the location should completely skip execution (Normal boss keys)
+        /// </summary>
+        public bool IsRemovedLocation(string locationId)
+        {
+            return locationId == "Z1113.i8"
+                || locationId == "Z1216.i9"
+                || locationId == "Z1327.i7"
+                || locationId == "Z1622.i6";
         }
 
         public void FakeShuffle(uint seed, TempConfig config)
