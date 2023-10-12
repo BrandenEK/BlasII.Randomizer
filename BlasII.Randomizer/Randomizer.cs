@@ -174,6 +174,12 @@ namespace BlasII.Randomizer
             return CoreCache.Quest.GetQuestVarBoolValue(input.questID, input.varID);
         }
 
+        public int GetQuestInt(string questId, string varId)
+        {
+            var input = CoreCache.Quest.GetInputQuestVar(questId, varId);
+            return CoreCache.Quest.GetQuestVarIntValue(input.questID, input.varID);
+        }
+
         public void SetQuestValue<T>(string questId, string varId, T value)
         {
             var input = CoreCache.Quest.GetInputQuestVar(questId, varId);

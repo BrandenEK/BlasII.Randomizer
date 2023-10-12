@@ -1036,6 +1036,13 @@
         "count": 1
     },
     {
+        "id": "CH",
+        "name": "Child of Moonlight",
+        "type": "Cherub",
+        "progression": true,
+        "count": 33
+    },
+    {
         "id": "Marks[5]",
         "name": "5 Marks of Martyrdom",
         "type": "Marks",

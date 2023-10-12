@@ -54,6 +54,7 @@ namespace BlasII.Randomizer.Items
                         "AB35" => Main.Randomizer.Data.GetImage(DataStorage.ImageType.CherubRing),
                         _ => null,
                     },
+                    ItemType.Cherub => Main.Randomizer.Data.GetImage(DataStorage.ImageType.Cherub),
                     ItemType.Tears => Main.Randomizer.Data.GetImage(DataStorage.ImageType.Tears),
                     ItemType.Marks => ItemStorage.TryGetQuestItem("QI99", out var marks) ? marks.image : null,
                     _ => null,
@@ -89,6 +90,7 @@ namespace BlasII.Randomizer.Items
                         "AB35" => "The ability to spawn cherubs rings",
                         _ => null,
                     },
+                    ItemType.Cherub => "A little floating baby that you rescued from a cage",
                     ItemType.Tears => "Can be used to buy stuff",
                     ItemType.Marks => "Can be used to buy more stuff",
                     _ => null,
@@ -161,6 +163,14 @@ namespace BlasII.Randomizer.Items
                     {
                         if (AbilityStorage.TryGetAbility(id, out var ability))
                             CoreCache.AbilitiesUnlockManager.SetAbility(ability, true);
+                        break;
+                    }
+                case ItemType.Cherub:
+                    {
+                        QuestManager_SetQuestInt_Patch.CherubQuestFlag = true;
+                        int currentCherubs = Main.Randomizer.GetQuestInt("ST16", "FREED_CHERUBS");
+                        Main.Randomizer.SetQuestValue("ST16", "FREED_CHERUBS", currentCherubs + 1);
+                        QuestManager_SetQuestInt_Patch.CherubQuestFlag = false;
                         break;
                     }
                 case ItemType.Tears:
@@ -257,6 +267,7 @@ namespace BlasII.Randomizer.Items
             QuestItem = 3,
             Weapon = 4,
             Ability = 5,
+            Cherub = 6,
             Tears = 20,
             Marks = 21,
         }
