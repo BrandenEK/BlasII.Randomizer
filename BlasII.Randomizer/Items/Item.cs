@@ -77,22 +77,22 @@ namespace BlasII.Randomizer.Items
                     ItemType.QuestItem => ItemStorage.TryGetQuestItem(id, out var quest) ? quest.description : null,
                     ItemType.Weapon => id switch
                     {
-                        "WE01" => "A weapon that can be used to ring bronze bells",
-                        "WE02" => "A weapon that can be used to pierce bone blockades",
-                        "WE03" => "A weapon that can be used to activate magic mirrors",
+                        "WE01" => "A weapon that can be used to ring bronze bells.",
+                        "WE02" => "A weapon that can be used to pierce bone blockades.",
+                        "WE03" => "A weapon that can be used to activate magic mirrors.",
                         _ => null,
                     },
                     ItemType.Ability => id switch
                     {
-                        "AB44" => "The ability to climb up large walls",
-                        "AB02" => "The ability to jump twice while in the air",
-                        "AB01" => "The ability to dash while in the air",
-                        "AB35" => "The ability to spawn cherubs rings",
+                        "AB44" => "The ability to climb up large walls.",
+                        "AB02" => "The ability to jump twice while in the air.",
+                        "AB01" => "The ability to dash while in the air.",
+                        "AB35" => "The ability to spawn cherubs rings.",
                         _ => null,
                     },
-                    ItemType.Cherub => "A little floating baby that you rescued from a cage",
-                    ItemType.Tears => "Can be used to buy stuff",
-                    ItemType.Marks => "Can be used to buy more stuff",
+                    ItemType.Cherub => "A little floating baby that you rescued from a cage.",
+                    ItemType.Tears => "Can be used to buy stuff.",
+                    ItemType.Marks => "Can be used to buy more stuff.",
                     _ => null,
                 };
             }
