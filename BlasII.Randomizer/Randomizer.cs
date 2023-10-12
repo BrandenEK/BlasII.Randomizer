@@ -154,8 +154,11 @@ namespace BlasII.Randomizer
 
         private void LoadBossKeyRoom(string sceneName)
         {
-            Log("Granting boss key for room: " + sceneName);
-            ItemHandler.GiveItemAtLocation(sceneName + ".key");
+            string locationId = $"{sceneName}.key";
+            Main.Randomizer.LogError("Randomizer.LoadBossKeyRoom - " + locationId);
+
+            if (ItemHandler.IsRandomLocation(locationId))
+                ItemHandler.GiveItemAtLocation(locationId);
         }
 
         // Quests

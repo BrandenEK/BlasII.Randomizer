@@ -61,8 +61,7 @@ namespace BlasII.Randomizer.Items
         public bool IsVanillaLocation(string locationId)
         {
             return locationId == "Z1506.w0"
-                || locationId == "Z1506.a0"
-                || locationId == "Z0102.key";
+                || locationId == "Z1506.a0";
         }
 
         /// <summary>
@@ -74,6 +73,14 @@ namespace BlasII.Randomizer.Items
                 || locationId == "Z1216.i9"
                 || locationId == "Z1327.i7"
                 || locationId == "Z1622.i6";
+        }
+
+        /// <summary>
+        /// Checks if the location has a random item there (Random boss keys)
+        /// </summary>
+        public bool IsRandomLocation(string locationId)
+        {
+            return _mappedItems.ContainsKey(locationId);
         }
 
         public void FakeShuffle(uint seed, TempConfig config)
