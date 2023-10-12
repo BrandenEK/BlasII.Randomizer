@@ -89,6 +89,7 @@ namespace BlasII.Randomizer
             Blade = 6,
             Rapier = 7,
             Tears = 8,
+            Invalid = 9,
         }
 
         // Special data

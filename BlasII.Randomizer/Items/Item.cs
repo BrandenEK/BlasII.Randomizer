@@ -57,6 +57,8 @@ namespace BlasII.Randomizer.Items
                     ItemType.Cherub => Main.Randomizer.Data.GetImage(DataStorage.ImageType.Cherub),
                     ItemType.Tears => Main.Randomizer.Data.GetImage(DataStorage.ImageType.Tears),
                     ItemType.Marks => ItemStorage.TryGetQuestItem("QI99", out var marks) ? marks.image : null,
+
+                    ItemType.Invalid => Main.Randomizer.Data.GetImage(DataStorage.ImageType.Invalid),
                     _ => null,
                 };
             }
@@ -93,6 +95,8 @@ namespace BlasII.Randomizer.Items
                     ItemType.Cherub => "A little floating baby that you rescued from a cage.",
                     ItemType.Tears => "Can be used to buy stuff.",
                     ItemType.Marks => "Can be used to buy more stuff.",
+
+                    ItemType.Invalid => "You should not see this.",
                     _ => null,
                 };
             }
@@ -183,6 +187,11 @@ namespace BlasII.Randomizer.Items
                         StatStorage.PlayerStats.AddRewardOrbs(Amount, true);
                         break;
                     }
+                case ItemType.Invalid:
+                    {
+                        Main.Randomizer.LogError("Adding an invalid item!");
+                        break;
+                    }
             }
 
             Main.Randomizer.ItemHandler.SetItemCollected(id);
@@ -270,6 +279,7 @@ namespace BlasII.Randomizer.Items
             Cherub = 6,
             Tears = 20,
             Marks = 21,
+            Invalid = 99,
         }
     }
 }
