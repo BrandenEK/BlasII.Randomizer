@@ -90,6 +90,7 @@ namespace BlasII.Randomizer.Settings
                 0 => "Censer", 1 => "Blade", 2 => "Rapier", _ => "Random"
             };
 
+            _settingSeed.SetText("Seed: " + config.seed);
             _settingSW.SetText("Starting weapon: " + weaponName);
             _settingLD.SetText("Logic difficulty: Normal");
             _settingSLQ.SetText("Shuffle long quests: " + (config.shuffleLongQuests ? "Yes" : "No"));
@@ -118,34 +119,11 @@ namespace BlasII.Randomizer.Settings
             //.AddImage()
             //.SetColor(Color.red).rectTransform;
 
-            _settingSW = CreateShadowText("SW", mainSection, new Vector2(0, 200), TEXT_COLOR, string.Empty);
-            _settingLD = CreateShadowText("LD", mainSection, new Vector2(0, 100), TEXT_COLOR, string.Empty);
-            _settingSLQ = CreateShadowText("SLQ", mainSection, new Vector2(0, 0), TEXT_COLOR, string.Empty);
-            _settingSS = CreateShadowText("SS", mainSection, new Vector2(0, -100), TEXT_COLOR, string.Empty);
-
-            //TMP_Text startingWeapon = UIModder.CreateRect("StartingWeapon", mainSection)
-            //    .SetPosition(0, 200)
-            //    .AddText()
-            //    .SetContents("Starting weapon: Blade")
-            //    .SetFontSize(TEXT_SIZE);
-
-            //TMP_Text logicDifficulty = UIModder.CreateRect("LogicDifficulty", mainSection)
-            //    .SetPosition(0, 100)
-            //    .AddText()
-            //    .SetContents("Logic difficulty: Normal")
-            //    .SetFontSize(TEXT_SIZE);
-
-            //TMP_Text shuffleLongQuests = UIModder.CreateRect("ShuffleLongQuests", mainSection)
-            //    .SetPosition(0, 0)
-            //    .AddText()
-            //    .SetContents("Shuffle long quests: No")
-            //    .SetFontSize(TEXT_SIZE);
-
-            //TMP_Text shuffleShops = UIModder.CreateRect("ShuffleShops", mainSection)
-            //    .SetPosition(0, -100)
-            //    .AddText()
-            //    .SetContents("Shuffle shops: Yes")
-            //    .SetFontSize(TEXT_SIZE);
+            _settingSeed = CreateShadowText("Seed", mainSection, new Vector2(0, 250), TEXT_COLOR, string.Empty);
+            _settingSW = CreateShadowText("SW", mainSection, new Vector2(0, 150), TEXT_COLOR, string.Empty);
+            _settingLD = CreateShadowText("LD", mainSection, new Vector2(0, 50), TEXT_COLOR, string.Empty);
+            _settingSLQ = CreateShadowText("SLQ", mainSection, new Vector2(0, -50), TEXT_COLOR, string.Empty);
+            _settingSS = CreateShadowText("SS", mainSection, new Vector2(0, -150), TEXT_COLOR, string.Empty);
 
             _mainMenu = mainMenu;
             _settingsMenu = settingsMenu;
@@ -183,6 +161,7 @@ namespace BlasII.Randomizer.Settings
         private const int TEXT_SIZE = 55;
         private readonly Color TEXT_COLOR = new Color32(192, 192, 192, 255);
 
+        private UIPixelTextWithShadow _settingSeed;
         private UIPixelTextWithShadow _settingSW;
         private UIPixelTextWithShadow _settingLD;
         private UIPixelTextWithShadow _settingSLQ;
