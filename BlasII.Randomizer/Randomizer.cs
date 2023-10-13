@@ -50,7 +50,6 @@ namespace BlasII.Randomizer
             }
             if (Input.GetKeyDown(KeyCode.Keypad2))
             {
-                SettingsHandler.OpenSettingsMenu();
             }
 
             SettingsHandler.Update();
