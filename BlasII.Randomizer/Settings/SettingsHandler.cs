@@ -36,9 +36,9 @@ namespace BlasII.Randomizer.Settings
             }
 
             if (Input.GetKeyDown(KeyCode.O))
-                _setStartingWeaponLeft.ChangeOption();
+                _setStartingWeapon.ChangeOption(-1);
             else if (Input.GetKeyDown(KeyCode.P))
-                _setStartingWeaponRight.ChangeOption();
+                _setStartingWeapon.ChangeOption(1);
         }
 
         /// <summary>
@@ -91,18 +91,12 @@ namespace BlasII.Randomizer.Settings
         /// </summary>
         private void UpdateSettingsMenu(TempConfig config)
         {
-            string weaponName = config.startingWeapon switch
-            {
-                0 => "Censer", 1 => "Blade", 2 => "Rapier", _ => "Random"
-            };
+            _setStartingWeapon.SetOption(config.startingWeapon);
+            _setLogicDifficulty.SetOption(1);
+            _setShuffleLongQuests.SetOption(0);
+            _setShuffleShops.SetOption(1);
 
-            _setStartingWeaponLeft.SetOption(config.startingWeapon);
-            _setStartingWeaponRight.SetOption(config.startingWeapon);
-            //_settingSeed.SetText("Seed: " + config.seed);
-            //_settingSW.SetText("Starting weapon: " + weaponName);
-            //_settingLD.SetText("Logic difficulty: Normal");
-            //_settingSLQ.SetText("Shuffle long quests: " + (config.shuffleLongQuests ? "Yes" : "No"));
-            //_settingSS.SetText("Shuffle shops: " + (config.shuffleShops ? "Yes" : "No"));
+            _setSeed.SetText("Seed: " + config.seed);
         }
 
         /// <summary>
@@ -127,24 +121,27 @@ namespace BlasII.Randomizer.Settings
             //.AddImage()
             //.SetColor(Color.red).rectTransform;
 
-            //_settingSeed = CreateShadowText("Seed", mainSection, new Vector2(0, 250), TEXT_COLOR, string.Empty);
-            //_settingSW = CreateShadowText("SW", mainSection, new Vector2(0, 150), TEXT_COLOR, string.Empty);
-            //_settingLD = CreateShadowText("LD", mainSection, new Vector2(0, 50), TEXT_COLOR, string.Empty);
-            //_settingSLQ = CreateShadowText("SLQ", mainSection, new Vector2(0, -50), TEXT_COLOR, string.Empty);
-            //_settingSS = CreateShadowText("SS", mainSection, new Vector2(0, -150), TEXT_COLOR, string.Empty);
+            _setSeed = CreateShadowText("Seed", mainSection, new Vector2(0, 300), TEXT_COLOR, string.Empty);
 
-            var sw = CreateSelectableOption("SW", mainSection, new Vector2(-300, 80), "Starting weapon:", new string[]
+            _setStartingWeapon = CreateArrowOption("SW", mainSection, new Vector2(-300, 80), "Starting weapon:", new string[]
             {
                 "Random", "Censer", "Blade", "Rapier"
             });
-            _setStartingWeaponLeft = sw.Find("left").GetComponent<SelectableOption>();
-            _setStartingWeaponRight = sw.Find("right").GetComponent<SelectableOption>();
 
-            //CreateSelectableOption("SW", mainSection, new Vector2(-300, 80), "Starting weapon:");
-            //CreateSelectableOption("LD", mainSection, new Vector2(-300, -80), "Logic difficulty:");
+            _setLogicDifficulty = CreateArrowOption("LD", mainSection, new Vector2(-300, -80), "Logic difficulty:", new string[]
+            {
+                "Easy", "Normal", "Hard"
+            });
 
-            //CreateSelectableOption("SLQ", mainSection, new Vector2(300, 80), "Shuffle long quests:");
-            //CreateSelectableOption("SS", mainSection, new Vector2(300, -80), "Shuffle shops:");
+            _setShuffleLongQuests = CreateArrowOption("SLQ", mainSection, new Vector2(300, 80), "Shuffle long quests:", new string[]
+            {
+                "No", "Yes"
+            });
+
+            _setShuffleShops = CreateArrowOption("SS", mainSection, new Vector2(300, -80), "Shuffle shops:", new string[]
+            {
+                "No", "Yes"
+            });
 
             _mainMenu = mainMenu;
             _settingsMenu = settingsMenu;
@@ -179,41 +176,39 @@ namespace BlasII.Randomizer.Settings
             return pixelText;
         }
 
-        private Transform CreateSelectableOption(string name, Transform parent, Vector2 position, string header, string[] options)
+        private ArrowOption CreateArrowOption(string name, Transform parent, Vector2 position, string header, string[] options)
         {
             var holder = UIModder.CreateRect(name, parent)
                 .SetPosition(position);
 
-            var headerText = CreateShadowText("header", holder, Vector2.up * 60, TEXT_COLOR, header);
+            CreateShadowText("header", holder, Vector2.up * 60, TEXT_COLOR, header);
             var optionText = CreateShadowText("option", holder, Vector2.zero, Color.yellow, "Option");
-            var leftArrow = CreateArrow("left", holder, Vector2.left * 150, false).gameObject.AddComponent<SelectableOption>();
-            var rightArrow = CreateArrow("right", holder, Vector2.right * 150, true).gameObject.AddComponent<SelectableOption>();
+            var leftArrow = CreateArrowImage("left", holder, Vector2.left * 150);
+            var rightArrow = CreateArrowImage("right", holder, Vector2.right * 150);
 
-            leftArrow.Initialize(optionText, leftArrow.GetComponent<Image>(), rightArrow, false, options);
-            rightArrow.Initialize(optionText, rightArrow.GetComponent<Image>(), leftArrow, true, options);
+            var selectable = holder.gameObject.AddComponent<ArrowOption>();
+            selectable.Initialize(optionText, leftArrow, rightArrow, options);
 
-            return holder;
+            return selectable;
         }
 
-        private Image CreateArrow(string name, Transform parent, Vector2 position, bool facingRight)
+        private Image CreateArrowImage(string name, Transform parent, Vector2 position)
         {
             return UIModder.CreateRect(name, parent)
-                .SetPosition(position + Vector2.up * 10)
+                .SetPosition(position + Vector2.up * 5)
                 .SetSize(60, 60)
-                .AddImage()
-                .SetSprite(Main.Randomizer.Data.GetUI(facingRight ? DataStorage.UIType.RightInactive : DataStorage.UIType.LeftInactive));
+                .AddImage();
         }
 
         private const int TEXT_SIZE = 55;
         private readonly Color TEXT_COLOR = new Color32(192, 192, 192, 255);
 
-        private SelectableOption _setStartingWeaponLeft;
-        private SelectableOption _setStartingWeaponRight;
+        private ArrowOption _setStartingWeapon;
+        private ArrowOption _setLogicDifficulty;
 
-        private UIPixelTextWithShadow _settingSeed;
-        private UIPixelTextWithShadow _settingSW;
-        private UIPixelTextWithShadow _settingLD;
-        private UIPixelTextWithShadow _settingSLQ;
-        private UIPixelTextWithShadow _settingSS;
+        private ArrowOption _setShuffleLongQuests;
+        private ArrowOption _setShuffleShops;
+
+        private UIPixelTextWithShadow _setSeed;
     }
 }
