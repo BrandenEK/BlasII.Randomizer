@@ -15,6 +15,12 @@ namespace BlasII.Randomizer.Settings
             return false;
         }
 
+        public static void Postfix()
+        {
+            if (NewGameFlag)
+                Main.Randomizer.NewGame();
+        }
+
         public static bool NewGameFlag { get; set; }
     }
 }

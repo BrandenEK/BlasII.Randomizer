@@ -12,8 +12,8 @@ namespace BlasII.Randomizer.Settings
 
         private int _currentSlot;
 
-        private bool PressedEnter => Input.GetKeyDown(KeyCode.Return); // CoreCache.Input.GetButtonDown("UI Confirm");
-        private bool PressedCancel => Input.GetKeyDown(KeyCode.Escape); // CoreCache.Input.GetButtonDown("UI Cancel");
+        private bool PressedEnter => CoreCache.Input.GetButtonDown("UI Confirm");
+        private bool PressedCancel => CoreCache.Input.GetButtonDown("UI Cancel");
 
         // Forgot we cant use null coalescing  :(
         private bool SettingsMenuActive => _settingsMenu != null && _settingsMenu.activeInHierarchy;
@@ -25,11 +25,7 @@ namespace BlasII.Randomizer.Settings
 
             if (PressedEnter)
             {
-                // Start game
-                NewGame_Settings_Patch.NewGameFlag = true;
-                Object.FindObjectOfType<MainMenuWindowLogic>().NewGame(_currentSlot);
-                NewGame_Settings_Patch.NewGameFlag = false;
-                Main.Randomizer.Log("Starting game");
+                StartNewGame();
             }
             else if (PressedCancel)
             {
@@ -45,10 +41,12 @@ namespace BlasII.Randomizer.Settings
             if (_settingsMenu == null)
                 CreateSettingsMenu();
 
+            Main.Randomizer.Log("Opening settings menu");
             _settingsMenu.SetActive(true);
             _slotsMenu.SetActive(false);
+
+            CoreCache.Input.ClearAllInputBlocks();
             _currentSlot = slot;
-            Main.Randomizer.LogWarning("Settings menu opened");
         }
 
         private void CloseSettingsMenu()
@@ -56,15 +54,23 @@ namespace BlasII.Randomizer.Settings
             if (!SettingsMenuActive)
                 return;
 
+            Main.Randomizer.Log("Closing settings menu");
             _settingsMenu.SetActive(false);
             _mainMenu.OpenSlotMenu();
             _mainMenu.CloseSlotMenu();
-            Main.Randomizer.LogWarning("Settings menu closed");
+        }
+
+        private void StartNewGame()
+        {
+            Main.Randomizer.LogWarning("Starting new game");
+            NewGame_Settings_Patch.NewGameFlag = true;
+            Object.FindObjectOfType<MainMenuWindowLogic>().NewGame(_currentSlot);
+            NewGame_Settings_Patch.NewGameFlag = false;
         }
 
         private void CreateSettingsMenu()
         {
-            Main.Randomizer.Log("Creating settings menu");
+            Main.Randomizer.LogWarning("Creating settings menu");
 
             var mainMenu = Object.FindObjectOfType<MainMenuWindowLogic>();
             var slotsMenu = mainMenu.slotsMenuView.transform.parent.gameObject;
