@@ -106,6 +106,7 @@ namespace BlasII.Randomizer.Settings
             CreateShadowText("SLQ", mainSection, new Vector2(0, 0), TEXT_COLOR, "Shuffle long quests: No");
             CreateShadowText("SS", mainSection, new Vector2(0, -100), TEXT_COLOR, "Shuffle shops: Yes");
 
+
             //TMP_Text startingWeapon = UIModder.CreateRect("StartingWeapon", mainSection)
             //    .SetPosition(0, 200)
             //    .AddText()
@@ -135,7 +136,7 @@ namespace BlasII.Randomizer.Settings
             _slotsMenu = slotsMenu;
         }
 
-        private TMP_Text CreateShadowText(string name, Transform parent, Vector2 position, Color color, string text)
+        private UIPixelTextWithShadow CreateShadowText(string name, Transform parent, Vector2 position, Color color, string text)
         {
             // Create shadow
             var shadow = UIModder.CreateRect(name, parent)
@@ -146,8 +147,8 @@ namespace BlasII.Randomizer.Settings
                 .SetFontSize(TEXT_SIZE)
                 .SetContents(text);
 
-            // Create main
-            UIModder.CreateRect(name, shadow.transform)
+            // Create normal
+            var normal = UIModder.CreateRect(name, shadow.transform)
                 .SetPosition(0, 4)
                 .AddText()
                 .SetAlignment(TextAlignmentOptions.Center)
@@ -155,7 +156,12 @@ namespace BlasII.Randomizer.Settings
                 .SetFontSize(TEXT_SIZE)
                 .SetContents(text);
 
-            return shadow;
+            // Create component
+            var pixelText = shadow.gameObject.AddComponent<UIPixelTextWithShadow>();
+            pixelText.normalText = normal;
+            pixelText.shadowText = shadow;
+
+            return pixelText;
         }
 
         private const int TEXT_SIZE = 55;
