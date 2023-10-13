@@ -2,6 +2,7 @@
 using BlasII.ModdingAPI.Persistence;
 using BlasII.ModdingAPI.Storage;
 using BlasII.Randomizer.Items;
+using BlasII.Randomizer.Settings;
 using Il2Cpp;
 using Il2CppTGK.Game;
 using Il2CppTGK.Game.Components.Interactables;
@@ -16,6 +17,7 @@ namespace BlasII.Randomizer
         public DataStorage Data { get; } = new();
 
         public ItemHandler ItemHandler { get; } = new();
+        public SettingsHandler SettingsHandler { get; } = new();
 
         // Loaded at init and never changes
         public TempConfig TempConfig { get; private set; }
@@ -49,6 +51,8 @@ namespace BlasII.Randomizer
             if (Input.GetKeyDown(KeyCode.Keypad2))
             {
             }
+
+            SettingsHandler.Update();
         }
 
         protected override void OnSceneLoaded(string sceneName)
@@ -66,7 +70,7 @@ namespace BlasII.Randomizer
 
         }
 
-        protected override void OnNewGameStarted()
+        public void NewGame()
         {
             Log($"Shuffling items with seed {TempConfig.seed}");
             ItemHandler.FakeShuffle(TempConfig.seed, TempConfig);

@@ -119,8 +119,6 @@ namespace BlasII.Randomizer.Items
 
                 // Make sure it has a valid item
                 Item item = GetItemAtLocation(location.id);
-                if (item == null)
-                    continue;
 
                 // Display new zone section if different
                 string locationZoneId = location.id[..3];
