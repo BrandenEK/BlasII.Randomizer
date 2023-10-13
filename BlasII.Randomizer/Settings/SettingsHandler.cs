@@ -1,5 +1,7 @@
-﻿using Il2CppTGK.Game;
+﻿using BlasII.ModdingAPI.UI;
+using Il2CppTGK.Game;
 using Il2CppTGK.Game.Components.UI;
+using Il2CppTMPro;
 using UnityEngine;
 
 namespace BlasII.Randomizer.Settings
@@ -88,14 +90,75 @@ namespace BlasII.Randomizer.Settings
             var slotsMenu = mainMenu.slotsMenuView.transform.parent.gameObject;
 
             var settingsMenu = Object.Instantiate(slotsMenu, slotsMenu.transform.parent);
-            Object.Destroy(settingsMenu.transform.Find("SlotsList").gameObject);
             settingsMenu.transform.Find("Header").GetComponent<UIPixelTextWithShadow>().SetText("RANDOMIZER SETTINGS");
             settingsMenu.transform.Find("Buttons/Button A/New/label").GetComponent<UIPixelTextWithShadow>().SetText("Begin");
             settingsMenu.transform.Find("Buttons/Back/label").GetComponent<UIPixelTextWithShadow>().SetText("Cancel");
+            Object.Destroy(settingsMenu.transform.Find("SlotsList").gameObject);
+
+            RectTransform mainSection = UIModder.CreateRect("Main Section", settingsMenu.transform)
+                .SetSize(1800, 750)
+                .SetPosition(0, -30);
+            //.AddImage()
+            //.SetColor(Color.red).rectTransform;
+
+            CreateShadowText("SW", mainSection, new Vector2(0, 200), TEXT_COLOR, "Starting weapon: Censer");
+            CreateShadowText("LD", mainSection, new Vector2(0, 100), TEXT_COLOR, "Logic difficulty: Normal");
+            CreateShadowText("SLQ", mainSection, new Vector2(0, 0), TEXT_COLOR, "Shuffle long quests: No");
+            CreateShadowText("SS", mainSection, new Vector2(0, -100), TEXT_COLOR, "Shuffle shops: Yes");
+
+            //TMP_Text startingWeapon = UIModder.CreateRect("StartingWeapon", mainSection)
+            //    .SetPosition(0, 200)
+            //    .AddText()
+            //    .SetContents("Starting weapon: Blade")
+            //    .SetFontSize(TEXT_SIZE);
+
+            //TMP_Text logicDifficulty = UIModder.CreateRect("LogicDifficulty", mainSection)
+            //    .SetPosition(0, 100)
+            //    .AddText()
+            //    .SetContents("Logic difficulty: Normal")
+            //    .SetFontSize(TEXT_SIZE);
+
+            //TMP_Text shuffleLongQuests = UIModder.CreateRect("ShuffleLongQuests", mainSection)
+            //    .SetPosition(0, 0)
+            //    .AddText()
+            //    .SetContents("Shuffle long quests: No")
+            //    .SetFontSize(TEXT_SIZE);
+
+            //TMP_Text shuffleShops = UIModder.CreateRect("ShuffleShops", mainSection)
+            //    .SetPosition(0, -100)
+            //    .AddText()
+            //    .SetContents("Shuffle shops: Yes")
+            //    .SetFontSize(TEXT_SIZE);
 
             _mainMenu = mainMenu;
             _settingsMenu = settingsMenu;
             _slotsMenu = slotsMenu;
         }
+
+        private TMP_Text CreateShadowText(string name, Transform parent, Vector2 position, Color color, string text)
+        {
+            // Create shadow
+            var shadow = UIModder.CreateRect(name, parent)
+                .SetPosition(position)
+                .AddText()
+                .SetAlignment(TextAlignmentOptions.Center)
+                .SetColor(new Color(0.004f, 0.008f, 0.008f))
+                .SetFontSize(TEXT_SIZE)
+                .SetContents(text);
+
+            // Create main
+            UIModder.CreateRect(name, shadow.transform)
+                .SetPosition(0, 4)
+                .AddText()
+                .SetAlignment(TextAlignmentOptions.Center)
+                .SetColor(color)
+                .SetFontSize(TEXT_SIZE)
+                .SetContents(text);
+
+            return shadow;
+        }
+
+        private const int TEXT_SIZE = 55;
+        private readonly Color TEXT_COLOR = new Color32(192, 192, 192, 255);
     }
 }
