@@ -50,6 +50,7 @@ namespace BlasII.Randomizer.Settings
             _settingsMenu.SetActive(true);
             _slotsMenu.SetActive(false);
 
+            UpdateSettingsMenu(Main.Randomizer.TempConfig);
             CoreCache.Input.ClearAllInputBlocks();
             _currentSlot = slot;
         }
@@ -80,6 +81,22 @@ namespace BlasII.Randomizer.Settings
         }
 
         /// <summary>
+        /// Updates all of the settings in the menu based on the config
+        /// </summary>
+        private void UpdateSettingsMenu(TempConfig config)
+        {
+            string weaponName = config.startingWeapon switch
+            {
+                0 => "Censer", 1 => "Blade", 2 => "Rapier", _ => "Random"
+            };
+
+            _settingSW.SetText("Starting weapon: " + weaponName);
+            _settingLD.SetText("Logic difficulty: Normal");
+            _settingSLQ.SetText("Shuffle long quests: " + (config.shuffleLongQuests ? "Yes" : "No"));
+            _settingSS.SetText("Shuffle shops: " + (config.shuffleShops ? "Yes" : "No"));
+        }
+
+        /// <summary>
         /// Creates the ui for the settings menu
         /// </summary>
         private void CreateSettingsMenu()
@@ -101,11 +118,10 @@ namespace BlasII.Randomizer.Settings
             //.AddImage()
             //.SetColor(Color.red).rectTransform;
 
-            CreateShadowText("SW", mainSection, new Vector2(0, 200), TEXT_COLOR, "Starting weapon: Censer");
-            CreateShadowText("LD", mainSection, new Vector2(0, 100), TEXT_COLOR, "Logic difficulty: Normal");
-            CreateShadowText("SLQ", mainSection, new Vector2(0, 0), TEXT_COLOR, "Shuffle long quests: No");
-            CreateShadowText("SS", mainSection, new Vector2(0, -100), TEXT_COLOR, "Shuffle shops: Yes");
-
+            _settingSW = CreateShadowText("SW", mainSection, new Vector2(0, 200), TEXT_COLOR, string.Empty);
+            _settingLD = CreateShadowText("LD", mainSection, new Vector2(0, 100), TEXT_COLOR, string.Empty);
+            _settingSLQ = CreateShadowText("SLQ", mainSection, new Vector2(0, 0), TEXT_COLOR, string.Empty);
+            _settingSS = CreateShadowText("SS", mainSection, new Vector2(0, -100), TEXT_COLOR, string.Empty);
 
             //TMP_Text startingWeapon = UIModder.CreateRect("StartingWeapon", mainSection)
             //    .SetPosition(0, 200)
@@ -166,5 +182,10 @@ namespace BlasII.Randomizer.Settings
 
         private const int TEXT_SIZE = 55;
         private readonly Color TEXT_COLOR = new Color32(192, 192, 192, 255);
+
+        private UIPixelTextWithShadow _settingSW;
+        private UIPixelTextWithShadow _settingLD;
+        private UIPixelTextWithShadow _settingSLQ;
+        private UIPixelTextWithShadow _settingSS;
     }
 }
