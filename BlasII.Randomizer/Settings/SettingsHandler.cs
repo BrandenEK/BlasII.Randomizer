@@ -33,6 +33,9 @@ namespace BlasII.Randomizer.Settings
             }
         }
 
+        /// <summary>
+        /// Displays the settings menu and stores the current slot
+        /// </summary>
         public void OpenSettingsMenu(int slot)
         {
             if (SettingsMenuActive)
@@ -49,6 +52,9 @@ namespace BlasII.Randomizer.Settings
             _currentSlot = slot;
         }
 
+        /// <summary>
+        /// Closes the settings menu
+        /// </summary>
         private void CloseSettingsMenu()
         {
             if (!SettingsMenuActive)
@@ -60,6 +66,9 @@ namespace BlasII.Randomizer.Settings
             _mainMenu.CloseSlotMenu();
         }
 
+        /// <summary>
+        /// Begins the game with the stored slot
+        /// </summary>
         private void StartNewGame()
         {
             Main.Randomizer.LogWarning("Starting new game");
@@ -68,6 +77,9 @@ namespace BlasII.Randomizer.Settings
             NewGame_Settings_Patch.NewGameFlag = false;
         }
 
+        /// <summary>
+        /// Creates the ui for the settings menu
+        /// </summary>
         private void CreateSettingsMenu()
         {
             Main.Randomizer.LogWarning("Creating settings menu");
