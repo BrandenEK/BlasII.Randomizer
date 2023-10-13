@@ -19,12 +19,11 @@ namespace BlasII.Randomizer
         public ItemHandler ItemHandler { get; } = new();
         public SettingsHandler SettingsHandler { get; } = new();
 
-        public RandomizerSettings CurrentSettings { get; set; }
+        public RandomizerSettings CurrentSettings { get; set; } = RandomizerSettings.DefaultSettings;
 
         protected override void OnInitialize()
         {
             Data.Initialize();
-            CurrentSettings = RandomizerSettings.DefaultSettings;
         }
 
         protected override void OnUpdate()

@@ -24,7 +24,9 @@ namespace BlasII.Randomizer
         // Door rando settings
         public readonly int doorType;
 
-        public static RandomizerSettings DefaultSettings => new(new Random().Next(1, MAX_SEED + 1), 1, 0, 0, 0, false, true, true, 0, 0);
+        public static RandomizerSettings DefaultSettings => new(RandomSeed, 1, 0, 0, 0, false, true, true, 0, 0);
+
+        public static int RandomSeed => new Random().Next(1, MAX_SEED + 1);
 
         public RandomizerSettings(int seed, int logic, int glitch, int weapon, int location, bool longQuests, bool shops, bool hints, int enemy, int door)
         {

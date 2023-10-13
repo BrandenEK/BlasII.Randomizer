@@ -96,7 +96,7 @@ namespace BlasII.Randomizer.Settings
                 bool shuffleLongQuests = _setShuffleLongQuests.CurrentOption == 1;
                 bool shuffleShops = _setShuffleShops.CurrentOption == 1;
 
-                int seed = 777777;
+                int seed = _setSeed.CurrentNumericValue == 0 ? RandomizerSettings.RandomSeed : _setSeed.CurrentNumericValue;
                 return new RandomizerSettings(seed, logicDifficulty, 0, startingWeapon, 0, shuffleLongQuests, shuffleShops, true, 0, 0);
             }
             set
@@ -106,7 +106,7 @@ namespace BlasII.Randomizer.Settings
                 _setShuffleLongQuests.SetOption(value.shuffleLongQuests ? 1 : 0);
                 _setShuffleShops.SetOption(value.shuffleShops ? 1 : 0);
 
-                _setSeed.SetText("Seed: " + value.seed);
+                _setSeed.SetValue(string.Empty);
             }
         }
 
@@ -133,7 +133,7 @@ namespace BlasII.Randomizer.Settings
             //.AddImage()
             //.SetColor(Color.red).rectTransform;
 
-            _setSeed = CreateShadowText("Seed", mainSection, new Vector2(0, 300), TEXT_SIZE, TEXT_COLOR, string.Empty);
+            _setSeed = CreateTextOption("Seed", mainSection, new Vector2(0, 300), 150, "Seed:", true, false, 6);
 
             _setStartingWeapon = CreateArrowOption("SW", mainSection, new Vector2(-300, 80), "Starting weapon:", new string[]
             {
@@ -160,13 +160,14 @@ namespace BlasII.Randomizer.Settings
             _slotsMenu = slotsMenu;
         }
 
-        private UIPixelTextWithShadow CreateShadowText(string name, Transform parent, Vector2 position, int size, Color color, string text)
+        private UIPixelTextWithShadow CreateShadowText(string name, Transform parent, Vector2 position, int size, Color color, Vector2 pivot, TextAlignmentOptions alignment, string text)
         {
             // Create shadow
             var shadow = UIModder.CreateRect(name, parent)
                 .SetPosition(position)
+                .SetPivot(pivot)
                 .AddText()
-                .SetAlignment(TextAlignmentOptions.Center)
+                .SetAlignment(alignment)
                 .SetColor(new Color(0.004f, 0.008f, 0.008f))
                 .SetFontSize(size)
                 .SetContents(text);
@@ -175,7 +176,7 @@ namespace BlasII.Randomizer.Settings
             var normal = UIModder.CreateRect(name, shadow.transform)
                 .SetPosition(0, 4)
                 .AddText()
-                .SetAlignment(TextAlignmentOptions.Center)
+                .SetAlignment(alignment)
                 .SetColor(color)
                 .SetFontSize(size)
                 .SetContents(text);
@@ -194,8 +195,14 @@ namespace BlasII.Randomizer.Settings
             var holder = UIModder.CreateRect(name, parent).SetPosition(position);
 
             // Create text and images
-            CreateShadowText("header", holder, Vector2.up * 60, TEXT_SIZE, TEXT_COLOR, header);
-            var optionText = CreateShadowText("option", holder, Vector2.zero, TEXT_SIZE - 5, new Color32(255, 231, 65, 255), "Option");
+            CreateShadowText("header", holder, Vector2.up * 60,
+                TEXT_SIZE, SILVER,
+                new Vector2(0.5f, 0.5f), TextAlignmentOptions.Center, header);
+
+            var optionText = CreateShadowText("option", holder, Vector2.zero,
+                TEXT_SIZE - 5, YELLOW,
+                new Vector2(0.5f, 0.5f), TextAlignmentOptions.Center, string.Empty);
+
             var leftArrow = CreateArrowImage("left", holder, Vector2.left * 150);
             var rightArrow = CreateArrowImage("right", holder, Vector2.right * 150);
 
@@ -208,14 +215,51 @@ namespace BlasII.Randomizer.Settings
             AddClickHandler(rightArrow.gameObject, () => selectable.ChangeOption(1));
 
             return selectable;
+
+            // Creates the left and right arrows
+            Image CreateArrowImage(string name, Transform parent, Vector2 position)
+            {
+                return UIModder.CreateRect(name, parent)
+                    .SetPosition(position + Vector2.up * 5)
+                    .SetSize(55, 55)
+                    .AddImage();
+            }
         }
 
-        private Image CreateArrowImage(string name, Transform parent, Vector2 position)
+        private TextOption CreateTextOption(string name, Transform parent, Vector2 position, int lineSize, string header, bool numeric, bool allowZero, int max)
         {
-            return UIModder.CreateRect(name, parent)
-                .SetPosition(position + Vector2.up * 5)
-                .SetSize(55, 55)
-                .AddImage();
+            // Create ui holder
+            var holder = UIModder.CreateRect(name, parent).SetPosition(position);
+
+            // Create text and images
+            var headerText = CreateShadowText("header", holder, Vector2.left * 10,
+                TEXT_SIZE, SILVER,
+                new Vector2(1, 0.5f), TextAlignmentOptions.Right, header);
+
+            var valueText = CreateShadowText("value", holder, Vector2.right * lineSize / 2,
+                TEXT_SIZE - 5, YELLOW,
+                new Vector2(0.5f, 0.5f), TextAlignmentOptions.Center, string.Empty);
+
+            var underline = CreateLineImage("line", holder, Vector2.zero, lineSize);
+
+            // Initialize text option
+            var selectable = holder.gameObject.AddComponent<TextOption>();
+            selectable.Initialize(underline, valueText, numeric, allowZero, max);
+
+            // Add click events
+            AddClickHandler(underline.gameObject, () => selectable.ToggleSelected());
+
+            return selectable;
+
+            // Creates the underline image
+            Image CreateLineImage(string name, Transform parent, Vector2 position, int size)
+            {
+                return UIModder.CreateRect(name, parent)
+                    .SetPosition(position)
+                    .SetSize(size, 50)
+                    .SetPivot(0, 0.5f)
+                    .AddImage();
+            }
         }
 
         private void AddClickHandler(GameObject obj, System.Action onClick)
@@ -227,7 +271,8 @@ namespace BlasII.Randomizer.Settings
         }
 
         private const int TEXT_SIZE = 55;
-        private readonly Color TEXT_COLOR = new Color32(192, 192, 192, 255);
+        private readonly Color SILVER = new Color32(192, 192, 192, 255);
+        private readonly Color YELLOW = new Color32(255, 231, 65, 255);
 
         private ArrowOption _setStartingWeapon;
         private ArrowOption _setLogicDifficulty;
@@ -235,6 +280,6 @@ namespace BlasII.Randomizer.Settings
         private ArrowOption _setShuffleLongQuests;
         private ArrowOption _setShuffleShops;
 
-        private UIPixelTextWithShadow _setSeed;
+        private TextOption _setSeed;
     }
 }
