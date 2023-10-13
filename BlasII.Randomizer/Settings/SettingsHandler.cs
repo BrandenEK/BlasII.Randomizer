@@ -122,11 +122,11 @@ namespace BlasII.Randomizer.Settings
             //.AddImage()
             //.SetColor(Color.red).rectTransform;
 
-            _setSeed = CreateShadowText("Seed", mainSection, new Vector2(0, 300), TEXT_COLOR, string.Empty);
+            _setSeed = CreateShadowText("Seed", mainSection, new Vector2(0, 300), TEXT_SIZE, TEXT_COLOR, string.Empty);
 
             _setStartingWeapon = CreateArrowOption("SW", mainSection, new Vector2(-300, 80), "Starting weapon:", new string[]
             {
-                "Random", "Censer", "Blade", "Rapier"
+                "Random", "Veredicto", "Ruego", "Sarmiento"
             });
 
             _setLogicDifficulty = CreateArrowOption("LD", mainSection, new Vector2(-300, -80), "Logic difficulty:", new string[]
@@ -149,7 +149,7 @@ namespace BlasII.Randomizer.Settings
             _slotsMenu = slotsMenu;
         }
 
-        private UIPixelTextWithShadow CreateShadowText(string name, Transform parent, Vector2 position, Color color, string text)
+        private UIPixelTextWithShadow CreateShadowText(string name, Transform parent, Vector2 position, int size, Color color, string text)
         {
             // Create shadow
             var shadow = UIModder.CreateRect(name, parent)
@@ -157,7 +157,7 @@ namespace BlasII.Randomizer.Settings
                 .AddText()
                 .SetAlignment(TextAlignmentOptions.Center)
                 .SetColor(new Color(0.004f, 0.008f, 0.008f))
-                .SetFontSize(TEXT_SIZE)
+                .SetFontSize(size)
                 .SetContents(text);
 
             // Create normal
@@ -166,7 +166,7 @@ namespace BlasII.Randomizer.Settings
                 .AddText()
                 .SetAlignment(TextAlignmentOptions.Center)
                 .SetColor(color)
-                .SetFontSize(TEXT_SIZE)
+                .SetFontSize(size)
                 .SetContents(text);
 
             // Create component
@@ -182,8 +182,8 @@ namespace BlasII.Randomizer.Settings
             var holder = UIModder.CreateRect(name, parent)
                 .SetPosition(position);
 
-            CreateShadowText("header", holder, Vector2.up * 60, TEXT_COLOR, header);
-            var optionText = CreateShadowText("option", holder, Vector2.zero, new Color32(255, 231, 65, 255), "Option");
+            CreateShadowText("header", holder, Vector2.up * 60, TEXT_SIZE, TEXT_COLOR, header);
+            var optionText = CreateShadowText("option", holder, Vector2.zero, TEXT_SIZE - 5, new Color32(255, 231, 65, 255), "Option");
             var leftArrow = CreateArrowImage("left", holder, Vector2.left * 150);
             var rightArrow = CreateArrowImage("right", holder, Vector2.right * 150);
 
@@ -197,7 +197,7 @@ namespace BlasII.Randomizer.Settings
         {
             return UIModder.CreateRect(name, parent)
                 .SetPosition(position + Vector2.up * 5)
-                .SetSize(60, 60)
+                .SetSize(55, 55)
                 .AddImage();
         }
 
