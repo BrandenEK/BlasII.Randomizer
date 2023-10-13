@@ -3,6 +3,7 @@ using Il2CppTGK.Game;
 using Il2CppTGK.Game.Components.UI;
 using Il2CppTMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace BlasII.Randomizer.Settings
 {
@@ -33,6 +34,11 @@ namespace BlasII.Randomizer.Settings
             {
                 CloseSettingsMenu();
             }
+
+            if (Input.GetKeyDown(KeyCode.O))
+                _setStartingWeaponLeft.ChangeOption();
+            else if (Input.GetKeyDown(KeyCode.P))
+                _setStartingWeaponRight.ChangeOption();
         }
 
         /// <summary>
@@ -90,6 +96,8 @@ namespace BlasII.Randomizer.Settings
                 0 => "Censer", 1 => "Blade", 2 => "Rapier", _ => "Random"
             };
 
+            _setStartingWeaponLeft.SetOption(config.startingWeapon);
+            _setStartingWeaponRight.SetOption(config.startingWeapon);
             //_settingSeed.SetText("Seed: " + config.seed);
             //_settingSW.SetText("Starting weapon: " + weaponName);
             //_settingLD.SetText("Logic difficulty: Normal");
@@ -125,11 +133,18 @@ namespace BlasII.Randomizer.Settings
             //_settingSLQ = CreateShadowText("SLQ", mainSection, new Vector2(0, -50), TEXT_COLOR, string.Empty);
             //_settingSS = CreateShadowText("SS", mainSection, new Vector2(0, -150), TEXT_COLOR, string.Empty);
 
-            CreateSelectableOption("SW", mainSection, new Vector2(-300, 80), "Starting weapon:");
-            CreateSelectableOption("LD", mainSection, new Vector2(-300, -80), "Logic difficulty:");
+            var sw = CreateSelectableOption("SW", mainSection, new Vector2(-300, 80), "Starting weapon:", new string[]
+            {
+                "Random", "Censer", "Blade", "Rapier"
+            });
+            _setStartingWeaponLeft = sw.Find("left").GetComponent<SelectableOption>();
+            _setStartingWeaponRight = sw.Find("right").GetComponent<SelectableOption>();
 
-            CreateSelectableOption("SLQ", mainSection, new Vector2(300, 80), "Shuffle long quests:");
-            CreateSelectableOption("SS", mainSection, new Vector2(300, -80), "Shuffle shops:");
+            //CreateSelectableOption("SW", mainSection, new Vector2(-300, 80), "Starting weapon:");
+            //CreateSelectableOption("LD", mainSection, new Vector2(-300, -80), "Logic difficulty:");
+
+            //CreateSelectableOption("SLQ", mainSection, new Vector2(300, 80), "Shuffle long quests:");
+            //CreateSelectableOption("SS", mainSection, new Vector2(300, -80), "Shuffle shops:");
 
             _mainMenu = mainMenu;
             _settingsMenu = settingsMenu;
@@ -164,17 +179,25 @@ namespace BlasII.Randomizer.Settings
             return pixelText;
         }
 
-        private void CreateSelectableOption(string name, Transform parent, Vector2 position, string header)
+        private Transform CreateSelectableOption(string name, Transform parent, Vector2 position, string header, string[] options)
         {
-            CreateShadowText(name + "-header", parent, position + Vector2.up * 60, TEXT_COLOR, header);
-            CreateShadowText(name + "-option", parent, position, Color.yellow, "Option");
-            CreateArrow(name + "-left", parent, position + Vector2.left * 150, false);
-            CreateArrow(name + "-right", parent, position + Vector2.right * 150, true);
+            var holder = UIModder.CreateRect(name, parent)
+                .SetPosition(position);
+
+            var headerText = CreateShadowText("header", holder, Vector2.up * 60, TEXT_COLOR, header);
+            var optionText = CreateShadowText("option", holder, Vector2.zero, Color.yellow, "Option");
+            var leftArrow = CreateArrow("left", holder, Vector2.left * 150, false).gameObject.AddComponent<SelectableOption>();
+            var rightArrow = CreateArrow("right", holder, Vector2.right * 150, true).gameObject.AddComponent<SelectableOption>();
+
+            leftArrow.Initialize(optionText, leftArrow.GetComponent<Image>(), rightArrow, false, options);
+            rightArrow.Initialize(optionText, rightArrow.GetComponent<Image>(), leftArrow, true, options);
+
+            return holder;
         }
 
-        private void CreateArrow(string name, Transform parent, Vector2 position, bool facingRight)
+        private Image CreateArrow(string name, Transform parent, Vector2 position, bool facingRight)
         {
-            UIModder.CreateRect(name, parent)
+            return UIModder.CreateRect(name, parent)
                 .SetPosition(position + Vector2.up * 10)
                 .SetSize(60, 60)
                 .AddImage()
@@ -183,6 +206,9 @@ namespace BlasII.Randomizer.Settings
 
         private const int TEXT_SIZE = 55;
         private readonly Color TEXT_COLOR = new Color32(192, 192, 192, 255);
+
+        private SelectableOption _setStartingWeaponLeft;
+        private SelectableOption _setStartingWeaponRight;
 
         private UIPixelTextWithShadow _settingSeed;
         private UIPixelTextWithShadow _settingSW;
