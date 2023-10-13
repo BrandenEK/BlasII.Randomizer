@@ -2,6 +2,7 @@
 using Il2CppTGK.Game;
 using Il2CppTGK.Game.Components.UI;
 using Il2CppTMPro;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -122,6 +123,8 @@ namespace BlasII.Randomizer.Settings
             //.AddImage()
             //.SetColor(Color.red).rectTransform;
 
+            _clickables = new List<Clickable>();
+
             _setSeed = CreateShadowText("Seed", mainSection, new Vector2(0, 300), TEXT_SIZE, TEXT_COLOR, string.Empty);
 
             _setStartingWeapon = CreateArrowOption("SW", mainSection, new Vector2(-300, 80), "Starting weapon:", new string[]
@@ -190,6 +193,14 @@ namespace BlasII.Randomizer.Settings
             var selectable = holder.gameObject.AddComponent<ArrowOption>();
             selectable.Initialize(optionText, leftArrow, rightArrow, options);
 
+            var leftClick = leftArrow.gameObject.AddComponent<Clickable>();
+            leftClick.ClickEvent = () => selectable.ChangeOption(-1);
+            _clickables.Add(leftClick);
+
+            var rightClick = rightArrow.gameObject.AddComponent<Clickable>();
+            rightClick.ClickEvent = () => selectable.ChangeOption(11);
+            _clickables.Add(rightClick);
+
             return selectable;
         }
 
@@ -211,5 +222,7 @@ namespace BlasII.Randomizer.Settings
         private ArrowOption _setShuffleShops;
 
         private UIPixelTextWithShadow _setSeed;
+
+        private List<Clickable> _clickables;
     }
 }

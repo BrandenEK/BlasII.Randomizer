@@ -5,7 +5,7 @@ using UnityEngine.UI;
 namespace BlasII.Randomizer.Settings
 {
     [MelonLoader.RegisterTypeInIl2Cpp]
-    internal class ArrowOption : MonoBehaviour
+    public class ArrowOption : MonoBehaviour
     {
         private UIPixelTextWithShadow _optionText;
         private Image _leftArrow;
