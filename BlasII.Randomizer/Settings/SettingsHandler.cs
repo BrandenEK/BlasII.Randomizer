@@ -23,6 +23,7 @@ namespace BlasII.Randomizer.Settings
 
         public void Update()
         {
+            Cursor.visible = SettingsMenuActive;
             if (!SettingsMenuActive)
                 return;
 
@@ -182,7 +183,7 @@ namespace BlasII.Randomizer.Settings
                 .SetPosition(position);
 
             CreateShadowText("header", holder, Vector2.up * 60, TEXT_COLOR, header);
-            var optionText = CreateShadowText("option", holder, Vector2.zero, Color.yellow, "Option");
+            var optionText = CreateShadowText("option", holder, Vector2.zero, new Color32(255, 231, 65, 255), "Option");
             var leftArrow = CreateArrowImage("left", holder, Vector2.left * 150);
             var rightArrow = CreateArrowImage("right", holder, Vector2.right * 150);
 
