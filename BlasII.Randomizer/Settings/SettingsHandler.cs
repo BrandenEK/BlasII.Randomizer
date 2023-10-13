@@ -90,11 +90,11 @@ namespace BlasII.Randomizer.Settings
                 0 => "Censer", 1 => "Blade", 2 => "Rapier", _ => "Random"
             };
 
-            _settingSeed.SetText("Seed: " + config.seed);
-            _settingSW.SetText("Starting weapon: " + weaponName);
-            _settingLD.SetText("Logic difficulty: Normal");
-            _settingSLQ.SetText("Shuffle long quests: " + (config.shuffleLongQuests ? "Yes" : "No"));
-            _settingSS.SetText("Shuffle shops: " + (config.shuffleShops ? "Yes" : "No"));
+            //_settingSeed.SetText("Seed: " + config.seed);
+            //_settingSW.SetText("Starting weapon: " + weaponName);
+            //_settingLD.SetText("Logic difficulty: Normal");
+            //_settingSLQ.SetText("Shuffle long quests: " + (config.shuffleLongQuests ? "Yes" : "No"));
+            //_settingSS.SetText("Shuffle shops: " + (config.shuffleShops ? "Yes" : "No"));
         }
 
         /// <summary>
@@ -119,11 +119,17 @@ namespace BlasII.Randomizer.Settings
             //.AddImage()
             //.SetColor(Color.red).rectTransform;
 
-            _settingSeed = CreateShadowText("Seed", mainSection, new Vector2(0, 250), TEXT_COLOR, string.Empty);
-            _settingSW = CreateShadowText("SW", mainSection, new Vector2(0, 150), TEXT_COLOR, string.Empty);
-            _settingLD = CreateShadowText("LD", mainSection, new Vector2(0, 50), TEXT_COLOR, string.Empty);
-            _settingSLQ = CreateShadowText("SLQ", mainSection, new Vector2(0, -50), TEXT_COLOR, string.Empty);
-            _settingSS = CreateShadowText("SS", mainSection, new Vector2(0, -150), TEXT_COLOR, string.Empty);
+            //_settingSeed = CreateShadowText("Seed", mainSection, new Vector2(0, 250), TEXT_COLOR, string.Empty);
+            //_settingSW = CreateShadowText("SW", mainSection, new Vector2(0, 150), TEXT_COLOR, string.Empty);
+            //_settingLD = CreateShadowText("LD", mainSection, new Vector2(0, 50), TEXT_COLOR, string.Empty);
+            //_settingSLQ = CreateShadowText("SLQ", mainSection, new Vector2(0, -50), TEXT_COLOR, string.Empty);
+            //_settingSS = CreateShadowText("SS", mainSection, new Vector2(0, -150), TEXT_COLOR, string.Empty);
+
+            CreateSelectableOption("SW", mainSection, new Vector2(-300, 80), "Starting weapon:");
+            CreateSelectableOption("LD", mainSection, new Vector2(-300, -80), "Logic difficulty:");
+
+            CreateSelectableOption("SLQ", mainSection, new Vector2(300, 80), "Shuffle long quests:");
+            CreateSelectableOption("SS", mainSection, new Vector2(300, -80), "Shuffle shops:");
 
             _mainMenu = mainMenu;
             _settingsMenu = settingsMenu;
@@ -156,6 +162,23 @@ namespace BlasII.Randomizer.Settings
             pixelText.shadowText = shadow;
 
             return pixelText;
+        }
+
+        private void CreateSelectableOption(string name, Transform parent, Vector2 position, string header)
+        {
+            CreateShadowText(name + "-header", parent, position + Vector2.up * 60, TEXT_COLOR, header);
+            CreateShadowText(name + "-option", parent, position, Color.yellow, "Option");
+            CreateArrow(name + "-left", parent, position + Vector2.left * 150, false);
+            CreateArrow(name + "-right", parent, position + Vector2.right * 150, true);
+        }
+
+        private void CreateArrow(string name, Transform parent, Vector2 position, bool facingRight)
+        {
+            UIModder.CreateRect(name, parent)
+                .SetPosition(position + Vector2.up * 10)
+                .SetSize(60, 60)
+                .AddImage()
+                .SetSprite(Main.Randomizer.Data.GetUI(facingRight ? DataStorage.UIType.RightInactive : DataStorage.UIType.LeftInactive));
         }
 
         private const int TEXT_SIZE = 55;
