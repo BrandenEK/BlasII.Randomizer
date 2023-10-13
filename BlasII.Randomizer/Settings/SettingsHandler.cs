@@ -2,7 +2,6 @@
 using Il2CppTGK.Game;
 using Il2CppTGK.Game.Components.UI;
 using Il2CppTMPro;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -36,11 +35,6 @@ namespace BlasII.Randomizer.Settings
             {
                 CloseSettingsMenu();
             }
-
-            if (Input.GetKeyDown(KeyCode.O))
-                _setStartingWeapon.ChangeOption(-1);
-            else if (Input.GetKeyDown(KeyCode.P))
-                _setStartingWeapon.ChangeOption(1);
         }
 
         /// <summary>
@@ -108,6 +102,7 @@ namespace BlasII.Randomizer.Settings
         {
             Main.Randomizer.LogWarning("Creating settings menu");
 
+            Object.FindObjectOfType<CanvasScaler>().gameObject.AddComponent<GraphicRaycaster>();
             var mainMenu = Object.FindObjectOfType<MainMenuWindowLogic>();
             var slotsMenu = mainMenu.slotsMenuView.transform.parent.gameObject;
 
@@ -122,8 +117,6 @@ namespace BlasII.Randomizer.Settings
                 .SetPosition(0, -30);
             //.AddImage()
             //.SetColor(Color.red).rectTransform;
-
-            _clickables = new List<Clickable>();
 
             _setSeed = CreateShadowText("Seed", mainSection, new Vector2(0, 300), TEXT_SIZE, TEXT_COLOR, string.Empty);
 
@@ -182,24 +175,22 @@ namespace BlasII.Randomizer.Settings
 
         private ArrowOption CreateArrowOption(string name, Transform parent, Vector2 position, string header, string[] options)
         {
-            var holder = UIModder.CreateRect(name, parent)
-                .SetPosition(position);
+            // Create ui holder
+            var holder = UIModder.CreateRect(name, parent).SetPosition(position);
 
+            // Create text and images
             CreateShadowText("header", holder, Vector2.up * 60, TEXT_SIZE, TEXT_COLOR, header);
             var optionText = CreateShadowText("option", holder, Vector2.zero, TEXT_SIZE - 5, new Color32(255, 231, 65, 255), "Option");
             var leftArrow = CreateArrowImage("left", holder, Vector2.left * 150);
             var rightArrow = CreateArrowImage("right", holder, Vector2.right * 150);
 
+            // Initialize arrow option
             var selectable = holder.gameObject.AddComponent<ArrowOption>();
             selectable.Initialize(optionText, leftArrow, rightArrow, options);
 
-            var leftClick = leftArrow.gameObject.AddComponent<Clickable>();
-            leftClick.ClickEvent = () => selectable.ChangeOption(-1);
-            _clickables.Add(leftClick);
-
-            var rightClick = rightArrow.gameObject.AddComponent<Clickable>();
-            rightClick.ClickEvent = () => selectable.ChangeOption(11);
-            _clickables.Add(rightClick);
+            // Add click events
+            AddClickHandler(leftArrow.gameObject, () => selectable.ChangeOption(-1));
+            AddClickHandler(rightArrow.gameObject, () => selectable.ChangeOption(1));
 
             return selectable;
         }
@@ -212,6 +203,14 @@ namespace BlasII.Randomizer.Settings
                 .AddImage();
         }
 
+        private void AddClickHandler(GameObject obj, System.Action onClick)
+        {
+            var button = obj.AddComponent<Button>();
+            button.interactable = true;
+            button.transition = Selectable.Transition.None;
+            button.onClick.AddListener(onClick);
+        }
+
         private const int TEXT_SIZE = 55;
         private readonly Color TEXT_COLOR = new Color32(192, 192, 192, 255);
 
@@ -222,7 +221,5 @@ namespace BlasII.Randomizer.Settings
         private ArrowOption _setShuffleShops;
 
         private UIPixelTextWithShadow _setSeed;
-
-        private List<Clickable> _clickables;
     }
 }
