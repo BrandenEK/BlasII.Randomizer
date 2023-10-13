@@ -19,14 +19,12 @@ namespace BlasII.Randomizer
         public ItemHandler ItemHandler { get; } = new();
         public SettingsHandler SettingsHandler { get; } = new();
 
-        // Loaded at init and never changes
-        public TempConfig TempConfig { get; private set; }
+        public RandomizerSettings CurrentSettings { get; set; }
 
         protected override void OnInitialize()
         {
             Data.Initialize();
-
-            TempConfig = FileHandler.LoadConfig<TempConfig>();
+            CurrentSettings = RandomizerSettings.DefaultSettings;
         }
 
         protected override void OnUpdate()
@@ -72,8 +70,8 @@ namespace BlasII.Randomizer
 
         public void NewGame()
         {
-            Log($"Shuffling items with seed {TempConfig.seed}");
-            ItemHandler.FakeShuffle(TempConfig.seed, TempConfig);
+            Log($"Shuffling items with seed {CurrentSettings.seed}");
+            ItemHandler.FakeShuffle(CurrentSettings.seed, CurrentSettings);
             AllowPrieDieuWarp();
         }
 
@@ -85,7 +83,7 @@ namespace BlasII.Randomizer
                 mappedItems = ItemHandler.MappedItems,
                 collectedLocations = ItemHandler.CollectedLocations,
                 collectedItems = ItemHandler.CollectedItems,
-                tempConfig = TempConfig,
+                settings = CurrentSettings,
             };
         }
 
@@ -96,6 +94,7 @@ namespace BlasII.Randomizer
             ItemHandler.CollectedLocations = randomizerData.collectedLocations;
             ItemHandler.CollectedItems = randomizerData.collectedItems;
 
+            CurrentSettings = randomizerData.settings;
             Log($"Loaded file with {randomizerData.collectedLocations.Count} collected locations");
         }
 
@@ -123,17 +122,17 @@ namespace BlasII.Randomizer
 
             foreach (var statue in Object.FindObjectsOfType<QuestVarTrigger>())
             {
-                int weapon = -1;
+                int weapon;
                 if (statue.name.EndsWith("CENSER"))
                     weapon = 0;
                 else if (statue.name.EndsWith("ROSARY"))
                     weapon = 1;
                 else if (statue.name.EndsWith("RAPIER"))
                     weapon = 2;
-                if (weapon == -1)
+                else
                     continue;
 
-                if (weapon != TempConfig.startingWeapon)
+                if (weapon != CurrentSettings.RealStartingWeapon)
                 {
                     int[] disabledAnimations = new int[] { -1322956020, -786038676, -394840968 };
 

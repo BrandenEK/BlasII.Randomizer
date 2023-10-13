@@ -8,25 +8,25 @@ namespace BlasII.Randomizer
 
         // General settings
         public readonly int seed;
-        public readonly bool unlockFastTravel;
         public readonly bool allowHints;
 
         // Item rando settings
-        public readonly byte logicType;
-        public readonly byte glitchType;
-        public readonly Weapon startingWeapon;
-        public readonly Location startingLocation;
-        public readonly bool junkLongQuests;
+        public readonly int logicType;
+        public readonly int glitchType;
+        public readonly int startingWeapon;
+        public readonly int startingLocation;
+        public readonly bool shuffleLongQuests;
+        public readonly bool shuffleShops;
 
         // Enemy rando settings
-        public readonly byte enemyType;
+        public readonly int enemyType;
 
         // Door rando settings
-        public readonly byte doorType;
+        public readonly int doorType;
 
-        public static RandomizerSettings DefaultSettings => new RandomizerSettings(new Random().Next(1, MAX_SEED), 1, 0, Weapon.Random, Location.Repose, true, true, true, 0, 0);
+        public static RandomizerSettings DefaultSettings => new(new Random().Next(1, MAX_SEED + 1), 1, 0, 0, 0, false, true, true, 0, 0);
 
-        public RandomizerSettings(int seed, byte logic, byte glitch, Weapon weapon, Location location, bool junk, bool fast, bool hints, byte enemy, byte door)
+        public RandomizerSettings(int seed, int logic, int glitch, int weapon, int location, bool longQuests, bool shops, bool hints, int enemy, int door)
         {
             this.seed = seed;
 
@@ -35,21 +35,32 @@ namespace BlasII.Randomizer
 
             startingWeapon = weapon;
             startingLocation = location;
-            junkLongQuests = junk;
+            shuffleLongQuests = longQuests;
+            shuffleShops = shops;
 
-            unlockFastTravel = fast;
             allowHints = hints;
 
             enemyType = enemy;
             doorType = door;
         }
 
+        public int RealStartingWeapon
+        {
+            get
+            {
+                if (startingWeapon >= 1 && startingWeapon <= 3)
+                    return (startingWeapon - 1);
+
+                return new Random(seed).Next(0, 3);
+            }
+        }
+
         public enum Weapon
         {
+            Random,
             Censor,
             Sword,
             Rapier,
-            Random,
         }
 
         public enum Location

@@ -52,7 +52,7 @@ namespace BlasII.Randomizer.Settings
             _settingsMenu.SetActive(true);
             _slotsMenu.SetActive(false);
 
-            UpdateSettingsMenu(Main.Randomizer.TempConfig);
+            MenuSettings = RandomizerSettings.DefaultSettings;
             CoreCache.Input.ClearAllInputBlocks();
             _currentSlot = slot;
         }
@@ -77,22 +77,37 @@ namespace BlasII.Randomizer.Settings
         private void StartNewGame()
         {
             Main.Randomizer.LogWarning("Starting new game");
+
+            Main.Randomizer.CurrentSettings = MenuSettings;
             NewGame_Settings_Patch.NewGameFlag = true;
             Object.FindObjectOfType<MainMenuWindowLogic>().NewGame(_currentSlot);
             NewGame_Settings_Patch.NewGameFlag = false;
         }
 
         /// <summary>
-        /// Updates all of the settings in the menu based on the config
+        /// Stores or loads the entire settings menu into or from a settings object
         /// </summary>
-        private void UpdateSettingsMenu(TempConfig config)
+        private RandomizerSettings MenuSettings
         {
-            _setStartingWeapon.SetOption(config.startingWeapon);
-            _setLogicDifficulty.SetOption(1);
-            _setShuffleLongQuests.SetOption(0);
-            _setShuffleShops.SetOption(1);
+            get
+            {
+                int startingWeapon = _setStartingWeapon.CurrentOption;
+                int logicDifficulty = _setLogicDifficulty.CurrentOption;
+                bool shuffleLongQuests = _setShuffleLongQuests.CurrentOption == 1;
+                bool shuffleShops = _setShuffleShops.CurrentOption == 1;
 
-            _setSeed.SetText("Seed: " + config.seed);
+                int seed = 777777;
+                return new RandomizerSettings(seed, logicDifficulty, 0, startingWeapon, 0, shuffleLongQuests, shuffleShops, true, 0, 0);
+            }
+            set
+            {
+                _setStartingWeapon.SetOption(value.startingWeapon);
+                _setLogicDifficulty.SetOption(0);
+                _setShuffleLongQuests.SetOption(value.shuffleLongQuests ? 1 : 0);
+                _setShuffleShops.SetOption(value.shuffleShops ? 1 : 0);
+
+                _setSeed.SetText("Seed: " + value.seed);
+            }
         }
 
         /// <summary>
@@ -127,7 +142,7 @@ namespace BlasII.Randomizer.Settings
 
             _setLogicDifficulty = CreateArrowOption("LD", mainSection, new Vector2(-300, -80), "Logic difficulty:", new string[]
             {
-                "Easy", "Normal", "Hard"
+                "Normal" // "Easy", "Normal", "Hard"
             });
 
             _setShuffleLongQuests = CreateArrowOption("SLQ", mainSection, new Vector2(300, 80), "Shuffle long quests:", new string[]
