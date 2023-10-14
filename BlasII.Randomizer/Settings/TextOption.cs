@@ -70,72 +70,70 @@ namespace BlasII.Randomizer.Settings
         private void ProcessCharacter(char c)
         {
             if (c == '\b')
-                Backspace = c;
-            else if (c == '\n' || c == '\r')
-                Confirm = c;
-            else if (_currentValue.Length < _maxLength)
             {
-                if (char.IsWhiteSpace(c))
-                    Whitespace = c;
-                else if (!char.IsNumber(c))
-                    Nonnumeric = c;
-                else if (c == '0')
-                    Zero = c;
-                else
-                    Numeric = c;
+                HandleBackspace();
+                return;
+            }
+
+            if (c == '\n' || c == '\r')
+            {
+                HandleConfirm();
+                return;
+            }
+
+            if (_currentValue.Length >= _maxLength)
+                return;
+
+            if (char.IsWhiteSpace(c))
+            {
+                HandleWhitespace(c);
+            }
+            else if (!char.IsNumber(c))
+            {
+                HandleNonNumeric(c);
+            }
+            else if (c == '0')
+            {
+                HandleZero();
+            }
+            else
+            {
+                HandleNumber(c);
             }
         }
 
-        char Backspace
+        void HandleBackspace()
         {
-            set
-            {
-                if (_currentValue.Length > 0)
-                    _currentValue = _currentValue[..^1];
-            }
+            if (_currentValue.Length > 0)
+                _currentValue = _currentValue[..^1];
         }
 
-        char Confirm
+        void HandleConfirm()
         {
-            set
-            {
-                _selected = false;
-            }
+            _selected = false;
         }
 
-        char Whitespace
+        void HandleWhitespace(char c)
         {
-            set
-            {
-                if (_currentValue.Length > 0 && !_numeric)
-                    _currentValue += value;
-            }
+            if (_currentValue.Length > 0 && !_numeric)
+                _currentValue += c;
         }
 
-        char Nonnumeric
+        void HandleNonNumeric(char c)
         {
-            set
-            {
-                if (!_numeric)
-                    _currentValue += value;
-            }
+            if (!_numeric)
+                _currentValue += c;
         }
 
-        char Zero
+        void HandleZero()
         {
-            set
-            {
-                if (_allowZero || _currentValue.Length > 0)
-                    _currentValue += value;
-            }
+            if (_allowZero || _currentValue.Length > 0)
+                _currentValue += '0';
         }
 
-        char Numeric
+        void HandleNumber(char c)
         {
-            set
-            {
-                _currentValue += value;
-            }
+            _currentValue += c;
         }
     }
 }
