@@ -11,21 +11,21 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    
+
     steps:
     - name: Checkout Repository
       uses: actions/checkout@v3
-      
+
     - name: Setup .NET
       uses: actions/setup-dotnet@v3
       with:
         dotnet-version: 6.0.x
-      
+
     - name: Build Project
       run: |
         dotnet restore
         dotnet build --configuration Release --no-restore
-            
+
     - name: Export Settings
       run: |
         MOD_TITLE=$(grep -oP '<Title>\K[^<]+' ${{ github.event.repository.name }}/${{ github.event.repository.name }}.csproj)
@@ -36,9 +36,9 @@ jobs:
         echo "MOD_VERSION=$MOD_VERSION" >> $GITHUB_ENV
         BUILD_DATE=$(date +'%Y-%m-%d')
         echo "BUILD_DATE=$BUILD_DATE" >> $GITHUB_ENV
-      
+
     - name: Upload Artifact
-      if: !contains(github.ref_type, 'tag')
+      if: ${{ !contains(github.ref_type, 'tag') }}
       uses: actions/upload-artifact@v3
       with:
         name: ${{ env.MOD_NAME }} v${{ env.MOD_VERSION }} (${{ env.BUILD_DATE }})
@@ -66,7 +66,7 @@ jobs:
         asset_path: publish/${{ env.MOD_NAME }}.zip
         asset_name: ${{ env.MOD_NAME }}.zip
         asset_content_type: application/zip
-
+        
     - name: Upload Nuget
       if: contains(github.ref_type, 'tag')
       run: dotnet nuget push **\*.nupkg -k ${{ secrets.NUGET_API_KEY }} -s https://api.nuget.org/v3/index.json
