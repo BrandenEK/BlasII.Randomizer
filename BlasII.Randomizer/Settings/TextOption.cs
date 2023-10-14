@@ -1,4 +1,5 @@
-﻿using Il2CppTGK.Game.Components.UI;
+﻿using BlasII.ModdingAPI.Audio;
+using Il2CppTGK.Game.Components.UI;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -98,31 +99,44 @@ namespace BlasII.Randomizer.Settings
 
         void HandleBackspace()
         {
-            if (_currentValue.Length > 0)
-                CurrentValue = _currentValue[..^1];
+            if (_currentValue.Length == 0) // Skip if value is empty
+                return;
+
+            CurrentValue = _currentValue[..^1];
+            Main.Randomizer.AudioHandler.PlayEffectUI(UISFX.ChangeSelection);
         }
 
         void HandleWhitespace(char c)
         {
-            if (_currentValue.Length > 0 && !_numeric)
-                CurrentValue += c;
+            if (_currentValue.Length == 0 || _numeric) // Skip if value is empty or only numbers allowed
+                return;
+
+            CurrentValue += c;
+            Main.Randomizer.AudioHandler.PlayEffectUI(UISFX.ChangeSelection);
         }
 
         void HandleNonNumeric(char c)
         {
-            if (!_numeric)
-                CurrentValue += c;
+            if (_numeric) // Skip if only numbers allowed
+                return;
+
+            CurrentValue += c;
+            Main.Randomizer.AudioHandler.PlayEffectUI(UISFX.ChangeSelection);
         }
 
         void HandleZero()
         {
-            if (_allowZero || _currentValue.Length > 0)
-                CurrentValue += '0';
+            if (!_allowZero && _currentValue.Length == 0) // Skip if value is empty and cant start with zero
+                return;
+
+            CurrentValue += '0';
+            Main.Randomizer.AudioHandler.PlayEffectUI(UISFX.ChangeSelection);
         }
 
         void HandleNumber(char c)
         {
             CurrentValue += c;
+            Main.Randomizer.AudioHandler.PlayEffectUI(UISFX.ChangeSelection);
         }
     }
 }

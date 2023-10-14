@@ -1,4 +1,5 @@
-﻿using Il2CppTGK.Game.Components.UI;
+﻿using BlasII.ModdingAPI.Audio;
+using Il2CppTGK.Game.Components.UI;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -19,9 +20,6 @@ namespace BlasII.Randomizer.Settings
             get => _currentOption;
             set
             {
-                if (value < 0 || value >= _options.Length)
-                    return;
-
                 _currentOption = value;
                 UpdateStatus();
             }
@@ -29,7 +27,12 @@ namespace BlasII.Randomizer.Settings
 
         public void ChangeOption(int change)
         {
-            CurrentOption += change;
+            int newOption = _currentOption + change;
+            if (newOption < 0 || newOption >= _options.Length)
+                return;
+
+            CurrentOption = newOption;
+            Main.Randomizer.AudioHandler.PlayEffectUI(UISFX.ChangeSelection);
         }
 
         public void Initialize(UIPixelTextWithShadow optionText, Image leftArrow, Image rightArrow, string[] options)
