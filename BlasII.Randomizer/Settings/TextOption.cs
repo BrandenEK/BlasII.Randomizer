@@ -17,7 +17,16 @@ namespace BlasII.Randomizer.Settings
         private string _currentValue;
         private bool _selected;
 
-        public string CurrentValue => _currentValue.Length > 0 ? _currentValue : string.Empty;
+        public string CurrentValue
+        {
+            get => _currentValue.Length > 0 ? _currentValue : string.Empty;
+            set
+            {
+                _currentValue = value;
+                UpdateStatus();
+            }
+        }
+
         public int CurrentNumericValue => int.TryParse(CurrentValue, out int value) ? value : 0;
 
         public void ToggleSelected()
@@ -26,27 +35,15 @@ namespace BlasII.Randomizer.Settings
             UpdateStatus();
         }
 
-        public void SetValue(string value)
-        {
-            _currentValue = value;
-            UpdateStatus();
-        }
-
         private void Update()
         {
             if (!_selected)
                 return;
 
-            string input = Input.inputString;
-            if (input.Length == 0)
-                return;
-
-            foreach (char c in input)
+            foreach (char c in Input.inputString)
             {
                 ProcessCharacter(c);
             }
-
-            UpdateStatus();
         }
 
         public void Initialize(Image underline, UIPixelTextWithShadow text, bool numeric, bool allowZero, int maxLength)
@@ -69,15 +66,12 @@ namespace BlasII.Randomizer.Settings
 
         private void ProcessCharacter(char c)
         {
+            if (c == '\r' || c == '\n')
+                return;
+
             if (c == '\b')
             {
                 HandleBackspace();
-                return;
-            }
-
-            if (c == '\n' || c == '\r')
-            {
-                HandleConfirm();
                 return;
             }
 
@@ -105,35 +99,30 @@ namespace BlasII.Randomizer.Settings
         void HandleBackspace()
         {
             if (_currentValue.Length > 0)
-                _currentValue = _currentValue[..^1];
-        }
-
-        void HandleConfirm()
-        {
-            _selected = false;
+                CurrentValue = _currentValue[..^1];
         }
 
         void HandleWhitespace(char c)
         {
             if (_currentValue.Length > 0 && !_numeric)
-                _currentValue += c;
+                CurrentValue += c;
         }
 
         void HandleNonNumeric(char c)
         {
             if (!_numeric)
-                _currentValue += c;
+                CurrentValue += c;
         }
 
         void HandleZero()
         {
             if (_allowZero || _currentValue.Length > 0)
-                _currentValue += '0';
+                CurrentValue += '0';
         }
 
         void HandleNumber(char c)
         {
-            _currentValue += c;
+            CurrentValue += c;
         }
     }
 }

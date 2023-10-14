@@ -101,12 +101,12 @@ namespace BlasII.Randomizer.Settings
             }
             set
             {
-                _setStartingWeapon.SetOption(value.startingWeapon);
-                _setLogicDifficulty.SetOption(0);
-                _setShuffleLongQuests.SetOption(value.shuffleLongQuests ? 1 : 0);
-                _setShuffleShops.SetOption(value.shuffleShops ? 1 : 0);
+                _setStartingWeapon.CurrentOption = value.startingWeapon;
+                _setLogicDifficulty.CurrentOption = 0;
+                _setShuffleLongQuests.CurrentOption = value.shuffleLongQuests ? 1 : 0;
+                _setShuffleShops.CurrentOption = value.shuffleShops ? 1 : 0;
 
-                _setSeed.SetValue(string.Empty);
+                _setSeed.CurrentValue = string.Empty;
             }
         }
 

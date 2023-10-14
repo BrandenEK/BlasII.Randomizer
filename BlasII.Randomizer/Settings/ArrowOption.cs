@@ -14,20 +14,22 @@ namespace BlasII.Randomizer.Settings
         private string[] _options;
         private int _currentOption;
 
-        public int CurrentOption => _currentOption;
-
-        public void SetOption(int option)
+        public int CurrentOption
         {
-            if (option < 0 || option >= _options.Length)
-                return;
+            get => _currentOption;
+            set
+            {
+                if (value < 0 || value >= _options.Length)
+                    return;
 
-            _currentOption = option;
-            UpdateStatus();
+                _currentOption = value;
+                UpdateStatus();
+            }
         }
 
         public void ChangeOption(int change)
         {
-            SetOption(_currentOption + change);
+            CurrentOption += change;
         }
 
         public void Initialize(UIPixelTextWithShadow optionText, Image leftArrow, Image rightArrow, string[] options)
