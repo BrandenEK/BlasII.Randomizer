@@ -21,12 +21,6 @@
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Reference Include="ModdingAPI">
-      <HintPath>..\lib\ModdingAPI.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-
   <Target Name="Development" AfterTargets="PostBuildEvent">
 
     <!-- Get resource files -->
