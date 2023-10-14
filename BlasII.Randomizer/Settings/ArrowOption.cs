@@ -21,7 +21,6 @@ namespace BlasII.Randomizer.Settings
             if (option < 0 || option >= _options.Length)
                 return;
 
-            Main.Randomizer.Log($"Changing option for {name} to {option}");
             _currentOption = option;
             UpdateStatus();
         }

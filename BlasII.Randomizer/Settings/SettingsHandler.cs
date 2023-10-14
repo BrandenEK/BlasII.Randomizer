@@ -130,8 +130,6 @@ namespace BlasII.Randomizer.Settings
             RectTransform mainSection = UIModder.CreateRect("Main Section", settingsMenu.transform)
                 .SetSize(1800, 750)
                 .SetPosition(0, -30);
-            //.AddImage()
-            //.SetColor(Color.red).rectTransform;
 
             _setSeed = CreateTextOption("Seed", mainSection, new Vector2(0, 300), 150, "Seed:", true, false, 6);
 
