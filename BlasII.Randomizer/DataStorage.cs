@@ -102,12 +102,15 @@ namespace BlasII.Randomizer
 
         public enum UIType
         {
-            LeftActive = 0,
-            RightActive = 1,
-            LeftInactive = 2,
-            RightInactive = 3,
-            TextInactive = 4,
-            TextActive = 5,
+            ToggleOff = 0,
+            ToggleOn = 1,
+            ToggleNo = 2,
+            ArrowLeftOn = 3,
+            ArrowRightOn = 4,
+            ArrowLeftOff = 5,
+            ArrowRightOff = 6,
+            TextInactive = 7,
+            TextActive = 8,
         }
 
         // Special data

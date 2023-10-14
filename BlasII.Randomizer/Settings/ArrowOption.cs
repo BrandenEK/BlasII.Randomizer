@@ -42,8 +42,8 @@ namespace BlasII.Randomizer.Settings
         private void UpdateStatus()
         {
             _optionText.SetText(_options[_currentOption]);
-            _leftArrow.sprite = Main.Randomizer.Data.GetUI(_currentOption == 0 ? DataStorage.UIType.LeftInactive : DataStorage.UIType.LeftActive);
-            _rightArrow.sprite = Main.Randomizer.Data.GetUI(_currentOption == _options.Length - 1 ? DataStorage.UIType.RightInactive : DataStorage.UIType.RightActive);
+            _leftArrow.sprite = Main.Randomizer.Data.GetUI(_currentOption == 0 ? DataStorage.UIType.ArrowLeftOff : DataStorage.UIType.ArrowLeftOn);
+            _rightArrow.sprite = Main.Randomizer.Data.GetUI(_currentOption == _options.Length - 1 ? DataStorage.UIType.ArrowRightOff : DataStorage.UIType.ArrowRightOn);
         }
     }
 }
