@@ -17,7 +17,16 @@ namespace BlasII.Randomizer.Settings
         private string _currentValue;
         private bool _selected;
 
-        public string CurrentValue => _currentValue.Length > 0 ? _currentValue : string.Empty;
+        public string CurrentValue
+        {
+            get => _currentValue.Length > 0 ? _currentValue : string.Empty;
+            set
+            {
+                _currentValue = value;
+                UpdateStatus();
+            }
+        }
+
         public int CurrentNumericValue => int.TryParse(CurrentValue, out int value) ? value : 0;
 
         public void ToggleSelected()
@@ -26,27 +35,15 @@ namespace BlasII.Randomizer.Settings
             UpdateStatus();
         }
 
-        public void SetValue(string value)
-        {
-            _currentValue = value;
-            UpdateStatus();
-        }
-
         private void Update()
         {
             if (!_selected)
                 return;
 
-            string input = Input.inputString;
-            if (input.Length == 0)
-                return;
-
-            foreach (char c in input)
+            foreach (char c in Input.inputString)
             {
                 ProcessCharacter(c);
             }
-
-            UpdateStatus();
         }
 
         public void Initialize(Image underline, UIPixelTextWithShadow text, bool numeric, bool allowZero, int maxLength)
@@ -69,73 +66,63 @@ namespace BlasII.Randomizer.Settings
 
         private void ProcessCharacter(char c)
         {
+            if (c == '\r' || c == '\n')
+                return;
+
             if (c == '\b')
-                Backspace = c;
-            else if (c == '\n' || c == '\r')
-                Confirm = c;
-            else if (_currentValue.Length < _maxLength)
             {
-                if (char.IsWhiteSpace(c))
-                    Whitespace = c;
-                else if (!char.IsNumber(c))
-                    Nonnumeric = c;
-                else if (c == '0')
-                    Zero = c;
-                else
-                    Numeric = c;
+                HandleBackspace();
+                return;
+            }
+
+            if (_currentValue.Length >= _maxLength)
+                return;
+
+            if (char.IsWhiteSpace(c))
+            {
+                HandleWhitespace(c);
+            }
+            else if (!char.IsNumber(c))
+            {
+                HandleNonNumeric(c);
+            }
+            else if (c == '0')
+            {
+                HandleZero();
+            }
+            else
+            {
+                HandleNumber(c);
             }
         }
 
-        char Backspace
+        void HandleBackspace()
         {
-            set
-            {
-                if (_currentValue.Length > 0)
-                    _currentValue = _currentValue[..^1];
-            }
+            if (_currentValue.Length > 0)
+                CurrentValue = _currentValue[..^1];
         }
 
-        char Confirm
+        void HandleWhitespace(char c)
         {
-            set
-            {
-                _selected = false;
-            }
+            if (_currentValue.Length > 0 && !_numeric)
+                CurrentValue += c;
         }
 
-        char Whitespace
+        void HandleNonNumeric(char c)
         {
-            set
-            {
-                if (_currentValue.Length > 0 && !_numeric)
-                    _currentValue += value;
-            }
+            if (!_numeric)
+                CurrentValue += c;
         }
 
-        char Nonnumeric
+        void HandleZero()
         {
-            set
-            {
-                if (!_numeric)
-                    _currentValue += value;
-            }
+            if (_allowZero || _currentValue.Length > 0)
+                CurrentValue += '0';
         }
 
-        char Zero
+        void HandleNumber(char c)
         {
-            set
-            {
-                if (_allowZero || _currentValue.Length > 0)
-                    _currentValue += value;
-            }
-        }
-
-        char Numeric
-        {
-            set
-            {
-                _currentValue += value;
-            }
+            CurrentValue += c;
         }
     }
 }
