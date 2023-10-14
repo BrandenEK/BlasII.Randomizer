@@ -19,14 +19,14 @@ namespace BlasII.Randomizer.Items
         [JsonProperty] public readonly string logic;
 
         /// <summary>
-        /// If this is a certain type of location, make sure the config allows it to be shuffled
+        /// If this is a certain type of location, make sure the settings allow it to be shuffled
         /// </summary>
-        public bool ShouldBeShuffled(TempConfig config)
+        public bool ShouldBeShuffled(RandomizerSettings settings)
         {
-            if (type == ItemLocationType.LongQuest && !config.shuffleLongQuests)
+            if (type == ItemLocationType.LongQuest && !settings.shuffleLongQuests)
                 return false;
 
-            if (type == ItemLocationType.Shop && !config.shuffleShops)
+            if (type == ItemLocationType.Shop && !settings.shuffleShops)
                 return false;
 
             return true;

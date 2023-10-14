@@ -10,6 +10,6 @@ namespace BlasII.Randomizer
         public List<string> collectedLocations;
         public List<string> collectedItems;
 
-        public TempConfig tempConfig;
+        public RandomizerSettings settings;
     }
 }

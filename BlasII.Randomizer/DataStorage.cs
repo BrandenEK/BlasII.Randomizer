@@ -32,8 +32,10 @@ namespace BlasII.Randomizer
         // Images
 
         private readonly Dictionary<ImageType, Sprite> _images = new();
+        private readonly Dictionary<UIType, Sprite> _ui = new();
 
         public Sprite GetImage(ImageType type) => _images.TryGetValue(type, out var sprite) ? sprite : null;
+        public Sprite GetUI(UIType type) => _ui.TryGetValue(type, out var sprite) ? sprite : null;
 
         // Loading
 
@@ -72,11 +74,16 @@ namespace BlasII.Randomizer
             if (Main.Randomizer.FileHandler.LoadDataAsTexture("rando-items.png", out Sprite[] images, 30, 32, true))
             {
                 for (int i = 0; i < images.Length; i++)
-                {
                     _images.Add((ImageType)i, images[i]);
-                }
             }
             Main.Randomizer.Log($"Loaded {_images.Count} images!");
+
+            if (Main.Randomizer.FileHandler.LoadDataAsTexture("ui.png", out Sprite[] ui, 36, 36, true))
+            {
+                for (int i = 0; i < ui.Length; i++)
+                    _ui.Add((UIType)i, ui[i]);
+            }
+            Main.Randomizer.Log($"Loaded {_ui.Count} ui elements!");
         }
 
         public enum ImageType
@@ -91,6 +98,16 @@ namespace BlasII.Randomizer
             Rapier = 7,
             Tears = 8,
             Invalid = 9,
+        }
+
+        public enum UIType
+        {
+            LeftActive = 0,
+            RightActive = 1,
+            LeftInactive = 2,
+            RightInactive = 3,
+            TextInactive = 4,
+            TextActive = 5,
         }
 
         // Special data

@@ -4,22 +4,22 @@ namespace BlasII.Randomizer.Items
 {
     internal class ItemShuffler : BaseShuffler
     {
-        public override bool Shuffle(uint seed, TempConfig config, Dictionary<string, string> output)
+        public override bool Shuffle(int seed, RandomizerSettings settings, Dictionary<string, string> output)
         {
             output.Clear();
             Initialize(seed);
 
             // Create inventory with starting items
             var inventory = new Blas2Inventory();
-            AddStartingItemsToInventory(inventory, config);
+            AddStartingItemsToInventory(inventory, settings);
 
             // Create pools of all locations to randomize
             List<ItemLocation> progressionLocations = new(), junkLocations = new(), bossKeyLocations = new();
-            CreateLocationPool(progressionLocations, junkLocations, bossKeyLocations, config);
+            CreateLocationPool(progressionLocations, junkLocations, bossKeyLocations, settings);
 
             // Create pools of all items to randomize
             List<Item> progressionItems = new(), junkItems = new();
-            CreateItemPool(progressionItems, junkItems, progressionLocations.Count + junkLocations.Count, config);
+            CreateItemPool(progressionItems, junkItems, progressionLocations.Count + junkLocations.Count, settings);
 
             // Place boss key items at boss key locations
             Item bossKeyItem = Main.Randomizer.Data.GetItem("BK");
@@ -43,34 +43,34 @@ namespace BlasII.Randomizer.Items
         /// <summary>
         /// Adds the starting weapon to the initial inventory
         /// </summary>
-        private void AddStartingItemsToInventory(Blas2Inventory inventory, TempConfig config)
+        private void AddStartingItemsToInventory(Blas2Inventory inventory, RandomizerSettings settings)
         {
             // Add the starting weapon
-            inventory.AddItem(Main.Randomizer.Data.GetItem(GetStartingWeaponId(config)));
+            inventory.AddItem(Main.Randomizer.Data.GetItem(GetStartingWeaponId(settings)));
         }
 
         /// <summary>
         /// Fills the three location pools
         /// </summary>
-        private void CreateLocationPool(List<ItemLocation> progressionLocations, List<ItemLocation> junkLocations, List<ItemLocation> bossKeyLocations, TempConfig config)
+        private void CreateLocationPool(List<ItemLocation> progressionLocations, List<ItemLocation> junkLocations, List<ItemLocation> bossKeyLocations, RandomizerSettings settings)
         {
             foreach (var location in Main.Randomizer.Data.GetAllItemLocations())
             {
-                AddLocationToPool(progressionLocations, junkLocations, bossKeyLocations, location, config);
+                AddLocationToPool(progressionLocations, junkLocations, bossKeyLocations, location, settings);
             }
         }
 
         /// <summary>
         /// Takes a single location data and adds it to the correct list based on its type
         /// </summary>
-        private void AddLocationToPool(List<ItemLocation> progressionLocations, List<ItemLocation> junkLocations, List<ItemLocation> bossKeyLocations, ItemLocation location, TempConfig config)
+        private void AddLocationToPool(List<ItemLocation> progressionLocations, List<ItemLocation> junkLocations, List<ItemLocation> bossKeyLocations, ItemLocation location, RandomizerSettings settings)
         {
             if (location.type == ItemLocation.ItemLocationType.BossKey)
             {
                 // Boss keys go to special list
                 bossKeyLocations.Add(location);
             }
-            else if (location.ShouldBeShuffled(config))
+            else if (location.ShouldBeShuffled(settings))
             {
                 // Only locations that should be shuffled will have progression items
                 progressionLocations.Add(location);
@@ -85,14 +85,14 @@ namespace BlasII.Randomizer.Items
         /// <summary>
         /// Fills the two item pools to match the number of locations
         /// </summary>
-        private void CreateItemPool(List<Item> progressionItems, List<Item> junkItems, int numOfLocations, TempConfig config)
+        private void CreateItemPool(List<Item> progressionItems, List<Item> junkItems, int numOfLocations, RandomizerSettings settings)
         {
             foreach (var item in Main.Randomizer.Data.GetAllItems())
             {
                 AddItemToPool(progressionItems, junkItems, item);
             }
 
-            RemoveStartingItemsFromItemPool(progressionItems, config);
+            RemoveStartingItemsFromItemPool(progressionItems, settings);
             BalanceItemPool(progressionItems, junkItems, numOfLocations);
         }
 
@@ -112,10 +112,10 @@ namespace BlasII.Randomizer.Items
         /// <summary>
         /// Removes the starting weapon from the item pool
         /// </summary>
-        private void RemoveStartingItemsFromItemPool(List<Item> items, TempConfig config)
+        private void RemoveStartingItemsFromItemPool(List<Item> items, RandomizerSettings settings)
         {
             // Remove the extra starting weapon
-            items.Remove(Main.Randomizer.Data.GetItem(GetStartingWeaponId(config)));
+            items.Remove(Main.Randomizer.Data.GetItem(GetStartingWeaponId(settings)));
         }
 
         /// <summary>
@@ -134,14 +134,6 @@ namespace BlasII.Randomizer.Items
             {
                 junkItems.Add(Main.Randomizer.Data.GetItem("Tears[800]"));
             }
-        }
-
-        /// <summary>
-        /// Calculates the item id of the chosen starting weapon
-        /// </summary>
-        private string GetStartingWeaponId(TempConfig config)
-        {
-            return "WE0" + (config.startingWeapon + 1);
         }
 
         /// <summary>
@@ -185,6 +177,13 @@ namespace BlasII.Randomizer.Items
             progressionItems.Add(wallClimb);
         }
 
+        /// <summary>
+        /// Calculates the item id of the chosen starting weapon
+        /// </summary>
+        private string GetStartingWeaponId(RandomizerSettings settings)
+        {
+            return "WE0" + (settings.RealStartingWeapon + 1);
+        }
 
 
         private void FillBossKeyItems(List<ItemLocation> locations, Item item, Dictionary<string, string> output)

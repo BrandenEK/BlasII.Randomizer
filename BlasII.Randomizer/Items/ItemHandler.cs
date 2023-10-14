@@ -84,9 +84,9 @@ namespace BlasII.Randomizer.Items
             return _mappedItems.ContainsKey(locationId);
         }
 
-        public void FakeShuffle(uint seed, TempConfig config)
+        public void FakeShuffle(int seed, RandomizerSettings settings)
         {
-            if (_shuffler.Shuffle(seed, config, _mappedItems))
+            if (_shuffler.Shuffle(seed, settings, _mappedItems))
             {
                 Main.Randomizer.Log($"Shuffled {_mappedItems.Count} items!");
                 GenerateSpoiler(seed);
@@ -98,7 +98,7 @@ namespace BlasII.Randomizer.Items
             }
         }
 
-        private void GenerateSpoiler(uint seed)
+        private void GenerateSpoiler(int seed)
         {
             StringBuilder header = new(), footer = new();
             header.AppendLine($"Version: {ModInfo.MOD_VERSION}");
