@@ -2,6 +2,7 @@
 using Il2CppTGK.Game;
 using Il2CppTGK.Game.Components.UI;
 using Il2CppTMPro;
+using System.Text;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -24,6 +25,7 @@ namespace BlasII.Randomizer.Settings
         public void Update()
         {
             Cursor.visible = SettingsMenuActive;
+
             if (!SettingsMenuActive)
                 return;
 
@@ -85,6 +87,23 @@ namespace BlasII.Randomizer.Settings
         }
 
         /// <summary>
+        /// Displays certain randomizer settings in an info popup
+        /// </summary>
+        public void DisplaySettings(RandomizerSettings settings)
+        {
+            var sb = new StringBuilder();
+            //sb.Append("This is a test message that just displays random text that does not matter");
+            sb.AppendLine("Seed: " + settings.seed);
+            //sb.AppendLine("Starting weapon: " + _opWeapon[settings.startingWeapon]);
+            sb.AppendLine("Logic: " + _opLogic[0]);
+            //sb.AppendLine();
+            //sb.AppendLine("Shuffle long quests: " + settings.shuffleLongQuests);
+            //sb.AppendLine("Shuffle shops: " + settings.shuffleShops);
+
+            CoreCache.UINavigationHelper.ShowPopup("RANDOMIZER SETTINGS", sb.ToString());
+        }
+
+        /// <summary>
         /// Stores or loads the entire settings menu into or from a settings object
         /// </summary>
         private RandomizerSettings MenuSettings
@@ -131,21 +150,20 @@ namespace BlasII.Randomizer.Settings
                 .SetSize(1800, 750)
                 .SetPosition(0, -30);
 
-            _setSeed = CreateTextOption("Seed", mainSection, new Vector2(0, 300), 150, "Seed:", true, false, 6);
+            _setSeed = CreateTextOption("Seed", mainSection, new Vector2(0, 300), 150,
+                "Seed:", true, false, 6);
 
-            _setStartingWeapon = CreateArrowOption("SW", mainSection, new Vector2(-300, 80), "Starting weapon", new string[]
-            {
-                "Random", "Veredicto", "Ruego", "Sarmiento"
-            });
+            _setStartingWeapon = CreateArrowOption("SW", mainSection, new Vector2(-300, 80),
+                "Starting weapon", _opWeapon);
 
-            _setLogicDifficulty = CreateArrowOption("LD", mainSection, new Vector2(-300, -80), "Logic difficulty", new string[]
-            {
-                "Normal" // "Easy", "Normal", "Hard"
-            });
+            _setLogicDifficulty = CreateArrowOption("LD", mainSection, new Vector2(-300, -80),
+                "Logic difficulty", _opLogic);
 
-            _setShuffleLongQuests = CreateToggleOption("SLQ", mainSection, new Vector2(150, 70), "Shuffle long quests");
+            _setShuffleLongQuests = CreateToggleOption("SLQ", mainSection, new Vector2(150, 70),
+                "Shuffle long quests");
 
-            _setShuffleShops = CreateToggleOption("SS", mainSection, new Vector2(150, -10), "Shuffle shops");
+            _setShuffleShops = CreateToggleOption("SS", mainSection, new Vector2(150, -10),
+                "Shuffle shops");
 
             _mainMenu = mainMenu;
             _settingsMenu = settingsMenu;
@@ -297,6 +315,9 @@ namespace BlasII.Randomizer.Settings
         private const int TEXT_SIZE = 55;
         private readonly Color SILVER = new Color32(192, 192, 192, 255);
         private readonly Color YELLOW = new Color32(255, 231, 65, 255);
+
+        private readonly string[] _opWeapon = new string[] { "Random", "Veredicto", "Ruego", "Sarmiento" };
+        private readonly string[] _opLogic = new string[] { "Normal" }; // "Easy", "Normal", "Hard"
 
         private ArrowOption _setStartingWeapon;
         private ArrowOption _setLogicDifficulty;

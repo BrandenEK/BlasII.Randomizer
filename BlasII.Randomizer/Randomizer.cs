@@ -28,28 +28,19 @@ namespace BlasII.Randomizer
 
         protected override void OnUpdate()
         {
-            if (Input.GetKeyDown(KeyCode.Keypad7))
-            {
-                foreach (var fsm in Object.FindObjectsOfType<PlayMakerFSM>())
-                {
-                    fsm.DisplayActions();
-                }
-            }
-            else if (Input.GetKeyDown(KeyCode.Keypad8))
+            SettingsHandler.Update();
+
+            if (!LoadStatus.GameSceneLoaded)
+                return;
+
+            if (Input.GetKeyDown(KeyCode.Keypad6))
+                SettingsHandler.DisplaySettings(CurrentSettings);
+
+            if (Input.GetKeyDown(KeyCode.Keypad8))
             {
                 if (StatStorage.TryGetModifiableStat("BasePhysicalattack", out var stat))
                     StatStorage.PlayerStats.AddBonus(stat, "test", 100, 0);
             }
-
-            // Testing
-            if (Input.GetKeyDown(KeyCode.Keypad1))
-            {
-            }
-            if (Input.GetKeyDown(KeyCode.Keypad2))
-            {
-            }
-
-            SettingsHandler.Update();
         }
 
         protected override void OnSceneLoaded(string sceneName)
