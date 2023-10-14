@@ -55,7 +55,6 @@ namespace BlasII.Randomizer
 
         protected override void OnSceneUnloaded(string sceneName)
         {
-
         }
 
         public void NewGame()

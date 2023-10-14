@@ -1,4 +1,5 @@
-﻿using BlasII.ModdingAPI.UI;
+﻿using BlasII.ModdingAPI.Audio;
+using BlasII.ModdingAPI.UI;
 using Il2CppTGK.Game;
 using Il2CppTGK.Game.Components.UI;
 using Il2CppTMPro;
@@ -68,6 +69,7 @@ namespace BlasII.Randomizer.Settings
                 return;
 
             Main.Randomizer.Log("Closing settings menu");
+            Main.Randomizer.AudioHandler.PlayEffectUI(UISFX.CloseMenu);
             _settingsMenu.SetActive(false);
             _mainMenu.OpenSlotMenu();
             _mainMenu.CloseSlotMenu();
@@ -79,6 +81,7 @@ namespace BlasII.Randomizer.Settings
         private void StartNewGame()
         {
             Main.Randomizer.LogWarning("Starting new game");
+            Main.Randomizer.AudioHandler.PlayEffectUI(UISFX.OpenMenu);
 
             Main.Randomizer.CurrentSettings = MenuSettings;
             NewGame_Settings_Patch.NewGameFlag = true;

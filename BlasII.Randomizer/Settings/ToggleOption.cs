@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using BlasII.ModdingAPI.Audio;
+using UnityEngine;
 using UnityEngine.UI;
 
 namespace BlasII.Randomizer.Settings
@@ -23,6 +24,7 @@ namespace BlasII.Randomizer.Settings
         public void Toggle()
         {
             Toggled = !Toggled;
+            Main.Randomizer.AudioHandler.PlayEffectUI(UISFX.ChangeSelection);
         }
 
         public void Initialize(Image toggleBox)
