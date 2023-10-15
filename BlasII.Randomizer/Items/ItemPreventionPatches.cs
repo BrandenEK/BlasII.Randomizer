@@ -24,7 +24,13 @@ namespace BlasII.Randomizer.Items
 
             Main.Randomizer.LogWarning($"{__instance.Owner.name} is checking for item: {item}");
 
-            // No checks yet
+            // Cursed letter quest
+            if (item == "PR15" && (scene == "Z1326" || scene == "Z0502" || scene == "Z0503" || scene == "Z1917"))
+            {
+                __instance.Fsm.Event(__instance.noEvent);
+                __instance.Finish();
+                return false;
+            }
 
             return true;
         }
