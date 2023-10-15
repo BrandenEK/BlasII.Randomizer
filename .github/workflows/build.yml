@@ -9,10 +9,10 @@ on:
     branches: [ "main" ]
 
 jobs:
-  build:
+  build_project:
     runs-on: ubuntu-latest
-
     steps:
+
     - name: Checkout Repository
       uses: actions/checkout@v3
 
@@ -37,8 +37,13 @@ jobs:
         BUILD_DATE=$(date +'%Y-%m-%d')
         echo "BUILD_DATE=$BUILD_DATE" >> $GITHUB_ENV
 
+  upload_debug:
+    if: ${{ !contains(github.ref_type, 'tag') }}
+    needs: [ build_project ]
+    runs-on: ubuntu-latest
+    steps:
+
     - name: Upload Artifact
-      if: ${{ !contains(github.ref_type, 'tag') }}
       uses: actions/upload-artifact@v3
       with:
         name: ${{ env.MOD_NAME }} v${{ env.MOD_VERSION }} (${{ env.BUILD_DATE }})
@@ -46,8 +51,13 @@ jobs:
         retention-days: 30
         if-no-files-found: error
 
+  upload_release:
+    if: contains(github.ref_type, 'tag')
+    needs: [ build_project ]
+    runs-on: ubuntu-latest
+    steps:
+
     - name: Create Release
-      if: contains(github.ref_type, 'tag')
       id: create_release
       uses: actions/create-release@v1
       env:
@@ -57,7 +67,6 @@ jobs:
         release_name: ${{ env.MOD_TITLE }} v${{ github.ref_name }}
 
     - name: Upload Release
-      if: contains(github.ref_type, 'tag')
       uses: actions/upload-release-asset@v1
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -66,7 +75,6 @@ jobs:
         asset_path: publish/${{ env.MOD_NAME }}.zip
         asset_name: ${{ env.MOD_NAME }}.zip
         asset_content_type: application/zip
-        
+
     - name: Upload Nuget
-      if: contains(github.ref_type, 'tag')
       run: dotnet nuget push **\*.nupkg -k ${{ secrets.NUGET_API_KEY }} -s https://api.nuget.org/v3/index.json
