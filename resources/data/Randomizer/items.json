@@ -643,6 +643,41 @@
         "type": "QuestItem"
     },
     {
+        "id": "QI14",
+        "name": "Cursed Letter, Page One",
+        "type": "QuestItem",
+        "progression": true,
+        "count": 1
+    },
+    {
+        "id": "QI16",
+        "name": "Cursed Letter, Page Two",
+        "type": "QuestItem",
+        "progression": true,
+        "count": 1
+    },
+    {
+        "id": "QI18",
+        "name": "Cursed Letter, Page Three",
+        "type": "QuestItem",
+        "progression": true,
+        "count": 1
+    },
+    {
+        "id": "QI20",
+        "name": "Cursed Letter, Page Four",
+        "type": "QuestItem",
+        "progression": true,
+        "count": 1
+    },
+    {
+        "id": "QI22",
+        "name": "Cursed Letter, Last Page",
+        "type": "QuestItem",
+        "progression": true,
+        "count": 1
+    },
+    {
         "id": "UL",
         "name": "Piece of the Lullaby",
         "type": "QuestItem",

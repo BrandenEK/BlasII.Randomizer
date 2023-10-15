@@ -248,6 +248,12 @@
         "logic": "wallClimb"
     },
     {
+        "id": "Z0502.i1",
+        "name": "Cursed letter: Scream",
+        "type": "Normal",
+        "logic": "letter2"
+    },
+    {
         "id": "Z0503.c0",
         "name": "East side cherub",
         "type": "Normal",
@@ -258,6 +264,12 @@
         "name": "East city altar",
         "type": "Normal",
         "logic": "censer + doubleJump + airDash"
+    },
+    {
+        "id": "Z0503.i9",
+        "name": "Cursed letter: Skull",
+        "type": "Normal",
+        "logic": "wallClimb + letter4"
     },
     {
         "id": "Z0506.i0",
@@ -808,6 +820,12 @@
         "logic": "Z13[E] + blade + censer + rapier"
     },
     {
+        "id": "Z1326.i0",
+        "name": "Cursed letter: Mirror",
+        "type": "Normal",
+        "logic": "Z13[E] + blade + censer + rapier + letter1"
+    },
+    {
         "id": "Z1327.r7",
         "name": "Defeat Susona",
         "type": "Normal",
@@ -896,6 +914,12 @@
         "name": "Miriam chest",
         "type": "Normal",
         "logic": "Z14[N] + wallClimb + (censer | doubleJump)"
+    },
+    {
+        "id": "Z1427.l0",
+        "name": "Cursed letter: Bell",
+        "type": "Normal",
+        "logic": "Z14[N] + censer + letter3"
     },
     {
         "id": "Z1501.s0",
@@ -1012,6 +1036,12 @@
         "logic": "Z17[W] + brokenKey"
     },
     {
+        "id": "Z1715.l0",
+        "name": "Envelope room",
+        "type": "Normal",
+        "logic": "Z17[W] + doubleJump + cherubRings"
+    },
+    {
         "id": "Z1718.l0",
         "name": "Altar room",
         "type": "Normal",
@@ -1121,9 +1151,9 @@
     },
     {
         "id": "Z1917.i0",
-        "name": "Cursed letter quest jump",
-        "type": "LongQuest",
-        "logic": "Z19[N] + wallClimb + doubleJump + airDash + blade + censer + rapier"
+        "name": "Cursed letter: Sea",
+        "type": "Normal",
+        "logic": "Z19[N] + wallClimb + letter5"
     },
     {
         "id": "Z1917.l3",
