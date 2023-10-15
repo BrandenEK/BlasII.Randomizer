@@ -25,7 +25,34 @@ namespace BlasII.Randomizer.Items
             Main.Randomizer.LogWarning($"{__instance.Owner.name} is checking for item: {item}");
 
             // Cursed letter quest
-            if (item == "PR15" && (scene == "Z1326" || scene == "Z0502" || scene == "Z0503" || scene == "Z1917"))
+            if (scene == "Z1326" && (item == "PR15" || item == "QI15" || item == "QI16") ||
+                scene == "Z0502" && item == "PR15" ||
+                scene == "Z0503" && item == "PR15" || // The rest of check is in other patch
+                scene == "Z1917" && item == "PR15")
+            {
+                __instance.Fsm.Event(__instance.noEvent);
+                __instance.Finish();
+                return false;
+            }
+
+            return true;
+        }
+    }
+    [HarmonyPatch(typeof(AreAnyItemOwned), nameof(AreAnyItemOwned.OnEnter))]
+    class Check_ItemsOwned_Patch
+    {
+        public static bool Prefix(AreAnyItemOwned __instance)
+        {
+            string scene = CoreCache.Room.CurrentRoom?.Name;
+            string firstItem = __instance.items[0].name;
+            string items = "";
+            foreach (var item in __instance.items)
+                items += item.name + " ";
+
+            Main.Randomizer.LogWarning($"{__instance.Owner.name} is checking for items: {items}");
+
+            // Cursed letter quest again
+            if (scene == "Z0503" && firstItem == "QI21")
             {
                 __instance.Fsm.Event(__instance.noEvent);
                 __instance.Finish();
