@@ -45,6 +45,9 @@ namespace BlasII.Randomizer.Items
         bool elderScroll = false;
         bool elderCloth = false;
 
+        // Letter quest
+        bool letter1 = false, letter2 = false, letter3 = false, letter4 = false, letter5 = false;
+
         int daughterRooms
         {
             get
@@ -112,6 +115,13 @@ namespace BlasII.Randomizer.Items
                 "elderScroll" => elderScroll,
                 "elderCloth" => elderCloth,
 
+                // Letter quest
+                "letter1" => letter1,
+                "letter2" => letter2,
+                "letter3" => letter3,
+                "letter4" => letter4,
+                "letter5" => letter5,
+
                 // Rooms
                 "daughterRooms" => daughterRooms,
 
@@ -142,6 +152,11 @@ namespace BlasII.Randomizer.Items
                 case "QI05": regulaCloth = true; break;
                 case "QI07": elderScroll = true; break;
                 case "QI08": elderCloth = true; break;
+                case "QI14": letter1 = true; break;
+                case "QI16": letter2 = true; break;
+                case "QI18": letter3 = true; break;
+                case "QI20": letter4 = true; break;
+                case "QI22": letter5 = true; break;
                 case "QI28": brokenKey = true; break;
                 case "QI54": rattle = true; break;
                 case "QI68": holyOil = true; break;
