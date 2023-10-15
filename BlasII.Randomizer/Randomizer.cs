@@ -138,8 +138,8 @@ namespace BlasII.Randomizer
             {
                 if (fsm.name == "NPC13_ST09_PILGRIM")
                 {
-                    // Remove this npc so that he cant give you a key
-                    Object.Destroy(fsm.gameObject);
+                    // Remove this npc's trigger so that he cant give you a key
+                    Object.Destroy(fsm.gameObject.GetComponent<BoxCollider2D>());
                 }
             }
         }

@@ -67,9 +67,7 @@ namespace BlasII.Randomizer.Items
         {
             string scene = CoreCache.Room.CurrentRoom?.Name;
             string quest = Main.Randomizer.GetQuestName(questId, varId);
-
-            if (!quest.StartsWith("ST18"))
-                Main.Randomizer.LogWarning($"Getting quest: {quest} ({__result})");
+            bool initialResult = __result;
 
             // Always have zones unlocked
             if (quest.StartsWith("ST00.Z") && quest.EndsWith("_ACCESS"))
@@ -111,6 +109,9 @@ namespace BlasII.Randomizer.Items
             {
                 __result = false;
             }
+
+            if (!quest.StartsWith("ST18"))
+                Main.Randomizer.LogWarning($"Getting quest: {quest} ({initialResult}) -> ({__result})");
         }
     }
 
