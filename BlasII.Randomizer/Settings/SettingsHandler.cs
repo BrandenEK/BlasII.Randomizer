@@ -240,9 +240,10 @@ namespace BlasII.Randomizer.Settings
             var holder = UIModder.CreateRect(name, parent).SetPosition(position);
 
             // Create text and images
-            CreateShadowText("header", holder, Vector2.up * 60,
+            var headerText = CreateShadowText("header", holder, Vector2.up * 60,
                 TEXT_SIZE, SILVER,
                 new Vector2(0.5f, 0.5f), TextAlignmentOptions.Center, header);
+
 
             var optionText = CreateShadowText("option", holder, Vector2.zero,
                 TEXT_SIZE - 5, YELLOW,
