@@ -1,0 +1,38 @@
+lang: en
+
+# Special items
+we1n: Veredicto
+we1d: A weapon that can be used to ring bronze bells.
+we2n: Ruego
+we2d: A weapon that can be used to pierce bone blockades.
+we3n: Sarmiento
+we3d: A weapon that can be used to activate magic mirrors.
+ab1n: Ivy of Ascension
+ab1d: The ability to climb up large walls.
+ab2n: Passage of Ash
+ab2d: The ability to jump twice while in the air.
+ab3n: Mercy of the Wind
+ab3d: The ability to dash while in the air.
+ab4n: Scion's Protection
+ab4d: The ability to spawn cherubs rings.
+chrn: Child of Moonlight
+chrd: A little floating baby that you rescued from a cage.
+tern: Tears of Atonement
+terd: Can be used to buy stuff.
+marn: Marks of Martyrdom
+mard: Can be used to buy more stuff.
+
+# Settings menu
+head: RANDOMIZER SETTINGS
+seed: Seed
+rand: Random
+opsw: Starting weapon
+opld: Logic difficulty
+opsl: Shuffle long quests
+opss: Shuffle shops
+o1sw: Veredicto
+o2sw: Ruego
+o3sw: Sarmiento
+o1ld: Easy
+o2ld: Normal
+o3ld: Hard
