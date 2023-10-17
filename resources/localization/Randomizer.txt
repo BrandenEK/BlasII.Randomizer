@@ -26,7 +26,7 @@ mard: Can be used to buy more stuff.
 head: RANDOMIZER SETTINGS
 btnb: Begin
 btnc: Cancel
-seed: Seed
+seed: Seed:
 rand: Random
 opsw: Starting weapon
 opld: Logic difficulty

@@ -166,7 +166,7 @@ namespace BlasII.Randomizer.Settings
                 .SetPosition(0, -30);
 
             _setSeed = CreateTextOption("Seed", mainSection, new Vector2(0, 300), 150,
-                "Seed:", true, false, 6);
+                "seed", true, false, 6);
 
             _setStartingWeapon = CreateArrowOption("SW", mainSection, new Vector2(-300, 80),
                 "opsw", _opWeapon);
@@ -174,11 +174,11 @@ namespace BlasII.Randomizer.Settings
             _setLogicDifficulty = CreateArrowOption("LD", mainSection, new Vector2(-300, -80),
                 "opld", _opLogic);
 
-            _setShuffleLongQuests = CreateToggleOption("SLQ", mainSection, new Vector2(150, 70),
-                "Shuffle long quests");
+            _setShuffleLongQuests = CreateToggleOption("SL", mainSection, new Vector2(150, 70),
+                "opsl");
 
             _setShuffleShops = CreateToggleOption("SS", mainSection, new Vector2(150, -10),
-                "Shuffle shops");
+                "opss");
 
             _mainMenu = mainMenu;
             _settingsMenu = settingsMenu;
@@ -220,9 +220,10 @@ namespace BlasII.Randomizer.Settings
             var holder = UIModder.CreateRect(name, parent).SetPosition(position);
 
             // Create text and images
-            CreateShadowText("header", holder, position + Vector2.right * 12 + Vector2.down * 3,
+            var headerText = CreateShadowText("header", holder, position + Vector2.right * 12 + Vector2.down * 3,
                 TEXT_SIZE, SILVER,
-                new Vector2(0, 0.5f), TextAlignmentOptions.Left, header);
+                new Vector2(0, 0.5f), TextAlignmentOptions.Left, string.Empty);
+            Main.Randomizer.LocalizationHandler.AddPixelTextLocalizer(headerText, header);
 
             var toggleBox = CreateToggleImage("box", holder, position);
 
@@ -292,7 +293,8 @@ namespace BlasII.Randomizer.Settings
             // Create text and images
             var headerText = CreateShadowText("header", holder, Vector2.left * 10,
                 TEXT_SIZE, SILVER,
-                new Vector2(1, 0.5f), TextAlignmentOptions.Right, header);
+                new Vector2(1, 0.5f), TextAlignmentOptions.Right, string.Empty);
+            Main.Randomizer.LocalizationHandler.AddPixelTextLocalizer(headerText, header);
 
             var valueText = CreateShadowText("value", holder, Vector2.right * lineSize / 2,
                 TEXT_SIZE - 5, YELLOW,
@@ -332,8 +334,8 @@ namespace BlasII.Randomizer.Settings
         private readonly Color SILVER = new Color32(192, 192, 192, 255);
         private readonly Color YELLOW = new Color32(255, 231, 65, 255);
 
-        private readonly string[] _opWeapon = new string[] { "Random", "Veredicto", "Ruego", "Sarmiento" };
-        private readonly string[] _opLogic = new string[] { "Normal" }; // "Easy", "Normal", "Hard"
+        private readonly string[] _opWeapon = new string[] { "rand", "o1sw", "o2sw", "o3sw" };
+        private readonly string[] _opLogic = new string[] { "o2ld" }; // "Easy", "Normal", "Hard"
 
         private ArrowOption _setStartingWeapon;
         private ArrowOption _setLogicDifficulty;
