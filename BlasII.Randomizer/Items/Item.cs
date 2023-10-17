@@ -77,24 +77,24 @@ namespace BlasII.Randomizer.Items
                     ItemType.Prayer => ItemStorage.TryGetPrayer(id, out var prayer) ? prayer.description : null,
                     ItemType.Figurine => ItemStorage.TryGetFigure(id, out var figure) ? figure.description : null,
                     ItemType.QuestItem => ItemStorage.TryGetQuestItem(id, out var quest) ? quest.description : null,
-                    ItemType.Weapon => id switch
+                    ItemType.Weapon => Main.Randomizer.LocalizationHandler.Localize(id switch
                     {
-                        "WE01" => "A weapon that can be used to ring bronze bells.",
-                        "WE02" => "A weapon that can be used to pierce bone blockades.",
-                        "WE03" => "A weapon that can be used to activate magic mirrors.",
+                        "WE01" => "we1d",
+                        "WE02" => "we2d",
+                        "WE03" => "we3d",
                         _ => null,
-                    },
-                    ItemType.Ability => id switch
+                    }),
+                    ItemType.Ability => Main.Randomizer.LocalizationHandler.Localize(id switch
                     {
-                        "AB44" => "The ability to climb up large walls.",
-                        "AB02" => "The ability to jump twice while in the air.",
-                        "AB01" => "The ability to dash while in the air.",
-                        "AB35" => "The ability to spawn cherubs rings.",
+                        "AB44" => "ab1d",
+                        "AB02" => "ab2d",
+                        "AB01" => "ab3d",
+                        "AB35" => "ab4d",
                         _ => null,
-                    },
-                    ItemType.Cherub => "A little floating baby that you rescued from a cage.",
-                    ItemType.Tears => "Can be used to buy stuff.",
-                    ItemType.Marks => "Can be used to buy more stuff.",
+                    }),
+                    ItemType.Cherub => Main.Randomizer.LocalizationHandler.Localize("chrd"),
+                    ItemType.Tears => Main.Randomizer.LocalizationHandler.Localize("terd"),
+                    ItemType.Marks => Main.Randomizer.LocalizationHandler.Localize("mard"),
 
                     ItemType.Invalid => "You should not see this.",
                     _ => null,
