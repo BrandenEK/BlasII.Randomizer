@@ -139,16 +139,28 @@ namespace BlasII.Randomizer.Settings
         {
             Main.Randomizer.LogWarning("Creating settings menu");
 
+            // Find slots menu and allow clicking buttons
             Object.FindObjectOfType<CanvasScaler>().gameObject.AddComponent<GraphicRaycaster>();
             var mainMenu = Object.FindObjectOfType<MainMenuWindowLogic>();
             var slotsMenu = mainMenu.slotsMenuView.transform.parent.gameObject;
 
+            // Create copy for settings menu
             var settingsMenu = Object.Instantiate(slotsMenu, slotsMenu.transform.parent);
-            settingsMenu.transform.Find("Header").GetComponent<UIPixelTextWithShadow>().SetText("RANDOMIZER SETTINGS");
-            settingsMenu.transform.Find("Buttons/Button A/New/label").GetComponent<UIPixelTextWithShadow>().SetText("Begin");
-            settingsMenu.transform.Find("Buttons/Back/label").GetComponent<UIPixelTextWithShadow>().SetText("Cancel");
             Object.Destroy(settingsMenu.transform.Find("SlotsList").gameObject);
 
+            // Change text of title
+            var title = settingsMenu.transform.Find("Header").GetComponent<UIPixelTextWithShadow>();
+            Main.Randomizer.LocalizationHandler.AddPixelTextLocalizer(title, "head");
+
+            // Change text of 'new' button
+            var begin = settingsMenu.transform.Find("Buttons/Button A/New/label").GetComponent<UIPixelTextWithShadow>();
+            Main.Randomizer.LocalizationHandler.AddPixelTextLocalizer(begin, "btnb");
+
+            // Change text of 'cancel' button
+            var cancel = settingsMenu.transform.Find("Buttons/Back/label").GetComponent<UIPixelTextWithShadow>();
+            Main.Randomizer.LocalizationHandler.AddPixelTextLocalizer(cancel, "btnc");
+
+            // Create holder for options and all settings
             RectTransform mainSection = UIModder.CreateRect("Main Section", settingsMenu.transform)
                 .SetSize(1800, 750)
                 .SetPosition(0, -30);
@@ -157,10 +169,10 @@ namespace BlasII.Randomizer.Settings
                 "Seed:", true, false, 6);
 
             _setStartingWeapon = CreateArrowOption("SW", mainSection, new Vector2(-300, 80),
-                "Starting weapon", _opWeapon);
+                "opsw", _opWeapon);
 
             _setLogicDifficulty = CreateArrowOption("LD", mainSection, new Vector2(-300, -80),
-                "Logic difficulty", _opLogic);
+                "opld", _opLogic);
 
             _setShuffleLongQuests = CreateToggleOption("SLQ", mainSection, new Vector2(150, 70),
                 "Shuffle long quests");
@@ -242,8 +254,8 @@ namespace BlasII.Randomizer.Settings
             // Create text and images
             var headerText = CreateShadowText("header", holder, Vector2.up * 60,
                 TEXT_SIZE, SILVER,
-                new Vector2(0.5f, 0.5f), TextAlignmentOptions.Center, header);
-
+                new Vector2(0.5f, 0.5f), TextAlignmentOptions.Center, string.Empty);
+            Main.Randomizer.LocalizationHandler.AddPixelTextLocalizer(headerText, header);
 
             var optionText = CreateShadowText("option", holder, Vector2.zero,
                 TEXT_SIZE - 5, YELLOW,

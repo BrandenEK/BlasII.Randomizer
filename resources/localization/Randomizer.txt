@@ -24,6 +24,8 @@ mard: Can be used to buy more stuff.
 
 # Settings menu
 head: RANDOMIZER SETTINGS
+btnb: Begin
+btnc: Cancel
 seed: Seed
 rand: Random
 opsw: Starting weapon
