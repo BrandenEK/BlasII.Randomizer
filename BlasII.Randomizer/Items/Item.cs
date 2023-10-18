@@ -93,10 +93,10 @@ namespace BlasII.Randomizer.Items
                         _ => null,
                     }),
                     ItemType.Cherub => Main.Randomizer.LocalizationHandler.Localize("chrn"),
-                    ItemType.Tears => Main.Randomizer.LocalizationHandler.Localize("tern"),
-                    ItemType.Marks => Main.Randomizer.LocalizationHandler.Localize("marn"),
+                    ItemType.Tears => Amount + " " + Main.Randomizer.LocalizationHandler.Localize("tern"),
+                    ItemType.Marks => Amount + " " + Main.Randomizer.LocalizationHandler.Localize("marn"),
 
-                    ItemType.Invalid => "You should not see this.",
+                    ItemType.Invalid => "Invalid Item",
                     _ => null,
                 };
             }
