@@ -98,7 +98,7 @@ namespace BlasII.Randomizer.Settings
             //sb.Append("This is a test message that just displays random text that does not matter");
             sb.AppendLine("Seed: " + settings.seed);
             //sb.AppendLine("Starting weapon: " + _opWeapon[settings.startingWeapon]);
-            sb.AppendLine("Logic: " + _opLogic[0]);
+            sb.AppendLine("Logic: Normal");
             //sb.AppendLine();
             //sb.AppendLine("Shuffle long quests: " + settings.shuffleLongQuests);
             //sb.AppendLine("Shuffle shops: " + settings.shuffleShops);
@@ -139,34 +139,46 @@ namespace BlasII.Randomizer.Settings
         {
             Main.Randomizer.LogWarning("Creating settings menu");
 
+            // Find slots menu and allow clicking buttons
             Object.FindObjectOfType<CanvasScaler>().gameObject.AddComponent<GraphicRaycaster>();
             var mainMenu = Object.FindObjectOfType<MainMenuWindowLogic>();
             var slotsMenu = mainMenu.slotsMenuView.transform.parent.gameObject;
 
+            // Create copy for settings menu
             var settingsMenu = Object.Instantiate(slotsMenu, slotsMenu.transform.parent);
-            settingsMenu.transform.Find("Header").GetComponent<UIPixelTextWithShadow>().SetText("RANDOMIZER SETTINGS");
-            settingsMenu.transform.Find("Buttons/Button A/New/label").GetComponent<UIPixelTextWithShadow>().SetText("Begin");
-            settingsMenu.transform.Find("Buttons/Back/label").GetComponent<UIPixelTextWithShadow>().SetText("Cancel");
             Object.Destroy(settingsMenu.transform.Find("SlotsList").gameObject);
 
+            // Change text of title
+            var title = settingsMenu.transform.Find("Header").GetComponent<UIPixelTextWithShadow>();
+            Main.Randomizer.LocalizationHandler.AddPixelTextLocalizer(title, "head");
+
+            // Change text of 'new' button
+            var begin = settingsMenu.transform.Find("Buttons/Button A/New/label").GetComponent<UIPixelTextWithShadow>();
+            Main.Randomizer.LocalizationHandler.AddPixelTextLocalizer(begin, "btnb");
+
+            // Change text of 'cancel' button
+            var cancel = settingsMenu.transform.Find("Buttons/Back/label").GetComponent<UIPixelTextWithShadow>();
+            Main.Randomizer.LocalizationHandler.AddPixelTextLocalizer(cancel, "btnc");
+
+            // Create holder for options and all settings
             RectTransform mainSection = UIModder.CreateRect("Main Section", settingsMenu.transform)
                 .SetSize(1800, 750)
                 .SetPosition(0, -30);
 
             _setSeed = CreateTextOption("Seed", mainSection, new Vector2(0, 300), 150,
-                "Seed:", true, false, 6);
+                "seed", true, false, 6);
 
             _setStartingWeapon = CreateArrowOption("SW", mainSection, new Vector2(-300, 80),
-                "Starting weapon", _opWeapon);
+                "opsw", _opWeapon);
 
             _setLogicDifficulty = CreateArrowOption("LD", mainSection, new Vector2(-300, -80),
-                "Logic difficulty", _opLogic);
+                "opld", _opLogic);
 
-            _setShuffleLongQuests = CreateToggleOption("SLQ", mainSection, new Vector2(150, 70),
-                "Shuffle long quests");
+            _setShuffleLongQuests = CreateToggleOption("SL", mainSection, new Vector2(150, 70),
+                "opsl");
 
             _setShuffleShops = CreateToggleOption("SS", mainSection, new Vector2(150, -10),
-                "Shuffle shops");
+                "opss");
 
             _mainMenu = mainMenu;
             _settingsMenu = settingsMenu;
@@ -208,9 +220,10 @@ namespace BlasII.Randomizer.Settings
             var holder = UIModder.CreateRect(name, parent).SetPosition(position);
 
             // Create text and images
-            CreateShadowText("header", holder, position + Vector2.right * 12 + Vector2.down * 3,
+            var headerText = CreateShadowText("header", holder, position + Vector2.right * 12 + Vector2.down * 3,
                 TEXT_SIZE, SILVER,
-                new Vector2(0, 0.5f), TextAlignmentOptions.Left, header);
+                new Vector2(0, 0.5f), TextAlignmentOptions.Left, string.Empty);
+            Main.Randomizer.LocalizationHandler.AddPixelTextLocalizer(headerText, header);
 
             var toggleBox = CreateToggleImage("box", holder, position);
 
@@ -240,9 +253,10 @@ namespace BlasII.Randomizer.Settings
             var holder = UIModder.CreateRect(name, parent).SetPosition(position);
 
             // Create text and images
-            CreateShadowText("header", holder, Vector2.up * 60,
+            var headerText = CreateShadowText("header", holder, Vector2.up * 60,
                 TEXT_SIZE, SILVER,
-                new Vector2(0.5f, 0.5f), TextAlignmentOptions.Center, header);
+                new Vector2(0.5f, 0.5f), TextAlignmentOptions.Center, string.Empty);
+            Main.Randomizer.LocalizationHandler.AddPixelTextLocalizer(headerText, header);
 
             var optionText = CreateShadowText("option", holder, Vector2.zero,
                 TEXT_SIZE - 5, YELLOW,
@@ -279,7 +293,8 @@ namespace BlasII.Randomizer.Settings
             // Create text and images
             var headerText = CreateShadowText("header", holder, Vector2.left * 10,
                 TEXT_SIZE, SILVER,
-                new Vector2(1, 0.5f), TextAlignmentOptions.Right, header);
+                new Vector2(1, 0.5f), TextAlignmentOptions.Right, string.Empty);
+            Main.Randomizer.LocalizationHandler.AddPixelTextLocalizer(headerText, header);
 
             var valueText = CreateShadowText("value", holder, Vector2.right * lineSize / 2,
                 TEXT_SIZE - 5, YELLOW,
@@ -319,8 +334,8 @@ namespace BlasII.Randomizer.Settings
         private readonly Color SILVER = new Color32(192, 192, 192, 255);
         private readonly Color YELLOW = new Color32(255, 231, 65, 255);
 
-        private readonly string[] _opWeapon = new string[] { "Random", "Veredicto", "Ruego", "Sarmiento" };
-        private readonly string[] _opLogic = new string[] { "Normal" }; // "Easy", "Normal", "Hard"
+        private readonly string[] _opWeapon = new string[] { "rand", "o1sw", "o2sw", "o3sw" };
+        private readonly string[] _opLogic = new string[] { "o2ld" }; // "Easy", "Normal", "Hard"
 
         private ArrowOption _setStartingWeapon;
         private ArrowOption _setLogicDifficulty;

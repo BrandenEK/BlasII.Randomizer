@@ -52,7 +52,7 @@ namespace BlasII.Randomizer.Items
 
         public void DisplayItem(Item item)
         {
-            CoreCache.UINavigationHelper.ShowItemPopup("Obtained", item.Current?.name, item.Current?.Image);
+            CoreCache.UINavigationHelper.ShowItemPopup("Obtained", item.Current?.DisplayName, item.Current?.Image);
         }
 
         /// <summary>

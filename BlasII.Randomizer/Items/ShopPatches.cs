@@ -71,7 +71,7 @@ namespace BlasII.Randomizer.Items
             string locationId = $"{Object.FindObjectOfType<ShopWindowLogic>().currentShop.name}.o{__instance.OrbIdx}";
 
             var item = Main.Randomizer.ItemHandler.GetItemAtLocation(locationId);
-            __instance.Caption = item.Upgraded.name;
+            __instance.Caption = item.Upgraded.DisplayName;
             __instance.Description = item.Upgraded.Description;
         }
     }
