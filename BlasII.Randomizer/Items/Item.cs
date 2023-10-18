@@ -64,6 +64,44 @@ namespace BlasII.Randomizer.Items
             }
         }
 
+        public string DisplayName
+        {
+            get
+            {
+                if (IsProgressiveItem)
+                    throw new System.Exception("Accessing a progressive item directly!");
+
+                return type switch
+                {
+                    ItemType.RosaryBead => ItemStorage.TryGetRosaryBead(id, out var bead) ? bead.caption : null,
+                    ItemType.Prayer => ItemStorage.TryGetPrayer(id, out var prayer) ? prayer.caption : null,
+                    ItemType.Figurine => ItemStorage.TryGetFigure(id, out var figure) ? figure.caption : null,
+                    ItemType.QuestItem => ItemStorage.TryGetQuestItem(id, out var quest) ? quest.caption : null,
+                    ItemType.Weapon => Main.Randomizer.LocalizationHandler.Localize(id switch
+                    {
+                        "WE01" => "we1n",
+                        "WE02" => "we2n",
+                        "WE03" => "we3n",
+                        _ => null,
+                    }),
+                    ItemType.Ability => Main.Randomizer.LocalizationHandler.Localize(id switch
+                    {
+                        "AB44" => "ab1n",
+                        "AB02" => "ab2n",
+                        "AB01" => "ab3n",
+                        "AB35" => "ab4n",
+                        _ => null,
+                    }),
+                    ItemType.Cherub => Main.Randomizer.LocalizationHandler.Localize("chrn"),
+                    ItemType.Tears => Main.Randomizer.LocalizationHandler.Localize("tern"),
+                    ItemType.Marks => Main.Randomizer.LocalizationHandler.Localize("marn"),
+
+                    ItemType.Invalid => "You should not see this.",
+                    _ => null,
+                };
+            }
+        }
+
         public string Description
         {
             get

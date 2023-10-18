@@ -3,9 +3,9 @@ lang: en
 # Special items
 we1n: Veredicto
 we1d: A weapon that can be used to ring bronze bells.
-we2n: Ruego
+we2n: Ruego Al Alba
 we2d: A weapon that can be used to pierce bone blockades.
-we3n: Sarmiento
+we3n: Sarmiento & Centella
 we3d: A weapon that can be used to activate magic mirrors.
 ab1n: Ivy of Ascension
 ab1d: The ability to climb up large walls.
@@ -15,7 +15,7 @@ ab3n: Mercy of the Wind
 ab3d: The ability to dash while in the air.
 ab4n: Scion's Protection
 ab4d: The ability to spawn cherubs rings.
-chrn: Child of Moonlight
+chrn: Brother of Proximo
 chrd: A little floating baby that you rescued from a cage.
 tern: Tears of Atonement
 terd: Can be used to buy stuff.

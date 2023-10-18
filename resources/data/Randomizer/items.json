@@ -1065,14 +1065,14 @@
     },
     {
         "id": "AB35",
-        "name": "Scions’ Protection",
+        "name": "Scions' Protection",
         "type": "Ability",
         "progression": true,
         "count": 1
     },
     {
         "id": "CH",
-        "name": "Child of Moonlight",
+        "name": "Brother of Proximo",
         "type": "Cherub",
         "progression": true,
         "count": 33
