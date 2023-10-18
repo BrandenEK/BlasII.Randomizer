@@ -115,6 +115,7 @@ namespace BlasII.Randomizer.Settings
             {
                 int startingWeapon = _setStartingWeapon.CurrentOption;
                 int logicDifficulty = _setLogicDifficulty.CurrentOption;
+                int requiredKeys = _setRequiredKeys.CurrentOption;
                 bool shuffleLongQuests = _setShuffleLongQuests.Toggled;
                 bool shuffleShops = _setShuffleShops.Toggled;
 
@@ -125,6 +126,7 @@ namespace BlasII.Randomizer.Settings
             {
                 _setStartingWeapon.CurrentOption = value.startingWeapon;
                 _setLogicDifficulty.CurrentOption = 0;
+                _setRequiredKeys.CurrentOption = 3;
                 _setShuffleLongQuests.Toggled = value.shuffleLongQuests;
                 _setShuffleShops.Toggled = value.shuffleShops;
 
@@ -173,6 +175,9 @@ namespace BlasII.Randomizer.Settings
 
             _setLogicDifficulty = CreateArrowOption("LD", mainSection, new Vector2(-300, -80),
                 "opld", _opLogic);
+
+            _setRequiredKeys = CreateArrowOption("RQ", mainSection, new Vector2(-300, -240),
+                "oprq", _opKeys);
 
             _setShuffleLongQuests = CreateToggleOption("SL", mainSection, new Vector2(150, 70),
                 "opsl");
@@ -336,9 +341,11 @@ namespace BlasII.Randomizer.Settings
 
         private readonly string[] _opWeapon = new string[] { "rand", "o1sw", "o2sw", "o3sw" };
         private readonly string[] _opLogic = new string[] { "o2ld" }; // "Easy", "Normal", "Hard"
+        private readonly string[] _opKeys = new string[] { "rand", "o1rq", "o2rq", "o3rq", "o4rq", "o5rq" };
 
         private ArrowOption _setStartingWeapon;
         private ArrowOption _setLogicDifficulty;
+        private ArrowOption _setRequiredKeys;
 
         private ToggleOption _setShuffleLongQuests;
         private ToggleOption _setShuffleShops;

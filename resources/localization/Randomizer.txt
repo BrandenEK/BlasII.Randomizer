@@ -28,13 +28,19 @@ btnb: Begin
 btnc: Cancel
 seed: Seed:
 rand: Random
-opsw: Starting weapon
-opld: Logic difficulty
 opsl: Shuffle long quests
 opss: Shuffle shops
+opsw: Starting weapon
 o1sw: Veredicto
 o2sw: Ruego
 o3sw: Sarmiento
+opld: Logic difficulty
 o1ld: Easy
 o2ld: Normal
 o3ld: Hard
+oprq: Required keys
+o1rq: One
+o2rq: Two
+o3rq: Three
+o4rq: Four
+o5rq: Five
