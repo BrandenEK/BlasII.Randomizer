@@ -98,7 +98,7 @@ namespace BlasII.Randomizer.Settings
             //sb.Append("This is a test message that just displays random text that does not matter");
             sb.AppendLine("Seed: " + settings.seed);
             //sb.AppendLine("Starting weapon: " + _opWeapon[settings.startingWeapon]);
-            sb.AppendLine("Logic: " + _opLogic[0]);
+            sb.AppendLine("Logic: Normal");
             //sb.AppendLine();
             //sb.AppendLine("Shuffle long quests: " + settings.shuffleLongQuests);
             //sb.AppendLine("Shuffle shops: " + settings.shuffleShops);
