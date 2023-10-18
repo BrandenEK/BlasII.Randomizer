@@ -37,11 +37,11 @@ namespace BlasII.Randomizer.Settings
     {
         public static void Postfix(PopupWindowLogic __instance)
         {
-            Main.Randomizer.Log(__instance.PopUp.sizeDelta.y.ToString());
-            Main.Randomizer.Log(__instance.descriptionText.preferredHeight.ToString());
-            Main.Randomizer.Log(__instance.descriptionText.rectTransform.anchoredPosition.ToString());
+            //Main.Randomizer.Log(__instance.PopUp.sizeDelta.y.ToString());
+            //Main.Randomizer.Log(__instance.descriptionText.preferredHeight.ToString());
+            //Main.Randomizer.Log(__instance.descriptionText.rectTransform.anchoredPosition.ToString());
 
-            Main.Randomizer.Log(__instance.descriptionText.rectTransform.sizeDelta.ToString());
+            //Main.Randomizer.Log(__instance.descriptionText.rectTransform.sizeDelta.ToString());
 
             //__instance.descriptionText.rectTransform.sizeDelta = new Vector2(540, 50);
             //float x = __instance.descriptionText.rectTransform.anchoredPosition.x - 20;

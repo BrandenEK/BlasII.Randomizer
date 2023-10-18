@@ -12,11 +12,14 @@ namespace BlasII.Randomizer
 
         // Item rando settings
         public readonly int logicType;
-        public readonly int glitchType;
+        public readonly int requiredKeys;
         public readonly int startingWeapon;
-        public readonly int startingLocation;
         public readonly bool shuffleLongQuests;
         public readonly bool shuffleShops;
+
+        // Not implemented
+        public readonly int glitchType;
+        public readonly int startingLocation;
 
         // Enemy rando settings
         public readonly int enemyType;
@@ -24,23 +27,23 @@ namespace BlasII.Randomizer
         // Door rando settings
         public readonly int doorType;
 
-        public static RandomizerSettings DefaultSettings => new(RandomSeed, 1, 0, 0, 0, false, true, true, 0, 0);
+        public static RandomizerSettings DefaultSettings => new(RandomSeed, 1, 4, 0, 0, 0, false, true, true, 0, 0);
 
         public static int RandomSeed => new Random().Next(1, MAX_SEED + 1);
 
-        public RandomizerSettings(int seed, int logic, int glitch, int weapon, int location, bool longQuests, bool shops, bool hints, int enemy, int door)
+        public RandomizerSettings(int seed, int logic, int keys, int glitch, int weapon, int location, bool longQuests, bool shops, bool hints, int enemy, int door)
         {
             this.seed = seed;
+            allowHints = hints;
 
             logicType = logic;
-            glitchType = glitch;
-
+            requiredKeys = keys;
             startingWeapon = weapon;
-            startingLocation = location;
             shuffleLongQuests = longQuests;
             shuffleShops = shops;
 
-            allowHints = hints;
+            glitchType = glitch;
+            startingLocation = location;
 
             enemyType = enemy;
             doorType = door;
@@ -51,9 +54,20 @@ namespace BlasII.Randomizer
             get
             {
                 if (startingWeapon >= 1 && startingWeapon <= 3)
-                    return (startingWeapon - 1);
+                    return startingWeapon - 1;
 
                 return new Random(seed).Next(0, 3);
+            }
+        }
+
+        public int RealRequiredKeys
+        {
+            get
+            {
+                if (requiredKeys >= 1 && requiredKeys <= 5)
+                    return requiredKeys;
+
+                return new Random(seed).Next(1, 6);
             }
         }
 

@@ -120,13 +120,13 @@ namespace BlasII.Randomizer.Settings
                 bool shuffleShops = _setShuffleShops.Toggled;
 
                 int seed = _setSeed.CurrentNumericValue == 0 ? RandomizerSettings.RandomSeed : _setSeed.CurrentNumericValue;
-                return new RandomizerSettings(seed, logicDifficulty, 0, startingWeapon, 0, shuffleLongQuests, shuffleShops, true, 0, 0);
+                return new RandomizerSettings(seed, logicDifficulty, requiredKeys, 0, startingWeapon, 0, shuffleLongQuests, shuffleShops, true, 0, 0);
             }
             set
             {
                 _setStartingWeapon.CurrentOption = value.startingWeapon;
                 _setLogicDifficulty.CurrentOption = 0;
-                _setRequiredKeys.CurrentOption = 3;
+                _setRequiredKeys.CurrentOption = value.requiredKeys;
                 _setShuffleLongQuests.Toggled = value.shuffleLongQuests;
                 _setShuffleShops.Toggled = value.shuffleShops;
 
