@@ -39,8 +39,9 @@ o1ld: Easy
 o2ld: Normal
 o3ld: Hard
 oprq: Required keys
-o1rq: One
-o2rq: Two
-o3rq: Three
-o4rq: Four
-o5rq: Five
+o1rq: Zero
+o2rq: One
+o3rq: Two
+o4rq: Three
+o5rq: Four
+o6rq: Five

@@ -27,7 +27,7 @@ namespace BlasII.Randomizer
         // Door rando settings
         public readonly int doorType;
 
-        public static RandomizerSettings DefaultSettings => new(RandomSeed, 1, 4, 0, 0, 0, false, true, true, 0, 0);
+        public static RandomizerSettings DefaultSettings => new(RandomSeed, 1, 5, 0, 0, 0, false, true, true, 0, 0);
 
         public static int RandomSeed => new Random().Next(1, MAX_SEED + 1);
 
@@ -64,10 +64,10 @@ namespace BlasII.Randomizer
         {
             get
             {
-                if (requiredKeys >= 1 && requiredKeys <= 5)
-                    return requiredKeys;
+                if (requiredKeys >= 1 && requiredKeys <= 6)
+                    return requiredKeys - 1;
 
-                return new Random(seed).Next(1, 6);
+                return new Random(seed).Next(0, 6);
             }
         }
 

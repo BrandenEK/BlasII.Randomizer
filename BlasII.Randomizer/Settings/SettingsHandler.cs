@@ -341,7 +341,7 @@ namespace BlasII.Randomizer.Settings
 
         private readonly string[] _opWeapon = new string[] { "rand", "o1sw", "o2sw", "o3sw" };
         private readonly string[] _opLogic = new string[] { "o2ld" }; // "Easy", "Normal", "Hard"
-        private readonly string[] _opKeys = new string[] { "rand", "o1rq", "o2rq", "o3rq", "o4rq", "o5rq" };
+        private readonly string[] _opKeys = new string[] { "rand", "o1rq", "o2rq", "o3rq", "o4rq", "o5rq", "o6rq" };
 
         private ArrowOption _setStartingWeapon;
         private ArrowOption _setLogicDifficulty;
