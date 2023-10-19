@@ -111,5 +111,5 @@
 <div align="center">
   <h2>Installation</h2>
 
-  <p>...</p>
+  <p>Can be downloaded automatically through the <a href="https://github.com/BrandenEK/Blasphemous-Mod-Installer"> Mod Installer</p>
 </div>
