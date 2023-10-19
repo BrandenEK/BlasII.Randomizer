@@ -1,6 +1,7 @@
 ﻿using BlasII.Randomizer.Doors;
 using BlasII.Randomizer.Items;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using UnityEngine;
 
 namespace BlasII.Randomizer
@@ -10,24 +11,30 @@ namespace BlasII.Randomizer
         // Items
         private readonly Dictionary<string, Item> _allItems = new();
 
+        public IEnumerable<Item> ItemList => _allItems.Values;
+        public IDictionary<string, Item> ItemDictionary => _allItems;
+
         public Item GetItem(string id) => _allItems.TryGetValue(id, out var item) ? item : null;
         public bool DoesItemExist(string id) => _allItems.ContainsKey(id);
-        public IEnumerable<Item> GetAllItems() => _allItems.Values;
         public Item InvalidItem => _allItems["INVALID"];
 
         // Item locations
         private readonly Dictionary<string, ItemLocation> _allItemLocations = new();
 
+        public IEnumerable<ItemLocation> ItemLocationList => _allItemLocations.Values;
+        public IDictionary<string, ItemLocation> ItemLocationDictionary => _allItemLocations;
+
         public ItemLocation GetItemLocation(string id) => _allItemLocations.TryGetValue(id, out var itemLocation) ? itemLocation : null;
         public bool DoesItemLocationExist(string id) => _allItemLocations.ContainsKey(id);
-        public IEnumerable<ItemLocation> GetAllItemLocations() => _allItemLocations.Values;
 
         // Doors
         private readonly Dictionary<string, DoorLocation> _allDoors = new();
 
+        public IEnumerable<DoorLocation> DoorList => _allDoors.Values;
+        public IDictionary<string, DoorLocation> DoorDictionary => _allDoors;
+
         public DoorLocation GetDoor(string id) => _allDoors.TryGetValue(id, out var door) ? door : null;
         public bool DoesDoorExist(string id) => _allDoors.ContainsKey(id);
-        public IEnumerable<DoorLocation> GetAllDoors() => _allDoors.Values;
 
         // Images
 
