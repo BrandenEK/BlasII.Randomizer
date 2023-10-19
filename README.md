@@ -51,10 +51,8 @@
     </tr>
     <tr>
       <td align="center"> Logic Difficulty </td>
-      <td align="center"> Determines what skips and techniques may be required in the logic <br> <br>
-                          Easy: Only the original method of reaching a location will be considered <br>
-                          Normal: Best for the average player, will require knowledge of common skips <br>
-                          Hard: Only use this setting if you are well-versed in the logic. </td>
+      <td align="center"> Determines what skips and techniques may be required in the logic <br>
+                          (See below for a more detailed breakdown) </td>
       <td align="center"> Normal </td>
     </tr>
     <tr>
@@ -79,6 +77,31 @@
       <td align="center"> Whether or not shops can contain progression items <br>
                           (They will still have random items) </td>
       <td align="center"> True </td>
+    </tr>
+  </table>
+</div>
+
+---
+
+<div align="center">
+  <h2>Logic Difficulty</h2>
+
+  <table>
+    <tr>
+      <td align="center"> Type </td>
+      <td align="center"> Requirements </td>
+    </tr>
+    <tr>
+      <td align="center"> Easy </td>
+      <td align="center"> Currently there is no difference between difficulty settings </td>
+    </tr>
+    <tr>
+      <td align="center"> Normal </td>
+      <td align="center"> Currently there is no difference between difficulty settings </td>
+    </tr>
+    <tr>
+      <td align="center"> Hard </td>
+      <td align="center"> Currently there is no difference between difficulty settings </td>
     </tr>
   </table>
 </div>
