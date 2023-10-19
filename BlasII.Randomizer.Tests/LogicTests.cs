@@ -1,9 +1,12 @@
 using BlasII.Randomizer.Doors;
 using BlasII.Randomizer.Items;
+using LogicParser;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Text;
 
 namespace BlasII.Randomizer.Tests
 {
@@ -13,6 +16,8 @@ namespace BlasII.Randomizer.Tests
         private static readonly Dictionary<string, Item> _allItems = new();
         private static readonly Dictionary<string, ItemLocation> _allItemLocations = new();
         private static readonly Dictionary<string, DoorLocation> _allDoors = new();
+
+        private Blas2Inventory inventory;
 
         [ClassInitialize]
         public static void LoadJsonData(TestContext context)
@@ -32,12 +37,60 @@ namespace BlasII.Randomizer.Tests
                 _allDoors.Add(door.id, door);
         }
 
-        [TestMethod]
-        public void TestMethod1()
+        [TestInitialize]
+        public void CreateInventory()
         {
-            var inventory = new Blas2Inventory();
+            inventory = new Blas2Inventory(RandomizerSettings.DefaultSettings, _allDoors);
+        }
 
-            Assert.AreEqual(176, _allItems.Count);
+        [TestMethod]
+        public void FindErrorsInDoorLogic()
+        {
+            var sb = new StringBuilder(Environment.NewLine);
+            bool invalid = false;
+
+            foreach (var door in _allDoors.Values)
+            {
+                try
+                {
+                    inventory.Evaluate(door.logic);
+                }
+                catch (LogicParserException e)
+                {
+                    sb.AppendLine($"[{door.id}] {e.Message}");
+                    invalid = true;
+                }
+            }
+
+            if (invalid)
+            {
+                throw new LogicParserException(sb.ToString());
+            }
+        }
+
+        [TestMethod]
+        public void FindErrorsInLocationLogic()
+        {
+            var sb = new StringBuilder(Environment.NewLine);
+            bool invalid = false;
+
+            foreach (var itemLocation in _allItemLocations.Values)
+            {
+                try
+                {
+                    inventory.Evaluate(itemLocation.logic);
+                }
+                catch (LogicParserException e)
+                {
+                    sb.AppendLine($"[{itemLocation.id}] {e.Message}");
+                    invalid = true;
+                }
+            }
+
+            if (invalid)
+            {
+                throw new LogicParserException(sb.ToString());
+            }
         }
     }
 }

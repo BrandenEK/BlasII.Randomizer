@@ -1,4 +1,6 @@
-﻿using LogicParser;
+﻿using BlasII.Randomizer.Doors;
+using LogicParser;
+using System.Collections.Generic;
 
 namespace BlasII.Randomizer.Items
 {
@@ -66,9 +68,9 @@ namespace BlasII.Randomizer.Items
         protected override object GetVariable(string variable)
         {
             // Door variable
-            if (Main.Randomizer.Data.DoesDoorExist(variable))
+            if (_doors.TryGetValue(variable, out var door))
             {
-                return Evaluate(Main.Randomizer.Data.GetDoor(variable).logic);
+                return Evaluate(door.logic);
             }
 
             // Regular variable
@@ -125,7 +127,7 @@ namespace BlasII.Randomizer.Items
                 // Rooms
                 "daughterRooms" => daughterRooms,
 
-                _ => throw new System.Exception("Unknown variable: " + variable)
+                _ => throw new LogicParserException("Unknown variable: " + variable)
             };
         }
 
@@ -190,5 +192,14 @@ namespace BlasII.Randomizer.Items
                 case "AB35": cherubRings = true; return;
             }
         }
+
+        public Blas2Inventory(RandomizerSettings settings, IDictionary<string, DoorLocation> doors)
+        {
+            _settings = settings;
+            _doors = doors;
+        }
+
+        private readonly RandomizerSettings _settings;
+        private readonly IDictionary<string, DoorLocation> _doors;
     }
 }

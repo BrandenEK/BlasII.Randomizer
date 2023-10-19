@@ -107,7 +107,7 @@ namespace BlasII.Randomizer.Items
             header.AppendLine("- Boss Keys -\n");
 
             string currentZoneId = string.Empty;
-            foreach (var location in Main.Randomizer.Data.GetAllItemLocations())
+            foreach (var location in Main.Randomizer.Data.ItemLocationList)
             {
                 // Add boss key section to header
                 if (location.type == ItemLocation.ItemLocationType.BossKey)

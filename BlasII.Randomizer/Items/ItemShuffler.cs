@@ -10,7 +10,7 @@ namespace BlasII.Randomizer.Items
             Initialize(seed);
 
             // Create inventory with starting items
-            var inventory = new Blas2Inventory();
+            var inventory = new Blas2Inventory(settings, Main.Randomizer.Data.DoorDictionary);
             AddStartingItemsToInventory(inventory, settings);
 
             // Create pools of all locations to randomize
@@ -54,7 +54,7 @@ namespace BlasII.Randomizer.Items
         /// </summary>
         private void CreateLocationPool(List<ItemLocation> progressionLocations, List<ItemLocation> junkLocations, List<ItemLocation> bossKeyLocations, RandomizerSettings settings)
         {
-            foreach (var location in Main.Randomizer.Data.GetAllItemLocations())
+            foreach (var location in Main.Randomizer.Data.ItemLocationList)
             {
                 AddLocationToPool(progressionLocations, junkLocations, bossKeyLocations, location, settings);
             }
@@ -87,7 +87,7 @@ namespace BlasII.Randomizer.Items
         /// </summary>
         private void CreateItemPool(List<Item> progressionItems, List<Item> junkItems, int numOfLocations, RandomizerSettings settings)
         {
-            foreach (var item in Main.Randomizer.Data.GetAllItems())
+            foreach (var item in Main.Randomizer.Data.ItemList)
             {
                 AddItemToPool(progressionItems, junkItems, item);
             }
