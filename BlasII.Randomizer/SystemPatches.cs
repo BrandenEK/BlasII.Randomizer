@@ -72,7 +72,7 @@ namespace BlasII.Randomizer
 
             if (message.name == "TESTPOPUP")
             {
-                string text = "RANDOMIZER SETTINGS\n" + Main.Randomizer.CurrentSettings;
+                string text = Main.Randomizer.CurrentSettings.FormatInfo();
                 __instance.textCtrl.SetText(text);
                 return;
             }

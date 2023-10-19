@@ -14,19 +14,15 @@ namespace BlasII.Randomizer.Items
             AddStartingItemsToInventory(inventory, settings);
 
             // Create pools of all locations to randomize
-            List<ItemLocation> progressionLocations = new(), junkLocations = new(), bossKeyLocations = new();
-            CreateLocationPool(progressionLocations, junkLocations, bossKeyLocations, settings);
+            List<ItemLocation> progressionLocations = new(), junkLocations = new();
+            CreateLocationPool(progressionLocations, junkLocations, settings);
 
             // Create pools of all items to randomize
             List<Item> progressionItems = new(), junkItems = new();
             CreateItemPool(progressionItems, junkItems, progressionLocations.Count + junkLocations.Count, settings);
 
-            // Place boss key items at boss key locations
-            Item bossKeyItem = Main.Randomizer.Data.GetItem("BK");
-            FillBossKeyItems(bossKeyLocations, bossKeyItem, output);
-
             // Place progression items at progression locations
-            FillProgressionItems(progressionLocations, progressionItems, bossKeyLocations, output, inventory);
+            FillProgressionItems(progressionLocations, progressionItems, output, inventory);
 
             // Verify that all progression items were placed
             if (progressionItems.Count > 0)
@@ -50,36 +46,23 @@ namespace BlasII.Randomizer.Items
         }
 
         /// <summary>
-        /// Fills the three location pools
+        /// Fills the two location pools
         /// </summary>
-        private void CreateLocationPool(List<ItemLocation> progressionLocations, List<ItemLocation> junkLocations, List<ItemLocation> bossKeyLocations, RandomizerSettings settings)
+        private void CreateLocationPool(List<ItemLocation> progressionLocations, List<ItemLocation> junkLocations, RandomizerSettings settings)
         {
             foreach (var location in Main.Randomizer.Data.ItemLocationList)
             {
-                AddLocationToPool(progressionLocations, junkLocations, bossKeyLocations, location, settings);
+                AddLocationToPool(progressionLocations, junkLocations, location, settings);
             }
         }
 
         /// <summary>
         /// Takes a single location data and adds it to the correct list based on its type
         /// </summary>
-        private void AddLocationToPool(List<ItemLocation> progressionLocations, List<ItemLocation> junkLocations, List<ItemLocation> bossKeyLocations, ItemLocation location, RandomizerSettings settings)
+        private void AddLocationToPool(List<ItemLocation> progressionLocations, List<ItemLocation> junkLocations, ItemLocation location, RandomizerSettings settings)
         {
-            if (location.type == ItemLocation.ItemLocationType.BossKey)
-            {
-                // Boss keys go to special list
-                bossKeyLocations.Add(location);
-            }
-            else if (location.ShouldBeShuffled(settings))
-            {
-                // Only locations that should be shuffled will have progression items
-                progressionLocations.Add(location);
-            }
-            else
-            {
-                // Everything else can only have junk
-                junkLocations.Add(location);
-            }
+            List<ItemLocation> locationPool = location.ShouldBeShuffled(settings) ? progressionLocations : junkLocations;
+            locationPool.Add(location);
         }
 
         /// <summary>
@@ -97,11 +80,10 @@ namespace BlasII.Randomizer.Items
         }
 
         /// <summary>
-        /// Takes a single item data and adds it to the correct list based on its count
+        /// Takes a single item data and adds it to the correct list based on its type
         /// </summary>
         private void AddItemToPool(List<Item> progressionItems, List<Item> junkItems, Item item)
         {
-            // Add the item to either progression or junk lists
             List<Item> itemPool = item.progression ? progressionItems : junkItems;
             for (int i = 0; i < item.count; i++)
             {
@@ -151,19 +133,6 @@ namespace BlasII.Randomizer.Items
         }
 
         /// <summary>
-        /// Every cycle through the progression fill, check if boss key locations are reachable and add them to inventory
-        /// </summary>
-        private void CheckBossKeyLocations(List<ItemLocation> bossKeyLocations, Blas2Inventory inventory)
-        {
-            List<ItemLocation> reachableLocations = FindReachableLocations(bossKeyLocations, inventory);
-            foreach (var location in reachableLocations)
-            {
-                bossKeyLocations.Remove(location);
-                inventory.AddItem(Main.Randomizer.Data.GetItem("BK"));
-            }
-        }
-
-        /// <summary>
         /// After shuffling the list of progression items, move the wall climb ability to the end to prevent failing seeds
         /// </summary>        
         private void MovePriorityItems(List<Item> progressionItems)
@@ -186,23 +155,8 @@ namespace BlasII.Randomizer.Items
         }
 
 
-        private void FillBossKeyItems(List<ItemLocation> locations, Item item, Dictionary<string, string> output)
-        {
-            // Remove extra locations until there are only five
-            while (locations.Count > 5)
-            {
-                RemoveRandom(locations);
-            }
 
-            // Place boss key item at remaining ones
-            foreach (var location in locations)
-            {
-                Main.Randomizer.Log("Placing boss key at: " + location.id);
-                output.Add(location.id, item.id);
-            }
-        }
-
-        private void FillProgressionItems(List<ItemLocation> locations, List<Item> items, List<ItemLocation> bossKeyLocations, Dictionary<string, string> output, Blas2Inventory inventory)
+        private void FillProgressionItems(List<ItemLocation> locations, List<Item> items, Dictionary<string, string> output, Blas2Inventory inventory)
         {
             ShuffleList(items);
             MovePriorityItems(items);
@@ -217,7 +171,6 @@ namespace BlasII.Randomizer.Items
                 output.Add(location.id, item.id);
                 Main.Randomizer.Log($"Placing prog item {item.id} at: {location.id}");
 
-                CheckBossKeyLocations(bossKeyLocations, inventory);
                 reachableLocations = FindReachableLocations(locations, inventory);
             }
         }

@@ -960,38 +960,39 @@
         "count": 1
     },
     {
-        "id": "BK",
-        "name": "Boss Key",
-        "type": "QuestItem",
-        "progression": true,
-        "count": 0,
-        "subItems": [ "QI63", "QI64", "QI65", "QI66", "QI67" ],
-        "removePrevious": false
-    },
-    {
         "id": "QI63",
         "name": "Key of the Pilgrim",
-        "type": "QuestItem"
+        "type": "QuestItem",
+        "progression": true,
+        "count": 1
     },
     {
         "id": "QI64",
         "name": "Key of Endless Orison",
-        "type": "QuestItem"
+        "type": "QuestItem",
+        "progression": true,
+        "count": 1
     },
     {
         "id": "QI65",
         "name": "Key of Salt",
-        "type": "QuestItem"
+        "type": "QuestItem",
+        "progression": true,
+        "count": 1
     },
     {
         "id": "QI66",
         "name": "Key of the Council",
-        "type": "QuestItem"
+        "type": "QuestItem",
+        "progression": true,
+        "count": 1
     },
     {
         "id": "QI67",
         "name": "Mirrored Key",
-        "type": "QuestItem"
+        "type": "QuestItem",
+        "progression": true,
+        "count": 1
     },
     {
         "id": "QI68",
@@ -1107,7 +1108,7 @@
     },
     {
         "id": "Marks[1]",
-        "name": "1 Mark of Martyrdom",
+        "name": "1 Marks of Martyrdom",
         "type": "Marks",
         "progression": false,
         "count": 35

@@ -50,23 +50,43 @@ namespace BlasII.Randomizer
             doorType = door;
         }
 
-        public override string ToString()
+        public string FormatInfo()
         {
-            var sb = new StringBuilder();
-            sb.AppendLine("Seed: " + seed).AppendLine();
-
             string logic = logicType == 0 ? "Easy" : logicType == 1 ? "Normal" : "Hard";
-            sb.AppendLine("Logic difficulty: " + logic);
-
             string keys = requiredKeys > 0 ? (requiredKeys - 1).ToString() : "Random";
+            string weapon = startingWeapon == 1 ? "Veredicto" : startingWeapon == 2 ? "Ruego" : startingWeapon == 3 ? "Sarmiento" : "Random";
+            var sb = new StringBuilder();
+
+            sb.AppendLine("RANDOMIZER SETTINGS");
+            sb.AppendLine("Seed: " + seed);
+            sb.AppendLine();
+            sb.AppendLine("Logic difficulty: " + logic);
             sb.AppendLine("Required keys: " + keys);
-
-            string weapon = startingWeapon == 1 ? "Veredicto" : startingWeapon == 2 ? "Reugo" : startingWeapon == 3 ? "Sarmiento" : "Random";
             sb.AppendLine("Starting weapon: " + weapon);
-
             sb.AppendLine("Shuffle long quests: " + shuffleLongQuests);
-
             sb.AppendLine("Shuffle shops: " + shuffleShops);
+
+            return sb.ToString();
+        }
+
+        public string FormatSpoiler()
+        {
+            string logic = logicType == 0 ? "Easy" : logicType == 1 ? "Normal" : "Hard";
+            string keys = requiredKeys > 0 ? (requiredKeys - 1).ToString() : $"[{RealRequiredKeys}]";
+            string[] weapons = new string[] { "Veredicto", "Ruego", "Sarmiento" };
+            string weapon = startingWeapon > 0 ? weapons[startingWeapon - 1] : $"[{weapons[RealStartingWeapon]}]";
+            var sb = new StringBuilder();
+            var line = new string('=', 35);
+
+            sb.AppendLine("Seed: " + seed);
+            sb.AppendLine();
+            sb.AppendLine(line);
+            sb.AppendLine(" Logic difficulty: " + logic);
+            sb.AppendLine(" Required keys: " + keys);
+            sb.AppendLine(" Starting weapon: " + weapon);
+            sb.AppendLine(" Shuffle long quests: " + shuffleLongQuests);
+            sb.AppendLine(" Shuffle shops: " + shuffleShops);
+            sb.AppendLine(line);
 
             return sb.ToString();
         }

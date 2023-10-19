@@ -4,7 +4,6 @@ using Il2CppTGK.Game;
 using Il2CppTGK.Game.Components.UI;
 using Il2CppTGK.Game.PopupMessages;
 using Il2CppTMPro;
-using System.Text;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -109,9 +108,9 @@ namespace BlasII.Randomizer.Settings
         {
             get
             {
-                int startingWeapon = _setStartingWeapon.CurrentOption;
-                int logicDifficulty = _setLogicDifficulty.CurrentOption;
+                int logicDifficulty = 1;
                 int requiredKeys = _setRequiredKeys.CurrentOption;
+                int startingWeapon = _setStartingWeapon.CurrentOption;
                 bool shuffleLongQuests = _setShuffleLongQuests.Toggled;
                 bool shuffleShops = _setShuffleShops.Toggled;
 
@@ -120,9 +119,9 @@ namespace BlasII.Randomizer.Settings
             }
             set
             {
-                _setStartingWeapon.CurrentOption = value.startingWeapon;
                 _setLogicDifficulty.CurrentOption = 0;
                 _setRequiredKeys.CurrentOption = value.requiredKeys;
+                _setStartingWeapon.CurrentOption = value.startingWeapon;
                 _setShuffleLongQuests.Toggled = value.shuffleLongQuests;
                 _setShuffleShops.Toggled = value.shuffleShops;
 
@@ -166,14 +165,14 @@ namespace BlasII.Randomizer.Settings
             _setSeed = CreateTextOption("Seed", mainSection, new Vector2(0, 300), 150,
                 "seed", true, false, 6);
 
-            _setStartingWeapon = CreateArrowOption("SW", mainSection, new Vector2(-300, 80),
-                "opsw", _opWeapon);
-
-            _setLogicDifficulty = CreateArrowOption("LD", mainSection, new Vector2(-300, -80),
+            _setLogicDifficulty = CreateArrowOption("LD", mainSection, new Vector2(-300, 80),
                 "opld", _opLogic);
 
-            _setRequiredKeys = CreateArrowOption("RQ", mainSection, new Vector2(-300, -240),
+            _setRequiredKeys = CreateArrowOption("RQ", mainSection, new Vector2(-300, -80),
                 "oprq", _opKeys);
+
+            _setStartingWeapon = CreateArrowOption("SW", mainSection, new Vector2(-300, -240),
+                "opsw", _opWeapon);
 
             _setShuffleLongQuests = CreateToggleOption("SL", mainSection, new Vector2(150, 70),
                 "opsl");
@@ -335,13 +334,13 @@ namespace BlasII.Randomizer.Settings
         private readonly Color SILVER = new Color32(192, 192, 192, 255);
         private readonly Color YELLOW = new Color32(255, 231, 65, 255);
 
-        private readonly string[] _opWeapon = new string[] { "rand", "o1sw", "o2sw", "o3sw" };
         private readonly string[] _opLogic = new string[] { "o2ld" }; // "Easy", "Normal", "Hard"
         private readonly string[] _opKeys = new string[] { "rand", "o1rq", "o2rq", "o3rq", "o4rq", "o5rq", "o6rq" };
+        private readonly string[] _opWeapon = new string[] { "rand", "o1sw", "o2sw", "o3sw" };
 
-        private ArrowOption _setStartingWeapon;
         private ArrowOption _setLogicDifficulty;
         private ArrowOption _setRequiredKeys;
+        private ArrowOption _setStartingWeapon;
 
         private ToggleOption _setShuffleLongQuests;
         private ToggleOption _setShuffleShops;
