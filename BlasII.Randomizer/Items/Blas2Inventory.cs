@@ -2,7 +2,7 @@
 
 namespace BlasII.Randomizer.Items
 {
-    internal class Blas2Inventory : InventoryData
+    public class Blas2Inventory : InventoryData
     {
         // Weapons
         int censer = 0;
