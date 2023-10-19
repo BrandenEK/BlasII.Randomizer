@@ -30,9 +30,6 @@ namespace BlasII.Randomizer.Items
         {
             Main.Randomizer.LogWarning("Giving item at location: " +  locationId);
 
-            if (IsRemovedLocation(locationId))
-                return;
-
             Item item;
             if (_collectedLocations.Contains(locationId))
             {
@@ -65,31 +62,12 @@ namespace BlasII.Randomizer.Items
                 || locationId == "Z1064.i0";
         }
 
-        /// <summary>
-        /// Checks if the location should completely skip execution (Normal boss keys)
-        /// </summary>
-        public bool IsRemovedLocation(string locationId)
-        {
-            return locationId == "Z1113.i8"
-                || locationId == "Z1216.i9"
-                || locationId == "Z1327.i7"
-                || locationId == "Z1622.i6";
-        }
-
-        /// <summary>
-        /// Checks if the location has a random item there (Random boss keys)
-        /// </summary>
-        public bool IsRandomLocation(string locationId)
-        {
-            return _mappedItems.ContainsKey(locationId);
-        }
-
         public void FakeShuffle(int seed, RandomizerSettings settings)
         {
             if (_shuffler.Shuffle(seed, settings, _mappedItems))
             {
                 Main.Randomizer.Log($"Shuffled {_mappedItems.Count} items!");
-                GenerateSpoiler(seed);
+                GenerateSpoiler(settings);
             }
             else
             {
@@ -98,25 +76,16 @@ namespace BlasII.Randomizer.Items
             }
         }
 
-        private void GenerateSpoiler(int seed)
+        private void GenerateSpoiler(RandomizerSettings settings)
         {
-            StringBuilder header = new(), footer = new();
-            header.AppendLine($"Version: {ModInfo.MOD_VERSION}");
-            header.AppendLine($"Date: {System.DateTime.Now.ToString("MM/dd/yyyy")}");
-            header.AppendLine($"Seed: {seed}\n");
-            header.AppendLine("- Boss Keys -\n");
+            var sb = new StringBuilder();
+            sb.AppendLine($"Version: {ModInfo.MOD_VERSION}");
+            sb.AppendLine($"Date: {System.DateTime.Now.ToString("MM/dd/yyyy")}");
+            sb.Append(settings.FormatSpoiler());
 
             string currentZoneId = string.Empty;
             foreach (var location in Main.Randomizer.Data.ItemLocationList)
             {
-                // Add boss key section to header
-                if (location.type == ItemLocation.ItemLocationType.BossKey)
-                {
-                    if (_mappedItems.ContainsKey(location.id))
-                        header.AppendLine(location.name);
-                    continue;
-                }
-
                 // Make sure it has a valid item
                 Item item = GetItemAtLocation(location.id);
 
@@ -124,17 +93,17 @@ namespace BlasII.Randomizer.Items
                 string locationZoneId = location.id[..3];
                 if (currentZoneId != locationZoneId && Main.Randomizer.Data.GetZoneName(locationZoneId, out string locationZoneName))
                 {
-                    footer.AppendLine($"\n - {locationZoneName} -\n");
+                    sb.AppendLine($"\n - {locationZoneName} -\n");
                     currentZoneId = locationZoneId;
                 }
 
-                // Add location to footer
-                footer.AppendLine($"{location.name}: {item.name}");
+                // Add location to text
+                sb.AppendLine($"{location.name}: {item.name}");
             }
 
             // Save text to file
             string fileName = $"spoiler_{CoreCache.SaveData.CurrentSaveSlot}.txt";
-            Main.Randomizer.FileHandler.WriteToFile(fileName, header.ToString() + footer.ToString());
+            Main.Randomizer.FileHandler.WriteToFile(fileName, sb.ToString());
         }
 
         public void SetItemCollected(string itemId)

@@ -22,19 +22,29 @@ terd: Can be used to buy stuff.
 marn: Marks of Martyrdom
 mard: Can be used to buy more stuff.
 
+# Gameplay changes
+ktex: "The Mother said: 'Locate the * keys that herald the Birth."
+
 # Settings menu
 head: RANDOMIZER SETTINGS
 btnb: Begin
 btnc: Cancel
 seed: Seed:
 rand: Random
-opsw: Starting weapon
-opld: Logic difficulty
 opsl: Shuffle long quests
 opss: Shuffle shops
+opsw: Starting weapon
 o1sw: Veredicto
 o2sw: Ruego
 o3sw: Sarmiento
+opld: Logic difficulty
 o1ld: Easy
 o2ld: Normal
 o3ld: Hard
+oprq: Required keys
+o1rq: Zero
+o2rq: One
+o3rq: Two
+o4rq: Three
+o5rq: Four
+o6rq: Five

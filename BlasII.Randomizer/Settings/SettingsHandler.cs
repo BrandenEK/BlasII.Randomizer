@@ -2,8 +2,8 @@
 using BlasII.ModdingAPI.UI;
 using Il2CppTGK.Game;
 using Il2CppTGK.Game.Components.UI;
+using Il2CppTGK.Game.PopupMessages;
 using Il2CppTMPro;
-using System.Text;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -92,18 +92,13 @@ namespace BlasII.Randomizer.Settings
         /// <summary>
         /// Displays certain randomizer settings in an info popup
         /// </summary>
-        public void DisplaySettings(RandomizerSettings settings)
+        public void DisplaySettings()
         {
-            var sb = new StringBuilder();
-            //sb.Append("This is a test message that just displays random text that does not matter");
-            sb.AppendLine("Seed: " + settings.seed);
-            //sb.AppendLine("Starting weapon: " + _opWeapon[settings.startingWeapon]);
-            sb.AppendLine("Logic: Normal");
-            //sb.AppendLine();
-            //sb.AppendLine("Shuffle long quests: " + settings.shuffleLongQuests);
-            //sb.AppendLine("Shuffle shops: " + settings.shuffleShops);
-
-            CoreCache.UINavigationHelper.ShowPopup("RANDOMIZER SETTINGS", sb.ToString());
+            foreach (var mid in Resources.FindObjectsOfTypeAll<PopupMessageID>())
+            {
+                if (mid.name == "TESTPOPUP_id")
+                    CoreCache.UINavigationHelper.ShowPopupMessage(mid);
+            }
         }
 
         /// <summary>
@@ -113,18 +108,20 @@ namespace BlasII.Randomizer.Settings
         {
             get
             {
+                int logicDifficulty = 1;
+                int requiredKeys = _setRequiredKeys.CurrentOption;
                 int startingWeapon = _setStartingWeapon.CurrentOption;
-                int logicDifficulty = _setLogicDifficulty.CurrentOption;
                 bool shuffleLongQuests = _setShuffleLongQuests.Toggled;
                 bool shuffleShops = _setShuffleShops.Toggled;
 
                 int seed = _setSeed.CurrentNumericValue == 0 ? RandomizerSettings.RandomSeed : _setSeed.CurrentNumericValue;
-                return new RandomizerSettings(seed, logicDifficulty, 0, startingWeapon, 0, shuffleLongQuests, shuffleShops, true, 0, 0);
+                return new RandomizerSettings(seed, logicDifficulty, requiredKeys, 0, startingWeapon, 0, shuffleLongQuests, shuffleShops, true, 0, 0);
             }
             set
             {
-                _setStartingWeapon.CurrentOption = value.startingWeapon;
                 _setLogicDifficulty.CurrentOption = 0;
+                _setRequiredKeys.CurrentOption = value.requiredKeys;
+                _setStartingWeapon.CurrentOption = value.startingWeapon;
                 _setShuffleLongQuests.Toggled = value.shuffleLongQuests;
                 _setShuffleShops.Toggled = value.shuffleShops;
 
@@ -168,11 +165,14 @@ namespace BlasII.Randomizer.Settings
             _setSeed = CreateTextOption("Seed", mainSection, new Vector2(0, 300), 150,
                 "seed", true, false, 6);
 
-            _setStartingWeapon = CreateArrowOption("SW", mainSection, new Vector2(-300, 80),
-                "opsw", _opWeapon);
-
-            _setLogicDifficulty = CreateArrowOption("LD", mainSection, new Vector2(-300, -80),
+            _setLogicDifficulty = CreateArrowOption("LD", mainSection, new Vector2(-300, 80),
                 "opld", _opLogic);
+
+            _setRequiredKeys = CreateArrowOption("RQ", mainSection, new Vector2(-300, -80),
+                "oprq", _opKeys);
+
+            _setStartingWeapon = CreateArrowOption("SW", mainSection, new Vector2(-300, -240),
+                "opsw", _opWeapon);
 
             _setShuffleLongQuests = CreateToggleOption("SL", mainSection, new Vector2(150, 70),
                 "opsl");
@@ -334,11 +334,13 @@ namespace BlasII.Randomizer.Settings
         private readonly Color SILVER = new Color32(192, 192, 192, 255);
         private readonly Color YELLOW = new Color32(255, 231, 65, 255);
 
-        private readonly string[] _opWeapon = new string[] { "rand", "o1sw", "o2sw", "o3sw" };
         private readonly string[] _opLogic = new string[] { "o2ld" }; // "Easy", "Normal", "Hard"
+        private readonly string[] _opKeys = new string[] { "rand", "o1rq", "o2rq", "o3rq", "o4rq", "o5rq", "o6rq" };
+        private readonly string[] _opWeapon = new string[] { "rand", "o1sw", "o2sw", "o3sw" };
 
-        private ArrowOption _setStartingWeapon;
         private ArrowOption _setLogicDifficulty;
+        private ArrowOption _setRequiredKeys;
+        private ArrowOption _setStartingWeapon;
 
         private ToggleOption _setShuffleLongQuests;
         private ToggleOption _setShuffleShops;

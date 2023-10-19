@@ -724,6 +724,12 @@
         "logic": "Z11[S] + doubleJump + airDash + rapier + censer"
     },
     {
+        "id": "Z1113.i8",
+        "name": "Benedicta reward",
+        "type": "Normal",
+        "logic": "Z11[S] + doubleJump + airDash + rapier + censer"
+    },
+    {
         "id": "Z1114.c0",
         "name": "Elevator cherub",
         "type": "Normal",
@@ -768,6 +774,12 @@
     {
         "id": "Z1216.r9",
         "name": "Defeat Odon",
+        "type": "Normal",
+        "logic": "Z12[E]"
+    },
+    {
+        "id": "Z1216.i9",
+        "name": "Odon reward",
         "type": "Normal",
         "logic": "Z12[E]"
     },
@@ -828,6 +840,12 @@
     {
         "id": "Z1327.r7",
         "name": "Defeat Susona",
+        "type": "Normal",
+        "logic": "Z13[E] + blade + censer + rapier"
+    },
+    {
+        "id": "Z1327.i7",
+        "name": "Susona reward",
         "type": "Normal",
         "logic": "Z13[E] + blade + censer + rapier"
     },
@@ -1007,7 +1025,13 @@
     },
     {
         "id": "Z1622.r6",
-        "name": "Defeat Sínodo",
+        "name": "Defeat Sinodo",
+        "type": "Normal",
+        "logic": "Z16[S] + rapier + cherubRings"
+    },
+    {
+        "id": "Z1622.i6",
+        "name": "Sinodo reward",
         "type": "Normal",
         "logic": "Z16[S] + rapier + cherubRings"
     },
@@ -1496,53 +1520,5 @@
         "name": "Patio shop item 7",
         "type": "Shop",
         "logic": "Z17[W] + doubleJump + Z13[E] + blade + censer + rapier"
-    },
-    {
-        "id": "Z0421.key",
-        "name": "Radames",
-        "type": "BossKey",
-        "logic": "Z04[NE]"
-    },
-    {
-        "id": "Z0730.key",
-        "name": "Orospina",
-        "type": "BossKey",
-        "logic": "Z07[W] + rapier"
-    },
-    {
-        "id": "Z0921.key",
-        "name": "Lesmes",
-        "type": "BossKey",
-        "logic": "Z09[W] + wallClimb + blade"
-    },
-    {
-        "id": "Z2304.key",
-        "name": "Afilaor",
-        "type": "BossKey",
-        "logic": "Z23[N]"
-    },
-    {
-        "id": "Z1104.key",
-        "name": "Bendicta",
-        "type": "BossKey",
-        "logic": "Z11[S] + doubleJump + airDash + rapier + censer"
-    },
-    {
-        "id": "Z1216.key",
-        "name": "Odon",
-        "type": "BossKey",
-        "logic": "Z12[E]"
-    },
-    {
-        "id": "Z1622.key",
-        "name": "Sinodo",
-        "type": "BossKey",
-        "logic": "Z16[S] + rapier + cherubRings"
-    },
-    {
-        "id": "Z1327.key",
-        "name": "Svsona",
-        "type": "BossKey",
-        "logic": "Z13[E] + blade + censer + rapier"
     }
 ]

@@ -35,7 +35,6 @@ namespace BlasII.Randomizer.Items
         public enum ItemLocationType
         {
             Normal,
-            BossKey,
             LongQuest,
             Shop,
         }

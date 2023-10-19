@@ -34,7 +34,7 @@ namespace BlasII.Randomizer
                 return;
 
             if (Input.GetKeyDown(KeyCode.Keypad6))
-                SettingsHandler.DisplaySettings(CurrentSettings);
+                SettingsHandler.DisplaySettings();
 
             if (Input.GetKeyDown(KeyCode.Keypad8))
             {
@@ -49,8 +49,6 @@ namespace BlasII.Randomizer
                 LoadWeaponSelectRoom();
             else if (sceneName == "Z2501")
                 LoadChapelRoom();
-            else if (GetQuestBool("ST00", "DREAM_RETURN"))
-                LoadBossKeyRoom(sceneName);
         }
 
         protected override void OnSceneUnloaded(string sceneName)
@@ -142,15 +140,6 @@ namespace BlasII.Randomizer
                     Object.Destroy(fsm.gameObject.GetComponent<BoxCollider2D>());
                 }
             }
-        }
-
-        private void LoadBossKeyRoom(string sceneName)
-        {
-            string locationId = $"{sceneName}.key";
-            Main.Randomizer.LogError("Randomizer.LoadBossKeyRoom - " + locationId);
-
-            if (ItemHandler.IsRandomLocation(locationId))
-                ItemHandler.GiveItemAtLocation(locationId);
         }
 
         // Quests

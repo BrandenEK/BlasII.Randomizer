@@ -161,6 +161,11 @@ namespace BlasII.Randomizer.Items
                 case "QI22": letter5 = true; break;
                 case "QI28": brokenKey = true; break;
                 case "QI54": rattle = true; break;
+                case "QI63": bossKeys++; break;
+                case "QI64": bossKeys++; break;
+                case "QI65": bossKeys++; break;
+                case "QI66": bossKeys++; break;
+                case "QI67": bossKeys++; break;
                 case "QI68": holyOil = true; break;
                 case "QI70": lance = true; break;
                 case "ST": tools++; break;
@@ -168,7 +173,6 @@ namespace BlasII.Randomizer.Items
                 case "FT": tributes++; break;
                 case "FK": kisses++; break;
                 case "WS": waxSeeds++; break;
-                case "BK": bossKeys++; break;
             }
         }
 

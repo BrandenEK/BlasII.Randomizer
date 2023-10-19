@@ -181,3 +181,29 @@
 //            LogError("Max health: " + comp.GetMaxValue(stat));
 //    }
 //}
+
+//using Il2CppTGK.Game.Components.UI;
+///// <summary>
+///// Attempts to change the dimensions of the info popup to allow showing entire settings list
+///// </summary>
+//[HarmonyPatch(typeof(PopupWindowLogic), nameof(PopupWindowLogic.ShowPopup))]
+//class Popup_Show_Patch
+//{
+//    public static void Postfix(PopupWindowLogic __instance)
+//    {
+//        //Main.Randomizer.Log(__instance.PopUp.sizeDelta.y.ToString());
+//        //Main.Randomizer.Log(__instance.descriptionText.preferredHeight.ToString());
+//        //Main.Randomizer.Log(__instance.descriptionText.rectTransform.anchoredPosition.ToString());
+
+//        //Main.Randomizer.Log(__instance.descriptionText.rectTransform.sizeDelta.ToString());
+
+//        //__instance.descriptionText.rectTransform.sizeDelta = new Vector2(540, 50);
+//        //float x = __instance.descriptionText.rectTransform.anchoredPosition.x - 20;
+//        //float y = __instance.descriptionText.rectTransform.anchoredPosition.y;
+//        //__instance.descriptionText.rectTransform.anchoredPosition = new Vector2(300, y);
+
+//        //float height = __instance.descriptionText.preferredHeight + 120;
+//        //__instance.PopUp.sizeDelta = new Vector2(__instance.PopUp.sizeDelta.x, height);
+//    }
+//}
+

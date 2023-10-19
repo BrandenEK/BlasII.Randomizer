@@ -126,15 +126,11 @@ namespace BlasII.Randomizer.Items
                 __result = true;
             }
 
-            // Only unlock CR once all keys are owned
+            // Only unlock CR once enough keys are owned
             else if (scene == "Z2501" && quest == "Bosses.BS07_DEAD")
             {
-                __result =
-                    ItemStorage.TryGetQuestItem("QI63", out var key1) && ItemStorage.PlayerInventory.HasItem(key1) &&
-                    ItemStorage.TryGetQuestItem("QI64", out var key2) && ItemStorage.PlayerInventory.HasItem(key2) &&
-                    ItemStorage.TryGetQuestItem("QI65", out var key3) && ItemStorage.PlayerInventory.HasItem(key3) &&
-                    ItemStorage.TryGetQuestItem("QI66", out var key4) && ItemStorage.PlayerInventory.HasItem(key4) &&
-                    ItemStorage.TryGetQuestItem("QI67", out var key5) && ItemStorage.PlayerInventory.HasItem(key5);
+                __result = OwnedKeys >= Main.Randomizer.CurrentSettings.RealRequiredKeys;
+                Main.Randomizer.Log("CR door opened: " + __result);
             }
 
             // Allow giving both the scroll & cloth to the elders
@@ -145,6 +141,20 @@ namespace BlasII.Randomizer.Items
 
             if (!quest.StartsWith("ST18"))
                 Main.Randomizer.LogWarning($"Getting quest: {quest} ({initialResult}) -> ({__result})");
+        }
+
+        private static int OwnedKeys
+        {
+            get
+            {
+                int keys = 0;
+                if (ItemStorage.TryGetQuestItem("QI63", out var key1) && ItemStorage.PlayerInventory.HasItem(key1)) keys++;
+                if (ItemStorage.TryGetQuestItem("QI64", out var key2) && ItemStorage.PlayerInventory.HasItem(key2)) keys++;
+                if (ItemStorage.TryGetQuestItem("QI65", out var key3) && ItemStorage.PlayerInventory.HasItem(key3)) keys++;
+                if (ItemStorage.TryGetQuestItem("QI66", out var key4) && ItemStorage.PlayerInventory.HasItem(key4)) keys++;
+                if (ItemStorage.TryGetQuestItem("QI67", out var key5) && ItemStorage.PlayerInventory.HasItem(key5)) keys++;
+                return keys;
+            }
         }
     }
 
