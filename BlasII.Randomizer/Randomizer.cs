@@ -34,7 +34,7 @@ namespace BlasII.Randomizer
                 return;
 
             if (Input.GetKeyDown(KeyCode.Keypad6))
-                SettingsHandler.DisplaySettings(CurrentSettings);
+                SettingsHandler.DisplaySettings();
 
             if (Input.GetKeyDown(KeyCode.Keypad8))
             {

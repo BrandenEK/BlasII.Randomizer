@@ -53,6 +53,7 @@ namespace BlasII.Randomizer
 
     /// <summary>
     /// When reading the CR door, show how many keys you must find
+    /// When pressing display button, show the current settings
     /// </summary>
     [HarmonyPatch(typeof(PopupMessageLogic), nameof(PopupMessageLogic.ShowMessageAndWait))]
     class Popup_Show_Patch
@@ -66,6 +67,14 @@ namespace BlasII.Randomizer
                 string text = Main.Randomizer.LocalizationHandler.Localize("ktex")
                     .Replace("*", Main.Randomizer.CurrentSettings.RealRequiredKeys.ToString());
                 __instance.textCtrl.SetText(text);
+                return;
+            }
+
+            if (message.name == "TESTPOPUP")
+            {
+                string text = "RANDOMIZER SETTINGS\n" + Main.Randomizer.CurrentSettings;
+                __instance.textCtrl.SetText(text);
+                return;
             }
         }
     }

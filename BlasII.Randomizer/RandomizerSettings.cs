@@ -1,4 +1,5 @@
 using System;
+using System.Text;
 
 namespace BlasII.Randomizer
 {
@@ -47,6 +48,27 @@ namespace BlasII.Randomizer
 
             enemyType = enemy;
             doorType = door;
+        }
+
+        public override string ToString()
+        {
+            var sb = new StringBuilder();
+            sb.AppendLine("Seed: " + seed).AppendLine();
+
+            string logic = logicType == 0 ? "Easy" : logicType == 1 ? "Normal" : "Hard";
+            sb.AppendLine("Logic difficulty: " + logic);
+
+            string keys = requiredKeys > 0 ? (requiredKeys - 1).ToString() : "Random";
+            sb.AppendLine("Required keys: " + keys);
+
+            string weapon = startingWeapon == 1 ? "Veredicto" : startingWeapon == 2 ? "Reugo" : startingWeapon == 3 ? "Sarmiento" : "Random";
+            sb.AppendLine("Starting weapon: " + weapon);
+
+            sb.AppendLine("Shuffle long quests: " + shuffleLongQuests);
+
+            sb.AppendLine("Shuffle shops: " + shuffleShops);
+
+            return sb.ToString();
         }
 
         public int RealStartingWeapon

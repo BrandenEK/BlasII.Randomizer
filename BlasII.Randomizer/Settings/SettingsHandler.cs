@@ -2,6 +2,7 @@
 using BlasII.ModdingAPI.UI;
 using Il2CppTGK.Game;
 using Il2CppTGK.Game.Components.UI;
+using Il2CppTGK.Game.PopupMessages;
 using Il2CppTMPro;
 using System.Text;
 using UnityEngine;
@@ -92,18 +93,13 @@ namespace BlasII.Randomizer.Settings
         /// <summary>
         /// Displays certain randomizer settings in an info popup
         /// </summary>
-        public void DisplaySettings(RandomizerSettings settings)
+        public void DisplaySettings()
         {
-            var sb = new StringBuilder();
-            //sb.Append("This is a test message that just displays random text that does not matter");
-            sb.AppendLine("Seed: " + settings.seed);
-            //sb.AppendLine("Starting weapon: " + _opWeapon[settings.startingWeapon]);
-            sb.AppendLine("Logic: Normal");
-            //sb.AppendLine();
-            //sb.AppendLine("Shuffle long quests: " + settings.shuffleLongQuests);
-            //sb.AppendLine("Shuffle shops: " + settings.shuffleShops);
-
-            CoreCache.UINavigationHelper.ShowPopup("RANDOMIZER SETTINGS", sb.ToString());
+            foreach (var mid in Resources.FindObjectsOfTypeAll<PopupMessageID>())
+            {
+                if (mid.name == "TESTPOPUP_id")
+                    CoreCache.UINavigationHelper.ShowPopupMessage(mid);
+            }
         }
 
         /// <summary>
