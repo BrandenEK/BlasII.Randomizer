@@ -1,6 +1,9 @@
 ﻿using HarmonyLib;
 using Il2CppTGK.Game.Components.Misc;
+using Il2CppTGK.Game.Components.UI;
+using Il2CppTGK.Game.DialogSystem;
 using Il2CppTGK.Game.Managers;
+using Il2CppTGK.Game.PopupMessages;
 using System.Reflection;
 
 namespace BlasII.Randomizer
@@ -34,5 +37,36 @@ namespace BlasII.Randomizer
     class Mouse_Awake_Patch
     {
         public static bool Prefix() => false;
+    }
+
+    /// <summary>
+    /// Logs the id whenever a dialog is started
+    /// </summary>
+    [HarmonyPatch(typeof(DialogManager), nameof(DialogManager.ShowDialogWithObject))]
+    class Dialog_Show_Patch
+    {
+        public static void Prefix(Dialog dialog)
+        {
+            Main.Randomizer.Log("Starting dialog: " + dialog.name);
+        }
+    }
+
+    /// <summary>
+    /// When reading the CR door, show how many keys you must find
+    /// </summary>
+    [HarmonyPatch(typeof(PopupMessageLogic), nameof(PopupMessageLogic.ShowMessageAndWait))]
+    class Popup_Show_Patch
+    {
+        public static void Postfix(PopupMessageLogic __instance, PopupMessage message)
+        {
+            Main.Randomizer.Log("Showing popup: " + message.name);
+
+            if (message.name == "MSG_0003")
+            {
+                string text = Main.Randomizer.LocalizationHandler.Localize("ktex")
+                    .Replace("*", Main.Randomizer.CurrentSettings.RealRequiredKeys.ToString());
+                __instance.textCtrl.SetText(text);
+            }
+        }
     }
 }

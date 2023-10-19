@@ -22,6 +22,9 @@ terd: Can be used to buy stuff.
 marn: Marks of Martyrdom
 mard: Can be used to buy more stuff.
 
+# Gameplay changes
+ktex: "The Mother said: 'Locate the * keys that herald the Birth."
+
 # Settings menu
 head: RANDOMIZER SETTINGS
 btnb: Begin
