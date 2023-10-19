@@ -41,6 +41,39 @@
 ---
 
 <div align="center">
+  <h2>Randomizer Settings</h2>
+
+  <table>
+    <tr>
+      <td align="center"><b> Name </b></td>
+      <td align="center"><b> Explanation </b></td>
+    </tr>
+    <tr>
+      <td align="center"> Logic Difficulty </td>
+      <td align="center"> Explanation </td>
+    </tr>
+    <tr>
+      <td align="center"> Required Keys </td>
+      <td align="center"> Explanation </td>
+    </tr>
+    <tr>
+      <td align="center"> Starting Weapon </td>
+      <td align="center"> Explanation </td>
+    </tr>
+    <tr>
+      <td align="center"> Shuffle Long Quests </td>
+      <td align="center"> Explanation </td>
+    </tr>
+    <tr>
+      <td align="center"> Shuffle Shops </td>
+      <td align="center"> Explanation </td>
+    </tr>
+  </table>
+</div>
+
+---
+
+<div align="center">
   <h2>Installation</h2>
 
   <p>...</p>
