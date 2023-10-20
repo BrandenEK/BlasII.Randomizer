@@ -1,4 +1,5 @@
 ﻿using HarmonyLib;
+using Il2CppI2.Loc;
 using Il2CppTGK.Game.Components.UI;
 using Il2CppTGK.Game.PopupMessages;
 using UnityEngine;
@@ -46,10 +47,21 @@ namespace BlasII.Randomizer
             if (cherubHolder == null)
                 return;
 
-            cherubHolder.GetChild(0).GetChild(0).GetComponent<UIPixelTextWithShadow>().SetText("0");
-            cherubHolder.GetChild(0).GetChild(1).GetComponent<UIPixelTextWithShadow>().SetText("/255");
+            int currentItems = Main.Randomizer.ItemHandler.CollectedLocations.Count;
+            int totalItems = Main.Randomizer.ItemHandler.MappedItems.Count;
 
-            Main.Randomizer.Log(cherubHolder.GetChild(1).GetComponent<Image>().sprite.pixelsPerUnit);
+            var leftText = cherubHolder.GetChild(0).GetChild(0).GetComponent<UIPixelTextWithShadow>();
+            leftText.SetText(currentItems.ToString());
+            Object.Destroy(leftText.GetComponent<Localize>());
+
+            var rightText = cherubHolder.GetChild(0).GetChild(1).GetComponent<UIPixelTextWithShadow>();
+            rightText.SetText("/" + totalItems);
+            Object.Destroy(rightText.GetComponent<Localize>());
+
+            var image = cherubHolder.GetChild(1).Cast<RectTransform>();
+            image.anchoredPosition = new Vector2(30, 0);
+            image.sizeDelta = new Vector2(80, 80);
+            image.GetComponent<Image>().sprite = Main.Randomizer.Data.GetImage(DataStorage.ImageType.Chest);
         }
     }
 }
