@@ -60,7 +60,7 @@ namespace BlasII.Randomizer
         public void NewGame()
         {
             Log($"Shuffling items with seed {CurrentSettings.seed}");
-            ItemHandler.FakeShuffle(CurrentSettings.seed, CurrentSettings);
+            ItemHandler.ShuffleItems(CurrentSettings.seed, CurrentSettings);
             AllowPrieDieuWarp();
         }
 

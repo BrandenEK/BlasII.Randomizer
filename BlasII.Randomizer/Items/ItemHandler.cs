@@ -62,18 +62,29 @@ namespace BlasII.Randomizer.Items
                 || locationId == "Z1064.i0";
         }
 
-        public void FakeShuffle(int seed, RandomizerSettings settings)
+        /// <summary>
+        /// Attempts a certain number of times to shuffle the items
+        /// </summary>
+        public bool ShuffleItems(int seed, RandomizerSettings settings)
         {
-            if (_shuffler.Shuffle(seed, settings, _mappedItems))
+            int currentAttempt = 0, maxAttempts = 20;
+
+            while (!_shuffler.Shuffle(seed + currentAttempt, settings, _mappedItems) && currentAttempt < maxAttempts)
             {
-                Main.Randomizer.Log($"Shuffled {_mappedItems.Count} items!");
-                GenerateSpoiler(settings);
+                Main.Randomizer.LogWarning($"Seed {seed + currentAttempt} was invalid!  Trying next...");
+                currentAttempt++;
             }
-            else
+
+            if (currentAttempt >= maxAttempts)
             {
-                Main.Randomizer.LogError("Failed to shuffle items!");
+                Main.Randomizer.LogError($"Failed to shuffle items in {maxAttempts} attempts");
                 _mappedItems.Clear();
+                return false;
             }
+
+            Main.Randomizer.Log($"Shuffled {_mappedItems.Count} items!");
+            GenerateSpoiler(settings);
+            return true;
         }
 
         private void GenerateSpoiler(RandomizerSettings settings)
