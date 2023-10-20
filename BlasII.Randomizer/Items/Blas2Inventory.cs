@@ -40,7 +40,6 @@ namespace BlasII.Randomizer.Items
         bool regulaCloth = false;
 
         // Yerma quest
-        bool lance = false;
         bool holyOil = false;
 
         // Elder quest
@@ -110,7 +109,6 @@ namespace BlasII.Randomizer.Items
                 "regulaCloth" => regulaCloth,
 
                 // Yerma quest
-                "lance" => throw new System.Exception("Check for the actual weapon memory instead!"),
                 "holyOil" => holyOil,
 
                 // Elder quest
@@ -167,7 +165,6 @@ namespace BlasII.Randomizer.Items
                 case "QI66": bossKeys++; break;
                 case "QI67": bossKeys++; break;
                 case "QI68": holyOil = true; break;
-                case "QI70": lance = true; break;
                 case "ST": tools++; break;
                 case "UL": lullabies++; break;
                 case "FT": tributes++; break;

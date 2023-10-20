@@ -133,14 +133,10 @@ namespace BlasII.Randomizer.Items
         }
 
         /// <summary>
-        /// After shuffling the list of progression items, move the wall climb ability to the end to prevent failing seeds
+        /// After shuffling the list of progression items, move certain items to the end to prevent failing seeds
         /// </summary>        
         private void MovePriorityItems(List<Item> progressionItems)
         {
-            Item lance = Main.Randomizer.Data.GetItem("QI70");
-            progressionItems.Remove(lance);
-            progressionItems.Add(lance);
-
             Item wallClimb = Main.Randomizer.Data.GetItem("AB44");
             progressionItems.Remove(wallClimb);
             progressionItems.Add(wallClimb);
