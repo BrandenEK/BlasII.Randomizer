@@ -165,7 +165,7 @@ namespace BlasII.Randomizer.Items
 
                 inventory.AddItem(item);
                 output.Add(location.id, item.id);
-                Main.Randomizer.Log($"Placing prog item {item.id} at: {location.id}");
+                //Main.Randomizer.Log($"Placing prog item {item.id} at: {location.id}");
 
                 reachableLocations = FindReachableLocations(locations, inventory);
             }
@@ -181,7 +181,7 @@ namespace BlasII.Randomizer.Items
                 Item item = RemoveLast(items);
 
                 output.Add(location.id, item.id);
-                Main.Randomizer.Log($"Placing junk item {item.id} at: {location.id}");
+                //Main.Randomizer.Log($"Placing junk item {item.id} at: {location.id}");
             }
         }
     }
