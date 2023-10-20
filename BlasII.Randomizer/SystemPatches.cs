@@ -1,7 +1,9 @@
 ﻿using HarmonyLib;
+using Il2CppTGK.Game.Components.Inventory;
 using Il2CppTGK.Game.Components.Misc;
 using Il2CppTGK.Game.DialogSystem;
 using Il2CppTGK.Game.Managers;
+using Il2CppTGK.Inventory;
 using System.Reflection;
 
 namespace BlasII.Randomizer
@@ -46,6 +48,18 @@ namespace BlasII.Randomizer
         public static void Prefix(Dialog dialog)
         {
             Main.Randomizer.Log("Starting dialog: " + dialog.name);
+        }
+    }
+
+    /// <summary>
+    /// Always allow upgrading weapons, even without lance
+    /// </summary>
+    [HarmonyPatch(typeof(InventoryComponent), nameof(InventoryComponent.HasItem))]
+    class Inventory_HasItem_Patch
+    {
+        public static void Postfix(ItemID itemID, ref bool __result)
+        {
+            __result = __result || itemID.name == "QI70";
         }
     }
 }
