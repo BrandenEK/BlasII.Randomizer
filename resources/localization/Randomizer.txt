@@ -48,3 +48,54 @@ o3rq: Two
 o4rq: Three
 o5rq: Four
 o6rq: Five
+
+lang: es
+
+# Special items
+we1n: Veredicto
+we1d: Arma que puede usarse para tañer campanas de bronce.
+we2n: Ruego Al Alba
+we2d: Arma que puede usarse para perforar barreras de hueso.
+we3n: Sarmiento y Centella
+we3d: Arma que puede usarse para activar espejos mágicos.
+ab1n: Hiedra de la Ascensión
+ab1d: La habilidad para escalar paredes altas.
+ab2n: Paso de Ceniza
+ab2d: La habilidad para saltar por segunda vez en el aire.
+ab3n: Merced del Viento
+ab3d: La habilidad para esquivar en el aire.
+ab4n: Amparo de los Vástagos
+ab4d: La habilidad para hacer aparecer querubines con anillas.
+chrn: Hermano de Próximo
+chrd: Un pequeño bebé flotante que rescataste de una jaula.
+tern: Lágrimas de Enmienda
+terd: Pueden usarse para comprar cosas.
+marn: Marcas del Martirio
+mard: Puede usarse para comprar más cosas.
+
+# Gameplay changes
+ktex: "La Madre dijo: 'Encontrad las * llaves que anuncian el Nacimiento'"
+
+# Settings menu
+head: AJUSTES DEL RANDOMIZADOR
+btnb: Empezar
+btnc: Cancelar
+seed: Semilla:
+rand: Aleatoria
+opsl: Añadir misiones largas
+opss: Añadir tiendas
+opsw: Arma inicial
+o1sw: Veredicto
+o2sw: Ruego
+o3sw: Sarmiento
+opld: Dificultad de la lógica
+o1ld: Fácil
+o2ld: Normal
+o3ld: Difícil
+oprq: Llaves requeridas
+o1rq: Cero
+o2rq: Una
+o3rq: Dos
+o4rq: Tres
+o5rq: Cuatro
+o6rq: Cinco
