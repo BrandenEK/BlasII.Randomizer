@@ -1,12 +1,12 @@
 ﻿using HarmonyLib;
+using Il2CppTGK.Game.Components.Inventory;
 using Il2CppTGK.Game.Components.Misc;
-using Il2CppTGK.Game.Components.UI;
 using Il2CppTGK.Game.DialogSystem;
 using Il2CppTGK.Game.Managers;
-using Il2CppTGK.Game.PopupMessages;
+using Il2CppTGK.Inventory;
 using System.Reflection;
 
-namespace BlasII.Randomizer
+namespace BlasII.Randomizer.Patches
 {
     /// <summary>
     /// Log when a quest flag is being set
@@ -52,30 +52,45 @@ namespace BlasII.Randomizer
     }
 
     /// <summary>
-    /// When reading the CR door, show how many keys you must find
-    /// When pressing display button, show the current settings
+    /// Always allow upgrading weapons, even without lance
     /// </summary>
-    [HarmonyPatch(typeof(PopupMessageLogic), nameof(PopupMessageLogic.ShowMessageAndWait))]
-    class Popup_Show_Patch
+    [HarmonyPatch(typeof(InventoryComponent), nameof(InventoryComponent.HasItem))]
+    class Inventory_HasItem_Patch
     {
-        public static void Postfix(PopupMessageLogic __instance, PopupMessage message)
+        public static void Postfix(ItemID itemID, ref bool __result)
         {
-            Main.Randomizer.Log("Showing popup: " + message.name);
+            __result = __result || itemID.name == "QI70";
+        }
+    }
 
-            if (message.name == "MSG_0003")
+    /// <summary>
+    /// When reloading a boss room after the fight, force deactivate it to prevent camera lock
+    /// </summary>
+    [HarmonyPatch(typeof(RoomManager), nameof(RoomManager.ChangeRoom))]
+    class Room_Change_Patch
+    {
+        public static void Prefix(int roomHash, ref bool forceDeactivate)
+        {
+            foreach (int room in bossRooms)
             {
-                string text = Main.Randomizer.LocalizationHandler.Localize("ktex")
-                    .Replace("*", Main.Randomizer.CurrentSettings.RealRequiredKeys.ToString());
-                __instance.textCtrl.SetText(text);
-                return;
-            }
-
-            if (message.name == "TESTPOPUP")
-            {
-                string text = Main.Randomizer.CurrentSettings.FormatInfo();
-                __instance.textCtrl.SetText(text);
-                return;
+                if (roomHash == room)
+                {
+                    Main.Randomizer.Log("Force deactivating boss room");
+                    forceDeactivate = true;
+                }
             }
         }
+
+        private static readonly int[] bossRooms =
+        {
+            129108797,
+            -1436975306,
+            129108570,
+            // 1574233179, Causes missing fog vfx
+            // Benedicta changes rooms
+            -133013164,
+            1433070649,
+            1433070681,
+        };
     }
 }

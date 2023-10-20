@@ -1,3 +1,4 @@
+using Newtonsoft.Json;
 using System;
 using System.Text;
 
@@ -8,30 +9,31 @@ namespace BlasII.Randomizer
         public const int MAX_SEED = 999_999;
 
         // General settings
-        public readonly int seed;
-        public readonly bool allowHints;
+        [JsonProperty] public readonly int seed;
+        [JsonProperty] public readonly bool allowHints;
 
         // Item rando settings
-        public readonly int logicType;
-        public readonly int requiredKeys;
-        public readonly int startingWeapon;
-        public readonly bool shuffleLongQuests;
-        public readonly bool shuffleShops;
+        [JsonProperty] public readonly int logicType;
+        [JsonProperty] public readonly int requiredKeys;
+        [JsonProperty] public readonly int startingWeapon;
+        [JsonProperty] public readonly bool shuffleLongQuests;
+        [JsonProperty] public readonly bool shuffleShops;
 
         // Not implemented
-        public readonly int glitchType;
-        public readonly int startingLocation;
+        [JsonProperty] public readonly int glitchType;
+        [JsonProperty] public readonly int startingLocation;
 
         // Enemy rando settings
-        public readonly int enemyType;
+        [JsonProperty] public readonly int enemyType;
 
         // Door rando settings
-        public readonly int doorType;
+        [JsonProperty] public readonly int doorType;
 
         public static RandomizerSettings DefaultSettings => new(RandomSeed, 1, 5, 0, 0, 0, false, true, true, 0, 0);
 
         public static int RandomSeed => new Random().Next(1, MAX_SEED + 1);
 
+        [JsonConstructor]
         public RandomizerSettings(int seed, int logic, int keys, int glitch, int weapon, int location, bool longQuests, bool shops, bool hints, int enemy, int door)
         {
             this.seed = seed;
@@ -54,9 +56,10 @@ namespace BlasII.Randomizer
         {
             string logic = logicType == 0 ? "Easy" : logicType == 1 ? "Normal" : "Hard";
             string keys = requiredKeys > 0 ? (requiredKeys - 1).ToString() : "Random";
-            string weapon = startingWeapon == 1 ? "Veredicto" : startingWeapon == 2 ? "Ruego" : startingWeapon == 3 ? "Sarmiento" : "Random";
-            var sb = new StringBuilder();
+            string[] weapons = new string[] { "Veredicto", "Ruego", "Sarmiento" };
+            string weapon = startingWeapon > 0 ? weapons[startingWeapon - 1] : "Random";
 
+            var sb = new StringBuilder();
             sb.AppendLine("RANDOMIZER SETTINGS");
             sb.AppendLine("Seed: " + seed);
             sb.AppendLine();
@@ -75,9 +78,9 @@ namespace BlasII.Randomizer
             string keys = requiredKeys > 0 ? (requiredKeys - 1).ToString() : $"[{RealRequiredKeys}]";
             string[] weapons = new string[] { "Veredicto", "Ruego", "Sarmiento" };
             string weapon = startingWeapon > 0 ? weapons[startingWeapon - 1] : $"[{weapons[RealStartingWeapon]}]";
-            var sb = new StringBuilder();
             var line = new string('=', 35);
 
+            var sb = new StringBuilder();
             sb.AppendLine("Seed: " + seed);
             sb.AppendLine();
             sb.AppendLine(line);
@@ -91,6 +94,7 @@ namespace BlasII.Randomizer
             return sb.ToString();
         }
 
+        [JsonIgnore]
         public int RealStartingWeapon
         {
             get
@@ -102,6 +106,7 @@ namespace BlasII.Randomizer
             }
         }
 
+        [JsonIgnore]
         public int RealRequiredKeys
         {
             get
@@ -111,19 +116,6 @@ namespace BlasII.Randomizer
 
                 return new Random(seed).Next(0, 6);
             }
-        }
-
-        public enum Weapon
-        {
-            Random,
-            Censor,
-            Sword,
-            Rapier,
-        }
-
-        public enum Location
-        {
-            Repose,
         }
     }
 }

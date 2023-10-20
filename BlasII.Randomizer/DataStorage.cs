@@ -105,6 +105,7 @@ namespace BlasII.Randomizer
             Rapier = 7,
             Tears = 8,
             Invalid = 9,
+            Chest = 10,
         }
 
         public enum UIType
