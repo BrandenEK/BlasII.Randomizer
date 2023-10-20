@@ -49,6 +49,8 @@ namespace BlasII.Randomizer
                 LoadWeaponSelectRoom();
             else if (sceneName == "Z2501")
                 LoadChapelRoom();
+            else if (sceneName == "Z0420")
+                LoadSandLockRoom();
         }
 
         protected override void OnSceneUnloaded(string sceneName)
@@ -139,6 +141,15 @@ namespace BlasII.Randomizer
                     // Remove this npc's trigger so that he cant give you a key
                     Object.Destroy(fsm.gameObject.GetComponent<BoxCollider2D>());
                 }
+            }
+        }
+
+        private void LoadSandLockRoom()
+        {
+            foreach (var collider in Object.FindObjectsOfType<BoxCollider2D>())
+            {
+                if (collider.name == "trigger area")
+                    Object.Destroy(collider);
             }
         }
 
