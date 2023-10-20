@@ -6,7 +6,7 @@ using Il2CppTGK.Game.Managers;
 using Il2CppTGK.Inventory;
 using System.Reflection;
 
-namespace BlasII.Randomizer
+namespace BlasII.Randomizer.Patches
 {
     /// <summary>
     /// Log when a quest flag is being set

@@ -4,7 +4,7 @@ using Il2CppTGK.Game.Cutscenes;
 using Il2CppTGK.Game.Managers;
 using Il2CppTGK.Game.Tutorial;
 
-namespace BlasII.Randomizer
+namespace BlasII.Randomizer.Patches
 {
     [HarmonyPatch(typeof(PlayCutscene), nameof(PlayCutscene.OnEnter))]
     class Cutscene_Skip_Patch
@@ -14,7 +14,7 @@ namespace BlasII.Randomizer
             // Don't skip Eviterno defeat cutscene
             if (__instance.cutsceneId?.name == "CTS17_id")
                 return true;
-            
+
             Main.Randomizer.LogWarning("Skipping cutscene: " + __instance.cutsceneId?.name);
 
             __instance.Finish();

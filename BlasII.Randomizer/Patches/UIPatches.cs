@@ -5,7 +5,7 @@ using Il2CppTGK.Game.PopupMessages;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace BlasII.Randomizer
+namespace BlasII.Randomizer.Patches
 {
     /// <summary>
     /// When reading the CR door, show how many keys you must find
