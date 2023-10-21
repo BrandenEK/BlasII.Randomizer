@@ -13,28 +13,16 @@
 ---
 
 ## Contributors
-  
-  <table>
-    <tr>
-      <td align="center" colspan="3"> <p><b> A very special thank you to everyone who has helped with the randomizer </b></p> </td>
-    </tr>
-    <tr>
-      <td align="center"> <a href="https://github.com/BrandenEK">@BrandenEK</a> <br>
-                          <b><i>Programming and design</i></b> </td>
-      <td align="center"> <a href="https://github.com/JimmyDiamonds">@JimmyDiamonds</a> <br>
-                          <b><i>Logo design and creation</i></b> </td>
-    </tr>
-    <tr>
-      <td align="center"> <a href="https://github.com/LuceScarlet">@LuceScarlet</a> <br>
-                          <b><i>Gameplay testing and Spanish translations</i></b> </td>
-      <td align="center"> <a href="https://github.com/BrandenEK/BlasII.Randomizer">@Chemigoku</a> <br>
-                          <b><i>Logic development and testing</i></b> </td>
-    </tr>
-  </table>
+
+A very special thank you to everyone who has helped with the randomizer
+- [@BrandenEK](https://github.com/BrandenEK) - ***Programming and design***
+- [@LuceScarlet](https://github.com/LuceScarlet) - ***Gameplay testing and Spanish translations***
+- [@Chemigoku](https://github.com/BrandenEK/BlasII.Randomizer) - ***Logic development and testing***
+- [@JimmyDiamonds](https://github.com/JimmyDiamonds) - ***Logo design and creation***
 
 ---
 
-## Randomizer Info
+## Useful Info
 - Currently works with both version 1.0.5 and 1.1.0
 - In order to avoid softlocks, it is recommended to use the Save & Quit mod
 - Pressing 'Numpad6' will display a list of your current settings
