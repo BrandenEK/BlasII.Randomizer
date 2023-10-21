@@ -36,6 +36,8 @@ namespace BlasII.Randomizer.Items
             return junkItems.Count == 0;
         }
 
+        #region Setup
+
         /// <summary>
         /// Fills the two location pools
         /// </summary>
@@ -92,6 +94,24 @@ namespace BlasII.Randomizer.Items
         }
 
         /// <summary>
+        /// After creating the item pool, add or remove junk items to make it equal to the number of locations
+        /// </summary>
+        private void BalanceItemPool(List<Item> progressionItems, List<Item> junkItems, int numOfLocations)
+        {
+            // Remove tear items until pools are equal
+            while (progressionItems.Count + junkItems.Count > numOfLocations)
+            {
+                junkItems.RemoveAt(junkItems.Count - 1);
+            }
+
+            // Add tear items until pools are equal
+            while (progressionItems.Count + junkItems.Count < numOfLocations)
+            {
+                junkItems.Add(Main.Randomizer.Data.GetItem("Tears[800]"));
+            }
+        }
+
+        /// <summary>
         /// Adds the starting weapon and all progression items to the initial inventory
         /// </summary>
         private void CreateInitialInventory(Blas2Inventory inventory, RandomizerSettings settings, List<Item> progressionItems)
@@ -114,23 +134,9 @@ namespace BlasII.Randomizer.Items
             return "WE0" + (settings.RealStartingWeapon + 1);
         }
 
-        /// <summary>
-        /// After creating the item pool, add or remove junk items to make it equal to the number of locations
-        /// </summary>
-        private void BalanceItemPool(List<Item> progressionItems, List<Item> junkItems, int numOfLocations)
-        {
-            // Remove tear items until pools are equal
-            while (progressionItems.Count + junkItems.Count > numOfLocations)
-            {
-                junkItems.RemoveAt(junkItems.Count - 1);
-            }
+        #endregion
 
-            // Add tear items until pools are equal
-            while (progressionItems.Count + junkItems.Count < numOfLocations)
-            {
-                junkItems.Add(Main.Randomizer.Data.GetItem("Tears[800]"));
-            }
-        }
+        #region Shuffle
 
         /// <summary>
         /// Using a reverse fill algorithm, place the last item at a random reachable location
@@ -164,6 +170,22 @@ namespace BlasII.Randomizer.Items
         }
 
         /// <summary>
+        /// Without logic, place the last item at a random location
+        /// </summary>
+        private void FillJunkItems(List<ItemLocation> locations, List<Item> items, Dictionary<string, string> output)
+        {
+            ShuffleList(items);
+
+            while (locations.Count > 0 && items.Count > 0)
+            {
+                ItemLocation location = RemoveLast(locations);
+                Item item = RemoveLast(items);
+
+                output.Add(location.id, item.id);
+            }
+        }
+
+        /// <summary>
         /// After shuffling the list of progression items, move certain items to the end to prevent failing seeds
         /// </summary>        
         private void MovePriorityItems(List<Item> progressionItems)
@@ -188,20 +210,6 @@ namespace BlasII.Randomizer.Items
             }
         }
 
-        /// <summary>
-        /// Without logic, place the last item at a random location
-        /// </summary>
-        private void FillJunkItems(List<ItemLocation> locations, List<Item> items, Dictionary<string, string> output)
-        {
-            ShuffleList(items);
-
-            while (locations.Count > 0 && items.Count > 0)
-            {
-                ItemLocation location = RemoveLast(locations);
-                Item item = RemoveLast(items);
-
-                output.Add(location.id, item.id);
-            }
-        }
+        #endregion
     }
 }
