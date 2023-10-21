@@ -12,8 +12,7 @@
 
 ---
 
-<div align="center">
-  <h2>Contributors</h2>
+## Contributors
   
   <table>
     <tr>
@@ -32,33 +31,26 @@
                           <b><i>Logic development and testing</i></b> </td>
     </tr>
   </table>
-</div>
 
 ---
 
-<div align="center">
-  <h2>Randomizer Info</h2>
-
-  <p>Currently works with both version 1.0.5 and 1.1.0</p>
-  <p>In order to avoid softlocks, it is recommended to use the Save & Quit mod</p>
-  <p>Pressing 'Numpad6' will display a list of your current settings</p>
-</div>
+## Randomizer Info
+- Currently works with both version 1.0.5 and 1.1.0
+- In order to avoid softlocks, it is recommended to use the Save & Quit mod
+- Pressing 'Numpad6' will display a list of your current settings
 
 ---
 
-<div align="center">
-  <h2>Gameplay Differences</h2>
+## Gameplay Differences
 
-  <p>All regions of the game are unlocked from the beginning, though you will still need movement items to reach them</p>
-  <p>The door to Crimson Rains will be unlocked after obtaining a certain number of keys, specified in your settings</p>
-  <p>Weapon memories can be purchased from the beginning, the lance is no longer necessary</p>
-  <p>The map screen will display the number of items collected</p>
-</div>
+- All regions of the game are unlocked from the beginning, though you will still need movement items to reach them
+- The door to Crimson Rains will be unlocked after obtaining a certain number of keys, specified in your settings
+- Weapon memories can be purchased from the beginning, the lance is no longer necessary
+- The map screen will display the number of items collected
 
 ---
 
-<div align="center">
-  <h2>Randomizer Settings</h2>
+## Randomizer Settings
 
   <table>
     <tr>
@@ -96,12 +88,10 @@
       <td align="center"> True </td>
     </tr>
   </table>
-</div>
 
 ---
 
-<div align="center">
-  <h2>Logic Difficulty</h2>
+## Logic Difficulty
 
   <table>
     <tr>
@@ -121,12 +111,9 @@
       <td align="center"> Currently there is no difference between difficulty settings </td>
     </tr>
   </table>
-</div>
 
 ---
 
-<div align="center">
-  <h2>Installation</h2>
+## Installation
 
-  <p>Can be downloaded automatically through the <a href="https://github.com/BrandenEK/Blasphemous-Mod-Installer"> Mod Installer</p>
-</div>
+Can be downloaded automatically through the <a href="https://github.com/BrandenEK/Blasphemous-Mod-Installer"> Mod Installer
