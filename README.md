@@ -81,24 +81,7 @@ A very special thank you to everyone who has helped with the randomizer
 
 ## Logic Difficulty
 
-  <table>
-    <tr>
-      <td align="center"> Type </td>
-      <td align="center"> Requirements </td>
-    </tr>
-    <tr>
-      <td align="center"> Easy </td>
-      <td align="center"> Currently there is no difference between difficulty settings </td>
-    </tr>
-    <tr>
-      <td align="center"> Normal </td>
-      <td align="center"> Currently there is no difference between difficulty settings </td>
-    </tr>
-    <tr>
-      <td align="center"> Hard </td>
-      <td align="center"> Currently there is no difference between difficulty settings </td>
-    </tr>
-  </table>
+Currently there are no differences between difficulty settings
 
 ---
 
