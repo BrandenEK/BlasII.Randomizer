@@ -26,7 +26,7 @@ namespace BlasII.Randomizer
         protected override void OnInitialize()
         {
             Data.Initialize();
-            ShuffleTest();
+            //ShuffleTest();
         }
 
         protected override void OnUpdate()
@@ -60,12 +60,13 @@ namespace BlasII.Randomizer
         {
         }
 
-        // Initial algorithm: 500/500 (61.2)
+        // Initial forward: 500/500 (61.2)
+        // Initial reverse: 490/500 (25.3)
         private void ShuffleTest()
         {
             var seedGen = new System.Random(777);
             var output = new Dictionary<string, string>();
-            var shuffler = new ItemShuffler();
+            var shuffler = new ItemShufflerReverse();
             var settings = RandomizerSettings.DefaultSettings;
 
             int successfulTries = 0, totalTries = 500;

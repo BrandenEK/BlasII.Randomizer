@@ -11,7 +11,7 @@ namespace BlasII.Randomizer.Items
         private List<string> _collectedLocations = new();
         private List<string> _collectedItems = new();
 
-        private readonly ItemShuffler _shuffler = new();
+        private readonly ItemShufflerReverse _shuffler = new();
 
         public Item GetItemAtLocation(string locationId)
         {
