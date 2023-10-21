@@ -37,9 +37,22 @@
 ---
 
 <div align="center">
+  <h2>Randomizer Info</h2>
+
+  <p>Currently works with both version 1.0.5 and 1.1.0</p>
+  <p>In order to avoid softlocks, it is recommended to use the Save & Quit mod</p>
+  <p>Pressing 'Numpad6' will display a list of your current settings</p>
+</div>
+
+---
+
+<div align="center">
   <h2>Gameplay Differences</h2>
 
-  <p>...</p>
+  <p>All regions of the game are unlocked from the beginning, though you will still need movement items to reach them</p>
+  <p>The door to Crimson Rains will be unlocked after obtaining a certain number of keys, specified in your settings</p>
+  <p>Weapon memories can be purchased from the beginning, the lance is no longer necessary</p>
+  <p>The map screen will display the number of items collected</p>
 </div>
 
 ---
