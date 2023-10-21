@@ -9,9 +9,6 @@ namespace BlasII.Randomizer.Items
             output.Clear();
             Initialize(seed);
 
-            // Create initial inventory
-            var inventory = new Blas2InventoryReverse(settings, Main.Randomizer.Data.DoorDictionary);
-
             // Create pools of all locations to randomize
             List<ItemLocation> progressionLocations = new(), junkLocations = new();
             CreateLocationPool(progressionLocations, junkLocations, settings);
@@ -19,6 +16,10 @@ namespace BlasII.Randomizer.Items
             // Create pools of all items to randomize
             List<Item> progressionItems = new(), junkItems = new();
             CreateItemPool(progressionItems, junkItems, progressionLocations.Count + junkLocations.Count, settings);
+
+            // Create initial inventory
+            var inventory = new Blas2Inventory(settings, Main.Randomizer.Data.DoorDictionary);
+            CreateInitialInventory(inventory, settings, progressionItems);
 
             // Place progression items at progression locations
             FillProgressionItems(progressionLocations, progressionItems, output, inventory);
@@ -91,6 +92,21 @@ namespace BlasII.Randomizer.Items
         }
 
         /// <summary>
+        /// Adds the starting weapon and all progression items to the initial inventory
+        /// </summary>
+        private void CreateInitialInventory(Blas2Inventory inventory, RandomizerSettings settings, List<Item> progressionItems)
+        {
+            // Add the starting weapon
+            inventory.AddItem(Main.Randomizer.Data.GetItem(GetStartingWeaponId(settings)));
+
+            // Add all progression items in the pool
+            foreach (var item in progressionItems)
+            {
+                inventory.AddItem(item);
+            }
+        }
+
+        /// <summary>
         /// Calculates the item id of the chosen starting weapon
         /// </summary>
         private string GetStartingWeaponId(RandomizerSettings settings)
@@ -119,9 +135,9 @@ namespace BlasII.Randomizer.Items
         /// <summary>
         /// Using a reverse fill algorithm, place the last item at a random reachable location
         /// </summary>
-        private void FillProgressionItems(List<ItemLocation> locations, List<Item> items, Dictionary<string, string> output, Blas2InventoryReverse inventory)
+        private void FillProgressionItems(List<ItemLocation> locations, List<Item> items, Dictionary<string, string> output, Blas2Inventory inventory)
         {
-            // Ensure that all locations are initially reachable
+            // Verify that all locations are reachable
             foreach (var location in locations)
             {
                 if (!inventory.Evaluate(location.logic))
@@ -160,7 +176,7 @@ namespace BlasII.Randomizer.Items
         /// <summary>
         /// Finds all locations that are no longer reachable and removes them
         /// </summary>
-        private void RemoveUnreachableLocations(List<ItemLocation> locations, Blas2InventoryReverse inventory)
+        private void RemoveUnreachableLocations(List<ItemLocation> locations, Blas2Inventory inventory)
         {
             for (int i = 0; i < locations.Count; i++)
             {

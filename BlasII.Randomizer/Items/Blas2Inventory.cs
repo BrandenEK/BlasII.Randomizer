@@ -7,49 +7,41 @@ namespace BlasII.Randomizer.Items
     public class Blas2Inventory : InventoryData
     {
         // Weapons
-        int censer = 0;
-        int blade = 0;
-        int rapier = 0;
+        int censer, blade, rapier;
 
         // Abilities
-        bool wallClimb = false;
-        bool doubleJump = false;
-        bool airDash = false;
-        bool cherubRings = false;
+        bool wallClimb, doubleJump, airDash, cherubRings;
 
         // Bosses
-        int bossKeys = 0;
+        int bossKeys;
 
         // Collections
-        int tools = 0;
-        int tributes = 0;
-        int waxSeeds = 0;
+        int tools, tributes, waxSeeds;
 
         // Hand quest
-        int kisses = 0;
-        bool brokenKey = false;
+        int kisses;
+        bool brokenKey;
 
         // Cherub quest
-        int cherubs = 0;
-        bool rattle = false;
+        int cherubs;
+        bool rattle;
 
         // Lullaby quest
-        int lullabies = 0;
+        int lullabies;
 
         // Regula quest
-        bool regulaCloth = false;
+        bool regulaCloth;
 
         // Yerma quest
-        bool holyOil = false;
+        bool holyOil;
 
         // Elder quest
-        bool elderScroll = false;
-        bool elderCloth = false;
+        bool elderScroll, elderCloth;
 
         // Letter quest
-        bool letter1 = false, letter2 = false, letter3 = false, letter4 = false, letter5 = false;
+        bool letter1, letter2, letter3, letter4, letter5;
 
-        int daughterRooms
+        int DaughterRooms
         {
             get
             {
@@ -123,7 +115,7 @@ namespace BlasII.Randomizer.Items
                 "letter5" => letter5,
 
                 // Rooms
-                "daughterRooms" => daughterRooms,
+                "daughterRooms" => DaughterRooms,
 
                 _ => throw new LogicParserException("Unknown variable: " + variable)
             };
@@ -133,65 +125,78 @@ namespace BlasII.Randomizer.Items
         {
             switch (item.type)
             {
-                case Item.ItemType.RosaryBead: break;
-                case Item.ItemType.Prayer: break;
-                case Item.ItemType.Figurine: break;
-                case Item.ItemType.QuestItem: AddQuestItem(item.id); break;
-                case Item.ItemType.Weapon: AddWeapon(item.id); break;
-                case Item.ItemType.Ability: AddAbility(item.id); break;
-                case Item.ItemType.Cherub: cherubs++; break;
-                case Item.ItemType.Tears: break;
-                case Item.ItemType.Marks: break;
+                case Item.ItemType.QuestItem: ChangeQuestItem(item.id, true); break;
+                case Item.ItemType.Weapon: ChangeWeapon(item.id, true); break;
+                case Item.ItemType.Ability: ChangeAbility(item.id, true); break;
+                case Item.ItemType.Cherub: ChangeCherub(true); break;
             }
         }
 
-        private void AddQuestItem(string id)
+        public void RemoveItem(Item item)
         {
-            switch (id)
+            switch (item.type)
             {
-                case "QI05": regulaCloth = true; break;
-                case "QI07": elderScroll = true; break;
-                case "QI08": elderCloth = true; break;
-                case "QI14": letter1 = true; break;
-                case "QI16": letter2 = true; break;
-                case "QI18": letter3 = true; break;
-                case "QI20": letter4 = true; break;
-                case "QI22": letter5 = true; break;
-                case "QI28": brokenKey = true; break;
-                case "QI54": rattle = true; break;
-                case "QI63": bossKeys++; break;
-                case "QI64": bossKeys++; break;
-                case "QI65": bossKeys++; break;
-                case "QI66": bossKeys++; break;
-                case "QI67": bossKeys++; break;
-                case "QI68": holyOil = true; break;
-                case "ST": tools++; break;
-                case "UL": lullabies++; break;
-                case "FT": tributes++; break;
-                case "FK": kisses++; break;
-                case "WS": waxSeeds++; break;
+                case Item.ItemType.QuestItem: ChangeQuestItem(item.id, false); break;
+                case Item.ItemType.Weapon: ChangeWeapon(item.id, false); break;
+                case Item.ItemType.Ability: ChangeAbility(item.id, false); break;
+                case Item.ItemType.Cherub: ChangeCherub(false); break;
             }
         }
 
-        private void AddWeapon(string id)
+        private void ChangeQuestItem(string id, bool addition)
         {
+            int value = addition ? 1 : -1;
             switch (id)
             {
-                case "WE01": censer++; return;
-                case "WE02": blade++; return;
-                case "WE03": rapier++; return;
+                case "QI05": regulaCloth = addition; break;
+                case "QI07": elderScroll = addition; break;
+                case "QI08": elderCloth = addition; break;
+                case "QI14": letter1 = addition; break;
+                case "QI16": letter2 = addition; break;
+                case "QI18": letter3 = addition; break;
+                case "QI20": letter4 = addition; break;
+                case "QI22": letter5 = addition; break;
+                case "QI28": brokenKey = addition; break;
+                case "QI54": rattle = addition; break;
+                case "QI63": bossKeys += value; break;
+                case "QI64": bossKeys += value; break;
+                case "QI65": bossKeys += value; break;
+                case "QI66": bossKeys += value; break;
+                case "QI67": bossKeys += value; break;
+                case "QI68": holyOil = addition; break;
+                case "ST": tools += value; break;
+                case "UL": lullabies += value; break;
+                case "FT": tributes += value; break;
+                case "FK": kisses += value; break;
+                case "WS": waxSeeds += value; break;
             }
         }
 
-        private void AddAbility(string id)
+        private void ChangeWeapon(string id, bool addition)
+        {
+            int value = addition ? 1 : -1;
+            switch (id)
+            {
+                case "WE01": censer += value; return;
+                case "WE02": blade += value; return;
+                case "WE03": rapier += value; return;
+            }
+        }
+
+        private void ChangeAbility(string id, bool addition)
         {
             switch (id)
             {
-                case "AB44": wallClimb = true; return;
-                case "AB02": doubleJump = true; return;
-                case "AB01": airDash = true; return;
-                case "AB35": cherubRings = true; return;
+                case "AB44": wallClimb = addition; return;
+                case "AB02": doubleJump = addition; return;
+                case "AB01": airDash = addition; return;
+                case "AB35": cherubRings = addition; return;
             }
+        }
+
+        private void ChangeCherub(bool addition)
+        {
+            cherubs += addition ? 1 : -1;
         }
 
         public Blas2Inventory(RandomizerSettings settings, IDictionary<string, DoorLocation> doors)

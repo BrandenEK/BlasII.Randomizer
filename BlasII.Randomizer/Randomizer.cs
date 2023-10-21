@@ -26,7 +26,7 @@ namespace BlasII.Randomizer
         protected override void OnInitialize()
         {
             Data.Initialize();
-            //ShuffleTest();
+            ShuffleTest();
         }
 
         protected override void OnUpdate()
@@ -69,7 +69,7 @@ namespace BlasII.Randomizer
             var shuffler = new ItemShufflerReverse();
             var settings = RandomizerSettings.DefaultSettings;
 
-            int successfulTries = 0, totalTries = 500;
+            int successfulTries = 0, totalTries = 100;
             double runningTime = 0;
 
             for (int i = 0; i < totalTries; i++)
