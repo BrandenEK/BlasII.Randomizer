@@ -2,6 +2,7 @@
 using BlasII.ModdingAPI.Persistence;
 using BlasII.ModdingAPI.Storage;
 using BlasII.Randomizer.Items;
+using BlasII.Randomizer.Settings;
 using Il2Cpp;
 using Il2CppTGK.Game;
 using Il2CppTGK.Game.Components.Interactables;
@@ -16,27 +17,26 @@ namespace BlasII.Randomizer
         public DataStorage Data { get; } = new();
 
         public ItemHandler ItemHandler { get; } = new();
+        public SettingsHandler SettingsHandler { get; } = new();
 
-        // Loaded at init and never changes
-        public TempConfig TempConfig { get; private set; }
+        public RandomizerSettings CurrentSettings { get; set; } = RandomizerSettings.DefaultSettings;
 
         protected override void OnInitialize()
         {
             Data.Initialize();
-
-            TempConfig = FileHandler.LoadConfig<TempConfig>();
         }
 
         protected override void OnUpdate()
         {
-            if (Input.GetKeyDown(KeyCode.Keypad7))
-            {
-                foreach (var fsm in Object.FindObjectsOfType<PlayMakerFSM>())
-                {
-                    fsm.DisplayActions();
-                }
-            }
-            else if (Input.GetKeyDown(KeyCode.Keypad8))
+            SettingsHandler.Update();
+
+            if (!LoadStatus.GameSceneLoaded)
+                return;
+
+            if (Input.GetKeyDown(KeyCode.Keypad6))
+                SettingsHandler.DisplaySettings();
+
+            if (Input.GetKeyDown(KeyCode.Keypad8))
             {
                 if (StatStorage.TryGetModifiableStat("BasePhysicalattack", out var stat))
                     StatStorage.PlayerStats.AddBonus(stat, "test", 100, 0);
@@ -47,42 +47,63 @@ namespace BlasII.Randomizer
         {
             if (sceneName == "Z1506")
                 LoadWeaponSelectRoom();
+            else if (sceneName == "Z2501")
+                LoadChapelRoom();
+            else if (sceneName == "Z0420")
+                LoadSandLockRoom();
         }
 
         protected override void OnSceneUnloaded(string sceneName)
         {
-
         }
 
-        protected override void OnNewGameStarted()
+        public void NewGame()
         {
-            Log("Shuffling items with seed (Not yet)");
-            ItemHandler.FakeShuffle(TempConfig.seed, TempConfig);
+            Log($"Shuffling items with seed {CurrentSettings.seed}");
+            ItemHandler.FakeShuffle(CurrentSettings.seed, CurrentSettings);
+            AllowPrieDieuWarp();
         }
 
         public SaveData SaveGame()
         {
-            Log("Saving shuffled items to file (Not yet)");
+            Log($"Saved file with {ItemHandler.CollectedLocations.Count} collected locations");
             return new RandomizerSaveData()
             {
                 mappedItems = ItemHandler.MappedItems,
-                tempConfig = TempConfig,
-                collectedLocations = null,
+                collectedLocations = ItemHandler.CollectedLocations,
+                collectedItems = ItemHandler.CollectedItems,
+                settings = CurrentSettings,
             };
         }
 
         public void LoadGame(SaveData data)
         {
-            Log("Loading shuffled items from file (Not yet)");
             RandomizerSaveData randomizerData = data as RandomizerSaveData;
             ItemHandler.MappedItems = randomizerData.mappedItems;
+            ItemHandler.CollectedLocations = randomizerData.collectedLocations;
+            ItemHandler.CollectedItems = randomizerData.collectedItems;
+
+            CurrentSettings = randomizerData.settings;
+            Log($"Loaded file with {randomizerData.collectedLocations.Count} collected locations");
         }
 
         public void ResetGame()
         {
-            Log("Resetting shuffled items (Not yet)");
             ItemHandler.MappedItems.Clear();
+            ItemHandler.CollectedLocations.Clear();
+            ItemHandler.CollectedItems.Clear();
         }
+
+        private void AllowPrieDieuWarp()
+        {
+            foreach (var upgrade in CoreCache.PrieDieuManager.config.upgrades)
+            {
+                if (upgrade.name == "TeleportToAnotherPrieuDieuUpgrade")
+                    CoreCache.PrieDieuManager.Upgrade(upgrade);
+            }
+        }
+
+        // Special rooms
 
         private void LoadWeaponSelectRoom()
         {
@@ -90,17 +111,17 @@ namespace BlasII.Randomizer
 
             foreach (var statue in Object.FindObjectsOfType<QuestVarTrigger>())
             {
-                int weapon = -1;
+                int weapon;
                 if (statue.name.EndsWith("CENSER"))
                     weapon = 0;
                 else if (statue.name.EndsWith("ROSARY"))
                     weapon = 1;
                 else if (statue.name.EndsWith("RAPIER"))
                     weapon = 2;
-                if (weapon == -1)
+                else
                     continue;
 
-                if (weapon != TempConfig.startingWeapon)
+                if (weapon != CurrentSettings.RealStartingWeapon)
                 {
                     int[] disabledAnimations = new int[] { -1322956020, -786038676, -394840968 };
 
@@ -110,6 +131,29 @@ namespace BlasII.Randomizer
                 }
             }
         }
+
+        private void LoadChapelRoom()
+        {
+            foreach (var fsm in Object.FindObjectsOfType<PlayMakerFSM>())
+            {
+                if (fsm.name == "NPC13_ST09_PILGRIM")
+                {
+                    // Remove this npc's trigger so that he cant give you a key
+                    Object.Destroy(fsm.gameObject.GetComponent<BoxCollider2D>());
+                }
+            }
+        }
+
+        private void LoadSandLockRoom()
+        {
+            foreach (var collider in Object.FindObjectsOfType<BoxCollider2D>())
+            {
+                if (collider.name == "trigger area")
+                    Object.Destroy(collider);
+            }
+        }
+
+        // Quests
 
         public string GetQuestName(int questId, int varId)
         {
@@ -123,6 +167,18 @@ namespace BlasII.Randomizer
         {
             var input = CoreCache.Quest.GetInputQuestVar(questId, varId);
             return CoreCache.Quest.GetQuestVarBoolValue(input.questID, input.varID);
+        }
+
+        public int GetQuestInt(string questId, string varId)
+        {
+            var input = CoreCache.Quest.GetInputQuestVar(questId, varId);
+            return CoreCache.Quest.GetQuestVarIntValue(input.questID, input.varID);
+        }
+
+        public void SetQuestValue<T>(string questId, string varId, T value)
+        {
+            var input = CoreCache.Quest.GetInputQuestVar(questId, varId);
+            CoreCache.Quest.SetQuestVarValue(input.questID, input.varID, value);
         }
     }
 }

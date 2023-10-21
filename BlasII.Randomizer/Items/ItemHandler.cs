@@ -1,5 +1,6 @@
 using Il2CppTGK.Game;
 using System.Collections.Generic;
+using System.Text;
 
 namespace BlasII.Randomizer.Items
 {
@@ -7,13 +8,10 @@ namespace BlasII.Randomizer.Items
     {
         private Dictionary<string, string> _mappedItems = new();
 
-        private readonly ItemShuffler _shuffler = new();
+        private List<string> _collectedLocations = new();
+        private List<string> _collectedItems = new();
 
-        public Dictionary<string, string> MappedItems
-        {
-            get => _mappedItems;
-            set => _mappedItems = value ?? new Dictionary<string, string>();
-        }
+        private readonly ItemShuffler _shuffler = new();
 
         public Item GetItemAtLocation(string locationId)
         {
@@ -24,45 +22,118 @@ namespace BlasII.Randomizer.Items
             else
             {
                 Main.Randomizer.LogError(locationId + " does not have a mapped item!");
-                return null;
+                return Main.Randomizer.Data.InvalidItem;
             }
         }
 
         public void GiveItemAtLocation(string locationId)
         {
             Main.Randomizer.LogWarning("Giving item at location: " +  locationId);
-            Item item = GetItemAtLocation(locationId);
 
-            if (item == null)
-                return;
+            Item item;
+            if (_collectedLocations.Contains(locationId))
+            {
+                Main.Randomizer.LogError(locationId + " has already been collected!");
+                item = Main.Randomizer.Data.InvalidItem;
+            }
+            else
+            {
+                _collectedLocations.Add(locationId);
+                item = GetItemAtLocation(locationId);
+            }
 
-            // Check for and set location id flag
-
-            item.GiveReward();
+            item.RemovePreviousItem(); // Eventually change this to have different classes for prog items
+            item.Upgraded?.GiveReward();
             DisplayItem(item);
         }
 
         public void DisplayItem(Item item)
         {
-            CoreCache.UINavigationHelper.ShowItemPopup("Obtained", item.name, item.Image);
+            CoreCache.UINavigationHelper.ShowItemPopup("Obtained", item.Current?.DisplayName, item.Current?.Image);
         }
 
-        public bool IsLocationRandomized(string locationId)
+        /// <summary>
+        /// Checks if the location should do normal execution (Weapon select room)
+        /// </summary>
+        public bool IsVanillaLocation(string locationId)
         {
-            return _mappedItems.ContainsKey(locationId);
+            return locationId == "Z1506.w0"
+                || locationId == "Z1506.a0"
+                || locationId == "Z1064.i0";
         }
 
-        public void FakeShuffle(uint seed, TempConfig config)
+        public void FakeShuffle(int seed, RandomizerSettings settings)
         {
-            if (_shuffler.Shuffle(seed, config, _mappedItems))
+            if (_shuffler.Shuffle(seed, settings, _mappedItems))
             {
                 Main.Randomizer.Log($"Shuffled {_mappedItems.Count} items!");
+                GenerateSpoiler(settings);
             }
             else
             {
                 Main.Randomizer.LogError("Failed to shuffle items!");
                 _mappedItems.Clear();
             }
+        }
+
+        private void GenerateSpoiler(RandomizerSettings settings)
+        {
+            var sb = new StringBuilder();
+            sb.AppendLine($"Version: {ModInfo.MOD_VERSION}");
+            sb.AppendLine($"Date: {System.DateTime.Now.ToString("MM/dd/yyyy")}");
+            sb.Append(settings.FormatSpoiler());
+
+            string currentZoneId = string.Empty;
+            foreach (var location in Main.Randomizer.Data.ItemLocationList)
+            {
+                // Make sure it has a valid item
+                Item item = GetItemAtLocation(location.id);
+
+                // Display new zone section if different
+                string locationZoneId = location.id[..3];
+                if (currentZoneId != locationZoneId && Main.Randomizer.Data.GetZoneName(locationZoneId, out string locationZoneName))
+                {
+                    sb.AppendLine($"\n - {locationZoneName} -\n");
+                    currentZoneId = locationZoneId;
+                }
+
+                // Add location to text
+                sb.AppendLine($"{location.name}: {item.name}");
+            }
+
+            // Save text to file
+            string fileName = $"spoiler_{CoreCache.SaveData.CurrentSaveSlot}.txt";
+            Main.Randomizer.FileHandler.WriteToFile(fileName, sb.ToString());
+        }
+
+        public void SetItemCollected(string itemId)
+        {
+            _collectedItems.Add(itemId);
+        }
+
+        public bool IsItemCollected(string itemId)
+        {
+            return _collectedItems.Contains(itemId);
+        }
+
+        // Save data
+
+        public Dictionary<string, string> MappedItems
+        {
+            get => _mappedItems;
+            set => _mappedItems = value ?? new Dictionary<string, string>();
+        }
+
+        public List<string> CollectedLocations
+        {
+            get => _collectedLocations;
+            set => _collectedLocations = value ?? new List<string>();
+        }
+
+        public List<string> CollectedItems
+        {
+            get => _collectedItems;
+            set => _collectedItems = value ?? new List<string>();
         }
     }
 }

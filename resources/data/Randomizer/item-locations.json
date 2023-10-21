@@ -2,1031 +2,1523 @@
     {
         "id": "Z0105.l3",
         "name": "Cherub altar",
-        "originalItem": "Marks[1]",
+        "type": "Normal",
         "logic": "doubleJump + airDash + cherubRings"
     },
     {
         "id": "Z0106.r8",
-        "name": "Defeat Facelsss One",
-        "originalItem": "Marks[1]"
+        "name": "Defeat Faceless One",
+        "type": "Normal"
     },
     {
         "id": "Z0108.l2",
         "name": "Tower shortcut",
-        "originalItem": "FK"
+        "type": "Normal",
+        "logic": "doubleJump"
+    },
+    {
+        "id": "Z0203.c0",
+        "name": "Rings cherub",
+        "type": "Normal",
+        "logic": "doubleJump + cherubRings"
     },
     {
         "id": "Z0203.l6",
         "name": "Bell door altar",
-        "originalItem": "Marks[1]",
+        "type": "Normal",
         "logic": "doubleJump + censer"
     },
     {
         "id": "Z0203.l7",
         "name": "Altar near prayer tree",
-        "originalItem": "Tears[800]"
+        "type": "Normal"
     },
     {
         "id": "Z0203.l8",
         "name": "Prayer tree",
-        "originalItem": "PR18"
+        "type": "Normal"
+    },
+    {
+        "id": "Z0204.c0",
+        "name": "Ledge cherub",
+        "type": "Normal"
     },
     {
         "id": "Z0204.l3",
         "name": "Bone floor chest",
-        "originalItem": "FG21",
-        "logic": "blade + (Z0204[W*] | doubleJump)"
+        "type": "Normal",
+        "logic": "(Z02[N] | doubleJump) + blade"
     },
     {
         "id": "Z0204.l4",
         "name": "Bone floor arena",
-        "originalItem": "QI02",
-        "logic": "blade + doubleJump"
+        "type": "Normal",
+        "logic": "doubleJump + blade"
     },
     {
         "id": "Z0301.l10",
         "name": "Entrance room high altar",
-        "originalItem": "Marks[1]",
-        "logic": "doubleJump + airDash + (Z0301[N] | Z0301[E] | censer)"
+        "type": "Normal",
+        "logic": "Z03[SE] + airDash"
     },
     {
         "id": "Z0301.l11",
         "name": "Bell shaft puzzle",
-        "originalItem": "ST",
-        "logic": "censer + rapier + (Z0301[W] | Z0301[N] | wallClimb)"
+        "type": "Normal",
+        "logic": "Z03[SE] + censer + rapier"
+    },
+    {
+        "id": "Z0302.c0",
+        "name": "Northeast cherub",
+        "type": "Normal",
+        "logic": "Z03[SE]"
     },
     {
         "id": "Z0303.l6",
         "name": "Cherub ring altar",
-        "originalItem": "Tears[5000]",
-        "logic": "doubleJump + cherubRings"
+        "type": "Normal",
+        "logic": "Z03[SE] + doubleJump + cherubRings"
     },
     {
         "id": "Z0304.l4",
         "name": "Arena chest",
-        "originalItem": "FG04",
-        "logic": "Z0304[SE] | Z0304[NE] | bell + wallClimb"
+        "type": "Normal",
+        "logic": "Z03[SE]"
     },
     {
         "id": "Z0304.l9",
         "name": "Spike gap puzzle",
-        "originalItem": "Tears[2000]",
-        "logic": "Z0304[SE] | Z0304[NE] | bell + wallClimb"
+        "type": "Normal",
+        "logic": "Z03[SE]"
     },
     {
         "id": "Z0305.l5",
         "name": "DJ chest under ledge",
-        "originalItem": "RB14",
-        "logic": "wallClimb + (doubleJump | airDash)"
+        "type": "Normal",
+        "logic": "Z03[SE] + (doubleJump | airDash)"
     },
     {
         "id": "Z0305.l6",
         "name": "Airdash arena",
-        "originalItem": "Marks[1]",
-        "logic": "airDash"
+        "type": "Normal",
+        "logic": "Z03[SE] + airDash"
     },
     {
         "id": "Z0306.l12",
         "name": "Ledge under breaking floor",
-        "originalItem": "WS",
-        "logic": "cherubRings + wallClimb + doubleJump"
+        "type": "Normal",
+        "logic": "Z03[SE] + cherubRings + doubleJump"
     },
     {
         "id": "Z0307.l8",
         "name": "Exit shortcut altar 1",
-        "originalItem": "Tears[2000]",
-        "logic": "typhoonDive | wallClimb + censer + blade"
+        "type": "Normal",
+        "logic": "Z03[SW] + censer + blade"
+    },
+    {
+        "id": "Z0308.c0",
+        "name": "Exit shortcut cherub",
+        "type": "Normal",
+        "logic": "Z03[SW] + censer"
     },
     {
         "id": "Z0308.l26",
         "name": "Bell cherub puzzle",
-        "originalItem": "Marks[1]",
-        "logic": "(Z0308[W] | Z0308[S]) + censer + wallClimb + doubleJump + cherubRings"
+        "type": "Normal",
+        "logic": "Z03[SW] + censer + doubleJump + cherubRings"
     },
     {
         "id": "Z0308.l27",
         "name": "Exit shortcut altar 2",
-        "originalItem": "Tears[2000]"
+        "type": "Normal",
+        "logic": "Z03[SE] + censer"
+    },
+    {
+        "id": "Z0312.c0",
+        "name": "Entrance cherub",
+        "type": "Normal",
+        "logic": "censer + (wallClimb | doubleJump)"
     },
     {
         "id": "Z0313.l9",
         "name": "Bell airdash puzzle",
-        "originalItem": "Tears[3500]",
-        "logic": "wallClimb + doubleJump + airDash + censer"
+        "type": "Normal",
+        "logic": "(Z03[S] | Z03[SW]) + wallClimb + doubleJump + airDash + censer"
     },
     {
         "id": "Z0402.l13",
         "name": "Entrance left ledge",
-        "originalItem": "QI08",
-        "logic": "Z0402[W2] + censer"
+        "type": "Normal",
+        "logic": "Z04[NE] + censer"
     },
     {
         "id": "Z0402.l15",
         "name": "Entrance right ledge",
-        "originalItem": "FT",
-        "logic": "Z0402[W2] + censer + rapier"
+        "type": "Normal",
+        "logic": "Z04[NE] + censer + rapier"
+    },
+    {
+        "id": "Z0406.c0",
+        "name": "Northern cherub",
+        "type": "Normal",
+        "logic": "Z04[NE] + (doubleJump | airDash)"
     },
     {
         "id": "Z0406.l4",
         "name": "Tall shaft bottom",
-        "originalItem": "OC",
-        "logic": "Z0406_LOWER"
+        "type": "Normal",
+        "logic": "Z04[NE]"
     },
     {
         "id": "Z0409.l7",
         "name": "High ledge before weapon",
-        "originalItem": "RK",
-        "logic": "wallClimb + doubleJump"
+        "type": "Normal",
+        "logic": "Z04[NE] + censer + doubleJump"
     },
     {
         "id": "Z0410.l6",
         "name": "Bell floor chest",
-        "originalItem": "RB10",
-        "logic": "censer"
+        "type": "Normal",
+        "logic": "Z04[NE] + censer"
     },
     {
         "id": "Z0412.l1",
         "name": "Airdash altar",
-        "originalItem": "Marks[1]",
-        "logic": "airDash + (Z0412[NW] | doubleJump)"
+        "type": "Normal",
+        "logic": "Z04[NE] + (censer | doubleJump) + airDash"
     },
     {
         "id": "Z0412.l2",
         "name": "Bone wall chest",
-        "originalItem": "PR09",
-        "logic": "blade + (Z0412[NW] | doubleJump)"
+        "type": "Normal",
+        "logic": "Z04[NE] + (censer | doubleJump) + blade"
     },
     {
         "id": "Z0413.l0",
         "name": "Secret wall Lullaby",
-        "originalItem": "UL"
+        "type": "Normal",
+        "logic": "Z04[NE]"
     },
     {
         "id": "Z0414.l4",
         "name": "Above bell shortcut altar",
-        "originalItem": "Tears[800]",
-        "logic": "Z0414[N]"
+        "type": "Normal",
+        "logic": "Z04[NE]"
     },
     {
         "id": "Z0415.l1",
         "name": "Box room right",
-        "originalItem": "Marks[1]",
-        "logic": "Z0415[NW] | (doubleJump | wallClimb) + (Z0415[WW] | Z0415[W) | doubleJump"
+        "type": "Normal",
+        "logic": "Z04[NE]"
     },
     {
         "id": "Z0415.l3",
         "name": "Box room left",
-        "originalItem": "FG11",
-        "logic": "Z0415[WW]"
+        "type": "Normal",
+        "logic": "Z04[NE] + doubleJump"
     },
     {
         "id": "Z0417.l4",
         "name": "Tower entrance chest",
-        "originalItem": "RB15",
-        "logic": "Z0417[W] + doubleJump + blade | typhoonDive"
+        "type": "Normal",
+        "logic": "Z04[SW] + doubleJump + blade"
     },
     {
         "id": "Z0421.r8",
         "name": "Defeat Radames",
-        "originalItem": "Marks[1]",
-        "logic": "canBeatRadames"
+        "type": "Normal",
+        "logic": "Z04[NE]"
     },
     {
         "id": "Z0423.l1",
         "name": "Veredicto statue",
-        "originalItem": "WE01"
+        "type": "Normal",
+        "logic": "Z04[NE] + censer + doubleJump"
+    },
+    {
+        "id": "Z0501.c0",
+        "name": "West side cherub",
+        "type": "Normal",
+        "logic": "doubleJump | wallClimb + airDash"
+    },
+    {
+        "id": "Z0502.c0",
+        "name": "Central room cherub",
+        "type": "Normal",
+        "logic": "wallClimb"
     },
     {
         "id": "Z0502.i1",
-        "name": "Middle city letter",
-        "originalItem": "QI17",
-        "logic": "letters >= x"
+        "name": "Cursed letter: Scream",
+        "type": "Normal",
+        "logic": "letter2"
     },
     {
-        "id": "Z0503.i9",
-        "name": "East city letter",
-        "originalItem": "QI21",
-        "logic": "letters >= x"
+        "id": "Z0503.c0",
+        "name": "East side cherub",
+        "type": "Normal",
+        "logic": "doubleJump + airDash + censer"
     },
     {
         "id": "Z0503.l4",
         "name": "East city altar",
-        "originalItem": "Marks[1]",
+        "type": "Normal",
         "logic": "censer + doubleJump + airDash"
+    },
+    {
+        "id": "Z0503.i9",
+        "name": "Cursed letter: Skull",
+        "type": "Normal",
+        "logic": "wallClimb + letter4"
     },
     {
         "id": "Z0506.i0",
         "name": "Cobijada's Final Reward",
-        "originalItem": "FG45"
+        "type": "LongQuest",
+        "logic": "Z05[T] + wallClimb + doubleJump + airDash + censer + blade + rapier + tributes >= 3"
     },
     {
         "id": "Z0511.l0",
         "name": "Bell tower secret chest",
-        "originalItem": "PR05"
-    },
-    {
-        "id": "Z05BZ01.i0?",
-        "name": "???",
-        "originalItem": "QI28"
+        "type": "Normal",
+        "logic": "Z05[T] + doubleJump + cherubRings + censer"
     },
     {
         "id": "Z05BZ01.l0",
         "name": "Confessor 1st gift",
-        "originalItem": "RB23"
+        "type": "LongQuest"
     },
     {
         "id": "Z05BZ01.l16",
         "name": "Confessor 2nd gift",
-        "originalItem": "RB24"
+        "type": "LongQuest"
     },
     {
         "id": "Z05BZ01.i0",
         "name": "Confessor 3rd gift",
-        "originalItem": "FG19"
+        "type": "LongQuest"
     },
     {
         "id": "Z05BZ02.i0",
         "name": "Sculptor initial gift",
-        "originalItem": "FG25"
+        "type": "Normal"
     },
     {
         "id": "Z05BZ02.l1",
         "name": "Sculptor final gift",
-        "originalItem": "Marks[5]"
+        "type": "Normal",
+        "logic": "tools >= 5"
     },
     {
         "id": "Z05BZ04.l0",
         "name": "West city upper house chest",
-        "originalItem": "FG16"
+        "type": "Normal",
+        "logic": "(doubleJump + censer) | ((wallClimb | doubleJump + airDash) + censer + rapier)"
     },
     {
         "id": "Z05BZ05.l1",
         "name": "West city upper house floor",
-        "originalItem": "CS"
+        "type": "Normal",
+        "logic": "wallClimb + airDash | doubleJump"
     },
     {
         "id": "Z05BZ06.l0",
         "name": "East city upper house altar",
-        "originalItem": "Tears[800]"
+        "type": "Normal",
+        "logic": "(doubleJump + censer) | ((wallClimb | doubleJump + airDash) + censer)"
     },
     {
         "id": "Z0602.l2",
         "name": "Ledge up high",
-        "originalItem": "FG13",
-        "logic": "Z0602[NE]"
+        "type": "Normal",
+        "logic": "Z06[W] + doubleJump"
     },
     {
         "id": "Z0605.l10",
         "name": "Big house bone wall altar",
-        "originalItem": "Marks[1]",
-        "logic": "doubleJump + cherubRings + blade"
+        "type": "Normal",
+        "logic": "Z06[W] + doubleJump + cherubRings + blade"
     },
     {
         "id": "Z0605.l11",
         "name": "Big house bone floor altar",
-        "originalItem": "Tears[2000]",
-        "logic": "blade + (doubleJump | airDash)"
+        "type": "Normal",
+        "logic": "Z06[W] + blade + (doubleJump | airDash)"
+    },
+    {
+        "id": "Z0608.c0",
+        "name": "Northern cherub",
+        "type": "Normal",
+        "logic": "Z06[W]"
     },
     {
         "id": "Z0611.l2",
         "name": "Dungeon 1 shortcut",
-        "originalItem": "RB22",
-        "logic": "Z0611[W]"
+        "type": "Normal",
+        "logic": "Z06[SW]"
     },
     {
         "id": "Z0611.r2",
         "name": "Dungeon 1 arena",
-        "originalItem": "Tears[1000]"
+        "type": "Normal",
+        "logic": "Z06[W]"
     },
     {
         "id": "Z0612.l6",
         "name": "Dungeon 2 chest",
-        "originalItem": "PR04",
-        "logic": "Z0612[NW] + Z0612[NE]"
+        "type": "Normal",
+        "logic": "Z06[W]"
     },
     {
         "id": "Z0614.l6",
         "name": "Dungeon 3 shortcut",
-        "originalItem": "WS",
-        "logic": "Z0614[W]"
+        "type": "Normal",
+        "logic": "Z06[S]"
     },
     {
         "id": "Z0614.l7",
         "name": "Dungeon 3 chest",
-        "originalItem": "RB19"
+        "type": "Normal",
+        "logic": "Z06[W]"
     },
     {
         "id": "Z0615.r2",
         "name": "Northwest arena",
-        "originalItem": "Marks[1]"
+        "type": "Normal",
+        "logic": "Z06[W] + (doubleJump | rapier)"
     },
     {
         "id": "Z0707.i2",
         "name": "Eastern arena",
-        "originalItem": "FK"
+        "type": "Normal",
+        "logic": "Z07[W] + rapier"
     },
     {
         "id": "Z0709.l1",
         "name": "Rapier statue",
-        "originalItem": "WE03"
+        "type": "Normal",
+        "logic": "Z07[W]"
     },
     {
         "id": "Z0711.l2",
         "name": "Northwest chest",
-        "originalItem": "RB25",
-        "logic": "Z0711[NE]"
+        "type": "Normal",
+        "logic": "Z07[W] + rapier"
+    },
+    {
+        "id": "Z0715.c0",
+        "name": "Northeast cherub",
+        "type": "Normal",
+        "logic": "Z07[W] + rapier"
     },
     {
         "id": "Z0721.i2",
         "name": "Northern arena",
-        "originalItem": "CS"
+        "type": "Normal",
+        "logic": "Z07[W] + rapier + blade"
     },
     {
-        "id": "Z0722.i0",
-        "name": "QI07 to Cástula",
-        "originalItem": "QI09"
+        "id": "Z0722.s0",
+        "name": "Give scroll to Cástula",
+        "type": "Normal",
+        "logic": "Z07[W] + rapier + elderScroll"
     },
     {
-        "id": "Z0722.i0?",
-        "name": "QI08 to Trifón",
-        "originalItem": "QI10"
+        "id": "Z0722.s1",
+        "name": "Give cloth to Trifón",
+        "type": "Normal",
+        "logic": "Z07[W] + rapier + elderCloth"
     },
     {
         "id": "Z0723.l2",
         "name": "Moving rapier chest",
-        "originalItem": "FG05",
-        "logic": "rapier"
+        "type": "Normal",
+        "logic": "Z07[W] + rapier"
     },
     {
         "id": "Z0725.i1",
         "name": "Northwest arena",
-        "originalItem": "OC"
+        "type": "Normal",
+        "logic": "Z07[W] + rapier + censer"
     },
     {
         "id": "Z0728.i2",
         "name": "Southeast arena",
-        "originalItem": "FG06"
+        "type": "Normal",
+        "logic": "Z07[W] + blade"
     },
     {
         "id": "Z0730.r6",
         "name": "Defeat Orospina",
-        "originalItem": "Marks[1]",
-        "logic": "canBeatOrospina"
+        "type": "Normal",
+        "logic": "Z07[W] + rapier"
     },
     {
         "id": "Z0730.l2",
         "name": "Orospina altar",
-        "originalItem": "Tears[800]",
-        "logic": "canBeatOrospina"
+        "type": "Normal",
+        "logic": "Z07[W] + rapier"
     },
     {
         "id": "Z0805.l0",
         "name": "Spikestall puzzle",
-        "originalItem": "PR06",
-        "logic": "doubleJump + airDash + (Z0805[NW] | wallClimb + doubleJump) *also can airStall"
+        "type": "Normal",
+        "logic": "doubleJump + airDash + (Z08[W] + wallClimb | Z08[P])"
+    },
+    {
+        "id": "Z0806.c0",
+        "name": "Northeast cherub",
+        "type": "Normal",
+        "logic": "Z08[W] + (wallClimb | doubleJump)"
+    },
+    {
+        "id": "Z0809.c0",
+        "name": "Southeast cherub",
+        "type": "Normal",
+        "logic": "Z08[W] + wallClimb"
     },
     {
         "id": "Z0810.l0",
-        "name": "First tribute leftover",
-        "originalItem": "Marks[1]",
-        "logic": "tributes >= 1"
+        "name": "1st tribute leftover",
+        "type": "Normal",
+        "logic": "Z08[W] + (wallClimb | doubleJump) + tributes >= 1"
     },
     {
         "id": "Z0811.w0",
         "name": "Rapier statue",
-        "originalItem": "WE03",
-        "logic": "doubleJump + rapier"
+        "type": "Normal",
+        "logic": "Z08[W] + wallClimb + doubleJump + rapier"
     },
     {
         "id": "Z0814.l6",
         "name": "Bell floor chest",
-        "originalItem": "RB07",
-        "logic": "censer + (Z0814[N] | wallClimb | doubleJump)"
+        "type": "Normal",
+        "logic": "Z08[W] + (wallClimb | doubleJump) + censer"
     },
     {
         "id": "Z0815.i0",
         "name": "Honey dude",
-        "originalItem": "FG24"
+        "type": "Normal",
+        "logic": "Z08[W] + (wallClimb | doubleJump) + rapier"
     },
     {
         "id": "Z0817.l0",
-        "name": "Third tribute leftover",
-        "originalItem": "Marks[3]",
-        "logic": "tributes >= x"
+        "name": "3rd tribute leftover",
+        "type": "Normal",
+        "logic": "Z08[P] + tributes >= 3"
     },
     {
         "id": "Z0901.l1",
         "name": "Entrance shaft upper",
-        "originalItem": "Marks[1]",
-        "logic": "Z0901[Elev] + wallClimb + doubleJump + cherubRings"
+        "type": "Normal",
+        "logic": "Z09[W] + wallClimb + blade + cherubRings + doubleJump"
     },
     {
         "id": "Z0901.l3",
         "name": "Entrance shaft lower",
-        "originalItem": "UL",
-        "logic": "Z0901[Elev] + wallClimb"
+        "type": "Normal",
+        "logic": "Z09[W] + wallClimb + blade"
     },
     {
         "id": "Z0903.l2",
         "name": "Entrance room high ledge",
-        "originalItem": "QI07",
-        "logic": "wallClimb + (Z0903[W] | Z0903[SE] | Z0903[E] | blade)"
+        "type": "Normal",
+        "logic": "Z09[W] + wallClimb"
     },
     {
         "id": "Z0905.l2",
         "name": "Bell floor chest",
-        "originalItem": "PR07",
-        "logic": "doubleJump + censer"
+        "type": "Normal",
+        "logic": "Z09[W] + doubleJump + censer"
     },
     {
         "id": "Z0908.l9",
         "name": "Rapier lullaby shaft",
-        "originalItem": "UL",
-        "logic": "(wallClimb | doubleJump) + censer + (Z0908[W] | Z0908[Elev] | Z0908[NE]) | (Z0908[E] | Z0908[SE]) + wallClimb + (doubleJump | blade)"
+        "type": "Normal",
+        "logic": "Z09[W] + wallClimb + blade + censer + rapier"
     },
     {
         "id": "Z0909.l5",
         "name": "Lantern ledge chest",
-        "originalItem": "RB01"
+        "type": "Normal",
+        "logic": "Z09[W] + wallClimb + blade"
     },
     {
         "id": "Z0912.l8",
         "name": "Rapier bone floor puzzle",
-        "originalItem": "PR14"
+        "type": "Normal",
+        "logic": "Z09[W] + wallClimb + blade + rapier"
     },
     {
         "id": "Z0913.l1",
         "name": "Ruego statue",
-        "originalItem": "WE04"
+        "type": "Normal",
+        "logic": "Z09[W]"
     },
     {
         "id": "Z0915.l9",
         "name": "Ledge shaft puzzle",
-        "originalItem": "FG07"
+        "type": "Normal",
+        "logic": "Z09[W] + wallClimb + blade"
     },
     {
         "id": "Z0921.r14",
         "name": "Defeat Lesmes",
-        "originalItem": "Marks[1]"
+        "type": "Normal",
+        "logic": "Z09[W] + wallClimb + blade"
+    },
+    {
+        "id": "Z0923.c0",
+        "name": "Prie Dieu cherub",
+        "type": "Normal",
+        "logic": "Z09[W] + doubleJump + (censer | wallClimb)"
     },
     {
         "id": "Z0926.a0",
         "name": "Wind statue",
-        "originalItem": "AB01"
+        "type": "Normal",
+        "logic": "rapier + (Z09[W] + airDash | Z09[N])"
     },
     {
         "id": "Z0927.l4",
         "name": "Long hallway altar",
-        "originalItem": "Marks[1]"
+        "type": "Normal",
+        "logic": "Z09[W] + wallClimb + blade"
+    },
+    {
+        "id": "Z0928.c0",
+        "name": "Northern cherub",
+        "type": "Normal",
+        "logic": "Z09[W] + wallClimb + blade"
     },
     {
         "id": "Z0929.w0",
         "name": "Ruego upgrade",
-        "originalItem": "WE04"
+        "type": "Normal",
+        "logic": "Z09[W] + wallClimb + blade + doubleJump + airDash"
     },
     {
         "id": "Z1003.l0",
-        "name": "Box",
-        "originalItem": "FG12"
+        "name": "Southeast chest",
+        "type": "Normal",
+        "logic": "Z10[S] + wallClimb + (doubleJump | airDash)"
     },
     {
         "id": "Z1004.l10",
         "name": "Mirror and Bell puzzle",
-        "originalItem": "RK"
+        "type": "Normal",
+        "logic": "Z10[S] + wallClimb + blade"
     },
     {
         "id": "Z1007.l2",
         "name": "Bone floor PrieDieu",
-        "originalItem": "FK"
+        "type": "Normal",
+        "logic": "Z10[S] + blade"
     },
     {
         "id": "Z1011.l4",
         "name": "Wall Climb Mirror",
-        "originalItem": "ER"
+        "type": "Normal",
+        "logic": "Z10[S] + wallClimb + doubleJump"
     },
     {
         "id": "Z1015.l0",
-        "name": "Bottom Right Box",
-        "originalItem": "RB13"
+        "name": "Southwest chest",
+        "type": "Normal",
+        "logic": "Z10[S] + wallClimb + blade"
     },
     {
         "id": "Z1015.l1",
         "name": "Cherub tower exit",
-        "originalItem": "RB20"
+        "type": "Normal",
+        "logic": "Z10[W]"
     },
     {
         "id": "Z1017.w0",
         "name": "Veredicto statue",
-        "originalItem": "WE01"
+        "type": "Normal",
+        "logic": "Z10[S] + wallClimb + blade"
     },
     {
         "id": "Z1018.l3",
         "name": "Cherubs Rings",
-        "originalItem": "QI68"
+        "type": "Normal",
+        "logic": "Z10[S] + wallClimb + blade + doubleJump + airDash + cherubRings"
+    },
+    {
+        "id": "Z1019.c0",
+        "name": "Northwest cherub",
+        "type": "Normal",
+        "logic": "Z10[S] + wallClimb + blade + doubleJump"
     },
     {
         "id": "Z1019.l9",
-        "name": "Air dash box",
-        "originalItem": "RB26"
+        "name": "Air dash chest",
+        "type": "Normal",
+        "logic": "Z10[S] + wallClimb + blade + doubleJump + airDash"
+    },
+    {
+        "id": "Z1023.c0",
+        "name": "Northeast cherub",
+        "type": "Normal",
+        "logic": "Z10[S] + wallClimb + blade + doubleJump + airDash"
     },
     {
         "id": "Z1023.l8",
-        "name": "Up Right Elevated Temple orb after Scions Ab next to 2 Moons",
-        "originalItem": "CS"
+        "name": "Northeast cherub puzzle",
+        "type": "Normal",
+        "logic": "Z10[S] + wallClimb + blade + doubleJump + cherubRings + airDash"
     },
     {
         "id": "Z1045.l0",
         "name": "Two Moons bridge",
-        "originalItem": "Tears[5000]"
+        "type": "Normal",
+        "logic": "Z10[S] + wallClimb + blade + doubleJump"
+    },
+    {
+        "id": "Z1050.c0",
+        "name": "Mirror shaft",
+        "type": "Normal",
+        "logic": "Z10[S]"
     },
     {
         "id": "Z1050.l7",
-        "name": "Altar",
-        "originalItem": "Tears[800]"
+        "name": "Mirror shaft altar",
+        "type": "Normal",
+        "logic": "Z10[S]"
+    },
+    {
+        "id": "Z1058.c0",
+        "name": "Tower entrance cherub",
+        "type": "Normal",
+        "logic": "Z10[S] + wallClimb + blade + doubleJump"
     },
     {
         "id": "Z1063.w0",
         "name": "Rapier statue",
-        "originalItem": "WE03"
+        "type": "Normal",
+        "logic": "Z10[S] + wallClimb + blade + doubleJump + cherubRings"
     },
     {
         "id": "Z1103.l1",
         "name": "Southeast altar",
-        "originalItem": "Tears[1200]"
+        "type": "Normal",
+        "logic": "Z11[S] + doubleJump + airDash"
     },
     {
         "id": "Z1107.l5",
         "name": "Western chest",
-        "originalItem": "RB12"
+        "type": "Normal",
+        "logic": "Z11[S] + doubleJump + airDash + rapier"
     },
     {
         "id": "Z1109.l0",
         "name": "Eastern lullaby",
-        "originalItem": "UL"
+        "type": "Normal",
+        "logic": "Z11[S] + doubleJump + airDash + rapier + censer"
     },
     {
         "id": "Z1113.r8",
         "name": "Defeat Benedicta",
-        "originalItem": "Marks[3]"
+        "type": "Normal",
+        "logic": "Z11[S] + doubleJump + airDash + rapier + censer"
     },
     {
         "id": "Z1113.i8",
-        "name": "Benedicta Key",
-        "originalItem": "QI64"
+        "name": "Benedicta reward",
+        "type": "Normal",
+        "logic": "Z11[S] + doubleJump + airDash + rapier + censer"
+    },
+    {
+        "id": "Z1114.c0",
+        "name": "Elevator cherub",
+        "type": "Normal",
+        "logic": "Z11[S] + doubleJump + airDash + rapier + censer"
+    },
+    {
+        "id": "Z1202.c0",
+        "name": "Eastern cherub",
+        "type": "Normal",
+        "logic": "Z12[E] + (doubleJump | airDash)"
     },
     {
         "id": "Z1203.i2",
         "name": "Eastern arena",
-        "originalItem": "OC"
+        "type": "Normal",
+        "logic": "Z12[E]"
     },
     {
         "id": "Z1205.w0",
         "name": "Eastern censer statue",
-        "originalItem": "WE01"
+        "type": "Normal",
+        "logic": "Z12[E] + censer"
     },
     {
         "id": "Z1209.l1",
         "name": "Southwest chest",
-        "originalItem": "RB17"
+        "type": "Normal",
+        "logic": "Z12[E]"
     },
     {
         "id": "Z1209.l2",
         "name": "Western altar",
-        "originalItem": "Tears[1200]"
+        "type": "Normal",
+        "logic": "Z12[E]"
     },
     {
         "id": "Z1210.l2",
         "name": "Northwest altar",
-        "originalItem": "Marks[1]"
-    },
-    {
-        "id": "Z1216.i9",
-        "name": "Odon key",
-        "originalItem": "Marks[3]"
+        "type": "Normal",
+        "logic": "Z12[E] + cherubRings"
     },
     {
         "id": "Z1216.r9",
         "name": "Defeat Odon",
-        "originalItem": "QI65"
+        "type": "Normal",
+        "logic": "Z12[E]"
+    },
+    {
+        "id": "Z1216.i9",
+        "name": "Odon reward",
+        "type": "Normal",
+        "logic": "Z12[E]"
+    },
+    {
+        "id": "Z1303.c0",
+        "name": "Large room cherub",
+        "type": "Normal",
+        "logic": "Z13[E] + blade + censer + rapier + cherubRings"
+    },
+    {
+        "id": "Z1304.c0",
+        "name": "Inverted large room cherub",
+        "type": "Normal",
+        "logic": "Z13[E] + blade + censer + rapier"
     },
     {
         "id": "Z1307.l7",
-        "name": "Entrance Altar",
-        "originalItem": "Marks[1]"
+        "name": "Eastern altar",
+        "type": "Normal",
+        "logic": "Z13[E] + blade"
     },
     {
         "id": "Z1308.l7",
-        "name": "Inverted Entrance Kiss",
-        "originalItem": "FK"
+        "name": "Inverted backtracking",
+        "type": "Normal",
+        "logic": "Z13[E] + blade + censer + rapier"
     },
     {
         "id": "Z1310.l0",
-        "name": "Inverted Dash puzzle",
-        "originalItem": "Tears[1800]"
+        "name": "Inverted dash puzzle",
+        "type": "Normal",
+        "logic": "Z13[E]"
     },
     {
         "id": "Z1311.l7",
         "name": "Laser puzzle",
-        "originalItem": "RB18"
+        "type": "Normal",
+        "logic": "Z13[E] + censer + blade"
     },
     {
         "id": "Z1312.l4",
-        "name": "Inverted Laser Cherub",
-        "originalItem": "RB03"
+        "name": "Laser puzzle inverted",
+        "type": "Normal",
+        "logic": "Z13[E]"
     },
     {
         "id": "Z1314.l6",
-        "name": "Inverted near Priedieu",
-        "originalItem": "WS"
+        "name": "Inverted near priedieu",
+        "type": "Normal",
+        "logic": "Z13[E] + blade + censer + rapier"
     },
     {
         "id": "Z1326.i0",
-        "name": "Inverted Mirror Letter",
-        "originalItem": "QI15"
+        "name": "Cursed letter: Mirror",
+        "type": "Normal",
+        "logic": "Z13[E] + blade + censer + rapier + letter1"
     },
     {
         "id": "Z1327.r7",
         "name": "Defeat Susona",
-        "originalItem": "Marks[4]"
+        "type": "Normal",
+        "logic": "Z13[E] + blade + censer + rapier"
     },
     {
         "id": "Z1327.i7",
-        "name": "Susona Key",
-        "originalItem": "QI67"
+        "name": "Susona reward",
+        "type": "Normal",
+        "logic": "Z13[E] + blade + censer + rapier"
     },
     {
         "id": "Z1327.l3",
-        "name": "Yerma Dead",
-        "originalItem": "RB27"
+        "name": "Yerma's corpse",
+        "type": "Normal",
+        "logic": "Z13[E] + blade + censer + rapier"
     },
     {
         "id": "Z1329.l0",
-        "name": "Left Altar",
-        "originalItem": "Tears[1800]"
+        "name": "Western altar",
+        "type": "Normal",
+        "logic": "Z13[W]"
     },
     {
         "id": "Z1330.l5",
-        "name": "Inverted Left Altar",
-        "originalItem": "Marks[1]"
+        "name": "Western altar inverted",
+        "type": "Normal",
+        "logic": "Z13[E] + blade + censer + rapier"
     },
     {
-        "id": "Z1404.l15",
-        "name": "Southeast shortcut",
-        "originalItem": "Tears[2000]"
+        "id": "Z1404.c0",
+        "name": "Eastern cherub",
+        "type": "Normal",
+        "logic": "Z14[N] + censer + (doubleJump | airDash)"
     },
     {
         "id": "Z1404.l8",
         "name": "Northeast altar",
-        "originalItem": "Tears[800]"
+        "type": "Normal",
+        "logic": "Z14[N] + (censer | doubleJump)"
+    },
+    {
+        "id": "Z1404.l15",
+        "name": "Southeast shortcut",
+        "type": "Normal",
+        "logic": "Z14[N] + censer + rapier + blade + (wallClimb | doubleJump + airDash)"
     },
     {
         "id": "Z1405.l3",
         "name": "Central altar",
-        "originalItem": "Marks[1]"
+        "type": "Normal",
+        "logic": "Z14[N] + censer"
     },
     {
         "id": "Z1407.l1",
         "name": "Central hidden chest",
-        "originalItem": "RB04"
+        "type": "Normal",
+        "logic": "Z14[N] + censer"
+    },
+    {
+        "id": "Z1408.c0",
+        "name": "Rapier cherub",
+        "type": "Normal",
+        "logic": "Z14[N] + censer + rapier"
     },
     {
         "id": "Z1418.l5",
         "name": "Cherubs Altar",
-        "originalItem": "Marks[1]"
+        "type": "Normal",
+        "logic": "Z14[N] + doubleJump + airDash + wallClimb + cherubRings"
     },
     {
         "id": "Z1419.l2",
         "name": "Northwest altar",
-        "originalItem": "Marks[1]"
+        "type": "Normal",
+        "logic": "Z14[N] + doubleJump"
     },
     {
         "id": "Z1421.l1",
-        "name": "8 cave box",
-        "originalItem": "PR03"
+        "name": "Chime symbols chest",
+        "type": "Normal",
+        "logic": "Z14[N] + (wallClimb | doubleJump)"
     },
     {
         "id": "Z1422.l8",
         "name": "Southwest puzzle",
-        "originalItem": "ST"
+        "type": "Normal",
+        "logic": "Z14[N] + censer + rapier + blade + (wallClimb | doubleJump)"
     },
     {
         "id": "Z1424.l3",
         "name": "Miriam chest",
-        "originalItem": "PR08"
+        "type": "Normal",
+        "logic": "Z14[N] + wallClimb + (censer | doubleJump)"
     },
     {
         "id": "Z1427.l0",
-        "name": "Secret lullaby",
-        "originalItem": "QI19"
+        "name": "Cursed letter: Bell",
+        "type": "Normal",
+        "logic": "Z14[N] + censer + letter3"
     },
     {
-        "id": "Z1501.i0",
+        "id": "Z1501.s0",
         "name": "Arena 1",
-        "originalItem": "FG27"
+        "type": "Normal",
+        "logic": "Z17[W] + daughterRooms >= 1"
     },
     {
-        "id": "Z1501.i0?",
+        "id": "Z1501.s1",
         "name": "Arena 2",
-        "originalItem": "FG28"
+        "type": "Normal",
+        "logic": "Z17[W] + daughterRooms >= 2"
     },
     {
-        "id": "Z1501.i0??",
+        "id": "Z1501.s2",
         "name": "Arena 3",
-        "originalItem": "ER"
+        "type": "Normal",
+        "logic": "Z17[W] + daughterRooms >= 3"
     },
     {
-        "id": "Z1501.i0???",
+        "id": "Z1501.s3",
         "name": "Arena 4",
-        "originalItem": "OC"
+        "type": "Normal",
+        "logic": "Z17[W] + daughterRooms >= 4"
     },
     {
-        "id": "Z1501.i0????",
+        "id": "Z1501.s4",
         "name": "Arena 5",
-        "originalItem": "FG32"
+        "type": "Normal",
+        "logic": "Z17[W] + daughterRooms >= 5"
     },
     {
         "id": "Z1602.l2",
         "name": "Entrance altar",
-        "originalItem": "Tears[1200]"
+        "type": "Normal",
+        "logic": "Z16[S]"
     },
     {
         "id": "Z1603.i2",
         "name": "Entrance arena",
-        "originalItem": "RB06"
+        "type": "Normal",
+        "logic": "Z16[S]"
+    },
+    {
+        "id": "Z1605.c0",
+        "name": "Shortcut cherub cherub",
+        "type": "Normal",
+        "logic": "Z16[S] + rapier + cherubRings"
     },
     {
         "id": "Z1605.l5",
         "name": "Shortcut cherub altar",
-        "originalItem": "Tears[5000]"
+        "type": "Normal",
+        "logic": "Z16[S] + rapier + cherubRings"
     },
     {
         "id": "Z1610.l4",
         "name": "Lullaby slide",
-        "originalItem": "UL"
+        "type": "Normal",
+        "logic": "Z16[S] + rapier"
     },
     {
         "id": "Z1615.a0",
         "name": "Scion statue",
-        "originalItem": "AB35"
+        "type": "Normal",
+        "logic": "Z16[S] + rapier"
     },
     {
         "id": "Z1616.i1",
         "name": "Cesareo's gift",
-        "originalItem": "QI62"
+        "type": "Normal",
+        "logic": "Z16[S] + rapier + cherubRings + waxSeeds >= 6"
     },
     {
         "id": "Z1619.l6",
         "name": "Upper entrance altar",
-        "originalItem": "Marks[1]"
+        "type": "Normal",
+        "logic": "Z16[P] + airDash"
     },
     {
         "id": "Z1621.l1",
-        "name": "Tribute chest",
-        "originalItem": "FG30"
+        "name": "3rd tribute reward",
+        "type": "Normal",
+        "logic": "Z16[P]"
     },
     {
         "id": "Z1622.r6",
-        "name": "Defeat Sínodo",
-        "originalItem": "Marks[4]"
+        "name": "Defeat Sinodo",
+        "type": "Normal",
+        "logic": "Z16[S] + rapier + cherubRings"
     },
     {
         "id": "Z1622.i6",
-        "name": "Sinodo Key",
-        "originalItem": "QI66"
+        "name": "Sinodo reward",
+        "type": "Normal",
+        "logic": "Z16[S] + rapier + cherubRings"
+    },
+    {
+        "id": "Z1623.c0",
+        "name": "Exit shortcut cherub",
+        "type": "Normal",
+        "logic": "Z16[S] + rapier"
     },
     {
         "id": "Z1625.i2",
         "name": "Cherub arena",
-        "originalItem": "ER"
+        "type": "Normal",
+        "logic": "Z16[S] + rapier + cherubRings"
+    },
+    {
+        "id": "Z1701.c0",
+        "name": "Western cherub",
+        "type": "Normal",
+        "logic": "Z17[W] + doubleJump + airDash"
     },
     {
         "id": "Z1709.l0",
         "name": "Hand Room",
-        "originalItem": "Marks[1]"
+        "type": "Normal",
+        "logic": "Z17[W] + brokenKey"
     },
     {
         "id": "Z1715.l0",
-        "name": "Room after Scions' puzzle",
-        "originalItem": "QI13"
+        "name": "Envelope room",
+        "type": "Normal",
+        "logic": "Z17[W] + doubleJump + cherubRings"
     },
     {
         "id": "Z1718.l0",
         "name": "Altar room",
-        "originalItem": "Tears[800]"
+        "type": "Normal",
+        "logic": "Z17[W] + doubleJump"
     },
     {
         "id": "Z1719.l3",
         "name": "Mirror puzzle",
-        "originalItem": "FK"
+        "type": "Normal",
+        "logic": "Z17[W] + doubleJump + airDash + rapier"
     },
     {
         "id": "Z1801.l1",
         "name": "Section 1",
-        "originalItem": "Tears[5000]"
+        "type": "Normal",
+        "logic": "Z18[S] + airDash + cherubRings"
     },
     {
         "id": "Z1802.l10",
         "name": "Section 2",
-        "originalItem": "Marks[1]"
+        "type": "Normal",
+        "logic": "Z18[S] + airDash + cherubRings"
     },
     {
         "id": "Z1803.l7",
         "name": "Section 3",
-        "originalItem": "Marks[1]"
+        "type": "Normal",
+        "logic": "Z18[S] + airDash + cherubRings"
     },
     {
         "id": "Z1804.l2",
         "name": "Section 4",
-        "originalItem": "Tears[5000]"
+        "type": "Normal",
+        "logic": "Z18[S] + airDash + cherubRings"
     },
     {
         "id": "Z1808.i6",
         "name": "Eviterno reward",
-        "originalItem": "???"
+        "type": "Normal",
+        "logic": "Z18[S] + airDash + cherubRings"
     },
     {
         "id": "Z1808.r6",
         "name": "Defeat Eviterno",
-        "originalItem": "???"
+        "type": "Normal",
+        "logic": "Z18[S] + airDash + cherubRings"
     },
     {
         "id": "Z1901.l0",
         "name": "Entrance shaft altar",
-        "originalItem": "Tears[800]"
+        "type": "Normal",
+        "logic": "Z19[N] + wallClimb | doubleJump | airDash"
     },
     {
         "id": "Z1903.l0",
         "name": "Center shaft high ledge",
-        "originalItem": "Marks[1]"
+        "type": "Normal",
+        "logic": "Z19[N] + doubleJump"
+    },
+    {
+        "id": "Z1905.c0",
+        "name": "Bell mirror cherub",
+        "type": "Normal",
+        "logic": "Z19[N] + censer"
     },
     {
         "id": "Z1906.i1",
         "name": "Lullaby quest",
-        "originalItem": "PR16"
+        "type": "Normal",
+        "logic": "Z19[N] + lullabies >= 5 + doubleJump + airDash + censer + rapier"
     },
     {
         "id": "Z1907.i0",
         "name": "Yerma initial gift",
-        "originalItem": "QI70"
+        "type": "Normal",
+        "logic": "Z19[N]"
     },
     {
         "id": "Z1909.l0",
         "name": "Procession high ledge",
-        "originalItem": "Marks[1]"
+        "type": "Normal",
+        "logic": "doubleJump + airDash + (Z19[N] + censer + rapier | Z19[P])"
     },
     {
         "id": "Z1910.l0",
-        "name": "Procession room altar",
-        "originalItem": "Marks[2]"
+        "name": "2nd tribute leftover",
+        "type": "Normal",
+        "logic": "Z19[P] + tributes >= 2"
     },
     {
         "id": "Z1910.l4",
-        "name": "Procession room floor",
-        "originalItem": "RK"
+        "name": "1st tribute reward",
+        "type": "Normal",
+        "logic": "Z19[P]"
     },
     {
         "id": "Z1913.l1",
         "name": "Ledge under well",
-        "originalItem": "ST"
+        "type": "Normal",
+        "logic": "Z19[N] + wallClimb"
     },
     {
         "id": "Z1914.i2",
         "name": "Gauntlet under well",
-        "originalItem": "ER"
+        "type": "Normal",
+        "logic": "Z19[N] + wallClimb"
     },
     {
         "id": "Z1917.i0",
-        "name": "Last letter",
-        "originalItem": "PR15"
+        "name": "Cursed letter: Sea",
+        "type": "Normal",
+        "logic": "Z19[N] + wallClimb + letter5"
     },
     {
         "id": "Z1917.l3",
         "name": "Ledge over sea",
-        "originalItem": "PR17"
+        "type": "Normal",
+        "logic": "Z19[N] + wallClimb"
     },
     {
         "id": "Z1918.l2",
         "name": "Altar above ivy",
-        "originalItem": "Tears[3500]"
+        "type": "Normal",
+        "logic": "Z19[N] + doubleJump + airDash"
     },
     {
         "id": "Z1919.a0",
         "name": "Ivy statue",
-        "originalItem": "AB45"
+        "type": "Normal",
+        "logic": "Z19[N]"
     },
     {
         "id": "Z1919.l3",
         "name": "Chest after ivy",
-        "originalItem": "RB16"
+        "type": "Normal",
+        "logic": "Z19[N] + (wallClimb | doubleJump)"
     },
     {
         "id": "Z2001.l1",
         "name": "Bridge entrance",
-        "originalItem": "FT"
+        "type": "Normal",
+        "logic": "Z20[N] | Z20[E]"
+    },
+    {
+        "id": "Z2004.c0",
+        "name": "Cathedral cherub",
+        "type": "Normal",
+        "logic": "(Z20[N] | Z20[E]) + doubleJump + airDash + censer"
     },
     {
         "id": "Z2102.l0",
         "name": "Entrance chest",
-        "originalItem": "RB09"
+        "type": "Normal",
+        "logic": "Z21[N]"
     },
     {
         "id": "Z2103.l0",
         "name": "Entrance altar",
-        "originalItem": "Tears[3500]"
+        "type": "Normal",
+        "logic": "Z21[N]"
     },
     {
         "id": "Z2104.l7",
         "name": "East Puzzle chest",
-        "originalItem": "FG14"
+        "type": "Normal",
+        "logic": "Z21[N] + blade + censer + wallClimb"
     },
     {
         "id": "Z2106.l4",
         "name": "Hidden wall puzzle",
-        "originalItem": "Marks[1]"
+        "type": "Normal",
+        "logic": "Z21[N] + blade"
     },
     {
         "id": "Z2112.l0",
         "name": "West puzzle chest",
-        "originalItem": "PR11"
+        "type": "Normal",
+        "logic": "Z21[N] + blade + wallClimb"
+    },
+    {
+        "id": "Z2115.c0",
+        "name": "Tower cherub",
+        "type": "Normal",
+        "logic": "Z21[N] + blade + wallClimb"
     },
     {
         "id": "Z2116.l2",
         "name": "Cherub puzzle",
-        "originalItem": "WS"
+        "type": "Normal",
+        "logic": "Z21[N] + blade + wallClimb + cherubRings"
+    },
+    {
+        "id": "Z2117.c0",
+        "name": "Labyrinth cherub",
+        "type": "Normal",
+        "logic": "Z21[N] + blade"
     },
     {
         "id": "Z2117.l1",
         "name": "Labyrinth secret",
-        "originalItem": "FT"
+        "type": "Normal",
+        "logic": "Z21[N] + blade"
     },
     {
         "id": "Z2119.i0",
         "name": "Regula reward",
-        "originalItem": "QI06"
+        "type": "Normal",
+        "logic": "Z21[N] + blade + regulaCloth"
     },
     {
         "id": "Z2120.i2",
         "name": "Regula gift",
-        "originalItem": "QI05"
+        "type": "Normal",
+        "logic": "Z21[N] + blade"
     },
     {
         "id": "Z2123.l2",
         "name": "Beneath teleporter",
-        "originalItem": "ST"
+        "type": "Normal",
+        "logic": "Z21[N] + blade + wallClimb"
     },
     {
         "id": "Z2301.l16",
         "name": "Center shaft",
-        "originalItem": "Marks[1]"
+        "type": "Normal",
+        "logic": "Z23[N] + (doubleJump | airDash)"
     },
     {
         "id": "Z2304.r15",
         "name": "Defeat Alifaor",
-        "originalItem": "Marks[2]"
+        "type": "Normal",
+        "logic": "Z23[N]"
+    },
+    {
+        "id": "Z2306.c0",
+        "name": "Western cherub",
+        "type": "Normal",
+        "logic": "Z23[N] + wallClimb + doubleJump"
     },
     {
         "id": "Z2308.a0",
         "name": "Ash statue",
-        "originalItem": "AB02"
+        "type": "Normal",
+        "logic": "Z23[N]"
     },
     {
         "id": "Z2310.w0",
         "name": "Ruego statue",
-        "originalItem": "WE04"
+        "type": "Normal",
+        "logic": "Z23[N] + (doubleJump | airDash)"
     },
     {
         "id": "Z2401.i0",
         "name": "Proximo reward",
-        "originalItem": "QI55"
+        "type": "LongQuest",
+        "logic": "Z24[W] + cherubs >= 33 + rattle"
     },
     {
         "id": "Z2401.l3",
         "name": "Cherub platform 1",
-        "originalItem": "Marks[1]"
+        "type": "Normal",
+        "logic": "Z24[W] + cherubs >= 10"
     },
     {
         "id": "Z2401.l4",
         "name": "Cherub platform 2",
-        "originalItem": "Marks[2]"
+        "type": "Normal",
+        "logic": "Z24[W] + cherubs >= 17"
     },
     {
         "id": "Z2401.l2",
         "name": "Cherub platform 3",
-        "originalItem": "Marks[3]"
+        "type": "Normal",
+        "logic": "Z24[W] + cherubs >= 29 + doubleJump + airDash"
     },
     {
         "id": "Z2402.l0",
-        "name": "Cherub top chest",
-        "originalItem": "QI54"
+        "name": "Cherub top floor",
+        "type": "LongQuest",
+        "logic": "Z24[W] + cherubs >= 33 + doubleJump + airDash + cherubRings"
     },
     {
         "id": "Z2402.l1",
         "name": "Cherub top altar",
-        "originalItem": "Marks[4]"
+        "type": "LongQuest",
+        "logic": "Z24[W] + cherubs >= 33 + doubleJump + airDash + cherubRings"
     },
     {
         "id": "Z2402.l2",
         "name": "Cherub top hidden chest",
-        "originalItem": "FG31"
+        "type": "LongQuest",
+        "logic": "Z24[W] + cherubs >= 33 + doubleJump + airDash + cherubRings"
+    },
+    {
+        "id": "SHOPHAND.o0",
+        "name": "Hand shop item 1",
+        "type": "Shop",
+        "logic": "wallClimb"
+    },
+    {
+        "id": "SHOPHAND.o1",
+        "name": "Hand shop item 2",
+        "type": "Shop",
+        "logic": "wallClimb"
+    },
+    {
+        "id": "SHOPHAND.o2",
+        "name": "Hand shop item 3",
+        "type": "Shop",
+        "logic": "wallClimb"
+    },
+    {
+        "id": "SHOPHAND.o3",
+        "name": "Hand shop item 4",
+        "type": "Shop",
+        "logic": "wallClimb"
+    },
+    {
+        "id": "SHOPHAND.o4",
+        "name": "Hand shop item 5",
+        "type": "Shop",
+        "logic": "wallClimb"
+    },
+    {
+        "id": "SHOPHAND.o5",
+        "name": "Hand shop item 6",
+        "type": "Shop",
+        "logic": "wallClimb"
+    },
+    {
+        "id": "SHOPHAND.o6",
+        "name": "Hand shop item 7",
+        "type": "Shop",
+        "logic": "wallClimb"
+    },
+    {
+        "id": "SHOPHAND.o7",
+        "name": "Hand shop item 8",
+        "type": "Shop",
+        "logic": "wallClimb"
+    },
+    {
+        "id": "SHOPHAND.o8",
+        "name": "Hand shop item 9",
+        "type": "Shop",
+        "logic": "wallClimb"
+    },
+    {
+        "id": "SHOPHAND.o9",
+        "name": "Hand shop item 10",
+        "type": "Shop",
+        "logic": "wallClimb"
+    },
+    {
+        "id": "SHOPHAND.o10",
+        "name": "Hand shop item 11",
+        "type": "Shop",
+        "logic": "wallClimb"
+    },
+    {
+        "id": "SHOPHAND.o11",
+        "name": "Hand shop item 12",
+        "type": "Shop",
+        "logic": "wallClimb"
+    },
+    {
+        "id": "SHOPITINERANT.o0",
+        "name": "Traveling shop item 1",
+        "type": "Shop",
+        "logic": "wallClimb"
+    },
+    {
+        "id": "SHOPITINERANT.o1",
+        "name": "Traveling shop item 2",
+        "type": "Shop",
+        "logic": "wallClimb"
+    },
+    {
+        "id": "SHOPITINERANT.o2",
+        "name": "Traveling shop item 3",
+        "type": "Shop",
+        "logic": "wallClimb"
+    },
+    {
+        "id": "SHOPITINERANT.o3",
+        "name": "Traveling shop item 4",
+        "type": "Shop",
+        "logic": "wallClimb"
+    },
+    {
+        "id": "SHOPITINERANT.o4",
+        "name": "Traveling shop item 5",
+        "type": "Shop",
+        "logic": "wallClimb"
+    },
+    {
+        "id": "SHOPITINERANT.o5",
+        "name": "Traveling shop item 6",
+        "type": "Shop",
+        "logic": "wallClimb"
+    },
+    {
+        "id": "SHOPITINERANT.o6",
+        "name": "Traveling shop item 7",
+        "type": "Shop",
+        "logic": "wallClimb"
+    },
+    {
+        "id": "SHOPITINERANT.o7",
+        "name": "Traveling shop item 8",
+        "type": "Shop",
+        "logic": "Z18[S]"
+    },
+    {
+        "id": "SHOPMISSABLES.o0",
+        "name": "Patio shop item 1",
+        "type": "Shop",
+        "logic": "Z17[W] + doubleJump"
+    },
+    {
+        "id": "SHOPMISSABLES.o1",
+        "name": "Patio shop item 2",
+        "type": "Shop",
+        "logic": "Z17[W] + doubleJump"
+    },
+    {
+        "id": "SHOPMISSABLES.o2",
+        "name": "Patio shop item 3",
+        "type": "Shop",
+        "logic": "Z17[W] + doubleJump"
+    },
+    {
+        "id": "SHOPMISSABLES.o3",
+        "name": "Patio shop item 4",
+        "type": "Shop",
+        "logic": "Z17[W] + doubleJump"
+    },
+    {
+        "id": "SHOPMISSABLES.o4",
+        "name": "Patio shop item 5",
+        "type": "Shop",
+        "logic": "Z17[W] + doubleJump"
+    },
+    {
+        "id": "SHOPMISSABLES.o5",
+        "name": "Patio shop item 6",
+        "type": "Shop",
+        "logic": "Z17[W] + doubleJump + kisses >= 5"
+    },
+    {
+        "id": "SHOPMISSABLES.o6",
+        "name": "Patio shop item 7",
+        "type": "Shop",
+        "logic": "Z17[W] + doubleJump + Z13[E] + blade + censer + rapier"
     }
 ]

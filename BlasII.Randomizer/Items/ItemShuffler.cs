@@ -4,87 +4,188 @@ namespace BlasII.Randomizer.Items
 {
     internal class ItemShuffler : BaseShuffler
     {
-        public override bool Shuffle(uint seed, TempConfig config, Dictionary<string, string> output)
+        public override bool Shuffle(int seed, RandomizerSettings settings, Dictionary<string, string> output)
         {
             output.Clear();
             Initialize(seed);
 
-            // Create list of all locations to randomize
-            var locations = new List<ItemLocation>();
-            CreateLocationPool(locations);
+            // Create inventory with starting items
+            var inventory = new Blas2Inventory(settings, Main.Randomizer.Data.DoorDictionary);
+            AddStartingItemsToInventory(inventory, settings);
 
-            // Create list of all items to randomize
-            var items = new List<Item>();
-            CreateItemPool(items, locations.Count, config);
+            // Create pools of all locations to randomize
+            List<ItemLocation> progressionLocations = new(), junkLocations = new();
+            CreateLocationPool(progressionLocations, junkLocations, settings);
 
-            // Place an item at a location until both empty
-            PlaceItemsAtLocations(locations, items, output);
+            // Create pools of all items to randomize
+            List<Item> progressionItems = new(), junkItems = new();
+            CreateItemPool(progressionItems, junkItems, progressionLocations.Count + junkLocations.Count, settings);
 
-            return locations.Count == 0 && items.Count == 0;
+            // Place progression items at progression locations
+            FillProgressionItems(progressionLocations, progressionItems, output, inventory);
+
+            // Verify that all progression items were placed
+            if (progressionItems.Count > 0)
+                return false;
+
+            // Place junk items at junk locations and remaining progression locations
+            junkLocations.AddRange(progressionLocations);
+            FillJunkItems(junkLocations, junkItems, output);
+
+            // Verify that all remaining items were placed
+            return junkItems.Count == 0;
         }
 
-        private void CreateLocationPool(List<ItemLocation> locations)
+        /// <summary>
+        /// Adds the starting weapon to the initial inventory
+        /// </summary>
+        private void AddStartingItemsToInventory(Blas2Inventory inventory, RandomizerSettings settings)
         {
-            foreach (var location in Main.Randomizer.Data.GetAllItemLocations())
+            // Add the starting weapon
+            inventory.AddItem(Main.Randomizer.Data.GetItem(GetStartingWeaponId(settings)));
+        }
+
+        /// <summary>
+        /// Fills the two location pools
+        /// </summary>
+        private void CreateLocationPool(List<ItemLocation> progressionLocations, List<ItemLocation> junkLocations, RandomizerSettings settings)
+        {
+            foreach (var location in Main.Randomizer.Data.ItemLocationList)
             {
-                locations.Add(location);
+                AddLocationToPool(progressionLocations, junkLocations, location, settings);
             }
         }
 
-        private void CreateItemPool(List<Item> items, int numOfLocations, TempConfig config)
+        /// <summary>
+        /// Takes a single location data and adds it to the correct list based on its type
+        /// </summary>
+        private void AddLocationToPool(List<ItemLocation> progressionLocations, List<ItemLocation> junkLocations, ItemLocation location, RandomizerSettings settings)
         {
-            foreach (var item in Main.Randomizer.Data.GetAllItems())
+            List<ItemLocation> locationPool = location.ShouldBeShuffled(settings) ? progressionLocations : junkLocations;
+            locationPool.Add(location);
+        }
+
+        /// <summary>
+        /// Fills the two item pools to match the number of locations
+        /// </summary>
+        private void CreateItemPool(List<Item> progressionItems, List<Item> junkItems, int numOfLocations, RandomizerSettings settings)
+        {
+            foreach (var item in Main.Randomizer.Data.ItemList)
             {
-                if (item.count == 1)
-                {
-                    items.Add(item);
-                }
-                else if (item.count > 1)
-                {
-                    for (int i = 0; i < item.count; i++)
-                    {
-                        items.Add(item);
-                    }
-                }
+                AddItemToPool(progressionItems, junkItems, item);
             }
 
+            RemoveStartingItemsFromItemPool(progressionItems, settings);
+            BalanceItemPool(progressionItems, junkItems, numOfLocations);
+        }
+
+        /// <summary>
+        /// Takes a single item data and adds it to the correct list based on its type
+        /// </summary>
+        private void AddItemToPool(List<Item> progressionItems, List<Item> junkItems, Item item)
+        {
+            List<Item> itemPool = item.progression ? progressionItems : junkItems;
+            for (int i = 0; i < item.count; i++)
+            {
+                itemPool.Add(item);
+            }
+        }
+
+        /// <summary>
+        /// Removes the starting weapon from the item pool
+        /// </summary>
+        private void RemoveStartingItemsFromItemPool(List<Item> items, RandomizerSettings settings)
+        {
             // Remove the extra starting weapon
-            string startingWeaponId = config.startingWeapon switch
-            {
-                0 => "WE01",
-                1 => "WE04",
-                2 => "WE03",
-                _ => throw new System.Exception("Invalid starting weapon in the config")
-            };
-            items.Remove(Main.Randomizer.Data.GetItem(startingWeaponId));
+            items.Remove(Main.Randomizer.Data.GetItem(GetStartingWeaponId(settings)));
+        }
 
+        /// <summary>
+        /// After creating the item pool, add or remove junk items to make it equal to the number of locations
+        /// </summary>
+        private void BalanceItemPool(List<Item> progressionItems, List<Item> junkItems, int numOfLocations)
+        {
             // Remove tear items until pools are equal
-            while (items.Count > numOfLocations)
+            while (progressionItems.Count + junkItems.Count > numOfLocations)
             {
-                items.RemoveAt(items.Count - 1);
+                junkItems.RemoveAt(junkItems.Count - 1);
             }
 
             // Add tear items until pools are equal
-            while (items.Count < numOfLocations)
+            while (progressionItems.Count + junkItems.Count < numOfLocations)
             {
-                items.Add(Main.Randomizer.Data.GetItem("Tears[800]"));
+                junkItems.Add(Main.Randomizer.Data.GetItem("Tears[800]"));
             }
         }
 
-        private void PlaceItemsAtLocations(List<ItemLocation> locations, List<Item> items, Dictionary<string, string> output)
+        /// <summary>
+        /// Calculates a subset of the given locations that are reachable with the current inventory
+        /// </summary>
+        private List<ItemLocation> FindReachableLocations(List<ItemLocation> locations, Blas2Inventory inventory)
+        {
+            var reachableLocations = new List<ItemLocation>();
+            foreach (var location in locations)
+            {
+                if (inventory.Evaluate(location.logic))
+                    reachableLocations.Add(location);
+            }
+            return reachableLocations;
+        }
+
+        /// <summary>
+        /// After shuffling the list of progression items, move the wall climb ability to the end to prevent failing seeds
+        /// </summary>        
+        private void MovePriorityItems(List<Item> progressionItems)
+        {
+            Item lance = Main.Randomizer.Data.GetItem("QI70");
+            progressionItems.Remove(lance);
+            progressionItems.Add(lance);
+
+            Item wallClimb = Main.Randomizer.Data.GetItem("AB44");
+            progressionItems.Remove(wallClimb);
+            progressionItems.Add(wallClimb);
+        }
+
+        /// <summary>
+        /// Calculates the item id of the chosen starting weapon
+        /// </summary>
+        private string GetStartingWeaponId(RandomizerSettings settings)
+        {
+            return "WE0" + (settings.RealStartingWeapon + 1);
+        }
+
+
+
+        private void FillProgressionItems(List<ItemLocation> locations, List<Item> items, Dictionary<string, string> output, Blas2Inventory inventory)
+        {
+            ShuffleList(items);
+            MovePriorityItems(items);
+            List<ItemLocation> reachableLocations = FindReachableLocations(locations, inventory);
+
+            while (reachableLocations.Count > 0 && items.Count > 0)
+            {
+                ItemLocation location = RemoveRandomFromOther(reachableLocations, locations);
+                Item item = RemoveLast(items);
+
+                inventory.AddItem(item);
+                output.Add(location.id, item.id);
+                Main.Randomizer.Log($"Placing prog item {item.id} at: {location.id}");
+
+                reachableLocations = FindReachableLocations(locations, inventory);
+            }
+        }
+
+        private void FillJunkItems(List<ItemLocation> locations, List<Item> items, Dictionary<string, string> output)
         {
             ShuffleList(items);
 
             while (locations.Count > 0 && items.Count > 0)
             {
-                int locationIdx = RandomInteger(locations.Count);
-                int itemIdx = items.Count - 1;
+                ItemLocation location = RemoveLast(locations);
+                Item item = RemoveLast(items);
 
-                Main.Randomizer.LogWarning($"Placing {items[itemIdx].id} at {locations[locationIdx].id}");
-                output.Add(locations[locationIdx].id, items[itemIdx].id);
-
-                locations.RemoveAt(locationIdx);
-                items.RemoveAt(itemIdx);
+                output.Add(location.id, item.id);
+                Main.Randomizer.Log($"Placing junk item {item.id} at: {location.id}");
             }
         }
     }

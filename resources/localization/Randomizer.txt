@@ -1,0 +1,101 @@
+lang: en
+
+# Special items
+we1n: Veredicto
+we1d: A weapon that can be used to ring bronze bells.
+we2n: Ruego Al Alba
+we2d: A weapon that can be used to pierce bone blockades.
+we3n: Sarmiento & Centella
+we3d: A weapon that can be used to activate magic mirrors.
+ab1n: Ivy of Ascension
+ab1d: The ability to climb up large walls.
+ab2n: Passage of Ash
+ab2d: The ability to jump twice while in the air.
+ab3n: Mercy of the Wind
+ab3d: The ability to dash while in the air.
+ab4n: Scion's Protection
+ab4d: The ability to spawn cherubs rings.
+chrn: Brother of Proximo
+chrd: A little floating baby that you rescued from a cage.
+tern: Tears of Atonement
+terd: Can be used to buy stuff.
+marn: Marks of Martyrdom
+mard: Can be used to buy more stuff.
+
+# Gameplay changes
+ktex: "The Mother said: 'Locate the * keys that herald the Birth."
+
+# Settings menu
+head: RANDOMIZER SETTINGS
+btnb: Begin
+btnc: Cancel
+seed: Seed:
+rand: Random
+opsl: Shuffle long quests
+opss: Shuffle shops
+opsw: Starting weapon
+o1sw: Veredicto
+o2sw: Ruego
+o3sw: Sarmiento
+opld: Logic difficulty
+o1ld: Easy
+o2ld: Normal
+o3ld: Hard
+oprq: Required keys
+o1rq: Zero
+o2rq: One
+o3rq: Two
+o4rq: Three
+o5rq: Four
+o6rq: Five
+
+lang: es
+
+# Special items
+we1n: Veredicto
+we1d: Arma que puede usarse para tañer campanas de bronce.
+we2n: Ruego Al Alba
+we2d: Arma que puede usarse para perforar barreras de hueso.
+we3n: Sarmiento y Centella
+we3d: Arma que puede usarse para activar espejos mágicos.
+ab1n: Hiedra de la Ascensión
+ab1d: La habilidad para escalar paredes altas.
+ab2n: Paso de Ceniza
+ab2d: La habilidad para saltar por segunda vez en el aire.
+ab3n: Merced del Viento
+ab3d: La habilidad para esquivar en el aire.
+ab4n: Amparo de los Vástagos
+ab4d: La habilidad para hacer aparecer querubines con anillas.
+chrn: Hermano de Próximo
+chrd: Un pequeño bebé flotante que rescataste de una jaula.
+tern: Lágrimas de Enmienda
+terd: Pueden usarse para comprar cosas.
+marn: Marcas del Martirio
+mard: Puede usarse para comprar más cosas.
+
+# Gameplay changes
+ktex: "La Madre dijo: 'Encontrad las * llaves que anuncian el Nacimiento'"
+
+# Settings menu
+head: AJUSTES DEL RANDOMIZADOR
+btnb: Empezar
+btnc: Cancelar
+seed: Semilla:
+rand: Aleatoria
+opsl: Añadir misiones largas
+opss: Añadir tiendas
+opsw: Arma inicial
+o1sw: Veredicto
+o2sw: Ruego
+o3sw: Sarmiento
+opld: Dificultad de la lógica
+o1ld: Fácil
+o2ld: Normal
+o3ld: Difícil
+oprq: Llaves requeridas
+o1rq: Cero
+o2rq: Una
+o3rq: Dos
+o4rq: Tres
+o5rq: Cuatro
+o6rq: Cinco

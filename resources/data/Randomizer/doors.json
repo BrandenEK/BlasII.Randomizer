@@ -1,0 +1,156 @@
+[
+    {
+        "id": "Z01[B]"
+    },
+    {
+        "id": "Z01[W]",
+        "logic": "Z16[S] + rapier + cherubRings"
+    },
+    {
+        "id": "Z01[E]"
+    },
+    {
+        "id": "Z02[W]"
+    },
+    {
+        "id": "Z02[E]"
+    },
+    {
+        "id": "Z02[N]",
+        "logic": "wallClimb + censer + blade"
+    },
+    {
+        "id": "Z03[SW]",
+        "logic": "wallClimb"
+    },
+    {
+        "id": "Z03[S]",
+        "logic": "doubleJump + airDash + censer"
+    },
+    {
+        "id": "Z03[SE]",
+        "logic": "wallClimb"
+    },
+    {
+        "id": "Z04[NE]",
+        "logic": "wallClimb"
+    },
+    {
+        "id": "Z04[SW]",
+        "logic": "censer + ((Z16[S] + rapier + cherubRings) | (Z16[P] + airDash + blade))"
+    },
+    {
+        "id": "Z05[W]"
+    },
+    {
+        "id": "Z05[T]",
+        "logic": "wallClimb"
+    },
+    {
+        "id": "Z06[W]",
+        "logic": "wallClimb | (doubleJump + censer) | (doubleJump + airDash)"
+    },
+    {
+        "id": "Z06[SW]",
+        "logic": "Z17[W] + doubleJump + blade"
+    },
+    {
+        "id": "Z06[S]",
+        "logic": "Z17[W] + doubleJump + cherubRings + blade"
+    },
+    {
+        "id": "Z07[W]",
+        "logic": "Z06[W]"
+    },
+    {
+        "id": "Z08[W]",
+        "logic": "Z06[W]"
+    },
+    {
+        "id": "Z08[P]",
+        "logic": "Z19[P] + tributes >= 2"
+    },
+    {
+        "id": "Z09[W]",
+        "logic": "Z08[W] + (wallClimb | doubleJump)"
+    },
+    {
+        "id": "Z09[N]",
+        "logic": "Z11[S] + doubleJump"
+    },
+    {
+        "id": "Z10[S]",
+        "logic": "censer + rapier + (wallClimb | doubleJump)"
+    },
+    {
+        "id": "Z10[W]",
+        "logic": "Z24[W] + cherubs >= 24 + doubleJump"
+    },
+    {
+        "id": "Z11[S]",
+        "logic": "Z09[W] + wallClimb + blade"
+    },
+    {
+        "id": "Z12[E]",
+        "logic": "(Z20[N] | Z20[E]) + doubleJump + airDash"
+    },
+    {
+        "id": "Z12[W]",
+        "logic": "Z16[S] + rapier"
+    },
+    {
+        "id": "Z13[W]",
+        "logic": "Z10[S] + wallClimb + blade + doubleJump"
+    },
+    {
+        "id": "Z13[E]",
+        "logic": "Z08[W] + wallClimb + doubleJump + airDash + cherubRings"
+    },
+    {
+        "id": "Z14[N]",
+        "logic": "Z19[N] + censer + rapier | Z19[P]"
+    },
+    {
+        "id": "Z16[S]",
+        "logic": "Z21[N] + blade + wallClimb"
+    },
+    {
+        "id": "Z16[P]",
+        "logic": "Z08[P] + tributes >= 3"
+    },
+    {
+        "id": "Z17[W]",
+        "logic": "Z19[N] + censer + rapier | Z19[P]"
+    },
+    {
+        "id": "Z18[S]",
+        "logic": "Z10[S] + wallClimb + blade + doubleJump + bossKeys >= 5"
+    },
+    {
+        "id": "Z19[N]"
+    },
+    {
+        "id": "Z19[P]",
+        "logic": "Z08[W] + (wallClimb | doubleJump) + tributes >= 1"
+    },
+    {
+        "id": "Z20[N]",
+        "logic": "Z19[N] + wallClimb"
+    },
+    {
+        "id": "Z20[E]",
+        "logic": "Z14[N] + wallClimb | doubleJump"
+    },
+    {
+        "id": "Z21[N]",
+        "logic": "Z12[E]"
+    },
+    {
+        "id": "Z23[N]",
+        "logic": "Z14[N] + censer + rapier + blade + (wallClimb | doubleJump)"
+    },
+    {
+        "id": "Z24[W]",
+        "logic": "Z03[SE]"
+    }
+]

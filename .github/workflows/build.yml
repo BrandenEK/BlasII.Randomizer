@@ -4,41 +4,70 @@ name: Build
 on:
   push:
     branches: [ "main" ]
+    tags: [ "**" ]
   pull_request:
     branches: [ "main" ]
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    
+
     steps:
-    - name: Checkout
+    - name: Checkout Repository
       uses: actions/checkout@v3
-      
-    - name: Setup
+
+    - name: Setup .NET
       uses: actions/setup-dotnet@v3
       with:
         dotnet-version: 6.0.x
-        
-    - name: Restore
-      run: dotnet restore
-      
-    - name: Build
-      run: dotnet build --configuration Release --no-restore
-      
-    - name: Export
+
+    - name: Build Project
       run: |
+        dotnet restore
+        dotnet build --configuration Release --no-restore
+        dotnet test
+
+    - name: Export Settings
+      run: |
+        MOD_TITLE=$(grep -oP '<Title>\K[^<]+' ${{ github.event.repository.name }}/${{ github.event.repository.name }}.csproj)
+        echo "MOD_TITLE=$MOD_TITLE" >> $GITHUB_ENV
         MOD_NAME=$(grep -oP '<TargetName>\K[^<]+' ${{ github.event.repository.name }}/${{ github.event.repository.name }}.csproj)
         echo "MOD_NAME=$MOD_NAME" >> $GITHUB_ENV
         MOD_VERSION=$(grep -oP '<Version>\K[^<]+' ${{ github.event.repository.name }}/${{ github.event.repository.name }}.csproj)
         echo "MOD_VERSION=$MOD_VERSION" >> $GITHUB_ENV
         BUILD_DATE=$(date +'%Y-%m-%d')
         echo "BUILD_DATE=$BUILD_DATE" >> $GITHUB_ENV
-      
-    - name: Upload
+
+    - name: Upload Artifact
+      if: ${{ !contains(github.ref_type, 'tag') }}
       uses: actions/upload-artifact@v3
       with:
         name: ${{ env.MOD_NAME }} v${{ env.MOD_VERSION }} (${{ env.BUILD_DATE }})
         path: publish/${{ env.MOD_NAME }}/
         retention-days: 30
         if-no-files-found: error
+
+    - name: Create Release
+      if: contains(github.ref_type, 'tag')
+      id: create_release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: ${{ github.ref }}
+        release_name: ${{ env.MOD_TITLE }} v${{ github.ref_name }}
+
+    - name: Upload Release
+      if: contains(github.ref_type, 'tag')
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: publish/${{ env.MOD_NAME }}.zip
+        asset_name: ${{ env.MOD_NAME }}.zip
+        asset_content_type: application/zip
+        
+    - name: Upload Nuget
+      if: contains(github.ref_type, 'tag')
+      run: dotnet nuget push **\*.nupkg -k ${{ secrets.NUGET_API_KEY }} -s https://api.nuget.org/v3/index.json

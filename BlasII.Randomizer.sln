@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.6.33829.357
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlasII.Randomizer", "BlasII.Randomizer\BlasII.Randomizer.csproj", "{189645F6-5704-4FA4-96E8-E322BD7A050F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlasII.Randomizer", "BlasII.Randomizer\BlasII.Randomizer.csproj", "{189645F6-5704-4FA4-96E8-E322BD7A050F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlasII.Randomizer.Tests", "BlasII.Randomizer.Tests\BlasII.Randomizer.Tests.csproj", "{8647ADE6-42D8-4C4D-A653-F33A02B0D3AB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{189645F6-5704-4FA4-96E8-E322BD7A050F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{189645F6-5704-4FA4-96E8-E322BD7A050F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{189645F6-5704-4FA4-96E8-E322BD7A050F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8647ADE6-42D8-4C4D-A653-F33A02B0D3AB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8647ADE6-42D8-4C4D-A653-F33A02B0D3AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8647ADE6-42D8-4C4D-A653-F33A02B0D3AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8647ADE6-42D8-4C4D-A653-F33A02B0D3AB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,9 +1,12 @@
-﻿using HarmonyLib;
+﻿using BlasII.ModdingAPI.Storage;
+using HarmonyLib;
 using Il2CppPlaymaker.Inventory;
 using Il2CppTGK.Game;
 using Il2CppTGK.Game.Components.Attack.Data;
 using Il2CppTGK.Game.Inventory.PlayMaker;
 using Il2CppTGK.Game.Managers;
+using Il2CppTGK.Game.PlayerSpawn;
+using System.Collections.Generic;
 
 namespace BlasII.Randomizer.Items
 {
@@ -21,7 +24,40 @@ namespace BlasII.Randomizer.Items
 
             Main.Randomizer.LogWarning($"{__instance.Owner.name} is checking for item: {item}");
 
-            // No checks yet
+            // Cursed letter quest
+            if (scene == "Z1326" && (item == "PR15" || item == "QI15" || item == "QI16") ||
+                scene == "Z0502" && item == "PR15" ||
+                scene == "Z0503" && item == "PR15" || // The rest of check is in other patch
+                scene == "Z1917" && item == "PR15")
+            {
+                __instance.Fsm.Event(__instance.noEvent);
+                __instance.Finish();
+                return false;
+            }
+
+            return true;
+        }
+    }
+    [HarmonyPatch(typeof(AreAnyItemOwned), nameof(AreAnyItemOwned.OnEnter))]
+    class Check_ItemsOwned_Patch
+    {
+        public static bool Prefix(AreAnyItemOwned __instance)
+        {
+            string scene = CoreCache.Room.CurrentRoom?.Name;
+            string firstItem = __instance.items[0].name;
+            string items = "";
+            foreach (var item in __instance.items)
+                items += item.name + " ";
+
+            Main.Randomizer.LogWarning($"{__instance.Owner.name} is checking for items: {items}");
+
+            // Cursed letter quest again
+            if (scene == "Z0503" && firstItem == "QI21")
+            {
+                __instance.Fsm.Event(__instance.noEvent);
+                __instance.Finish();
+                return false;
+            }
 
             return true;
         }
@@ -64,8 +100,7 @@ namespace BlasII.Randomizer.Items
         {
             string scene = CoreCache.Room.CurrentRoom?.Name;
             string quest = Main.Randomizer.GetQuestName(questId, varId);
-
-            Main.Randomizer.LogWarning($"Getting quest: {quest} ({__result})");
+            bool initialResult = __result;
 
             // Always have zones unlocked
             if (quest.StartsWith("ST00.Z") && quest.EndsWith("_ACCESS"))
@@ -91,14 +126,34 @@ namespace BlasII.Randomizer.Items
                 __result = true;
             }
 
-            // Only unlock CR once all bosses are dead
+            // Only unlock CR once enough keys are owned
             else if (scene == "Z2501" && quest == "Bosses.BS07_DEAD")
             {
-                __result = __result &&
-                    Main.Randomizer.GetQuestBool("Bosses", "BS04_DEAD") &&
-                    Main.Randomizer.GetQuestBool("Bosses", "BS05_DEAD") &&
-                    Main.Randomizer.GetQuestBool("Bosses", "BS06_DEAD") &&
-                    Main.Randomizer.GetQuestBool("Bosses", "BS08_DEAD");
+                __result = OwnedKeys >= Main.Randomizer.CurrentSettings.RealRequiredKeys;
+                Main.Randomizer.Log("CR door opened: " + __result);
+            }
+
+            // Allow giving both the scroll & cloth to the elders
+            else if (quest == "ST03.TRIFON_DEAD" || quest == "ST03.CAYA_DEAD")
+            {
+                __result = false;
+            }
+
+            if (!quest.StartsWith("ST18"))
+                Main.Randomizer.LogWarning($"Getting quest: {quest} ({initialResult}) -> ({__result})");
+        }
+
+        private static int OwnedKeys
+        {
+            get
+            {
+                int keys = 0;
+                if (ItemStorage.TryGetQuestItem("QI63", out var key1) && ItemStorage.PlayerInventory.HasItem(key1)) keys++;
+                if (ItemStorage.TryGetQuestItem("QI64", out var key2) && ItemStorage.PlayerInventory.HasItem(key2)) keys++;
+                if (ItemStorage.TryGetQuestItem("QI65", out var key3) && ItemStorage.PlayerInventory.HasItem(key3)) keys++;
+                if (ItemStorage.TryGetQuestItem("QI66", out var key4) && ItemStorage.PlayerInventory.HasItem(key4)) keys++;
+                if (ItemStorage.TryGetQuestItem("QI67", out var key5) && ItemStorage.PlayerInventory.HasItem(key5)) keys++;
+                return keys;
             }
         }
     }
@@ -144,5 +199,43 @@ namespace BlasII.Randomizer.Items
                 }
             }
         }
+    }
+
+    // ==========
+    // Boss rooms
+    // ==========
+
+    [HarmonyPatch(typeof(PlayerSpawnManager), nameof(PlayerSpawnManager.TeleportPlayer))]
+    class Teleport_Dream_Patch
+    {
+        public static void Prefix(ref SceneEntryID sceneEntry)
+        {
+            Main.Randomizer.Log($"Teleporting to: {sceneEntry.scene} ({sceneEntry.entryId})");
+
+            string currentScene = CoreCache.Room.CurrentRoom?.Name;
+
+            if (sceneEntry.scene.StartsWith("Z15") && bossRooms.TryGetValue(currentScene, out int entry))
+            {
+                Main.Randomizer.SetQuestValue("ST00", "DREAM_RETURN", true);
+                sceneEntry = new SceneEntryID()
+                {
+                    scene = currentScene == "Z1113" ? "Z1104" : currentScene,
+                    entryId = entry
+                };
+            }
+        }
+
+        private static readonly Dictionary<string, int> bossRooms = new()
+        {
+            { "Z0421", 685874534 },
+            { "Z0730", 685874534 },
+            { "Z0921", -777454601 },
+            { "Z2304", 1157051513 },
+            { "Z1113", 1928462977 },
+            { "Z1216", -1794395 },
+            { "Z1622", 887137572 },
+            { "Z1327", -284092948 },
+            // Z2501: -784211135
+        };
     }
 }

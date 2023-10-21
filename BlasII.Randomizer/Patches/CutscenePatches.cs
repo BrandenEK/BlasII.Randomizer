@@ -1,23 +1,11 @@
 ﻿using HarmonyLib;
 using Il2CppPlaymaker.UI;
 using Il2CppTGK.Game.Cutscenes;
+using Il2CppTGK.Game.Managers;
 using Il2CppTGK.Game.Tutorial;
 
-namespace BlasII.Randomizer
+namespace BlasII.Randomizer.Patches
 {
-    [HarmonyPatch(typeof(ShowTutorial), nameof(ShowTutorial.OnEnter))]
-    class Tutorial_Skip_Patch
-    {
-        public static bool Prefix(ShowTutorial __instance)
-        {
-            TutorialID tutorial = __instance.tutorial.Value.Cast<TutorialID>();
-            Main.Randomizer.LogWarning("Skipping tutorial: " +  tutorial?.name);
-
-            __instance.Finish();
-            return false;
-        }
-    }
-
     [HarmonyPatch(typeof(PlayCutscene), nameof(PlayCutscene.OnEnter))]
     class Cutscene_Skip_Patch
     {
@@ -26,7 +14,7 @@ namespace BlasII.Randomizer
             // Don't skip Eviterno defeat cutscene
             if (__instance.cutsceneId?.name == "CTS17_id")
                 return true;
-            
+
             Main.Randomizer.LogWarning("Skipping cutscene: " + __instance.cutsceneId?.name);
 
             __instance.Finish();
@@ -78,6 +66,29 @@ namespace BlasII.Randomizer
             Main.Randomizer.LogWarning("Skipping dove: " + __instance.Owner.name);
 
             __instance.Finish();
+            return false;
+        }
+    }
+
+    [HarmonyPatch(typeof(ShowTutorial), nameof(ShowTutorial.OnEnter))]
+    class Tutorial_Skip1_Patch
+    {
+        public static bool Prefix(ShowTutorial __instance)
+        {
+            TutorialID tutorial = __instance.tutorial.Value.Cast<TutorialID>();
+            Main.Randomizer.LogWarning("Skipping tutorial: " + tutorial?.name);
+
+            __instance.Finish();
+            return false;
+        }
+    }
+
+    [HarmonyPatch(typeof(TutorialManager), nameof(TutorialManager.ShowTutorialAsync))]
+    class Tutorial_Skip2_Patch
+    {
+        public static bool Prefix(TutorialID tutorialID)
+        {
+            Main.Randomizer.LogWarning("Skipping tutorial: " + tutorialID.name);
             return false;
         }
     }
