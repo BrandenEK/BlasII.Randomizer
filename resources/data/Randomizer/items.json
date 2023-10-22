@@ -1012,8 +1012,8 @@
         "id": "QI70",
         "name": "Steely Battle Lance",
         "type": "QuestItem",
-        "progression": true,
-        "count": 1
+        "progression": false,
+        "count": 0
     },
     {
         "id": "QI71",

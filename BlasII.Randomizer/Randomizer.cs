@@ -6,6 +6,8 @@ using BlasII.Randomizer.Settings;
 using Il2Cpp;
 using Il2CppTGK.Game;
 using Il2CppTGK.Game.Components.Interactables;
+using System.Collections.Generic;
+using System.Diagnostics;
 using UnityEngine;
 
 namespace BlasII.Randomizer
@@ -24,6 +26,7 @@ namespace BlasII.Randomizer
         protected override void OnInitialize()
         {
             Data.Initialize();
+            //ShuffleTest();
         }
 
         protected override void OnUpdate()
@@ -57,10 +60,38 @@ namespace BlasII.Randomizer
         {
         }
 
+        // Initial forward: 500/500 (61.2)
+        // Initial reverse: 490/500 (25.3)
+        private void ShuffleTest()
+        {
+            var seedGen = new System.Random(777);
+            var output = new Dictionary<string, string>();
+            var shuffler = new ItemShufflerReverse();
+            var settings = RandomizerSettings.DefaultSettings;
+
+            int successfulTries = 0, totalTries = 500;
+            double runningTime = 0;
+
+            for (int i = 0; i < totalTries; i++)
+            {
+                int seed = seedGen.Next(1, RandomizerSettings.MAX_SEED + 1);
+                var stopwatch = Stopwatch.StartNew();
+
+                if (shuffler.Shuffle(seed, settings, output))
+                {
+                    successfulTries++;
+                    runningTime += stopwatch.Elapsed.TotalMilliseconds;
+                }
+            }
+
+            LogError($"Successful attempts: {successfulTries}/{totalTries}");
+            LogError($"Average time: {System.Math.Round(runningTime / totalTries, 1)} ms");
+        }
+
         public void NewGame()
         {
-            Log($"Shuffling items with seed {CurrentSettings.seed}");
-            ItemHandler.FakeShuffle(CurrentSettings.seed, CurrentSettings);
+            Log($"Performing shuffle for seed {CurrentSettings.seed}");
+            ItemHandler.ShuffleItems(CurrentSettings.seed, CurrentSettings);
             AllowPrieDieuWarp();
         }
 
