@@ -148,6 +148,12 @@ namespace BlasII.Randomizer.Items
                 __result = false;
             }
 
+            // Always allow the hand to upgrade fervour
+            else if (scene == "Z1708" && quest == "ST12.HAND_SECRET")
+            {
+                __result = false;
+            }
+
             if (!quest.StartsWith("ST18"))
                 Main.Randomizer.LogWarning($"Getting quest: {quest} ({initialResult}) -> ({__result})");
         }
