@@ -35,6 +35,14 @@ namespace BlasII.Randomizer.Items
                 return false;
             }
 
+            // Lullaby quest
+            if (scene == "Z1906" && item == "PR16")
+            {
+                __instance.Fsm.Event(__instance.noEvent);
+                __instance.Finish();
+                return false;
+            }
+
             return true;
         }
     }
