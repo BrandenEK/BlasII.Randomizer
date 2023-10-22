@@ -129,7 +129,8 @@ namespace BlasII.Randomizer
         {
             foreach (var upgrade in CoreCache.PrieDieuManager.config.upgrades)
             {
-                if (upgrade.name == "TeleportToAnotherPrieuDieuUpgrade")
+                if (upgrade.name == "TeleportToAnotherPrieuDieuUpgrade" || 
+                    upgrade.name == "FervourFillUpgrade")
                     CoreCache.PrieDieuManager.Upgrade(upgrade);
             }
         }

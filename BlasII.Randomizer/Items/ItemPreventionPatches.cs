@@ -1,6 +1,7 @@
 ﻿using BlasII.ModdingAPI.Storage;
 using HarmonyLib;
 using Il2CppPlaymaker.Inventory;
+using Il2CppPlaymaker.PrieDieu;
 using Il2CppTGK.Game;
 using Il2CppTGK.Game.Components.Attack.Data;
 using Il2CppTGK.Game.Inventory.PlayMaker;
@@ -245,5 +246,71 @@ namespace BlasII.Randomizer.Items
             { "Z1327", -284092948 },
             // Z2501: -784211135
         };
+    }
+
+    // ==========
+    // Prie Dieus
+    // ==========
+
+    [HarmonyPatch(typeof(UpgradePrieDieu), nameof(UpgradePrieDieu.OnEnter))]
+    class PrieDieu_Upgrade_Patch
+    {
+        public static bool Prefix(UpgradePrieDieu __instance)
+        {
+            string upgradeName = __instance.prieDieuUpgrade.Value.name;
+
+            if (upgradeName == "TeleportToHUBUpgrade" ||
+                upgradeName == "FervourFillUpgrade" ||
+                upgradeName == "TeleportToAnotherPrieuDieuUpgrade")
+            {
+                Main.Randomizer.LogWarning("Skipping upgrade for " + upgradeName);
+                __instance.Finish();
+                return false;
+            }
+
+            return true;
+        }
+    }
+
+    [HarmonyPatch(typeof(IsPrieDieuUpgraded), nameof(IsPrieDieuUpgraded.OnEnter))]
+    class PrieDieu_Check_Patch
+    {
+        public static bool Prefix(IsPrieDieuUpgraded __instance)
+        {
+            string upgradeName = __instance.prieDieuUpgrade.Value.name;
+            bool unlocked;
+
+            // Instead of checking the prie dieu upgrade, check the flag
+            if (upgradeName == "TeleportToHUBUpgrade")
+            {
+                unlocked = Main.Randomizer.GetQuestBool("ST25", "UPGRADE1_UNLOCKED");
+            }
+            else if (upgradeName == "FervourFillUpgrade")
+            {
+                unlocked = Main.Randomizer.GetQuestBool("ST25", "UPGRADE2_UNLOCKED");
+            }
+            else if (upgradeName == "TeleportToAnotherPrieuDieuUpgrade")
+            {
+                unlocked = Main.Randomizer.GetQuestBool("ST25", "UPGRADE3_UNLOCKED");
+            }
+            else
+            {
+                return true;
+            }
+
+            // If it was one of these three, do special finish
+            if (unlocked)
+            {
+                __instance.Fsm.Event(__instance.yesEvent);
+                __instance.Finish();
+                return false;
+            }
+            else
+            {
+                __instance.Fsm.Event(__instance.noEvent);
+                __instance.Finish();
+                return false;
+            }
+        }
     }
 }
