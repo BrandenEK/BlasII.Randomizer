@@ -8,8 +8,7 @@ using UnityEngine.UI;
 namespace BlasII.Randomizer.Patches
 {
     /// <summary>
-    /// When reading the CR door, show how many keys you must find
-    /// When pressing display button, show the current settings
+    /// Change display message when interacting with certain objects
     /// </summary>
     [HarmonyPatch(typeof(PopupMessageLogic), nameof(PopupMessageLogic.ShowMessageAndWait))]
     class Popup_Show_Patch
@@ -18,6 +17,7 @@ namespace BlasII.Randomizer.Patches
         {
             Main.Randomizer.Log("Showing popup: " + message.name);
 
+            // When reading the CR door, show how many keys you must find
             if (message.name == "MSG_0003")
             {
                 string text = Main.Randomizer.LocalizationHandler.Localize("ktex")
@@ -26,9 +26,20 @@ namespace BlasII.Randomizer.Patches
                 return;
             }
 
+            // When pressing display button, show the current settings
             if (message.name == "TESTPOPUP")
             {
                 string text = Main.Randomizer.CurrentSettings.FormatInfo();
+                __instance.textCtrl.SetText(text);
+                return;
+            }
+
+            // When talking to cobijada mother, dont display upgrade type
+            if (message.name == "MSG_2501" ||
+                message.name == "MSG_2502" ||
+                message.name == "MSG_2503")
+            {
+                string text = "...";
                 __instance.textCtrl.SetText(text);
                 return;
             }

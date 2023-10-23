@@ -244,4 +244,19 @@ namespace BlasII.Randomizer.Items
             return false;
         }
     }
+
+    // =====
+    // Tears
+    // =====
+
+    [HarmonyPatch(typeof(ShowTearsRewardPopup), nameof(ShowTearsRewardPopup.OnEnter))]
+    class Tears_Show_Patch
+    {
+        public static bool Prefix(ShowTearsRewardPopup __instance)
+        {
+            Main.Randomizer.LogError("Hiding tears popup.  Not sure what else this affects.");
+            __instance.Finish();
+            return false;
+        }
+    }
 }

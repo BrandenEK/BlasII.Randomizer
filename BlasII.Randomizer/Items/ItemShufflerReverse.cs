@@ -24,16 +24,16 @@ namespace BlasII.Randomizer.Items
             // Place progression items at progression locations
             FillProgressionItems(progressionLocations, progressionItems, output, inventory);
 
-            // Verify that all progression items were placed
-            if (progressionItems.Count > 0)
+            // Add junk items to remaining progression items and ensure they are still balanced
+            junkLocations.AddRange(progressionLocations);
+            if (junkLocations.Count != junkItems.Count)
                 return false;
 
             // Place junk items at junk locations and remaining progression locations
-            junkLocations.AddRange(progressionLocations);
             FillJunkItems(junkLocations, junkItems, output);
 
             // Verify that all remaining items were placed
-            return junkItems.Count == 0;
+            return junkItems.Count == 0 && junkLocations.Count == 0;
         }
 
         #region Setup
