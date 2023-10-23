@@ -53,7 +53,9 @@ namespace BlasII.Randomizer
             else if (sceneName == "Z2501")
                 LoadChapelRoom();
             else if (sceneName == "Z0420")
-                LoadSandLockRoom();
+                LoadTriggerRemovalRoom("trigger area");
+            else if (sceneName == "Z0206")
+                LoadTriggerRemovalRoom("Event Trigger");
         }
 
         protected override void OnSceneUnloaded(string sceneName)
@@ -176,12 +178,17 @@ namespace BlasII.Randomizer
             }
         }
 
-        private void LoadSandLockRoom()
+        private void LoadTriggerRemovalRoom(string trigger)
         {
-            foreach (var collider in Object.FindObjectsOfType<BoxCollider2D>())
+            foreach (var collider in Object.FindObjectsOfType<BoxCollider2D>(true))
             {
-                if (collider.name == "trigger area")
+                //LogWarning(collider.name);
+                if (collider.name == trigger)
+                {
+                    LogWarning("Removing trigger: " + trigger);
                     Object.Destroy(collider);
+                    return;
+                }
             }
         }
 
