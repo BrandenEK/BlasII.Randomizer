@@ -36,14 +36,14 @@ namespace BlasII.Randomizer
             if (!LoadStatus.GameSceneLoaded)
                 return;
 
-            if (Input.GetKeyDown(KeyCode.Keypad6))
+            if (Input.GetKeyDown(KeyCode.F8))
                 SettingsHandler.DisplaySettings();
 
-            if (Input.GetKeyDown(KeyCode.Keypad8))
-            {
-                if (StatStorage.TryGetModifiableStat("BasePhysicalattack", out var stat))
-                    StatStorage.PlayerStats.AddBonus(stat, "test", 100, 0);
-            }
+            //if (Input.GetKeyDown(KeyCode.Keypad8))
+            //{
+            //    if (StatStorage.TryGetModifiableStat("BasePhysicalattack", out var stat))
+            //        StatStorage.PlayerStats.AddBonus(stat, "test", 100, 0);
+            //}
         }
 
         protected override void OnSceneLoaded(string sceneName)
