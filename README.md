@@ -25,7 +25,7 @@ A very special thank you to everyone who has helped with the randomizer
 ## Useful Info
 - Currently works with both version 1.0.5 and 1.1.0
 - In order to avoid softlocks, it is recommended to use the Save & Quit mod
-- Pressing 'Numpad6' will display a list of your current settings
+- Pressing 'F8' will display a list of your current settings
 
 ---
 
@@ -35,6 +35,7 @@ A very special thank you to everyone who has helped with the randomizer
 - The door to Crimson Rains will be unlocked after obtaining a certain number of keys, specified in your settings
 - Weapon memories can be purchased from the beginning, the lance is no longer necessary
 - The map screen will display the number of items collected
+- All tutorials and most cutscenes have been automatically skipped
 
 ---
 
