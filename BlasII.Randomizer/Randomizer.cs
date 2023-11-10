@@ -28,6 +28,7 @@ namespace BlasII.Randomizer
             {
                 { "DisplaySettings", KeyCode.F8 }
             });
+            LocalizationHandler.RegisterDefaultLanguage("en");
 
             Data.Initialize();
             //ShuffleTest();
