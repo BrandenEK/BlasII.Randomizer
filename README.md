@@ -23,13 +23,15 @@ A very special thank you to everyone who has helped with the randomizer
 [@BrandenEK](https://github.com/BrandenEK), [@LuceScarlet](https://github.com/LuceScarlet)
 
 ***- Logic development and testing -*** <br>
-[@Chemigoku](https://github.com/Chemigoku), Camisama, Pedro, ThymeWalk
+[@Chemigoku](https://github.com/Chemigoku), [@Guuiil](https://github.com/Guuiil), [@PHAredes](https://github.com/PHAredes), [@thymemanagement](https://github.com/thymemanagement)
 
 ***- Images and UI -*** <br>
-[@JimmyDiamonds](https://github.com/JimmyDiamonds), Raider
+[@JimmyDiamonds](https://github.com/JimmyDiamonds)
+<!-- Expected: Raider -->
 
 ***- Translations -*** <br>
-[@LuceScarlet](https://github.com/LuceScarlet), Rocher, Elton
+[@LuceScarlet](https://github.com/LuceScarlet)
+<!-- Expected: Rocher, Elton -->
 
 ---
 
