@@ -22,6 +22,7 @@ namespace BlasII.Randomizer.Items
         {
             string scene = CoreCache.Room.CurrentRoom?.Name;
             string item = __instance.itemID.name;
+            bool skipToNo = false;
 
             Main.Randomizer.LogWarning($"{__instance.Owner.name} is checking for item: {item}");
 
@@ -31,13 +32,22 @@ namespace BlasII.Randomizer.Items
                 scene == "Z0503" && item == "PR15" || // The rest of check is in other patch
                 scene == "Z1917" && item == "PR15")
             {
-                __instance.Fsm.Event(__instance.noEvent);
-                __instance.Finish();
-                return false;
+                skipToNo = true;
             }
 
             // Lullaby quest
             if (scene == "Z1906" && item == "PR16")
+            {
+                skipToNo = true;
+            }
+
+            // Chime symbol quest
+            if (scene == "Z1421" && item == "PR03")
+            {
+                skipToNo = !Main.Randomizer.ItemHandler.IsLocationCollected("Z1421.l1");
+            }
+
+            if (skipToNo)
             {
                 __instance.Fsm.Event(__instance.noEvent);
                 __instance.Finish();

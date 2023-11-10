@@ -127,6 +127,11 @@ namespace BlasII.Randomizer.Items
             return _collectedItems.Contains(itemId);
         }
 
+        public bool IsLocationCollected(string locationId)
+        {
+            return _collectedLocations.Contains(locationId);
+        }
+
         // Save data
 
         public Dictionary<string, string> MappedItems
