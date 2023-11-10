@@ -1,4 +1,4 @@
-using BlasII.ModdingAPI.Storage;
+using BlasII.ModdingAPI.Assets;
 using Il2CppTGK.Game;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
@@ -35,10 +35,10 @@ namespace BlasII.Randomizer.Items
 
                 return type switch
                 {
-                    ItemType.RosaryBead => ItemStorage.TryGetRosaryBead(id, out var bead) ? bead.image : null,
-                    ItemType.Prayer => ItemStorage.TryGetPrayer(id, out var prayer) ? prayer.image : null,
-                    ItemType.Figurine => ItemStorage.TryGetFigure(id, out var figure) ? figure.image : null,
-                    ItemType.QuestItem => ItemStorage.TryGetQuestItem(id, out var quest) ? quest.image : null,
+                    ItemType.RosaryBead => AssetStorage.Beads[id].image,
+                    ItemType.Prayer => AssetStorage.Prayers[id].image,
+                    ItemType.Figurine => AssetStorage.Figures[id].image,
+                    ItemType.QuestItem => AssetStorage.QuestItems[id].image,
                     ItemType.Weapon => id switch
                     {
                         "WE01" => Main.Randomizer.Data.GetImage(DataStorage.ImageType.Censer),
@@ -56,7 +56,7 @@ namespace BlasII.Randomizer.Items
                     },
                     ItemType.Cherub => Main.Randomizer.Data.GetImage(DataStorage.ImageType.Cherub),
                     ItemType.Tears => Main.Randomizer.Data.GetImage(DataStorage.ImageType.Tears),
-                    ItemType.Marks => ItemStorage.TryGetQuestItem("QI99", out var marks) ? marks.image : null,
+                    ItemType.Marks => AssetStorage.QuestItems["QI99"].image,
 
                     ItemType.Invalid => Main.Randomizer.Data.GetImage(DataStorage.ImageType.Invalid),
                     _ => null,
@@ -73,10 +73,10 @@ namespace BlasII.Randomizer.Items
 
                 return type switch
                 {
-                    ItemType.RosaryBead => ItemStorage.TryGetRosaryBead(id, out var bead) ? bead.caption : null,
-                    ItemType.Prayer => ItemStorage.TryGetPrayer(id, out var prayer) ? prayer.caption : null,
-                    ItemType.Figurine => ItemStorage.TryGetFigure(id, out var figure) ? figure.caption : null,
-                    ItemType.QuestItem => ItemStorage.TryGetQuestItem(id, out var quest) ? quest.caption : null,
+                    ItemType.RosaryBead => AssetStorage.Beads[id].caption,
+                    ItemType.Prayer => AssetStorage.Prayers[id].caption,
+                    ItemType.Figurine => AssetStorage.Figures[id].caption,
+                    ItemType.QuestItem => AssetStorage.QuestItems[id].caption,
                     ItemType.Weapon => Main.Randomizer.LocalizationHandler.Localize(id switch
                     {
                         "WE01" => "we1n",
@@ -111,10 +111,10 @@ namespace BlasII.Randomizer.Items
 
                 return type switch
                 {
-                    ItemType.RosaryBead => ItemStorage.TryGetRosaryBead(id, out var bead) ? bead.description : null,
-                    ItemType.Prayer => ItemStorage.TryGetPrayer(id, out var prayer) ? prayer.description : null,
-                    ItemType.Figurine => ItemStorage.TryGetFigure(id, out var figure) ? figure.description : null,
-                    ItemType.QuestItem => ItemStorage.TryGetQuestItem(id, out var quest) ? quest.description : null,
+                    ItemType.RosaryBead => AssetStorage.Beads[id].description,
+                    ItemType.Prayer => AssetStorage.Prayers[id].description,
+                    ItemType.Figurine => AssetStorage.Figures[id].description,
+                    ItemType.QuestItem => AssetStorage.QuestItems[id].description,
                     ItemType.Weapon => Main.Randomizer.LocalizationHandler.Localize(id switch
                     {
                         "WE01" => "we1d",
@@ -160,51 +160,50 @@ namespace BlasII.Randomizer.Items
             {
                 case ItemType.RosaryBead:
                     {
-                        if (ItemStorage.TryGetRosaryBead(id, out var bead))
-                            ItemStorage.PlayerInventory.AddItemAsync(bead, 0, true);
+                        if (AssetStorage.Beads.TryGetAsset(id, out var bead))
+                            AssetStorage.PlayerInventory.AddItemAsync(bead, 0, true);
                         break;
                     }
                 case ItemType.Prayer:
                     {
-                        if (ItemStorage.TryGetPrayer(id, out var prayer))
-                            ItemStorage.PlayerInventory.AddItemAsync(prayer, 0, true);
+                        if (AssetStorage.Prayers.TryGetAsset(id, out var prayer))
+                            AssetStorage.PlayerInventory.AddItemAsync(prayer, 0, true);
                         break;
                     }
                 case ItemType.Figurine:
                     {
-                        if (ItemStorage.TryGetFigure(id, out var figure))
-                            ItemStorage.PlayerInventory.AddItemAsync(figure, 0, true);
+                        if (AssetStorage.Figures.TryGetAsset(id, out var figure))
+                            AssetStorage.PlayerInventory.AddItemAsync(figure, 0, true);
                         break;
                     }
                 case ItemType.QuestItem:
                     {
-                        if (ItemStorage.TryGetQuestItem(id, out var quest))
-                            ItemStorage.PlayerInventory.AddItemAsync(quest, 0, true);
+                        if (AssetStorage.QuestItems.TryGetAsset(id, out var quest))
+                            AssetStorage.PlayerInventory.AddItemAsync(quest, 0, true);
                         break;
                     }
                 case ItemType.Weapon:
                     {
-                        if (WeaponStorage.TryGetWeapon(id, out var weapon))
+                        var weapon = AssetStorage.Weapons[id];
+
+                        if (CoreCache.EquipmentManager.IsUnlocked(weapon))
                         {
-                            if (CoreCache.EquipmentManager.IsUnlocked(weapon))
-                            {
-                                // Upgrade the weapon
-                                CoreCache.WeaponMemoryManager.UpgradeWeaponTier(weapon);
-                            }
-                            else
-                            {
-                                // Unlock the weapon and give the switching ability
-                                CoreCache.EquipmentManager.Unlock(weapon);
-                                if (AbilityStorage.TryGetAbility("AB10", out var ability))
-                                    CoreCache.AbilitiesUnlockManager.SetAbility(ability, true);
-                            }
+                            // Upgrade the weapon
+                            CoreCache.WeaponMemoryManager.UpgradeWeaponTier(weapon);
+                        }
+                        else
+                        {
+                            // Unlock the weapon and give the switching ability
+                            var ability = AssetStorage.Abilities["AB10"];
+                            CoreCache.EquipmentManager.Unlock(weapon);
+                            CoreCache.AbilitiesUnlockManager.SetAbility(ability, true);                                
                         }
                         break;
                     }
                 case ItemType.Ability:
                     {
-                        if (AbilityStorage.TryGetAbility(id, out var ability))
-                            CoreCache.AbilitiesUnlockManager.SetAbility(ability, true);
+                        var ability = AssetStorage.Abilities[id];
+                        CoreCache.AbilitiesUnlockManager.SetAbility(ability, true);
                         break;
                     }
                 case ItemType.Cherub:
@@ -217,12 +216,12 @@ namespace BlasII.Randomizer.Items
                     }
                 case ItemType.Tears:
                     {
-                        StatStorage.PlayerStats.AddRewardTears(Amount);
+                        AssetStorage.PlayerStats.AddRewardTears(Amount);
                         break;
                     }
                 case ItemType.Marks:
                     {
-                        StatStorage.PlayerStats.AddRewardOrbs(Amount, true);
+                        AssetStorage.PlayerStats.AddRewardOrbs(Amount, true);
                         break;
                     }
             }
@@ -247,11 +246,9 @@ namespace BlasII.Randomizer.Items
                 return;
 
             // Only used for quest items right now
-            if (ItemStorage.TryGetQuestItem(currentItem.id, out var item))
-            {
-                Main.Randomizer.Log($"Removing previous subitem for {id}: {currentItem.id}");
-                ItemStorage.PlayerInventory.RemoveItem(item);
-            }
+            Main.Randomizer.Log($"Removing previous subitem for {id}: {currentItem.id}");
+            var item = AssetStorage.QuestItems[currentItem.id];
+            AssetStorage.PlayerInventory.RemoveItem(item);
         }
 
         private int GetSubItemLevel(bool upgraded)

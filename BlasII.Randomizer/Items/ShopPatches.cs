@@ -1,4 +1,4 @@
-﻿using BlasII.ModdingAPI.Storage;
+﻿using BlasII.ModdingAPI.Assets;
 using HarmonyLib;
 using Il2CppTGK.Game.Components.UI;
 using Il2CppTGK.Game.Managers;
@@ -56,7 +56,7 @@ namespace BlasII.Randomizer.Items
             Main.Randomizer.ItemHandler.GiveItemAtLocation(locationId);
 
             // When selling an "orb", it still displays and give an orb.  So take one away from the player, and patch the display method
-            StatStorage.PlayerStats.AddToCurrentValue(StatStorage.TryGetValueStat("Orbs", out var stat) ? stat : null, -1);
+            AssetStorage.PlayerStats.AddToCurrentValue(AssetStorage.ValueStats["Orbs"], -1);
         }
     }
 

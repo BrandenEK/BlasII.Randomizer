@@ -1,6 +1,5 @@
 ﻿using BlasII.ModdingAPI;
 using BlasII.ModdingAPI.Persistence;
-using BlasII.ModdingAPI.Storage;
 using BlasII.Randomizer.Items;
 using BlasII.Randomizer.Settings;
 using Il2Cpp;
@@ -25,6 +24,11 @@ namespace BlasII.Randomizer
 
         protected override void OnInitialize()
         {
+            InputHandler.RegisterDefaultKeybindings(new Dictionary<string, KeyCode>()
+            {
+                { "DisplaySettings", KeyCode.F8 }
+            });
+
             Data.Initialize();
             //ShuffleTest();
         }
@@ -36,7 +40,7 @@ namespace BlasII.Randomizer
             if (!LoadStatus.GameSceneLoaded)
                 return;
 
-            if (Input.GetKeyDown(KeyCode.F8))
+            if (InputHandler.GetKeyDown("DisplaySettings"))
                 SettingsHandler.DisplaySettings();
 
             //if (Input.GetKeyDown(KeyCode.Keypad8))
