@@ -1,4 +1,4 @@
-﻿using BlasII.ModdingAPI.Storage;
+﻿using BlasII.ModdingAPI.Assets;
 using HarmonyLib;
 using Il2CppPlaymaker.Inventory;
 using Il2CppPlaymaker.PrieDieu;
@@ -163,11 +163,11 @@ namespace BlasII.Randomizer.Items
             get
             {
                 int keys = 0;
-                if (ItemStorage.TryGetQuestItem("QI63", out var key1) && ItemStorage.PlayerInventory.HasItem(key1)) keys++;
-                if (ItemStorage.TryGetQuestItem("QI64", out var key2) && ItemStorage.PlayerInventory.HasItem(key2)) keys++;
-                if (ItemStorage.TryGetQuestItem("QI65", out var key3) && ItemStorage.PlayerInventory.HasItem(key3)) keys++;
-                if (ItemStorage.TryGetQuestItem("QI66", out var key4) && ItemStorage.PlayerInventory.HasItem(key4)) keys++;
-                if (ItemStorage.TryGetQuestItem("QI67", out var key5) && ItemStorage.PlayerInventory.HasItem(key5)) keys++;
+                if (AssetStorage.PlayerInventory.HasItem(AssetStorage.QuestItems["QI63"])) keys++;
+                if (AssetStorage.PlayerInventory.HasItem(AssetStorage.QuestItems["QI64"])) keys++;
+                if (AssetStorage.PlayerInventory.HasItem(AssetStorage.QuestItems["QI65"])) keys++;
+                if (AssetStorage.PlayerInventory.HasItem(AssetStorage.QuestItems["QI66"])) keys++;
+                if (AssetStorage.PlayerInventory.HasItem(AssetStorage.QuestItems["QI67"])) keys++;
                 return keys;
             }
         }
