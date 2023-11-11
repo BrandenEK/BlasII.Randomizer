@@ -26,6 +26,10 @@ namespace BlasII.Randomizer
 
         protected override void OnInitialize()
         {
+            ConfigHandler.RegisterDefaultProperties(new Dictionary<string, object>()
+            {
+                { "SendMetrics", true }
+            });
             InputHandler.RegisterDefaultKeybindings(new Dictionary<string, KeyCode>()
             {
                 { "DisplaySettings", KeyCode.F8 }
