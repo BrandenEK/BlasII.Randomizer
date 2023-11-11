@@ -15,10 +15,23 @@
 ## Contributors
 
 A very special thank you to everyone who has helped with the randomizer
-- [@BrandenEK](https://github.com/BrandenEK) - ***Programming and design***
-- [@LuceScarlet](https://github.com/LuceScarlet) - ***Gameplay testing and Spanish translations***
-- [@Chemigoku](https://github.com/BrandenEK/BlasII.Randomizer) - ***Logic development and testing***
-- [@JimmyDiamonds](https://github.com/JimmyDiamonds) - ***Logo design and creation***
+
+***- Programming -*** <br>
+[@BrandenEK](https://github.com/BrandenEK)
+
+***- Gameplay and design -*** <br>
+[@BrandenEK](https://github.com/BrandenEK), [@LuceScarlet](https://github.com/LuceScarlet)
+
+***- Logic development and testing -*** <br>
+[@Chemigoku](https://github.com/Chemigoku), [@Guuiil](https://github.com/Guuiil), [@PHAredes](https://github.com/PHAredes), [@thymemanagement](https://github.com/thymemanagement)
+
+***- Images and UI -*** <br>
+[@JimmyDiamonds](https://github.com/JimmyDiamonds)
+<!-- Expected: Raider -->
+
+***- Translations -*** <br>
+[@LuceScarlet](https://github.com/LuceScarlet)
+<!-- Expected: Rocher, Elton -->
 
 ---
 
