@@ -1,6 +1,7 @@
 ﻿using BlasII.ModdingAPI;
 using BlasII.ModdingAPI.Persistence;
 using BlasII.Randomizer.Items;
+using BlasII.Randomizer.Metrics;
 using BlasII.Randomizer.Settings;
 using Il2Cpp;
 using Il2CppTGK.Game;
@@ -18,6 +19,7 @@ namespace BlasII.Randomizer
         public DataStorage Data { get; } = new();
 
         public ItemHandler ItemHandler { get; } = new();
+        public MetricsHandler MetricsHandler { get; } = new();
         public SettingsHandler SettingsHandler { get; } = new();
 
         public RandomizerSettings CurrentSettings { get; set; } = RandomizerSettings.DefaultSettings;
@@ -99,6 +101,7 @@ namespace BlasII.Randomizer
         {
             Log($"Performing shuffle for seed {CurrentSettings.seed}");
             ItemHandler.ShuffleItems(CurrentSettings.seed, CurrentSettings);
+            _ = MetricsHandler.SendSettings(CurrentSettings);
             AllowPrieDieuWarp();
         }
 
