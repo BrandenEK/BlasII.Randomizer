@@ -4,6 +4,7 @@ using Il2CppTGK.Game.Components.UI;
 using Il2CppTGK.Game.Managers;
 using Il2CppTGK.Game.ShopSystem;
 using Il2CppTGK.UI;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -14,13 +15,6 @@ namespace BlasII.Randomizer.Items
     {
         public static void Postfix(Shop __instance)
         {
-            // Log temp info
-            Main.Randomizer.Log("Caching shop: " + __instance.name);
-            foreach (var item in __instance.cachedShopDataById)
-            {
-                Main.Randomizer.LogWarning($"{item.Key}: {item.Value.itemID.name} for {item.Value.price}");
-            }
-
             // Clear all previous items from list
             __instance.cachedIds.Clear();
             __instance.cachedShopDataById.Clear();
@@ -28,17 +22,57 @@ namespace BlasII.Randomizer.Items
             __instance.orbs.Clear();
 
             // Get list of costs based on shop id
-            int[] costs = __instance.name switch
+            int[] costs;
+
+            switch (__instance.name)
             {
-                "SHOPHAND" => new int[] { 3000, 3000, 3000, 3000, 3000, 3000, 3000, 6000, 12000, 12000, 17500, 32000 },
-                "SHOPITINERANT" => new int[] { 3000, 3000, 6000, 6000, 17500, 12000, 6000, 6000 },
-                "SHOPMISSABLES" => new int[] { 6000, 6000, 12000, 12000, 12000, 6000, 6000 },
-                _ => System.Array.Empty<int>()
-            };
+                // Always same items, sorted by cost
+                case "SHOPHAND":
+                    costs = new int[]
+                    {
+                        3000, 3000, 3000, 3000, 3000, 3000, 3000, 6000, 12000, 12000, 17500, 32000
+                    };
+                    break;
+                // Always same items, sorted by cost
+                case "SHOPMISSABLES":
+                    costs = new int[]
+                    {
+                        6000, 6000, 6000, 6000, 12000, 12000, 12000
+                    };
+                    break;
+                // More items added for each location, sorted by cost
+                case "SHOPITINERANT":
+                    var list = new List<int>
+                    {
+                        3000, 3000
+                    };
+
+                    if (Main.Randomizer.GetQuestBool("ST06", "Z09_VISITED"))
+                        list.Add(6000);
+                    if (Main.Randomizer.GetQuestBool("ST06", "Z05_VISITED"))
+                        list.Add(6000);
+                    if (Main.Randomizer.GetQuestBool("ST06", "Z11_VISITED"))
+                        list.Add(6000);
+                    if (Main.Randomizer.GetQuestBool("ST06", "Z12_VISITED"))
+                        list.Add(6000);
+                    if (Main.Randomizer.GetQuestBool("ST06", "Z01_VISITED"))
+                        list.Add(12000);
+                    if (Main.Randomizer.GetQuestBool("ST06", "Z10_VISITED"))
+                        list.Add(17500);
+
+                    costs = list.ToArray();
+                    break;
+
+                default:
+                    Main.Randomizer.LogError("Opening invalid shop!");
+                    costs = System.Array.Empty<int>();
+                    break;
+            }
 
             // Add orbs for each price
             foreach (int cost in costs)
                 __instance.orbs.Add(cost);
+            Main.Randomizer.Log("Updating items for: " + __instance.name);
         }
     }
 

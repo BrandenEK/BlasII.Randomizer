@@ -1,9 +1,12 @@
 ﻿using BlasII.ModdingAPI.Audio;
+using BlasII.ModdingAPI.Input;
 using BlasII.ModdingAPI.UI;
+using BlasII.Randomizer.Extensions;
 using Il2CppTGK.Game;
 using Il2CppTGK.Game.Components.UI;
 using Il2CppTGK.Game.PopupMessages;
 using Il2CppTMPro;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -16,9 +19,10 @@ namespace BlasII.Randomizer.Settings
         private GameObject _settingsMenu;
 
         private int _currentSlot;
+        private Clickable _clickedSetting = null;
 
-        private bool PressedEnter => CoreCache.Input.GetButtonDown("UI Confirm");
-        private bool PressedCancel => CoreCache.Input.GetButtonDown("UI Cancel");
+        private bool PressedEnter => Main.Randomizer.InputHandler.GetButtonDown(ButtonType.UIConfirm);
+        private bool PressedCancel => Main.Randomizer.InputHandler.GetButtonDown(ButtonType.UICancel);
 
         // Forgot we cant use null coalescing  :(
         private bool SettingsMenuActive => _settingsMenu != null && _settingsMenu.activeInHierarchy;
@@ -30,6 +34,11 @@ namespace BlasII.Randomizer.Settings
             if (!SettingsMenuActive)
                 return;
 
+            if (Input.GetMouseButtonDown(0))
+            {
+                HandleClick();
+            }
+
             if (PressedEnter)
             {
                 StartNewGame();
@@ -37,6 +46,22 @@ namespace BlasII.Randomizer.Settings
             else if (PressedCancel)
             {
                 CloseSettingsMenu();
+            }
+        }
+
+        private void HandleClick()
+        {
+            _clickedSetting?.OnUnclick();
+            _clickedSetting = null;
+
+            foreach (var click in _clickables)
+            {
+                if (click.Rect.OverlapsPoint(Input.mousePosition))
+                {
+                    _clickedSetting = click;
+                    click.OnClick();
+                    break;
+                }
             }
         }
 
@@ -58,6 +83,7 @@ namespace BlasII.Randomizer.Settings
             MenuSettings = RandomizerSettings.DefaultSettings;
             CoreCache.Input.ClearAllInputBlocks();
             _currentSlot = slot;
+            _clickedSetting = null;
         }
 
         /// <summary>
@@ -137,9 +163,9 @@ namespace BlasII.Randomizer.Settings
             Main.Randomizer.LogWarning("Creating settings menu");
 
             // Find slots menu and allow clicking buttons
-            Object.FindObjectOfType<CanvasScaler>().gameObject.AddComponent<GraphicRaycaster>();
             var mainMenu = Object.FindObjectOfType<MainMenuWindowLogic>();
             var slotsMenu = mainMenu.slotsMenuView.transform.parent.gameObject;
+            _clickables.Clear();
 
             // Create copy for settings menu
             var settingsMenu = Object.Instantiate(slotsMenu, slotsMenu.transform.parent);
@@ -232,7 +258,7 @@ namespace BlasII.Randomizer.Settings
             selectable.Initialize(toggleBox);
 
             // Add click events
-            AddClickHandler(toggleBox.gameObject, () => selectable.Toggle());
+            _clickables.Add(new Clickable(toggleBox.rectTransform, () => selectable.Toggle()));
 
             return selectable;
 
@@ -270,8 +296,8 @@ namespace BlasII.Randomizer.Settings
             selectable.Initialize(optionText, leftArrow, rightArrow, options);
 
             // Add click events
-            AddClickHandler(leftArrow.gameObject, () => selectable.ChangeOption(-1));
-            AddClickHandler(rightArrow.gameObject, () => selectable.ChangeOption(1));
+            _clickables.Add(new Clickable(leftArrow.rectTransform, () => selectable.ChangeOption(-1)));
+            _clickables.Add(new Clickable(rightArrow.rectTransform, () => selectable.ChangeOption(1)));
 
             return selectable;
 
@@ -307,7 +333,9 @@ namespace BlasII.Randomizer.Settings
             selectable.Initialize(underline, valueText, numeric, allowZero, max);
 
             // Add click events
-            AddClickHandler(underline.gameObject, () => selectable.ToggleSelected());
+            _clickables.Add(new Clickable(underline.rectTransform,
+                () => selectable.SetSelected(true),
+                () => selectable.SetSelected(false)));
 
             return selectable;
 
@@ -320,14 +348,6 @@ namespace BlasII.Randomizer.Settings
                     .SetPivot(0, 0.5f)
                     .AddImage();
             }
-        }
-
-        private void AddClickHandler(GameObject obj, System.Action onClick)
-        {
-            var button = obj.AddComponent<Button>();
-            button.interactable = true;
-            button.transition = Selectable.Transition.None;
-            button.onClick.AddListener(onClick);
         }
 
         private const int TEXT_SIZE = 55;
@@ -346,5 +366,7 @@ namespace BlasII.Randomizer.Settings
         private ToggleOption _setShuffleShops;
 
         private TextOption _setSeed;
+
+        private readonly List<Clickable> _clickables = new();
     }
 }

@@ -61,6 +61,8 @@ namespace BlasII.Randomizer
                 LoadTriggerRemovalRoom("trigger area");
             else if (sceneName == "Z0206")
                 LoadTriggerRemovalRoom("Event Trigger");
+
+            CoreCache.Shop.cachedInstancedShops.Clear();
         }
 
         protected override void OnSceneUnloaded(string sceneName)
