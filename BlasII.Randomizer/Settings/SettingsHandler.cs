@@ -1,9 +1,11 @@
 ﻿using BlasII.ModdingAPI.Audio;
 using BlasII.ModdingAPI.UI;
+using BlasII.Randomizer.Extensions;
 using Il2CppTGK.Game;
 using Il2CppTGK.Game.Components.UI;
 using Il2CppTGK.Game.PopupMessages;
 using Il2CppTMPro;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -29,6 +31,13 @@ namespace BlasII.Randomizer.Settings
 
             if (!SettingsMenuActive)
                 return;
+
+
+            foreach (var rect in _tempThings)
+            {
+                if (rect.OverlapsPoint(Input.mousePosition))
+                    Main.Randomizer.Log("Hover: " + rect.name);
+            }
 
             if (PressedEnter)
             {
@@ -233,6 +242,7 @@ namespace BlasII.Randomizer.Settings
 
             // Add click events
             AddClickHandler(toggleBox.gameObject, () => selectable.Toggle());
+            _tempThings.Add(toggleBox.GetComponent<RectTransform>());
 
             return selectable;
 
@@ -271,7 +281,9 @@ namespace BlasII.Randomizer.Settings
 
             // Add click events
             AddClickHandler(leftArrow.gameObject, () => selectable.ChangeOption(-1));
+            _tempThings.Add(leftArrow.GetComponent<RectTransform>());
             AddClickHandler(rightArrow.gameObject, () => selectable.ChangeOption(1));
+            _tempThings.Add(rightArrow.GetComponent<RectTransform>());
 
             return selectable;
 
@@ -346,5 +358,7 @@ namespace BlasII.Randomizer.Settings
         private ToggleOption _setShuffleShops;
 
         private TextOption _setSeed;
+
+        private readonly List<RectTransform> _tempThings = new();
     }
 }
