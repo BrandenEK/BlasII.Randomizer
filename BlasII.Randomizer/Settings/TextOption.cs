@@ -30,9 +30,9 @@ namespace BlasII.Randomizer.Settings
 
         public int CurrentNumericValue => int.TryParse(CurrentValue, out int value) ? value : 0;
 
-        public void ToggleSelected()
+        public void SetSelected(bool selected)
         {
-            _selected = !_selected;
+            _selected = selected;
             UpdateStatus();
         }
 

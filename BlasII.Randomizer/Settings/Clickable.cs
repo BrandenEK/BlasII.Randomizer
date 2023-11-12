@@ -12,13 +12,20 @@ namespace BlasII.Randomizer.Settings
             _onClick?.Invoke();
         }
 
-        public Clickable(RectTransform rect, Action onClick)
+        public void OnUnclick()
+        {
+            _onUnclick?.Invoke();
+        }
+
+        public Clickable(RectTransform rect, Action onClick, Action onUnclick = null)
         {
             _rect = rect;
             _onClick = onClick;
+            _onUnclick = onUnclick;
         }
 
         private readonly RectTransform _rect;
         private readonly Action _onClick;
+        private readonly Action _onUnclick;
     }
 }
