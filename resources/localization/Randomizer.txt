@@ -100,3 +100,55 @@ o3rq: Dos
 o4rq: Tres
 o5rq: Cuatro
 o6rq: Cinco
+
+lang : fr
+
+# Special items
+we1n: Veredicto
+we1d: Une arme qui permet de faire sonner les cloches de bronze.
+we2n: Ruego Al Alba
+we2d: Une arme qui permet de détruire les barricades d'os.
+we3n: Sarmiento & Centella
+we3d: Une arme qui permet d'activer les mirroirs magiques.
+ab1n: Lierre d'ascension
+ab1d: La capacité d'escalader les grands murs.
+ab2n: Passage des cendres
+ab2d: La capacité de sauter une deuxieme fois dans les airs.
+ab3n: Clémence du vent
+ab3d: La capacité de ruer dans les airs.
+ab4n: Protection du descendant
+ab4d: La capacité de faire aparaitre les anneau de cherubins.
+chrn: Frères du miracle
+chrd: Un petit cherubin flottant que vous libérez d'un cage.
+tern: Larmes d'expiation
+terd: Permettent acheter des choses.
+marn: Marques du martyr
+mard: Permettent d'acheter d'autres choses.
+
+# Gameplay changes
+ktex: "La Mère dit : 'Trouvez les * clés qui annoncent la Naissance.'"
+
+# Settings menu
+head: PARAMETRES DU RANDOMIZER
+btnb: Commencer
+btnc: Annuler
+seed: Seed:
+rand: Aléatoire
+opsl: Longue quêtes aléatoires
+opss: Magasins aléatoires
+opsw: Arme de départ
+o1sw: Veredicto
+o2sw: Ruego
+o3sw: Sarmiento
+opld: Difficulté de la logique
+o1ld: Simple
+o2ld: Normal
+o3ld: Difficile
+oprq: Clés requises
+o1rq: Zero
+o2rq: Une
+o3rq: Deux
+o4rq: Trois
+o5rq: Quatre
+o6rq: Cinq
+
