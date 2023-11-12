@@ -32,11 +32,9 @@ namespace BlasII.Randomizer.Settings
             if (!SettingsMenuActive)
                 return;
 
-
-            foreach (var rect in _tempThings)
+            if (Input.GetMouseButtonDown(0))
             {
-                if (rect.OverlapsPoint(Input.mousePosition))
-                    Main.Randomizer.Log("Hover: " + rect.name);
+                HandleClick();
             }
 
             if (PressedEnter)
@@ -46,6 +44,15 @@ namespace BlasII.Randomizer.Settings
             else if (PressedCancel)
             {
                 CloseSettingsMenu();
+            }
+        }
+
+        private void HandleClick()
+        {
+            foreach (var click in _clickables)
+            {
+                if (click.Rect.OverlapsPoint(Input.mousePosition))
+                    click.OnClick();
             }
         }
 
@@ -146,7 +153,7 @@ namespace BlasII.Randomizer.Settings
             Main.Randomizer.LogWarning("Creating settings menu");
 
             // Find slots menu and allow clicking buttons
-            Object.FindObjectOfType<CanvasScaler>().gameObject.AddComponent<GraphicRaycaster>();
+            //Object.FindObjectOfType<CanvasScaler>().gameObject.AddComponent<GraphicRaycaster>();
             var mainMenu = Object.FindObjectOfType<MainMenuWindowLogic>();
             var slotsMenu = mainMenu.slotsMenuView.transform.parent.gameObject;
 
@@ -241,8 +248,7 @@ namespace BlasII.Randomizer.Settings
             selectable.Initialize(toggleBox);
 
             // Add click events
-            AddClickHandler(toggleBox.gameObject, () => selectable.Toggle());
-            _tempThings.Add(toggleBox.GetComponent<RectTransform>());
+            _clickables.Add(new Clickable(toggleBox.rectTransform, () => selectable.Toggle()));
 
             return selectable;
 
@@ -280,10 +286,8 @@ namespace BlasII.Randomizer.Settings
             selectable.Initialize(optionText, leftArrow, rightArrow, options);
 
             // Add click events
-            AddClickHandler(leftArrow.gameObject, () => selectable.ChangeOption(-1));
-            _tempThings.Add(leftArrow.GetComponent<RectTransform>());
-            AddClickHandler(rightArrow.gameObject, () => selectable.ChangeOption(1));
-            _tempThings.Add(rightArrow.GetComponent<RectTransform>());
+            _clickables.Add(new Clickable(leftArrow.rectTransform, () => selectable.ChangeOption(-1)));
+            _clickables.Add(new Clickable(rightArrow.rectTransform, () => selectable.ChangeOption(1)));
 
             return selectable;
 
@@ -319,7 +323,7 @@ namespace BlasII.Randomizer.Settings
             selectable.Initialize(underline, valueText, numeric, allowZero, max);
 
             // Add click events
-            AddClickHandler(underline.gameObject, () => selectable.ToggleSelected());
+            _clickables.Add(new Clickable(underline.rectTransform, () => selectable.ToggleSelected()));
 
             return selectable;
 
@@ -332,14 +336,6 @@ namespace BlasII.Randomizer.Settings
                     .SetPivot(0, 0.5f)
                     .AddImage();
             }
-        }
-
-        private void AddClickHandler(GameObject obj, System.Action onClick)
-        {
-            var button = obj.AddComponent<Button>();
-            button.interactable = true;
-            button.transition = Selectable.Transition.None;
-            button.onClick.AddListener(onClick);
         }
 
         private const int TEXT_SIZE = 55;
@@ -359,6 +355,6 @@ namespace BlasII.Randomizer.Settings
 
         private TextOption _setSeed;
 
-        private readonly List<RectTransform> _tempThings = new();
+        private readonly List<Clickable> _clickables = new();
     }
 }
