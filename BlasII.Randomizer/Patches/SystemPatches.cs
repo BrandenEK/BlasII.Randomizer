@@ -59,7 +59,7 @@ namespace BlasII.Randomizer.Patches
     {
         public static void Postfix(ItemID itemID, ref bool __result)
         {
-            __result = __result || itemID.name == "QI70";
+            __result = __result || itemID.name == "QI70" && Main.Randomizer.GetQuestBool("ST00", "WEAPON_EVENT");
         }
     }
 

@@ -20,6 +20,7 @@ namespace BlasII.Randomizer.Settings
 
         private int _currentSlot;
         private Clickable _clickedSetting = null;
+        private bool _closeNextFrame = false;
 
         private bool PressedEnter => Main.Randomizer.InputHandler.GetButtonDown(ButtonType.UIConfirm);
         private bool PressedCancel => Main.Randomizer.InputHandler.GetButtonDown(ButtonType.UICancel);
@@ -34,6 +35,13 @@ namespace BlasII.Randomizer.Settings
             if (!SettingsMenuActive)
                 return;
 
+            if (_closeNextFrame)
+            {
+                _closeNextFrame = false;
+                CloseSettingsMenu();
+                return;
+            }
+
             if (Input.GetMouseButtonDown(0))
             {
                 HandleClick();
@@ -45,7 +53,7 @@ namespace BlasII.Randomizer.Settings
             }
             else if (PressedCancel)
             {
-                CloseSettingsMenu();
+                _closeNextFrame = true;
             }
         }
 
@@ -95,10 +103,9 @@ namespace BlasII.Randomizer.Settings
                 return;
 
             Main.Randomizer.Log("Closing settings menu");
-            Main.Randomizer.AudioHandler.PlayEffectUI(UISFX.CloseMenu);
             _settingsMenu.SetActive(false);
             _mainMenu.OpenSlotMenu();
-            _mainMenu.CloseSlotMenu();
+            _mainMenu.slotsList.SelectElement(_currentSlot);
         }
 
         /// <summary>
