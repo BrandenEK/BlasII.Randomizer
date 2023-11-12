@@ -126,6 +126,7 @@ marn: Marques du martyr
 mard: Permettent d'acheter d'autres choses.
 
 # Gameplay changes
+otex: Obtenu
 ktex: "La Mère dit : 'Trouvez les * clés qui annoncent la Naissance.'"
 
 # Settings menu
