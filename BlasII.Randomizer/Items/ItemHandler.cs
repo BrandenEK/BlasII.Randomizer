@@ -49,7 +49,10 @@ namespace BlasII.Randomizer.Items
 
         public void DisplayItem(Item item)
         {
-            CoreCache.UINavigationHelper.ShowItemPopup("Obtained", item.Current?.DisplayName, item.Current?.Image);
+            CoreCache.UINavigationHelper.ShowItemPopup(
+                Main.Randomizer.LocalizationHandler.Localize("otex"),
+                item.Current?.DisplayName,
+                item.Current?.Image);
         }
 
         /// <summary>

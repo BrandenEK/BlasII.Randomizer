@@ -23,6 +23,7 @@ marn: Marks of Martyrdom
 mard: Can be used to buy more stuff.
 
 # Gameplay changes
+otex: Obtained
 ktex: "The Mother said: 'Locate the * keys that herald the Birth."
 
 # Settings menu
