@@ -75,6 +75,7 @@ marn: Marcas del Martirio
 mard: Puede usarse para comprar más cosas.
 
 # Gameplay changes
+otex: Obtenido
 ktex: "La Madre dijo: 'Encontrad las * llaves que anuncian el Nacimiento'"
 
 # Settings menu
