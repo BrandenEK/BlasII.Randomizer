@@ -23,7 +23,7 @@ marn: Marks of Martyrdom
 mard: Can be used to buy more stuff.
 
 # Gameplay changes
-otex: Obtained
+otex: You have acquired
 ktex: "The Mother said: 'Locate the * keys that herald the Birth."
 
 # Settings menu
@@ -75,7 +75,7 @@ marn: Marcas del Martirio
 mard: Puede usarse para comprar más cosas.
 
 # Gameplay changes
-otex: Obtenido
+otex: Has obtenido
 ktex: "La Madre dijo: 'Encontrad las * llaves que anuncian el Nacimiento'"
 
 # Settings menu
@@ -127,7 +127,7 @@ marn: Marques du martyr
 mard: Permettent d'acheter d'autres choses.
 
 # Gameplay changes
-otex: Obtenu
+otex: Vous avez acquis
 ktex: "La Mère dit : 'Trouvez les * clés qui annoncent la Naissance.'"
 
 # Settings menu
@@ -179,7 +179,7 @@ marn: Marcas do Martírio
 mard: Pode ser usado para comprar mais coisas.
 
 # Gameplay changes
-otex: Obteve
+otex: Você obteve
 ktex: "Disse a Mãe: 'Encontre as * chaves que anunciam o Nascimento.'"
 
 # Settings menu
