@@ -185,6 +185,7 @@ namespace BlasII.Randomizer.Settings
             // Change text of 'new' button
             var begin = settingsMenu.transform.Find("Buttons/Button A/New/label").GetComponent<UIPixelTextWithShadow>();
             Main.Randomizer.LocalizationHandler.AddPixelTextLocalizer(begin, "btnb");
+            settingsMenu.transform.Find("Buttons/Button A/New").gameObject.SetActive(true);
 
             // Change text of 'cancel' button
             var cancel = settingsMenu.transform.Find("Buttons/Back/label").GetComponent<UIPixelTextWithShadow>();

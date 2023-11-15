@@ -53,14 +53,16 @@ namespace BlasII.Randomizer
 
         protected override void OnSceneLoaded(string sceneName)
         {
-            if (sceneName == "Z1506")
-                LoadWeaponSelectRoom();
-            else if (sceneName == "Z2501")
-                LoadChapelRoom();
+            if (sceneName == "Z0206")
+                LoadTriggerRemovalRoom("Event Trigger");
             else if (sceneName == "Z0420")
                 LoadTriggerRemovalRoom("trigger area");
-            else if (sceneName == "Z0206")
-                LoadTriggerRemovalRoom("Event Trigger");
+            else if (sceneName == "Z1506")
+                LoadWeaponSelectRoom();
+            else if (sceneName == "Z2401")
+                LoadCherubRoom();
+            else if (sceneName == "Z2501")
+                LoadChapelRoom();
 
             CoreCache.Shop.cachedInstancedShops.Clear();
         }
@@ -171,6 +173,10 @@ namespace BlasII.Randomizer
                     statue.transform.Find("sprite").GetComponent<Animator>().Play(disabledAnimations[weapon]);
                 }
             }
+        }
+
+        private void LoadCherubRoom()
+        {
         }
 
         private void LoadChapelRoom()
