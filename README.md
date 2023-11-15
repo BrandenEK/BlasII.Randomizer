@@ -1,4 +1,5 @@
 <div align="center">
+  <!-- Logo by JimmyDiamonds -->
   <img src="resources/logo.png">
 </div>
 
@@ -30,8 +31,8 @@ A very special thank you to everyone who has helped with the randomizer
 <!-- Expected: Raider -->
 
 ***- Translations -*** <br>
-[@LuceScarlet](https://github.com/LuceScarlet)
-<!-- Expected: Rocher, Elton -->
+[@LuceScarlet](https://github.com/LuceScarlet), [@Guuiil](https://github.com/Guuiil), [@PHAredes](https://github.com/PHAredes)
+<!-- Expected: Elton -->
 
 ---
 
