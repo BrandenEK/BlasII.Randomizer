@@ -4,7 +4,6 @@ using BlasII.Randomizer.Items;
 using BlasII.Randomizer.Settings;
 using Il2Cpp;
 using Il2CppTGK.Game;
-using Il2CppTGK.Game.Components;
 using Il2CppTGK.Game.Components.Interactables;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -178,24 +177,6 @@ namespace BlasII.Randomizer
 
         private void LoadCherubRoom()
         {
-            //var loot = ;
-            //LogWarning(loot.transform.parent.DisplayHierarchy(10, true));
-
-            //var sr = loot.GetComponentInChildren<SpriteRenderer>();
-            //Log(sr.enabled);
-            //Log(sr.color);
-
-            //foreach (var loot in Object.FindObjectsOfType<LootInteractable>())
-            //{
-            //    loot.GetComponentInChildren<FadeSprite>().enabled = false;
-            //    LogWarning("Disabling fade sprite");
-            //}
-
-            //foreach (var fade in Object.FindObjectsOfType<FadeSprite>())
-            //{
-            //    Log(fade.transform.parent.DisplayHierarchy(3, true));
-            //    Object.Destroy(fade);
-            //}
         }
 
         private void LoadChapelRoom()

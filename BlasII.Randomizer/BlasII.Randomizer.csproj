@@ -8,7 +8,7 @@
     <Authors>Damocles</Authors>
     <Company>Damocles</Company>
     <Description>An item randomizer for the game Blasphemous 2</Description>
-    <Version>1.0.1</Version>
+    <Version>1.0.2</Version>
     
     <TargetName>Randomizer</TargetName>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
@@ -18,12 +18,7 @@
 
   <ItemGroup>
     <PackageReference Include="BlasII.ModdingAPI" Version="0.6.0" />
-    <PackageReference Include="BlasII.ModdingReferences" Version="1.1.0.2" />
-    <PackageReference Include="Il2CppInterop.Runtime" Version="1.4.5" />
-    <PackageReference Include="LavaGang.MelonLoader" Version="0.6.1" />
-    <PackageReference Include="Lib.Harmony" Version="2.2.2" />
     <PackageReference Include="LogicParser" Version="1.1.0" />
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
   </ItemGroup>
 
   <Target Name="Development" AfterTargets="PostBuildEvent">
