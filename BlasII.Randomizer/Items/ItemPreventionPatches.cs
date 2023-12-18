@@ -133,18 +133,6 @@ namespace BlasII.Randomizer.Items
                 __result = true;
             }
 
-            // Skip all tutorials
-            else if (quest.StartsWith("Tutorials"))
-            {
-                __result = true;
-            }
-
-            // Skip all boss intros
-            else if (quest.StartsWith("BossesIntro"))
-            {
-                __result = true;
-            }
-
             // Only unlock CR once enough keys are owned
             else if (scene == "Z2501" && quest == "Bosses.BS07_DEAD")
             {

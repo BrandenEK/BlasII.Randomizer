@@ -17,7 +17,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="BlasII.ModdingAPI" Version="0.6.0" />
+    <PackageReference Include="BlasII.ModdingAPI" Version="0.7.0" />
+    <PackageReference Include="BlasII.ModdingReferences" Version="1.1.0.2" />
     <PackageReference Include="LogicParser" Version="1.1.0" />
   </ItemGroup>
 

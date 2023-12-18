@@ -29,6 +29,7 @@ namespace BlasII.Randomizer
                 { "DisplaySettings", KeyCode.F8 }
             });
             LocalizationHandler.RegisterDefaultLanguage("en");
+            MessageHandler.Send("BlasII.QualityOfLife", "Skip_Story_Level", "4");
 
             Data.Initialize();
             //ShuffleTest();
