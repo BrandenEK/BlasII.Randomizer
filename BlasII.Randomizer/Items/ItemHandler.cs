@@ -42,6 +42,7 @@ namespace BlasII.Randomizer.Items
                 item = GetItemAtLocation(locationId);
             }
 
+            Main.Randomizer.MessageHandler.Broadcast("LOCATION", locationId);
             item.RemovePreviousItem(); // Eventually change this to have different classes for prog items
             item.Upgraded?.GiveReward();
             DisplayItem(item);
