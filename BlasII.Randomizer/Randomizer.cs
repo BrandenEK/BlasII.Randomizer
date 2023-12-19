@@ -29,6 +29,7 @@ namespace BlasII.Randomizer
                 { "DisplaySettings", KeyCode.F8 }
             });
             LocalizationHandler.RegisterDefaultLanguage("en");
+            MenuHandler.RegisterNewGameMenu(new RandomizerMenu());
             MessageHandler.Send("BlasII.QualityOfLife", "Skip_Story_Level", "4");
 
             Data.Initialize();
@@ -37,8 +38,6 @@ namespace BlasII.Randomizer
 
         protected override void OnUpdate()
         {
-            SettingsHandler.Update();
-
             if (!LoadStatus.GameSceneLoaded)
                 return;
 
