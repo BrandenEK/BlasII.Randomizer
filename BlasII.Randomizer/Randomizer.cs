@@ -5,6 +5,7 @@ using BlasII.Randomizer.Settings;
 using Il2Cpp;
 using Il2CppTGK.Game;
 using Il2CppTGK.Game.Components.Interactables;
+using Il2CppTGK.Game.PopupMessages;
 using System.Collections.Generic;
 using System.Diagnostics;
 using UnityEngine;
@@ -18,7 +19,6 @@ namespace BlasII.Randomizer
         public DataStorage Data { get; } = new();
 
         public ItemHandler ItemHandler { get; } = new();
-        public SettingsHandler SettingsHandler { get; } = new();
 
         public RandomizerSettings CurrentSettings { get; set; } = RandomizerSettings.DefaultSettings;
 
@@ -42,7 +42,7 @@ namespace BlasII.Randomizer
                 return;
 
             if (InputHandler.GetKeyDown("DisplaySettings"))
-                SettingsHandler.DisplaySettings();
+                DisplaySettings();
 
             //if (Input.GetKeyDown(KeyCode.Keypad8))
             //{
@@ -99,7 +99,7 @@ namespace BlasII.Randomizer
             LogError($"Average time: {System.Math.Round(runningTime / totalTries, 1)} ms");
         }
 
-        public void NewGame()
+        protected override void OnNewGame()
         {
             Log($"Performing shuffle for seed {CurrentSettings.seed}");
             ItemHandler.ShuffleItems(CurrentSettings.seed, CurrentSettings);
@@ -143,6 +143,15 @@ namespace BlasII.Randomizer
                 if (upgrade.name == "TeleportToAnotherPrieuDieuUpgrade" || 
                     upgrade.name == "FervourFillUpgrade")
                     CoreCache.PrieDieuManager.Upgrade(upgrade);
+            }
+        }
+
+        private void DisplaySettings()
+        {
+            foreach (var mid in Resources.FindObjectsOfTypeAll<PopupMessageID>())
+            {
+                if (mid.name == "TESTPOPUP_id")
+                    CoreCache.UINavigationHelper.ShowPopupMessage(mid);
             }
         }
 
