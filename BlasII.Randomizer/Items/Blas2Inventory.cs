@@ -56,6 +56,26 @@ namespace BlasII.Randomizer.Items
             }
         }
 
+        int ShopRooms
+        {
+            get
+            {
+                if (!wallClimb) // City
+                    return 0;
+                if (blade == 0) // Towers
+                    return 1;
+                if (!doubleJump || censer == 0) // Temples + Towers
+                    return 2;
+                if (!airDash) // Cathedral
+                    return 4;
+                if (!cherubRings || rapier == 0) // Severed
+                    return 5;
+                if (bossKeys < 5) // Crimson
+                    return 6;
+                return 7;
+            }
+        }
+
         protected override object GetVariable(string variable)
         {
             // Door variable
@@ -116,6 +136,7 @@ namespace BlasII.Randomizer.Items
 
                 // Rooms
                 "daughterRooms" => DaughterRooms,
+                "shopRooms" => ShopRooms,
 
                 _ => throw new LogicParserException("Unknown variable: " + variable)
             };

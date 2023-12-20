@@ -1435,49 +1435,49 @@
         "id": "SHOPITINERANT.o0",
         "name": "Traveling shop item 1",
         "type": "Shop",
-        "logic": "wallClimb"
+        "logic": "shopRooms >= 1"
     },
     {
         "id": "SHOPITINERANT.o1",
         "name": "Traveling shop item 2",
         "type": "Shop",
-        "logic": "wallClimb"
+        "logic": "shopRooms >= 1"
     },
     {
         "id": "SHOPITINERANT.o2",
         "name": "Traveling shop item 3",
         "type": "Shop",
-        "logic": "wallClimb"
+        "logic": "shopRooms >= 2"
     },
     {
         "id": "SHOPITINERANT.o3",
         "name": "Traveling shop item 4",
         "type": "Shop",
-        "logic": "wallClimb"
+        "logic": "shopRooms >= 3"
     },
     {
         "id": "SHOPITINERANT.o4",
         "name": "Traveling shop item 5",
         "type": "Shop",
-        "logic": "wallClimb"
+        "logic": "shopRooms >= 4"
     },
     {
         "id": "SHOPITINERANT.o5",
         "name": "Traveling shop item 6",
         "type": "Shop",
-        "logic": "wallClimb"
+        "logic": "shopRooms >= 5"
     },
     {
         "id": "SHOPITINERANT.o6",
         "name": "Traveling shop item 7",
         "type": "Shop",
-        "logic": "wallClimb"
+        "logic": "shopRooms >= 6"
     },
     {
         "id": "SHOPITINERANT.o7",
         "name": "Traveling shop item 8",
         "type": "Shop",
-        "logic": "Z18[S]"
+        "logic": "shopRooms >= 7"
     },
     {
         "id": "SHOPMISSABLES.o0",

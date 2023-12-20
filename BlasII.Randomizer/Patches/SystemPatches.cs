@@ -26,20 +26,6 @@ namespace BlasII.Randomizer.Patches
     }
 
     /// <summary>
-    /// Prevent this class from hiding the cursor, even if cursor.visible = true
-    /// </summary>
-    [HarmonyPatch(typeof(MouseCursorVisibilityController), nameof(MouseCursorVisibilityController.Update))]
-    class Mouse_Update_Patch
-    {
-        public static bool Prefix() => false;
-    }
-    [HarmonyPatch(typeof(MouseCursorVisibilityController), nameof(MouseCursorVisibilityController.Awake))]
-    class Mouse_Awake_Patch
-    {
-        public static bool Prefix() => false;
-    }
-
-    /// <summary>
     /// Logs the id whenever a dialog is started
     /// </summary>
     [HarmonyPatch(typeof(DialogManager), nameof(DialogManager.ShowDialogWithObject))]

@@ -1,138 +1,15 @@
-﻿using BlasII.ModdingAPI.Audio;
-using BlasII.ModdingAPI.Input;
+﻿using BlasII.ModdingAPI.Menus;
 using BlasII.ModdingAPI.UI;
-using BlasII.Randomizer.Extensions;
-using Il2CppTGK.Game;
 using Il2CppTGK.Game.Components.UI;
-using Il2CppTGK.Game.PopupMessages;
 using Il2CppTMPro;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace BlasII.Randomizer.Settings
 {
-    public class SettingsHandler
+    public class RandomizerMenu : BaseMenu
     {
-        private MainMenuWindowLogic _mainMenu;
-        private GameObject _slotsMenu;
-        private GameObject _settingsMenu;
-
-        private int _currentSlot;
-        private Clickable _clickedSetting = null;
-        private bool _closeNextFrame = false;
-
-        private bool PressedEnter => Main.Randomizer.InputHandler.GetButtonDown(ButtonType.UIConfirm);
-        private bool PressedCancel => Main.Randomizer.InputHandler.GetButtonDown(ButtonType.UICancel);
-
-        // Forgot we cant use null coalescing  :(
-        private bool SettingsMenuActive => _settingsMenu != null && _settingsMenu.activeInHierarchy;
-
-        public void Update()
-        {
-            Cursor.visible = SettingsMenuActive;
-
-            if (!SettingsMenuActive)
-                return;
-
-            if (_closeNextFrame)
-            {
-                _closeNextFrame = false;
-                CloseSettingsMenu();
-                return;
-            }
-
-            if (Input.GetMouseButtonDown(0))
-            {
-                HandleClick();
-            }
-
-            if (PressedEnter)
-            {
-                StartNewGame();
-            }
-            else if (PressedCancel)
-            {
-                _closeNextFrame = true;
-            }
-        }
-
-        private void HandleClick()
-        {
-            _clickedSetting?.OnUnclick();
-            _clickedSetting = null;
-
-            foreach (var click in _clickables)
-            {
-                if (click.Rect.OverlapsPoint(Input.mousePosition))
-                {
-                    _clickedSetting = click;
-                    click.OnClick();
-                    break;
-                }
-            }
-        }
-
-        /// <summary>
-        /// Displays the settings menu and stores the current slot
-        /// </summary>
-        public void OpenSettingsMenu(int slot)
-        {
-            if (SettingsMenuActive)
-                return;
-
-            if (_settingsMenu == null)
-                CreateSettingsMenu();
-
-            Main.Randomizer.Log("Opening settings menu");
-            _settingsMenu.SetActive(true);
-            _slotsMenu.SetActive(false);
-
-            MenuSettings = RandomizerSettings.DefaultSettings;
-            CoreCache.Input.ClearAllInputBlocks();
-            _currentSlot = slot;
-            _clickedSetting = null;
-        }
-
-        /// <summary>
-        /// Closes the settings menu
-        /// </summary>
-        private void CloseSettingsMenu()
-        {
-            if (!SettingsMenuActive)
-                return;
-
-            Main.Randomizer.Log("Closing settings menu");
-            _settingsMenu.SetActive(false);
-            _mainMenu.OpenSlotMenu();
-            _mainMenu.slotsList.SelectElement(_currentSlot);
-        }
-
-        /// <summary>
-        /// Begins the game with the stored slot
-        /// </summary>
-        private void StartNewGame()
-        {
-            Main.Randomizer.LogWarning("Starting new game");
-            Main.Randomizer.AudioHandler.PlayEffectUI(UISFX.OpenMenu);
-
-            Main.Randomizer.CurrentSettings = MenuSettings;
-            NewGame_Settings_Patch.NewGameFlag = true;
-            Object.FindObjectOfType<MainMenuWindowLogic>().NewGame(_currentSlot);
-            NewGame_Settings_Patch.NewGameFlag = false;
-        }
-
-        /// <summary>
-        /// Displays certain randomizer settings in an info popup
-        /// </summary>
-        public void DisplaySettings()
-        {
-            foreach (var mid in Resources.FindObjectsOfTypeAll<PopupMessageID>())
-            {
-                if (mid.name == "TESTPOPUP_id")
-                    CoreCache.UINavigationHelper.ShowPopupMessage(mid);
-            }
-        }
+        public RandomizerMenu() : base("head", 0) { }
 
         /// <summary>
         /// Stores or loads the entire settings menu into or from a settings object
@@ -163,62 +40,45 @@ namespace BlasII.Randomizer.Settings
         }
 
         /// <summary>
-        /// Creates the ui for the settings menu
+        /// Set the menu options to default when opening it
         /// </summary>
-        private void CreateSettingsMenu()
+        public override void OnStart()
         {
-            Main.Randomizer.LogWarning("Creating settings menu");
-
-            // Find slots menu and allow clicking buttons
-            var mainMenu = Object.FindObjectOfType<MainMenuWindowLogic>();
-            var slotsMenu = mainMenu.slotsMenuView.transform.parent.gameObject;
-            _clickables.Clear();
-
-            // Create copy for settings menu
-            var settingsMenu = Object.Instantiate(slotsMenu, slotsMenu.transform.parent);
-            Object.Destroy(settingsMenu.transform.Find("SlotsList").gameObject);
-
-            // Change text of title
-            var title = settingsMenu.transform.Find("Header").GetComponent<UIPixelTextWithShadow>();
-            Main.Randomizer.LocalizationHandler.AddPixelTextLocalizer(title, "head");
-
-            // Change text of 'new' button
-            var begin = settingsMenu.transform.Find("Buttons/Button A/New/label").GetComponent<UIPixelTextWithShadow>();
-            Main.Randomizer.LocalizationHandler.AddPixelTextLocalizer(begin, "btnb");
-            settingsMenu.transform.Find("Buttons/Button A/New").gameObject.SetActive(true);
-
-            // Change text of 'cancel' button
-            var cancel = settingsMenu.transform.Find("Buttons/Back/label").GetComponent<UIPixelTextWithShadow>();
-            Main.Randomizer.LocalizationHandler.AddPixelTextLocalizer(cancel, "btnc");
-
-            // Create holder for options and all settings
-            RectTransform mainSection = UIModder.CreateRect("Main Section", settingsMenu.transform)
-                .SetSize(1800, 750)
-                .SetPosition(0, -30);
-
-            _setSeed = CreateTextOption("Seed", mainSection, new Vector2(0, 300), 150,
-                "seed", true, false, 6);
-
-            _setLogicDifficulty = CreateArrowOption("LD", mainSection, new Vector2(-300, 80),
-                "opld", _opLogic);
-
-            _setRequiredKeys = CreateArrowOption("RQ", mainSection, new Vector2(-300, -80),
-                "oprq", _opKeys);
-
-            _setStartingWeapon = CreateArrowOption("SW", mainSection, new Vector2(-300, -240),
-                "opsw", _opWeapon);
-
-            _setShuffleLongQuests = CreateToggleOption("SL", mainSection, new Vector2(150, 70),
-                "opsl");
-
-            _setShuffleShops = CreateToggleOption("SS", mainSection, new Vector2(150, -10),
-                "opss");
-
-            _mainMenu = mainMenu;
-            _settingsMenu = settingsMenu;
-            _slotsMenu = slotsMenu;
+            MenuSettings = RandomizerSettings.DefaultSettings;
         }
 
+        /// <summary>
+        /// Update the randomizer settings when closing it
+        /// </summary>
+        public override void OnFinish()
+        {
+            Main.Randomizer.CurrentSettings = MenuSettings;
+        }
+
+        protected override void CreateUI(Transform ui)
+        {
+            _setSeed = CreateTextOption("Seed", ui, new Vector2(0, 300), 150,
+                "seed", true, false, 6);
+
+            _setLogicDifficulty = CreateArrowOption("LD", ui, new Vector2(-300, 80),
+                "opld", _opLogic);
+
+            _setRequiredKeys = CreateArrowOption("RQ", ui, new Vector2(-300, -80),
+                "oprq", _opKeys);
+
+            _setStartingWeapon = CreateArrowOption("SW", ui, new Vector2(-300, -240),
+                "opsw", _opWeapon);
+
+            _setShuffleLongQuests = CreateToggleOption("SL", ui, new Vector2(150, 70),
+                "opsl");
+
+            _setShuffleShops = CreateToggleOption("SS", ui, new Vector2(150, -10),
+                "opss");
+        }
+
+        /// <summary>
+        /// Adds a shadow text to the UI
+        /// </summary>
         private UIPixelTextWithShadow CreateShadowText(string name, Transform parent, Vector2 position, int size, Color color, Vector2 pivot, TextAlignmentOptions alignment, string text)
         {
             // Create shadow
@@ -248,6 +108,9 @@ namespace BlasII.Randomizer.Settings
             return pixelText;
         }
 
+        /// <summary>
+        /// Adds a true/false setting to the UI
+        /// </summary>
         private ToggleOption CreateToggleOption(string name, Transform parent, Vector2 position, string header)
         {
             // Create ui holder
@@ -266,7 +129,7 @@ namespace BlasII.Randomizer.Settings
             selectable.Initialize(toggleBox);
 
             // Add click events
-            _clickables.Add(new Clickable(toggleBox.rectTransform, () => selectable.Toggle()));
+            AddClickable(toggleBox.rectTransform, () => selectable.Toggle());
 
             return selectable;
 
@@ -281,6 +144,9 @@ namespace BlasII.Randomizer.Settings
             }
         }
 
+        /// <summary>
+        /// Adds a multi-option setting to the UI
+        /// </summary>
         private ArrowOption CreateArrowOption(string name, Transform parent, Vector2 position, string header, string[] options)
         {
             // Create ui holder
@@ -304,8 +170,8 @@ namespace BlasII.Randomizer.Settings
             selectable.Initialize(optionText, leftArrow, rightArrow, options);
 
             // Add click events
-            _clickables.Add(new Clickable(leftArrow.rectTransform, () => selectable.ChangeOption(-1)));
-            _clickables.Add(new Clickable(rightArrow.rectTransform, () => selectable.ChangeOption(1)));
+            AddClickable(leftArrow.rectTransform, () => selectable.ChangeOption(-1));
+            AddClickable(rightArrow.rectTransform, () => selectable.ChangeOption(1));
 
             return selectable;
 
@@ -319,6 +185,9 @@ namespace BlasII.Randomizer.Settings
             }
         }
 
+        /// <summary>
+        /// Adds a text-entry setting to the UI
+        /// </summary>
         private TextOption CreateTextOption(string name, Transform parent, Vector2 position, int lineSize, string header, bool numeric, bool allowZero, int max)
         {
             // Create ui holder
@@ -341,9 +210,8 @@ namespace BlasII.Randomizer.Settings
             selectable.Initialize(underline, valueText, numeric, allowZero, max);
 
             // Add click events
-            _clickables.Add(new Clickable(underline.rectTransform,
-                () => selectable.SetSelected(true),
-                () => selectable.SetSelected(false)));
+            AddClickable(underline.rectTransform,
+                () => selectable.SetSelected(true), () => selectable.SetSelected(false));
 
             return selectable;
 
@@ -375,6 +243,5 @@ namespace BlasII.Randomizer.Settings
 
         private TextOption _setSeed;
 
-        private readonly List<Clickable> _clickables = new();
     }
 }

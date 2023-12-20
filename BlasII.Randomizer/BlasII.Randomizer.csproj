@@ -8,16 +8,16 @@
     <Authors>Damocles</Authors>
     <Company>Damocles</Company>
     <Description>An item randomizer for the game Blasphemous 2</Description>
-    <Version>1.0.2</Version>
+    <Version>1.0.3</Version>
     
     <TargetName>Randomizer</TargetName>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <RepositoryUrl>https://github.com/BrandenEK/BlasII.Randomizer</RepositoryUrl>
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
   </PropertyGroup>
-
+  
   <ItemGroup>
-    <PackageReference Include="BlasII.ModdingAPI" Version="0.7.0" />
+    <PackageReference Include="BlasII.ModdingAPI" Version="0.8.0" />
     <PackageReference Include="BlasII.ModdingReferences" Version="1.1.0.2" />
     <PackageReference Include="LogicParser" Version="1.1.0" />
   </ItemGroup>
