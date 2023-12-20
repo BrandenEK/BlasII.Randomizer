@@ -24,11 +24,10 @@ A very special thank you to everyone who has helped with the randomizer
 [@BrandenEK](https://github.com/BrandenEK), [@LuceScarlet](https://github.com/LuceScarlet)
 
 ***- Logic development and testing -*** <br>
-[@Chemigoku](https://github.com/Chemigoku), [@Guuiil](https://github.com/Guuiil), [@PHAredes](https://github.com/PHAredes), [@thymemanagement](https://github.com/thymemanagement)
+[@Chemigoku](https://github.com/Chemigoku), [@Guuiil](https://github.com/Guuiil), [@PHAredes](https://github.com/PHAredes), [@thymemanagement](https://github.com/thymemanagement), [@Xanathar865](https://github.com/Xanathar865)
 
 ***- Images and UI -*** <br>
-[@JimmyDiamonds](https://github.com/JimmyDiamonds)
-<!-- Expected: Raider -->
+[@JimmyDiamonds](https://github.com/JimmyDiamonds), [@rcvrdt](https://github.com/rcvrdt)
 
 ***- Translations -*** <br>
 [@LuceScarlet](https://github.com/LuceScarlet), [@Guuiil](https://github.com/Guuiil), [@PHAredes](https://github.com/PHAredes)
@@ -39,6 +38,7 @@ A very special thank you to everyone who has helped with the randomizer
 ## Useful Info
 - Currently works with both version 1.0.5 and 1.1.0
 - In order to avoid softlocks, it is recommended to use the Save & Quit mod
+- The Quality of Life mod is required for various mechanics to function correctly
 - Pressing 'F8' will display a list of your current settings
 
 ---
@@ -49,7 +49,6 @@ A very special thank you to everyone who has helped with the randomizer
 - The door to Crimson Rains will be unlocked after obtaining a certain number of keys, specified in your settings
 - Weapon memories can be purchased from the beginning, the lance is no longer necessary
 - The map screen will display the number of items collected
-- All tutorials and most cutscenes have been automatically skipped
 
 ---
 
