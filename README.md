@@ -24,11 +24,10 @@ A very special thank you to everyone who has helped with the randomizer
 [@BrandenEK](https://github.com/BrandenEK), [@LuceScarlet](https://github.com/LuceScarlet)
 
 ***- Logic development and testing -*** <br>
-[@Chemigoku](https://github.com/Chemigoku), [@Guuiil](https://github.com/Guuiil), [@PHAredes](https://github.com/PHAredes), [@thymemanagement](https://github.com/thymemanagement)
+[@Chemigoku](https://github.com/Chemigoku), [@Guuiil](https://github.com/Guuiil), [@PHAredes](https://github.com/PHAredes), [@thymemanagement](https://github.com/thymemanagement), [@Xanathar865](https://github.com/Xanathar865)
 
 ***- Images and UI -*** <br>
-[@JimmyDiamonds](https://github.com/JimmyDiamonds)
-<!-- Expected: Raider -->
+[@JimmyDiamonds](https://github.com/JimmyDiamonds), [@rcvrdt](https://github.com/rcvrdt)
 
 ***- Translations -*** <br>
 [@LuceScarlet](https://github.com/LuceScarlet), [@Guuiil](https://github.com/Guuiil), [@PHAredes](https://github.com/PHAredes)
