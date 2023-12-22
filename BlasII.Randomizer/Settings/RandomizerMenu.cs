@@ -81,31 +81,15 @@ namespace BlasII.Randomizer.Settings
         /// </summary>
         private UIPixelTextWithShadow CreateShadowText(string name, Transform parent, Vector2 position, int size, Color color, Vector2 pivot, TextAlignmentOptions alignment, string text)
         {
-            // Create shadow
-            var shadow = UIModder.CreateRect(name, parent)
+            return UIModder.CreateRect(name, parent)
                 .SetPosition(position)
                 .SetPivot(pivot)
                 .AddText()
                 .SetAlignment(alignment)
-                .SetColor(new Color(0.004f, 0.008f, 0.008f))
-                .SetFontSize(size)
-                .SetContents(text);
-
-            // Create normal
-            var normal = UIModder.CreateRect(name, shadow.transform)
-                .SetPosition(0, 4)
-                .AddText()
-                .SetAlignment(alignment)
                 .SetColor(color)
                 .SetFontSize(size)
-                .SetContents(text);
-
-            // Create component
-            var pixelText = shadow.gameObject.AddComponent<UIPixelTextWithShadow>();
-            pixelText.normalText = normal;
-            pixelText.shadowText = shadow;
-
-            return pixelText;
+                .SetContents(text)
+                .AddShadow();
         }
 
         /// <summary>
