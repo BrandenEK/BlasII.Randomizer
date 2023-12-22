@@ -17,7 +17,7 @@
   </PropertyGroup>
   
   <ItemGroup>
-    <PackageReference Include="BlasII.ModdingAPI" Version="0.8.0" />
+    <PackageReference Include="BlasII.ModdingAPI" Version="0.8.1" />
     <PackageReference Include="BlasII.ModdingReferences" Version="1.1.0.2" />
     <PackageReference Include="LogicParser" Version="1.1.0" />
   </ItemGroup>
@@ -31,7 +31,6 @@
     <ItemGroup>
       <DataDlls Include="$(ResourcesFolder)data\*" />
       <DataFiles Include="$(ResourcesFolder)data\$(Product)\*" />
-      <Keybindings Include="$(ResourcesFolder)keybindings\*" />
       <Levels Include="$(ResourcesFolder)levels\$(Product)\*" />
       <Localization Include="$(ResourcesFolder)localization\*" />
     </ItemGroup>
@@ -41,10 +40,8 @@
       <DevFolder>C:\Program Files (x86)\Steam\steamapps\common\Blasphemous 2\Modding\</DevFolder>
     </PropertyGroup>
     <Copy SourceFiles="$(TargetPath)" DestinationFolder="$(DevFolder)plugins" />
-    <Copy SourceFiles="@(Config)" DestinationFolder="$(DevFolder)config" />
     <Copy SourceFiles="@(DataDlls)" DestinationFolder="$(DevFolder)data" />
     <Copy SourceFiles="@(DataFiles)" DestinationFolder="$(DevFolder)data\$(Product)" />
-    <Copy SourceFiles="@(Keybindings)" DestinationFolder="$(DevFolder)keybindings" />
     <Copy SourceFiles="@(Levels)" DestinationFolder="$(DevFolder)levels\$(Product)" />
     <Copy SourceFiles="@(Localization)" DestinationFolder="$(DevFolder)localization" />
 
@@ -53,10 +50,8 @@
       <ExportFolder>$(SolutionDir)publish\$(TargetName)\</ExportFolder>
     </PropertyGroup>
     <Copy SourceFiles="$(TargetPath)" DestinationFolder="$(ExportFolder)plugins" />
-    <Copy SourceFiles="@(Config)" DestinationFolder="$(ExportFolder)config" />
     <Copy SourceFiles="@(DataDlls)" DestinationFolder="$(ExportFolder)data" />
     <Copy SourceFiles="@(DataFiles)" DestinationFolder="$(ExportFolder)data\$(Product)" />
-    <Copy SourceFiles="@(Keybindings)" DestinationFolder="$(ExportFolder)keybindings" />
     <Copy SourceFiles="@(Levels)" DestinationFolder="$(ExportFolder)levels\$(Product)" />
     <Copy SourceFiles="@(Localization)" DestinationFolder="$(ExportFolder)localization" />
     <ZipDirectory SourceDirectory="$(ExportFolder)" DestinationFile="$(ExportFolder)..\$(TargetName).zip" Overwrite="true" />
