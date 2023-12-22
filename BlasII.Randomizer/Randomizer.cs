@@ -30,10 +30,14 @@ namespace BlasII.Randomizer
             });
             LocalizationHandler.RegisterDefaultLanguage("en");
             MenuHandler.RegisterNewGameMenu(new RandomizerMenu());
-            MessageHandler.Send("BlasII.QualityOfLife", "Skip_Story_Level", "4");
 
             Data.Initialize();
             //ShuffleTest();
+        }
+
+        protected override void OnAllInitialized()
+        {
+            MessageHandler.Send("BlasII.QualityOfLife", "Skip_Story_Level", "4");
         }
 
         protected override void OnUpdate()
