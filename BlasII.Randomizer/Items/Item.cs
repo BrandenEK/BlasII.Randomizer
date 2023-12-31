@@ -1,5 +1,4 @@
 using BlasII.ModdingAPI.Assets;
-using BlasII.Randomizer.Patches;
 using Il2CppTGK.Game;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
@@ -209,10 +208,8 @@ namespace BlasII.Randomizer.Items
                     }
                 case ItemType.Cherub:
                     {
-                        QuestManager_SetQuestInt_Patch.CherubQuestFlag = true;
                         int currentCherubs = Main.Randomizer.GetQuestInt("ST16", "FREED_CHERUBS");
                         Main.Randomizer.SetQuestValue("ST16", "FREED_CHERUBS", currentCherubs + 1);
-                        QuestManager_SetQuestInt_Patch.CherubQuestFlag = false;
                         break;
                     }
                 case ItemType.Tears:
