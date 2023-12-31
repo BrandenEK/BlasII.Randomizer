@@ -8,7 +8,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace BlasII.Randomizer.Items
+namespace BlasII.Randomizer.Patches
 {
     [HarmonyPatch(typeof(Shop), nameof(Shop.CacheData))]
     class Shop_Cache_Path
@@ -83,7 +83,7 @@ namespace BlasII.Randomizer.Items
     class Shop_Sell_Patch
     {
         public static void Postfix(Shop shop, int orbIdx)
-        {            
+        {
             string locationId = $"{shop.name}.o{orbIdx}";
             Main.Randomizer.LogError("ShopManager.SellOrb - " + locationId);
 

@@ -4,7 +4,7 @@ using Il2CppHutongGames.PlayMaker;
 using Il2CppTGK.Game;
 using Il2CppTGK.Game.Components.Interactables;
 
-namespace BlasII.Randomizer.Doors
+namespace BlasII.Randomizer.Patches
 {
     [HarmonyPatch(typeof(DoorInteractable), nameof(DoorInteractable.ChangeScene))]
     class Door_Use_Patch

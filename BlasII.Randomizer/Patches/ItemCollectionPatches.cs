@@ -10,7 +10,7 @@ using Il2CppTGK.Game.Inventory.PlayMaker;
 using Il2CppTGK.Game.Managers;
 using System.Reflection;
 
-namespace BlasII.Randomizer.Items
+namespace BlasII.Randomizer.Patches
 {
     // ===============
     // Item collection

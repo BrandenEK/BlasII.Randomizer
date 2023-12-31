@@ -1,4 +1,5 @@
 using BlasII.ModdingAPI.Assets;
+using BlasII.Randomizer.Patches;
 using Il2CppTGK.Game;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
