@@ -1,6 +1,5 @@
 ﻿using HarmonyLib;
 using Il2CppTGK.Game.Components.Inventory;
-using Il2CppTGK.Game.Components.Misc;
 using Il2CppTGK.Game.DialogSystem;
 using Il2CppTGK.Game.Managers;
 using Il2CppTGK.Inventory;
@@ -20,6 +19,19 @@ namespace BlasII.Randomizer.Patches
         }
 
         public static void Postfix(int questId, int varId, bool value)
+        {
+            Main.Randomizer.LogWarning($"Setting quest: {Main.Randomizer.GetQuestName(questId, varId)} ({value})");
+        }
+    }
+    [HarmonyPatch]
+    class QuestManager_SetQuestInt_Patch
+    {
+        public static MethodInfo TargetMethod()
+        {
+            return typeof(QuestManager).GetMethod("SetQuestVarValue").MakeGenericMethod(typeof(int));
+        }
+
+        public static void Postfix(int questId, int varId, int value)
         {
             Main.Randomizer.LogWarning($"Setting quest: {Main.Randomizer.GetQuestName(questId, varId)} ({value})");
         }

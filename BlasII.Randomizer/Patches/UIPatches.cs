@@ -49,8 +49,8 @@ namespace BlasII.Randomizer.Patches
     /// <summary>
     /// When opening the map, replace the cherub count with collected items count
     /// </summary>
-    [HarmonyPatch(typeof(MapWindowLogic), nameof(MapWindowLogic.OnShow))]
-    class Map_Show_Patch
+    [HarmonyPatch(typeof(MapWindowLogic), nameof(MapWindowLogic.UpdateUIElements))]
+    class Map_Update_Patch
     {
         public static void Postfix(MapWindowLogic __instance)
         {

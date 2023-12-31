@@ -1,7 +1,7 @@
-﻿using BlasII.Randomizer.Doors;
+﻿using BlasII.ModdingAPI.Files;
+using BlasII.Randomizer.Doors;
 using BlasII.Randomizer.Items;
 using System.Collections.Generic;
-using System.Collections.Immutable;
 using UnityEngine;
 
 namespace BlasII.Randomizer
@@ -78,18 +78,17 @@ namespace BlasII.Randomizer
 
         private void LoadAllImages()
         {
-            if (Main.Randomizer.FileHandler.LoadDataAsTexture("rando-items.png", out Sprite[] images, 30, 32, true))
-            {
-                for (int i = 0; i < images.Length; i++)
-                    _images.Add((ImageType)i, images[i]);
-            }
+            Main.Randomizer.FileHandler.LoadDataAsFixedSpritesheet("rando-items.png", new Vector2(30, 30),
+                out Sprite[] images, new SpriteImportOptions() { PixelsPerUnit = 32 });
+            Main.Randomizer.FileHandler.LoadDataAsFixedSpritesheet("ui.png", new Vector2(36, 36),
+                out Sprite[] ui, new SpriteImportOptions() { PixelsPerUnit = 36 });
+
+            for (int i = 0; i < images.Length; i++)
+                _images.Add((ImageType)i, images[i]);
             Main.Randomizer.Log($"Loaded {_images.Count} images!");
 
-            if (Main.Randomizer.FileHandler.LoadDataAsTexture("ui.png", out Sprite[] ui, 36, 36, true))
-            {
-                for (int i = 0; i < ui.Length; i++)
-                    _ui.Add((UIType)i, ui[i]);
-            }
+            for (int i = 0; i < ui.Length; i++)
+                _ui.Add((UIType)i, ui[i]);
             Main.Randomizer.Log($"Loaded {_ui.Count} ui elements!");
         }
 

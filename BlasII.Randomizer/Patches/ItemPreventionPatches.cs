@@ -9,7 +9,7 @@ using Il2CppTGK.Game.Managers;
 using Il2CppTGK.Game.PlayerSpawn;
 using System.Collections.Generic;
 
-namespace BlasII.Randomizer.Items
+namespace BlasII.Randomizer.Patches
 {
     // =====
     // Items

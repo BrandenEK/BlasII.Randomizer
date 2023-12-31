@@ -7,10 +7,9 @@ using Il2CppPlaymaker.UI;
 using Il2CppTGK.Game;
 using Il2CppTGK.Game.Components.Interactables;
 using Il2CppTGK.Game.Inventory.PlayMaker;
-using Il2CppTGK.Game.Managers;
-using System.Reflection;
+using Il2CppTGK.PlayMaker.Actions;
 
-namespace BlasII.Randomizer.Items
+namespace BlasII.Randomizer.Patches
 {
     // ===============
     // Item collection
@@ -203,37 +202,25 @@ namespace BlasII.Randomizer.Items
     // Caged cherubs
     // =============
 
-    [HarmonyPatch]
-    class QuestManager_SetQuestInt_Patch
+    [HarmonyPatch(typeof(OperateQuestVar), nameof(OperateQuestVar.CheckInputData))]
+    class PlayMaker_OperateQuestVar_Patch
     {
-        public static MethodInfo TargetMethod()
+        public static bool Prefix(OperateQuestVar __instance)
         {
-            return typeof(QuestManager).GetMethod("SetQuestVarValue").MakeGenericMethod(typeof(int));
-        }
-
-        public static bool Prefix(int questId, int varId, int value)
-        {
-            string questName = Main.Randomizer.GetQuestName(questId, varId);
-
-            // If this a different quest or an actual cherub item, increase the flag
-            if (questName != "ST16.FREED_CHERUBS" || CherubQuestFlag)
-            {
-                Main.Randomizer.LogWarning($"Setting quest: {questName} ({value})");
+            string quest = Main.Randomizer.GetQuestName(__instance.questVar.questID, __instance.questVar.varID);
+            if (quest != "ST16.FREED_CHERUBS")
                 return true;
-            }
 
-            // Otherwise, give a random item
             string locationId = $"{CoreCache.Room.CurrentRoom.Name}.c0";
-            Main.Randomizer.LogError("QuestManager.SetQuestVarValue - " + locationId);
+            Main.Randomizer.LogError("OperateQuestVar.CheckInputData - " + locationId);
 
             if (Main.Randomizer.ItemHandler.IsVanillaLocation(locationId))
                 return true;
 
             Main.Randomizer.ItemHandler.GiveItemAtLocation(locationId);
+            __instance.Finish();
             return false;
         }
-
-        public static bool CherubQuestFlag { get; set; }
     }
     [HarmonyPatch(typeof(ShowCherubPopup), nameof(ShowCherubPopup.OnEnter))]
     class Cherub_Skip_Patch
