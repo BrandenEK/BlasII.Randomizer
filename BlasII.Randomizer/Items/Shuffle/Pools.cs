@@ -12,19 +12,19 @@ namespace BlasII.Randomizer.Items.Shuffle
         /// <summary>
         /// Initializes an empty pool of elements
         /// </summary>
-        public BasePool(int seed)
+        public BasePool(Random rng)
         {
             _elements = new List<T>();
-            _rng = new Random(seed);
+            _rng = rng;
         }
 
         /// <summary>
         /// Initializes a pool with all the elements from a different pool
         /// </summary>
-        public BasePool(BasePool<T> pool, int seed)
+        public BasePool(BasePool<T> pool)
         {
             _elements = new List<T>(pool._elements);
-            _rng = new Random(seed);
+            _rng = pool._rng;
         }
 
         /// <summary>
@@ -95,7 +95,7 @@ namespace BlasII.Randomizer.Items.Shuffle
         {
             for (int i = 0; i < _elements.Count; i++)
             {
-                if (predicate(_elements[i]))
+                if (!predicate(_elements[i]))
                     continue;
 
                 _elements.RemoveAt(i);
@@ -145,15 +145,15 @@ namespace BlasII.Randomizer.Items.Shuffle
 
     internal class ItemPool : BasePool<Item>
     {
-        public ItemPool(int seed) : base(seed) { }
+        public ItemPool(Random rng) : base(rng) { }
 
-        public ItemPool(ItemPool pool, int seed) : base(pool, seed) { }
+        public ItemPool(ItemPool pool) : base(pool) { }
     }
 
     internal class LocationPool : BasePool<ItemLocation>
     {
-        public LocationPool(int seed) : base(seed) { }
+        public LocationPool(Random rng) : base(rng) { }
 
-        public LocationPool(LocationPool pool, int seed) : base(pool, seed) { }
+        public LocationPool(LocationPool pool) : base(pool) { }
     }
 }

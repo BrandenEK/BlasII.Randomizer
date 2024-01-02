@@ -19,7 +19,7 @@ namespace BlasII.Randomizer
 
         public DataStorage Data { get; } = new();
 
-        public ItemHandler ItemHandler { get; } = new(new ItemShufflerReverse());
+        public ItemHandler ItemHandler { get; } = new(new ItemShufflerReverseWithPools());
 
         public RandomizerSettings CurrentSettings { get; set; } = RandomizerSettings.DefaultSettings;
 
@@ -33,7 +33,7 @@ namespace BlasII.Randomizer
             MenuHandler.RegisterNewGameMenu(new RandomizerMenu());
 
             Data.Initialize();
-            ShuffleTest(new ItemShufflerReverse());
+            ShuffleTest(new ItemShufflerReverseWithPools(), 777);
         }
 
         protected override void OnAllInitialized()
@@ -78,9 +78,10 @@ namespace BlasII.Randomizer
 
         // Initial forward: 500/500 (61.2)
         // Initial reverse: 490/500 (25.3)
-        private void ShuffleTest(IShuffler shuffler)
+        // Reverse with pools: 400/500 (21.5)
+        private void ShuffleTest(IShuffler shuffler, int initialSeed)
         {
-            var seedGen = new System.Random(777);
+            var seedGen = new System.Random(initialSeed);
             var output = new Dictionary<string, string>();
             var settings = RandomizerSettings.DefaultSettings;
 
