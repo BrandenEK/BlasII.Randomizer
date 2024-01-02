@@ -1,5 +1,6 @@
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using System.Collections.Generic;
 
 namespace BlasII.Randomizer.Items
 {
@@ -17,6 +18,7 @@ namespace BlasII.Randomizer.Items
         [JsonProperty] public readonly string originalItem;
 
         [JsonProperty] public readonly string logic;
+        [JsonProperty] public readonly Dictionary<string, string> connections;
 
         /// <summary>
         /// If this is a certain type of location, make sure the settings allow it to be shuffled
