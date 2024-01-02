@@ -1,6 +1,7 @@
 ﻿using BlasII.ModdingAPI;
 using BlasII.ModdingAPI.Persistence;
 using BlasII.Randomizer.Items;
+using BlasII.Randomizer.Items.Shuffle;
 using BlasII.Randomizer.Settings;
 using Il2Cpp;
 using Il2CppTGK.Game;
@@ -18,7 +19,7 @@ namespace BlasII.Randomizer
 
         public DataStorage Data { get; } = new();
 
-        public ItemHandler ItemHandler { get; } = new();
+        public ItemHandler ItemHandler { get; } = new(new ItemShufflerReverse());
 
         public RandomizerSettings CurrentSettings { get; set; } = RandomizerSettings.DefaultSettings;
 
@@ -32,7 +33,7 @@ namespace BlasII.Randomizer
             MenuHandler.RegisterNewGameMenu(new RandomizerMenu());
 
             Data.Initialize();
-            //ShuffleTest();
+            ShuffleTest(new ItemShufflerReverse());
         }
 
         protected override void OnAllInitialized()
@@ -77,11 +78,10 @@ namespace BlasII.Randomizer
 
         // Initial forward: 500/500 (61.2)
         // Initial reverse: 490/500 (25.3)
-        private void ShuffleTest()
+        private void ShuffleTest(IShuffler shuffler)
         {
             var seedGen = new System.Random(777);
             var output = new Dictionary<string, string>();
-            var shuffler = new ItemShufflerReverse();
             var settings = RandomizerSettings.DefaultSettings;
 
             int successfulTries = 0, totalTries = 500;

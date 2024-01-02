@@ -2,7 +2,7 @@
 using LogicParser;
 using System.Collections.Generic;
 
-namespace BlasII.Randomizer.Items.Shuffle
+namespace BlasII.Randomizer.Items
 {
     public class Blas2Inventory : InventoryData
     {

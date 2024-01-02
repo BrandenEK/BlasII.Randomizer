@@ -1,10 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace BlasII.Randomizer.Items.Shuffle
 {
-    internal class ItemShuffler : BaseShuffler
+    internal class ItemShuffler : IShuffler
     {
-        public override bool Shuffle(int seed, RandomizerSettings settings, Dictionary<string, string> output)
+        public bool Shuffle(int seed, RandomizerSettings settings, Dictionary<string, string> output)
         {
             output.Clear();
             Initialize(seed);
@@ -183,6 +184,55 @@ namespace BlasII.Randomizer.Items.Shuffle
                 output.Add(location.id, item.id);
                 //Main.Randomizer.Log($"Placing junk item {item.id} at: {location.id}");
             }
+        }
+
+        // Old base shuffler stuff
+
+        private Random rng;
+
+        protected void Initialize(int seed) => rng = new Random(seed);
+
+        protected int RandomInteger(int max) => rng.Next(max);
+
+        protected T RandomElement<T>(List<T> list) => list[RandomInteger(list.Count)];
+
+        protected void ShuffleList<T>(List<T> list)
+        {
+            int upperIdx = list.Count;
+            while (upperIdx > 1)
+            {
+                upperIdx--;
+                int randIdx = RandomInteger(upperIdx + 1);
+                T value = list[randIdx];
+                list[randIdx] = list[upperIdx];
+                list[upperIdx] = value;
+            }
+        }
+
+        protected T RemoveRandom<T>(List<T> list)
+        {
+            int index = RandomInteger(list.Count);
+            T element = list[index];
+
+            list.RemoveAt(index);
+            return element;
+        }
+
+        protected T RemoveRandomFromOther<T>(List<T> list, List<T> other)
+        {
+            T element = RandomElement(list);
+
+            other.Remove(element);
+            return element;
+        }
+
+        protected T RemoveLast<T>(List<T> list)
+        {
+            int index = list.Count - 1;
+            T element = list[index];
+
+            list.RemoveAt(index);
+            return element;
         }
     }
 }

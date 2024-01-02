@@ -1,9 +1,10 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 
 namespace BlasII.Randomizer.Items.Shuffle
 {
-    internal class BasePool<T>
+    internal class BasePool<T> : IEnumerable<T>
     {
         private readonly List<T> _elements;
         private readonly Random _rng;
@@ -11,10 +12,25 @@ namespace BlasII.Randomizer.Items.Shuffle
         /// <summary>
         /// Initializes an empty pool of elements
         /// </summary>
-        public BasePool(Random rng)
+        public BasePool(int seed)
         {
-            _rng = rng;
+            _elements = new List<T>();
+            _rng = new Random(seed);
         }
+
+        /// <summary>
+        /// Initializes a pool with all the elements from a different pool
+        /// </summary>
+        public BasePool(BasePool<T> pool, int seed)
+        {
+            _elements = new List<T>(pool._elements);
+            _rng = new Random(seed);
+        }
+
+        /// <summary>
+        /// The number of elements in the pool
+        /// </summary>
+        public int Size => _elements.Count;
 
         /// <summary>
         /// Adds an element to the end of the pool
@@ -41,6 +57,14 @@ namespace BlasII.Randomizer.Items.Shuffle
         }
 
         /// <summary>
+        /// Removes a specific element from the pool
+        /// </summary>
+        public void Remove(T element)
+        {
+            _elements.Remove(element);
+        }
+
+        /// <summary>
         /// Removes the last element from the pool
         /// </summary>
         public T RemoveLast()
@@ -64,6 +88,50 @@ namespace BlasII.Randomizer.Items.Shuffle
             return element;
         }
 
+        /// <summary>
+        /// Removes all elements matching a certain criteria
+        /// </summary>
+        public void RemoveConditional(Predicate<T> predicate)
+        {
+            for (int i = 0; i < _elements.Count; i++)
+            {
+                if (predicate(_elements[i]))
+                    continue;
+
+                _elements.RemoveAt(i);
+                i--;
+            }
+        }
+
+        /// <summary>
+        /// Moves an element to the beginning of the pool
+        /// </summary>
+        public void MoveToBeginning(T element)
+        {
+            _elements.Remove(element);
+            _elements.Insert(0, element);
+        }
+
+        /// <summary>
+        /// Moves an element to the end of the pool
+        /// </summary>
+        public void MoveToEnd(T element)
+        {
+            _elements.Remove(element);
+            _elements.Add(element);
+        }
+
+        /// <summary>
+        /// Adds all elements in the other pool to this one
+        /// </summary>
+        public void Combine(BasePool<T> pool)
+        {
+            _elements.AddRange(pool);
+        }
+
+        public IEnumerator<T> GetEnumerator() => _elements.GetEnumerator();
+        IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
+
         //protected T RemoveRandomFromOther<T>(List<T> list, List<T> other)
         //{
         //    T element = RandomElement(list);
@@ -77,11 +145,15 @@ namespace BlasII.Randomizer.Items.Shuffle
 
     internal class ItemPool : BasePool<Item>
     {
-        public ItemPool(Random rng) : base(rng) { }
+        public ItemPool(int seed) : base(seed) { }
+
+        public ItemPool(ItemPool pool, int seed) : base(pool, seed) { }
     }
 
     internal class LocationPool : BasePool<ItemLocation>
     {
-        public LocationPool(Random rng) : base(rng) { }
+        public LocationPool(int seed) : base(seed) { }
+
+        public LocationPool(LocationPool pool, int seed) : base(pool, seed) { }
     }
 }
