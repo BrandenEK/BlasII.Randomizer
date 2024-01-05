@@ -2,6 +2,7 @@
 using BlasII.ModdingAPI.Persistence;
 using BlasII.Randomizer.Items;
 using BlasII.Randomizer.Settings;
+using BlasII.Randomizer.Shuffle;
 using Il2Cpp;
 using Il2CppTGK.Game;
 using Il2CppTGK.Game.Components.Interactables;
@@ -18,7 +19,7 @@ namespace BlasII.Randomizer
 
         public DataStorage Data { get; } = new();
 
-        public ItemHandler ItemHandler { get; } = new();
+        public ItemHandler ItemHandler { get; } = new(new PoolsItemShuffler());
 
         public RandomizerSettings CurrentSettings { get; set; } = RandomizerSettings.DefaultSettings;
 
@@ -32,7 +33,9 @@ namespace BlasII.Randomizer
             MenuHandler.RegisterNewGameMenu(new RandomizerMenu());
 
             Data.Initialize();
-            //ShuffleTest();
+            //ShuffleTest(new ForwardItemShuffler(), 777, 500);
+            //ShuffleTest(new ReverseItemShuffler(), 777, 500);
+            //ShuffleTest(new PoolsItemShuffler(), 777, 500);
         }
 
         protected override void OnAllInitialized()
@@ -75,16 +78,21 @@ namespace BlasII.Randomizer
         {
         }
 
+        // Algorithm efficiency
+        // Forward: 500/500 (63.1)
+        // Reverse: 373/500 (27.9)
+        //   Pools: 379/500 (28.0)
+
+        // This is old data before 1.0.0 that allowed false negatives
         // Initial forward: 500/500 (61.2)
         // Initial reverse: 490/500 (25.3)
-        private void ShuffleTest()
+        private void ShuffleTest(IShuffler shuffler, int initialSeed, int totalTries)
         {
-            var seedGen = new System.Random(777);
+            var seedGen = new System.Random(initialSeed);
             var output = new Dictionary<string, string>();
-            var shuffler = new ItemShufflerReverse();
             var settings = RandomizerSettings.DefaultSettings;
 
-            int successfulTries = 0, totalTries = 500;
+            int successfulTries = 0;
             double runningTime = 0;
 
             for (int i = 0; i < totalTries; i++)
@@ -100,7 +108,7 @@ namespace BlasII.Randomizer
             }
 
             LogError($"Successful attempts: {successfulTries}/{totalTries}");
-            LogError($"Average time: {System.Math.Round(runningTime / totalTries, 1)} ms");
+            LogError($"Average time: {System.Math.Round(runningTime / successfulTries, 1)} ms");
         }
 
         protected override void OnNewGame()

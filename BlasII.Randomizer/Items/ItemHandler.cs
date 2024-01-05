@@ -1,3 +1,4 @@
+using BlasII.Randomizer.Shuffle;
 using Il2CppTGK.Game;
 using System.Collections.Generic;
 using System.Text;
@@ -11,7 +12,12 @@ namespace BlasII.Randomizer.Items
         private List<string> _collectedLocations = new();
         private List<string> _collectedItems = new();
 
-        private readonly ItemShufflerReverse _shuffler = new();
+        private readonly IShuffler _shuffler;
+
+        internal ItemHandler(IShuffler shuffler)
+        {
+            _shuffler = shuffler;
+        }
 
         public Item GetItemAtLocation(string locationId)
         {
