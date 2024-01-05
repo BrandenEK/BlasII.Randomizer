@@ -1,3 +1,4 @@
+using BlasII.Randomizer.Shuffle;
 using Il2CppTGK.Game;
 using System.Collections.Generic;
 using System.Text;

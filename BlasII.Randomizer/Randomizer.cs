@@ -1,8 +1,8 @@
 ﻿using BlasII.ModdingAPI;
 using BlasII.ModdingAPI.Persistence;
 using BlasII.Randomizer.Items;
-using BlasII.Randomizer.Items.Shuffle;
 using BlasII.Randomizer.Settings;
+using BlasII.Randomizer.Shuffle;
 using Il2Cpp;
 using Il2CppTGK.Game;
 using Il2CppTGK.Game.Components.Interactables;

@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using BlasII.Randomizer.Items;
 
-namespace BlasII.Randomizer.Items.Shuffle
+namespace BlasII.Randomizer.Shuffle
 {
     internal class BasePool<T> : IEnumerable<T>
     {

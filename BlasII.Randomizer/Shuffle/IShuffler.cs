@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace BlasII.Randomizer
+namespace BlasII.Randomizer.Shuffle
 {
     internal interface IShuffler
     {

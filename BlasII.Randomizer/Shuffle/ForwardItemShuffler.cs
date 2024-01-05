@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using BlasII.Randomizer.Items;
 
-namespace BlasII.Randomizer.Items.Shuffle
+namespace BlasII.Randomizer.Shuffle
 {
     internal class ForwardItemShuffler : IShuffler
     {

@@ -1,5 +1,6 @@
 using BlasII.Randomizer.Doors;
 using BlasII.Randomizer.Items;
+using BlasII.Randomizer.Shuffle;
 using LogicParser;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json;
