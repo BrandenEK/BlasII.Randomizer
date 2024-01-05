@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace BlasII.Randomizer.Items.Shuffle
 {
-    internal class ItemShuffler : IShuffler
+    internal class ForwardItemShuffler : IShuffler
     {
         public bool Shuffle(int seed, RandomizerSettings settings, Dictionary<string, string> output)
         {

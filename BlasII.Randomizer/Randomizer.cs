@@ -33,7 +33,8 @@ namespace BlasII.Randomizer
             MenuHandler.RegisterNewGameMenu(new RandomizerMenu());
 
             Data.Initialize();
-            //ShuffleTest(new ItemShufflerReverseWithPools(), 777);
+            ShuffleTest(new ItemShufflerReverse(), 777, 100);
+            ShuffleTest(new ItemShufflerReverseWithPools(), 777, 100);
         }
 
         protected override void OnAllInitialized()
@@ -79,13 +80,13 @@ namespace BlasII.Randomizer
         // Initial forward: 500/500 (61.2)
         // Initial reverse: 490/500 (25.3)
         // Reverse with pools: 400/500 (21.5)
-        private void ShuffleTest(IShuffler shuffler, int initialSeed)
+        private void ShuffleTest(IShuffler shuffler, int initialSeed, int totalTries)
         {
             var seedGen = new System.Random(initialSeed);
             var output = new Dictionary<string, string>();
             var settings = RandomizerSettings.DefaultSettings;
 
-            int successfulTries = 0, totalTries = 500;
+            int successfulTries = 0;
             double runningTime = 0;
 
             for (int i = 0; i < totalTries; i++)
@@ -101,7 +102,7 @@ namespace BlasII.Randomizer
             }
 
             LogError($"Successful attempts: {successfulTries}/{totalTries}");
-            LogError($"Average time: {System.Math.Round(runningTime / totalTries, 1)} ms");
+            LogError($"Average time: {System.Math.Round(runningTime / successfulTries, 1)} ms");
         }
 
         protected override void OnNewGame()
