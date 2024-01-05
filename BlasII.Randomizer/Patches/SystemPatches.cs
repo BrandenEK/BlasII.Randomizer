@@ -45,9 +45,18 @@ namespace BlasII.Randomizer.Patches
     {
         public static void Prefix(Dialog dialog)
         {
-            Main.Randomizer.Log("Starting dialog: " + dialog.name);
+            Main.Randomizer.Log("Showing dialog: " + dialog.name);
         }
     }
+    [HarmonyPatch(typeof(DialogManager), nameof(DialogManager.ShowDialog), typeof(DialogID), typeof(DialogManager.DialogParameters))]
+    class Dialog_ShowId_Patch
+    {
+        public static void Prefix(DialogID dialogId)
+        {
+            Main.Randomizer.Log("Showing dialog: " + dialogId.name);
+        }
+    }
+
 
     /// <summary>
     /// Always allow upgrading weapons, even without lance

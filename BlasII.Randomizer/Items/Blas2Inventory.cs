@@ -1,9 +1,8 @@
 ﻿using BlasII.Randomizer.Doors;
-using BlasII.Randomizer.Items;
 using LogicParser;
 using System.Collections.Generic;
 
-namespace BlasII.Randomizer.Shuffle
+namespace BlasII.Randomizer.Items
 {
     public class Blas2Inventory : InventoryData
     {

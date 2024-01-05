@@ -1,5 +1,6 @@
 ﻿using BlasII.ModdingAPI.Assets;
 using HarmonyLib;
+using Il2CppPlaymaker.Shop;
 using Il2CppTGK.Game.Components.UI;
 using Il2CppTGK.Game.Managers;
 using Il2CppTGK.Game.ShopSystem;
@@ -138,4 +139,60 @@ namespace BlasII.Randomizer.Patches
             __instance.fadeOutTime = 0;
         }
     }
+
+    //[HarmonyPatch(typeof(Shop), nameof(Shop.AreAllItemsUnlocked))]
+    //class t3
+    //{
+    //    public static void Postfix(ref bool __result)
+    //    {
+    //        Main.Randomizer.Log("Check all unlocked");
+    //        __result = true;
+    //    }
+    //}
+
+    //[HarmonyPatch(typeof(Shop), nameof(Shop.AreAllUnlockedItemsSold))]
+    //class t4
+    //{
+    //    public static void Postfix(ref bool __result)
+    //    {
+    //        Main.Randomizer.Log("Check all sold");
+    //        __result = true;
+    //    }
+    //}
+
+    //[HarmonyPatch(typeof(Shop), nameof(Shop.HasNewConditionToUnlock))]
+    //class t5
+    //{
+    //    public static void Postfix(ref bool __result)
+    //    {
+    //        Main.Randomizer.Log("Check has codnition");
+    //        __result = false;
+    //    }
+    //}
+
+    //[HarmonyPatch(typeof(AreAllItemsSold), nameof(AreAllItemsSold.OnEnter))]
+    //class t
+    //{
+    //    public static bool Prefix(AreAllItemsSold __instance)
+    //    {
+    //        Main.Randomizer.Log("Checkign all items sold for " + __instance.shopId.name);
+
+    //        __instance.Fsm.Event(__instance.yesEvent);
+    //        __instance.Finish();
+    //        return false;
+    //    }
+    //}
+
+    //[HarmonyPatch(typeof(AreAllItemsUnlocked), nameof(AreAllItemsUnlocked.OnEnter))]
+    //class t2
+    //{
+    //    public static bool Prefix(AreAllItemsUnlocked __instance)
+    //    {
+    //        Main.Randomizer.Log("Checkign all items unlocked for " + __instance.shopId.name);
+
+    //        __instance.Fsm.Event(__instance.yesEvent);
+    //        __instance.Finish();
+    //        return false;
+    //    }
+    //}
 }

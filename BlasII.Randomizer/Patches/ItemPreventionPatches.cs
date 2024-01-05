@@ -185,6 +185,20 @@ namespace BlasII.Randomizer.Patches
         }
     }
 
+    [HarmonyPatch(typeof(QuestManager), nameof(QuestManager.GetQuestVarFloatValue))]
+    class QuestManager_GetVarFloat_Patch
+    {
+        public static void Postfix(int questId, int varId, ref float __result)
+        {
+            string scene = CoreCache.Room.CurrentRoom?.Name;
+            string quest = Main.Randomizer.GetQuestName(questId, varId);
+
+            Main.Randomizer.LogWarning($"Getting quest: {quest} ({__result})");
+
+            // No checks yet
+        }
+    }
+
     [HarmonyPatch(typeof(QuestManager), nameof(QuestManager.GetQuestVarValue))]
     class QuestManager_GetVar_Patch
     {
