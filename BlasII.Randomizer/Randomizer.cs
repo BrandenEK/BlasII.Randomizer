@@ -33,7 +33,7 @@ namespace BlasII.Randomizer
             MenuHandler.RegisterNewGameMenu(new RandomizerMenu());
 
             Data.Initialize();
-            ShuffleTest(new ItemShufflerReverseWithPools(), 777);
+            //ShuffleTest(new ItemShufflerReverseWithPools(), 777);
         }
 
         protected override void OnAllInitialized()

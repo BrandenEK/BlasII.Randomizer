@@ -131,16 +131,6 @@ namespace BlasII.Randomizer.Items.Shuffle
 
         public IEnumerator<T> GetEnumerator() => _elements.GetEnumerator();
         IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
-
-        //protected T RemoveRandomFromOther<T>(List<T> list, List<T> other)
-        //{
-        //    T element = RandomElement(list);
-
-        //    other.Remove(element);
-        //    return element;
-        //}
-
-        //private T RandomElement() => _elements[RandomInteger(_elements.Count)];
     }
 
     internal class ItemPool : BasePool<Item>
