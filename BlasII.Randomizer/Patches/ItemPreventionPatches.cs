@@ -149,7 +149,13 @@ namespace BlasII.Randomizer.Patches
             // Always allow the hand to upgrade fervour
             else if (scene == "Z1708" && quest == "ST12.HAND_SECRET")
             {
-                __result = false;
+                __result = __result && Main.Randomizer.GetQuestInt("ST12", "KISSES_DELIVERED") >= 5;
+            }
+
+            // Always allow the extra health from the chalice lady
+            else if (scene == "Z0510" && quest == "ST11.CHALICE_FULL")
+            {
+                __result = true;
             }
 
             if (!quest.StartsWith("ST18"))

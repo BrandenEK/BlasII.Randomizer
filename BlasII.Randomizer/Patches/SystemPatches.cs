@@ -1,6 +1,5 @@
 ﻿using HarmonyLib;
 using Il2CppTGK.Game.Components.Inventory;
-using Il2CppTGK.Game.DialogSystem;
 using Il2CppTGK.Game.Managers;
 using Il2CppTGK.Inventory;
 using System.Reflection;
@@ -36,27 +35,6 @@ namespace BlasII.Randomizer.Patches
             Main.Randomizer.LogWarning($"Setting quest: {Main.Randomizer.GetQuestName(questId, varId)} ({value})");
         }
     }
-
-    /// <summary>
-    /// Logs the id whenever a dialog is started
-    /// </summary>
-    [HarmonyPatch(typeof(DialogManager), nameof(DialogManager.ShowDialogWithObject))]
-    class Dialog_Show_Patch
-    {
-        public static void Prefix(Dialog dialog)
-        {
-            Main.Randomizer.Log("Showing dialog: " + dialog.name);
-        }
-    }
-    [HarmonyPatch(typeof(DialogManager), nameof(DialogManager.ShowDialog), typeof(DialogID), typeof(DialogManager.DialogParameters))]
-    class Dialog_ShowId_Patch
-    {
-        public static void Prefix(DialogID dialogId)
-        {
-            Main.Randomizer.Log("Showing dialog: " + dialogId.name);
-        }
-    }
-
 
     /// <summary>
     /// Always allow upgrading weapons, even without lance
