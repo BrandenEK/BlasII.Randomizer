@@ -1,37 +1,33 @@
 <div align="center">
   <!-- Logo by JimmyDiamonds -->
-  <img src="resources/logo.png">
+  <img src="LOGO.png">
 </div>
 
 ---
 
 <div align="center">
-  <img src="https://img.shields.io/github/v/release/BrandenEK/BlasII.Randomizer?style=for-the-badge">
-  <img src="https://img.shields.io/github/last-commit/BrandenEK/BlasII.Randomizer?color=important&style=for-the-badge">
-  <img src="https://img.shields.io/github/downloads/BrandenEK/BlasII.Randomizer/total?color=success&style=for-the-badge">
+  <img src="https://img.shields.io/github/v/release/BrandenEK/BlasII.Randomizer?style=for-the-badge&color=2857AB">
+  <img src="https://img.shields.io/github/last-commit/BrandenEK/BlasII.Randomizer?style=for-the-badge&color=AB2857">
+  <img src="https://img.shields.io/github/downloads/BrandenEK/BlasII.Randomizer/total?style=for-the-badge&color=57AB28">
 </div>
 
 ---
 
 ## Contributors
 
-A very special thank you to everyone who has helped with the randomizer
-
-***- Programming -*** <br>
-[@BrandenEK](https://github.com/BrandenEK)
-
-***- Gameplay and design -*** <br>
+***- Programming and design -*** <br>
 [@BrandenEK](https://github.com/BrandenEK), [@LuceScarlet](https://github.com/LuceScarlet)
 
-***- Logic development and testing -*** <br>
-[@Chemigoku](https://github.com/Chemigoku), [@Guuiil](https://github.com/Guuiil), [@PHAredes](https://github.com/PHAredes), [@thymemanagement](https://github.com/thymemanagement), [@Xanathar865](https://github.com/Xanathar865)
-
-***- Images and UI -*** <br>
+***- Artwork -*** <br>
 [@JimmyDiamonds](https://github.com/JimmyDiamonds), [@rcvrdt](https://github.com/rcvrdt)
+<!-- Expected: Luce -->
 
 ***- Translations -*** <br>
 [@LuceScarlet](https://github.com/LuceScarlet), [@Guuiil](https://github.com/Guuiil), [@PHAredes](https://github.com/PHAredes)
 <!-- Expected: Elton -->
+
+***- Logic development and testing -*** <br>
+[@Chemigoku](https://github.com/Chemigoku), [@Guuiil](https://github.com/Guuiil), [@PHAredes](https://github.com/PHAredes), [@thymemanagement](https://github.com/thymemanagement), [@Xanathar865](https://github.com/Xanathar865)
 
 ---
 
