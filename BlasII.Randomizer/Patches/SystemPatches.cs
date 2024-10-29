@@ -5,90 +5,89 @@ using Il2CppTGK.Game.Managers;
 using Il2CppTGK.Inventory;
 using System.Reflection;
 
-namespace BlasII.Randomizer.Patches
+namespace BlasII.Randomizer.Patches;
+
+/// <summary>
+/// Log when a quest flag is being set
+/// </summary>
+[HarmonyPatch]
+class QuestManager_SetQuestBool_Patch
 {
-    /// <summary>
-    /// Log when a quest flag is being set
-    /// </summary>
-    [HarmonyPatch]
-    class QuestManager_SetQuestBool_Patch
+    public static MethodInfo TargetMethod()
     {
-        public static MethodInfo TargetMethod()
-        {
-            return typeof(QuestManager).GetMethod("SetQuestVarValue").MakeGenericMethod(typeof(bool));
-        }
-
-        public static void Postfix(int questId, int varId, bool value)
-        {
-            Main.Randomizer.LogWarning($"Setting quest: {Main.Randomizer.GetQuestName(questId, varId)} ({value})");
-        }
-    }
-    [HarmonyPatch]
-    class QuestManager_SetQuestInt_Patch
-    {
-        public static MethodInfo TargetMethod()
-        {
-            return typeof(QuestManager).GetMethod("SetQuestVarValue").MakeGenericMethod(typeof(int));
-        }
-
-        public static void Postfix(int questId, int varId, int value)
-        {
-            Main.Randomizer.LogWarning($"Setting quest: {Main.Randomizer.GetQuestName(questId, varId)} ({value})");
-        }
+        return typeof(QuestManager).GetMethod("SetQuestVarValue").MakeGenericMethod(typeof(bool));
     }
 
-    /// <summary>
-    /// Logs the id whenever a dialog is started
-    /// </summary>
-    [HarmonyPatch(typeof(DialogManager), nameof(DialogManager.ShowDialogWithObject))]
-    class Dialog_Show_Patch
+    public static void Postfix(int questId, int varId, bool value)
     {
-        public static void Prefix(Dialog dialog)
-        {
-            Main.Randomizer.Log("Starting dialog: " + dialog.name);
-        }
+        Main.Randomizer.LogWarning($"Setting quest: {Main.Randomizer.GetQuestName(questId, varId)} ({value})");
+    }
+}
+[HarmonyPatch]
+class QuestManager_SetQuestInt_Patch
+{
+    public static MethodInfo TargetMethod()
+    {
+        return typeof(QuestManager).GetMethod("SetQuestVarValue").MakeGenericMethod(typeof(int));
     }
 
-    /// <summary>
-    /// Always allow upgrading weapons, even without lance
-    /// </summary>
-    [HarmonyPatch(typeof(InventoryComponent), nameof(InventoryComponent.HasItem))]
-    class Inventory_HasItem_Patch
+    public static void Postfix(int questId, int varId, int value)
     {
-        public static void Postfix(ItemID itemID, ref bool __result)
-        {
-            __result = __result || itemID.name == "QI70" && Main.Randomizer.GetQuestBool("ST00", "WEAPON_EVENT");
-        }
+        Main.Randomizer.LogWarning($"Setting quest: {Main.Randomizer.GetQuestName(questId, varId)} ({value})");
     }
+}
 
-    /// <summary>
-    /// When reloading a boss room after the fight, force deactivate it to prevent camera lock
-    /// </summary>
-    [HarmonyPatch(typeof(RoomManager), nameof(RoomManager.ChangeRoom))]
-    class Room_Change_Patch
+/// <summary>
+/// Logs the id whenever a dialog is started
+/// </summary>
+[HarmonyPatch(typeof(DialogManager), nameof(DialogManager.ShowDialogWithObject))]
+class Dialog_Show_Patch
+{
+    public static void Prefix(Dialog dialog)
     {
-        public static void Prefix(int roomHash, ref bool forceDeactivate)
+        Main.Randomizer.Log("Starting dialog: " + dialog.name);
+    }
+}
+
+/// <summary>
+/// Always allow upgrading weapons, even without lance
+/// </summary>
+[HarmonyPatch(typeof(InventoryComponent), nameof(InventoryComponent.HasItem))]
+class Inventory_HasItem_Patch
+{
+    public static void Postfix(ItemID itemID, ref bool __result)
+    {
+        __result = __result || itemID.name == "QI70" && Main.Randomizer.GetQuestBool("ST00", "WEAPON_EVENT");
+    }
+}
+
+/// <summary>
+/// When reloading a boss room after the fight, force deactivate it to prevent camera lock
+/// </summary>
+[HarmonyPatch(typeof(RoomManager), nameof(RoomManager.ChangeRoom))]
+class Room_Change_Patch
+{
+    public static void Prefix(int roomHash, ref bool forceDeactivate)
+    {
+        foreach (int room in bossRooms)
         {
-            foreach (int room in bossRooms)
+            if (roomHash == room)
             {
-                if (roomHash == room)
-                {
-                    Main.Randomizer.Log("Force deactivating boss room");
-                    forceDeactivate = true;
-                }
+                Main.Randomizer.Log("Force deactivating boss room");
+                forceDeactivate = true;
             }
         }
-
-        private static readonly int[] bossRooms =
-        {
-            129108797,
-            -1436975306,
-            129108570,
-            // 1574233179, Causes missing fog vfx
-            // Benedicta changes rooms
-            -133013164,
-            1433070649,
-            1433070681,
-        };
     }
+
+    private static readonly int[] bossRooms =
+    {
+        129108797,
+        -1436975306,
+        129108570,
+        // 1574233179, Causes missing fog vfx
+        // Benedicta changes rooms
+        -133013164,
+        1433070649,
+        1433070681,
+    };
 }

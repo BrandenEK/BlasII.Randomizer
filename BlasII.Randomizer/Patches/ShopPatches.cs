@@ -8,134 +8,133 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace BlasII.Randomizer.Patches
+namespace BlasII.Randomizer.Patches;
+
+[HarmonyPatch(typeof(Shop), nameof(Shop.CacheData))]
+class Shop_Cache_Path
 {
-    [HarmonyPatch(typeof(Shop), nameof(Shop.CacheData))]
-    class Shop_Cache_Path
+    public static void Postfix(Shop __instance)
     {
-        public static void Postfix(Shop __instance)
+        // Clear all previous items from list
+        __instance.cachedIds.Clear();
+        __instance.cachedShopDataById.Clear();
+        __instance.cachedShopDataByType.Clear();
+        __instance.orbs.Clear();
+
+        // Get list of costs based on shop id
+        int[] costs;
+
+        switch (__instance.name)
         {
-            // Clear all previous items from list
-            __instance.cachedIds.Clear();
-            __instance.cachedShopDataById.Clear();
-            __instance.cachedShopDataByType.Clear();
-            __instance.orbs.Clear();
+            // Always same items, sorted by cost
+            case "SHOPHAND":
+                costs = new int[]
+                {
+                    3000, 3000, 3000, 3000, 3000, 3000, 3000, 6000, 12000, 12000, 17500, 32000
+                };
+                break;
+            // Always same items, sorted by cost
+            case "SHOPMISSABLES":
+                costs = new int[]
+                {
+                    6000, 6000, 6000, 6000, 12000, 12000, 12000
+                };
+                break;
+            // More items added for each location, sorted by cost
+            case "SHOPITINERANT":
+                var list = new List<int>
+                {
+                    3000, 3000
+                };
 
-            // Get list of costs based on shop id
-            int[] costs;
+                if (Main.Randomizer.GetQuestBool("ST06", "Z09_VISITED"))
+                    list.Add(6000);
+                if (Main.Randomizer.GetQuestBool("ST06", "Z05_VISITED"))
+                    list.Add(6000);
+                if (Main.Randomizer.GetQuestBool("ST06", "Z11_VISITED"))
+                    list.Add(6000);
+                if (Main.Randomizer.GetQuestBool("ST06", "Z12_VISITED"))
+                    list.Add(6000);
+                if (Main.Randomizer.GetQuestBool("ST06", "Z01_VISITED"))
+                    list.Add(12000);
+                if (Main.Randomizer.GetQuestBool("ST06", "Z10_VISITED"))
+                    list.Add(17500);
 
-            switch (__instance.name)
-            {
-                // Always same items, sorted by cost
-                case "SHOPHAND":
-                    costs = new int[]
-                    {
-                        3000, 3000, 3000, 3000, 3000, 3000, 3000, 6000, 12000, 12000, 17500, 32000
-                    };
-                    break;
-                // Always same items, sorted by cost
-                case "SHOPMISSABLES":
-                    costs = new int[]
-                    {
-                        6000, 6000, 6000, 6000, 12000, 12000, 12000
-                    };
-                    break;
-                // More items added for each location, sorted by cost
-                case "SHOPITINERANT":
-                    var list = new List<int>
-                    {
-                        3000, 3000
-                    };
+                costs = list.ToArray();
+                break;
 
-                    if (Main.Randomizer.GetQuestBool("ST06", "Z09_VISITED"))
-                        list.Add(6000);
-                    if (Main.Randomizer.GetQuestBool("ST06", "Z05_VISITED"))
-                        list.Add(6000);
-                    if (Main.Randomizer.GetQuestBool("ST06", "Z11_VISITED"))
-                        list.Add(6000);
-                    if (Main.Randomizer.GetQuestBool("ST06", "Z12_VISITED"))
-                        list.Add(6000);
-                    if (Main.Randomizer.GetQuestBool("ST06", "Z01_VISITED"))
-                        list.Add(12000);
-                    if (Main.Randomizer.GetQuestBool("ST06", "Z10_VISITED"))
-                        list.Add(17500);
-
-                    costs = list.ToArray();
-                    break;
-
-                default:
-                    Main.Randomizer.LogError("Opening invalid shop!");
-                    costs = System.Array.Empty<int>();
-                    break;
-            }
-
-            // Add orbs for each price
-            foreach (int cost in costs)
-                __instance.orbs.Add(cost);
-            Main.Randomizer.Log("Updating items for: " + __instance.name);
+            default:
+                Main.Randomizer.LogError("Opening invalid shop!");
+                costs = System.Array.Empty<int>();
+                break;
         }
+
+        // Add orbs for each price
+        foreach (int cost in costs)
+            __instance.orbs.Add(cost);
+        Main.Randomizer.Log("Updating items for: " + __instance.name);
     }
+}
 
-    /// <summary>
-    /// When purchasing an "orb" instead give the random item
-    /// </summary>
-    [HarmonyPatch(typeof(ShopManager), nameof(ShopManager.SellOrb))]
-    class Shop_Sell_Patch
+/// <summary>
+/// When purchasing an "orb" instead give the random item
+/// </summary>
+[HarmonyPatch(typeof(ShopManager), nameof(ShopManager.SellOrb))]
+class Shop_Sell_Patch
+{
+    public static void Postfix(Shop shop, int orbIdx)
     {
-        public static void Postfix(Shop shop, int orbIdx)
-        {
-            string locationId = $"{shop.name}.o{orbIdx}";
-            Main.Randomizer.LogError("ShopManager.SellOrb - " + locationId);
+        string locationId = $"{shop.name}.o{orbIdx}";
+        Main.Randomizer.LogError("ShopManager.SellOrb - " + locationId);
 
-            Main.Randomizer.ItemHandler.GiveItemAtLocation(locationId);
+        Main.Randomizer.ItemHandler.GiveItemAtLocation(locationId);
 
-            // When selling an "orb", it still displays and give an orb.  So take one away from the player, and patch the display method
-            AssetStorage.PlayerStats.AddToCurrentValue(AssetStorage.ValueStats["Orbs"], -1);
-        }
+        // When selling an "orb", it still displays and give an orb.  So take one away from the player, and patch the display method
+        AssetStorage.PlayerStats.AddToCurrentValue(AssetStorage.ValueStats["Orbs"], -1);
     }
+}
 
-    /// <summary>
-    /// When opening the shop or purchasing an item, update this item's name and description
-    /// </summary>
-    [HarmonyPatch(typeof(ShopListItem), nameof(ShopListItem.SetData))]
-    class Shop_Text_Patch
+/// <summary>
+/// When opening the shop or purchasing an item, update this item's name and description
+/// </summary>
+[HarmonyPatch(typeof(ShopListItem), nameof(ShopListItem.SetData))]
+class Shop_Text_Patch
+{
+    public static void Postfix(ShopListItem __instance)
     {
-        public static void Postfix(ShopListItem __instance)
-        {
-            string locationId = $"{Object.FindObjectOfType<ShopWindowLogic>().currentShop.name}.o{__instance.OrbIdx}";
+        string locationId = $"{Object.FindObjectOfType<ShopWindowLogic>().currentShop.name}.o{__instance.OrbIdx}";
 
-            var item = Main.Randomizer.ItemHandler.GetItemAtLocation(locationId);
-            __instance.Caption = item.Upgraded.DisplayName;
-            __instance.Description = item.Upgraded.Description;
-        }
+        var item = Main.Randomizer.ItemHandler.GetItemAtLocation(locationId);
+        __instance.Caption = item.Upgraded.DisplayName;
+        __instance.Description = item.Upgraded.Description;
     }
+}
 
-    /// <summary>
-    /// When opening the shop or purchasing an item, update this item's image
-    /// </summary>
-    [HarmonyPatch(typeof(ShopWindowLogic), nameof(ShopWindowLogic.OnCreateListItem))]
-    class Shop_Image_Patch
+/// <summary>
+/// When opening the shop or purchasing an item, update this item's image
+/// </summary>
+[HarmonyPatch(typeof(ShopWindowLogic), nameof(ShopWindowLogic.OnCreateListItem))]
+class Shop_Image_Patch
+{
+    public static void Postfix(UINavigableScrollableList.ScrollableListData data)
     {
-        public static void Postfix(UINavigableScrollableList.ScrollableListData data)
-        {
-            string locationId = $"{Object.FindObjectOfType<ShopWindowLogic>().currentShop.name}.o{data.obj.GetComponent<ShopListItem>().OrbIdx}";
+        string locationId = $"{Object.FindObjectOfType<ShopWindowLogic>().currentShop.name}.o{data.obj.GetComponent<ShopListItem>().OrbIdx}";
 
-            var item = Main.Randomizer.ItemHandler.GetItemAtLocation(locationId);
-            data.obj.transform.Find("Image").GetComponent<Image>().sprite = item.Upgraded.Image;
-        }
+        var item = Main.Randomizer.ItemHandler.GetItemAtLocation(locationId);
+        data.obj.transform.Find("Image").GetComponent<Image>().sprite = item.Upgraded.Image;
     }
+}
 
-    /// <summary>
-    /// When displaying an orb item, instantly hide it
-    /// </summary>
-    [HarmonyPatch(typeof(OrbsRewardPopupLogic), nameof(OrbsRewardPopupLogic.ShowPopup))]
-    class Shop_Display_Patch
+/// <summary>
+/// When displaying an orb item, instantly hide it
+/// </summary>
+[HarmonyPatch(typeof(OrbsRewardPopupLogic), nameof(OrbsRewardPopupLogic.ShowPopup))]
+class Shop_Display_Patch
+{
+    public static void Prefix(OrbsRewardPopupLogic __instance)
     {
-        public static void Prefix(OrbsRewardPopupLogic __instance)
-        {
-            __instance.timeToShowMessage = 0;
-            __instance.fadeInTime = 0;
-            __instance.fadeOutTime = 0;
-        }
+        __instance.timeToShowMessage = 0;
+        __instance.fadeInTime = 0;
+        __instance.fadeOutTime = 0;
     }
 }

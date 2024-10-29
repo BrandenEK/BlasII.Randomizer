@@ -9,89 +9,88 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 
-namespace BlasII.Randomizer.Tests
+namespace BlasII.Randomizer.Tests;
+
+[TestClass]
+public class LogicTests
 {
-    [TestClass]
-    public class LogicTests
+    private static readonly Dictionary<string, Item> _allItems = new();
+    private static readonly Dictionary<string, ItemLocation> _allItemLocations = new();
+    private static readonly Dictionary<string, DoorLocation> _allDoors = new();
+
+    private Blas2Inventory inventory;
+
+    [ClassInitialize]
+    public static void LoadJsonData(TestContext context)
     {
-        private static readonly Dictionary<string, Item> _allItems = new();
-        private static readonly Dictionary<string, ItemLocation> _allItemLocations = new();
-        private static readonly Dictionary<string, DoorLocation> _allDoors = new();
+        string dataFolder = "../../../../resources/data/Randomizer/";
 
-        private Blas2Inventory inventory;
+        string items = File.ReadAllText(dataFolder + "items.json");
+        foreach (var item in JsonConvert.DeserializeObject<Item[]>(items))
+            _allItems.Add(item.id, item);
 
-        [ClassInitialize]
-        public static void LoadJsonData(TestContext context)
+        string itemLocations = File.ReadAllText(dataFolder + "item-locations.json");
+        foreach (var itemLocation in JsonConvert.DeserializeObject<ItemLocation[]>(itemLocations))
+            _allItemLocations.Add(itemLocation.id, itemLocation);
+
+        string doors = File.ReadAllText(dataFolder + "doors.json");
+        foreach (var door in JsonConvert.DeserializeObject<DoorLocation[]>(doors))
+            _allDoors.Add(door.id, door);
+    }
+
+    [TestInitialize]
+    public void CreateInventory()
+    {
+        inventory = new Blas2Inventory(RandomizerSettings.DefaultSettings, _allDoors);
+    }
+
+    [TestMethod]
+    public void FindErrorsInDoorLogic()
+    {
+        var sb = new StringBuilder(Environment.NewLine);
+        bool invalid = false;
+
+        foreach (var door in _allDoors.Values)
         {
-            string dataFolder = "../../../../resources/data/Randomizer/";
-
-            string items = File.ReadAllText(dataFolder + "items.json");
-            foreach (var item in JsonConvert.DeserializeObject<Item[]>(items))
-                _allItems.Add(item.id, item);
-
-            string itemLocations = File.ReadAllText(dataFolder + "item-locations.json");
-            foreach (var itemLocation in JsonConvert.DeserializeObject<ItemLocation[]>(itemLocations))
-                _allItemLocations.Add(itemLocation.id, itemLocation);
-
-            string doors = File.ReadAllText(dataFolder + "doors.json");
-            foreach (var door in JsonConvert.DeserializeObject<DoorLocation[]>(doors))
-                _allDoors.Add(door.id, door);
-        }
-
-        [TestInitialize]
-        public void CreateInventory()
-        {
-            inventory = new Blas2Inventory(RandomizerSettings.DefaultSettings, _allDoors);
-        }
-
-        [TestMethod]
-        public void FindErrorsInDoorLogic()
-        {
-            var sb = new StringBuilder(Environment.NewLine);
-            bool invalid = false;
-
-            foreach (var door in _allDoors.Values)
+            try
             {
-                try
-                {
-                    inventory.Evaluate(door.logic);
-                }
-                catch (LogicParserException e)
-                {
-                    sb.AppendLine($"[{door.id}] {e.Message}");
-                    invalid = true;
-                }
+                inventory.Evaluate(door.logic);
             }
-
-            if (invalid)
+            catch (LogicParserException e)
             {
-                throw new LogicParserException(sb.ToString());
+                sb.AppendLine($"[{door.id}] {e.Message}");
+                invalid = true;
             }
         }
 
-        [TestMethod]
-        public void FindErrorsInLocationLogic()
+        if (invalid)
         {
-            var sb = new StringBuilder(Environment.NewLine);
-            bool invalid = false;
+            throw new LogicParserException(sb.ToString());
+        }
+    }
 
-            foreach (var itemLocation in _allItemLocations.Values)
-            {
-                try
-                {
-                    inventory.Evaluate(itemLocation.logic);
-                }
-                catch (LogicParserException e)
-                {
-                    sb.AppendLine($"[{itemLocation.id}] {e.Message}");
-                    invalid = true;
-                }
-            }
+    [TestMethod]
+    public void FindErrorsInLocationLogic()
+    {
+        var sb = new StringBuilder(Environment.NewLine);
+        bool invalid = false;
 
-            if (invalid)
+        foreach (var itemLocation in _allItemLocations.Values)
+        {
+            try
             {
-                throw new LogicParserException(sb.ToString());
+                inventory.Evaluate(itemLocation.logic);
             }
+            catch (LogicParserException e)
+            {
+                sb.AppendLine($"[{itemLocation.id}] {e.Message}");
+                invalid = true;
+            }
+        }
+
+        if (invalid)
+        {
+            throw new LogicParserException(sb.ToString());
         }
     }
 }

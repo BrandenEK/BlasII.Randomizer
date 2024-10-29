@@ -1,18 +1,17 @@
 
-namespace BlasII.Randomizer.Enemies
+namespace BlasII.Randomizer.Enemies;
+
+public class Enemy
 {
-    public class Enemy
+    public readonly string id;
+
+    public readonly EnemyType type;
+
+    public enum EnemyType
     {
-        public readonly string id;
-
-        public readonly EnemyType type;
-
-        public enum EnemyType
-        {
-            Normal,
-            Flying,
-            Large,
-            Vanilla,
-        }
+        Normal,
+        Flying,
+        Large,
+        Vanilla,
     }
 }
