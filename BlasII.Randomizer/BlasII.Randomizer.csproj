@@ -2,6 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
+    <LangVersion>latest</LangVersion>
 
     <Title>Randomizer</Title>
     <Product>Randomizer</Product>
@@ -12,49 +13,41 @@
     
     <TargetName>Randomizer</TargetName>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <GenerateDocumentationFile>True</GenerateDocumentationFile>
+    <DocumentationFile>bin\$(Configuration)\$(TargetName).xml</DocumentationFile>
     <RepositoryUrl>https://github.com/BrandenEK/BlasII.Randomizer</RepositoryUrl>
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
   </PropertyGroup>
   
   <ItemGroup>
+    <PackageReference Include="BlasII.GameLibs" Version="1.1.0" />
     <PackageReference Include="BlasII.ModdingAPI" Version="0.8.3" />
-    <PackageReference Include="BlasII.ModdingReferences" Version="1.1.0.2" />
     <PackageReference Include="LogicParser" Version="1.1.0" />
   </ItemGroup>
 
   <Target Name="Development" AfterTargets="PostBuildEvent">
 
-    <!-- Get resource files -->
-    <PropertyGroup>
-      <ResourcesFolder>$(SolutionDir)resources\</ResourcesFolder>
-    </PropertyGroup>
+    <!-- Get plugin & resources -->
     <ItemGroup>
-      <DataDlls Include="$(ResourcesFolder)data\*" />
-      <DataFiles Include="$(ResourcesFolder)data\$(Product)\*" />
-      <Levels Include="$(ResourcesFolder)levels\$(Product)\*" />
-      <Localization Include="$(ResourcesFolder)localization\*" />
+      <PluginDll Include="$(TargetPath)" />
+      <Resources Include="$(SolutionDir)\resources\**\*.*" />
     </ItemGroup>
 
-    <!-- Copy plugin & resources to development folder -->
+    <!-- Get export directories -->
     <PropertyGroup>
       <DevFolder>C:\Program Files (x86)\Steam\steamapps\common\Blasphemous 2\Modding\</DevFolder>
+      <PublishFolder>$(SolutionDir)\publish\$(TargetName)</PublishFolder>
     </PropertyGroup>
-    <Copy SourceFiles="$(TargetPath)" DestinationFolder="$(DevFolder)plugins" />
-    <Copy SourceFiles="@(DataDlls)" DestinationFolder="$(DevFolder)data" />
-    <Copy SourceFiles="@(DataFiles)" DestinationFolder="$(DevFolder)data\$(Product)" />
-    <Copy SourceFiles="@(Levels)" DestinationFolder="$(DevFolder)levels\$(Product)" />
-    <Copy SourceFiles="@(Localization)" DestinationFolder="$(DevFolder)localization" />
 
-    <!-- Export & zip all mod files -->
-    <PropertyGroup>
-      <ExportFolder>$(SolutionDir)publish\$(TargetName)\</ExportFolder>
-    </PropertyGroup>
-    <Copy SourceFiles="$(TargetPath)" DestinationFolder="$(ExportFolder)plugins" />
-    <Copy SourceFiles="@(DataDlls)" DestinationFolder="$(ExportFolder)data" />
-    <Copy SourceFiles="@(DataFiles)" DestinationFolder="$(ExportFolder)data\$(Product)" />
-    <Copy SourceFiles="@(Levels)" DestinationFolder="$(ExportFolder)levels\$(Product)" />
-    <Copy SourceFiles="@(Localization)" DestinationFolder="$(ExportFolder)localization" />
-    <ZipDirectory SourceDirectory="$(ExportFolder)" DestinationFile="$(ExportFolder)..\$(TargetName).zip" Overwrite="true" />
+    <!-- Export to dev folder -->
+    <Copy SourceFiles="@(Resources)" DestinationFolder="$(DevFolder)\%(RecursiveDir)" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(PluginDll)" DestinationFolder="$(DevFolder)\plugins" SkipUnchangedFiles="true" />
+
+    <!-- Export to publish folder -->
+    <RemoveDir Directories="$(PublishFolder)" />
+    <Copy SourceFiles="@(Resources)" DestinationFolder="$(PublishFolder)\%(RecursiveDir)" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(PluginDll)" DestinationFolder="$(PublishFolder)\plugins" SkipUnchangedFiles="true" />
+    <ZipDirectory SourceDirectory="$(PublishFolder)" DestinationFile="$(PublishFolder)\..\$(TargetName).zip" Overwrite="true" />
 
   </Target>
 
@@ -63,7 +56,7 @@
     <!-- Create ModInfo class from relevant data -->
     <PropertyGroup>
       <GeneratedText>
-        <![CDATA[ namespace $(RootNamespace) { public static class ModInfo { public const string MOD_ID = "$(AssemblyName)"%3B public const string MOD_NAME = "$(Product)"%3B public const string MOD_AUTHOR = "$(Company)"%3B public const string MOD_VERSION = "$(Version)"%3B } } ]]>
+        <![CDATA[ namespace $(RootNamespace) { internal static class ModInfo { public const string MOD_ID = "$(AssemblyName)"%3B public const string MOD_NAME = "$(Product)"%3B public const string MOD_AUTHOR = "$(Company)"%3B public const string MOD_VERSION = "$(Version)"%3B } } ]]>
       </GeneratedText>
       <GeneratedFilePath>$(IntermediateOutputPath)ModInfo.cs</GeneratedFilePath>
     </PropertyGroup>
