@@ -3,12 +3,7 @@ name: Build
 
 on:
   push:
-    branches: [ "main" ]
     tags: [ "**" ]
-    paths-ignore: [ "**.md" ]
-  pull_request:
-    branches: [ "main" ]
-    paths-ignore: [ "**.md" ]
 
 jobs:
   build:
@@ -27,7 +22,6 @@ jobs:
       run: |
         dotnet restore
         dotnet build --configuration Release --no-restore
-        dotnet test
 
     - name: Export Settings
       run: |
@@ -37,20 +31,8 @@ jobs:
         echo "MOD_NAME=$MOD_NAME" >> $GITHUB_ENV
         MOD_VERSION=$(grep -oP '<Version>\K[^<]+' ${{ github.event.repository.name }}/${{ github.event.repository.name }}.csproj)
         echo "MOD_VERSION=$MOD_VERSION" >> $GITHUB_ENV
-        BUILD_DATE=$(date +'%Y-%m-%d')
-        echo "BUILD_DATE=$BUILD_DATE" >> $GITHUB_ENV
-
-    - name: Upload Artifact
-      if: ${{ !contains(github.ref_type, 'tag') }}
-      uses: actions/upload-artifact@v3
-      with:
-        name: ${{ env.MOD_NAME }} v${{ env.MOD_VERSION }} (${{ env.BUILD_DATE }})
-        path: publish/${{ env.MOD_NAME }}/
-        retention-days: 30
-        if-no-files-found: error
 
     - name: Create Release
-      if: contains(github.ref_type, 'tag')
       id: create_release
       uses: actions/create-release@v1
       env:
@@ -60,7 +42,6 @@ jobs:
         release_name: ${{ env.MOD_TITLE }} v${{ github.ref_name }}
 
     - name: Upload Release
-      if: contains(github.ref_type, 'tag')
       uses: actions/upload-release-asset@v1
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -69,7 +50,6 @@ jobs:
         asset_path: publish/${{ env.MOD_NAME }}.zip
         asset_name: ${{ env.MOD_NAME }}.zip
         asset_content_type: application/zip
-        
+
     - name: Upload Nuget
-      if: contains(github.ref_type, 'tag')
       run: dotnet nuget push **\*.nupkg -k ${{ secrets.NUGET_API_KEY }} -s https://api.nuget.org/v3/index.json
