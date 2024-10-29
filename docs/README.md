@@ -54,4 +54,4 @@ A full breakdown of all the available settings can be found [here](SETTINGS.md)
 
 ### Installation
 This mod is available for download through the [Blasphemous Mod Installer](https://github.com/BrandenEK/Blasphemous.Modding.Installer)
-- Required dependencies: Modding API, Menu Framework, UI Framework
+- Required dependencies: Modding API, Menu Framework, UI Framework, Quality of Life
