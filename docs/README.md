@@ -31,7 +31,7 @@
 
 ---
 
-## Useful Info
+### Useful Info
 - Currently works with both version 1.0.5 and 1.1.0
 - In order to avoid softlocks, it is recommended to use the Save & Quit mod
 - The Quality of Life mod is required for various mechanics to function correctly
@@ -39,12 +39,12 @@
 
 ---
 
-## Randomizer Settings
+### Randomizer Settings
 A full breakdown of all the available settings can be found [here](SETTINGS.md)
 
 ---
 
-## Gameplay Differences
+### Gameplay Differences
 - All regions of the game are unlocked from the beginning, though you will still need movement items to reach them
 - The door to Crimson Rains will be unlocked after obtaining a certain number of keys, specified in your settings
 - Weapon memories can be purchased from the beginning, the lance is no longer necessary
@@ -52,6 +52,6 @@ A full breakdown of all the available settings can be found [here](SETTINGS.md)
 
 ---
 
-## Installation
+### Installation
 This mod is available for download through the [Blasphemous Mod Installer](https://github.com/BrandenEK/Blasphemous.Modding.Installer)
 - Required dependencies: Modding API, Menu Framework, UI Framework
