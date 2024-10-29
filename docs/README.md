@@ -39,8 +39,12 @@
 
 ---
 
-## Gameplay Differences
+## Randomizer Settings
+A full breakdown of all the available settings can be found [here](SETTINGS.md)
 
+---
+
+## Gameplay Differences
 - All regions of the game are unlocked from the beginning, though you will still need movement items to reach them
 - The door to Crimson Rains will be unlocked after obtaining a certain number of keys, specified in your settings
 - Weapon memories can be purchased from the beginning, the lance is no longer necessary
@@ -90,11 +94,10 @@
 ---
 
 ## Logic Difficulty
-
 Currently there are no differences between difficulty settings
 
 ---
 
 ## Installation
-
-Can be downloaded automatically through the <a href="https://github.com/BrandenEK/Blasphemous-Mod-Installer"> Mod Installer
+This mod is available for download through the [Blasphemous Mod Installer](https://github.com/BrandenEK/Blasphemous.Modding.Installer)
+- Required dependencies: Modding API, Menu Framework, UI Framework
