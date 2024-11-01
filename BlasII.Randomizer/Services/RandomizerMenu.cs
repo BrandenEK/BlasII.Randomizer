@@ -2,7 +2,7 @@
 using BlasII.Framework.Menus.Options;
 using UnityEngine;
 
-namespace BlasII.Randomizer.Settings;
+namespace BlasII.Randomizer.Services;
 
 public class RandomizerMenu : ModMenu
 {

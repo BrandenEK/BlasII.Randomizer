@@ -3,7 +3,7 @@ using BlasII.ModdingAPI;
 using BlasII.ModdingAPI.Helpers;
 using BlasII.ModdingAPI.Persistence;
 using BlasII.Randomizer.Items;
-using BlasII.Randomizer.Settings;
+using BlasII.Randomizer.Services;
 using BlasII.Randomizer.Shuffle;
 using Il2Cpp;
 using Il2CppTGK.Game;
