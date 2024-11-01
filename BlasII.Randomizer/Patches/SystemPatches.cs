@@ -1,4 +1,5 @@
-﻿using HarmonyLib;
+﻿using BlasII.ModdingAPI;
+using HarmonyLib;
 using Il2CppTGK.Game.Components.Inventory;
 using Il2CppTGK.Game.DialogSystem;
 using Il2CppTGK.Game.Managers;
@@ -20,7 +21,7 @@ class QuestManager_SetQuestBool_Patch
 
     public static void Postfix(int questId, int varId, bool value)
     {
-        Main.Randomizer.LogWarning($"Setting quest: {Main.Randomizer.GetQuestName(questId, varId)} ({value})");
+        ModLog.Warn($"Setting quest: {Main.Randomizer.GetQuestName(questId, varId)} ({value})");
     }
 }
 [HarmonyPatch]
@@ -33,7 +34,7 @@ class QuestManager_SetQuestInt_Patch
 
     public static void Postfix(int questId, int varId, int value)
     {
-        Main.Randomizer.LogWarning($"Setting quest: {Main.Randomizer.GetQuestName(questId, varId)} ({value})");
+        ModLog.Warn($"Setting quest: {Main.Randomizer.GetQuestName(questId, varId)} ({value})");
     }
 }
 
@@ -45,7 +46,7 @@ class Dialog_Show_Patch
 {
     public static void Prefix(Dialog dialog)
     {
-        Main.Randomizer.Log("Starting dialog: " + dialog.name);
+        ModLog.Info("Starting dialog: " + dialog.name);
     }
 }
 
@@ -73,7 +74,7 @@ class Room_Change_Patch
         {
             if (roomHash == room)
             {
-                Main.Randomizer.Log("Force deactivating boss room");
+                ModLog.Info("Force deactivating boss room");
                 forceDeactivate = true;
             }
         }

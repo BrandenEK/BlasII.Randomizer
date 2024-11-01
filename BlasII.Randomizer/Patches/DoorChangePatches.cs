@@ -1,4 +1,5 @@
-﻿using HarmonyLib;
+﻿using BlasII.ModdingAPI;
+using HarmonyLib;
 using Il2CppTGK.Game;
 using Il2CppTGK.Game.Components.Interactables;
 
@@ -10,6 +11,6 @@ class Door_Use_Patch
     public static void Prefix(DoorInteractable __instance)
     {
         string doorId = $"{CoreCache.Room.CurrentRoom.Name}[{__instance.entryId}]";
-        Main.Randomizer.Log("Entering door: " + doorId);
+        ModLog.Info("Entering door: " + doorId);
     }
 }

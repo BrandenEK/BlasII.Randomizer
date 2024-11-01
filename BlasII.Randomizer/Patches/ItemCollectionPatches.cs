@@ -1,3 +1,4 @@
+using BlasII.ModdingAPI;
 using HarmonyLib;
 using Il2CppPlaymaker.Characters;
 using Il2CppPlaymaker.Inventory;
@@ -21,7 +22,7 @@ class LootInteractable_Use_Patch
     public static void Prefix(LootInteractable __instance)
     {
         string locationId = $"{CoreCache.Room.CurrentRoom.Name}.l{__instance.transform.GetSiblingIndex()}";
-        Main.Randomizer.LogError("LootInteractable.UseLootByInteractor - " + locationId);
+        ModLog.Error("LootInteractable.UseLootByInteractor - " + locationId);
 
         if (Main.Randomizer.ItemHandler.IsVanillaLocation(locationId))
             return;
@@ -37,7 +38,7 @@ class PlayMaker_AddItem_Patch
     {
         string locationId = $"{CoreCache.Room.CurrentRoom.Name}.i{__instance.owner.transform.GetSiblingIndex()}";
         locationId = CalculateSpecialLocationId(locationId, __instance.itemID.name);
-        Main.Randomizer.LogError($"AddItem.OnEnter - {locationId} ({__instance.itemID.name})");
+        ModLog.Error($"AddItem.OnEnter - {locationId} ({__instance.itemID.name})");
 
         if (Main.Randomizer.ItemHandler.IsVanillaLocation(locationId))
             return true;
@@ -88,7 +89,7 @@ class PlayMaker_GiveReward_Patch
     public static bool Prefix(GiveReward __instance)
     {
         string locationId = $"{CoreCache.Room.CurrentRoom.Name}.r{__instance.owner.transform.GetSiblingIndex()}";
-        Main.Randomizer.LogError("GiveReward.OnEnter - " + locationId);
+        ModLog.Error("GiveReward.OnEnter - " + locationId);
 
         if (Main.Randomizer.ItemHandler.IsVanillaLocation(locationId))
             return true;
@@ -118,7 +119,7 @@ class PlayMaker_UnlockWeapon_Patch
     public static bool Prefix(UnlockWeapon __instance)
     {
         string locationId = $"{CoreCache.Room.CurrentRoom.Name}.w0";
-        Main.Randomizer.LogError("UnlockWeapon.OnEnter - " + locationId);
+        ModLog.Error("UnlockWeapon.OnEnter - " + locationId);
 
         if (Main.Randomizer.ItemHandler.IsVanillaLocation(locationId))
             return true;
@@ -148,7 +149,7 @@ class PlayMaker_UpgradeWeapon_Patch
     public static bool Prefix(UpgradeWeaponTier __instance)
     {
         string locationId = $"{CoreCache.Room.CurrentRoom.Name}.w0";
-        Main.Randomizer.LogError("UpgradeWeaponTier.OnEnter - " + locationId);
+        ModLog.Error("UpgradeWeaponTier.OnEnter - " + locationId);
 
         if (Main.Randomizer.ItemHandler.IsVanillaLocation(locationId))
             return true;
@@ -178,7 +179,7 @@ class PlayMaker_UnlockAbility_Patch
     public static bool Prefix(UnlockAbility __instance)
     {
         string locationId = $"{CoreCache.Room.CurrentRoom.Name}.a0";
-        Main.Randomizer.LogError("UnlockAbility.OnEnter - " + locationId);
+        ModLog.Error("UnlockAbility.OnEnter - " + locationId);
 
         if (Main.Randomizer.ItemHandler.IsVanillaLocation(locationId))
             return true;
@@ -212,7 +213,7 @@ class PlayMaker_OperateQuestVar_Patch
             return true;
 
         string locationId = $"{CoreCache.Room.CurrentRoom.Name}.c0";
-        Main.Randomizer.LogError("OperateQuestVar.CheckInputData - " + locationId);
+        ModLog.Error("OperateQuestVar.CheckInputData - " + locationId);
 
         if (Main.Randomizer.ItemHandler.IsVanillaLocation(locationId))
             return true;
@@ -241,7 +242,7 @@ class Tears_Show_Patch
 {
     public static bool Prefix(ShowTearsRewardPopup __instance)
     {
-        Main.Randomizer.LogError("Hiding tears popup.  Not sure what else this affects.");
+        ModLog.Error("Hiding tears popup.  Not sure what else this affects.");
         __instance.Finish();
         return false;
     }

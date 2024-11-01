@@ -1,4 +1,5 @@
-﻿using HarmonyLib;
+﻿using BlasII.ModdingAPI;
+using HarmonyLib;
 using Il2CppTGK.Game;
 using Il2CppTGK.Game.Components;
 
@@ -15,7 +16,7 @@ class Fade_Hide_Patch
         if (__instance.name != "Graphics" || CoreCache.Room.CurrentRoom?.Name != "Z2401")
             return true;
 
-        Main.Randomizer.Log("Preventing fade of cherub altar");
+        ModLog.Info("Preventing fade of cherub altar");
         return false;
     }
 }

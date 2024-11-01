@@ -1,4 +1,5 @@
-﻿using BlasII.ModdingAPI.Assets;
+﻿using BlasII.ModdingAPI;
+using BlasII.ModdingAPI.Assets;
 using HarmonyLib;
 using Il2CppTGK.Game.Components.UI;
 using Il2CppTGK.Game.Managers;
@@ -64,7 +65,7 @@ class Shop_Cache_Path
                 break;
 
             default:
-                Main.Randomizer.LogError("Opening invalid shop!");
+                ModLog.Error("Opening invalid shop!");
                 costs = System.Array.Empty<int>();
                 break;
         }
@@ -72,7 +73,7 @@ class Shop_Cache_Path
         // Add orbs for each price
         foreach (int cost in costs)
             __instance.orbs.Add(cost);
-        Main.Randomizer.Log("Updating items for: " + __instance.name);
+        ModLog.Info("Updating items for: " + __instance.name);
     }
 }
 
@@ -85,7 +86,7 @@ class Shop_Sell_Patch
     public static void Postfix(Shop shop, int orbIdx)
     {
         string locationId = $"{shop.name}.o{orbIdx}";
-        Main.Randomizer.LogError("ShopManager.SellOrb - " + locationId);
+        ModLog.Error("ShopManager.SellOrb - " + locationId);
 
         Main.Randomizer.ItemHandler.GiveItemAtLocation(locationId);
 

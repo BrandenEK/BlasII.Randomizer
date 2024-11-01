@@ -1,4 +1,5 @@
-﻿using BlasII.ModdingAPI.Assets;
+﻿using BlasII.ModdingAPI;
+using BlasII.ModdingAPI.Assets;
 using HarmonyLib;
 using Il2CppPlaymaker.Inventory;
 using Il2CppPlaymaker.PrieDieu;
@@ -24,7 +25,7 @@ class Check_ItemOwned_Patch
         string item = __instance.itemID.name;
         bool skipToNo = false;
 
-        Main.Randomizer.LogWarning($"{__instance.Owner.name} is checking for item: {item}");
+        ModLog.Warn($"{__instance.Owner.name} is checking for item: {item}");
 
         // Cursed letter quest
         if (scene == "Z1326" && (item == "PR15" || item == "QI15" || item == "QI16") ||
@@ -68,7 +69,7 @@ class Check_ItemsOwned_Patch
         foreach (var item in __instance.items)
             items += item.name + " ";
 
-        Main.Randomizer.LogWarning($"{__instance.Owner.name} is checking for items: {items}");
+        ModLog.Warn($"{__instance.Owner.name} is checking for items: {items}");
 
         // Cursed letter quest again
         if (scene == "Z0503" && firstItem == "QI21")
@@ -94,7 +95,7 @@ class Check_WeaponUnlocked_Patch
         string scene = CoreCache.Room.CurrentRoom?.Name;
         string weapon = __instance.weaponID.Value.Cast<WeaponID>().name;
 
-        Main.Randomizer.LogWarning($"{__instance.Owner.name} is checking for weapon: {weapon}");
+        ModLog.Warn($"{__instance.Owner.name} is checking for weapon: {weapon}");
 
         // In weapon statue rooms, always make statues be destroyed
         if (scene == "Z0423" || scene == "Z0709" || scene == "Z0913")
@@ -137,7 +138,7 @@ class QuestManager_GetVarBool_Patch
         else if (scene == "Z2501" && quest == "Bosses.BS07_DEAD")
         {
             __result = OwnedKeys >= Main.Randomizer.CurrentSettings.RealRequiredKeys;
-            Main.Randomizer.Log("CR door opened: " + __result);
+            ModLog.Info("CR door opened: " + __result);
         }
 
         // Allow giving both the scroll & cloth to the elders
@@ -153,7 +154,7 @@ class QuestManager_GetVarBool_Patch
         }
 
         if (!quest.StartsWith("ST18"))
-            Main.Randomizer.LogWarning($"Getting quest: {quest} ({initialResult}) -> ({__result})");
+            ModLog.Warn($"Getting quest: {quest} ({initialResult}) -> ({__result})");
     }
 
     private static int OwnedKeys
@@ -179,7 +180,7 @@ class QuestManager_GetVarInt_Patch
         string scene = CoreCache.Room.CurrentRoom?.Name;
         string quest = Main.Randomizer.GetQuestName(questId, varId);
 
-        Main.Randomizer.LogWarning($"Getting quest: {quest} ({__result})");
+        ModLog.Warn($"Getting quest: {quest} ({__result})");
 
         // No checks yet
     }
@@ -193,7 +194,7 @@ class QuestManager_GetVar_Patch
         string scene = CoreCache.Room.CurrentRoom?.Name;
         string quest = Main.Randomizer.GetQuestName(questId, varId);
 
-        Main.Randomizer.LogWarning($"Getting quest: {quest} (\"{__result}\")");
+        ModLog.Warn($"Getting quest: {quest} (\"{__result}\")");
 
         // When checking for initial weapon in statue rooms, always make it seem like that is your first weapon
         if (quest == "ST00.WEAPON_CHOSEN")
@@ -223,7 +224,7 @@ class Teleport_Dream_Patch
 {
     public static void Prefix(ref SceneEntryID sceneEntry)
     {
-        Main.Randomizer.Log($"Teleporting to: {sceneEntry.scene} ({sceneEntry.entryId})");
+        ModLog.Info($"Teleporting to: {sceneEntry.scene} ({sceneEntry.entryId})");
 
         string currentScene = CoreCache.Room.CurrentRoom?.Name;
 
@@ -267,7 +268,7 @@ class PrieDieu_Upgrade_Patch
             upgradeName == "FervourFillUpgrade" ||
             upgradeName == "TeleportToAnotherPrieuDieuUpgrade")
         {
-            Main.Randomizer.LogWarning("Skipping upgrade for " + upgradeName);
+            ModLog.Warn("Skipping upgrade for " + upgradeName);
             __instance.Finish();
             return false;
         }

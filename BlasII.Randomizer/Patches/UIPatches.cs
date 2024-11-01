@@ -1,4 +1,5 @@
-﻿using HarmonyLib;
+﻿using BlasII.ModdingAPI;
+using HarmonyLib;
 using Il2CppI2.Loc;
 using Il2CppTGK.Game.Components.UI;
 using Il2CppTGK.Game.PopupMessages;
@@ -15,7 +16,7 @@ class Popup_Show_Patch
 {
     public static void Postfix(PopupMessageLogic __instance, PopupMessage message)
     {
-        Main.Randomizer.Log("Showing popup: " + message.name);
+        ModLog.Info("Showing popup: " + message.name);
 
         // When reading the CR door, show how many keys you must find
         if (message.name == "MSG_0003")
