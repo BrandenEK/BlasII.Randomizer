@@ -1,6 +1,8 @@
+using BlasII.ModdingAPI;
 using BlasII.Randomizer.Shuffle;
 using Il2CppTGK.Game;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 
 namespace BlasII.Randomizer.Items;
@@ -27,19 +29,19 @@ public class ItemHandler
         }
         else
         {
-            Main.Randomizer.LogError(locationId + " does not have a mapped item!");
+            ModLog.Error(locationId + " does not have a mapped item!");
             return Main.Randomizer.Data.InvalidItem;
         }
     }
 
     public void GiveItemAtLocation(string locationId)
     {
-        Main.Randomizer.LogWarning("Giving item at location: " + locationId);
+        ModLog.Warn("Giving item at location: " + locationId);
 
         Item item;
         if (_collectedLocations.Contains(locationId))
         {
-            Main.Randomizer.LogError(locationId + " has already been collected!");
+            ModLog.Error(locationId + " has already been collected!");
             item = Main.Randomizer.Data.InvalidItem;
         }
         else
@@ -81,18 +83,18 @@ public class ItemHandler
 
         while (!_shuffler.Shuffle(seed + currentAttempt, settings, _mappedItems) && currentAttempt < maxAttempts)
         {
-            Main.Randomizer.LogWarning($"Seed {seed + currentAttempt} was invalid!  Trying next...");
+            ModLog.Warn($"Seed {seed + currentAttempt} was invalid!  Trying next...");
             currentAttempt++;
         }
 
         if (currentAttempt >= maxAttempts)
         {
-            Main.Randomizer.LogError($"Failed to shuffle items in {maxAttempts} attempts");
+            ModLog.Error($"Failed to shuffle items in {maxAttempts} attempts");
             _mappedItems.Clear();
             return false;
         }
 
-        Main.Randomizer.Log($"Shuffled {_mappedItems.Count} items!");
+        ModLog.Info($"Shuffled {_mappedItems.Count} items!");
         GenerateSpoiler(settings);
         return true;
     }
@@ -123,8 +125,8 @@ public class ItemHandler
         }
 
         // Save text to file
-        string fileName = $"spoiler_{CoreCache.SaveData.CurrentSaveSlot}.txt";
-        Main.Randomizer.FileHandler.WriteToFile(fileName, sb.ToString());
+        string path = Path.Combine(Main.Randomizer.FileHandler.ContentFolder, $"spoiler_{CoreCache.SaveData.CurrentSaveSlot}.txt");
+        File.WriteAllText(path, sb.ToString());
     }
 
     public void SetItemCollected(string itemId)

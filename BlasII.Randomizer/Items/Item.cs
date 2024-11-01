@@ -1,3 +1,4 @@
+using BlasII.ModdingAPI;
 using BlasII.ModdingAPI.Assets;
 using Il2CppTGK.Game;
 using Newtonsoft.Json;
@@ -270,11 +271,11 @@ public class Item
 
             if (currentLevel < 0)
             {
-                Main.Randomizer.LogError("Trying to access current subitem that hasn't been collected yet!");
+                ModLog.Error("Trying to access current subitem that hasn't been collected yet!");
                 return null;
             }
 
-            Main.Randomizer.Log($"Getting current subitem for {id}: {subItems[currentLevel]}");
+            ModLog.Info($"Getting current subitem for {id}: {subItems[currentLevel]}");
             return Main.Randomizer.Data.GetItem(subItems[currentLevel]);
         }
     }
@@ -287,11 +288,11 @@ public class Item
 
             if (upgradedLevel >= subItems.Length)
             {
-                Main.Randomizer.LogError("Trying to access upgraded subitem that is already fully collected!");
+                ModLog.Error("Trying to access upgraded subitem that is already fully collected!");
                 return null;
             }
 
-            Main.Randomizer.Log($"Getting upgraded subitem for {id}: {subItems[upgradedLevel]}");
+            ModLog.Info($"Getting upgraded subitem for {id}: {subItems[upgradedLevel]}");
             return Main.Randomizer.Data.GetItem(subItems[upgradedLevel]);
         }
     }

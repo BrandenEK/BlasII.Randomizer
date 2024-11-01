@@ -1,4 +1,5 @@
-﻿using Il2Cpp;
+﻿using BlasII.ModdingAPI;
+using Il2Cpp;
 using System.Text;
 using UnityEngine;
 
@@ -44,13 +45,13 @@ internal static class InfoExtensions
     // Displays all states and actions of a playmaker fsm
     public static void DisplayActions(this PlayMakerFSM fsm)
     {
-        Main.Randomizer.LogWarning("FSM: " + fsm.name);
+        ModLog.Warn("FSM: " + fsm.name);
         foreach (var state in fsm.FsmStates)
         {
-            Main.Randomizer.Log("State: " + state.Name);
+            ModLog.Info("State: " + state.Name);
             foreach (var action in state.Actions)
             {
-                Main.Randomizer.LogError("Action: " + action.Name + ", " + action.GetIl2CppType().Name);
+                ModLog.Error("Action: " + action.Name + ", " + action.GetIl2CppType().Name);
             }
         }
     }
