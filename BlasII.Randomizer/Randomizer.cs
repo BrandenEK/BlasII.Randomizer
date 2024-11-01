@@ -44,7 +44,7 @@ public class Randomizer : BlasIIMod, IPersistentMod
 
     protected override void OnAllInitialized()
     {
-        MessageHandler.Send("BlasII.QualityOfLife", "Skip_Story_Level", "4");
+        MessageHandler.Send("BlasII.QualityOfLife", "ssl", "4");
     }
 
     protected override void OnRegisterServices(ModServiceProvider provider)
