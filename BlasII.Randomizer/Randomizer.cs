@@ -1,4 +1,5 @@
 ﻿using BlasII.ModdingAPI;
+using BlasII.ModdingAPI.Helpers;
 using BlasII.ModdingAPI.Persistence;
 using BlasII.Randomizer.Items;
 using BlasII.Randomizer.Settings;
@@ -13,9 +14,12 @@ using UnityEngine;
 
 namespace BlasII.Randomizer;
 
+/// <summary>
+/// An item randomizer for the game Blasphemous 2
+/// </summary>
 public class Randomizer : BlasIIMod, IPersistentMod
 {
-    public Randomizer() : base(ModInfo.MOD_ID, ModInfo.MOD_NAME, ModInfo.MOD_AUTHOR, ModInfo.MOD_VERSION) { }
+    internal Randomizer() : base(ModInfo.MOD_ID, ModInfo.MOD_NAME, ModInfo.MOD_AUTHOR, ModInfo.MOD_VERSION) { }
 
     public DataStorage Data { get; } = new();
 
@@ -45,7 +49,7 @@ public class Randomizer : BlasIIMod, IPersistentMod
 
     protected override void OnUpdate()
     {
-        if (!LoadStatus.GameSceneLoaded)
+        if (!SceneHelper.GameSceneLoaded)
             return;
 
         if (InputHandler.GetKeyDown("DisplaySettings"))
@@ -107,20 +111,20 @@ public class Randomizer : BlasIIMod, IPersistentMod
             }
         }
 
-        LogError($"Successful attempts: {successfulTries}/{totalTries}");
-        LogError($"Average time: {System.Math.Round(runningTime / successfulTries, 1)} ms");
+        ModLog.Error($"Successful attempts: {successfulTries}/{totalTries}");
+        ModLog.Error($"Average time: {System.Math.Round(runningTime / successfulTries, 1)} ms");
     }
 
     protected override void OnNewGame()
     {
-        Log($"Performing shuffle for seed {CurrentSettings.seed}");
+        ModLog.Info($"Performing shuffle for seed {CurrentSettings.seed}");
         ItemHandler.ShuffleItems(CurrentSettings.seed, CurrentSettings);
         AllowPrieDieuWarp();
     }
 
     public SaveData SaveGame()
     {
-        Log($"Saved file with {ItemHandler.CollectedLocations.Count} collected locations");
+        ModLog.Info($"Saved file with {ItemHandler.CollectedLocations.Count} collected locations");
         return new RandomizerSaveData()
         {
             mappedItems = ItemHandler.MappedItems,
@@ -138,7 +142,7 @@ public class Randomizer : BlasIIMod, IPersistentMod
         ItemHandler.CollectedItems = randomizerData.collectedItems;
 
         CurrentSettings = randomizerData.settings;
-        Log($"Loaded file with {randomizerData.collectedLocations.Count} collected locations");
+        ModLog.Info($"Loaded file with {randomizerData.collectedLocations.Count} collected locations");
     }
 
     public void ResetGame()
@@ -171,7 +175,7 @@ public class Randomizer : BlasIIMod, IPersistentMod
 
     private void LoadWeaponSelectRoom()
     {
-        Log("Loading weapon room");
+        ModLog.Info("Loading weapon room");
 
         foreach (var statue in Object.FindObjectsOfType<QuestVarTrigger>())
         {
@@ -219,7 +223,7 @@ public class Randomizer : BlasIIMod, IPersistentMod
             //LogWarning(collider.name);
             if (collider.name == trigger)
             {
-                LogWarning("Removing trigger: " + trigger);
+                ModLog.Warn("Removing trigger: " + trigger);
                 Object.Destroy(collider);
                 return;
             }

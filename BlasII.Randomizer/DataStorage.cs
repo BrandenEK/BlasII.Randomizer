@@ -1,4 +1,5 @@
-﻿using BlasII.ModdingAPI.Files;
+﻿using BlasII.ModdingAPI;
+using BlasII.ModdingAPI.Files;
 using BlasII.Randomizer.Doors;
 using BlasII.Randomizer.Items;
 using System.Collections.Generic;
@@ -59,21 +60,21 @@ public class DataStorage
             foreach (var item in items)
                 _allItems.Add(item.id, item);
         }
-        Main.Randomizer.Log($"Loaded {_allItems.Count} items!");
+        ModLog.Info($"Loaded {_allItems.Count} items!");
 
         if (Main.Randomizer.FileHandler.LoadDataAsJson("item-locations.json", out ItemLocation[] itemLocations))
         {
             foreach (var itemLocation in itemLocations)
                 _allItemLocations.Add(itemLocation.id, itemLocation);
         }
-        Main.Randomizer.Log($"Loaded {_allItemLocations.Count} item locations!");
+        ModLog.Info($"Loaded {_allItemLocations.Count} item locations!");
 
         if (Main.Randomizer.FileHandler.LoadDataAsJson("doors.json", out DoorLocation[] doors))
         {
             foreach (var door in doors)
                 _allDoors.Add(door.id, door);
         }
-        Main.Randomizer.Log($"Loaded {_allDoors.Count} doors!");
+        ModLog.Info($"Loaded {_allDoors.Count} doors!");
     }
 
     private void LoadAllImages()
@@ -85,11 +86,11 @@ public class DataStorage
 
         for (int i = 0; i < images.Length; i++)
             _images.Add((ImageType)i, images[i]);
-        Main.Randomizer.Log($"Loaded {_images.Count} images!");
+        ModLog.Info($"Loaded {_images.Count} images!");
 
         for (int i = 0; i < ui.Length; i++)
             _ui.Add((UIType)i, ui[i]);
-        Main.Randomizer.Log($"Loaded {_ui.Count} ui elements!");
+        ModLog.Info($"Loaded {_ui.Count} ui elements!");
     }
 
     public enum ImageType

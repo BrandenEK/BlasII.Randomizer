@@ -2,7 +2,7 @@
 
 namespace BlasII.Randomizer;
 
-public class Main : MelonMod
+internal class Main : MelonMod
 {
     public static Randomizer Randomizer { get; private set; }
 
