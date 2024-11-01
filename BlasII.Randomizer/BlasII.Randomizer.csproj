@@ -21,6 +21,7 @@
   
   <ItemGroup>
     <PackageReference Include="BlasII.Framework.Menus" Version="0.1.0" />
+    <PackageReference Include="BlasII.Framework.UI" Version="0.1.0" />
     <PackageReference Include="BlasII.GameLibs" Version="1.1.0" />
     <PackageReference Include="BlasII.ModdingAPI" Version="1.0.2" />
     <PackageReference Include="BlasII.QualityOfLife" Version="1.3.0" />
