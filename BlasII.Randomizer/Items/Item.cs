@@ -245,7 +245,7 @@ public class Item
             return;
 
         // Only used for quest items right now
-        Main.Randomizer.Log($"Removing previous subitem for {id}: {currentItem.id}");
+        ModLog.Info($"Removing previous subitem for {id}: {currentItem.id}");
         var item = AssetStorage.QuestItems[currentItem.id];
         AssetStorage.PlayerInventory.RemoveItem(item);
     }

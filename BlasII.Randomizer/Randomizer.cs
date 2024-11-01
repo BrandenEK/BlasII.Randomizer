@@ -1,4 +1,5 @@
-﻿using BlasII.ModdingAPI;
+﻿using BlasII.Framework.Menus;
+using BlasII.ModdingAPI;
 using BlasII.ModdingAPI.Helpers;
 using BlasII.ModdingAPI.Persistence;
 using BlasII.Randomizer.Items;
@@ -34,7 +35,6 @@ public class Randomizer : BlasIIMod, IPersistentMod
             { "DisplaySettings", KeyCode.F8 }
         });
         LocalizationHandler.RegisterDefaultLanguage("en");
-        MenuHandler.RegisterNewGameMenu(new RandomizerMenu());
 
         Data.Initialize();
         //ShuffleTest(new ForwardItemShuffler(), 777, 500);
@@ -45,6 +45,11 @@ public class Randomizer : BlasIIMod, IPersistentMod
     protected override void OnAllInitialized()
     {
         MessageHandler.Send("BlasII.QualityOfLife", "Skip_Story_Level", "4");
+    }
+
+    protected override void OnRegisterServices(ModServiceProvider provider)
+    {
+        provider.RegisterNewGameMenu(new RandomizerMenu());
     }
 
     protected override void OnUpdate()
