@@ -38,12 +38,9 @@ public class DataStorage
     public bool DoesDoorExist(string id) => _allDoors.ContainsKey(id);
 
     // Images
-
     private readonly Dictionary<ImageType, Sprite> _images = new();
-    private readonly Dictionary<UIType, Sprite> _ui = new();
 
     public Sprite GetImage(ImageType type) => _images.TryGetValue(type, out var sprite) ? sprite : null;
-    public Sprite GetUI(UIType type) => _ui.TryGetValue(type, out var sprite) ? sprite : null;
 
     // Loading
 
@@ -81,16 +78,10 @@ public class DataStorage
     {
         Main.Randomizer.FileHandler.LoadDataAsFixedSpritesheet("rando-items.png", new Vector2(30, 30),
             out Sprite[] images, new SpriteImportOptions() { PixelsPerUnit = 32 });
-        Main.Randomizer.FileHandler.LoadDataAsFixedSpritesheet("ui.png", new Vector2(36, 36),
-            out Sprite[] ui, new SpriteImportOptions() { PixelsPerUnit = 36 });
 
         for (int i = 0; i < images.Length; i++)
             _images.Add((ImageType)i, images[i]);
         ModLog.Info($"Loaded {_images.Count} images!");
-
-        for (int i = 0; i < ui.Length; i++)
-            _ui.Add((UIType)i, ui[i]);
-        ModLog.Info($"Loaded {_ui.Count} ui elements!");
     }
 
     public enum ImageType
@@ -106,19 +97,6 @@ public class DataStorage
         Tears = 8,
         Invalid = 9,
         Chest = 10,
-    }
-
-    public enum UIType
-    {
-        ToggleOff = 0,
-        ToggleOn = 1,
-        ToggleNo = 2,
-        ArrowLeftOn = 3,
-        ArrowRightOn = 4,
-        ArrowLeftOff = 5,
-        ArrowRightOff = 6,
-        TextInactive = 7,
-        TextActive = 8,
     }
 
     // Special data
