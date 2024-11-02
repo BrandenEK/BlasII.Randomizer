@@ -27,7 +27,7 @@
 <!-- Expected: Elton -->
 
 ***- Logic development and testing -*** <br>
-[@Chemigoku](https://github.com/Chemigoku), [@Guuiil](https://github.com/Guuiil), [@PHAredes](https://github.com/PHAredes), [@thymemanagement](https://github.com/thymemanagement), [@Xanathar865](https://github.com/Xanathar865)
+[@BrandenEK](https://github.com/BrandenEK), [@LuceScarlet](https://github.com/LuceScarlet), [@Chemigoku](https://github.com/Chemigoku), [@Guuiil](https://github.com/Guuiil), [@PHAredes](https://github.com/PHAredes), [@thymemanagement](https://github.com/thymemanagement), [@Xanathar865](https://github.com/Xanathar865)
 
 ---
 
