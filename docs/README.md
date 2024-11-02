@@ -36,6 +36,7 @@
 - In order to avoid softlocks, it is recommended to use the Save & Quit mod
 - The Quality of Life mod is required for various mechanics to function correctly
 - Pressing 'F8' will display a list of your current settings
+- A spoiler will be generated in the Modding/content/Randomizer folder
 
 ---
 
