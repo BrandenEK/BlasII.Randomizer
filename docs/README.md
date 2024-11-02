@@ -27,7 +27,7 @@
 <!-- Expected: Elton -->
 
 ***- Logic development and testing -*** <br>
-[@Chemigoku](https://github.com/Chemigoku), [@Guuiil](https://github.com/Guuiil), [@PHAredes](https://github.com/PHAredes), [@thymemanagement](https://github.com/thymemanagement), [@Xanathar865](https://github.com/Xanathar865)
+[@BrandenEK](https://github.com/BrandenEK), [@LuceScarlet](https://github.com/LuceScarlet), [@Chemigoku](https://github.com/Chemigoku), [@Guuiil](https://github.com/Guuiil), [@PHAredes](https://github.com/PHAredes), [@thymemanagement](https://github.com/thymemanagement), [@Xanathar865](https://github.com/Xanathar865)
 
 ---
 
@@ -36,6 +36,7 @@
 - In order to avoid softlocks, it is recommended to use the Save & Quit mod
 - The Quality of Life mod is required for various mechanics to function correctly
 - Pressing 'F8' will display a list of your current settings
+- A spoiler will be generated in the Modding/content/Randomizer folder
 
 ---
 

@@ -1,17 +1,16 @@
 
-namespace BlasII.Randomizer.Enemies
+namespace BlasII.Randomizer.Enemies;
+
+public class EnemyLocation
 {
-    public class EnemyLocation
+    public readonly string id;
+
+    public EnemyLocationType type;
+    public readonly string originalEnemy;
+
+    public enum EnemyLocationType
     {
-        public readonly string id;
-
-        public EnemyLocationType type;
-        public readonly string originalEnemy;
-
-        public enum EnemyLocationType
-        {
-            Normal,
-            Arena,
-        }
+        Normal,
+        Arena,
     }
 }
