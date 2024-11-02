@@ -125,7 +125,7 @@ public class ItemHandler
         }
 
         // Save text to file
-        string path = Path.Combine(Main.Randomizer.FileHandler.ContentFolder, $"spoiler_{CoreCache.SaveData.CurrentSaveSlot}.txt");
+        string path = Path.Combine(Main.Randomizer.FileHandler.ContentFolder, $"spoiler_{CoreCache.SaveData.CurrentSaveSlot + 1}.txt");
         File.WriteAllText(path, sb.ToString());
     }
 
