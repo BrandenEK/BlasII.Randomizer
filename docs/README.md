@@ -19,7 +19,7 @@
 [@BrandenEK](https://github.com/BrandenEK), [@LuceScarlet](https://github.com/LuceScarlet)
 
 ***- Artwork -*** <br>
-[@JimmyDiamonds](https://github.com/JimmyDiamonds), [@rcvrdt](https://github.com/rcvrdt)
+[@JimmyDiamonds](https://github.com/JimmyDiamonds), [@rcvrdt](https://github.com/rcvrdt), [@LuceScarlet](https://github.com/LuceScarlet)
 <!-- Expected: Luce -->
 
 ***- Translations -*** <br>
