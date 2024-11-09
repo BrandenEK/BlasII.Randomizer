@@ -161,25 +161,25 @@ public class Item
         {
             case ItemType.RosaryBead:
                 {
-                    if (AssetStorage.Beads.TryGetAsset(id, out var bead))
+                    if (AssetStorage.Beads.TryGetValue(id, out var bead))
                         AssetStorage.PlayerInventory.AddItemAsync(bead, 0, true);
                     break;
                 }
             case ItemType.Prayer:
                 {
-                    if (AssetStorage.Prayers.TryGetAsset(id, out var prayer))
+                    if (AssetStorage.Prayers.TryGetValue(id, out var prayer))
                         AssetStorage.PlayerInventory.AddItemAsync(prayer, 0, true);
                     break;
                 }
             case ItemType.Figurine:
                 {
-                    if (AssetStorage.Figures.TryGetAsset(id, out var figure))
+                    if (AssetStorage.Figures.TryGetValue(id, out var figure))
                         AssetStorage.PlayerInventory.AddItemAsync(figure, 0, true);
                     break;
                 }
             case ItemType.QuestItem:
                 {
-                    if (AssetStorage.QuestItems.TryGetAsset(id, out var quest))
+                    if (AssetStorage.QuestItems.TryGetValue(id, out var quest))
                         AssetStorage.PlayerInventory.AddItemAsync(quest, 0, true);
                     break;
                 }
