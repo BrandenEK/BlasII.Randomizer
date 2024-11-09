@@ -1,54 +1,10 @@
 ﻿using BlasII.ModdingAPI;
 using HarmonyLib;
 using Il2CppTGK.Game.Components.Inventory;
-using Il2CppTGK.Game.DialogSystem;
 using Il2CppTGK.Game.Managers;
 using Il2CppTGK.Inventory;
-using System.Reflection;
 
 namespace BlasII.Randomizer.Patches;
-
-/// <summary>
-/// Log when a quest flag is being set
-/// </summary>
-[HarmonyPatch]
-class QuestManager_SetQuestBool_Patch
-{
-    public static MethodInfo TargetMethod()
-    {
-        return typeof(QuestManager).GetMethod("SetQuestVarValue").MakeGenericMethod(typeof(bool));
-    }
-
-    public static void Postfix(int questId, int varId, bool value)
-    {
-        ModLog.Warn($"Setting quest: {Main.Randomizer.GetQuestName(questId, varId)} ({value})");
-    }
-}
-[HarmonyPatch]
-class QuestManager_SetQuestInt_Patch
-{
-    public static MethodInfo TargetMethod()
-    {
-        return typeof(QuestManager).GetMethod("SetQuestVarValue").MakeGenericMethod(typeof(int));
-    }
-
-    public static void Postfix(int questId, int varId, int value)
-    {
-        ModLog.Warn($"Setting quest: {Main.Randomizer.GetQuestName(questId, varId)} ({value})");
-    }
-}
-
-/// <summary>
-/// Logs the id whenever a dialog is started
-/// </summary>
-[HarmonyPatch(typeof(DialogManager), nameof(DialogManager.ShowDialogWithObject))]
-class Dialog_Show_Patch
-{
-    public static void Prefix(Dialog dialog)
-    {
-        ModLog.Info("Starting dialog: " + dialog.name);
-    }
-}
 
 /// <summary>
 /// Always allow upgrading weapons, even without lance
