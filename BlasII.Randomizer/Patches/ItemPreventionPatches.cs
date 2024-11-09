@@ -4,6 +4,7 @@ using HarmonyLib;
 using Il2CppPlaymaker.Inventory;
 using Il2CppPlaymaker.PrieDieu;
 using Il2CppTGK.Game;
+using Il2CppTGK.Game.Components.Animation.AnimatorManagement;
 using Il2CppTGK.Game.Components.Attack.Data;
 using Il2CppTGK.Game.Inventory.PlayMaker;
 using Il2CppTGK.Game.Managers;
@@ -116,11 +117,11 @@ class Check_WeaponUnlocked_Patch
 [HarmonyPatch(typeof(QuestManager), nameof(QuestManager.GetQuestVarBoolValue))]
 class QuestManager_GetVarBool_Patch
 {
+    [HarmonyPriority(Priority.High)]
     public static void Postfix(int questId, int varId, ref bool __result)
     {
         string scene = CoreCache.Room.CurrentRoom?.Name;
         string quest = Main.Randomizer.GetQuestName(questId, varId);
-        bool initialResult = __result;
 
         // Always have zones unlocked
         if (quest.StartsWith("ST00.Z") && quest.EndsWith("_ACCESS"))
@@ -152,9 +153,6 @@ class QuestManager_GetVarBool_Patch
         {
             __result = false;
         }
-
-        if (!quest.StartsWith("ST18"))
-            ModLog.Warn($"Getting quest: {quest} ({initialResult}) -> ({__result})");
     }
 
     private static int OwnedKeys
@@ -175,12 +173,11 @@ class QuestManager_GetVarBool_Patch
 [HarmonyPatch(typeof(QuestManager), nameof(QuestManager.GetQuestVarIntValue))]
 class QuestManager_GetVarInt_Patch
 {
+    [HarmonyPriority(Priority.High)]
     public static void Postfix(int questId, int varId, ref int __result)
     {
         string scene = CoreCache.Room.CurrentRoom?.Name;
         string quest = Main.Randomizer.GetQuestName(questId, varId);
-
-        ModLog.Warn($"Getting quest: {quest} ({__result})");
 
         // No checks yet
     }
@@ -189,12 +186,11 @@ class QuestManager_GetVarInt_Patch
 [HarmonyPatch(typeof(QuestManager), nameof(QuestManager.GetQuestVarValue))]
 class QuestManager_GetVar_Patch
 {
+    [HarmonyPriority(Priority.High)]
     public static void Postfix(int questId, int varId, ref string __result)
     {
         string scene = CoreCache.Room.CurrentRoom?.Name;
         string quest = Main.Randomizer.GetQuestName(questId, varId);
-
-        ModLog.Warn($"Getting quest: {quest} (\"{__result}\")");
 
         // When checking for initial weapon in statue rooms, always make it seem like that is your first weapon
         if (quest == "ST00.WEAPON_CHOSEN")
@@ -219,7 +215,7 @@ class QuestManager_GetVar_Patch
 // Boss rooms
 // ==========
 
-[HarmonyPatch(typeof(PlayerSpawnManager), nameof(PlayerSpawnManager.TeleportPlayer))]
+[HarmonyPatch(typeof(PlayerSpawnManager), nameof(PlayerSpawnManager.TeleportPlayer), typeof(SceneEntryID), typeof(bool), typeof(PlaybackKey))]
 class Teleport_Dream_Patch
 {
     public static void Prefix(ref SceneEntryID sceneEntry)
