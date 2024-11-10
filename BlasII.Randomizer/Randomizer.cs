@@ -3,25 +3,13 @@ using BlasII.ModdingAPI;
 using BlasII.ModdingAPI.Assets;
 using BlasII.ModdingAPI.Helpers;
 using BlasII.ModdingAPI.Persistence;
-using BlasII.Randomizer.Extensions;
 using BlasII.Randomizer.Items;
 using BlasII.Randomizer.Services;
 using BlasII.Randomizer.Shuffle;
 using Il2Cpp;
-using Il2CppHutongGames.PlayMaker;
-using Il2CppInterop.Runtime;
-using Il2CppLightbug.Kinematic2D.Core;
-using Il2CppLightbug.Kinematic2D.Implementation;
-using Il2CppPlaymaker.Utils;
-using Il2CppTGK.Framework;
 using Il2CppTGK.Game;
 using Il2CppTGK.Game.Components.Abilities;
-using Il2CppTGK.Game.Components.Animation.AnimatorManagement;
-using Il2CppTGK.Game.Components.Animation.AnimatorManagement.Player;
-using Il2CppTGK.Game.Components.Attack.Data;
-using Il2CppTGK.Game.Components.Defense.Data;
 using Il2CppTGK.Game.Components.Interactables;
-using Il2CppTGK.Game.Managers;
 using Il2CppTGK.Game.PopupMessages;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -72,45 +60,6 @@ public class Randomizer : BlasIIMod, IPersistentMod
         if (!SceneHelper.GameSceneLoaded)
             return;
 
-        if (Input.GetKeyDown(KeyCode.N))
-        {
-            ModLog.Warn("Giving censer");
-
-            //CoreCache.EquipmentManager.Unlock(AssetStorage.Weapons[WEAPON_IDS.RosaryBlade]);
-            //SetQuestValue("ST00", "WEAPON_CHOSEN", "WEAPON_CENSER");
-            //CoreCache.EquipmentManager.SetWeapon(AssetStorage.Weapons[WEAPON_IDS.Censer]);
-            //CoreCache.EquipmentManager.ForceSetWeaponToSlot(AssetStorage.Weapons[WEAPON_IDS.Censer], 0);
-            //CoreCache.EquipmentManager.NotifyWeaponChange();
-            //CoreCache.AbilitiesUnlockManager.SetAbility(AssetStorage.Abilities[ABILITY_IDS.Attack], true);
-            //var chnage = Object.FindObjectOfType<ChangeWeaponAbility>();
-
-            var weapon = AssetStorage.Weapons[WEAPON_IDS.Censer];
-
-            CoreCache.EquipmentManager.Unlock(weapon);
-            CoreCache.PlayerSpawn.PlayerControllerRef.GetAbility<ChangeWeaponAbility>().ChangeWeapon(weapon);
-            SetQuestValue("ST00", "WEAPON_EVENT", true);
-
-            CoreCache.AbilitiesUnlockManager.SetAbility(AssetStorage.Abilities[ABILITY_IDS.Jump], true);
-            CoreCache.AbilitiesUnlockManager.SetAbility(AssetStorage.Abilities[ABILITY_IDS.Dash], true);
-
-        }
-
-        if (Input.GetKeyDown(KeyCode.B))
-        {
-            //foreach (var fsm in Object.FindObjectsOfType<PlayMakerFSM>())
-            //{
-            //    ModLog.Warn(fsm.name);
-            //    fsm.gameObject.SetActive(false);
-            //}
-
-            string[] statueNames = ["CENSER", "ROSARY", "RAPIER"];
-            foreach (var obj in Object.FindObjectsOfType<PlayMakerFSM>().Where(x => statueNames.Any(x.name.EndsWith)))
-            {
-                ModLog.Warn(obj.name);
-                obj.gameObject.SetActive(false);
-            }
-        }
-
         if (InputHandler.GetKeyDown("DisplaySettings"))
             DisplaySettings();
 
@@ -123,9 +72,9 @@ public class Randomizer : BlasIIMod, IPersistentMod
 
     protected override void OnSceneLoaded(string sceneName)
     {
-        //if (sceneName == "Z0101")
-        //    CoreCache.EquipmentManager.Unlock(AssetStorage.Weapons[WEAPON_IDS.Censer]);
-        if (sceneName == "Z0206")
+        if (sceneName == "Z0102")
+            LoadWeaponDisplayRoom();
+        else if (sceneName == "Z0206")
             LoadTriggerRemovalRoom("Event Trigger");
         else if (sceneName == "Z0420")
             LoadTriggerRemovalRoom("trigger area");
@@ -250,6 +199,22 @@ public class Randomizer : BlasIIMod, IPersistentMod
         SetQuestValue("ST00", "WEAPON_EVENT", true);
     }
 
+    /// <summary>
+    /// Hide the weapon statues in the display room
+    /// </summary>
+    private void LoadWeaponDisplayRoom()
+    {
+        string[] statueNames = ["CENSER", "ROSARY", "RAPIER"];
+        foreach (var obj in Object.FindObjectsOfType<PlayMakerFSM>().Where(x => statueNames.Any(x.name.EndsWith)))
+        {
+            ModLog.Info($"Hiding statue: {obj.name}");
+            obj.gameObject.SetActive(false);
+        }
+    }
+
+    /// <summary>
+    /// Unused
+    /// </summary>
     private void LoadWeaponSelectRoom()
     {
         ModLog.Info("Loading weapon room");
