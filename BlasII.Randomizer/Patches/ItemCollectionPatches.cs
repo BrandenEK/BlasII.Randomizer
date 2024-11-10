@@ -24,11 +24,11 @@ class LootInteractable_Use_Patch
         string locationId = $"{CoreCache.Room.CurrentRoom.Name}.l{__instance.transform.GetSiblingIndex()}";
         ModLog.Error("LootInteractable.UseLootByInteractor - " + locationId);
 
-        if (Main.Randomizer.ItemHandler.IsVanillaLocation(locationId))
+        if (!Main.Randomizer.IsRandomizerMode)
             return;
 
         Main.Randomizer.ItemHandler.GiveItemAtLocation(locationId);
-        __instance.loot = null;
+        __instance.loot = null; // Should this just return false instead ??
     }
 }
 [HarmonyPatch(typeof(LootInteractableST103), nameof(LootInteractableST103.UseLootByInteractor))]
@@ -39,7 +39,7 @@ class LootInteractableST103_Use_Patch
         string locationId = $"{CoreCache.Room.CurrentRoom.Name}.l{__instance.transform.GetSiblingIndex()}";
         ModLog.Error("LootInteractableST103.UseLootByInteractor - " + locationId);
 
-        if (Main.Randomizer.ItemHandler.IsVanillaLocation(locationId))
+        if (!Main.Randomizer.IsRandomizerMode)
             return true;
 
         Main.Randomizer.ItemHandler.GiveItemAtLocation(locationId);
@@ -55,7 +55,7 @@ class PlayMaker_AddItem_Patch
         locationId = CalculateSpecialLocationId(locationId, __instance.itemID.name);
         ModLog.Error($"AddItem.OnEnter - {locationId} ({__instance.itemID.name})");
 
-        if (Main.Randomizer.ItemHandler.IsVanillaLocation(locationId))
+        if (!Main.Randomizer.IsRandomizerMode)
             return true;
 
         Main.Randomizer.ItemHandler.GiveItemAtLocation(locationId);
@@ -106,7 +106,7 @@ class PlayMaker_GiveReward_Patch
         string locationId = $"{CoreCache.Room.CurrentRoom.Name}.r{__instance.owner.transform.GetSiblingIndex()}";
         ModLog.Error("GiveReward.OnEnter - " + locationId);
 
-        if (Main.Randomizer.ItemHandler.IsVanillaLocation(locationId))
+        if (!Main.Randomizer.IsRandomizerMode)
             return true;
 
         Main.Randomizer.ItemHandler.GiveItemAtLocation(locationId);
@@ -119,6 +119,9 @@ class Marks_Skip_Patch
 {
     public static bool Prefix(ShowOrbsRewardPopup __instance)
     {
+        if (!Main.Randomizer.IsRandomizerMode)
+            return true;
+
         __instance.Finish();
         return false;
     }
@@ -136,7 +139,7 @@ class PlayMaker_UnlockWeapon_Patch
         string locationId = $"{CoreCache.Room.CurrentRoom.Name}.w0";
         ModLog.Error("UnlockWeapon.OnEnter - " + locationId);
 
-        if (Main.Randomizer.ItemHandler.IsVanillaLocation(locationId))
+        if (!Main.Randomizer.IsRandomizerMode)
             return true;
 
         Main.Randomizer.ItemHandler.GiveItemAtLocation(locationId);
@@ -149,6 +152,9 @@ class WeaponFind_Skip_Patch
 {
     public static bool Prefix(ShowWeaponPopup __instance)
     {
+        if (!Main.Randomizer.IsRandomizerMode)
+            return true;
+
         __instance.Finish();
         return false;
     }
@@ -166,7 +172,7 @@ class PlayMaker_UpgradeWeapon_Patch
         string locationId = $"{CoreCache.Room.CurrentRoom.Name}.w0";
         ModLog.Error("UpgradeWeaponTier.OnEnter - " + locationId);
 
-        if (Main.Randomizer.ItemHandler.IsVanillaLocation(locationId))
+        if (!Main.Randomizer.IsRandomizerMode)
             return true;
 
         Main.Randomizer.ItemHandler.GiveItemAtLocation(locationId);
@@ -179,6 +185,9 @@ class WeaponUpgrade_Skip_Patch
 {
     public static bool Prefix(ShowWeaponTierPopup __instance)
     {
+        if (!Main.Randomizer.IsRandomizerMode)
+            return true;
+
         __instance.Finish();
         return false;
     }
@@ -196,7 +205,7 @@ class PlayMaker_UnlockAbility_Patch
         string locationId = $"{CoreCache.Room.CurrentRoom.Name}.a0";
         ModLog.Error("UnlockAbility.OnEnter - " + locationId);
 
-        if (Main.Randomizer.ItemHandler.IsVanillaLocation(locationId))
+        if (!Main.Randomizer.IsRandomizerMode)
             return true;
 
         Main.Randomizer.ItemHandler.GiveItemAtLocation(locationId);
@@ -209,6 +218,9 @@ class Ability_Skip_Patch
 {
     public static bool Prefix(ShowUnlockAbilityPopup __instance)
     {
+        if (!Main.Randomizer.IsRandomizerMode)
+            return true;
+
         __instance.Finish();
         return false;
     }
@@ -230,7 +242,7 @@ class PlayMaker_OperateQuestVar_Patch
         string locationId = $"{CoreCache.Room.CurrentRoom.Name}.c0";
         ModLog.Error("OperateQuestVar.CheckInputData - " + locationId);
 
-        if (Main.Randomizer.ItemHandler.IsVanillaLocation(locationId))
+        if (!Main.Randomizer.IsRandomizerMode)
             return true;
 
         Main.Randomizer.ItemHandler.GiveItemAtLocation(locationId);
@@ -243,6 +255,9 @@ class Cherub_Skip_Patch
 {
     public static bool Prefix(ShowCherubPopup __instance)
     {
+        if (!Main.Randomizer.IsRandomizerMode)
+            return true;
+
         __instance.Finish();
         return false;
     }
@@ -257,6 +272,9 @@ class Tears_Show_Patch
 {
     public static bool Prefix(ShowTearsRewardPopup __instance)
     {
+        if (!Main.Randomizer.IsRandomizerMode)
+            return true;
+
         ModLog.Error("Hiding tears popup.  Not sure what else this affects.");
         __instance.Finish();
         return false;

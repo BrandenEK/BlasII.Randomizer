@@ -31,6 +31,11 @@ public class Randomizer : BlasIIMod, IPersistentMod
 
     public RandomizerSettings CurrentSettings { get; set; } = RandomizerSettings.DefaultSettings;
 
+    /// <summary>
+    /// Whether or not randomizer effects should take place.  Used for testing item/location ids
+    /// </summary>
+    public bool IsRandomizerMode { get; } = false;
+
     protected override void OnInitialize()
     {
         InputHandler.RegisterDefaultKeybindings(new Dictionary<string, KeyCode>()
