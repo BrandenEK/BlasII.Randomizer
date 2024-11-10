@@ -1,5 +1,6 @@
 ﻿using BlasII.Framework.Menus;
 using BlasII.ModdingAPI;
+using BlasII.ModdingAPI.Assets;
 using BlasII.ModdingAPI.Helpers;
 using BlasII.ModdingAPI.Persistence;
 using BlasII.Randomizer.Items;
@@ -7,10 +8,12 @@ using BlasII.Randomizer.Services;
 using BlasII.Randomizer.Shuffle;
 using Il2Cpp;
 using Il2CppTGK.Game;
+using Il2CppTGK.Game.Components.Abilities;
 using Il2CppTGK.Game.Components.Interactables;
 using Il2CppTGK.Game.PopupMessages;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using UnityEngine;
 
 namespace BlasII.Randomizer;
@@ -69,7 +72,9 @@ public class Randomizer : BlasIIMod, IPersistentMod
 
     protected override void OnSceneLoaded(string sceneName)
     {
-        if (sceneName == "Z0206")
+        if (sceneName == "Z0102")
+            LoadWeaponDisplayRoom();
+        else if (sceneName == "Z0206")
             LoadTriggerRemovalRoom("Event Trigger");
         else if (sceneName == "Z0420")
             LoadTriggerRemovalRoom("trigger area");
@@ -178,6 +183,38 @@ public class Randomizer : BlasIIMod, IPersistentMod
 
     // Special rooms
 
+    /// <summary>
+    /// Gives the starting weapon.  Called from the quote patch
+    /// </summary>
+    public void LoadStartingRoom()
+    {
+        ModLog.Info("Giving starting weapon");
+        var weapon = AssetStorage.Weapons[(WEAPON_IDS)CurrentSettings.RealStartingWeapon];
+
+        CoreCache.AbilitiesUnlockManager.SetAbility(AssetStorage.Abilities[ABILITY_IDS.Jump], true);
+        CoreCache.AbilitiesUnlockManager.SetAbility(AssetStorage.Abilities[ABILITY_IDS.Dash], true);
+
+        CoreCache.EquipmentManager.Unlock(weapon);
+        CoreCache.PlayerSpawn.PlayerControllerRef.GetAbility<ChangeWeaponAbility>().ChangeWeapon(weapon);
+        SetQuestValue("ST00", "WEAPON_EVENT", true);
+    }
+
+    /// <summary>
+    /// Hide the weapon statues in the display room
+    /// </summary>
+    private void LoadWeaponDisplayRoom()
+    {
+        string[] statueNames = ["CENSER", "ROSARY", "RAPIER"];
+        foreach (var obj in Object.FindObjectsOfType<PlayMakerFSM>().Where(x => statueNames.Any(x.name.EndsWith)))
+        {
+            ModLog.Info($"Hiding statue: {obj.name}");
+            obj.gameObject.SetActive(false);
+        }
+    }
+
+    /// <summary>
+    /// Unused
+    /// </summary>
     private void LoadWeaponSelectRoom()
     {
         ModLog.Info("Loading weapon room");

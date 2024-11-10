@@ -1,5 +1,6 @@
 ﻿using BlasII.ModdingAPI;
 using HarmonyLib;
+using Il2CppPlaymaker.UI;
 using Il2CppTGK.Game;
 using Il2CppTGK.Game.Components;
 
@@ -18,5 +19,17 @@ class Fade_Hide_Patch
 
         ModLog.Info("Preventing fade of cherub altar");
         return false;
+    }
+}
+
+/// <summary>
+/// Only load starting room after some time
+/// </summary>
+[HarmonyPatch(typeof(ShowQuote), nameof(ShowQuote.OnEnter))]
+class ShowQuote_OnEnter_Patch
+{
+    public static void Postfix()
+    {
+        Main.Randomizer.LoadStartingRoom();
     }
 }
