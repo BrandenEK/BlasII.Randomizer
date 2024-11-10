@@ -31,6 +31,21 @@ class LootInteractable_Use_Patch
         __instance.loot = null;
     }
 }
+[HarmonyPatch(typeof(LootInteractableST103), nameof(LootInteractableST103.UseLootByInteractor))]
+class LootInteractableST103_Use_Patch
+{
+    public static bool Prefix(LootInteractableST103 __instance)
+    {
+        string locationId = $"{CoreCache.Room.CurrentRoom.Name}.l{__instance.transform.GetSiblingIndex()}";
+        ModLog.Error("LootInteractableST103.UseLootByInteractor - " + locationId);
+
+        if (Main.Randomizer.ItemHandler.IsVanillaLocation(locationId))
+            return true;
+
+        Main.Randomizer.ItemHandler.GiveItemAtLocation(locationId);
+        return false;
+    }
+}
 [HarmonyPatch(typeof(AddItem), nameof(AddItem.OnEnter))]
 class PlayMaker_AddItem_Patch
 {
