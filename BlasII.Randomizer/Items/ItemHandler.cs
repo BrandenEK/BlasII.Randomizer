@@ -69,6 +69,7 @@ public class ItemHandler
     /// </summary>
     public bool IsVanillaLocation(string locationId)
     {
+        return true; // Temp while obtaining location/item ids
         return locationId == "Z1506.w0"
             || locationId == "Z1506.a0"
             || locationId == "Z1064.i0";
