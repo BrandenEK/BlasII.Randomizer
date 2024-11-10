@@ -1,13 +1,27 @@
 ﻿using BlasII.Framework.Menus;
 using BlasII.ModdingAPI;
+using BlasII.ModdingAPI.Assets;
 using BlasII.ModdingAPI.Helpers;
 using BlasII.ModdingAPI.Persistence;
+using BlasII.Randomizer.Extensions;
 using BlasII.Randomizer.Items;
 using BlasII.Randomizer.Services;
 using BlasII.Randomizer.Shuffle;
 using Il2Cpp;
+using Il2CppHutongGames.PlayMaker;
+using Il2CppInterop.Runtime;
+using Il2CppLightbug.Kinematic2D.Core;
+using Il2CppLightbug.Kinematic2D.Implementation;
+using Il2CppPlaymaker.Utils;
+using Il2CppTGK.Framework;
 using Il2CppTGK.Game;
+using Il2CppTGK.Game.Components.Abilities;
+using Il2CppTGK.Game.Components.Animation.AnimatorManagement;
+using Il2CppTGK.Game.Components.Animation.AnimatorManagement.Player;
+using Il2CppTGK.Game.Components.Attack.Data;
+using Il2CppTGK.Game.Components.Defense.Data;
 using Il2CppTGK.Game.Components.Interactables;
+using Il2CppTGK.Game.Managers;
 using Il2CppTGK.Game.PopupMessages;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -57,6 +71,69 @@ public class Randomizer : BlasIIMod, IPersistentMod
         if (!SceneHelper.GameSceneLoaded)
             return;
 
+        if (Input.GetKeyDown(KeyCode.N))
+        {
+            ModLog.Warn("Giving censer");
+
+            //CoreCache.EquipmentManager.Lock(AssetStorage.Weapons[WEAPON_IDS.NoWeapon]);
+
+            //foreach (var amor in Resources.FindObjectsOfTypeAll<ArmorID>())
+            //{
+            //    ModLog.Info(amor.name);
+            //    CoreCache.EquipmentManager.SetArmor(amor);
+            //    break;
+            //}
+
+            //CoreCache.EquipmentManager.Unlock(AssetStorage.Weapons[WEAPON_IDS.RosaryBlade]);
+            SetQuestValue("ST00", "WEAPON_CHOSEN", "WEAPON_CENSER");
+            CoreCache.EquipmentManager.Unlock(AssetStorage.Weapons[WEAPON_IDS.Censer]);
+            CoreCache.EquipmentManager.SetWeapon(AssetStorage.Weapons[WEAPON_IDS.Censer]);
+            CoreCache.EquipmentManager.ForceSetWeaponToSlot(AssetStorage.Weapons[WEAPON_IDS.Censer], 0);
+            CoreCache.EquipmentManager.NotifyWeaponChange();
+            CoreCache.AbilitiesUnlockManager.SetAbility(AssetStorage.Abilities[ABILITY_IDS.Jump], true);
+            CoreCache.AbilitiesUnlockManager.SetAbility(AssetStorage.Abilities[ABILITY_IDS.Dash], true);
+            CoreCache.AbilitiesUnlockManager.SetAbility(AssetStorage.Abilities[ABILITY_IDS.Attack], true);
+
+            var chnage = Object.FindObjectOfType<ChangeWeaponAbility>();
+            if (chnage == null)
+            {
+                ModLog.Error("Change not found");
+                return;
+            }
+
+            chnage.ChangeWeapon(AssetStorage.Weapons[WEAPON_IDS.Censer]);
+
+            //CoreCache.PlayerSpawn.PlayerControllerRef.abili
+
+            //PlaybackKey key = null;
+            //foreach (var a in Resources.FindObjectsOfTypeAll<PlaybackKey>())
+            //{
+            //    ModLog.Info(a.name);
+            //    if (a.name == "GetWeapon Blade Playback Key")
+            //    {
+            //        key = a;
+            //        break;
+            //    }
+            //}
+
+            //var anim = CoreCache.PlayerSpawn.PlayerInstance.GetComponent<PlayerAnimatorManager>();
+            //anim.UpdateAnimator();
+            //anim.Sync();
+            //anim.Play(key);
+            //anim.Sync();
+            //anim.SyncWeaponAnimator(0);
+            //CoreCache.PlayerSpawn.PlayerInstance.GetComponentInChildren<CharacterGraphics>().RequestInmediateUpdate();
+            //CoreCache.PlayerSpawn.PlayerControllerRef.PlayAnim(key);
+            CoreCache.PlayerSpawn.PlayerControllerRef.BlockAttack(false);
+            CoreCache.PlayerSpawn.PlayerControllerRef.BlockWeaponChange(false);
+            //CoreCache.PlayerSpawn.PlayerControllerRef.
+            var controller = CoreCache.PlayerSpawn.PlayerInstance.GetComponent<CharacterController2D>();
+            controller.UnBlockAll(true);
+            var changeWeapon = AssetStorage.Abilities[ABILITY_IDS.ChangeWeapon];
+            //controller.ActivateAbilityByType(changeWeapon);
+            //controller.ActivateAbilityByType(changeWeapon);
+        }
+
         if (InputHandler.GetKeyDown("DisplaySettings"))
             DisplaySettings();
 
@@ -69,6 +146,8 @@ public class Randomizer : BlasIIMod, IPersistentMod
 
     protected override void OnSceneLoaded(string sceneName)
     {
+        //if (sceneName == "Z0101")
+        //    CoreCache.EquipmentManager.Unlock(AssetStorage.Weapons[WEAPON_IDS.Censer]);
         if (sceneName == "Z0206")
             LoadTriggerRemovalRoom("Event Trigger");
         else if (sceneName == "Z0420")
