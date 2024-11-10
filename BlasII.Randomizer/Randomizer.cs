@@ -25,6 +25,7 @@ using Il2CppTGK.Game.Managers;
 using Il2CppTGK.Game.PopupMessages;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using UnityEngine;
 
 namespace BlasII.Randomizer;
@@ -75,63 +76,39 @@ public class Randomizer : BlasIIMod, IPersistentMod
         {
             ModLog.Warn("Giving censer");
 
-            //CoreCache.EquipmentManager.Lock(AssetStorage.Weapons[WEAPON_IDS.NoWeapon]);
-
-            //foreach (var amor in Resources.FindObjectsOfTypeAll<ArmorID>())
-            //{
-            //    ModLog.Info(amor.name);
-            //    CoreCache.EquipmentManager.SetArmor(amor);
-            //    break;
-            //}
-
             //CoreCache.EquipmentManager.Unlock(AssetStorage.Weapons[WEAPON_IDS.RosaryBlade]);
-            SetQuestValue("ST00", "WEAPON_CHOSEN", "WEAPON_CENSER");
-            CoreCache.EquipmentManager.Unlock(AssetStorage.Weapons[WEAPON_IDS.Censer]);
-            CoreCache.EquipmentManager.SetWeapon(AssetStorage.Weapons[WEAPON_IDS.Censer]);
-            CoreCache.EquipmentManager.ForceSetWeaponToSlot(AssetStorage.Weapons[WEAPON_IDS.Censer], 0);
-            CoreCache.EquipmentManager.NotifyWeaponChange();
+            //SetQuestValue("ST00", "WEAPON_CHOSEN", "WEAPON_CENSER");
+            //CoreCache.EquipmentManager.SetWeapon(AssetStorage.Weapons[WEAPON_IDS.Censer]);
+            //CoreCache.EquipmentManager.ForceSetWeaponToSlot(AssetStorage.Weapons[WEAPON_IDS.Censer], 0);
+            //CoreCache.EquipmentManager.NotifyWeaponChange();
+            //CoreCache.AbilitiesUnlockManager.SetAbility(AssetStorage.Abilities[ABILITY_IDS.Attack], true);
+            //var chnage = Object.FindObjectOfType<ChangeWeaponAbility>();
+
+            var weapon = AssetStorage.Weapons[WEAPON_IDS.Censer];
+
+            CoreCache.EquipmentManager.Unlock(weapon);
+            CoreCache.PlayerSpawn.PlayerControllerRef.GetAbility<ChangeWeaponAbility>().ChangeWeapon(weapon);
+            SetQuestValue("ST00", "WEAPON_EVENT", true);
+
             CoreCache.AbilitiesUnlockManager.SetAbility(AssetStorage.Abilities[ABILITY_IDS.Jump], true);
             CoreCache.AbilitiesUnlockManager.SetAbility(AssetStorage.Abilities[ABILITY_IDS.Dash], true);
-            CoreCache.AbilitiesUnlockManager.SetAbility(AssetStorage.Abilities[ABILITY_IDS.Attack], true);
 
-            var chnage = Object.FindObjectOfType<ChangeWeaponAbility>();
-            if (chnage == null)
-            {
-                ModLog.Error("Change not found");
-                return;
-            }
+        }
 
-            chnage.ChangeWeapon(AssetStorage.Weapons[WEAPON_IDS.Censer]);
-
-            //CoreCache.PlayerSpawn.PlayerControllerRef.abili
-
-            //PlaybackKey key = null;
-            //foreach (var a in Resources.FindObjectsOfTypeAll<PlaybackKey>())
+        if (Input.GetKeyDown(KeyCode.B))
+        {
+            //foreach (var fsm in Object.FindObjectsOfType<PlayMakerFSM>())
             //{
-            //    ModLog.Info(a.name);
-            //    if (a.name == "GetWeapon Blade Playback Key")
-            //    {
-            //        key = a;
-            //        break;
-            //    }
+            //    ModLog.Warn(fsm.name);
+            //    fsm.gameObject.SetActive(false);
             //}
 
-            //var anim = CoreCache.PlayerSpawn.PlayerInstance.GetComponent<PlayerAnimatorManager>();
-            //anim.UpdateAnimator();
-            //anim.Sync();
-            //anim.Play(key);
-            //anim.Sync();
-            //anim.SyncWeaponAnimator(0);
-            //CoreCache.PlayerSpawn.PlayerInstance.GetComponentInChildren<CharacterGraphics>().RequestInmediateUpdate();
-            //CoreCache.PlayerSpawn.PlayerControllerRef.PlayAnim(key);
-            CoreCache.PlayerSpawn.PlayerControllerRef.BlockAttack(false);
-            CoreCache.PlayerSpawn.PlayerControllerRef.BlockWeaponChange(false);
-            //CoreCache.PlayerSpawn.PlayerControllerRef.
-            var controller = CoreCache.PlayerSpawn.PlayerInstance.GetComponent<CharacterController2D>();
-            controller.UnBlockAll(true);
-            var changeWeapon = AssetStorage.Abilities[ABILITY_IDS.ChangeWeapon];
-            //controller.ActivateAbilityByType(changeWeapon);
-            //controller.ActivateAbilityByType(changeWeapon);
+            string[] statueNames = ["CENSER", "ROSARY", "RAPIER"];
+            foreach (var obj in Object.FindObjectsOfType<PlayMakerFSM>().Where(x => statueNames.Any(x.name.EndsWith)))
+            {
+                ModLog.Warn(obj.name);
+                obj.gameObject.SetActive(false);
+            }
         }
 
         if (InputHandler.GetKeyDown("DisplaySettings"))
@@ -256,6 +233,22 @@ public class Randomizer : BlasIIMod, IPersistentMod
     }
 
     // Special rooms
+
+    /// <summary>
+    /// Gives the starting weapon.  Called from the quote patch
+    /// </summary>
+    public void LoadStartingRoom()
+    {
+        ModLog.Info("Giving starting weapon");
+        var weapon = AssetStorage.Weapons[(WEAPON_IDS)CurrentSettings.RealStartingWeapon];
+
+        CoreCache.AbilitiesUnlockManager.SetAbility(AssetStorage.Abilities[ABILITY_IDS.Jump], true);
+        CoreCache.AbilitiesUnlockManager.SetAbility(AssetStorage.Abilities[ABILITY_IDS.Dash], true);
+
+        CoreCache.EquipmentManager.Unlock(weapon);
+        CoreCache.PlayerSpawn.PlayerControllerRef.GetAbility<ChangeWeaponAbility>().ChangeWeapon(weapon);
+        SetQuestValue("ST00", "WEAPON_EVENT", true);
+    }
 
     private void LoadWeaponSelectRoom()
     {
