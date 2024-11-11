@@ -67,12 +67,6 @@ public class Randomizer : BlasIIMod, IPersistentMod
 
         if (InputHandler.GetKeyDown("DisplaySettings"))
             DisplaySettings();
-
-        //if (Input.GetKeyDown(KeyCode.Keypad8))
-        //{
-        //    if (StatStorage.TryGetModifiableStat("BasePhysicalattack", out var stat))
-        //        StatStorage.PlayerStats.AddBonus(stat, "test", 100, 0);
-        //}
     }
 
     protected override void OnSceneLoaded(string sceneName)
