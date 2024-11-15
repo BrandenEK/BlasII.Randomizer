@@ -1,5 +1,6 @@
 ﻿using BlasII.ModdingAPI;
 using BlasII.ModdingAPI.Assets;
+using BlasII.Randomizer.Models;
 using HarmonyLib;
 using Il2CppPlaymaker.Inventory;
 using Il2CppPlaymaker.PrieDieu;
@@ -220,33 +221,46 @@ class Teleport_Dream_Patch
 {
     public static void Prefix(ref SceneEntryID sceneEntry)
     {
-        ModLog.Info($"Teleporting to: {sceneEntry.scene} ({sceneEntry.entryId})");
-
+        ModLog.Info($"Teleporting1 to: {sceneEntry.scene} ({sceneEntry.entryId})");
         string currentScene = CoreCache.Room.CurrentRoom?.Name;
 
-        if (sceneEntry.scene.StartsWith("Z15") && bossRooms.TryGetValue(currentScene, out int entry))
-        {
-            Main.Randomizer.SetQuestValue("ST00", "DREAM_RETURN", true);
-            sceneEntry = new SceneEntryID()
-            {
-                scene = currentScene == "Z1113" ? "Z1104" : currentScene,
-                entryId = entry
-            };
-        }
-    }
+        if (!sceneEntry.scene.StartsWith("Z15"))
+            return;
 
-    private static readonly Dictionary<string, int> bossRooms = new()
+        if (!Main.Randomizer.Data.TryGetBossTeleportInfo(currentScene, out BossTeleportInfo info))
+            return;
+
+        // Trying to teleport out of a boss room to a dream room
+        Main.Randomizer.SetQuestValue("ST00", "DREAM_RETURN", true);
+        sceneEntry = new SceneEntryID()
+        {
+            scene = info.EntryScene,
+            entryId = info.EntryDoor
+        };
+    }
+}
+[HarmonyPatch(typeof(PlayerSpawnManager), nameof(PlayerSpawnManager.TeleportPlayer), typeof(SceneEntryID), typeof(float), typeof(float), typeof(bool), typeof(PlaybackKey))]
+class PlayerSpawnManager_TeleportPlayer2__Patch
+{
+    public static void Prefix(ref SceneEntryID sceneEntry)
     {
-        { "Z0421", 685874534 },
-        { "Z0730", 685874534 },
-        { "Z0921", -777454601 },
-        { "Z2304", 1157051513 },
-        { "Z1113", 1928462977 },
-        { "Z1216", -1794395 },
-        { "Z1622", 887137572 },
-        { "Z1327", -284092948 },
-        // Z2501: -784211135
-    };
+        ModLog.Info($"Teleporting2 to: {sceneEntry.scene} ({sceneEntry.entryId})");
+        string currentScene = CoreCache.Room.CurrentRoom?.Name;
+
+        if (!sceneEntry.scene.StartsWith("Z15"))
+            return;
+
+        if (!Main.Randomizer.Data.TryGetBossTeleportInfo(currentScene, out BossTeleportInfo info))
+            return;
+
+        // Trying to teleport out of a boss room to a dream room
+        Main.Randomizer.SetQuestValue("ST00", "DREAM_RETURN", true);
+        sceneEntry = new SceneEntryID()
+        {
+            scene = info.EntryScene,
+            entryId = info.EntryDoor
+        };
+    }
 }
 
 // ==========

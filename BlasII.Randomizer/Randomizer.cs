@@ -31,6 +31,11 @@ public class Randomizer : BlasIIMod, IPersistentMod
 
     public RandomizerSettings CurrentSettings { get; set; } = RandomizerSettings.DefaultSettings;
 
+    /// <summary>
+    /// Whether or not randomizer effects should take place.  Used for testing item/location ids
+    /// </summary>
+    public bool IsRandomizerMode { get; } = true;
+
     protected override void OnInitialize()
     {
         InputHandler.RegisterDefaultKeybindings(new Dictionary<string, KeyCode>()
@@ -62,12 +67,6 @@ public class Randomizer : BlasIIMod, IPersistentMod
 
         if (InputHandler.GetKeyDown("DisplaySettings"))
             DisplaySettings();
-
-        //if (Input.GetKeyDown(KeyCode.Keypad8))
-        //{
-        //    if (StatStorage.TryGetModifiableStat("BasePhysicalattack", out var stat))
-        //        StatStorage.PlayerStats.AddBonus(stat, "test", 100, 0);
-        //}
     }
 
     protected override void OnSceneLoaded(string sceneName)
@@ -174,11 +173,8 @@ public class Randomizer : BlasIIMod, IPersistentMod
 
     private void DisplaySettings()
     {
-        foreach (var mid in Resources.FindObjectsOfTypeAll<PopupMessageID>())
-        {
-            if (mid.name == "TESTPOPUP_id")
-                CoreCache.UINavigationHelper.ShowPopupMessage(mid);
-        }
+        var message = Resources.FindObjectsOfTypeAll<PopupMessageID>().First(x => x.name == "TESTPOPUP_id");
+        CoreCache.UINavigationHelper.ShowPopupMessage(message);
     }
 
     // Special rooms

@@ -65,16 +65,6 @@ public class ItemHandler
     }
 
     /// <summary>
-    /// Checks if the location should do normal execution (Weapon select room)
-    /// </summary>
-    public bool IsVanillaLocation(string locationId)
-    {
-        return locationId == "Z1506.w0"
-            || locationId == "Z1506.a0"
-            || locationId == "Z1064.i0";
-    }
-
-    /// <summary>
     /// Attempts a certain number of times to shuffle the items
     /// </summary>
     public bool ShuffleItems(int seed, RandomizerSettings settings)

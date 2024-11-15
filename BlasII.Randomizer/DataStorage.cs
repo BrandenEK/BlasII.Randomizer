@@ -2,7 +2,9 @@
 using BlasII.ModdingAPI.Files;
 using BlasII.Randomizer.Doors;
 using BlasII.Randomizer.Items;
+using BlasII.Randomizer.Models;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace BlasII.Randomizer;
@@ -132,5 +134,33 @@ public class DataStorage
     public bool GetZoneName(string zone, out string name)
     {
         return _zoneNames.TryGetValue(zone, out name);
+    }
+
+    private readonly BossTeleportInfo[] _bossTeleports =
+    [
+        new BossTeleportInfo("Z0421", 129108797, "Z0421", 685874534, true),
+        new BossTeleportInfo("Z0730", -1436975306, "Z0730", 685874534, true),
+        new BossTeleportInfo("Z0921", 129108570, "Z0921", -777454601, true),
+        new BossTeleportInfo("Z2304", 1574233179, "Z2304", 1157051513, false), // Causes missing fog vfx
+        new BossTeleportInfo("Z1113", 0, "Z1104", 1928462977, false), // Benedicta changes rooms
+        new BossTeleportInfo("Z1216", -133013164, "Z1216", -1794395, true),
+        new BossTeleportInfo("Z1622", 1433070649, "Z1622", 887137572, true),
+        new BossTeleportInfo("Z1327", 1433070681, "Z1327", -284092948, true)
+    ];
+
+    /// <summary>
+    /// Retrieves a <see cref="BossTeleportInfo"/> by ExitScene
+    /// </summary>
+    public bool TryGetBossTeleportInfo(string scene, out BossTeleportInfo result)
+    {
+        return (result = _bossTeleports.FirstOrDefault(x => x.ExitScene == scene)) != null;
+    }
+
+    /// <summary>
+    /// Retrieves a <see cref="BossTeleportInfo"/> by ExitSceneHash
+    /// </summary>
+    public bool TryGetBossTeleportInfo(int hash, out BossTeleportInfo result)
+    {
+        return (result = _bossTeleports.FirstOrDefault(x => x.ExitSceneHash == hash)) != null;
     }
 }
