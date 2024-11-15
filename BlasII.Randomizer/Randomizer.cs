@@ -34,7 +34,7 @@ public class Randomizer : BlasIIMod, IPersistentMod
     /// <summary>
     /// Whether or not randomizer effects should take place.  Used for testing item/location ids
     /// </summary>
-    public bool IsRandomizerMode { get; } = false;
+    public bool IsRandomizerMode { get; } = true;
 
     protected override void OnInitialize()
     {
