@@ -2,7 +2,9 @@
 using BlasII.ModdingAPI.Files;
 using BlasII.Randomizer.Doors;
 using BlasII.Randomizer.Items;
+using BlasII.Randomizer.Models;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace BlasII.Randomizer;
@@ -132,5 +134,25 @@ public class DataStorage
     public bool GetZoneName(string zone, out string name)
     {
         return _zoneNames.TryGetValue(zone, out name);
+    }
+
+    private readonly BossTeleportInfo[] _bossTeleports =
+    [
+        new BossTeleportInfo("Z0421", "Z0421", 685874534),
+        new BossTeleportInfo("Z0730", "Z0730", 685874534),
+        new BossTeleportInfo("Z0921", "Z0921", -777454601),
+        new BossTeleportInfo("Z2304", "Z2304", 1157051513),
+        new BossTeleportInfo("Z1113", "Z1104", 1928462977),
+        new BossTeleportInfo("Z1216", "Z1216", -1794395),
+        new BossTeleportInfo("Z1622", "Z1622", 887137572),
+        new BossTeleportInfo("Z1327", "Z1327", -284092948)
+    ];
+
+    /// <summary>
+    /// Retrieves a <see cref="BossTeleportInfo"/> by ExitScene
+    /// </summary>
+    public bool TryGetBossTeleportInfo(string scene, out BossTeleportInfo result)
+    {
+        return (result = _bossTeleports.FirstOrDefault(x => x.ExitScene == scene)) != null;
     }
 }
