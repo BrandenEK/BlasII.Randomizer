@@ -1,4 +1,5 @@
 ﻿using BlasII.ModdingAPI;
+using BlasII.Randomizer.Models;
 using HarmonyLib;
 using Il2CppTGK.Game.Components.Inventory;
 using Il2CppTGK.Game.Managers;
@@ -26,25 +27,10 @@ class Room_Change_Patch
 {
     public static void Prefix(int roomHash, ref bool forceDeactivate)
     {
-        foreach (int room in bossRooms)
-        {
-            if (roomHash == room)
-            {
-                ModLog.Info("Force deactivating boss room");
-                forceDeactivate = true;
-            }
-        }
-    }
+        if (!Main.Randomizer.Data.TryGetBossTeleportInfo(roomHash, out BossTeleportInfo info))
+            return;
 
-    private static readonly int[] bossRooms =
-    {
-        129108797,
-        -1436975306,
-        129108570,
-        // 1574233179, Causes missing fog vfx
-        // Benedicta changes rooms
-        -133013164,
-        1433070649,
-        1433070681,
-    };
+        ModLog.Info("Force deactivating boss room: " + info.ForceDeactivate);
+        forceDeactivate = info.ForceDeactivate;
+    }
 }
