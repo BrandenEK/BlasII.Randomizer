@@ -11,8 +11,11 @@ using UnityEngine.UI;
 
 namespace BlasII.Randomizer.Patches;
 
+/// <summary>
+/// Setup the randomized items for a shop
+/// </summary>
 [HarmonyPatch(typeof(Shop), nameof(Shop.CacheData))]
-class Shop_Cache_Path
+class Shop_CacheData_Patch
 {
     public static void Postfix(Shop __instance)
     {
@@ -81,7 +84,7 @@ class Shop_Cache_Path
 /// When purchasing an "orb" instead give the random item
 /// </summary>
 [HarmonyPatch(typeof(ShopManager), nameof(ShopManager.SellOrb))]
-class Shop_Sell_Patch
+class ShopManager_SellOrb_Patch
 {
     public static void Postfix(Shop shop, int orbIdx)
     {
@@ -99,7 +102,7 @@ class Shop_Sell_Patch
 /// When opening the shop or purchasing an item, update this item's name and description
 /// </summary>
 [HarmonyPatch(typeof(ShopListItem), nameof(ShopListItem.SetData))]
-class Shop_Text_Patch
+class ShopListItem_SetData_Patch
 {
     public static void Postfix(ShopListItem __instance)
     {
@@ -115,7 +118,7 @@ class Shop_Text_Patch
 /// When opening the shop or purchasing an item, update this item's image
 /// </summary>
 [HarmonyPatch(typeof(ShopWindowLogic), nameof(ShopWindowLogic.OnCreateListItem))]
-class Shop_Image_Patch
+class ShopWindowLogic_OnCreateListItem_Patch
 {
     public static void Postfix(UINavigableScrollableList.ScrollableListData data)
     {
@@ -130,7 +133,7 @@ class Shop_Image_Patch
 /// When displaying an orb item, instantly hide it
 /// </summary>
 [HarmonyPatch(typeof(OrbsRewardPopupLogic), nameof(OrbsRewardPopupLogic.ShowPopup))]
-class Shop_Display_Patch
+class OrbsRewardPopupLogic_ShowPopup_Patch
 {
     public static void Prefix(OrbsRewardPopupLogic __instance)
     {

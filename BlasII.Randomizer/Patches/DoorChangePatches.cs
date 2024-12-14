@@ -5,8 +5,12 @@ using Il2CppTGK.Game.Components.Interactables;
 
 namespace BlasII.Randomizer.Patches;
 
+
+/// <summary>
+/// Skip the weapon select room
+/// </summary>
 [HarmonyPatch(typeof(DoorInteractable), nameof(DoorInteractable.ChangeScene))]
-class Door_Use_Patch
+class DoorInteractable_ChangeScene_Patch
 {
     public static void Prefix(DoorInteractable __instance)
     {

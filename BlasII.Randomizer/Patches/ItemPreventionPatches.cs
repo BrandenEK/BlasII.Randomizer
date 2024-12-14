@@ -1,16 +1,11 @@
 ﻿using BlasII.ModdingAPI;
 using BlasII.ModdingAPI.Assets;
-using BlasII.Randomizer.Models;
 using HarmonyLib;
 using Il2CppPlaymaker.Inventory;
-using Il2CppPlaymaker.PrieDieu;
 using Il2CppTGK.Game;
-using Il2CppTGK.Game.Components.Animation.AnimatorManagement;
 using Il2CppTGK.Game.Components.Attack.Data;
 using Il2CppTGK.Game.Inventory.PlayMaker;
 using Il2CppTGK.Game.Managers;
-using Il2CppTGK.Game.PlayerSpawn;
-using System.Collections.Generic;
 
 namespace BlasII.Randomizer.Patches;
 
@@ -208,123 +203,6 @@ class QuestManager_GetVar_Patch
             {
                 __result = "WEAPON_ROSARY";
             }
-        }
-    }
-}
-
-// ==========
-// Boss rooms
-// ==========
-
-[HarmonyPatch(typeof(PlayerSpawnManager), nameof(PlayerSpawnManager.TeleportPlayer), typeof(SceneEntryID), typeof(bool), typeof(PlaybackKey))]
-class Teleport_Dream_Patch
-{
-    public static void Prefix(ref SceneEntryID sceneEntry)
-    {
-        ModLog.Info($"Teleporting1 to: {sceneEntry.scene} ({sceneEntry.entryId})");
-        string currentScene = CoreCache.Room.CurrentRoom?.Name;
-
-        if (!sceneEntry.scene.StartsWith("Z15"))
-            return;
-
-        if (!Main.Randomizer.Data.TryGetBossTeleportInfo(currentScene, out BossTeleportInfo info))
-            return;
-
-        // Trying to teleport out of a boss room to a dream room
-        Main.Randomizer.SetQuestValue("ST00", "DREAM_RETURN", true);
-        sceneEntry = new SceneEntryID()
-        {
-            scene = info.EntryScene,
-            entryId = info.EntryDoor
-        };
-    }
-}
-[HarmonyPatch(typeof(PlayerSpawnManager), nameof(PlayerSpawnManager.TeleportPlayer), typeof(SceneEntryID), typeof(float), typeof(float), typeof(bool), typeof(PlaybackKey))]
-class PlayerSpawnManager_TeleportPlayer2__Patch
-{
-    public static void Prefix(ref SceneEntryID sceneEntry)
-    {
-        ModLog.Info($"Teleporting2 to: {sceneEntry.scene} ({sceneEntry.entryId})");
-        string currentScene = CoreCache.Room.CurrentRoom?.Name;
-
-        if (!sceneEntry.scene.StartsWith("Z15"))
-            return;
-
-        if (!Main.Randomizer.Data.TryGetBossTeleportInfo(currentScene, out BossTeleportInfo info))
-            return;
-
-        // Trying to teleport out of a boss room to a dream room
-        Main.Randomizer.SetQuestValue("ST00", "DREAM_RETURN", true);
-        sceneEntry = new SceneEntryID()
-        {
-            scene = info.EntryScene,
-            entryId = info.EntryDoor
-        };
-    }
-}
-
-// ==========
-// Prie Dieus
-// ==========
-
-[HarmonyPatch(typeof(UpgradePrieDieu), nameof(UpgradePrieDieu.OnEnter))]
-class PrieDieu_Upgrade_Patch
-{
-    public static bool Prefix(UpgradePrieDieu __instance)
-    {
-        string upgradeName = __instance.prieDieuUpgrade.Value.name;
-
-        if (upgradeName == "TeleportToHUBUpgrade" ||
-            upgradeName == "FervourFillUpgrade" ||
-            upgradeName == "TeleportToAnotherPrieuDieuUpgrade")
-        {
-            ModLog.Warn("Skipping upgrade for " + upgradeName);
-            __instance.Finish();
-            return false;
-        }
-
-        return true;
-    }
-}
-
-[HarmonyPatch(typeof(IsPrieDieuUpgraded), nameof(IsPrieDieuUpgraded.OnEnter))]
-class PrieDieu_Check_Patch
-{
-    public static bool Prefix(IsPrieDieuUpgraded __instance)
-    {
-        string upgradeName = __instance.prieDieuUpgrade.Value.name;
-        bool unlocked;
-
-        // Instead of checking the prie dieu upgrade, check the flag
-        if (upgradeName == "TeleportToHUBUpgrade")
-        {
-            unlocked = Main.Randomizer.GetQuestBool("ST25", "UPGRADE1_UNLOCKED");
-        }
-        else if (upgradeName == "FervourFillUpgrade")
-        {
-            unlocked = Main.Randomizer.GetQuestBool("ST25", "UPGRADE2_UNLOCKED");
-        }
-        else if (upgradeName == "TeleportToAnotherPrieuDieuUpgrade")
-        {
-            unlocked = Main.Randomizer.GetQuestBool("ST25", "UPGRADE3_UNLOCKED");
-        }
-        else
-        {
-            return true;
-        }
-
-        // If it was one of these three, do special finish
-        if (unlocked)
-        {
-            __instance.Fsm.Event(__instance.yesEvent);
-            __instance.Finish();
-            return false;
-        }
-        else
-        {
-            __instance.Fsm.Event(__instance.noEvent);
-            __instance.Finish();
-            return false;
         }
     }
 }

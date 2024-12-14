@@ -3,6 +3,8 @@ using HarmonyLib;
 using Il2CppPlaymaker.UI;
 using Il2CppTGK.Game;
 using Il2CppTGK.Game.Components;
+using Il2CppTGK.Game.Components.Inventory;
+using Il2CppTGK.Inventory;
 
 namespace BlasII.Randomizer.Patches;
 
@@ -10,7 +12,7 @@ namespace BlasII.Randomizer.Patches;
 /// In the cherub tower, prevent any altars from actually fading
 /// </summary>
 [HarmonyPatch(typeof(FadeSprite), nameof(FadeSprite.DoFadeWithThisIndex))]
-class Fade_Hide_Patch
+class FadeSprite_DoFadeWithThisIndex_Patch
 {
     public static bool Prefix(FadeSprite __instance)
     {
@@ -31,5 +33,17 @@ class ShowQuote_OnEnter_Patch
     public static void Postfix()
     {
         Main.Randomizer.LoadStartingRoom();
+    }
+}
+
+/// <summary>
+/// Always allow upgrading weapons, even without lance
+/// </summary>
+[HarmonyPatch(typeof(InventoryComponent), nameof(InventoryComponent.HasItem))]
+class Inventory_HasItem_Patch
+{
+    public static void Postfix(ItemID itemID, ref bool __result)
+    {
+        __result = __result || itemID.name == "QI70" && Main.Randomizer.GetQuestBool("ST00", "WEAPON_EVENT");
     }
 }
