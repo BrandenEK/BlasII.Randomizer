@@ -1,5 +1,4 @@
 using BlasII.Randomizer.Doors;
-using BlasII.Randomizer.Items;
 using BlasII.Randomizer.Models;
 using BlasII.Randomizer.Shuffle;
 using LogicParser;
@@ -28,7 +27,7 @@ public class LogicTests
 
         string items = File.ReadAllText(dataFolder + "items.json");
         foreach (var item in JsonConvert.DeserializeObject<Item[]>(items))
-            _allItems.Add(item.id, item);
+            _allItems.Add(item.Id, item);
 
         string itemLocations = File.ReadAllText(dataFolder + "item-locations.json");
         foreach (var itemLocation in JsonConvert.DeserializeObject<ItemLocation[]>(itemLocations))

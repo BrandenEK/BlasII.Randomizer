@@ -1,10 +1,9 @@
 ﻿using BlasII.ModdingAPI.Assets;
-using BlasII.Randomizer.Models;
 using Il2CppTGK.Game;
 using System;
 using UnityEngine;
 
-namespace BlasII.Randomizer.Extensions;
+namespace BlasII.Randomizer.Models;
 
 /// <summary>
 /// Provides functionality for the Item model
@@ -158,7 +157,7 @@ public static class ItemExtensions
                     break;
                 }
             case Item.ItemType.PreMarks:
-                
+
                 {
                     AssetStorage.PlayerStats.AddToCurrentValue(AssetStorage.ValueStats["MarksPreceptor"], item.GetAmount());
                     break;

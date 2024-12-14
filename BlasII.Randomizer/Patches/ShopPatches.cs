@@ -1,5 +1,6 @@
 ﻿using BlasII.ModdingAPI;
 using BlasII.ModdingAPI.Assets;
+using BlasII.Randomizer.Models;
 using HarmonyLib;
 using Il2CppTGK.Game.Components.UI;
 using Il2CppTGK.Game.Managers;
@@ -109,8 +110,8 @@ class ShopListItem_SetData_Patch
         string locationId = $"{Object.FindObjectOfType<ShopWindowLogic>().currentShop.name}.o{__instance.OrbIdx}";
 
         var item = Main.Randomizer.ItemHandler.GetItemAtLocation(locationId);
-        __instance.Caption = item.Upgraded.DisplayName;
-        __instance.Description = item.Upgraded.Description;
+        __instance.Caption = item.GetName();
+        __instance.Description = item.GetDescription();
     }
 }
 
@@ -125,7 +126,7 @@ class ShopWindowLogic_OnCreateListItem_Patch
         string locationId = $"{Object.FindObjectOfType<ShopWindowLogic>().currentShop.name}.o{data.obj.GetComponent<ShopListItem>().OrbIdx}";
 
         var item = Main.Randomizer.ItemHandler.GetItemAtLocation(locationId);
-        data.obj.transform.Find("Image").GetComponent<Image>().sprite = item.Upgraded.Image;
+        data.obj.transform.Find("Image").GetComponent<Image>().sprite = item.GetSprite();
     }
 }
 

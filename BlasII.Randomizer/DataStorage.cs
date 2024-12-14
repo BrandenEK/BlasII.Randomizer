@@ -1,7 +1,6 @@
 ﻿using BlasII.ModdingAPI;
 using BlasII.ModdingAPI.Files;
 using BlasII.Randomizer.Doors;
-using BlasII.Randomizer.Items;
 using BlasII.Randomizer.Models;
 using System.Collections.Generic;
 using System.Linq;
@@ -57,7 +56,7 @@ public class DataStorage
         if (Main.Randomizer.FileHandler.LoadDataAsJson("items.json", out Item[] items))
         {
             foreach (var item in items)
-                _allItems.Add(item.id, item);
+                _allItems.Add(item.Id, item);
         }
         ModLog.Info($"Loaded {_allItems.Count} items!");
 

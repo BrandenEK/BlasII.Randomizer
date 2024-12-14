@@ -1,5 +1,4 @@
-﻿using BlasII.Randomizer.Items;
-using BlasII.Randomizer.Models;
+﻿using BlasII.Randomizer.Models;
 using System;
 using System.Collections.Generic;
 
@@ -87,8 +86,8 @@ internal class ForwardItemShuffler : IShuffler
     /// </summary>
     private void AddItemToPool(List<Item> progressionItems, List<Item> junkItems, Item item)
     {
-        List<Item> itemPool = item.progression ? progressionItems : junkItems;
-        for (int i = 0; i < item.count; i++)
+        List<Item> itemPool = item.Progression ? progressionItems : junkItems;
+        for (int i = 0; i < item.Count; i++)
         {
             itemPool.Add(item);
         }
@@ -167,7 +166,7 @@ internal class ForwardItemShuffler : IShuffler
             Item item = RemoveLast(items);
 
             inventory.AddItem(item);
-            output.Add(location.Id, item.id);
+            output.Add(location.Id, item.Id);
             //Main.Randomizer.Log($"Placing prog item {item.id} at: {location.id}");
 
             reachableLocations = FindReachableLocations(locations, inventory);
@@ -183,7 +182,7 @@ internal class ForwardItemShuffler : IShuffler
             ItemLocation location = RemoveLast(locations);
             Item item = RemoveLast(items);
 
-            output.Add(location.Id, item.id);
+            output.Add(location.Id, item.Id);
             //Main.Randomizer.Log($"Placing junk item {item.id} at: {location.id}");
         }
     }

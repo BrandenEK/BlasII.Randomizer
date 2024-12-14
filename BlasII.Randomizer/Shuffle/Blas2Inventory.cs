@@ -1,5 +1,5 @@
 ﻿using BlasII.Randomizer.Doors;
-using BlasII.Randomizer.Items;
+using BlasII.Randomizer.Models;
 using LogicParser;
 using System.Collections.Generic;
 
@@ -145,22 +145,22 @@ public class Blas2Inventory : InventoryData
 
     public void AddItem(Item item)
     {
-        switch (item.type)
+        switch (item.Type)
         {
-            case Item.ItemType.QuestItem: ChangeQuestItem(item.id, true); break;
-            case Item.ItemType.Weapon: ChangeWeapon(item.id, true); break;
-            case Item.ItemType.Ability: ChangeAbility(item.id, true); break;
+            case Item.ItemType.QuestItem: ChangeQuestItem(item.Id, true); break;
+            case Item.ItemType.Weapon: ChangeWeapon(item.Id, true); break;
+            case Item.ItemType.Ability: ChangeAbility(item.Id, true); break;
             case Item.ItemType.Cherub: ChangeCherub(true); break;
         }
     }
 
     public void RemoveItem(Item item)
     {
-        switch (item.type)
+        switch (item.Type)
         {
-            case Item.ItemType.QuestItem: ChangeQuestItem(item.id, false); break;
-            case Item.ItemType.Weapon: ChangeWeapon(item.id, false); break;
-            case Item.ItemType.Ability: ChangeAbility(item.id, false); break;
+            case Item.ItemType.QuestItem: ChangeQuestItem(item.Id, false); break;
+            case Item.ItemType.Weapon: ChangeWeapon(item.Id, false); break;
+            case Item.ItemType.Ability: ChangeAbility(item.Id, false); break;
             case Item.ItemType.Cherub: ChangeCherub(false); break;
         }
     }
