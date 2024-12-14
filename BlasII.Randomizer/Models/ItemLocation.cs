@@ -2,7 +2,7 @@
 namespace BlasII.Randomizer.Models;
 
 /// <summary>
-/// Models location that contains a randomized item
+/// Models a location that contains a randomized item
 /// </summary>
 public class ItemLocation
 {
