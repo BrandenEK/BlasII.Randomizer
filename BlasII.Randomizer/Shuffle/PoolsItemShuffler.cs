@@ -1,4 +1,5 @@
-﻿using BlasII.Randomizer.Models;
+﻿using BlasII.ModdingAPI.Assets;
+using BlasII.Randomizer.Models;
 using System;
 using System.Collections.Generic;
 
@@ -133,7 +134,7 @@ internal class PoolsItemShuffler : IShuffler
     /// </summary>
     private string GetStartingWeaponId(RandomizerSettings settings)
     {
-        return "WE0" + (settings.RealStartingWeapon + 1);
+        return ((WEAPON_IDS)settings.RealStartingWeapon).ToString();
     }
 
     #endregion
@@ -192,7 +193,7 @@ internal class PoolsItemShuffler : IShuffler
     /// </summary>        
     private void MovePriorityItems(ItemPool progressionItems)
     {
-        Item wallClimb = Main.Randomizer.Data.GetItem("AB44");
+        Item wallClimb = Main.Randomizer.Data.GetItem("WallClimb");
         progressionItems.MoveToBeginning(wallClimb);
     }
 
