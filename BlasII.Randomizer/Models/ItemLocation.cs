@@ -25,18 +25,4 @@ public class ItemLocation
     /// Temporary logic string
     /// </summary>
     public string Logic { get; set; }
-
-    /// <summary>
-    /// If this is a certain type of location, make sure the settings allow it to be shuffled
-    /// </summary>
-    public bool ShouldBeShuffled(RandomizerSettings settings)
-    {
-        if (Flags.Contains('L') && !settings.shuffleLongQuests)
-            return false;
-
-        if (Flags.Contains('S') && !settings.shuffleShops)
-            return false;
-
-        return true;
-    }
 }
