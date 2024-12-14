@@ -50,11 +50,6 @@ public class Randomizer : BlasIIMod, IPersistentMod
         //ShuffleTest(new PoolsItemShuffler(), 777, 500);
     }
 
-    protected override void OnAllInitialized()
-    {
-        MessageHandler.Send("BlasII.QualityOfLife", "ssl", "4");
-    }
-
     protected override void OnRegisterServices(ModServiceProvider provider)
     {
         provider.RegisterNewGameMenu(new RandomizerMenu());
@@ -174,7 +169,7 @@ public class Randomizer : BlasIIMod, IPersistentMod
     private void DisplaySettings()
     {
         var message = Resources.FindObjectsOfTypeAll<PopupMessageID>().First(x => x.name == "TESTPOPUP_id");
-        CoreCache.UINavigationHelper.ShowPopupMessage(message);
+        CoreCache.UINavigationHelper.ShowPopupMessage(message, false);
     }
 
     // Special rooms

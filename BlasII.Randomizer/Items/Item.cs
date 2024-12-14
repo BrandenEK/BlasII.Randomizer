@@ -220,7 +220,7 @@ public class Item
                 }
             case ItemType.Marks:
                 {
-                    AssetStorage.PlayerStats.AddRewardOrbs(Amount, true);
+                    AssetStorage.PlayerStats.AddRewardOrbs(Amount, true, 0);
                     break;
                 }
         }
