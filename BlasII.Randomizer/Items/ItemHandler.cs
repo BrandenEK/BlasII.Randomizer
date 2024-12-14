@@ -61,7 +61,8 @@ public class ItemHandler
         CoreCache.UINavigationHelper.ShowItemPopup(
             Main.Randomizer.LocalizationHandler.Localize("otex"),
             item.Current?.DisplayName,
-            item.Current?.Image);
+            item.Current?.Image,
+            false);
     }
 
     /// <summary>

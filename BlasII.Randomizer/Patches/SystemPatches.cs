@@ -1,9 +1,13 @@
 ﻿using BlasII.ModdingAPI;
 using BlasII.Randomizer.Models;
 using HarmonyLib;
+using Il2CppSystem;
+using Il2CppSystem.Threading;
 using Il2CppTGK.Game.Components.Inventory;
+using Il2CppTGK.Game.Components.UI;
 using Il2CppTGK.Game.Managers;
 using Il2CppTGK.Inventory;
+using UnityEngine;
 
 namespace BlasII.Randomizer.Patches;
 
@@ -32,5 +36,25 @@ class Room_Change_Patch
 
         ModLog.Info("Force deactivating boss room: " + info.ForceDeactivate);
         forceDeactivate = info.ForceDeactivate;
+    }
+}
+
+/// <summary>
+/// Always fade everything to block - prevents fade being locked to white after boss defeat
+/// </summary>
+[HarmonyPatch(typeof(FadeWindowLogic), nameof(FadeWindowLogic.FadeAsync), typeof(float), typeof(Action), typeof(Color), typeof(CancellationToken))]
+class FadeWindowLogic_FadeAsync_Patch1
+{
+    public static void Prefix(ref Color targetColor)
+    {
+        targetColor = new Color(0, 0, 0, targetColor.a);
+    }
+}
+[HarmonyPatch(typeof(FadeWindowLogic), nameof(FadeWindowLogic.FadeAsync), typeof(float), typeof(Action), typeof(Color))]
+class FadeWindowLogic_FadeAsync_Patch2
+{
+    public static void Prefix(ref Color targetColor)
+    {
+        targetColor = new Color(0, 0, 0, targetColor.a);
     }
 }

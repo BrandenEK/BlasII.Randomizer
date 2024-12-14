@@ -169,7 +169,7 @@ public class Randomizer : BlasIIMod, IPersistentMod
     private void DisplaySettings()
     {
         var message = Resources.FindObjectsOfTypeAll<PopupMessageID>().First(x => x.name == "TESTPOPUP_id");
-        CoreCache.UINavigationHelper.ShowPopupMessage(message);
+        CoreCache.UINavigationHelper.ShowPopupMessage(message, false);
     }
 
     // Special rooms
