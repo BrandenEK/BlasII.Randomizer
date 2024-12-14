@@ -45,6 +45,7 @@ public class Item
         Cherub = 6,
         Tears = 20,
         Marks = 21,
+        PreMarks = 22,
         Invalid = 99,
     }
 }
