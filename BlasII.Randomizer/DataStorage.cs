@@ -64,7 +64,7 @@ public class DataStorage
         if (Main.Randomizer.FileHandler.LoadDataAsJson("item-locations.json", out ItemLocation[] itemLocations))
         {
             foreach (var itemLocation in itemLocations)
-                _allItemLocations.Add(itemLocation.id, itemLocation);
+                _allItemLocations.Add(itemLocation.Id, itemLocation);
         }
         ModLog.Info($"Loaded {_allItemLocations.Count} item locations!");
 

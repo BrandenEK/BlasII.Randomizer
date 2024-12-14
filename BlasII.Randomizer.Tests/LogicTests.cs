@@ -1,5 +1,6 @@
 using BlasII.Randomizer.Doors;
 using BlasII.Randomizer.Items;
+using BlasII.Randomizer.Models;
 using BlasII.Randomizer.Shuffle;
 using LogicParser;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -31,7 +32,7 @@ public class LogicTests
 
         string itemLocations = File.ReadAllText(dataFolder + "item-locations.json");
         foreach (var itemLocation in JsonConvert.DeserializeObject<ItemLocation[]>(itemLocations))
-            _allItemLocations.Add(itemLocation.id, itemLocation);
+            _allItemLocations.Add(itemLocation.Id, itemLocation);
 
         string doors = File.ReadAllText(dataFolder + "doors.json");
         foreach (var door in JsonConvert.DeserializeObject<DoorLocation[]>(doors))
@@ -79,11 +80,11 @@ public class LogicTests
         {
             try
             {
-                inventory.Evaluate(itemLocation.logic);
+                inventory.Evaluate(itemLocation.Logic);
             }
             catch (LogicParserException e)
             {
-                sb.AppendLine($"[{itemLocation.id}] {e.Message}");
+                sb.AppendLine($"[{itemLocation.Id}] {e.Message}");
                 invalid = true;
             }
         }

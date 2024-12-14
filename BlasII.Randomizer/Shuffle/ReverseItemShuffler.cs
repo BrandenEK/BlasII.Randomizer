@@ -1,4 +1,5 @@
 ﻿using BlasII.Randomizer.Items;
+using BlasII.Randomizer.Models;
 using System;
 using System.Collections.Generic;
 
@@ -148,7 +149,7 @@ internal class ReverseItemShuffler : IShuffler
         // Verify that all locations are reachable
         foreach (var location in locations)
         {
-            if (!inventory.Evaluate(location.logic))
+            if (!inventory.Evaluate(location.Logic))
                 return;
         }
 
@@ -167,7 +168,7 @@ internal class ReverseItemShuffler : IShuffler
 
             ItemLocation location = RemoveRandom(reachableLocations);
             locations.Remove(location);
-            output.Add(location.id, item.id);
+            output.Add(location.Id, item.id);
         }
     }
 
@@ -183,7 +184,7 @@ internal class ReverseItemShuffler : IShuffler
             ItemLocation location = RemoveLast(locations);
             Item item = RemoveLast(items);
 
-            output.Add(location.id, item.id);
+            output.Add(location.Id, item.id);
         }
     }
 
@@ -204,7 +205,7 @@ internal class ReverseItemShuffler : IShuffler
     {
         for (int i = 0; i < locations.Count; i++)
         {
-            if (inventory.Evaluate(locations[i].logic))
+            if (inventory.Evaluate(locations[i].Logic))
                 continue;
 
             locations.RemoveAt(i);

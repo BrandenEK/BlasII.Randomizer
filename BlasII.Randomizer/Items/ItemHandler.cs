@@ -101,10 +101,10 @@ public class ItemHandler
         foreach (var location in Main.Randomizer.Data.ItemLocationList)
         {
             // Make sure it has a valid item
-            Item item = GetItemAtLocation(location.id);
+            Item item = GetItemAtLocation(location.Id);
 
             // Display new zone section if different
-            string locationZoneId = location.id[..3];
+            string locationZoneId = location.Id[..3];
             if (currentZoneId != locationZoneId && Main.Randomizer.Data.GetZoneName(locationZoneId, out string locationZoneName))
             {
                 sb.AppendLine($"\n - {locationZoneName} -\n");
@@ -112,7 +112,7 @@ public class ItemHandler
             }
 
             // Add location to text
-            sb.AppendLine($"{location.name}: {item.name}");
+            sb.AppendLine($"{location.Name}: {item.name}");
         }
 
         // Save text to file

@@ -1,4 +1,5 @@
 ﻿using BlasII.Randomizer.Items;
+using BlasII.Randomizer.Models;
 using System;
 using System.Collections.Generic;
 
@@ -148,7 +149,7 @@ internal class PoolsItemShuffler : IShuffler
         // Verify that all locations are reachable
         foreach (var location in locations)
         {
-            if (!inventory.Evaluate(location.logic))
+            if (!inventory.Evaluate(location.Logic))
                 return;
         }
 
@@ -167,7 +168,7 @@ internal class PoolsItemShuffler : IShuffler
 
             ItemLocation location = reachableLocations.RemoveRandom();
             locations.Remove(location);
-            output.Add(location.id, item.id);
+            output.Add(location.Id, item.id);
         }
     }
 
@@ -183,7 +184,7 @@ internal class PoolsItemShuffler : IShuffler
             ItemLocation location = locations.RemoveLast();
             Item item = items.RemoveLast();
 
-            output.Add(location.id, item.id);
+            output.Add(location.Id, item.id);
         }
     }
 
@@ -201,7 +202,7 @@ internal class PoolsItemShuffler : IShuffler
     /// </summary>
     private void RemoveUnreachableLocations(LocationPool locations, Blas2Inventory inventory)
     {
-        locations.RemoveConditional(loc => !inventory.Evaluate(loc.logic));
+        locations.RemoveConditional(loc => !inventory.Evaluate(loc.Logic));
     }
 
     #endregion

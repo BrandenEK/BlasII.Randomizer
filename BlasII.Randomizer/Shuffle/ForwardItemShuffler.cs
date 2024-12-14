@@ -1,4 +1,5 @@
 ﻿using BlasII.Randomizer.Items;
+using BlasII.Randomizer.Models;
 using System;
 using System.Collections.Generic;
 
@@ -128,7 +129,7 @@ internal class ForwardItemShuffler : IShuffler
         var reachableLocations = new List<ItemLocation>();
         foreach (var location in locations)
         {
-            if (inventory.Evaluate(location.logic))
+            if (inventory.Evaluate(location.Logic))
                 reachableLocations.Add(location);
         }
         return reachableLocations;
@@ -166,7 +167,7 @@ internal class ForwardItemShuffler : IShuffler
             Item item = RemoveLast(items);
 
             inventory.AddItem(item);
-            output.Add(location.id, item.id);
+            output.Add(location.Id, item.id);
             //Main.Randomizer.Log($"Placing prog item {item.id} at: {location.id}");
 
             reachableLocations = FindReachableLocations(locations, inventory);
@@ -182,7 +183,7 @@ internal class ForwardItemShuffler : IShuffler
             ItemLocation location = RemoveLast(locations);
             Item item = RemoveLast(items);
 
-            output.Add(location.id, item.id);
+            output.Add(location.Id, item.id);
             //Main.Randomizer.Log($"Placing junk item {item.id} at: {location.id}");
         }
     }
