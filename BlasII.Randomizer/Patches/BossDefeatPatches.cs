@@ -79,7 +79,7 @@ class Room_Change_Patch
 }
 
 /// <summary>
-/// Always fade everything to block - prevents fade being locked to white after boss defeat
+/// Always fade everything to black - prevents fade being locked to white after boss defeat
 /// </summary>
 [HarmonyPatch(typeof(FadeWindowLogic), nameof(FadeWindowLogic.FadeAsync), typeof(float), typeof(Action), typeof(Color), typeof(CancellationToken))]
 class FadeWindowLogic_FadeAsync_Patch1
