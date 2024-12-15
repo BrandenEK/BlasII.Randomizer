@@ -40,7 +40,7 @@ public class LogicTests
     [TestInitialize]
     public void CreateInventory()
     {
-        inventory = new Blas2Inventory(RandomizerSettings.DefaultSettings, _allDoors);
+        inventory = new Blas2Inventory(RandomizerSettings.DEFAULT, _allDoors);
     }
 
     [TestMethod]

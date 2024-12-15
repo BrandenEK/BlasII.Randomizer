@@ -4,117 +4,144 @@ using System.Text;
 
 namespace BlasII.Randomizer;
 
+/// <summary>
+/// Selected options for the current randomizer run
+/// </summary>
 public class RandomizerSettings
 {
-    public const int MAX_SEED = 999_999;
+    /// <summary>
+    /// The seed
+    /// </summary>
+    public int Seed { get; set; }
 
-    // General settings
-    [JsonProperty] public readonly int seed;
-    [JsonProperty] public readonly bool allowHints;
+    // Item shuffle (Functionality)
 
-    // Item rando settings
-    [JsonProperty] public readonly int logicType;
-    [JsonProperty] public readonly int requiredKeys;
-    [JsonProperty] public readonly int startingWeapon;
-    [JsonProperty] public readonly bool shuffleLongQuests;
-    [JsonProperty] public readonly bool shuffleShops;
+    /// <summary>
+    /// Determines whether more difficult tricks will be required in logic
+    /// </summary>
+    public int LogicType { get; set; }
 
-    // Not implemented
-    [JsonProperty] public readonly int glitchType;
-    [JsonProperty] public readonly int startingLocation;
+    /// <summary>
+    /// Determines how many keys are required to open the door to CR
+    /// </summary>
+    public int RequiredKeys { get; set; }
 
-    // Enemy rando settings
-    [JsonProperty] public readonly int enemyType;
+    /// <summary>
+    /// Determines which weapon you will start with
+    /// </summary>
+    public int StartingWeapon { get; set; }
 
-    // Door rando settings
-    [JsonProperty] public readonly int doorType;
+    // Item shuffle (Pool)
 
-    public static RandomizerSettings DefaultSettings => new(RandomSeed, 1, 5, 0, 0, 0, false, true, true, 0, 0);
+    /// <summary>
+    /// Whether locations that require a lot of time can contain progression
+    /// </summary>
+    public bool ShuffleLongQuests { get; set; }
 
-    public static int RandomSeed => new Random().Next(1, MAX_SEED + 1);
+    /// <summary>
+    /// Whether locations that require a purchase can contain progression
+    /// </summary>
+    public bool ShuffleShops { get; set; }
 
-    [JsonConstructor]
-    public RandomizerSettings(int seed, int logic, int keys, int glitch, int weapon, int location, bool longQuests, bool shops, bool hints, int enemy, int door)
-    {
-        this.seed = seed;
-        allowHints = hints;
-
-        logicType = logic;
-        requiredKeys = keys;
-        startingWeapon = weapon;
-        shuffleLongQuests = longQuests;
-        shuffleShops = shops;
-
-        glitchType = glitch;
-        startingLocation = location;
-
-        enemyType = enemy;
-        doorType = door;
-    }
-
+    /// <summary>
+    /// Formats the settings for the info popup
+    /// </summary>
     public string FormatInfo()
     {
-        string logic = logicType == 0 ? "Easy" : logicType == 1 ? "Normal" : "Hard";
-        string keys = requiredKeys > 0 ? (requiredKeys - 1).ToString() : "Random";
+        string logic = LogicType == 0 ? "Easy" : LogicType == 1 ? "Normal" : "Hard";
+        string keys = RequiredKeys > 0 ? (RequiredKeys - 1).ToString() : "Random";
         string[] weapons = new string[] { "Veredicto", "Ruego", "Sarmiento" };
-        string weapon = startingWeapon > 0 ? weapons[startingWeapon - 1] : "Random";
+        string weapon = StartingWeapon > 0 ? weapons[StartingWeapon - 1] : "Random";
 
         var sb = new StringBuilder();
         sb.AppendLine("RANDOMIZER SETTINGS");
-        sb.AppendLine("Seed: " + seed);
+        sb.AppendLine("Seed: " + Seed);
         sb.AppendLine();
         sb.AppendLine("Logic difficulty: " + logic);
         sb.AppendLine("Required keys: " + keys);
         sb.AppendLine("Starting weapon: " + weapon);
-        sb.AppendLine("Shuffle long quests: " + shuffleLongQuests);
-        sb.AppendLine("Shuffle shops: " + shuffleShops);
+        sb.AppendLine("Shuffle long quests: " + ShuffleLongQuests);
+        sb.AppendLine("Shuffle shops: " + ShuffleShops);
 
         return sb.ToString();
     }
 
+    /// <summary>
+    /// Formats the settings for the spoiler
+    /// </summary>
+    /// <returns></returns>
     public string FormatSpoiler()
     {
-        string logic = logicType == 0 ? "Easy" : logicType == 1 ? "Normal" : "Hard";
-        string keys = requiredKeys > 0 ? (requiredKeys - 1).ToString() : $"[{RealRequiredKeys}]";
+        string logic = LogicType == 0 ? "Easy" : LogicType == 1 ? "Normal" : "Hard";
+        string keys = RequiredKeys > 0 ? (RequiredKeys - 1).ToString() : $"[{RealRequiredKeys}]";
         string[] weapons = new string[] { "Veredicto", "Ruego", "Sarmiento" };
-        string weapon = startingWeapon > 0 ? weapons[startingWeapon - 1] : $"[{weapons[RealStartingWeapon]}]";
+        string weapon = StartingWeapon > 0 ? weapons[StartingWeapon - 1] : $"[{weapons[RealStartingWeapon]}]";
         var line = new string('=', 35);
 
         var sb = new StringBuilder();
-        sb.AppendLine("Seed: " + seed);
+        sb.AppendLine("Seed: " + Seed);
         sb.AppendLine();
         sb.AppendLine(line);
         sb.AppendLine(" Logic difficulty: " + logic);
         sb.AppendLine(" Required keys: " + keys);
         sb.AppendLine(" Starting weapon: " + weapon);
-        sb.AppendLine(" Shuffle long quests: " + shuffleLongQuests);
-        sb.AppendLine(" Shuffle shops: " + shuffleShops);
+        sb.AppendLine(" Shuffle long quests: " + ShuffleLongQuests);
+        sb.AppendLine(" Shuffle shops: " + ShuffleShops);
         sb.AppendLine(line);
 
         return sb.ToString();
     }
 
+    /// <summary>
+    /// The actual starting weapon with "Random" taken into account
+    /// </summary>
     [JsonIgnore]
     public int RealStartingWeapon
     {
         get
         {
-            if (startingWeapon >= 1 && startingWeapon <= 3)
-                return startingWeapon - 1;
+            if (StartingWeapon >= 1 && StartingWeapon <= 3)
+                return StartingWeapon - 1;
 
-            return new Random(seed).Next(0, 3);
+            return new Random(Seed).Next(0, 3);
         }
     }
 
+    /// <summary>
+    /// The actual required keys with "Random" taken into account
+    /// </summary>
     [JsonIgnore]
     public int RealRequiredKeys
     {
         get
         {
-            if (requiredKeys >= 1 && requiredKeys <= 6)
-                return requiredKeys - 1;
+            if (RequiredKeys >= 1 && RequiredKeys <= 6)
+                return RequiredKeys - 1;
 
-            return new Random(seed).Next(0, 6);
+            return new Random(Seed).Next(0, 6);
         }
     }
+
+    /// <summary>
+    /// A new settings object with default properties
+    /// </summary>
+    public static RandomizerSettings DEFAULT => new()
+    {
+        Seed = RANDOM_SEED,
+        LogicType = 1,
+        RequiredKeys = 5,
+        StartingWeapon = 0,
+        ShuffleLongQuests = false,
+        ShuffleShops = true,
+    };
+
+    /// <summary>
+    /// A random seed in the valid range
+    /// </summary>
+    public static int RANDOM_SEED => new Random().Next(1, MAX_SEED + 1);
+
+    /// <summary>
+    /// The maximum seed allowed
+    /// </summary>
+    public const int MAX_SEED = 999_999;
 }

@@ -26,7 +26,10 @@ public class Randomizer : BlasIIMod, IPersistentMod
 {
     internal Randomizer() : base(ModInfo.MOD_ID, ModInfo.MOD_NAME, ModInfo.MOD_AUTHOR, ModInfo.MOD_VERSION) { }
 
-    public RandomizerSettings CurrentSettings { get; set; } = RandomizerSettings.DefaultSettings;
+    /// <summary>
+    /// The selected settings for the current run
+    /// </summary>
+    public RandomizerSettings CurrentSettings { get; set; } = RandomizerSettings.DEFAULT;
 
     // Handlers
 
@@ -122,7 +125,7 @@ public class Randomizer : BlasIIMod, IPersistentMod
     {
         var seedGen = new System.Random(initialSeed);
         var output = new Dictionary<string, string>();
-        var settings = RandomizerSettings.DefaultSettings;
+        var settings = RandomizerSettings.DEFAULT;
 
         int successfulTries = 0;
         double runningTime = 0;
@@ -145,8 +148,8 @@ public class Randomizer : BlasIIMod, IPersistentMod
 
     protected override void OnNewGame()
     {
-        ModLog.Info($"Performing shuffle for seed {CurrentSettings.seed}");
-        ItemHandler.ShuffleItems(CurrentSettings.seed, CurrentSettings);
+        ModLog.Info($"Performing shuffle for seed {CurrentSettings.Seed}");
+        ItemHandler.ShuffleItems(CurrentSettings.Seed, CurrentSettings);
         AllowPrieDieuWarp();
     }
 
