@@ -1,5 +1,4 @@
-﻿using BlasII.Randomizer.Doors;
-using BlasII.Randomizer.Models;
+﻿using BlasII.Randomizer.Models;
 using LogicParser;
 using System.Collections.Generic;
 
@@ -82,7 +81,7 @@ public class Blas2Inventory : InventoryData
         // Door variable
         if (_doors.TryGetValue(variable, out var door))
         {
-            return Evaluate(door.logic);
+            return Evaluate(door.Logic);
         }
 
         // Regular variable
