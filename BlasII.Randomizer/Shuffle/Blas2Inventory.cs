@@ -1,5 +1,4 @@
-﻿using BlasII.Randomizer.Doors;
-using BlasII.Randomizer.Models;
+﻿using BlasII.Randomizer.Models;
 using LogicParser;
 using System.Collections.Generic;
 
@@ -82,7 +81,7 @@ public class Blas2Inventory : InventoryData
         // Door variable
         if (_doors.TryGetValue(variable, out var door))
         {
-            return Evaluate(door.logic);
+            return Evaluate(door.Logic);
         }
 
         // Regular variable
@@ -221,12 +220,12 @@ public class Blas2Inventory : InventoryData
         cherubs += addition ? 1 : -1;
     }
 
-    public Blas2Inventory(RandomizerSettings settings, IDictionary<string, DoorLocation> doors)
+    public Blas2Inventory(RandomizerSettings settings, IDictionary<string, Door> doors)
     {
         _settings = settings;
         _doors = doors;
     }
 
     private readonly RandomizerSettings _settings;
-    private readonly IDictionary<string, DoorLocation> _doors;
+    private readonly IDictionary<string, Door> _doors;
 }

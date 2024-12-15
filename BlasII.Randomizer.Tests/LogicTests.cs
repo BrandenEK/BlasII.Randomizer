@@ -1,4 +1,3 @@
-using BlasII.Randomizer.Doors;
 using BlasII.Randomizer.Models;
 using BlasII.Randomizer.Shuffle;
 using LogicParser;
@@ -16,7 +15,7 @@ public class LogicTests
 {
     private static readonly Dictionary<string, Item> _allItems = new();
     private static readonly Dictionary<string, ItemLocation> _allItemLocations = new();
-    private static readonly Dictionary<string, DoorLocation> _allDoors = new();
+    private static readonly Dictionary<string, Door> _allDoors = new();
 
     private Blas2Inventory inventory;
 
@@ -34,8 +33,8 @@ public class LogicTests
             _allItemLocations.Add(itemLocation.Id, itemLocation);
 
         string doors = File.ReadAllText(dataFolder + "doors.json");
-        foreach (var door in JsonConvert.DeserializeObject<DoorLocation[]>(doors))
-            _allDoors.Add(door.id, door);
+        foreach (var door in JsonConvert.DeserializeObject<Door[]>(doors))
+            _allDoors.Add(door.Id, door);
     }
 
     [TestInitialize]
@@ -54,11 +53,11 @@ public class LogicTests
         {
             try
             {
-                inventory.Evaluate(door.logic);
+                inventory.Evaluate(door.Logic);
             }
             catch (LogicParserException e)
             {
-                sb.AppendLine($"[{door.id}] {e.Message}");
+                sb.AppendLine($"[{door.Id}] {e.Message}");
                 invalid = true;
             }
         }

@@ -4,7 +4,7 @@ namespace BlasII.Randomizer.Models;
 /// <summary>
 /// Models a location that contains a randomized item
 /// </summary>
-public class ItemLocation
+public class ItemLocation : IUnique
 {
     /// <summary>
     /// This location's identifier
