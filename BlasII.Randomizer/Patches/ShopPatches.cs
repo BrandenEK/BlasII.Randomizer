@@ -126,7 +126,15 @@ class ShopWindowLogic_OnCreateListItem_Patch
         string locationId = $"{Object.FindObjectOfType<ShopWindowLogic>().currentShop.name}.o{data.obj.GetComponent<ShopListItem>().OrbIdx}";
 
         var item = Main.Randomizer.ItemHandler.GetItemAtLocation(locationId);
-        data.obj.transform.Find("Image").GetComponent<Image>().sprite = item.GetSprite();
+        var sprite = item.GetSprite();
+
+        Image image = data.obj.transform.Find("Image").GetComponent<Image>();
+        Vector2 size = sprite.rect.size * 3;
+        Vector2 offset = new((90 - size.x) / 2, 0);
+
+        image.sprite = sprite;
+        image.rectTransform.sizeDelta = size;
+        image.rectTransform.anchoredPosition += offset;
     }
 }
 
