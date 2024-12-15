@@ -8,7 +8,6 @@ using Il2CppPlaymaker.UI;
 using Il2CppTGK.Game;
 using Il2CppTGK.Game.Components.Interactables;
 using Il2CppTGK.Game.Inventory.PlayMaker;
-using Il2CppTGK.PlayMaker.Actions;
 
 namespace BlasII.Randomizer.Patches;
 
@@ -239,38 +238,59 @@ class Ability_Skip_Patch
 // Caged cherubs
 // =============
 
-[HarmonyPatch(typeof(OperateQuestVar), nameof(OperateQuestVar.CheckInputData))]
-class PlayMaker_OperateQuestVar_Patch
-{
-    public static bool Prefix(OperateQuestVar __instance)
-    {
-        string quest = Main.Randomizer.GetQuestName(__instance.questVar.questID, __instance.questVar.varID);
-        if (quest != "ST16.FREED_CHERUBS")
-            return true;
+// They changed how cherubs work an ruined everything.  The quest flags are still used in the cherub room and maybe on the pause menu.
+// But now the CherubsManager stores collected cherubs as tokens and then syncs the quest flags.
+// However, those tokens also determines whether the cherub is collected or not.
+// In addition, the CherubCollectibleComponent.AddCherub method fires twice on scene load
 
-        string locationId = $"{CoreCache.Room.CurrentRoom.Name}.c0";
-        ModLog.Error("OperateQuestVar.CheckInputData - " + locationId);
+//[HarmonyPatch(typeof(CherubCollectibleComponent), nameof(CherubCollectibleComponent.AddCherub))]
+//class CherubCollectibleComponent_AddCherub_Patch
+//{
+//    public static bool Prefix()
+//    {
+//        string locationId = $"{CoreCache.Room.CurrentRoom.Name}.c0";
+//        ModLog.Error("CherubCollectibleComponent.AddCherub - " + locationId);
 
-        if (!Main.Randomizer.IsRandomizerMode)
-            return true;
+//        if (!Main.Randomizer.IsRandomizerMode)
+//            return true;
 
-        Main.Randomizer.ItemHandler.GiveItemAtLocation(locationId);
-        __instance.Finish();
-        return false;
-    }
-}
-[HarmonyPatch(typeof(ShowCherubPopup), nameof(ShowCherubPopup.OnEnter))]
-class Cherub_Skip_Patch
-{
-    public static bool Prefix(ShowCherubPopup __instance)
-    {
-        if (!Main.Randomizer.IsRandomizerMode)
-            return true;
+//        Main.Randomizer.ItemHandler.GiveItemAtLocation(locationId);
+//        CoreCache.CherubsManager.Synch();
+//        return false;
+//    }
+//}
+//[HarmonyPatch(typeof(OperateQuestVar), nameof(OperateQuestVar.CheckInputData))]
+//class PlayMaker_OperateQuestVar_Patch
+//{
+//    public static bool Prefix(OperateQuestVar __instance)
+//    {
+//        string quest = Main.Randomizer.GetQuestName(__instance.questVar.questID, __instance.questVar.varID);
+//        if (quest != "ST16.FREED_CHERUBS")
+//            return true;
 
-        __instance.Finish();
-        return false;
-    }
-}
+//        string locationId = $"{CoreCache.Room.CurrentRoom.Name}.c0";
+//        ModLog.Error("OperateQuestVar.CheckInputData - " + locationId);
+
+//        if (!Main.Randomizer.IsRandomizerMode)
+//            return true;
+
+//        Main.Randomizer.ItemHandler.GiveItemAtLocation(locationId);
+//        __instance.Finish();
+//        return false;
+//    }
+//}
+//[HarmonyPatch(typeof(ShowCherubPopup), nameof(ShowCherubPopup.OnEnter))]
+//class Cherub_Skip_Patch
+//{
+//    public static bool Prefix(ShowCherubPopup __instance)
+//    {
+//        if (!Main.Randomizer.IsRandomizerMode)
+//            return true;
+
+//        __instance.Finish();
+//        return false;
+//    }
+//}
 
 // =====
 // Tears
