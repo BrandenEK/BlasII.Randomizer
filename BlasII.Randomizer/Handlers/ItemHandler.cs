@@ -38,8 +38,6 @@ public class ItemHandler
 
     public void GiveItemAtLocation(string locationId)
     {
-        ModLog.Warn("Giving item at location: " + locationId);
-
         Item item;
         if (_collectedLocations.Contains(locationId))
         {
@@ -51,6 +49,8 @@ public class ItemHandler
             _collectedLocations.Add(locationId);
             item = GetItemAtLocation(locationId);
         }
+
+        ModLog.Warn($"Giving item at location: {locationId} ({item.Id})");
 
         Main.Randomizer.MessageHandler.Broadcast("LOCATION", locationId);
         item.GiveReward();
