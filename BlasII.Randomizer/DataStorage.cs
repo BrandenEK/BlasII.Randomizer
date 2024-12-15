@@ -1,7 +1,6 @@
 ﻿using BlasII.ModdingAPI;
 using BlasII.ModdingAPI.Files;
 using BlasII.Randomizer.Doors;
-using BlasII.Randomizer.Items;
 using BlasII.Randomizer.Models;
 using System.Collections.Generic;
 using System.Linq;
@@ -57,14 +56,14 @@ public class DataStorage
         if (Main.Randomizer.FileHandler.LoadDataAsJson("items.json", out Item[] items))
         {
             foreach (var item in items)
-                _allItems.Add(item.id, item);
+                _allItems.Add(item.Id, item);
         }
         ModLog.Info($"Loaded {_allItems.Count} items!");
 
         if (Main.Randomizer.FileHandler.LoadDataAsJson("item-locations.json", out ItemLocation[] itemLocations))
         {
             foreach (var itemLocation in itemLocations)
-                _allItemLocations.Add(itemLocation.id, itemLocation);
+                _allItemLocations.Add(itemLocation.Id, itemLocation);
         }
         ModLog.Info($"Loaded {_allItemLocations.Count} item locations!");
 
@@ -90,11 +89,11 @@ public class DataStorage
     {
         Cherub = 0,
         WallClimb = 1,
-        DoubleJump = 2,
+        AirJump = 2,
         AirDash = 3,
-        CherubRing = 4,
+        MagicRingClimb = 4,
         Censer = 5,
-        Blade = 6,
+        RosaryBlade = 6,
         Rapier = 7,
         Tears = 8,
         Invalid = 9,

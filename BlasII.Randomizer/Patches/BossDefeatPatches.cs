@@ -78,22 +78,30 @@ class Room_Change_Patch
     }
 }
 
-/// <summary>
-/// Always fade everything to block - prevents fade being locked to white after boss defeat
-/// </summary>
-[HarmonyPatch(typeof(FadeWindowLogic), nameof(FadeWindowLogic.FadeAsync), typeof(float), typeof(Action), typeof(Color), typeof(CancellationToken))]
-class FadeWindowLogic_FadeAsync_Patch1
-{
-    public static void Prefix(ref Color targetColor)
-    {
-        targetColor = new Color(0, 0, 0, targetColor.a);
-    }
-}
-[HarmonyPatch(typeof(FadeWindowLogic), nameof(FadeWindowLogic.FadeAsync), typeof(float), typeof(Action), typeof(Color))]
-class FadeWindowLogic_FadeAsync_Patch2
-{
-    public static void Prefix(ref Color targetColor)
-    {
-        targetColor = new Color(0, 0, 0, targetColor.a);
-    }
-}
+///// <summary>
+///// Always fade everything to black - prevents fade being locked to white after boss defeat
+///// </summary>
+//[HarmonyPatch(typeof(FadeWindowLogic), nameof(FadeWindowLogic.FadeAsync), typeof(float), typeof(Action), typeof(Color), typeof(CancellationToken))]
+//class FadeWindowLogic_FadeAsync_Patch1
+//{
+//    public static void Prefix(ref Color targetColor)
+//    {
+//        ModLog.Error($"Changing {targetColor} to {new Color(0, 0, 0, targetColor.a)}");
+//        //targetColor = new Color(0, 0, 0, targetColor.a);
+//        targetColor.r = 0;
+//        targetColor.g = 0;
+//        targetColor.b = 0;
+//    }
+//}
+//[HarmonyPatch(typeof(FadeWindowLogic), nameof(FadeWindowLogic.FadeAsync), typeof(float), typeof(Action), typeof(Color))]
+//class FadeWindowLogic_FadeAsync_Patch2
+//{
+//    public static void Prefix(ref Color targetColor)
+//    {
+//        ModLog.Error($"Changing {targetColor} to {new Color(0, 0, 0, targetColor.a)}");
+//        //targetColor = new Color(0, 0, 0, targetColor.a);
+//        targetColor.r = 0;
+//        targetColor.g = 0;
+//        targetColor.b = 0;
+//    }
+//}

@@ -1,4 +1,5 @@
-﻿using BlasII.Randomizer.Items;
+﻿using BlasII.ModdingAPI.Assets;
+using BlasII.Randomizer.Models;
 using System;
 using System.Collections.Generic;
 
@@ -79,8 +80,8 @@ internal class PoolsItemShuffler : IShuffler
     /// </summary>
     private void AddItemToPool(ItemPool progressionItems, ItemPool junkItems, Item item)
     {
-        ItemPool itemPool = item.progression ? progressionItems : junkItems;
-        for (int i = 0; i < item.count; i++)
+        ItemPool itemPool = item.Progression ? progressionItems : junkItems;
+        for (int i = 0; i < item.Count; i++)
         {
             itemPool.Add(item);
         }
@@ -133,7 +134,7 @@ internal class PoolsItemShuffler : IShuffler
     /// </summary>
     private string GetStartingWeaponId(RandomizerSettings settings)
     {
-        return "WE0" + (settings.RealStartingWeapon + 1);
+        return ((WEAPON_IDS)settings.RealStartingWeapon).ToString();
     }
 
     #endregion
@@ -148,7 +149,7 @@ internal class PoolsItemShuffler : IShuffler
         // Verify that all locations are reachable
         foreach (var location in locations)
         {
-            if (!inventory.Evaluate(location.logic))
+            if (!inventory.Evaluate(location.Logic))
                 return;
         }
 
@@ -167,7 +168,7 @@ internal class PoolsItemShuffler : IShuffler
 
             ItemLocation location = reachableLocations.RemoveRandom();
             locations.Remove(location);
-            output.Add(location.id, item.id);
+            output.Add(location.Id, item.Id);
         }
     }
 
@@ -183,7 +184,7 @@ internal class PoolsItemShuffler : IShuffler
             ItemLocation location = locations.RemoveLast();
             Item item = items.RemoveLast();
 
-            output.Add(location.id, item.id);
+            output.Add(location.Id, item.Id);
         }
     }
 
@@ -192,7 +193,7 @@ internal class PoolsItemShuffler : IShuffler
     /// </summary>        
     private void MovePriorityItems(ItemPool progressionItems)
     {
-        Item wallClimb = Main.Randomizer.Data.GetItem("AB44");
+        Item wallClimb = Main.Randomizer.Data.GetItem("WallClimb");
         progressionItems.MoveToBeginning(wallClimb);
     }
 
@@ -201,7 +202,7 @@ internal class PoolsItemShuffler : IShuffler
     /// </summary>
     private void RemoveUnreachableLocations(LocationPool locations, Blas2Inventory inventory)
     {
-        locations.RemoveConditional(loc => !inventory.Evaluate(loc.logic));
+        locations.RemoveConditional(loc => !inventory.Evaluate(loc.Logic));
     }
 
     #endregion

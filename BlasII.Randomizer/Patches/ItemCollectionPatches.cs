@@ -65,32 +65,41 @@ class PlayMaker_AddItem_Patch
 
     private static string CalculateSpecialLocationId(string locationId, string originalItem)
     {
-        // Battle arenas
-        if (locationId.StartsWith("Z15"))
+        return locationId switch
         {
-            return originalItem switch
+            // Confessor items
+            "Z05BZ01.i0" => originalItem switch
             {
-                "FG27" => "Z1501.i0",
-                "FG28" => "Z1501.i1",
-                "QI49" => "Z1501.i2",
-                "QI46" => "Z1501.i3",
-                "FG32" => "Z1501.i4",
+                "QI04" => locationId + ".a",
+                "QI28" => locationId + ".b",
                 _ => string.Empty
-            };
-        }
-
-        // Palace elders
-        if (locationId.StartsWith("Z0722"))
-        {
-            return originalItem switch
+            },
+            // Palace elders
+            "Z0722.i0" => originalItem switch
             {
-                "QI09" => "Z0722.i0",
-                "QI10" => "Z0722.i1",
+                "QI09" => locationId + ".a",
+                "QI10" => locationId + ".b",
                 _ => string.Empty
-            };
-        }
-
-        return locationId;
+            },
+            // Battle arenas
+            "Z1501.i0" => originalItem switch
+            {
+                "FG27" => locationId + ".a",
+                "FG28" => locationId + ".b",
+                "QI49" => locationId + ".c",
+                "QI46" => locationId + ".d",
+                "FG32" => locationId + ".e",
+                _ => string.Empty
+            },
+            // Gold rewards
+            "Z2150.i0" => originalItem switch
+            {
+                "RB103" => locationId + ".a",
+                "FG112" => locationId + ".b",
+                _ => string.Empty
+            },
+            _ => locationId
+        };
     }
 }
 

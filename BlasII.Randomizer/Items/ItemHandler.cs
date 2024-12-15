@@ -1,4 +1,5 @@
 using BlasII.ModdingAPI;
+using BlasII.Randomizer.Models;
 using BlasII.Randomizer.Shuffle;
 using Il2CppTGK.Game;
 using System.Collections.Generic;
@@ -51,8 +52,7 @@ public class ItemHandler
         }
 
         Main.Randomizer.MessageHandler.Broadcast("LOCATION", locationId);
-        item.RemovePreviousItem(); // Eventually change this to have different classes for prog items
-        item.Upgraded?.GiveReward();
+        item.GiveReward();
         DisplayItem(item);
     }
 
@@ -60,8 +60,8 @@ public class ItemHandler
     {
         CoreCache.UINavigationHelper.ShowItemPopup(
             Main.Randomizer.LocalizationHandler.Localize("otex"),
-            item.Current?.DisplayName,
-            item.Current?.Image,
+            item.GetName(),
+            item.GetSprite(),
             false);
     }
 
@@ -101,10 +101,10 @@ public class ItemHandler
         foreach (var location in Main.Randomizer.Data.ItemLocationList)
         {
             // Make sure it has a valid item
-            Item item = GetItemAtLocation(location.id);
+            Item item = GetItemAtLocation(location.Id);
 
             // Display new zone section if different
-            string locationZoneId = location.id[..3];
+            string locationZoneId = location.Id[..3];
             if (currentZoneId != locationZoneId && Main.Randomizer.Data.GetZoneName(locationZoneId, out string locationZoneName))
             {
                 sb.AppendLine($"\n - {locationZoneName} -\n");
@@ -112,7 +112,7 @@ public class ItemHandler
             }
 
             // Add location to text
-            sb.AppendLine($"{location.name}: {item.name}");
+            sb.AppendLine($"{location.Name}: {item.Name}");
         }
 
         // Save text to file

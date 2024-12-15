@@ -1,1524 +1,1416 @@
 [
     {
         "id": "Z0105.l3",
-        "name": "Cherub altar",
-        "type": "Normal",
-        "logic": "doubleJump + airDash + cherubRings"
+        "name": "Item Location 1"
     },
     {
         "id": "Z0106.r8",
-        "name": "Defeat Faceless One",
-        "type": "Normal"
+        "name": "Item Location 2",
+        "flags": "B"
     },
     {
         "id": "Z0108.l2",
-        "name": "Tower shortcut",
-        "type": "Normal",
-        "logic": "doubleJump"
-    },
-    {
-        "id": "Z0203.c0",
-        "name": "Rings cherub",
-        "type": "Normal",
-        "logic": "doubleJump + cherubRings"
+        "name": "Item Location 3"
     },
     {
         "id": "Z0203.l6",
-        "name": "Bell door altar",
-        "type": "Normal",
-        "logic": "doubleJump + censer"
+        "name": "Item Location 4"
     },
     {
         "id": "Z0203.l7",
-        "name": "Altar near prayer tree",
-        "type": "Normal"
+        "name": "Item Location 5"
     },
     {
         "id": "Z0203.l8",
-        "name": "Prayer tree",
-        "type": "Normal"
+        "name": "Item Location 6"
     },
     {
-        "id": "Z0204.c0",
-        "name": "Ledge cherub",
-        "type": "Normal"
+        "id": "Z0203.c0",
+        "name": "Item Location 7",
+        "flags": "C"
     },
     {
         "id": "Z0204.l3",
-        "name": "Bone floor chest",
-        "type": "Normal",
-        "logic": "(Z02[N] | doubleJump) + blade"
+        "name": "Item Location 8"
     },
     {
         "id": "Z0204.l4",
-        "name": "Bone floor arena",
-        "type": "Normal",
-        "logic": "doubleJump + blade"
+        "name": "Item Location 9"
+    },
+    {
+        "id": "Z0204.c0",
+        "name": "Item Location 10",
+        "flags": "C"
     },
     {
         "id": "Z0301.l10",
-        "name": "Entrance room high altar",
-        "type": "Normal",
-        "logic": "Z03[SE] + airDash"
+        "name": "Item Location 11"
     },
     {
         "id": "Z0301.l11",
-        "name": "Bell shaft puzzle",
-        "type": "Normal",
-        "logic": "Z03[SE] + censer + rapier"
+        "name": "Item Location 12"
     },
     {
         "id": "Z0302.c0",
-        "name": "Northeast cherub",
-        "type": "Normal",
-        "logic": "Z03[SE]"
+        "name": "Item Location 13",
+        "flags": "C"
     },
     {
         "id": "Z0303.l6",
-        "name": "Cherub ring altar",
-        "type": "Normal",
-        "logic": "Z03[SE] + doubleJump + cherubRings"
+        "name": "Item Location 14"
     },
     {
-        "id": "Z0304.l4",
-        "name": "Arena chest",
-        "type": "Normal",
-        "logic": "Z03[SE]"
+        "id": "Z0304.l8",
+        "name": "Item Location 15"
     },
     {
-        "id": "Z0304.l9",
-        "name": "Spike gap puzzle",
-        "type": "Normal",
-        "logic": "Z03[SE]"
-    },
-    {
-        "id": "Z0305.l5",
-        "name": "DJ chest under ledge",
-        "type": "Normal",
-        "logic": "Z03[SE] + (doubleJump | airDash)"
+        "id": "Z0304.l3",
+        "name": "Item Location 16"
     },
     {
         "id": "Z0305.l6",
-        "name": "Airdash arena",
-        "type": "Normal",
-        "logic": "Z03[SE] + airDash"
+        "name": "Item Location 17"
+    },
+    {
+        "id": "Z0305.l5",
+        "name": "Item Location 18"
     },
     {
         "id": "Z0306.l12",
-        "name": "Ledge under breaking floor",
-        "type": "Normal",
-        "logic": "Z03[SE] + cherubRings + doubleJump"
+        "name": "Item Location 19"
     },
     {
         "id": "Z0307.l8",
-        "name": "Exit shortcut altar 1",
-        "type": "Normal",
-        "logic": "Z03[SW] + censer + blade"
-    },
-    {
-        "id": "Z0308.c0",
-        "name": "Exit shortcut cherub",
-        "type": "Normal",
-        "logic": "Z03[SW] + censer"
-    },
-    {
-        "id": "Z0308.l26",
-        "name": "Bell cherub puzzle",
-        "type": "Normal",
-        "logic": "Z03[SW] + censer + doubleJump + cherubRings"
+        "name": "Item Location 20"
     },
     {
         "id": "Z0308.l27",
-        "name": "Exit shortcut altar 2",
-        "type": "Normal",
-        "logic": "Z03[SE] + censer"
+        "name": "Item Location 21"
+    },
+    {
+        "id": "Z0308.l26",
+        "name": "Item Location 22"
+    },
+    {
+        "id": "Z0308.c0",
+        "name": "Item Location 23",
+        "flags": "C"
     },
     {
         "id": "Z0312.c0",
-        "name": "Entrance cherub",
-        "type": "Normal",
-        "logic": "censer + (wallClimb | doubleJump)"
+        "name": "Item Location 24",
+        "flags": "C"
     },
     {
         "id": "Z0313.l9",
-        "name": "Bell airdash puzzle",
-        "type": "Normal",
-        "logic": "(Z03[S] | Z03[SW]) + wallClimb + doubleJump + airDash + censer"
-    },
-    {
-        "id": "Z0402.l13",
-        "name": "Entrance left ledge",
-        "type": "Normal",
-        "logic": "Z04[NE] + censer"
+        "name": "Item Location 25"
     },
     {
         "id": "Z0402.l15",
-        "name": "Entrance right ledge",
-        "type": "Normal",
-        "logic": "Z04[NE] + censer + rapier"
+        "name": "Item Location 26"
+    },
+    {
+        "id": "Z0402.l13",
+        "name": "Item Location 27"
     },
     {
         "id": "Z0406.c0",
-        "name": "Northern cherub",
-        "type": "Normal",
-        "logic": "Z04[NE] + (doubleJump | airDash)"
+        "name": "Item Location 28",
+        "flags": "C"
     },
     {
         "id": "Z0406.l4",
-        "name": "Tall shaft bottom",
-        "type": "Normal",
-        "logic": "Z04[NE]"
+        "name": "Item Location 29"
     },
     {
         "id": "Z0409.l7",
-        "name": "High ledge before weapon",
-        "type": "Normal",
-        "logic": "Z04[NE] + censer + doubleJump"
+        "name": "Item Location 30"
     },
     {
         "id": "Z0410.l6",
-        "name": "Bell floor chest",
-        "type": "Normal",
-        "logic": "Z04[NE] + censer"
-    },
-    {
-        "id": "Z0412.l1",
-        "name": "Airdash altar",
-        "type": "Normal",
-        "logic": "Z04[NE] + (censer | doubleJump) + airDash"
+        "name": "Item Location 31"
     },
     {
         "id": "Z0412.l2",
-        "name": "Bone wall chest",
-        "type": "Normal",
-        "logic": "Z04[NE] + (censer | doubleJump) + blade"
+        "name": "Item Location 32"
+    },
+    {
+        "id": "Z0412.l1",
+        "name": "Item Location 33"
     },
     {
         "id": "Z0413.l0",
-        "name": "Secret wall Lullaby",
-        "type": "Normal",
-        "logic": "Z04[NE]"
+        "name": "Item Location 34"
     },
     {
         "id": "Z0414.l4",
-        "name": "Above bell shortcut altar",
-        "type": "Normal",
-        "logic": "Z04[NE]"
+        "name": "Item Location 35"
     },
     {
-        "id": "Z0415.l1",
-        "name": "Box room right",
-        "type": "Normal",
-        "logic": "Z04[NE]"
+        "id": "Z0415.l2",
+        "name": "Item Location 36"
     },
     {
-        "id": "Z0415.l3",
-        "name": "Box room left",
-        "type": "Normal",
-        "logic": "Z04[NE] + doubleJump"
+        "id": "Z0415.l4",
+        "name": "Item Location 37"
     },
     {
         "id": "Z0417.l4",
-        "name": "Tower entrance chest",
-        "type": "Normal",
-        "logic": "Z04[SW] + doubleJump + blade"
+        "name": "Item Location 38"
     },
     {
         "id": "Z0421.r8",
-        "name": "Defeat Radames",
-        "type": "Normal",
-        "logic": "Z04[NE]"
+        "name": "Item Location 39",
+        "flags": "B"
     },
     {
         "id": "Z0423.l1",
-        "name": "Veredicto statue",
-        "type": "Normal",
-        "logic": "Z04[NE] + censer + doubleJump"
+        "name": "Item Location 40"
+    },
+    {
+        "id": "Z0427.l6",
+        "name": "Item Location 41"
     },
     {
         "id": "Z0501.c0",
-        "name": "West side cherub",
-        "type": "Normal",
-        "logic": "doubleJump | wallClimb + airDash"
+        "name": "Item Location 42",
+        "flags": "C"
     },
     {
         "id": "Z0502.c0",
-        "name": "Central room cherub",
-        "type": "Normal",
-        "logic": "wallClimb"
+        "name": "Item Location 43",
+        "flags": "C"
     },
     {
         "id": "Z0502.i1",
-        "name": "Cursed letter: Scream",
-        "type": "Normal",
-        "logic": "letter2"
-    },
-    {
-        "id": "Z0503.c0",
-        "name": "East side cherub",
-        "type": "Normal",
-        "logic": "doubleJump + airDash + censer"
+        "name": "Item Location 44"
     },
     {
         "id": "Z0503.l4",
-        "name": "East city altar",
-        "type": "Normal",
-        "logic": "censer + doubleJump + airDash"
+        "name": "Item Location 45"
+    },
+    {
+        "id": "Z0503.c0",
+        "name": "Item Location 46",
+        "flags": "C"
     },
     {
         "id": "Z0503.i9",
-        "name": "Cursed letter: Skull",
-        "type": "Normal",
-        "logic": "wallClimb + letter4"
+        "name": "Item Location 47"
     },
     {
         "id": "Z0506.i0",
-        "name": "Cobijada's Final Reward",
-        "type": "LongQuest",
-        "logic": "Z05[T] + wallClimb + doubleJump + airDash + censer + blade + rapier + tributes >= 3"
+        "name": "Item Location 48"
     },
     {
         "id": "Z0511.l0",
-        "name": "Bell tower secret chest",
-        "type": "Normal",
-        "logic": "Z05[T] + doubleJump + cherubRings + censer"
+        "name": "Item Location 49"
     },
     {
         "id": "Z05BZ01.l0",
-        "name": "Confessor 1st gift",
-        "type": "LongQuest"
+        "name": "Item Location 50",
+        "flags": "L"
     },
     {
         "id": "Z05BZ01.l16",
-        "name": "Confessor 2nd gift",
-        "type": "LongQuest"
+        "name": "Item Location 51",
+        "flags": "L"
     },
     {
-        "id": "Z05BZ01.i0",
-        "name": "Confessor 3rd gift",
-        "type": "LongQuest"
+        "id": "Z05BZ01.i0.a",
+        "name": "Item Location 52",
+        "flags": "L"
+    },
+    {
+        "id": "Z05BZ01.i0.b",
+        "name": "Item Location 53"
     },
     {
         "id": "Z05BZ02.i0",
-        "name": "Sculptor initial gift",
-        "type": "Normal"
+        "name": "Item Location 54"
     },
     {
         "id": "Z05BZ02.l1",
-        "name": "Sculptor final gift",
-        "type": "Normal",
-        "logic": "tools >= 5"
+        "name": "Item Location 55"
     },
     {
         "id": "Z05BZ04.l0",
-        "name": "West city upper house chest",
-        "type": "Normal",
-        "logic": "(doubleJump + censer) | ((wallClimb | doubleJump + airDash) + censer + rapier)"
+        "name": "Item Location 56"
     },
     {
         "id": "Z05BZ05.l1",
-        "name": "West city upper house floor",
-        "type": "Normal",
-        "logic": "wallClimb + airDash | doubleJump"
+        "name": "Item Location 57"
     },
     {
         "id": "Z05BZ06.l0",
-        "name": "East city upper house altar",
-        "type": "Normal",
-        "logic": "(doubleJump + censer) | ((wallClimb | doubleJump + airDash) + censer)"
+        "name": "Item Location 58"
     },
     {
         "id": "Z0602.l2",
-        "name": "Ledge up high",
-        "type": "Normal",
-        "logic": "Z06[W] + doubleJump"
-    },
-    {
-        "id": "Z0605.l10",
-        "name": "Big house bone wall altar",
-        "type": "Normal",
-        "logic": "Z06[W] + doubleJump + cherubRings + blade"
+        "name": "Item Location 59"
     },
     {
         "id": "Z0605.l11",
-        "name": "Big house bone floor altar",
-        "type": "Normal",
-        "logic": "Z06[W] + blade + (doubleJump | airDash)"
+        "name": "Item Location 60"
+    },
+    {
+        "id": "Z0605.l10",
+        "name": "Item Location 61"
     },
     {
         "id": "Z0608.c0",
-        "name": "Northern cherub",
-        "type": "Normal",
-        "logic": "Z06[W]"
+        "name": "Item Location 62",
+        "flags": "C"
     },
     {
         "id": "Z0611.l2",
-        "name": "Dungeon 1 shortcut",
-        "type": "Normal",
-        "logic": "Z06[SW]"
+        "name": "Item Location 63"
     },
     {
         "id": "Z0611.r2",
-        "name": "Dungeon 1 arena",
-        "type": "Normal",
-        "logic": "Z06[W]"
+        "name": "Item Location 64"
     },
     {
         "id": "Z0612.l6",
-        "name": "Dungeon 2 chest",
-        "type": "Normal",
-        "logic": "Z06[W]"
+        "name": "Item Location 65"
     },
     {
         "id": "Z0614.l6",
-        "name": "Dungeon 3 shortcut",
-        "type": "Normal",
-        "logic": "Z06[S]"
+        "name": "Item Location 66"
     },
     {
         "id": "Z0614.l7",
-        "name": "Dungeon 3 chest",
-        "type": "Normal",
-        "logic": "Z06[W]"
+        "name": "Item Location 67"
     },
     {
         "id": "Z0615.r2",
-        "name": "Northwest arena",
-        "type": "Normal",
-        "logic": "Z06[W] + (doubleJump | rapier)"
+        "name": "Item Location 68"
+    },
+    {
+        "id": "Z0616.l14",
+        "name": "Item Location 69"
+    },
+    {
+        "id": "Z0617.l8",
+        "name": "Item Location 70"
     },
     {
         "id": "Z0707.i2",
-        "name": "Eastern arena",
-        "type": "Normal",
-        "logic": "Z07[W] + rapier"
+        "name": "Item Location 71"
     },
     {
         "id": "Z0709.l1",
-        "name": "Rapier statue",
-        "type": "Normal",
-        "logic": "Z07[W]"
+        "name": "Item Location 72"
     },
     {
         "id": "Z0711.l2",
-        "name": "Northwest chest",
-        "type": "Normal",
-        "logic": "Z07[W] + rapier"
+        "name": "Item Location 73"
     },
     {
         "id": "Z0715.c0",
-        "name": "Northeast cherub",
-        "type": "Normal",
-        "logic": "Z07[W] + rapier"
+        "name": "Item Location 74",
+        "flags": "C"
     },
     {
         "id": "Z0721.i2",
-        "name": "Northern arena",
-        "type": "Normal",
-        "logic": "Z07[W] + rapier + blade"
+        "name": "Item Location 75"
     },
     {
-        "id": "Z0722.s0",
-        "name": "Give scroll to Cástula",
-        "type": "Normal",
-        "logic": "Z07[W] + rapier + elderScroll"
+        "id": "Z0722.i0.a",
+        "name": "Item Location 76"
     },
     {
-        "id": "Z0722.s1",
-        "name": "Give cloth to Trifón",
-        "type": "Normal",
-        "logic": "Z07[W] + rapier + elderCloth"
+        "id": "Z0722.i0.b",
+        "name": "Item Location 77"
     },
     {
         "id": "Z0723.l2",
-        "name": "Moving rapier chest",
-        "type": "Normal",
-        "logic": "Z07[W] + rapier"
+        "name": "Item Location 78"
     },
     {
         "id": "Z0725.i1",
-        "name": "Northwest arena",
-        "type": "Normal",
-        "logic": "Z07[W] + rapier + censer"
+        "name": "Item Location 79"
     },
     {
         "id": "Z0728.i2",
-        "name": "Southeast arena",
-        "type": "Normal",
-        "logic": "Z07[W] + blade"
+        "name": "Item Location 80"
     },
     {
         "id": "Z0730.r6",
-        "name": "Defeat Orospina",
-        "type": "Normal",
-        "logic": "Z07[W] + rapier"
+        "name": "Item Location 81",
+        "flags": "B"
     },
     {
         "id": "Z0730.l2",
-        "name": "Orospina altar",
-        "type": "Normal",
-        "logic": "Z07[W] + rapier"
+        "name": "Item Location 82"
     },
     {
         "id": "Z0805.l0",
-        "name": "Spikestall puzzle",
-        "type": "Normal",
-        "logic": "doubleJump + airDash + (Z08[W] + wallClimb | Z08[P])"
+        "name": "Item Location 83"
     },
     {
         "id": "Z0806.c0",
-        "name": "Northeast cherub",
-        "type": "Normal",
-        "logic": "Z08[W] + (wallClimb | doubleJump)"
+        "name": "Item Location 84",
+        "flags": "C"
     },
     {
         "id": "Z0809.c0",
-        "name": "Southeast cherub",
-        "type": "Normal",
-        "logic": "Z08[W] + wallClimb"
+        "name": "Item Location 85",
+        "flags": "C"
     },
     {
         "id": "Z0810.l0",
-        "name": "1st tribute leftover",
-        "type": "Normal",
-        "logic": "Z08[W] + (wallClimb | doubleJump) + tributes >= 1"
+        "name": "Item Location 86"
     },
     {
         "id": "Z0811.w0",
-        "name": "Rapier statue",
-        "type": "Normal",
-        "logic": "Z08[W] + wallClimb + doubleJump + rapier"
+        "name": "Item Location 87",
+        "flags": "W"
     },
     {
         "id": "Z0814.l6",
-        "name": "Bell floor chest",
-        "type": "Normal",
-        "logic": "Z08[W] + (wallClimb | doubleJump) + censer"
+        "name": "Item Location 88"
     },
     {
         "id": "Z0815.i0",
-        "name": "Honey dude",
-        "type": "Normal",
-        "logic": "Z08[W] + (wallClimb | doubleJump) + rapier"
+        "name": "Item Location 89"
     },
     {
         "id": "Z0817.l0",
-        "name": "3rd tribute leftover",
-        "type": "Normal",
-        "logic": "Z08[P] + tributes >= 3"
+        "name": "Item Location 90"
     },
     {
-        "id": "Z0901.l1",
-        "name": "Entrance shaft upper",
-        "type": "Normal",
-        "logic": "Z09[W] + wallClimb + blade + cherubRings + doubleJump"
+        "id": "Z0822.l2",
+        "name": "Item Location 91"
+    },
+    {
+        "id": "Z0823.a0",
+        "name": "Item Location 92",
+        "flags": "A"
+    },
+    {
+        "id": "Z0826.l13",
+        "name": "Item Location 93"
+    },
+    {
+        "id": "Z0829.l2",
+        "name": "Item Location 94"
+    },
+    {
+        "id": "Z0830.l7",
+        "name": "Item Location 95"
+    },
+    {
+        "id": "Z0832.l5",
+        "name": "Item Location 96"
+    },
+    {
+        "id": "Z0835.l7",
+        "name": "Item Location 97"
+    },
+    {
+        "id": "Z0837.l5",
+        "name": "Item Location 98"
+    },
+    {
+        "id": "Z0840.l1",
+        "name": "Item Location 99"
+    },
+    {
+        "id": "Z0842.l2",
+        "name": "Item Location 100"
+    },
+    {
+        "id": "Z0843.l17",
+        "name": "Item Location 101"
+    },
+    {
+        "id": "Z0845.l4",
+        "name": "Item Location 102"
+    },
+    {
+        "id": "Z0846.l22",
+        "name": "Item Location 103"
     },
     {
         "id": "Z0901.l3",
-        "name": "Entrance shaft lower",
-        "type": "Normal",
-        "logic": "Z09[W] + wallClimb + blade"
+        "name": "Item Location 104"
+    },
+    {
+        "id": "Z0901.l1",
+        "name": "Item Location 105"
     },
     {
         "id": "Z0903.l2",
-        "name": "Entrance room high ledge",
-        "type": "Normal",
-        "logic": "Z09[W] + wallClimb"
+        "name": "Item Location 106"
     },
     {
         "id": "Z0905.l2",
-        "name": "Bell floor chest",
-        "type": "Normal",
-        "logic": "Z09[W] + doubleJump + censer"
+        "name": "Item Location 107"
     },
     {
         "id": "Z0908.l9",
-        "name": "Rapier lullaby shaft",
-        "type": "Normal",
-        "logic": "Z09[W] + wallClimb + blade + censer + rapier"
+        "name": "Item Location 108"
     },
     {
         "id": "Z0909.l5",
-        "name": "Lantern ledge chest",
-        "type": "Normal",
-        "logic": "Z09[W] + wallClimb + blade"
+        "name": "Item Location 109"
     },
     {
         "id": "Z0912.l8",
-        "name": "Rapier bone floor puzzle",
-        "type": "Normal",
-        "logic": "Z09[W] + wallClimb + blade + rapier"
+        "name": "Item Location 110"
     },
     {
         "id": "Z0913.l1",
-        "name": "Ruego statue",
-        "type": "Normal",
-        "logic": "Z09[W]"
+        "name": "Item Location 111"
     },
     {
         "id": "Z0915.l9",
-        "name": "Ledge shaft puzzle",
-        "type": "Normal",
-        "logic": "Z09[W] + wallClimb + blade"
+        "name": "Item Location 112"
     },
     {
         "id": "Z0921.r14",
-        "name": "Defeat Lesmes",
-        "type": "Normal",
-        "logic": "Z09[W] + wallClimb + blade"
+        "name": "Item Location 113",
+        "flags": "B"
     },
     {
         "id": "Z0923.c0",
-        "name": "Prie Dieu cherub",
-        "type": "Normal",
-        "logic": "Z09[W] + doubleJump + (censer | wallClimb)"
+        "name": "Item Location 114",
+        "flags": "C"
     },
     {
         "id": "Z0926.a0",
-        "name": "Wind statue",
-        "type": "Normal",
-        "logic": "rapier + (Z09[W] + airDash | Z09[N])"
+        "name": "Item Location 115",
+        "flags": "A"
     },
     {
         "id": "Z0927.l4",
-        "name": "Long hallway altar",
-        "type": "Normal",
-        "logic": "Z09[W] + wallClimb + blade"
+        "name": "Item Location 116"
     },
     {
         "id": "Z0928.c0",
-        "name": "Northern cherub",
-        "type": "Normal",
-        "logic": "Z09[W] + wallClimb + blade"
+        "name": "Item Location 117",
+        "flags": "C"
     },
     {
         "id": "Z0929.w0",
-        "name": "Ruego upgrade",
-        "type": "Normal",
-        "logic": "Z09[W] + wallClimb + blade + doubleJump + airDash"
+        "name": "Item Location 118",
+        "flags": "W"
     },
     {
         "id": "Z1003.l0",
-        "name": "Southeast chest",
-        "type": "Normal",
-        "logic": "Z10[S] + wallClimb + (doubleJump | airDash)"
+        "name": "Item Location 119"
     },
     {
         "id": "Z1004.l10",
-        "name": "Mirror and Bell puzzle",
-        "type": "Normal",
-        "logic": "Z10[S] + wallClimb + blade"
+        "name": "Item Location 120"
     },
     {
         "id": "Z1007.l2",
-        "name": "Bone floor PrieDieu",
-        "type": "Normal",
-        "logic": "Z10[S] + blade"
+        "name": "Item Location 121"
     },
     {
         "id": "Z1011.l4",
-        "name": "Wall Climb Mirror",
-        "type": "Normal",
-        "logic": "Z10[S] + wallClimb + doubleJump"
+        "name": "Item Location 122"
     },
     {
         "id": "Z1015.l0",
-        "name": "Southwest chest",
-        "type": "Normal",
-        "logic": "Z10[S] + wallClimb + blade"
+        "name": "Item Location 123"
     },
     {
         "id": "Z1015.l1",
-        "name": "Cherub tower exit",
-        "type": "Normal",
-        "logic": "Z10[W]"
+        "name": "Item Location 124"
     },
     {
         "id": "Z1017.w0",
-        "name": "Veredicto statue",
-        "type": "Normal",
-        "logic": "Z10[S] + wallClimb + blade"
+        "name": "Item Location 125"
     },
     {
         "id": "Z1018.l3",
-        "name": "Cherubs Rings",
-        "type": "Normal",
-        "logic": "Z10[S] + wallClimb + blade + doubleJump + airDash + cherubRings"
-    },
-    {
-        "id": "Z1019.c0",
-        "name": "Northwest cherub",
-        "type": "Normal",
-        "logic": "Z10[S] + wallClimb + blade + doubleJump"
+        "name": "Item Location 126"
     },
     {
         "id": "Z1019.l9",
-        "name": "Air dash chest",
-        "type": "Normal",
-        "logic": "Z10[S] + wallClimb + blade + doubleJump + airDash"
+        "name": "Item Location 127"
     },
     {
-        "id": "Z1023.c0",
-        "name": "Northeast cherub",
-        "type": "Normal",
-        "logic": "Z10[S] + wallClimb + blade + doubleJump + airDash"
+        "id": "Z1019.c0",
+        "name": "Item Location 128",
+        "flags": "C"
     },
     {
         "id": "Z1023.l8",
-        "name": "Northeast cherub puzzle",
-        "type": "Normal",
-        "logic": "Z10[S] + wallClimb + blade + doubleJump + cherubRings + airDash"
+        "name": "Item Location 129"
+    },
+    {
+        "id": "Z1023.c0",
+        "name": "Item Location 130",
+        "flags": "C"
     },
     {
         "id": "Z1045.l0",
-        "name": "Two Moons bridge",
-        "type": "Normal",
-        "logic": "Z10[S] + wallClimb + blade + doubleJump"
-    },
-    {
-        "id": "Z1050.c0",
-        "name": "Mirror shaft cherub",
-        "type": "Normal",
-        "logic": "Z10[S]"
+        "name": "Item Location 131"
     },
     {
         "id": "Z1050.l7",
-        "name": "Mirror shaft altar",
-        "type": "Normal",
-        "logic": "Z10[S]"
+        "name": "Item Location 132"
+    },
+    {
+        "id": "Z1050.c0",
+        "name": "Item Location 133",
+        "flags": "C"
     },
     {
         "id": "Z1058.c0",
-        "name": "Tower entrance cherub",
-        "type": "Normal",
-        "logic": "Z10[S] + wallClimb + blade + doubleJump"
+        "name": "Item Location 134",
+        "flags": "C"
     },
     {
         "id": "Z1063.w0",
-        "name": "Rapier statue",
-        "type": "Normal",
-        "logic": "Z10[S] + wallClimb + blade + doubleJump + cherubRings"
+        "name": "Item Location 135",
+        "flags": "W"
+    },
+    {
+        "id": "Z1064.i0",
+        "name": "Item Location 136",
+        "flags": "V"
+    },
+    {
+        "id": "Z1065.l4",
+        "name": "Item Location 137"
+    },
+    {
+        "id": "Z1067.l9",
+        "name": "Item Location 138"
     },
     {
         "id": "Z1103.l1",
-        "name": "Southeast altar",
-        "type": "Normal",
-        "logic": "Z11[S] + doubleJump + airDash"
+        "name": "Item Location 139"
     },
     {
         "id": "Z1107.l5",
-        "name": "Western chest",
-        "type": "Normal",
-        "logic": "Z11[S] + doubleJump + airDash + rapier"
+        "name": "Item Location 140"
     },
     {
         "id": "Z1109.l0",
-        "name": "Eastern lullaby",
-        "type": "Normal",
-        "logic": "Z11[S] + doubleJump + airDash + rapier + censer"
+        "name": "Item Location 141"
     },
     {
         "id": "Z1113.r8",
-        "name": "Defeat Benedicta",
-        "type": "Normal",
-        "logic": "Z11[S] + doubleJump + airDash + rapier + censer"
+        "name": "Item Location 142",
+        "flags": "B"
     },
     {
         "id": "Z1113.i8",
-        "name": "Benedicta reward",
-        "type": "Normal",
-        "logic": "Z11[S] + doubleJump + airDash + rapier + censer"
+        "name": "Item Location 143",
+        "flags": "B"
     },
     {
         "id": "Z1114.c0",
-        "name": "Elevator cherub",
-        "type": "Normal",
-        "logic": "Z11[S] + doubleJump + airDash + rapier + censer"
+        "name": "Item Location 144",
+        "flags": "C"
     },
     {
         "id": "Z1202.c0",
-        "name": "Eastern cherub",
-        "type": "Normal",
-        "logic": "Z12[E] + (doubleJump | airDash)"
+        "name": "Item Location 145",
+        "flags": "C"
     },
     {
         "id": "Z1203.i2",
-        "name": "Eastern arena",
-        "type": "Normal",
-        "logic": "Z12[E]"
+        "name": "Item Location 146"
     },
     {
         "id": "Z1205.w0",
-        "name": "Eastern censer statue",
-        "type": "Normal",
-        "logic": "Z12[E] + censer"
+        "name": "Item Location 147",
+        "flags": "W"
     },
     {
         "id": "Z1209.l1",
-        "name": "Southwest chest",
-        "type": "Normal",
-        "logic": "Z12[E]"
+        "name": "Item Location 148"
     },
     {
         "id": "Z1209.l2",
-        "name": "Western altar",
-        "type": "Normal",
-        "logic": "Z12[E]"
+        "name": "Item Location 149"
     },
     {
         "id": "Z1210.l2",
-        "name": "Northwest altar",
-        "type": "Normal",
-        "logic": "Z12[E] + cherubRings"
-    },
-    {
-        "id": "Z1216.r9",
-        "name": "Defeat Odon",
-        "type": "Normal",
-        "logic": "Z12[E]"
+        "name": "Item Location 150"
     },
     {
         "id": "Z1216.i9",
-        "name": "Odon reward",
-        "type": "Normal",
-        "logic": "Z12[E]"
+        "name": "Item Location 151",
+        "flags": "B"
+    },
+    {
+        "id": "Z1216.r9",
+        "name": "Item Location 152",
+        "flags": "B"
+    },
+    {
+        "id": "Z1219.l13",
+        "name": "Item Location 153"
     },
     {
         "id": "Z1303.c0",
-        "name": "Large room cherub",
-        "type": "Normal",
-        "logic": "Z13[E] + blade + censer + rapier + cherubRings"
+        "name": "Item Location 154",
+        "flags": "C"
     },
     {
         "id": "Z1304.c0",
-        "name": "Inverted large room cherub",
-        "type": "Normal",
-        "logic": "Z13[E] + blade + censer + rapier"
+        "name": "Item Location 155",
+        "flags": "C"
     },
     {
         "id": "Z1307.l7",
-        "name": "Eastern altar",
-        "type": "Normal",
-        "logic": "Z13[E] + blade"
+        "name": "Item Location 156"
     },
     {
         "id": "Z1308.l7",
-        "name": "Inverted backtracking",
-        "type": "Normal",
-        "logic": "Z13[E] + blade + censer + rapier"
+        "name": "Item Location 157"
     },
     {
         "id": "Z1310.l0",
-        "name": "Inverted dash puzzle",
-        "type": "Normal",
-        "logic": "Z13[E]"
+        "name": "Item Location 158"
     },
     {
         "id": "Z1311.l7",
-        "name": "Laser puzzle",
-        "type": "Normal",
-        "logic": "Z13[E] + censer + blade"
+        "name": "Item Location 159"
     },
     {
         "id": "Z1312.l4",
-        "name": "Laser puzzle inverted",
-        "type": "Normal",
-        "logic": "Z13[E]"
+        "name": "Item Location 160"
     },
     {
         "id": "Z1314.l6",
-        "name": "Inverted near priedieu",
-        "type": "Normal",
-        "logic": "Z13[E] + blade + censer + rapier"
+        "name": "Item Location 161"
     },
     {
         "id": "Z1326.i0",
-        "name": "Cursed letter: Mirror",
-        "type": "Normal",
-        "logic": "Z13[E] + blade + censer + rapier + letter1"
+        "name": "Item Location 162"
     },
     {
         "id": "Z1327.r7",
-        "name": "Defeat Susona",
-        "type": "Normal",
-        "logic": "Z13[E] + blade + censer + rapier"
+        "name": "Item Location 163",
+        "flags": "B"
     },
     {
         "id": "Z1327.i7",
-        "name": "Susona reward",
-        "type": "Normal",
-        "logic": "Z13[E] + blade + censer + rapier"
+        "name": "Item Location 164",
+        "flags": "B"
     },
     {
         "id": "Z1327.l3",
-        "name": "Yerma's corpse",
-        "type": "Normal",
-        "logic": "Z13[E] + blade + censer + rapier"
+        "name": "Item Location 165"
+    },
+    {
+        "id": "Z1327.unknown",
+        "name": "Item Location 166"
     },
     {
         "id": "Z1329.l0",
-        "name": "Western altar",
-        "type": "Normal",
-        "logic": "Z13[W]"
+        "name": "Item Location 167"
     },
     {
         "id": "Z1330.l5",
-        "name": "Western altar inverted",
-        "type": "Normal",
-        "logic": "Z13[E] + blade + censer + rapier"
+        "name": "Item Location 168"
     },
     {
         "id": "Z1404.c0",
-        "name": "Eastern cherub",
-        "type": "Normal",
-        "logic": "Z14[N] + censer + (doubleJump | airDash)"
-    },
-    {
-        "id": "Z1404.l8",
-        "name": "Northeast altar",
-        "type": "Normal",
-        "logic": "Z14[N] + (censer | doubleJump)"
+        "name": "Item Location 169",
+        "flags": "C"
     },
     {
         "id": "Z1404.l15",
-        "name": "Southeast shortcut",
-        "type": "Normal",
-        "logic": "Z14[N] + censer + rapier + blade + (wallClimb | doubleJump + airDash)"
+        "name": "Item Location 170"
+    },
+    {
+        "id": "Z1404.l8",
+        "name": "Item Location 171"
     },
     {
         "id": "Z1405.l3",
-        "name": "Central altar",
-        "type": "Normal",
-        "logic": "Z14[N] + censer"
+        "name": "Item Location 172"
     },
     {
         "id": "Z1407.l1",
-        "name": "Central hidden chest",
-        "type": "Normal",
-        "logic": "Z14[N] + censer"
+        "name": "Item Location 173"
     },
     {
         "id": "Z1408.c0",
-        "name": "Rapier cherub",
-        "type": "Normal",
-        "logic": "Z14[N] + censer + rapier"
+        "name": "Item Location 174",
+        "flags": "C"
     },
     {
         "id": "Z1418.l5",
-        "name": "Cherubs Altar",
-        "type": "Normal",
-        "logic": "Z14[N] + doubleJump + airDash + wallClimb + cherubRings"
+        "name": "Item Location 175"
     },
     {
         "id": "Z1419.l2",
-        "name": "Northwest altar",
-        "type": "Normal",
-        "logic": "Z14[N] + doubleJump"
+        "name": "Item Location 176"
     },
     {
         "id": "Z1421.l1",
-        "name": "Chime symbols chest",
-        "type": "Normal",
-        "logic": "Z14[N] + (wallClimb | doubleJump)"
+        "name": "Item Location 177"
     },
     {
         "id": "Z1422.l8",
-        "name": "Southwest puzzle",
-        "type": "Normal",
-        "logic": "Z14[N] + censer + rapier + blade + (wallClimb | doubleJump)"
+        "name": "Item Location 178"
     },
     {
         "id": "Z1424.l3",
-        "name": "Miriam chest",
-        "type": "Normal",
-        "logic": "Z14[N] + wallClimb + (censer | doubleJump)"
+        "name": "Item Location 179"
     },
     {
         "id": "Z1427.l0",
-        "name": "Cursed letter: Bell",
-        "type": "Normal",
-        "logic": "Z14[N] + censer + letter3"
+        "name": "Item Location 180"
     },
     {
-        "id": "Z1501.s0",
-        "name": "Arena 1",
-        "type": "Normal",
-        "logic": "Z17[W] + daughterRooms >= 1"
+        "id": "Z1429.l11",
+        "name": "Item Location 181"
     },
     {
-        "id": "Z1501.s1",
-        "name": "Arena 2",
-        "type": "Normal",
-        "logic": "Z17[W] + daughterRooms >= 2"
+        "id": "Z1501.i0.a",
+        "name": "Item Location 182"
     },
     {
-        "id": "Z1501.s2",
-        "name": "Arena 3",
-        "type": "Normal",
-        "logic": "Z17[W] + daughterRooms >= 3"
+        "id": "Z1501.i0.b",
+        "name": "Item Location 183"
     },
     {
-        "id": "Z1501.s3",
-        "name": "Arena 4",
-        "type": "Normal",
-        "logic": "Z17[W] + daughterRooms >= 4"
+        "id": "Z1501.i0.c",
+        "name": "Item Location 184"
     },
     {
-        "id": "Z1501.s4",
-        "name": "Arena 5",
-        "type": "Normal",
-        "logic": "Z17[W] + daughterRooms >= 5"
+        "id": "Z1501.i0.d",
+        "name": "Item Location 185"
+    },
+    {
+        "id": "Z1501.i0.e",
+        "name": "Item Location 186"
     },
     {
         "id": "Z1602.l2",
-        "name": "Entrance altar",
-        "type": "Normal",
-        "logic": "Z16[S]"
+        "name": "Item Location 187"
     },
     {
         "id": "Z1603.i2",
-        "name": "Entrance arena",
-        "type": "Normal",
-        "logic": "Z16[S]"
+        "name": "Item Location 188"
     },
     {
         "id": "Z1605.c0",
-        "name": "Shortcut cherub cherub",
-        "type": "Normal",
-        "logic": "Z16[S] + rapier + cherubRings"
+        "name": "Item Location 189",
+        "flags": "C"
     },
     {
         "id": "Z1605.l5",
-        "name": "Shortcut cherub altar",
-        "type": "Normal",
-        "logic": "Z16[S] + rapier + cherubRings"
+        "name": "Item Location 190"
     },
     {
         "id": "Z1610.l4",
-        "name": "Lullaby slide",
-        "type": "Normal",
-        "logic": "Z16[S] + rapier"
+        "name": "Item Location 191"
     },
     {
         "id": "Z1615.a0",
-        "name": "Scion statue",
-        "type": "Normal",
-        "logic": "Z16[S] + rapier"
+        "name": "Item Location 192",
+        "flags": "A"
     },
     {
         "id": "Z1616.i1",
-        "name": "Cesareo's gift",
-        "type": "Normal",
-        "logic": "Z16[S] + rapier + cherubRings + waxSeeds >= 6"
+        "name": "Item Location 193"
     },
     {
         "id": "Z1619.l6",
-        "name": "Upper entrance altar",
-        "type": "Normal",
-        "logic": "Z16[P] + airDash"
+        "name": "Item Location 194"
     },
     {
         "id": "Z1621.l1",
-        "name": "3rd tribute reward",
-        "type": "Normal",
-        "logic": "Z16[P]"
-    },
-    {
-        "id": "Z1622.r6",
-        "name": "Defeat Sinodo",
-        "type": "Normal",
-        "logic": "Z16[S] + rapier + cherubRings"
+        "name": "Item Location 195"
     },
     {
         "id": "Z1622.i6",
-        "name": "Sinodo reward",
-        "type": "Normal",
-        "logic": "Z16[S] + rapier + cherubRings"
+        "name": "Item Location 196",
+        "flags": "B"
+    },
+    {
+        "id": "Z1622.r6",
+        "name": "Item Location 197",
+        "flags": "B"
     },
     {
         "id": "Z1623.c0",
-        "name": "Exit shortcut cherub",
-        "type": "Normal",
-        "logic": "Z16[S] + rapier"
+        "name": "Item Location 198",
+        "flags": "C"
     },
     {
         "id": "Z1625.i2",
-        "name": "Cherub arena",
-        "type": "Normal",
-        "logic": "Z16[S] + rapier + cherubRings"
+        "name": "Item Location 199"
     },
     {
         "id": "Z1701.c0",
-        "name": "Western cherub",
-        "type": "Normal",
-        "logic": "Z17[W] + doubleJump + airDash"
+        "name": "Item Location 200",
+        "flags": "C"
     },
     {
         "id": "Z1709.l0",
-        "name": "Hand Room",
-        "type": "Normal",
-        "logic": "Z17[W] + brokenKey"
+        "name": "Item Location 201"
     },
     {
         "id": "Z1715.l0",
-        "name": "Envelope room",
-        "type": "Normal",
-        "logic": "Z17[W] + doubleJump + cherubRings"
+        "name": "Item Location 202"
     },
     {
         "id": "Z1718.l0",
-        "name": "Altar room",
-        "type": "Normal",
-        "logic": "Z17[W] + doubleJump"
+        "name": "Item Location 203"
     },
     {
         "id": "Z1719.l3",
-        "name": "Mirror puzzle",
-        "type": "Normal",
-        "logic": "Z17[W] + doubleJump + airDash + rapier"
+        "name": "Item Location 204"
+    },
+    {
+        "id": "Z1721.l7",
+        "name": "Item Location 205"
+    },
+    {
+        "id": "Z1722.i1",
+        "name": "Item Location 206",
+        "flags": "D"
     },
     {
         "id": "Z1801.l1",
-        "name": "Section 1",
-        "type": "Normal",
-        "logic": "Z18[S] + airDash + cherubRings"
+        "name": "Item Location 207"
     },
     {
-        "id": "Z1802.l10",
-        "name": "Section 2",
-        "type": "Normal",
-        "logic": "Z18[S] + airDash + cherubRings"
+        "id": "Z1802.l7",
+        "name": "Item Location 208"
     },
     {
         "id": "Z1803.l7",
-        "name": "Section 3",
-        "type": "Normal",
-        "logic": "Z18[S] + airDash + cherubRings"
+        "name": "Item Location 209"
     },
     {
         "id": "Z1804.l2",
-        "name": "Section 4",
-        "type": "Normal",
-        "logic": "Z18[S] + airDash + cherubRings"
+        "name": "Item Location 210"
     },
     {
         "id": "Z1808.i6",
-        "name": "Eviterno reward",
-        "type": "Normal",
-        "logic": "Z18[S] + airDash + cherubRings"
+        "name": "Item Location 211"
     },
     {
         "id": "Z1808.r6",
-        "name": "Defeat Eviterno",
-        "type": "Normal",
-        "logic": "Z18[S] + airDash + cherubRings"
+        "name": "Item Location 212"
     },
     {
         "id": "Z1901.l0",
-        "name": "Entrance shaft altar",
-        "type": "Normal",
-        "logic": "Z19[N] + wallClimb | doubleJump | airDash"
+        "name": "Item Location 213"
     },
     {
-        "id": "Z1903.l0",
-        "name": "Center shaft high ledge",
-        "type": "Normal",
-        "logic": "Z19[N] + doubleJump"
+        "id": "Z1903.l1",
+        "name": "Item Location 214"
     },
     {
         "id": "Z1905.c0",
-        "name": "Bell mirror cherub",
-        "type": "Normal",
-        "logic": "Z19[N] + censer"
+        "name": "Item Location 215",
+        "flags": "C"
     },
     {
         "id": "Z1906.i1",
-        "name": "Lullaby quest",
-        "type": "Normal",
-        "logic": "Z19[N] + lullabies >= 5 + doubleJump + airDash + censer + rapier"
+        "name": "Item Location 216"
     },
     {
         "id": "Z1907.i0",
-        "name": "Yerma initial gift",
-        "type": "Normal",
-        "logic": "Z19[N]"
+        "name": "Item Location 217"
     },
     {
         "id": "Z1909.l0",
-        "name": "Procession high ledge",
-        "type": "Normal",
-        "logic": "doubleJump + airDash + (Z19[N] + censer + rapier | Z19[P])"
-    },
-    {
-        "id": "Z1910.l0",
-        "name": "2nd tribute leftover",
-        "type": "Normal",
-        "logic": "Z19[P] + tributes >= 2"
+        "name": "Item Location 218"
     },
     {
         "id": "Z1910.l4",
-        "name": "1st tribute reward",
-        "type": "Normal",
-        "logic": "Z19[P]"
+        "name": "Item Location 219"
+    },
+    {
+        "id": "Z1910.l0",
+        "name": "Item Location 220"
     },
     {
         "id": "Z1913.l1",
-        "name": "Ledge under well",
-        "type": "Normal",
-        "logic": "Z19[N] + wallClimb"
+        "name": "Item Location 221"
     },
     {
         "id": "Z1914.i2",
-        "name": "Gauntlet under well",
-        "type": "Normal",
-        "logic": "Z19[N] + wallClimb"
-    },
-    {
-        "id": "Z1917.i0",
-        "name": "Cursed letter: Sea",
-        "type": "Normal",
-        "logic": "Z19[N] + wallClimb + letter5"
+        "name": "Item Location 222"
     },
     {
         "id": "Z1917.l3",
-        "name": "Ledge over sea",
-        "type": "Normal",
-        "logic": "Z19[N] + wallClimb"
+        "name": "Item Location 223"
+    },
+    {
+        "id": "Z1917.i0",
+        "name": "Item Location 224"
     },
     {
         "id": "Z1918.l2",
-        "name": "Altar above ivy",
-        "type": "Normal",
-        "logic": "Z19[N] + doubleJump + airDash"
+        "name": "Item Location 225"
     },
     {
         "id": "Z1919.a0",
-        "name": "Ivy statue",
-        "type": "Normal",
-        "logic": "Z19[N]"
+        "name": "Item Location 226",
+        "flags": "A"
     },
     {
         "id": "Z1919.l3",
-        "name": "Chest after ivy",
-        "type": "Normal",
-        "logic": "Z19[N] + (wallClimb | doubleJump)"
+        "name": "Item Location 227"
     },
     {
         "id": "Z2001.l1",
-        "name": "Bridge entrance",
-        "type": "Normal",
-        "logic": "Z20[N] | Z20[E]"
+        "name": "Item Location 228"
     },
     {
         "id": "Z2004.c0",
-        "name": "Cathedral cherub",
-        "type": "Normal",
-        "logic": "(Z20[N] | Z20[E]) + doubleJump + airDash + censer"
+        "name": "Item Location 229",
+        "flags": "C"
     },
     {
         "id": "Z2102.l0",
-        "name": "Entrance chest",
-        "type": "Normal",
-        "logic": "Z21[N]"
+        "name": "Item Location 230"
     },
     {
         "id": "Z2103.l0",
-        "name": "Entrance altar",
-        "type": "Normal",
-        "logic": "Z21[N]"
+        "name": "Item Location 231"
     },
     {
         "id": "Z2104.l7",
-        "name": "East Puzzle chest",
-        "type": "Normal",
-        "logic": "Z21[N] + blade + censer + wallClimb"
+        "name": "Item Location 232"
     },
     {
         "id": "Z2106.l4",
-        "name": "Hidden wall puzzle",
-        "type": "Normal",
-        "logic": "Z21[N] + blade"
+        "name": "Item Location 233"
     },
     {
         "id": "Z2112.l0",
-        "name": "West puzzle chest",
-        "type": "Normal",
-        "logic": "Z21[N] + blade + wallClimb"
+        "name": "Item Location 234"
     },
     {
         "id": "Z2115.c0",
-        "name": "Tower cherub",
-        "type": "Normal",
-        "logic": "Z21[N] + blade + wallClimb"
+        "name": "Item Location 235",
+        "flags": "C"
     },
     {
         "id": "Z2116.l2",
-        "name": "Cherub puzzle",
-        "type": "Normal",
-        "logic": "Z21[N] + blade + wallClimb + cherubRings"
-    },
-    {
-        "id": "Z2117.c0",
-        "name": "Labyrinth cherub",
-        "type": "Normal",
-        "logic": "Z21[N] + blade"
+        "name": "Item Location 236"
     },
     {
         "id": "Z2117.l1",
-        "name": "Labyrinth secret",
-        "type": "Normal",
-        "logic": "Z21[N] + blade"
+        "name": "Item Location 237"
+    },
+    {
+        "id": "Z2117.c0",
+        "name": "Item Location 238",
+        "flags": "C"
     },
     {
         "id": "Z2119.i0",
-        "name": "Regula reward",
-        "type": "Normal",
-        "logic": "Z21[N] + blade + regulaCloth"
+        "name": "Item Location 239"
     },
     {
         "id": "Z2120.i2",
-        "name": "Regula gift",
-        "type": "Normal",
-        "logic": "Z21[N] + blade"
+        "name": "Item Location 240"
     },
     {
         "id": "Z2123.l2",
-        "name": "Beneath teleporter",
-        "type": "Normal",
-        "logic": "Z21[N] + blade + wallClimb"
+        "name": "Item Location 241"
+    },
+    {
+        "id": "Z2127.l21",
+        "name": "Item Location 242"
+    },
+    {
+        "id": "Z2132.l7",
+        "name": "Item Location 243"
+    },
+    {
+        "id": "Z2133.l2",
+        "name": "Item Location 244"
+    },
+    {
+        "id": "Z2136.l1",
+        "name": "Item Location 245"
+    },
+    {
+        "id": "Z2145.l1",
+        "name": "Item Location 247"
+    },
+    {
+        "id": "Z2146.l12",
+        "name": "Item Location 248"
+    },
+    {
+        "id": "Z2147.l0",
+        "name": "Item Location 249"
+    },
+    {
+        "id": "Z2149.l0",
+        "name": "Item Location 250"
+    },
+    {
+        "id": "Z2150.i0.a",
+        "name": "Item Location 251"
+    },
+    {
+        "id": "Z2150.i0.b",
+        "name": "Item Location 252"
     },
     {
         "id": "Z2301.l16",
-        "name": "Center shaft",
-        "type": "Normal",
-        "logic": "Z23[N] + (doubleJump | airDash)"
+        "name": "Item Location 253"
     },
     {
         "id": "Z2304.r15",
-        "name": "Defeat Alifaor",
-        "type": "Normal",
-        "logic": "Z23[N]"
+        "name": "Item Location 254",
+        "flags": "B"
     },
     {
         "id": "Z2306.c0",
-        "name": "Western cherub",
-        "type": "Normal",
-        "logic": "Z23[N] + wallClimb + doubleJump"
+        "name": "Item Location 255",
+        "flags": "C"
     },
     {
         "id": "Z2308.a0",
-        "name": "Ash statue",
-        "type": "Normal",
-        "logic": "Z23[N]"
+        "name": "Item Location 256",
+        "flags": "A"
     },
     {
         "id": "Z2310.w0",
-        "name": "Ruego statue",
-        "type": "Normal",
-        "logic": "Z23[N] + (doubleJump | airDash)"
+        "name": "Item Location 257",
+        "flags": "W"
+    },
+    {
+        "id": "Z2311.l8",
+        "name": "Item Location 258"
+    },
+    {
+        "id": "Z2314.l10",
+        "name": "Item Location 259"
+    },
+    {
+        "id": "Z2317.l2",
+        "name": "Item Location 260"
     },
     {
         "id": "Z2401.i0",
-        "name": "Proximo reward",
-        "type": "LongQuest",
-        "logic": "Z24[W] + cherubs >= 33 + rattle"
-    },
-    {
-        "id": "Z2401.l3",
-        "name": "Cherub platform 1",
-        "type": "Normal",
-        "logic": "Z24[W] + cherubs >= 10"
-    },
-    {
-        "id": "Z2401.l4",
-        "name": "Cherub platform 2",
-        "type": "Normal",
-        "logic": "Z24[W] + cherubs >= 17"
+        "name": "Item Location 261",
+        "flags": "L"
     },
     {
         "id": "Z2401.l2",
-        "name": "Cherub platform 3",
-        "type": "Normal",
-        "logic": "Z24[W] + cherubs >= 29 + doubleJump + airDash"
+        "name": "Item Location 262"
     },
     {
-        "id": "Z2402.l0",
-        "name": "Cherub top floor",
-        "type": "LongQuest",
-        "logic": "Z24[W] + cherubs >= 33 + doubleJump + airDash + cherubRings"
+        "id": "Z2401.l3",
+        "name": "Item Location 263"
+    },
+    {
+        "id": "Z2401.l2.x",
+        "name": "Item Location 264"
     },
     {
         "id": "Z2402.l1",
-        "name": "Cherub top altar",
-        "type": "LongQuest",
-        "logic": "Z24[W] + cherubs >= 33 + doubleJump + airDash + cherubRings"
+        "name": "Item Location 265",
+        "flags": "L"
+    },
+    {
+        "id": "Z2402.l0",
+        "name": "Item Location 266",
+        "flags": "L"
     },
     {
         "id": "Z2402.l2",
-        "name": "Cherub top hidden chest",
-        "type": "LongQuest",
-        "logic": "Z24[W] + cherubs >= 33 + doubleJump + airDash + cherubRings"
+        "name": "Item Location 267",
+        "flags": "L"
+    },
+    {
+        "id": "Z2601.unknown",
+        "name": "Item Location 268"
+    },
+    {
+        "id": "Z2702.i0",
+        "name": "Item Location 269"
+    },
+    {
+        "id": "Z2703.l1",
+        "name": "Item Location 270"
+    },
+    {
+        "id": "Z2704.l6",
+        "name": "Item Location 271"
+    },
+    {
+        "id": "Z2704.l7",
+        "name": "Item Location 272"
+    },
+    {
+        "id": "Z2705.l5",
+        "name": "Item Location 273"
+    },
+    {
+        "id": "Z2705.i6",
+        "name": "Item Location 274"
+    },
+    {
+        "id": "Z2706.l10",
+        "name": "Item Location 275"
+    },
+    {
+        "id": "Z2708.l9",
+        "name": "Item Location 276"
+    },
+    {
+        "id": "Z2712.l14",
+        "name": "Item Location 277"
+    },
+    {
+        "id": "Z2716.l5",
+        "name": "Item Location 278"
+    },
+    {
+        "id": "Z2719.l5",
+        "name": "Item Location 279"
+    },
+    {
+        "id": "Z2724.l12",
+        "name": "Item Location 280"
+    },
+    {
+        "id": "Z2731.l2",
+        "name": "Item Location 281"
+    },
+    {
+        "id": "Z2735.r7",
+        "name": "Item Location 282"
+    },
+    {
+        "id": "Z2741.i0",
+        "name": "Item Location 283"
+    },
+    {
+        "id": "Z2743.i0",
+        "name": "Item Location 284"
+    },
+    {
+        "id": "Z2744.l21",
+        "name": "Item Location 285"
+    },
+    {
+        "id": "Z2746.i0",
+        "name": "Item Location 286"
+    },
+    {
+        "id": "Z2801.l9",
+        "name": "Item Location 287"
+    },
+    {
+        "id": "Z2804.i8",
+        "name": "Item Location 288"
+    },
+    {
+        "id": "Z2804.w0",
+        "name": "Item Location 289"
+    },
+    {
+        "id": "Z2804.r0",
+        "name": "Item Location 290"
+    },
+    {
+        "id": "Z2805.i0",
+        "name": "Item Location 291"
+    },
+    {
+        "id": "Z2814.w0",
+        "name": "Item Location 292",
+        "flags": "W"
+    },
+    {
+        "id": "Z2815.l13",
+        "name": "Item Location 293"
+    },
+    {
+        "id": "Z2816.i7",
+        "name": "Item Location 294"
+    },
+    {
+        "id": "Z2823.l22",
+        "name": "Item Location 295"
+    },
+    {
+        "id": "Z2827.r7",
+        "name": "Item Location 296"
+    },
+    {
+        "id": "Z2828.l16",
+        "name": "Item Location 297"
+    },
+    {
+        "id": "Z2828.i17",
+        "name": "Item Location 298"
+    },
+    {
+        "id": "Z2828.l18",
+        "name": "Item Location 299"
+    },
+    {
+        "id": "Z2828.l15",
+        "name": "Item Location 300"
+    },
+    {
+        "id": "Z2829.l23",
+        "name": "Item Location 301"
+    },
+    {
+        "id": "Z2834.l0",
+        "name": "Item Location 302",
+        "flags": "V"
+    },
+    {
+        "id": "Z2835.l12",
+        "name": "Item Location 303"
+    },
+    {
+        "id": "Z2835.i0",
+        "name": "Item Location 304"
     },
     {
         "id": "SHOPHAND.o0",
-        "name": "Hand shop item 1",
-        "type": "Shop",
-        "logic": "wallClimb"
+        "name": "Item Location 305",
+        "flags": "S"
     },
     {
         "id": "SHOPHAND.o1",
-        "name": "Hand shop item 2",
-        "type": "Shop",
-        "logic": "wallClimb"
+        "name": "Item Location 306",
+        "flags": "S"
     },
     {
         "id": "SHOPHAND.o2",
-        "name": "Hand shop item 3",
-        "type": "Shop",
-        "logic": "wallClimb"
+        "name": "Item Location 307",
+        "flags": "S"
     },
     {
         "id": "SHOPHAND.o3",
-        "name": "Hand shop item 4",
-        "type": "Shop",
-        "logic": "wallClimb"
+        "name": "Item Location 308",
+        "flags": "S"
     },
     {
         "id": "SHOPHAND.o4",
-        "name": "Hand shop item 5",
-        "type": "Shop",
-        "logic": "wallClimb"
+        "name": "Item Location 309",
+        "flags": "S"
     },
     {
         "id": "SHOPHAND.o5",
-        "name": "Hand shop item 6",
-        "type": "Shop",
-        "logic": "wallClimb"
+        "name": "Item Location 310",
+        "flags": "S"
     },
     {
         "id": "SHOPHAND.o6",
-        "name": "Hand shop item 7",
-        "type": "Shop",
-        "logic": "wallClimb"
+        "name": "Item Location 311",
+        "flags": "S"
     },
     {
         "id": "SHOPHAND.o7",
-        "name": "Hand shop item 8",
-        "type": "Shop",
-        "logic": "wallClimb"
+        "name": "Item Location 312",
+        "flags": "S"
     },
     {
         "id": "SHOPHAND.o8",
-        "name": "Hand shop item 9",
-        "type": "Shop",
-        "logic": "wallClimb"
+        "name": "Item Location 313",
+        "flags": "S"
     },
     {
         "id": "SHOPHAND.o9",
-        "name": "Hand shop item 10",
-        "type": "Shop",
-        "logic": "wallClimb"
+        "name": "Item Location 314",
+        "flags": "S"
     },
     {
         "id": "SHOPHAND.o10",
-        "name": "Hand shop item 11",
-        "type": "Shop",
-        "logic": "wallClimb"
+        "name": "Item Location 315",
+        "flags": "S"
     },
     {
         "id": "SHOPHAND.o11",
-        "name": "Hand shop item 12",
-        "type": "Shop",
-        "logic": "wallClimb"
+        "name": "Item Location 316",
+        "flags": "S"
     },
     {
         "id": "SHOPITINERANT.o0",
-        "name": "Traveling shop item 1",
-        "type": "Shop",
-        "logic": "shopRooms >= 1"
+        "name": "Item Location 317",
+        "flags": "S"
     },
     {
         "id": "SHOPITINERANT.o1",
-        "name": "Traveling shop item 2",
-        "type": "Shop",
-        "logic": "shopRooms >= 1"
+        "name": "Item Location 318",
+        "flags": "S"
     },
     {
         "id": "SHOPITINERANT.o2",
-        "name": "Traveling shop item 3",
-        "type": "Shop",
-        "logic": "shopRooms >= 2"
+        "name": "Item Location 319",
+        "flags": "S"
     },
     {
         "id": "SHOPITINERANT.o3",
-        "name": "Traveling shop item 4",
-        "type": "Shop",
-        "logic": "shopRooms >= 3"
+        "name": "Item Location 320",
+        "flags": "S"
     },
     {
         "id": "SHOPITINERANT.o4",
-        "name": "Traveling shop item 5",
-        "type": "Shop",
-        "logic": "shopRooms >= 4"
+        "name": "Item Location 321",
+        "flags": "S"
     },
     {
         "id": "SHOPITINERANT.o5",
-        "name": "Traveling shop item 6",
-        "type": "Shop",
-        "logic": "shopRooms >= 5"
+        "name": "Item Location 322",
+        "flags": "S"
     },
     {
         "id": "SHOPITINERANT.o6",
-        "name": "Traveling shop item 7",
-        "type": "Shop",
-        "logic": "shopRooms >= 6"
+        "name": "Item Location 323",
+        "flags": "S"
     },
     {
         "id": "SHOPITINERANT.o7",
-        "name": "Traveling shop item 8",
-        "type": "Shop",
-        "logic": "shopRooms >= 7"
+        "name": "Item Location 324",
+        "flags": "S"
     },
     {
         "id": "SHOPMISSABLES.o0",
-        "name": "Patio shop item 1",
-        "type": "Shop",
-        "logic": "Z17[W] + doubleJump"
+        "name": "Item Location 325",
+        "flags": "S"
     },
     {
         "id": "SHOPMISSABLES.o1",
-        "name": "Patio shop item 2",
-        "type": "Shop",
-        "logic": "Z17[W] + doubleJump"
+        "name": "Item Location 326",
+        "flags": "S"
     },
     {
         "id": "SHOPMISSABLES.o2",
-        "name": "Patio shop item 3",
-        "type": "Shop",
-        "logic": "Z17[W] + doubleJump"
+        "name": "Item Location 327",
+        "flags": "S"
     },
     {
         "id": "SHOPMISSABLES.o3",
-        "name": "Patio shop item 4",
-        "type": "Shop",
-        "logic": "Z17[W] + doubleJump"
+        "name": "Item Location 328",
+        "flags": "S"
     },
     {
         "id": "SHOPMISSABLES.o4",
-        "name": "Patio shop item 5",
-        "type": "Shop",
-        "logic": "Z17[W] + doubleJump"
+        "name": "Item Location 329",
+        "flags": "S"
     },
     {
         "id": "SHOPMISSABLES.o5",
-        "name": "Patio shop item 6",
-        "type": "Shop",
-        "logic": "Z17[W] + doubleJump + kisses >= 5"
+        "name": "Item Location 330",
+        "flags": "S"
     },
     {
         "id": "SHOPMISSABLES.o6",
-        "name": "Patio shop item 7",
-        "type": "Shop",
-        "logic": "Z17[W] + doubleJump + Z13[E] + blade + censer + rapier"
+        "name": "Item Location 331",
+        "flags": "S"
     }
 ]

@@ -189,6 +189,48 @@
         "count": 1
     },
     {
+        "id": "RB101",
+        "name": "Raven Amulet",
+        "type": "RosaryBead",
+        "progression": false,
+        "count": 1
+    },
+    {
+        "id": "RB102",
+        "name": "Blood-stained Chain Link",
+        "type": "RosaryBead",
+        "progression": false,
+        "count": 1
+    },
+    {
+        "id": "RB103",
+        "name": "Traitor's Gaze",
+        "type": "RosaryBead",
+        "progression": false,
+        "count": 1
+    },
+    {
+        "id": "RB104",
+        "name": "Pearl of the Punished",
+        "type": "RosaryBead",
+        "progression": false,
+        "count": 1
+    },
+    {
+        "id": "RB105",
+        "name": "Bandage of the Heretic",
+        "type": "RosaryBead",
+        "progression": false,
+        "count": 1
+    },
+    {
+        "id": "RB106",
+        "name": "Antique Locket",
+        "type": "RosaryBead",
+        "progression": false,
+        "count": 1
+    },
+    {
         "id": "PR01",
         "name": "Galera of the Living Briar",
         "type": "Prayer",
@@ -303,6 +345,69 @@
     {
         "id": "PR18",
         "name": "Peteneras to the Burial of the Lights",
+        "type": "Prayer",
+        "progression": false,
+        "count": 1
+    },
+    {
+        "id": "PR101",
+        "name": "Prayer of the Penitent One",
+        "type": "Prayer",
+        "progression": false,
+        "count": 1
+    },
+    {
+        "id": "PR102",
+        "name": "Carcelera of Tender Relief",
+        "type": "Prayer",
+        "progression": false,
+        "count": 1
+    },
+    {
+        "id": "PR103",
+        "name": "Soleá of Excommunication",
+        "type": "Prayer",
+        "progression": false,
+        "count": 0
+    },
+    {
+        "id": "PR104",
+        "name": "Cante Jondo of the Polluted Heart",
+        "type": "Prayer",
+        "progression": false,
+        "count": 1
+    },
+    {
+        "id": "PR105",
+        "name": "Praviana of the Golden Dawn",
+        "type": "Prayer",
+        "progression": false,
+        "count": 1
+    },
+    {
+        "id": "PR106",
+        "name": "Cabal of the Deep Wound",
+        "type": "Prayer",
+        "progression": false,
+        "count": 1
+    },
+    {
+        "id": "PR107",
+        "name": "Rondeña to the Unyielding Pledge",
+        "type": "Prayer",
+        "progression": false,
+        "count": 1
+    },
+    {
+        "id": "PR108",
+        "name": "Bleeding Chalice",
+        "type": "Prayer",
+        "progression": false,
+        "count": 0
+    },
+    {
+        "id": "PR109",
+        "name": "Temple of the Three Winds",
         "type": "Prayer",
         "progression": false,
         "count": 1
@@ -543,7 +648,7 @@
         "name": "The Unwavering One",
         "type": "Figurine",
         "progression": false,
-        "count": 0
+        "count": 1
     },
     {
         "id": "FG44",
@@ -560,28 +665,116 @@
         "count": 1
     },
     {
-        "id": "ST",
-        "name": "Sculptor Tools",
-        "type": "QuestItem",
-        "progression": true,
-        "count": 5,
-        "subItems": [ "QI12", "QI02", "QI11", "QI03", "QI01" ],
-        "removePrevious": false
+        "id": "FG101",
+        "name": "The Oblivion",
+        "type": "Figurine",
+        "progression": false,
+        "count": 0
+    },
+    {
+        "id": "FG102",
+        "name": "The Mercy",
+        "type": "Figurine",
+        "progression": false,
+        "count": 1
+    },
+    {
+        "id": "FG103",
+        "name": "The Sisters",
+        "type": "Figurine",
+        "progression": false,
+        "count": 1
+    },
+    {
+        "id": "FG104",
+        "name": "The Beatified",
+        "type": "Figurine",
+        "progression": false,
+        "count": 1
+    },
+    {
+        "id": "FG105",
+        "name": "The Mournful",
+        "type": "Figurine",
+        "progression": false,
+        "count": 0
+    },
+    {
+        "id": "FG106",
+        "name": "The Executed",
+        "type": "Figurine",
+        "progression": false,
+        "count": 0
+    },
+    {
+        "id": "FG107",
+        "name": "The Family",
+        "type": "Figurine",
+        "progression": false,
+        "count": 1
+    },
+    {
+        "id": "FG108",
+        "name": "The Prisoner",
+        "type": "Figurine",
+        "progression": false,
+        "count": 1
+    },
+    {
+        "id": "FG109",
+        "name": "The Dance",
+        "type": "Figurine",
+        "progression": false,
+        "count": 1
+    },
+    {
+        "id": "FG110",
+        "name": "The Thief",
+        "type": "Figurine",
+        "progression": false,
+        "count": 1
+    },
+    {
+        "id": "FG111",
+        "name": "The Crying",
+        "type": "Figurine",
+        "progression": false,
+        "count": 0
+    },
+    {
+        "id": "FG112",
+        "name": "The Liberated",
+        "type": "Figurine",
+        "progression": false,
+        "count": 1
+    },
+    {
+        "id": "FG113",
+        "name": "The Aide",
+        "type": "Figurine",
+        "progression": false,
+        "count": 1
     },
     {
         "id": "QI01",
         "name": "Tears of Sap",
-        "type": "QuestItem"
+        "type": "QuestItem",
+        "progression": true,
+        "count": 1
     },
     {
         "id": "QI02",
         "name": "Immaculate Mother-of-Pearl Gouge",
-        "type": "QuestItem"
+        "type": "QuestItem",
+        "progression": true,
+        "count": 1
     },
     {
         "id": "QI03",
         "name": "Oils of the Blessed Mixture",
-        "type": "QuestItem"
+        "type": "QuestItem",
+        "progression": true,
+        "count": 1
     },
     {
         "id": "QI04",
@@ -635,12 +828,16 @@
     {
         "id": "QI11",
         "name": "Silver Shell File",
-        "type": "QuestItem"
+        "type": "QuestItem",
+        "progression": true,
+        "count": 1
     },
     {
         "id": "QI12",
         "name": "Sculptor's Resonant Gavel",
-        "type": "QuestItem"
+        "type": "QuestItem",
+        "progression": true,
+        "count": 1
     },
     {
         "id": "QI14",
@@ -678,40 +875,6 @@
         "count": 1
     },
     {
-        "id": "UL",
-        "name": "Piece of the Lullaby",
-        "type": "QuestItem",
-        "progression": true,
-        "count": 5,
-        "subItems": [ "QI23", "QI24", "QI25", "QI26", "QI27" ],
-        "removePrevious": true
-    },
-    {
-        "id": "QI23",
-        "name": "Unfinished Lullaby",
-        "type": "QuestItem"
-    },
-    {
-        "id": "QI24",
-        "name": "Unfinished Lullaby",
-        "type": "QuestItem"
-    },
-    {
-        "id": "QI25",
-        "name": "Unfinished Lullaby",
-        "type": "QuestItem"
-    },
-    {
-        "id": "QI26",
-        "name": "Unfinished Lullaby",
-        "type": "QuestItem"
-    },
-    {
-        "id": "QI27",
-        "name": "Lullaby of the White Shore",
-        "type": "QuestItem"
-    },
-    {
         "id": "QI28",
         "name": "Broken Key",
         "type": "QuestItem",
@@ -719,57 +882,53 @@
         "count": 1
     },
     {
-        "id": "FT",
+        "id": "QI29",
         "name": "Forgotten Tribute",
         "type": "QuestItem",
         "progression": true,
-        "count": 3,
-        "subItems": [ "QI29", "QI30", "QI31" ],
-        "removePrevious": false
-    },
-    {
-        "id": "QI29",
-        "name": "Forgotten Tribute",
-        "type": "QuestItem"
+        "count": 1
     },
     {
         "id": "QI30",
         "name": "Forgotten Tribute",
-        "type": "QuestItem"
+        "type": "QuestItem",
+        "progression": true,
+        "count": 1
     },
     {
         "id": "QI31",
         "name": "Forgotten Tribute",
-        "type": "QuestItem"
-    },
-    {
-        "id": "RK",
-        "name": "Abandoned Rosary Knot",
         "type": "QuestItem",
-        "progression": false,
-        "count": 4,
-        "subItems": [ "QI32", "QI33", "QI34", "QI35" ],
-        "removePrevious": false
+        "progression": true,
+        "count": 1
     },
     {
         "id": "QI32",
         "name": "Abandoned Rosary Knot",
-        "type": "QuestItem"
+        "type": "QuestItem",
+        "progression": true,
+        "count": 1
     },
     {
         "id": "QI33",
         "name": "Abandoned Rosary Knot",
-        "type": "QuestItem"
+        "type": "QuestItem",
+        "progression": true,
+        "count": 1
     },
     {
         "id": "QI34",
         "name": "Abandoned Rosary Knot",
-        "type": "QuestItem"
+        "type": "QuestItem",
+        "progression": true,
+        "count": 1
     },
     {
         "id": "QI35",
         "name": "Abandoned Rosary Knot",
-        "type": "QuestItem"
+        "type": "QuestItem",
+        "progression": true,
+        "count": 1
     },
     {
         "id": "QI36",
@@ -779,125 +938,123 @@
         "count": 0
     },
     {
-        "id": "FK",
+        "id": "QI37",
         "name": "Fervent Kiss",
         "type": "QuestItem",
         "progression": true,
-        "count": 5,
-        "subItems": [ "QI37", "QI38", "QI39", "QI40", "QI41" ],
-        "removePrevious": false
-    },
-    {
-        "id": "QI37",
-        "name": "Fervent Kiss",
-        "type": "QuestItem"
+        "count": 1
     },
     {
         "id": "QI38",
         "name": "Fervent Kiss",
-        "type": "QuestItem"
+        "type": "QuestItem",
+        "progression": true,
+        "count": 1
     },
     {
         "id": "QI39",
         "name": "Fervent Kiss",
-        "type": "QuestItem"
+        "type": "QuestItem",
+        "progression": true,
+        "count": 1
     },
     {
         "id": "QI40",
         "name": "Fervent Kiss",
-        "type": "QuestItem"
+        "type": "QuestItem",
+        "progression": true,
+        "count": 1
     },
     {
         "id": "QI41",
         "name": "Fervent Kiss",
-        "type": "QuestItem"
-    },
-    {
-        "id": "OC",
-        "name": "Ornate Chalice",
         "type": "QuestItem",
-        "progression": false,
-        "count": 5,
-        "subItems": [ "QI42", "QI43", "QI44", "QI45", "QI46" ],
-        "removePrevious": false
+        "progression": true,
+        "count": 1
     },
     {
         "id": "QI42",
         "name": "Ornate Chalice",
-        "type": "QuestItem"
+        "type": "QuestItem",
+        "progression": false,
+        "count": 1
     },
     {
         "id": "QI43",
         "name": "Ornate Chalice",
-        "type": "QuestItem"
+        "type": "QuestItem",
+        "progression": false,
+        "count": 1
     },
     {
         "id": "QI44",
         "name": "Ornate Chalice",
-        "type": "QuestItem"
+        "type": "QuestItem",
+        "progression": false,
+        "count": 1
     },
     {
         "id": "QI45",
         "name": "Ornate Chalice",
-        "type": "QuestItem"
+        "type": "QuestItem",
+        "progression": false,
+        "count": 1
     },
     {
         "id": "QI46",
         "name": "Ornate Chalice",
-        "type": "QuestItem"
-    },
-    {
-        "id": "ER",
-        "name": "Empty Receptacle",
         "type": "QuestItem",
         "progression": false,
-        "count": 4,
-        "subItems": [ "QI47", "QI48", "QI49", "QI50" ],
-        "removePrevious": false
+        "count": 1
     },
     {
         "id": "QI47",
         "name": "Empty Receptacle",
-        "type": "QuestItem"
+        "type": "QuestItem",
+        "progression": false,
+        "count": 1
     },
     {
         "id": "QI48",
         "name": "Empty Receptacle",
-        "type": "QuestItem"
+        "type": "QuestItem",
+        "progression": false,
+        "count": 1
     },
     {
         "id": "QI49",
         "name": "Empty Receptacle",
-        "type": "QuestItem"
+        "type": "QuestItem",
+        "progression": false,
+        "count": 1
     },
     {
         "id": "QI50",
         "name": "Empty Receptacle",
-        "type": "QuestItem"
-    },
-    {
-        "id": "CS",
-        "name": "Silver-Clad Crystal Shard",
         "type": "QuestItem",
         "progression": false,
-        "count": 3,
-        "subItems": [ "QI51", "QI52", "QI53" ],
-        "removePrevious": false
+        "count": 1
     },
     {
         "id": "QI51",
         "name": "Silver-Clad Crystal Shard",
-        "type": "QuestItem"
+        "type": "QuestItem",
+        "progression": false,
+        "count": 1
     },
     {
         "id": "QI52",
         "name": "Silver-Clad Crystal Shard",
-        "type": "QuestItem"
+        "type": "QuestItem",
+        "progression": false,
+        "count": 1
     },
     {
         "id": "QI53",
         "name": "Silver-Clad Crystal Shard",
-        "type": "QuestItem"
+        "type": "QuestItem",
+        "progression": false,
+        "count": 1
     },
     {
         "id": "QI54",
@@ -914,43 +1071,46 @@
         "count": 1
     },
     {
-        "id": "WS",
+        "id": "QI56",
         "name": "Wax Seed",
         "type": "QuestItem",
         "progression": true,
-        "count": 6,
-        "subItems": [ "QI56", "QI57", "QI58", "QI59", "QI60", "QI61" ],
-        "removePrevious": false
-    },
-    {
-        "id": "QI56",
-        "name": "Wax Seed",
-        "type": "QuestItem"
+        "count": 1
     },
     {
         "id": "QI57",
         "name": "Wax Seed",
-        "type": "QuestItem"
+        "type": "QuestItem",
+        "progression": true,
+        "count": 1
     },
     {
         "id": "QI58",
         "name": "Wax Seed",
-        "type": "QuestItem"
+        "type": "QuestItem",
+        "progression": true,
+        "count": 1
     },
     {
         "id": "QI59",
         "name": "Wax Seed",
-        "type": "QuestItem"
+        "type": "QuestItem",
+        "progression": true,
+        "count": 1
     },
     {
         "id": "QI60",
         "name": "Wax Seed",
-        "type": "QuestItem"
+        "type": "QuestItem",
+        "progression": true,
+        "count": 1
     },
     {
         "id": "QI61",
         "name": "Wax Seed",
-        "type": "QuestItem"
+        "type": "QuestItem",
+        "progression": true,
+        "count": 1
     },
     {
         "id": "QI62",
@@ -1023,57 +1183,113 @@
         "count": 1
     },
     {
-        "id": "WE01",
+        "id": "QI101",
+        "name": "Mud Key",
+        "type": "QuestItem",
+        "progression": true,
+        "count": 1
+    },
+    {
+        "id": "QI103",
+        "name": "Ceramic Key",
+        "type": "QuestItem",
+        "progression": true,
+        "count": 1
+    },
+    {
+        "id": "QI104",
+        "name": "Mea Culpa Hilt",
+        "type": "QuestItem",
+        "progression": true,
+        "count": 1
+    },
+    {
+        "id": "QI105",
+        "name": "Lump of Gold",
+        "type": "QuestItem",
+        "progression": true,
+        "count": 20
+    },
+    {
+        "id": "Lullaby",
+        "name": "Piece of the Lullaby",
+        "type": "Ability",
+        "progression": true,
+        "count": 5
+    },
+    {
+        "id": "LatinThing",
+        "name": "Imperfectus Lacrimatorio",
+        "type": "Ability",
+        "progression": false,
+        "count": 4
+    },
+    {
+        "id": "Censer",
         "name": "Veredicto",
         "type": "Weapon",
         "progression": true,
         "count": 3
     },
     {
-        "id": "WE02",
+        "id": "RosaryBlade",
         "name": "Ruego Al Alba",
         "type": "Weapon",
         "progression": true,
         "count": 3
     },
     {
-        "id": "WE03",
+        "id": "Rapier",
         "name": "Sarmiento & Centella",
         "type": "Weapon",
         "progression": true,
         "count": 3
     },
     {
-        "id": "AB44",
+        "id": "MeaCulpa",
+        "name": "Mea Culpa",
+        "type": "Weapon",
+        "progression": true,
+        "count": 2
+    },
+    {
+        "id": "WallClimb",
         "name": "Ivy of Ascension",
         "type": "Ability",
         "progression": true,
         "count": 1
     },
     {
-        "id": "AB02",
+        "id": "AirJump",
         "name": "Passage of Ash",
         "type": "Ability",
         "progression": true,
         "count": 1
     },
     {
-        "id": "AB01",
+        "id": "AirDash",
         "name": "Mercy of the Wind",
         "type": "Ability",
         "progression": true,
         "count": 1
     },
     {
-        "id": "AB35",
-        "name": "Scions' Protection",
+        "id": "MagicRingClimb",
+        "name": "Scions’ Protection",
         "type": "Ability",
         "progression": true,
         "count": 1
     },
     {
-        "id": "CH",
-        "name": "Brother of Proximo",
+        "id": "GlassWalk",
+        "name": "Broken Step",
+        "type": "Ability",
+        "progression": true,
+        "count": 1
+    },
+    {
+        "id": "Cherub",
+        "name": "Child of Moonlight",
         "type": "Cherub",
         "progression": true,
         "count": 33
@@ -1108,10 +1324,17 @@
     },
     {
         "id": "Marks[1]",
-        "name": "1 Marks of Martyrdom",
+        "name": "1 Mark of Martyrdom",
         "type": "Marks",
         "progression": false,
         "count": 35
+    },
+    {
+        "id": "PreMarks[1]",
+        "name": "1 Mark of the Preceptor",
+        "type": "PreMarks",
+        "progression": false,
+        "count": 14
     },
     {
         "id": "Tears[5000]",
