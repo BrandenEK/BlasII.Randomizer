@@ -1,20 +1,13 @@
 using BlasII.ModdingAPI;
-using BlasII.Randomizer.Extensions;
 using HarmonyLib;
 using Il2CppPlaymaker.Characters;
 using Il2CppPlaymaker.Inventory;
 using Il2CppPlaymaker.Loot;
 using Il2CppPlaymaker.PrieDieu;
 using Il2CppPlaymaker.UI;
-using Il2CppPlaymaker.Utils;
 using Il2CppTGK.Game;
-using Il2CppTGK.Game.Achievements;
 using Il2CppTGK.Game.Components.Interactables;
 using Il2CppTGK.Game.Inventory.PlayMaker;
-using Il2CppTGK.Game.Managers;
-using Il2CppTGK.PlayMaker.Actions;
-using System.Reflection;
-using static MelonLoader.MelonLogger;
 
 namespace BlasII.Randomizer.Patches;
 
@@ -245,50 +238,32 @@ class Ability_Skip_Patch
 // Caged cherubs
 // =============
 
-[HarmonyPatch(typeof(CherubCollectibleComponent), nameof(CherubCollectibleComponent.AddCherub))]
-class tx
-{
-    public static bool Prefix()
-    {
-        ModLog.Info("CherubCollectibleComponent.AddCherub");
-        return true;
-    }
-}
-[HarmonyPatch(typeof(CherubsManager), nameof(CherubsManager.AddCherub))]
-class t
-{
-    public static bool Prefix(int token)
-    {
-        ModLog.Info("CherubsManager.AddCherub");
-        ModLog.Info("Add cherub: " + token);
-        return true;
-    }
-}
-//[HarmonyPatch(typeof(SetQuestVarWithVariable), nameof(SetQuestVarWithVariable.OnEnter))]
-//class t2
-//{
-//    public static bool Prefix(SetQuestVarWithVariable __instance)
-//    {
-//        ModLog.Warn(__instance.questId.Value + ": " + __instance.varId.Value);
+// They changed how cherubs work an ruined everything.  The quest flags are still used in the cherub room and maybe on the pause menu.
+// But now the CherubsManager stores collected cherubs as tokens and then syncs the quest flags.
+// However, those tokens also determines whether the cherub is collected or not.
+// In addition, the CherubCollectibleComponent.AddCherub method fires twice on scene load
 
-//        return true;
+//[HarmonyPatch(typeof(CherubCollectibleComponent), nameof(CherubCollectibleComponent.AddCherub))]
+//class CherubCollectibleComponent_AddCherub_Patch
+//{
+//    public static bool Prefix()
+//    {
+//        string locationId = $"{CoreCache.Room.CurrentRoom.Name}.c0";
+//        ModLog.Error("CherubCollectibleComponent.AddCherub - " + locationId);
+
+//        if (!Main.Randomizer.IsRandomizerMode)
+//            return true;
+
+//        Main.Randomizer.ItemHandler.GiveItemAtLocation(locationId);
+//        CoreCache.CherubsManager.Synch();
+//        return false;
 //    }
 //}
-
 //[HarmonyPatch(typeof(OperateQuestVar), nameof(OperateQuestVar.CheckInputData))]
-//class t
+//class PlayMaker_OperateQuestVar_Patch
 //{
 //    public static bool Prefix(OperateQuestVar __instance)
 //    {
-//        //OperateQuestVar operate = __instance.TryCast<OperateQuestVar>();
-//        //if (operate == null)
-//        //    return true;
-
-//        ModLog.Error("param: " + __instance.paramInt.Value);
-//        ModLog.Error("value: " + __instance.ValueInt);
-
-//        //operate.paramInt.Value = 0;
-//        //__instance.ValueInt--;
 //        string quest = Main.Randomizer.GetQuestName(__instance.questVar.questID, __instance.questVar.varID);
 //        if (quest != "ST16.FREED_CHERUBS")
 //            return true;
@@ -304,77 +279,18 @@ class t
 //        return false;
 //    }
 //}
-//[HarmonyPatch(typeof(OperateQuestVar), nameof(OperateQuestVar.ValueInt), MethodType.Getter)]
-//class t3
+//[HarmonyPatch(typeof(ShowCherubPopup), nameof(ShowCherubPopup.OnEnter))]
+//class Cherub_Skip_Patch
 //{
-//    public static void Postfix(OperateQuestVar __instance, ref int __result)
+//    public static bool Prefix(ShowCherubPopup __instance)
 //    {
-//        ModLog.Error("Force decreasing cherub count");
-//        string quest = Main.Randomizer.GetQuestName(__instance.questVar.questID, __instance.questVar.varID);
-//        if (quest == "ST16.FREED_CHERUBS")
-//            __result--;
+//        if (!Main.Randomizer.IsRandomizerMode)
+//            return true;
+
+//        __instance.Finish();
+//        return false;
 //    }
 //}
-[HarmonyPatch(typeof(OperateQuestVar), nameof(OperateQuestVar.CheckInputData))]
-class PlayMaker_OperateQuestVar_Patch
-{
-    public static bool Prefix(OperateQuestVar __instance)
-    {
-        string quest = Main.Randomizer.GetQuestName(__instance.questVar.questID, __instance.questVar.varID);
-        if (quest != "ST16.FREED_CHERUBS")
-            return true;
-
-        string locationId = $"{CoreCache.Room.CurrentRoom.Name}.c0";
-        ModLog.Error("OperateQuestVar.CheckInputData - " + locationId);
-
-        if (!Main.Randomizer.IsRandomizerMode)
-            return true;
-
-        QuestManager_SetQuestVarValue_Patch.CHERUB_FLAG = true;
-        Main.Randomizer.ItemHandler.GiveItemAtLocation(locationId);
-        __instance.Finish();
-        return false;
-    }
-}
-[HarmonyPatch]
-class QuestManager_SetQuestVarValue_Patch
-{
-    public static MethodInfo TargetMethod()
-    {
-        return typeof(QuestManager).GetMethod(nameof(QuestManager.SetQuestVarValue)).MakeGenericMethod(typeof(int));
-    }
-
-    public static bool Prefix(int questId, int varId, ref int value)
-    {
-        string quest = Main.Randomizer.GetQuestName(questId, varId);
-
-        if (quest != "ST16.FREED_CHERUBS")
-            return true;
-
-        ModLog.Warn("Setting cherubs to " + value);
-        if (!CHERUB_FLAG)
-            return true;
-
-        ModLog.Info("Preventing cherub addition");
-        CHERUB_FLAG = false;
-        value--;
-        return true;
-    }
-
-    public static bool CHERUB_FLAG { get; set; }
-}
-[HarmonyPatch(typeof(ShowCherubPopup), nameof(ShowCherubPopup.OnEnter))]
-class Cherub_Skip_Patch
-{
-    public static bool Prefix(ShowCherubPopup __instance)
-    {
-        if (!Main.Randomizer.IsRandomizerMode)
-            return true;
-
-        __instance.Finish();
-        return false;
-    }
-}
 
 // =====
 // Tears
