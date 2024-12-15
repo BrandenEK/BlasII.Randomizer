@@ -46,6 +46,8 @@ public class Item : IUnique
         QuestItem,
         /// <summary> A progressive inventory item with QI </summary>
         ProgressiveQuestItem,
+        /// <summary> An inventory item for ST103 </summary>
+        GoldLump,
         /// <summary> A weapon or its upgrade </summary>
         Weapon,
         /// <summary> A movement ability </summary>

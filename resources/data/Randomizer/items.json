@@ -1204,21 +1204,21 @@
         "count": 0
     },
     {
-        "id": "QI105",
+        "id": "GL",
         "name": "Lump of Gold",
-        "type": "QuestItem",
+        "type": "GoldLump",
         "progression": true,
         "count": 20
     },
     {
-        "id": "Lullaby",
+        "id": "UL",
         "name": "Piece of the Lullaby",
         "type": "ProgressiveQuestItem",
         "progression": true,
         "count": 5
     },
     {
-        "id": "LatinThing",
+        "id": "IL",
         "name": "Imperfectus Lacrimatorio",
         "type": "ProgressiveQuestItem",
         "progression": false,
