@@ -1200,8 +1200,8 @@
         "id": "QI104",
         "name": "Mea Culpa Hilt",
         "type": "QuestItem",
-        "progression": true,
-        "count": 1
+        "progression": false,
+        "count": 0
     },
     {
         "id": "QI105",
@@ -1213,16 +1213,16 @@
     {
         "id": "Lullaby",
         "name": "Piece of the Lullaby",
-        "type": "Ability",
+        "type": "ProgressiveQuestItem",
         "progression": true,
         "count": 5
     },
     {
         "id": "LatinThing",
         "name": "Imperfectus Lacrimatorio",
-        "type": "Ability",
+        "type": "ProgressiveQuestItem",
         "progression": false,
-        "count": 4
+        "count": 5
     },
     {
         "id": "Censer",

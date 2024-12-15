@@ -1,5 +1,7 @@
-﻿using BlasII.ModdingAPI.Assets;
+﻿using BlasII.ModdingAPI;
+using BlasII.ModdingAPI.Assets;
 using Il2CppTGK.Game;
+using Il2CppTGK.Inventory;
 using System;
 using UnityEngine;
 
@@ -21,6 +23,7 @@ public static class ItemExtensions
             Item.ItemType.Prayer => AssetStorage.Prayers[item.Id].image,
             Item.ItemType.Figurine => AssetStorage.Figures[item.Id].image,
             Item.ItemType.QuestItem => AssetStorage.QuestItems[item.Id].image,
+            Item.ItemType.ProgressiveQuestItem => item.GetProgressiveItem(true).image,
             Item.ItemType.Weapon => Main.Randomizer.EmbeddedIconStorage.GetImage(item.Id),
             Item.ItemType.Ability => Main.Randomizer.EmbeddedIconStorage.GetImage(item.Id),
             Item.ItemType.Cherub => Main.Randomizer.EmbeddedIconStorage.GetImage("Cherub"),
@@ -28,7 +31,6 @@ public static class ItemExtensions
             Item.ItemType.Marks => Main.Randomizer.EmbeddedIconStorage.GetImage("Marks"),
             Item.ItemType.PreMarks => Main.Randomizer.EmbeddedIconStorage.GetImage("PreMarks"),
 
-            // Fix!!!
             Item.ItemType.Invalid => Main.Randomizer.CustomIconStorage.GetImage(Storages.CustomIconStorage.IconType.Invalid),
             _ => null,
         };
@@ -45,6 +47,7 @@ public static class ItemExtensions
             Item.ItemType.Prayer => AssetStorage.Prayers[item.Id].caption,
             Item.ItemType.Figurine => AssetStorage.Figures[item.Id].caption,
             Item.ItemType.QuestItem => AssetStorage.QuestItems[item.Id].caption,
+            Item.ItemType.ProgressiveQuestItem => item.GetProgressiveItem(true).caption,
             Item.ItemType.Weapon => Main.Randomizer.LocalizationHandler.Localize($"{item.Id}.name"),
             Item.ItemType.Ability => Main.Randomizer.LocalizationHandler.Localize($"{item.Id}.name"),
             Item.ItemType.Cherub => Main.Randomizer.LocalizationHandler.Localize("Cherub.name"),
@@ -68,6 +71,7 @@ public static class ItemExtensions
             Item.ItemType.Prayer => AssetStorage.Prayers[item.Id].description,
             Item.ItemType.Figurine => AssetStorage.Figures[item.Id].description,
             Item.ItemType.QuestItem => AssetStorage.QuestItems[item.Id].description,
+            Item.ItemType.ProgressiveQuestItem => item.GetProgressiveItem(true).description,
             Item.ItemType.Weapon => Main.Randomizer.LocalizationHandler.Localize($"{item.Id}.desc"),
             Item.ItemType.Ability => Main.Randomizer.LocalizationHandler.Localize($"{item.Id}.desc"),
             Item.ItemType.Cherub => Main.Randomizer.LocalizationHandler.Localize("Cherub.desc"),
@@ -120,6 +124,16 @@ public static class ItemExtensions
                         AssetStorage.PlayerInventory.AddItemAsync(quest, 0, true);
                     break;
                 }
+            case Item.ItemType.ProgressiveQuestItem:
+                {
+                    var currentItem = item.GetProgressiveItem(false);
+                    var nextItem = item.GetProgressiveItem(true);
+                    if (currentItem != null)
+                        AssetStorage.PlayerInventory.RemoveItem(currentItem);
+                    if (nextItem != null)
+                        AssetStorage.PlayerInventory.AddItemAsync(nextItem);
+                    break;
+                }
             case Item.ItemType.Weapon:
                 {
                     var weapon = AssetStorage.Weapons[Enum.Parse<WEAPON_IDS>(item.Id)];
@@ -169,5 +183,26 @@ public static class ItemExtensions
         }
 
         Main.Randomizer.ItemHandler.SetItemCollected(item.Id);
+    }
+
+    /// <summary>
+    /// Returns the current or upgraded quest itm
+    /// </summary>
+    private static QuestItemID GetProgressiveItem(this Item item, bool upgraded)
+    {
+        string[] itemIds = item.Id switch
+        {
+            "Lullaby" => ["QI23", "QI24", "QI25", "QI26", "QI27"],
+            "LatinThing" => ["QI106", "QI107", "QI108", "QI109", "QI111"],
+            _ => throw new Exception($"Invalid {Item.ItemType.ProgressiveQuestItem}: {item.Id}")
+        };
+
+        int level = Main.Randomizer.ItemHandler.AmountItemCollected(item.Id);
+        if (!upgraded)
+            level--;
+
+        return level >= 0 && level < itemIds.Length
+            ? AssetStorage.QuestItems[itemIds[level]]
+            : null;
     }
 }

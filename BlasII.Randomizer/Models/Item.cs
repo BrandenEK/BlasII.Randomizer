@@ -36,16 +36,29 @@ public class Item : IUnique
     /// </summary>
     public enum ItemType
     {
-        RosaryBead = 0,
-        Prayer = 1,
-        Figurine = 2,
-        QuestItem = 3,
-        Weapon = 4,
-        Ability = 5,
-        Cherub = 6,
-        Tears = 20,
-        Marks = 21,
-        PreMarks = 22,
-        Invalid = 99,
+        /// <summary> An inventory item with RB </summary>
+        RosaryBead,
+        /// <summary> An inventory item with PR </summary>
+        Prayer,
+        /// <summary> An inventory item with FG </summary>
+        Figurine,
+        /// <summary> An inventory item with QI </summary>
+        QuestItem,
+        /// <summary> A progressive inventory item with QI </summary>
+        ProgressiveQuestItem,
+        /// <summary> A weapon or its upgrade </summary>
+        Weapon,
+        /// <summary> A movement ability </summary>
+        Ability,
+        /// <summary> A cherub </summary>
+        Cherub,
+        /// <summary> A certain amount of Tears of Atonement </summary>
+        Tears,
+        /// <summary> A certain amount of Marks of Martyrdom </summary>
+        Marks,
+        /// <summary> A certain amount of Marks of the Preceptor </summary>
+        PreMarks,
+        /// <summary> An invalid or missing item </summary>
+        Invalid,
     }
 }
