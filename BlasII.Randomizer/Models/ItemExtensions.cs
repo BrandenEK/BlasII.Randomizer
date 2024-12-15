@@ -21,14 +21,15 @@ public static class ItemExtensions
             Item.ItemType.Prayer => AssetStorage.Prayers[item.Id].image,
             Item.ItemType.Figurine => AssetStorage.Figures[item.Id].image,
             Item.ItemType.QuestItem => AssetStorage.QuestItems[item.Id].image,
-            Item.ItemType.Weapon => Main.Randomizer.Data.GetImage(Enum.Parse<DataStorage.ImageType>(item.Id)),
-            Item.ItemType.Ability => Main.Randomizer.Data.GetImage(Enum.Parse<DataStorage.ImageType>(item.Id)),
-            Item.ItemType.Cherub => Main.Randomizer.Data.GetImage(DataStorage.ImageType.Cherub),
-            Item.ItemType.Tears => Main.Randomizer.Data.GetImage(DataStorage.ImageType.Tears),
-            Item.ItemType.Marks => AssetStorage.QuestItems["QI99"].image,
-            Item.ItemType.PreMarks => AssetStorage.QuestItems["QI199"].image,
+            Item.ItemType.Weapon => Main.Randomizer.IconStorage.GetImage(item.Id),
+            Item.ItemType.Ability => Main.Randomizer.IconStorage.GetImage(item.Id),
+            Item.ItemType.Cherub => Main.Randomizer.IconStorage.GetImage("Cherub"),
+            Item.ItemType.Tears => Main.Randomizer.IconStorage.GetImage("Tears"),
+            Item.ItemType.Marks => Main.Randomizer.IconStorage.GetImage("Marks"),
+            Item.ItemType.PreMarks => Main.Randomizer.IconStorage.GetImage("PreMarks"),
 
-            Item.ItemType.Invalid => Main.Randomizer.Data.GetImage(DataStorage.ImageType.Invalid),
+            // Fix!!!
+            Item.ItemType.Invalid => Main.Randomizer.IconStorage.GetImage("Invalid"),
             _ => null,
         };
     }
@@ -88,6 +89,9 @@ public static class ItemExtensions
         return int.Parse(item.Id.Substring(leftBracket + 1, rightBracket - leftBracket - 1));
     }
 
+    /// <summary>
+    /// Grants the item
+    /// </summary>
     public static void GiveReward(this Item item)
     {
         switch (item.Type)

@@ -6,6 +6,7 @@ using BlasII.ModdingAPI.Persistence;
 using BlasII.Randomizer.Items;
 using BlasII.Randomizer.Services;
 using BlasII.Randomizer.Shuffle;
+using BlasII.Randomizer.Storages;
 using Il2Cpp;
 using Il2CppTGK.Game;
 using Il2CppTGK.Game.Components.Abilities;
@@ -31,6 +32,9 @@ public class Randomizer : BlasIIMod, IPersistentMod
 
     public RandomizerSettings CurrentSettings { get; set; } = RandomizerSettings.DefaultSettings;
 
+    // Storages
+    internal IconStorage IconStorage { get; private set; }
+
     /// <summary>
     /// Whether or not randomizer effects should take place.  Used for testing item/location ids
     /// </summary>
@@ -45,6 +49,10 @@ public class Randomizer : BlasIIMod, IPersistentMod
         LocalizationHandler.RegisterDefaultLanguage("en");
 
         Data.Initialize();
+
+        // Initialize storages
+        IconStorage = new IconStorage();
+
         //ShuffleTest(new ForwardItemShuffler(), 777, 500);
         //ShuffleTest(new ReverseItemShuffler(), 777, 500);
         //ShuffleTest(new PoolsItemShuffler(), 777, 500);
