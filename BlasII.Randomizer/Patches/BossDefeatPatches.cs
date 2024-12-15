@@ -1,8 +1,6 @@
 ﻿using BlasII.ModdingAPI;
 using BlasII.Randomizer.Models;
 using HarmonyLib;
-using Il2CppSystem;
-using Il2CppSystem.Threading;
 using Il2CppTGK.Game.Components.Animation.AnimatorManagement;
 using Il2CppTGK.Game;
 using Il2CppTGK.Game.Components.UI;
@@ -78,30 +76,14 @@ class Room_Change_Patch
     }
 }
 
-///// <summary>
-///// Always fade everything to black - prevents fade being locked to white after boss defeat
-///// </summary>
-//[HarmonyPatch(typeof(FadeWindowLogic), nameof(FadeWindowLogic.FadeAsync), typeof(float), typeof(Action), typeof(Color), typeof(CancellationToken))]
-//class FadeWindowLogic_FadeAsync_Patch1
-//{
-//    public static void Prefix(ref Color targetColor)
-//    {
-//        ModLog.Error($"Changing {targetColor} to {new Color(0, 0, 0, targetColor.a)}");
-//        //targetColor = new Color(0, 0, 0, targetColor.a);
-//        targetColor.r = 0;
-//        targetColor.g = 0;
-//        targetColor.b = 0;
-//    }
-//}
-//[HarmonyPatch(typeof(FadeWindowLogic), nameof(FadeWindowLogic.FadeAsync), typeof(float), typeof(Action), typeof(Color))]
-//class FadeWindowLogic_FadeAsync_Patch2
-//{
-//    public static void Prefix(ref Color targetColor)
-//    {
-//        ModLog.Error($"Changing {targetColor} to {new Color(0, 0, 0, targetColor.a)}");
-//        //targetColor = new Color(0, 0, 0, targetColor.a);
-//        targetColor.r = 0;
-//        targetColor.g = 0;
-//        targetColor.b = 0;
-//    }
-//}
+/// <summary>
+/// Always replace fade current color with black - prevents fade being locked to white after boss defeat
+/// </summary>
+[HarmonyPatch(typeof(FadeWindowLogic), nameof(FadeWindowLogic.FadeToCurrentColorAsync))]
+class FadeWindowLogic_FadeToCurrentColorAsync_Patch
+{
+    public static void Prefix(FadeWindowLogic __instance)
+    {
+        __instance.colorImage.color = new Color(0, 0, 0, __instance.colorImage.color.a);
+    }
+}
