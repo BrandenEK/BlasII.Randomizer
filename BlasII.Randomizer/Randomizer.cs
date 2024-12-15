@@ -8,6 +8,7 @@ using BlasII.Randomizer.Services;
 using BlasII.Randomizer.Shuffle;
 using BlasII.Randomizer.Storages;
 using Il2Cpp;
+using Il2CppTGK.Achievements;
 using Il2CppTGK.Game;
 using Il2CppTGK.Game.Components.Abilities;
 using Il2CppTGK.Game.Components.Interactables;
@@ -86,6 +87,25 @@ public class Randomizer : BlasIIMod, IPersistentMod
     {
         if (!SceneHelper.GameSceneLoaded)
             return;
+
+        if (UnityEngine.Input.GetKeyDown(KeyCode.O))
+        {
+            foreach (var p in Resources.FindObjectsOfTypeAll<AchievementProgressToken>())
+            {
+                ModLog.Info($"{p.name} ({p.concept}) [{p.id}]");
+            }
+        }
+        if (UnityEngine.Input.GetKeyDown(KeyCode.P))
+        {
+            CoreCache.CherubsManager.AddCherub(-282975899);
+            CoreCache.CherubsManager.AddCherub(1283108041);
+            CoreCache.CherubsManager.AddCherub(120308631);
+            // -282975899
+            // 1283108041
+            // 120308631
+            //for (int i = 0; i < 10; i++)
+            //    CoreCache.CherubsManager.AddCherub(i);
+        }
 
         if (InputHandler.GetKeyDown("DisplaySettings"))
             DisplaySettings();
