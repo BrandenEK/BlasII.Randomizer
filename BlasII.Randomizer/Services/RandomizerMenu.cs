@@ -22,7 +22,7 @@ public class RandomizerMenu : ModMenu
             bool shuffleLongQuests = _setShuffleLongQuests.Toggled;
             bool shuffleShops = _setShuffleShops.Toggled;
 
-            int seed = _setSeed.CurrentNumericValue == 0 ? RandomizerSettings.RandomSeed : _setSeed.CurrentNumericValue;
+            int seed = _setSeed.CurrentNumericValue == 0 ? RandomizerSettings.RANDOM_SEED : _setSeed.CurrentNumericValue;
             return new RandomizerSettings(seed, logicDifficulty, requiredKeys, 0, startingWeapon, 0, shuffleLongQuests, shuffleShops, true, 0, 0);
         }
         set
