@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 
-namespace BlasII.Randomizer.Items;
+namespace BlasII.Randomizer.Handlers;
 
 public class ItemHandler
 {

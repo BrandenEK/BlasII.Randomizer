@@ -3,7 +3,7 @@ using BlasII.ModdingAPI;
 using BlasII.ModdingAPI.Assets;
 using BlasII.ModdingAPI.Helpers;
 using BlasII.ModdingAPI.Persistence;
-using BlasII.Randomizer.Items;
+using BlasII.Randomizer.Handlers;
 using BlasII.Randomizer.Services;
 using BlasII.Randomizer.Shuffle;
 using BlasII.Randomizer.Storages;
