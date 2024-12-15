@@ -24,6 +24,7 @@ public static class ItemExtensions
             Item.ItemType.Figurine => AssetStorage.Figures[item.Id].image,
             Item.ItemType.QuestItem => AssetStorage.QuestItems[item.Id].image,
             Item.ItemType.ProgressiveQuestItem => item.GetProgressiveItem(true).image,
+            Item.ItemType.GoldLump => AssetStorage.QuestItems["QI105"].image,
             Item.ItemType.Weapon => Main.Randomizer.EmbeddedIconStorage.GetImage(item.Id),
             Item.ItemType.Ability => Main.Randomizer.EmbeddedIconStorage.GetImage(item.Id),
             Item.ItemType.Cherub => Main.Randomizer.EmbeddedIconStorage.GetImage("Cherub"),
@@ -48,6 +49,7 @@ public static class ItemExtensions
             Item.ItemType.Figurine => AssetStorage.Figures[item.Id].caption,
             Item.ItemType.QuestItem => AssetStorage.QuestItems[item.Id].caption,
             Item.ItemType.ProgressiveQuestItem => item.GetProgressiveItem(true).caption,
+            Item.ItemType.GoldLump => AssetStorage.QuestItems["QI105"].caption,
             Item.ItemType.Weapon => Main.Randomizer.LocalizationHandler.Localize($"{item.Id}.name"),
             Item.ItemType.Ability => Main.Randomizer.LocalizationHandler.Localize($"{item.Id}.name"),
             Item.ItemType.Cherub => Main.Randomizer.LocalizationHandler.Localize("Cherub.name"),
@@ -72,6 +74,7 @@ public static class ItemExtensions
             Item.ItemType.Figurine => AssetStorage.Figures[item.Id].description,
             Item.ItemType.QuestItem => AssetStorage.QuestItems[item.Id].description,
             Item.ItemType.ProgressiveQuestItem => item.GetProgressiveItem(true).description,
+            Item.ItemType.GoldLump => AssetStorage.QuestItems["QI105"].description,
             Item.ItemType.Weapon => Main.Randomizer.LocalizationHandler.Localize($"{item.Id}.desc"),
             Item.ItemType.Ability => Main.Randomizer.LocalizationHandler.Localize($"{item.Id}.desc"),
             Item.ItemType.Cherub => Main.Randomizer.LocalizationHandler.Localize("Cherub.desc"),
@@ -132,6 +135,16 @@ public static class ItemExtensions
                         AssetStorage.PlayerInventory.RemoveItem(currentItem);
                     if (nextItem != null)
                         AssetStorage.PlayerInventory.AddItemAsync(nextItem);
+                    break;
+                }
+            case Item.ItemType.GoldLump:
+                {
+                    var goldItem = AssetStorage.QuestItems["QI105"];
+                    int amount = Main.Randomizer.ItemHandler.AmountItemCollected(item.Id) + 1;
+
+                    AssetStorage.PlayerInventory.AddItemAsync(goldItem, 0, true);
+                    Main.Randomizer.SetQuestValue("ST103", "GOLD_TAKEN_FREE", Math.Min(amount, 10));
+                    Main.Randomizer.SetQuestValue("ST103", "GOLD_TAKEN_PAID", Math.Max(amount - 10, 0));
                     break;
                 }
             case Item.ItemType.Weapon:
