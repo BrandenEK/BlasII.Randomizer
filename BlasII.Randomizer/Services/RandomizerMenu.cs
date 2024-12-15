@@ -16,22 +16,23 @@ public class RandomizerMenu : ModMenu
     {
         get
         {
-            int logicDifficulty = 1;
-            int requiredKeys = _setRequiredKeys.CurrentOption;
-            int startingWeapon = _setStartingWeapon.CurrentOption;
-            bool shuffleLongQuests = _setShuffleLongQuests.Toggled;
-            bool shuffleShops = _setShuffleShops.Toggled;
-
-            int seed = _setSeed.CurrentNumericValue == 0 ? RandomizerSettings.RANDOM_SEED : _setSeed.CurrentNumericValue;
-            return new RandomizerSettings(seed, logicDifficulty, requiredKeys, 0, startingWeapon, 0, shuffleLongQuests, shuffleShops, true, 0, 0);
+            return new RandomizerSettings()
+            {
+                Seed = _setSeed.CurrentNumericValue == 0 ? RandomizerSettings.RANDOM_SEED : _setSeed.CurrentNumericValue,
+                LogicType = 1,
+                RequiredKeys = _setRequiredKeys.CurrentOption,
+                StartingWeapon = _setStartingWeapon.CurrentOption,
+                ShuffleLongQuests = _setShuffleLongQuests.Toggled,
+                ShuffleShops = _setShuffleShops.Toggled,
+            };
         }
         set
         {
             _setLogicDifficulty.CurrentOption = 0;
-            _setRequiredKeys.CurrentOption = value.requiredKeys;
-            _setStartingWeapon.CurrentOption = value.startingWeapon;
-            _setShuffleLongQuests.Toggled = value.shuffleLongQuests;
-            _setShuffleShops.Toggled = value.shuffleShops;
+            _setRequiredKeys.CurrentOption = value.RequiredKeys;
+            _setStartingWeapon.CurrentOption = value.StartingWeapon;
+            _setShuffleLongQuests.Toggled = value.ShuffleLongQuests;
+            _setShuffleShops.Toggled = value.ShuffleShops;
 
             _setSeed.CurrentValue = string.Empty;
         }
@@ -42,7 +43,7 @@ public class RandomizerMenu : ModMenu
     /// </summary>
     public override void OnStart()
     {
-        MenuSettings = RandomizerSettings.DefaultSettings;
+        MenuSettings = RandomizerSettings.DEFAULT;
     }
 
     /// <summary>
