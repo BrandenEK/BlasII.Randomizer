@@ -8,66 +8,7 @@ namespace BlasII.Randomizer;
 
 public class DataStorage
 {
-    // Items
-    private readonly Dictionary<string, Item> _allItems = new();
-
-    public IEnumerable<Item> ItemList => _allItems.Values;
-    public IDictionary<string, Item> ItemDictionary => _allItems;
-
-    public Item GetItem(string id) => _allItems.TryGetValue(id, out var item) ? item : null;
-    public bool DoesItemExist(string id) => _allItems.ContainsKey(id);
-    public Item InvalidItem => _allItems["INVALID"];
-
-    // Item locations
-    private readonly Dictionary<string, ItemLocation> _allItemLocations = new();
-
-    public IEnumerable<ItemLocation> ItemLocationList => _allItemLocations.Values;
-    public IDictionary<string, ItemLocation> ItemLocationDictionary => _allItemLocations;
-
-    public ItemLocation GetItemLocation(string id) => _allItemLocations.TryGetValue(id, out var itemLocation) ? itemLocation : null;
-    public bool DoesItemLocationExist(string id) => _allItemLocations.ContainsKey(id);
-
-    // Doors
-    private readonly Dictionary<string, Door> _allDoors = new();
-
-    public IEnumerable<Door> DoorList => _allDoors.Values;
-    public IDictionary<string, Door> DoorDictionary => _allDoors;
-
-    public Door GetDoor(string id) => _allDoors.TryGetValue(id, out var door) ? door : null;
-    public bool DoesDoorExist(string id) => _allDoors.ContainsKey(id);
-
-    // Loading
-
-    public void Initialize()
-    {
-        LoadAllJsonData();
-    }
-
-    private void LoadAllJsonData()
-    {
-        if (Main.Randomizer.FileHandler.LoadDataAsJson("items.json", out Item[] items))
-        {
-            foreach (var item in items)
-                _allItems.Add(item.Id, item);
-        }
-        ModLog.Info($"Loaded {_allItems.Count} items!");
-
-        if (Main.Randomizer.FileHandler.LoadDataAsJson("item-locations.json", out ItemLocation[] itemLocations))
-        {
-            foreach (var itemLocation in itemLocations)
-                _allItemLocations.Add(itemLocation.Id, itemLocation);
-        }
-        ModLog.Info($"Loaded {_allItemLocations.Count} item locations!");
-
-        if (Main.Randomizer.FileHandler.LoadDataAsJson("doors.json", out Door[] doors))
-        {
-            foreach (var door in doors)
-                _allDoors.Add(door.id, door);
-        }
-        ModLog.Info($"Loaded {_allDoors.Count} doors!");
-    }
-
-    
+    //public Item InvalidItem => _allItems["INVALID"];
 
     // Special data
 

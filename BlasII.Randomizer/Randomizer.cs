@@ -33,6 +33,9 @@ public class Randomizer : BlasIIMod, IPersistentMod
     public RandomizerSettings CurrentSettings { get; set; } = RandomizerSettings.DefaultSettings;
 
     // Storages
+    internal ItemStorage ItemStorage { get; private set; }
+    internal ItemLocationStorage ItemLocationStorage { get; private set; }
+    internal DoorStorage DoorStorage { get; private set; }
     internal EmbeddedIconStorage EmbeddedIconStorage { get; private set; }
     internal CustomIconStorage CustomIconStorage { get; private set; }
 
@@ -49,9 +52,10 @@ public class Randomizer : BlasIIMod, IPersistentMod
         });
         LocalizationHandler.RegisterDefaultLanguage("en");
 
-        Data.Initialize();
-
         // Initialize storages
+        ItemStorage = new ItemStorage();
+        ItemLocationStorage = new ItemLocationStorage();
+        DoorStorage = new DoorStorage();
         EmbeddedIconStorage = new EmbeddedIconStorage();
         CustomIconStorage = new CustomIconStorage();
 
