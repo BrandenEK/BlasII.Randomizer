@@ -1,4 +1,5 @@
-﻿using BlasII.ModdingAPI.Assets;
+﻿using BlasII.ModdingAPI;
+using BlasII.ModdingAPI.Assets;
 using Il2CppTGK.Game;
 using System;
 using UnityEngine;
@@ -21,6 +22,7 @@ public static class ItemExtensions
             Item.ItemType.Prayer => AssetStorage.Prayers[item.Id].image,
             Item.ItemType.Figurine => AssetStorage.Figures[item.Id].image,
             Item.ItemType.QuestItem => AssetStorage.QuestItems[item.Id].image,
+            Item.ItemType.ProgressiveQuestItem => null,
             Item.ItemType.Weapon => Main.Randomizer.EmbeddedIconStorage.GetImage(item.Id),
             Item.ItemType.Ability => Main.Randomizer.EmbeddedIconStorage.GetImage(item.Id),
             Item.ItemType.Cherub => Main.Randomizer.EmbeddedIconStorage.GetImage("Cherub"),
@@ -28,7 +30,6 @@ public static class ItemExtensions
             Item.ItemType.Marks => Main.Randomizer.EmbeddedIconStorage.GetImage("Marks"),
             Item.ItemType.PreMarks => Main.Randomizer.EmbeddedIconStorage.GetImage("PreMarks"),
 
-            // Fix!!!
             Item.ItemType.Invalid => Main.Randomizer.CustomIconStorage.GetImage(Storages.CustomIconStorage.IconType.Invalid),
             _ => null,
         };
@@ -45,6 +46,7 @@ public static class ItemExtensions
             Item.ItemType.Prayer => AssetStorage.Prayers[item.Id].caption,
             Item.ItemType.Figurine => AssetStorage.Figures[item.Id].caption,
             Item.ItemType.QuestItem => AssetStorage.QuestItems[item.Id].caption,
+            Item.ItemType.ProgressiveQuestItem => "",
             Item.ItemType.Weapon => Main.Randomizer.LocalizationHandler.Localize($"{item.Id}.name"),
             Item.ItemType.Ability => Main.Randomizer.LocalizationHandler.Localize($"{item.Id}.name"),
             Item.ItemType.Cherub => Main.Randomizer.LocalizationHandler.Localize("Cherub.name"),
@@ -68,6 +70,7 @@ public static class ItemExtensions
             Item.ItemType.Prayer => AssetStorage.Prayers[item.Id].description,
             Item.ItemType.Figurine => AssetStorage.Figures[item.Id].description,
             Item.ItemType.QuestItem => AssetStorage.QuestItems[item.Id].description,
+            Item.ItemType.ProgressiveQuestItem => "",
             Item.ItemType.Weapon => Main.Randomizer.LocalizationHandler.Localize($"{item.Id}.desc"),
             Item.ItemType.Ability => Main.Randomizer.LocalizationHandler.Localize($"{item.Id}.desc"),
             Item.ItemType.Cherub => Main.Randomizer.LocalizationHandler.Localize("Cherub.desc"),
@@ -118,6 +121,11 @@ public static class ItemExtensions
                 {
                     if (AssetStorage.QuestItems.TryGetValue(item.Id, out var quest))
                         AssetStorage.PlayerInventory.AddItemAsync(quest, 0, true);
+                    break;
+                }
+            case Item.ItemType.ProgressiveQuestItem:
+                {
+                    ModLog.Info("Attempting to give progressive: " + item.Id);
                     break;
                 }
             case Item.ItemType.Weapon:

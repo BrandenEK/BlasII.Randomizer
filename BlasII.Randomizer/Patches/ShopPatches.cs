@@ -129,7 +129,7 @@ class ShopWindowLogic_OnCreateListItem_Patch
         var sprite = item.GetSprite();
 
         Image image = data.obj.transform.Find("Image").GetComponent<Image>();
-        Vector2 size = sprite.rect.size * 3;
+        Vector2 size = sprite == null ? new Vector2(90, 90) : sprite.rect.size * 3;
         Vector2 offset = new((90 - size.x) / 2, 0);
 
         image.sprite = sprite;

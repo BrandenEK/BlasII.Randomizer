@@ -1213,14 +1213,14 @@
     {
         "id": "Lullaby",
         "name": "Piece of the Lullaby",
-        "type": "Ability",
+        "type": "ProgressiveQuestItem",
         "progression": true,
         "count": 5
     },
     {
         "id": "LatinThing",
         "name": "Imperfectus Lacrimatorio",
-        "type": "Ability",
+        "type": "ProgressiveQuestItem",
         "progression": false,
         "count": 4
     },

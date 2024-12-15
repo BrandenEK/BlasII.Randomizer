@@ -53,7 +53,7 @@ class ItemPopupWindowLogic_ShowPopup_Patch
 {
     public static void Prefix(ItemPopupWindowLogic __instance, Sprite image)
     {
-        Vector2 size = image.rect.size * 3;
+        Vector2 size = image == null ? new Vector2(90, 90) : image.rect.size * 3;
         Vector2 offset = new((90 - size.x) / 2, (90 - size.y) / 2);
 
         __instance.spriteImage.rectTransform.sizeDelta = size;
