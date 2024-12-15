@@ -21,15 +21,15 @@ public static class ItemExtensions
             Item.ItemType.Prayer => AssetStorage.Prayers[item.Id].image,
             Item.ItemType.Figurine => AssetStorage.Figures[item.Id].image,
             Item.ItemType.QuestItem => AssetStorage.QuestItems[item.Id].image,
-            Item.ItemType.Weapon => Main.Randomizer.IconStorage.GetImage(item.Id),
-            Item.ItemType.Ability => Main.Randomizer.IconStorage.GetImage(item.Id),
-            Item.ItemType.Cherub => Main.Randomizer.IconStorage.GetImage("Cherub"),
-            Item.ItemType.Tears => Main.Randomizer.IconStorage.GetImage("Tears"),
-            Item.ItemType.Marks => Main.Randomizer.IconStorage.GetImage("Marks"),
-            Item.ItemType.PreMarks => Main.Randomizer.IconStorage.GetImage("PreMarks"),
+            Item.ItemType.Weapon => Main.Randomizer.EmbeddedIconStorage.GetImage(item.Id),
+            Item.ItemType.Ability => Main.Randomizer.EmbeddedIconStorage.GetImage(item.Id),
+            Item.ItemType.Cherub => Main.Randomizer.EmbeddedIconStorage.GetImage("Cherub"),
+            Item.ItemType.Tears => Main.Randomizer.EmbeddedIconStorage.GetImage("Tears"),
+            Item.ItemType.Marks => Main.Randomizer.EmbeddedIconStorage.GetImage("Marks"),
+            Item.ItemType.PreMarks => Main.Randomizer.EmbeddedIconStorage.GetImage("PreMarks"),
 
             // Fix!!!
-            Item.ItemType.Invalid => Main.Randomizer.IconStorage.GetImage("Invalid"),
+            Item.ItemType.Invalid => Main.Randomizer.CustomIconStorage.GetImage(Storages.CustomIconStorage.IconType.Invalid),
             _ => null,
         };
     }

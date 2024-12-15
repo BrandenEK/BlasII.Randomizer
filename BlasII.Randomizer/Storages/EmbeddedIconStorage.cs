@@ -5,22 +5,13 @@ using System.Linq;
 
 namespace BlasII.Randomizer.Storages;
 
-/// <summary>
-/// Stores Sprite objects for the Randomizer
-/// </summary>
-public class IconStorage
+/// <inheritdoc/>
+public class EmbeddedIconStorage : BaseSpriteStorage<string>
 {
-    private readonly Dictionary<string, Sprite> _images = [];
-
     /// <summary>
-    /// Gets an image by its type
+    /// Initializes the storage by searching in Resources
     /// </summary>
-    public Sprite GetImage(string type) => _images.TryGetValue(type, out var sprite) ? sprite : null;
-
-    /// <summary>
-    /// Initializes a new IconStorage
-    /// </summary>
-    public IconStorage()
+    public EmbeddedIconStorage()
     {
         foreach (var sprite in FindAllSprites())
         {
@@ -30,30 +21,7 @@ public class IconStorage
             _images.Add(type, sprite);
         }
 
-        ModLog.Info($"Loaded {_images.Count} icons!");
-    }
-
-    /// <summary>
-    /// Initializes the storage
-    /// </summary>
-    public void Initialize()
-    {
-        //Main.Randomizer.FileHandler.LoadDataAsFixedSpritesheet("rando-items.png", new Vector2(30, 30),
-        //    out Sprite[] images, new SpriteImportOptions() { PixelsPerUnit = 32 });
-
-        //for (int i = 0; i < images.Length; i++)
-        //    _images.Add((ImageType)i, images[i]);
-        //ModLog.Info($"Loaded {_images.Count} images!");
-
-        foreach (var sprite in FindAllSprites())
-        {
-            if (!_spriteNames.TryGetValue(sprite.name, out string type))
-                continue;
-
-            _images.Add(type, sprite);
-        }
-
-        ModLog.Info($"Loaded {_images.Count} icons!");
+        ModLog.Info($"Loaded {_images.Count} embedded images!");
     }
 
     private IEnumerable<Sprite> FindAllSprites()
@@ -62,21 +30,6 @@ public class IconStorage
             .Where(x => !string.IsNullOrEmpty(x.name))
             .OrderBy(x => x.name);
     }
-
-    //public enum ImageType
-    //{
-    //    Cherub = 0,
-    //    WallClimb = 1,
-    //    AirJump = 2,
-    //    AirDash = 3,
-    //    MagicRingClimb = 4,
-    //    Censer = 5,
-    //    RosaryBlade = 6,
-    //    Rapier = 7,
-    //    Tears = 8,
-    //    Invalid = 9,
-    //    Chest = 10,
-    //}
 
     private readonly Dictionary<string, string> _spriteNames = new()
     {

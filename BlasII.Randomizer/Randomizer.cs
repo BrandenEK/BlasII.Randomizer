@@ -33,7 +33,8 @@ public class Randomizer : BlasIIMod, IPersistentMod
     public RandomizerSettings CurrentSettings { get; set; } = RandomizerSettings.DefaultSettings;
 
     // Storages
-    internal IconStorage IconStorage { get; private set; }
+    internal EmbeddedIconStorage EmbeddedIconStorage { get; private set; }
+    internal CustomIconStorage CustomIconStorage { get; private set; }
 
     /// <summary>
     /// Whether or not randomizer effects should take place.  Used for testing item/location ids
@@ -51,7 +52,8 @@ public class Randomizer : BlasIIMod, IPersistentMod
         Data.Initialize();
 
         // Initialize storages
-        IconStorage = new IconStorage();
+        EmbeddedIconStorage = new EmbeddedIconStorage();
+        CustomIconStorage = new CustomIconStorage();
 
         //ShuffleTest(new ForwardItemShuffler(), 777, 500);
         //ShuffleTest(new ReverseItemShuffler(), 777, 500);
