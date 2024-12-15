@@ -1,10 +1,8 @@
 ﻿using BlasII.ModdingAPI;
-using BlasII.ModdingAPI.Files;
 using BlasII.Randomizer.Doors;
 using BlasII.Randomizer.Models;
 using System.Collections.Generic;
 using System.Linq;
-using UnityEngine;
 
 namespace BlasII.Randomizer;
 
@@ -38,17 +36,11 @@ public class DataStorage
     public DoorLocation GetDoor(string id) => _allDoors.TryGetValue(id, out var door) ? door : null;
     public bool DoesDoorExist(string id) => _allDoors.ContainsKey(id);
 
-    // Images
-    private readonly Dictionary<ImageType, Sprite> _images = new();
-
-    public Sprite GetImage(ImageType type) => _images.TryGetValue(type, out var sprite) ? sprite : null;
-
     // Loading
 
     public void Initialize()
     {
         LoadAllJsonData();
-        LoadAllImages();
     }
 
     private void LoadAllJsonData()
@@ -75,30 +67,7 @@ public class DataStorage
         ModLog.Info($"Loaded {_allDoors.Count} doors!");
     }
 
-    private void LoadAllImages()
-    {
-        Main.Randomizer.FileHandler.LoadDataAsFixedSpritesheet("rando-items.png", new Vector2(30, 30),
-            out Sprite[] images, new SpriteImportOptions() { PixelsPerUnit = 32 });
-
-        for (int i = 0; i < images.Length; i++)
-            _images.Add((ImageType)i, images[i]);
-        ModLog.Info($"Loaded {_images.Count} images!");
-    }
-
-    public enum ImageType
-    {
-        Cherub = 0,
-        WallClimb = 1,
-        AirJump = 2,
-        AirDash = 3,
-        MagicRingClimb = 4,
-        Censer = 5,
-        RosaryBlade = 6,
-        Rapier = 7,
-        Tears = 8,
-        Invalid = 9,
-        Chest = 10,
-    }
+    
 
     // Special data
 

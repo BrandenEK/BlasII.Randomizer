@@ -2,6 +2,7 @@
 using HarmonyLib;
 using Il2CppTGK.Game.Components.UI;
 using Il2CppTGK.Game.PopupMessages;
+using UnityEngine;
 
 namespace BlasII.Randomizer.Patches;
 
@@ -41,5 +42,21 @@ class PopupMessageLogic_ShowMessageAndWait_Patch
             __instance.textCtrl.SetText(text);
             return;
         }
+    }
+}
+
+/// <summary>
+/// Adjust the size of the item popup based on the image
+/// </summary>
+[HarmonyPatch(typeof(ItemPopupWindowLogic), nameof(ItemPopupWindowLogic.ShowPopup))]
+class ItemPopupWindowLogic_ShowPopup_Patch
+{
+    public static void Prefix(ItemPopupWindowLogic __instance, Sprite image)
+    {
+        Vector2 size = image.rect.size * 3;
+        Vector2 offset = new((90 - size.x) / 2, (90 - size.y) / 2);
+
+        __instance.spriteImage.rectTransform.sizeDelta = size;
+        __instance.spriteImage.rectTransform.anchoredPosition = offset;
     }
 }

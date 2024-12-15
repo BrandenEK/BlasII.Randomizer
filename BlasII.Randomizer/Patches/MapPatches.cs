@@ -32,6 +32,6 @@ class MapWindowLogic_UpdateUIElements_Patch
         var image = cherubHolder.GetChild(1).Cast<RectTransform>();
         image.anchoredPosition = new Vector2(30, 0);
         image.sizeDelta = new Vector2(80, 80);
-        image.GetComponent<Image>().sprite = Main.Randomizer.Data.GetImage(DataStorage.ImageType.Chest);
+        image.GetComponent<Image>().sprite = Main.Randomizer.CustomIconStorage.GetImage(Storages.CustomIconStorage.IconType.Chest);
     }
 }
