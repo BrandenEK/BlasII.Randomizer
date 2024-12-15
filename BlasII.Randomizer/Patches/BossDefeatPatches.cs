@@ -26,7 +26,7 @@ class PlayerSpawnManager_TeleportPlayer_Patch1
         if (!sceneEntry.scene.StartsWith("Z15"))
             return;
 
-        if (!Main.Randomizer.Data.TryGetBossTeleportInfo(currentScene, out BossTeleportInfo info))
+        if (!Main.Randomizer.ExtraInfoStorage.TryGetBossTeleportInfo(currentScene, out BossTeleportInfo info))
             return;
 
         // Trying to teleport out of a boss room to a dream room
@@ -49,7 +49,7 @@ class PlayerSpawnManager_TeleportPlayer_Patch2
         if (!sceneEntry.scene.StartsWith("Z15"))
             return;
 
-        if (!Main.Randomizer.Data.TryGetBossTeleportInfo(currentScene, out BossTeleportInfo info))
+        if (!Main.Randomizer.ExtraInfoStorage.TryGetBossTeleportInfo(currentScene, out BossTeleportInfo info))
             return;
 
         // Trying to teleport out of a boss room to a dream room
@@ -70,7 +70,7 @@ class Room_Change_Patch
 {
     public static void Prefix(int roomHash, ref bool forceDeactivate)
     {
-        if (!Main.Randomizer.Data.TryGetBossTeleportInfo(roomHash, out BossTeleportInfo info))
+        if (!Main.Randomizer.ExtraInfoStorage.TryGetBossTeleportInfo(roomHash, out BossTeleportInfo info))
             return;
 
         ModLog.Info("Force deactivating boss room: " + info.ForceDeactivate);

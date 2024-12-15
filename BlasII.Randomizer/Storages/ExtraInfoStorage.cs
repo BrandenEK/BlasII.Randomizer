@@ -1,15 +1,15 @@
-﻿using BlasII.ModdingAPI;
-using BlasII.Randomizer.Models;
+﻿using BlasII.Randomizer.Models;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace BlasII.Randomizer;
+namespace BlasII.Randomizer.Storages;
 
-public class DataStorage
+/// <summary>
+/// Stores extra info for the Randomizer
+/// </summary>
+public class ExtraInfoStorage
 {
-    //public Item InvalidItem => _allItems["INVALID"];
-
-    // Special data
+    // Zone names
 
     private readonly Dictionary<string, string> _zoneNames = new()
     {
@@ -39,10 +39,15 @@ public class DataStorage
         { "SHO", "Shops" },
     };
 
+    /// <summary>
+    /// Retrieves the name of a zone by the Id
+    /// </summary>
     public bool GetZoneName(string zone, out string name)
     {
         return _zoneNames.TryGetValue(zone, out name);
     }
+
+    // Boss teleports
 
     private readonly BossTeleportInfo[] _bossTeleports =
     [

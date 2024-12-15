@@ -26,18 +26,27 @@ public class Randomizer : BlasIIMod, IPersistentMod
 {
     internal Randomizer() : base(ModInfo.MOD_ID, ModInfo.MOD_NAME, ModInfo.MOD_AUTHOR, ModInfo.MOD_VERSION) { }
 
-    public DataStorage Data { get; } = new();
-
-    public ItemHandler ItemHandler { get; } = new(new PoolsItemShuffler());
-
     public RandomizerSettings CurrentSettings { get; set; } = RandomizerSettings.DefaultSettings;
 
+    // Handlers
+
+    /// <inheritdoc/>
+    public ItemHandler ItemHandler { get; } = new(new PoolsItemShuffler());
+
     // Storages
-    internal ItemStorage ItemStorage { get; private set; }
-    internal ItemLocationStorage ItemLocationStorage { get; private set; }
-    internal DoorStorage DoorStorage { get; private set; }
-    internal EmbeddedIconStorage EmbeddedIconStorage { get; private set; }
-    internal CustomIconStorage CustomIconStorage { get; private set; }
+
+    /// <inheritdoc/>
+    public ItemStorage ItemStorage { get; private set; }
+    /// <inheritdoc/>
+    public ItemLocationStorage ItemLocationStorage { get; private set; }
+    /// <inheritdoc/>
+    public DoorStorage DoorStorage { get; private set; }
+    /// <inheritdoc/>
+    public EmbeddedIconStorage EmbeddedIconStorage { get; private set; }
+    /// <inheritdoc/>
+    public CustomIconStorage CustomIconStorage { get; private set; }
+    /// <inheritdoc/>
+    public ExtraInfoStorage ExtraInfoStorage { get; private set; }
 
     /// <summary>
     /// Whether or not randomizer effects should take place.  Used for testing item/location ids
@@ -58,6 +67,7 @@ public class Randomizer : BlasIIMod, IPersistentMod
         DoorStorage = new DoorStorage();
         EmbeddedIconStorage = new EmbeddedIconStorage();
         CustomIconStorage = new CustomIconStorage();
+        ExtraInfoStorage = new ExtraInfoStorage();
 
         //ShuffleTest(new ForwardItemShuffler(), 777, 500);
         //ShuffleTest(new ReverseItemShuffler(), 777, 500);

@@ -105,7 +105,7 @@ public class ItemHandler
 
             // Display new zone section if different
             string locationZoneId = location.Id[..3];
-            if (currentZoneId != locationZoneId && Main.Randomizer.Data.GetZoneName(locationZoneId, out string locationZoneName))
+            if (currentZoneId != locationZoneId && Main.Randomizer.ExtraInfoStorage.GetZoneName(locationZoneId, out string locationZoneName))
             {
                 sb.AppendLine($"\n - {locationZoneName} -\n");
                 currentZoneId = locationZoneId;
