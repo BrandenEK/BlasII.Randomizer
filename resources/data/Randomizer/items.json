@@ -1289,10 +1289,10 @@
     },
     {
         "id": "Cherub",
-        "name": "Child of Moonlight",
+        "name": "Cherub",
         "type": "Cherub",
         "progression": true,
-        "count": 33
+        "count": 0
     },
     {
         "id": "Marks[5]",
