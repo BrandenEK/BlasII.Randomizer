@@ -1,11 +1,17 @@
-﻿using Basalt.LogicParser.Attributes;
+﻿using Basalt.LogicParser;
+using Basalt.LogicParser.Attributes;
+using Basalt.LogicParser.Calculators;
+using Basalt.LogicParser.Collectors;
+using Basalt.LogicParser.Formatters;
+using Basalt.LogicParser.Parsers;
+using Basalt.LogicParser.Resolvers;
 
 namespace BlasII.Randomizer.Shuffle;
 
 /// <summary>
 /// Represents the current inventory of the player during the fill process
 /// </summary>
-public class BlasphemousInventory(RandomizerSettings settings)
+public class BlasphemousInventory
 {
     // Weapons
 
@@ -194,4 +200,26 @@ public class BlasphemousInventory(RandomizerSettings settings)
             return 7;
         }
     }
+
+    /// <summary>
+    /// Creates a new empty inventory
+    /// </summary>
+    public static GameInventory CreateNewInventory(RandomizerSettings settings)
+    {
+        var inventory = new BlasphemousInventory(settings);
+
+        return new GameInventory(
+            new PostfixCalculator(),
+            new ReflectionCollector(inventory),
+            new ParenthesisPaddingFormatter(),
+            new PostfixParser(),
+            new ReflectionResolver(inventory));
+    }
+
+    private BlasphemousInventory(RandomizerSettings settings)
+    {
+        _settings = settings;
+    }
+
+    private readonly RandomizerSettings _settings;
 }

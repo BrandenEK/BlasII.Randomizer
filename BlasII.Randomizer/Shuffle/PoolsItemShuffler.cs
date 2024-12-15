@@ -1,4 +1,5 @@
-﻿using BlasII.ModdingAPI.Assets;
+﻿using Basalt.LogicParser;
+using BlasII.ModdingAPI.Assets;
 using BlasII.Randomizer.Models;
 using System;
 using System.Collections.Generic;
@@ -21,7 +22,7 @@ internal class PoolsItemShuffler : IShuffler
         CreateItemPool(progressionItems, junkItems, progressionLocations.Size + junkLocations.Size, settings);
 
         // Create initial inventory
-        var inventory = new Blas2Inventory(settings, Main.Randomizer.DoorStorage.AsDictionary);
+        var inventory = BlasphemousInventory.CreateNewInventory(settings);
         CreateInitialInventory(inventory, settings, progressionItems);
 
         // Place progression items at progression locations
@@ -117,15 +118,15 @@ internal class PoolsItemShuffler : IShuffler
     /// <summary>
     /// Adds the starting weapon and all progression items to the initial inventory
     /// </summary>
-    private void CreateInitialInventory(Blas2Inventory inventory, RandomizerSettings settings, ItemPool progressionItems)
+    private void CreateInitialInventory(GameInventory inventory, RandomizerSettings settings, ItemPool progressionItems)
     {
         // Add the starting weapon
-        inventory.AddItem(Main.Randomizer.ItemStorage[GetStartingWeaponId(settings)]);
+        inventory.Add(GetStartingWeaponId(settings));
 
         // Add all progression items in the pool
         foreach (var item in progressionItems)
         {
-            inventory.AddItem(item);
+            inventory.Add(item.Id);
         }
     }
 
@@ -144,7 +145,7 @@ internal class PoolsItemShuffler : IShuffler
     /// <summary>
     /// Using a reverse fill algorithm, place the last item at a random reachable location
     /// </summary>
-    private void FillProgressionItems(LocationPool locations, ItemPool items, Dictionary<string, string> output, Blas2Inventory inventory)
+    private void FillProgressionItems(LocationPool locations, ItemPool items, Dictionary<string, string> output, GameInventory inventory)
     {
         // Verify that all locations are reachable
         foreach (var location in locations)
@@ -160,7 +161,7 @@ internal class PoolsItemShuffler : IShuffler
         while (reachableLocations.Size > 0 && items.Size > 0)
         {
             Item item = items.RemoveLast();
-            inventory.RemoveItem(item);
+            inventory.Remove(item.Id);
 
             RemoveUnreachableLocations(reachableLocations, inventory);
             if (reachableLocations.Size == 0)
@@ -200,7 +201,7 @@ internal class PoolsItemShuffler : IShuffler
     /// <summary>
     /// Finds all locations that are no longer reachable and removes them
     /// </summary>
-    private void RemoveUnreachableLocations(LocationPool locations, Blas2Inventory inventory)
+    private void RemoveUnreachableLocations(LocationPool locations, GameInventory inventory)
     {
         locations.RemoveConditional(loc => !inventory.Evaluate(loc.Logic));
     }

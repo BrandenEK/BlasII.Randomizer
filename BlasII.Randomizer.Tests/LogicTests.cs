@@ -1,6 +1,6 @@
 using BlasII.Randomizer.Models;
 using BlasII.Randomizer.Shuffle;
-using LogicParser;
+using Basalt.LogicParser;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json;
 using System;
@@ -17,7 +17,7 @@ public class LogicTests
     private static readonly Dictionary<string, ItemLocation> _allItemLocations = new();
     private static readonly Dictionary<string, Door> _allDoors = new();
 
-    private Blas2Inventory inventory;
+    private GameInventory inventory;
 
     [ClassInitialize]
     public static void LoadJsonData(TestContext context)
@@ -40,7 +40,7 @@ public class LogicTests
     [TestInitialize]
     public void CreateInventory()
     {
-        inventory = new Blas2Inventory(RandomizerSettings.DEFAULT, _allDoors);
+        inventory = BlasphemousInventory.CreateNewInventory(RandomizerSettings.DEFAULT);
     }
 
     [TestMethod]
