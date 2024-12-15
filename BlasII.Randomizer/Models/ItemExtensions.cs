@@ -197,26 +197,12 @@ public static class ItemExtensions
             _ => throw new Exception($"Invalid {Item.ItemType.ProgressiveQuestItem}: {item.Id}")
         };
 
-        int level = GetProgressiveItemLevel(itemIds, upgraded);
+        int level = Main.Randomizer.ItemHandler.AmountItemCollected(item.Id);
+        if (!upgraded)
+            level--;
+
         return level >= 0 && level < itemIds.Length
             ? AssetStorage.QuestItems[itemIds[level]]
             : null;
-    }
-
-    /// <summary>
-    /// Returns the current or upgraded level of the quest item
-    /// </summary>
-    private static int GetProgressiveItemLevel(string[] itemIds, bool upgraded)
-    {
-        for (int i = 0; i < itemIds.Length; i++)
-        {
-            if (Main.Randomizer.ItemHandler.IsItemCollected(itemIds[i]))
-                continue;
-
-            // This is the first item in the list you don't have
-            return upgraded ? i : i - 1;
-        }
-
-        return upgraded ? itemIds.Length : itemIds.Length - 1;
     }
 }
