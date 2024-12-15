@@ -4,6 +4,7 @@ using BlasII.Randomizer.Shuffle;
 using Il2CppTGK.Game;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text;
 
 namespace BlasII.Randomizer.Handlers;
@@ -120,16 +121,33 @@ public class ItemHandler
         File.WriteAllText(path, sb.ToString());
     }
 
+    /// <summary>
+    /// Adds the item id to the list of collected items
+    /// </summary>
     public void SetItemCollected(string itemId)
     {
         _collectedItems.Add(itemId);
     }
 
+    /// <summary>
+    /// Checks whether the item has been collected
+    /// </summary>
     public bool IsItemCollected(string itemId)
     {
         return _collectedItems.Contains(itemId);
     }
 
+    /// <summary>
+    /// Checks how many times the item has been collected
+    /// </summary>
+    public int AmountItemCollected(string itemId)
+    {
+        return _collectedItems.Count(x => x == itemId);
+    }
+
+    /// <summary>
+    /// Checks whether the location has been collected
+    /// </summary>
     public bool IsLocationCollected(string locationId)
     {
         return _collectedLocations.Contains(locationId);

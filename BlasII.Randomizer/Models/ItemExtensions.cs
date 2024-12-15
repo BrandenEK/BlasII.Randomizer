@@ -23,7 +23,7 @@ public static class ItemExtensions
             Item.ItemType.Prayer => AssetStorage.Prayers[item.Id].image,
             Item.ItemType.Figurine => AssetStorage.Figures[item.Id].image,
             Item.ItemType.QuestItem => AssetStorage.QuestItems[item.Id].image,
-            Item.ItemType.ProgressiveQuestItem => item.GetNextProgressiveItem().image,
+            Item.ItemType.ProgressiveQuestItem => item.GetProgressiveItem(true).image,
             Item.ItemType.Weapon => Main.Randomizer.EmbeddedIconStorage.GetImage(item.Id),
             Item.ItemType.Ability => Main.Randomizer.EmbeddedIconStorage.GetImage(item.Id),
             Item.ItemType.Cherub => Main.Randomizer.EmbeddedIconStorage.GetImage("Cherub"),
@@ -47,7 +47,7 @@ public static class ItemExtensions
             Item.ItemType.Prayer => AssetStorage.Prayers[item.Id].caption,
             Item.ItemType.Figurine => AssetStorage.Figures[item.Id].caption,
             Item.ItemType.QuestItem => AssetStorage.QuestItems[item.Id].caption,
-            Item.ItemType.ProgressiveQuestItem => item.GetNextProgressiveItem().caption,
+            Item.ItemType.ProgressiveQuestItem => item.GetProgressiveItem(true).caption,
             Item.ItemType.Weapon => Main.Randomizer.LocalizationHandler.Localize($"{item.Id}.name"),
             Item.ItemType.Ability => Main.Randomizer.LocalizationHandler.Localize($"{item.Id}.name"),
             Item.ItemType.Cherub => Main.Randomizer.LocalizationHandler.Localize("Cherub.name"),
@@ -71,7 +71,7 @@ public static class ItemExtensions
             Item.ItemType.Prayer => AssetStorage.Prayers[item.Id].description,
             Item.ItemType.Figurine => AssetStorage.Figures[item.Id].description,
             Item.ItemType.QuestItem => AssetStorage.QuestItems[item.Id].description,
-            Item.ItemType.ProgressiveQuestItem => item.GetNextProgressiveItem().description,
+            Item.ItemType.ProgressiveQuestItem => item.GetProgressiveItem(true).description,
             Item.ItemType.Weapon => Main.Randomizer.LocalizationHandler.Localize($"{item.Id}.desc"),
             Item.ItemType.Ability => Main.Randomizer.LocalizationHandler.Localize($"{item.Id}.desc"),
             Item.ItemType.Cherub => Main.Randomizer.LocalizationHandler.Localize("Cherub.desc"),
@@ -126,7 +126,12 @@ public static class ItemExtensions
                 }
             case Item.ItemType.ProgressiveQuestItem:
                 {
-                    ModLog.Info("Attempting to give progressive: " + item.Id);
+                    var currentItem = item.GetProgressiveItem(false);
+                    var nextItem = item.GetProgressiveItem(true);
+                    if (currentItem != null)
+                        AssetStorage.PlayerInventory.RemoveItem(currentItem);
+                    if (nextItem != null)
+                        AssetStorage.PlayerInventory.AddItemAsync(nextItem);
                     break;
                 }
             case Item.ItemType.Weapon:
@@ -180,9 +185,38 @@ public static class ItemExtensions
         Main.Randomizer.ItemHandler.SetItemCollected(item.Id);
     }
 
-
-    private static QuestItemID GetNextProgressiveItem(this Item item)
+    /// <summary>
+    /// Returns the current or upgraded quest itm
+    /// </summary>
+    private static QuestItemID GetProgressiveItem(this Item item, bool upgraded)
     {
-        return AssetStorage.QuestItems["QI23"];
+        string[] itemIds = item.Id switch
+        {
+            "Lullaby" => ["QI23", "QI24", "QI25", "QI26", "QI27"],
+            "LatinThing" => ["QI106", "QI107", "QI108", "QI109", "QI111"],
+            _ => throw new Exception($"Invalid {Item.ItemType.ProgressiveQuestItem}: {item.Id}")
+        };
+
+        int level = GetProgressiveItemLevel(itemIds, upgraded);
+        return level >= 0 && level < itemIds.Length
+            ? AssetStorage.QuestItems[itemIds[level]]
+            : null;
+    }
+
+    /// <summary>
+    /// Returns the current or upgraded level of the quest item
+    /// </summary>
+    private static int GetProgressiveItemLevel(string[] itemIds, bool upgraded)
+    {
+        for (int i = 0; i < itemIds.Length; i++)
+        {
+            if (Main.Randomizer.ItemHandler.IsItemCollected(itemIds[i]))
+                continue;
+
+            // This is the first item in the list you don't have
+            return upgraded ? i : i - 1;
+        }
+
+        return upgraded ? itemIds.Length : itemIds.Length - 1;
     }
 }

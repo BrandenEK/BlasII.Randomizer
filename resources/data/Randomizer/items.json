@@ -1200,8 +1200,8 @@
         "id": "QI104",
         "name": "Mea Culpa Hilt",
         "type": "QuestItem",
-        "progression": true,
-        "count": 1
+        "progression": false,
+        "count": 0
     },
     {
         "id": "QI105",
@@ -1222,7 +1222,7 @@
         "name": "Imperfectus Lacrimatorio",
         "type": "ProgressiveQuestItem",
         "progression": false,
-        "count": 4
+        "count": 5
     },
     {
         "id": "Censer",
