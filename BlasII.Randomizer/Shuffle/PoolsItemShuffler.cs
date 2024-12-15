@@ -21,7 +21,7 @@ internal class PoolsItemShuffler : IShuffler
         CreateItemPool(progressionItems, junkItems, progressionLocations.Size + junkLocations.Size, settings);
 
         // Create initial inventory
-        var inventory = new Blas2Inventory(settings, Main.Randomizer.Data.DoorDictionary);
+        var inventory = new Blas2Inventory(settings, Main.Randomizer.DoorStorage.AsDictionary);
         CreateInitialInventory(inventory, settings, progressionItems);
 
         // Place progression items at progression locations
@@ -46,7 +46,7 @@ internal class PoolsItemShuffler : IShuffler
     /// </summary>
     private void CreateLocationPool(LocationPool progressionLocations, LocationPool junkLocations, RandomizerSettings settings)
     {
-        foreach (var location in Main.Randomizer.Data.ItemLocationList)
+        foreach (var location in Main.Randomizer.ItemLocationStorage.AsSequence)
         {
             AddLocationToPool(progressionLocations, junkLocations, location, settings);
         }
@@ -66,7 +66,7 @@ internal class PoolsItemShuffler : IShuffler
     /// </summary>
     private void CreateItemPool(ItemPool progressionItems, ItemPool junkItems, int numOfLocations, RandomizerSettings settings)
     {
-        foreach (var item in Main.Randomizer.Data.ItemList)
+        foreach (var item in Main.Randomizer.ItemStorage.AsSequence)
         {
             AddItemToPool(progressionItems, junkItems, item);
         }
@@ -93,7 +93,7 @@ internal class PoolsItemShuffler : IShuffler
     private void RemoveStartingItemsFromItemPool(ItemPool items, RandomizerSettings settings)
     {
         // Remove the extra starting weapon
-        items.Remove(Main.Randomizer.Data.GetItem(GetStartingWeaponId(settings)));
+        items.Remove(Main.Randomizer.ItemStorage[GetStartingWeaponId(settings)]);
     }
 
     /// <summary>
@@ -110,7 +110,7 @@ internal class PoolsItemShuffler : IShuffler
         // Add tear items until pools are equal
         while (progressionItems.Size + junkItems.Size < numOfLocations)
         {
-            junkItems.Add(Main.Randomizer.Data.GetItem("Tears[800]"));
+            junkItems.Add(Main.Randomizer.ItemStorage["Tears[800]"]);
         }
     }
 
@@ -120,7 +120,7 @@ internal class PoolsItemShuffler : IShuffler
     private void CreateInitialInventory(Blas2Inventory inventory, RandomizerSettings settings, ItemPool progressionItems)
     {
         // Add the starting weapon
-        inventory.AddItem(Main.Randomizer.Data.GetItem(GetStartingWeaponId(settings)));
+        inventory.AddItem(Main.Randomizer.ItemStorage[GetStartingWeaponId(settings)]);
 
         // Add all progression items in the pool
         foreach (var item in progressionItems)
@@ -193,7 +193,7 @@ internal class PoolsItemShuffler : IShuffler
     /// </summary>        
     private void MovePriorityItems(ItemPool progressionItems)
     {
-        Item wallClimb = Main.Randomizer.Data.GetItem("WallClimb");
+        Item wallClimb = Main.Randomizer.ItemStorage["WallClimb"];
         progressionItems.MoveToBeginning(wallClimb);
     }
 

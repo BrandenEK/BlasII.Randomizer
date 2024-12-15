@@ -26,12 +26,12 @@ public class ItemHandler
     {
         if (_mappedItems.TryGetValue(locationId, out string item))
         {
-            return Main.Randomizer.Data.GetItem(item);
+            return Main.Randomizer.ItemStorage[item];
         }
         else
         {
             ModLog.Error(locationId + " does not have a mapped item!");
-            return Main.Randomizer.Data.InvalidItem;
+            return Main.Randomizer.ItemStorage.InvalidItem;
         }
     }
 
@@ -43,7 +43,7 @@ public class ItemHandler
         if (_collectedLocations.Contains(locationId))
         {
             ModLog.Error(locationId + " has already been collected!");
-            item = Main.Randomizer.Data.InvalidItem;
+            item = Main.Randomizer.ItemStorage.InvalidItem;
         }
         else
         {
@@ -98,7 +98,7 @@ public class ItemHandler
         sb.Append(settings.FormatSpoiler());
 
         string currentZoneId = string.Empty;
-        foreach (var location in Main.Randomizer.Data.ItemLocationList)
+        foreach (var location in Main.Randomizer.ItemLocationStorage.AsSequence)
         {
             // Make sure it has a valid item
             Item item = GetItemAtLocation(location.Id);
