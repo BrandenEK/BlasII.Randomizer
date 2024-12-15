@@ -221,12 +221,12 @@ public class Blas2Inventory : InventoryData
         cherubs += addition ? 1 : -1;
     }
 
-    public Blas2Inventory(RandomizerSettings settings, IDictionary<string, DoorLocation> doors)
+    public Blas2Inventory(RandomizerSettings settings, IDictionary<string, Door> doors)
     {
         _settings = settings;
         _doors = doors;
     }
 
     private readonly RandomizerSettings _settings;
-    private readonly IDictionary<string, DoorLocation> _doors;
+    private readonly IDictionary<string, Door> _doors;
 }

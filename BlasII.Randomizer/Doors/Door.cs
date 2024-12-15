@@ -1,11 +1,13 @@
+using BlasII.Randomizer.Models;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
 namespace BlasII.Randomizer.Doors;
 
-public class DoorLocation
+public class Door : IUnique
 {
     [JsonProperty] public readonly string id;
+    public string Id { get; set; }
 
     [JsonConverter(typeof(StringEnumConverter))]
     [JsonProperty] public readonly DoorLocationType type;

@@ -28,12 +28,12 @@ public class DataStorage
     public bool DoesItemLocationExist(string id) => _allItemLocations.ContainsKey(id);
 
     // Doors
-    private readonly Dictionary<string, DoorLocation> _allDoors = new();
+    private readonly Dictionary<string, Door> _allDoors = new();
 
-    public IEnumerable<DoorLocation> DoorList => _allDoors.Values;
-    public IDictionary<string, DoorLocation> DoorDictionary => _allDoors;
+    public IEnumerable<Door> DoorList => _allDoors.Values;
+    public IDictionary<string, Door> DoorDictionary => _allDoors;
 
-    public DoorLocation GetDoor(string id) => _allDoors.TryGetValue(id, out var door) ? door : null;
+    public Door GetDoor(string id) => _allDoors.TryGetValue(id, out var door) ? door : null;
     public bool DoesDoorExist(string id) => _allDoors.ContainsKey(id);
 
     // Loading
@@ -59,7 +59,7 @@ public class DataStorage
         }
         ModLog.Info($"Loaded {_allItemLocations.Count} item locations!");
 
-        if (Main.Randomizer.FileHandler.LoadDataAsJson("doors.json", out DoorLocation[] doors))
+        if (Main.Randomizer.FileHandler.LoadDataAsJson("doors.json", out Door[] doors))
         {
             foreach (var door in doors)
                 _allDoors.Add(door.id, door);

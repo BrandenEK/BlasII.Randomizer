@@ -16,7 +16,7 @@ public class LogicTests
 {
     private static readonly Dictionary<string, Item> _allItems = new();
     private static readonly Dictionary<string, ItemLocation> _allItemLocations = new();
-    private static readonly Dictionary<string, DoorLocation> _allDoors = new();
+    private static readonly Dictionary<string, Door> _allDoors = new();
 
     private Blas2Inventory inventory;
 
@@ -34,7 +34,7 @@ public class LogicTests
             _allItemLocations.Add(itemLocation.Id, itemLocation);
 
         string doors = File.ReadAllText(dataFolder + "doors.json");
-        foreach (var door in JsonConvert.DeserializeObject<DoorLocation[]>(doors))
+        foreach (var door in JsonConvert.DeserializeObject<Door[]>(doors))
             _allDoors.Add(door.id, door);
     }
 
