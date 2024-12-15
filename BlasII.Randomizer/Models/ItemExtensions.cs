@@ -1,6 +1,7 @@
 ﻿using BlasII.ModdingAPI;
 using BlasII.ModdingAPI.Assets;
 using Il2CppTGK.Game;
+using Il2CppTGK.Inventory;
 using System;
 using UnityEngine;
 
@@ -22,7 +23,7 @@ public static class ItemExtensions
             Item.ItemType.Prayer => AssetStorage.Prayers[item.Id].image,
             Item.ItemType.Figurine => AssetStorage.Figures[item.Id].image,
             Item.ItemType.QuestItem => AssetStorage.QuestItems[item.Id].image,
-            Item.ItemType.ProgressiveQuestItem => null,
+            Item.ItemType.ProgressiveQuestItem => item.GetNextProgressiveItem().image,
             Item.ItemType.Weapon => Main.Randomizer.EmbeddedIconStorage.GetImage(item.Id),
             Item.ItemType.Ability => Main.Randomizer.EmbeddedIconStorage.GetImage(item.Id),
             Item.ItemType.Cherub => Main.Randomizer.EmbeddedIconStorage.GetImage("Cherub"),
@@ -46,7 +47,7 @@ public static class ItemExtensions
             Item.ItemType.Prayer => AssetStorage.Prayers[item.Id].caption,
             Item.ItemType.Figurine => AssetStorage.Figures[item.Id].caption,
             Item.ItemType.QuestItem => AssetStorage.QuestItems[item.Id].caption,
-            Item.ItemType.ProgressiveQuestItem => "",
+            Item.ItemType.ProgressiveQuestItem => item.GetNextProgressiveItem().caption,
             Item.ItemType.Weapon => Main.Randomizer.LocalizationHandler.Localize($"{item.Id}.name"),
             Item.ItemType.Ability => Main.Randomizer.LocalizationHandler.Localize($"{item.Id}.name"),
             Item.ItemType.Cherub => Main.Randomizer.LocalizationHandler.Localize("Cherub.name"),
@@ -70,7 +71,7 @@ public static class ItemExtensions
             Item.ItemType.Prayer => AssetStorage.Prayers[item.Id].description,
             Item.ItemType.Figurine => AssetStorage.Figures[item.Id].description,
             Item.ItemType.QuestItem => AssetStorage.QuestItems[item.Id].description,
-            Item.ItemType.ProgressiveQuestItem => "",
+            Item.ItemType.ProgressiveQuestItem => item.GetNextProgressiveItem().description,
             Item.ItemType.Weapon => Main.Randomizer.LocalizationHandler.Localize($"{item.Id}.desc"),
             Item.ItemType.Ability => Main.Randomizer.LocalizationHandler.Localize($"{item.Id}.desc"),
             Item.ItemType.Cherub => Main.Randomizer.LocalizationHandler.Localize("Cherub.desc"),
@@ -177,5 +178,11 @@ public static class ItemExtensions
         }
 
         Main.Randomizer.ItemHandler.SetItemCollected(item.Id);
+    }
+
+
+    private static QuestItemID GetNextProgressiveItem(this Item item)
+    {
+        return AssetStorage.QuestItems["QI23"];
     }
 }
