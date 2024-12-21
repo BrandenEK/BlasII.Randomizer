@@ -21,9 +21,9 @@ public class BlasphemousInventory
     bool HasCenser => CenserLevel > 0;
 
     [CollectableAs("RosaryBlade")]
-    int BladeLevel { get; set; }
-    [ResolvableAs("blade")]
-    bool HasBlade => BladeLevel > 0;
+    int RosaryLevel { get; set; }
+    [ResolvableAs("rosary")]
+    bool HasRosary => RosaryLevel > 0;
 
     [CollectableAs("Rapier")]
     int RapierLevel { get; set; }
@@ -176,10 +176,10 @@ public class BlasphemousInventory
         {
             int rooms = 0;
             if (WallClimb && DoubleJump) rooms++;
-            if (WallClimb && DoubleJump && CenserLevel > 0 && BladeLevel > 0 && RapierLevel > 0) rooms++;
-            if (WallClimb && DoubleJump && AirDash && BladeLevel > 0) rooms++;
+            if (WallClimb && DoubleJump && HasCenser && HasRosary && HasRapier) rooms++;
+            if (WallClimb && DoubleJump && AirDash && HasRosary) rooms++;
             if (DoubleJump && AirDash && RingClimb) rooms++;
-            if (WallClimb && DoubleJump && AirDash && RingClimb && CenserLevel > 0 && BladeLevel > 0 && RapierLevel > 0) rooms++;
+            if (WallClimb && DoubleJump && AirDash && RingClimb && HasCenser && HasRosary && HasRapier) rooms++;
             return rooms;
         }
     }
@@ -191,13 +191,13 @@ public class BlasphemousInventory
         {
             if (!WallClimb) // City
                 return 0;
-            if (BladeLevel == 0) // Towers
+            if (!HasRosary) // Towers
                 return 1;
-            if (!DoubleJump || CenserLevel == 0) // Temples + Towers
+            if (!DoubleJump || !HasCenser) // Temples + Towers
                 return 2;
             if (!AirDash) // Cathedral
                 return 4;
-            if (!RingClimb || RapierLevel == 0) // Severed
+            if (!RingClimb || !HasRapier) // Severed
                 return 5;
             if (NumBossKeys < 5) // Crimson
                 return 6;
