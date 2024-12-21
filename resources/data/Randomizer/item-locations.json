@@ -44,132 +44,163 @@
     },
     {
         "id": "Z0301.l10",
-        "name": "Item Location 11"
+        "name": "Item Location 11",
+        "logic": "wallclimb"
     },
     {
         "id": "Z0301.l11",
-        "name": "Item Location 12"
+        "name": "Item Location 12",
+        "logic": "wallclimb"
     },
     {
         "id": "Z0302.c0",
         "name": "Item Location 13",
-        "flags": "C"
+        "flags": "C",
+        "logic": "wallclimb"
     },
     {
         "id": "Z0303.l6",
-        "name": "Item Location 14"
+        "name": "Item Location 14",
+        "logic": "wallclimb"
     },
     {
         "id": "Z0304.l8",
-        "name": "Item Location 15"
+        "name": "Item Location 15",
+        "logic": "wallclimb"
     },
     {
         "id": "Z0304.l3",
-        "name": "Item Location 16"
+        "name": "Item Location 16",
+        "logic": "wallclimb"
     },
     {
         "id": "Z0305.l6",
-        "name": "Item Location 17"
+        "name": "Item Location 17",
+        "logic": "wallclimb"
     },
     {
         "id": "Z0305.l5",
-        "name": "Item Location 18"
+        "name": "Item Location 18",
+        "logic": "wallclimb"
     },
     {
         "id": "Z0306.l12",
-        "name": "Item Location 19"
+        "name": "Item Location 19",
+        "logic": "wallclimb"
     },
     {
         "id": "Z0307.l8",
-        "name": "Item Location 20"
+        "name": "Item Location 20",
+        "logic": "wallclimb"
     },
     {
         "id": "Z0308.l27",
-        "name": "Item Location 21"
+        "name": "Item Location 21",
+        "logic": "wallclimb"
     },
     {
         "id": "Z0308.l26",
-        "name": "Item Location 22"
+        "name": "Item Location 22",
+        "logic": "wallclimb"
     },
     {
         "id": "Z0308.c0",
         "name": "Item Location 23",
-        "flags": "C"
+        "flags": "C",
+        "logic": "wallclimb"
     },
     {
         "id": "Z0312.c0",
         "name": "Item Location 24",
-        "flags": "C"
+        "flags": "C",
+        "logic": "wallclimb"
     },
     {
         "id": "Z0313.l9",
-        "name": "Item Location 25"
+        "name": "Item Location 25",
+        "logic": "wallclimb"
     },
     {
         "id": "Z0402.l15",
-        "name": "Item Location 26"
+        "name": "Item Location 26",
+        "logic": "wallclimb + censer"
     },
     {
         "id": "Z0402.l13",
-        "name": "Item Location 27"
+        "name": "Item Location 27",
+        "logic": "wallclimb + censer"
     },
     {
         "id": "Z0406.c0",
         "name": "Item Location 28",
-        "flags": "C"
+        "flags": "C",
+        "logic": "wallclimb + censer"
     },
     {
         "id": "Z0406.l4",
-        "name": "Item Location 29"
+        "name": "Item Location 29",
+        "logic": "wallclimb + censer"
     },
     {
         "id": "Z0409.l7",
-        "name": "Item Location 30"
+        "name": "Item Location 30",
+        "logic": "wallclimb + censer"
     },
     {
         "id": "Z0410.l6",
-        "name": "Item Location 31"
+        "name": "Item Location 31",
+        "logic": "wallclimb + censer"
     },
     {
         "id": "Z0412.l2",
-        "name": "Item Location 32"
+        "name": "Item Location 32",
+        "logic": "wallclimb + censer"
     },
     {
         "id": "Z0412.l1",
-        "name": "Item Location 33"
+        "name": "Item Location 33",
+        "logic": "wallclimb + censer"
     },
     {
         "id": "Z0413.l0",
-        "name": "Item Location 34"
+        "name": "Item Location 34",
+        "logic": "wallclimb + censer"
     },
     {
         "id": "Z0414.l4",
-        "name": "Item Location 35"
+        "name": "Item Location 35",
+        "logic": "wallclimb + censer"
     },
     {
         "id": "Z0415.l2",
-        "name": "Item Location 36"
+        "name": "Item Location 36",
+        "logic": "wallclimb + censer"
     },
     {
         "id": "Z0415.l4",
-        "name": "Item Location 37"
+        "name": "Item Location 37",
+        "logic": "wallclimb + censer"
     },
     {
         "id": "Z0417.l4",
-        "name": "Item Location 38"
+        "name": "Item Location 38",
+        "logic": "wallclimb + censer"
     },
     {
         "id": "Z0421.r8",
         "name": "Item Location 39",
-        "flags": "B"
+        "flags": "B",
+        "logic": "wallclimb + censer"
     },
     {
         "id": "Z0423.l1",
-        "name": "Item Location 40"
+        "name": "Item Location 40",
+        "logic": "wallclimb + censer"
     },
     {
         "id": "Z0427.l6",
-        "name": "Item Location 41"
+        "name": "Item Location 41",
+        "logic": "wallclimb + censer"
     },
     {
         "id": "Z0501.c0",
@@ -247,1170 +278,1437 @@
     },
     {
         "id": "Z0602.l2",
-        "name": "Item Location 59"
+        "name": "Item Location 59",
+        "logic": "wallclimb"
     },
     {
         "id": "Z0605.l11",
-        "name": "Item Location 60"
+        "name": "Item Location 60",
+        "logic": "wallclimb"
     },
     {
         "id": "Z0605.l10",
-        "name": "Item Location 61"
+        "name": "Item Location 61",
+        "logic": "wallclimb"
     },
     {
         "id": "Z0608.c0",
         "name": "Item Location 62",
-        "flags": "C"
+        "flags": "C",
+        "logic": "wallclimb"
     },
     {
         "id": "Z0611.l2",
-        "name": "Item Location 63"
+        "name": "Item Location 63",
+        "logic": "wallclimb"
     },
     {
         "id": "Z0611.r2",
-        "name": "Item Location 64"
+        "name": "Item Location 64",
+        "logic": "wallclimb"
     },
     {
         "id": "Z0612.l6",
-        "name": "Item Location 65"
+        "name": "Item Location 65",
+        "logic": "wallclimb"
     },
     {
         "id": "Z0614.l6",
-        "name": "Item Location 66"
+        "name": "Item Location 66",
+        "logic": "wallclimb"
     },
     {
         "id": "Z0614.l7",
-        "name": "Item Location 67"
+        "name": "Item Location 67",
+        "logic": "wallclimb"
     },
     {
         "id": "Z0615.r2",
-        "name": "Item Location 68"
+        "name": "Item Location 68",
+        "logic": "wallclimb"
     },
     {
         "id": "Z0616.l14",
-        "name": "Item Location 69"
+        "name": "Item Location 69",
+        "logic": "wallclimb"
     },
     {
         "id": "Z0617.l8",
-        "name": "Item Location 70"
+        "name": "Item Location 70",
+        "logic": "wallclimb"
     },
     {
         "id": "Z0707.i2",
-        "name": "Item Location 71"
+        "name": "Item Location 71",
+        "logic": "wallclimb + rapier"
     },
     {
         "id": "Z0709.l1",
-        "name": "Item Location 72"
+        "name": "Item Location 72",
+        "logic": "wallclimb + rapier"
     },
     {
         "id": "Z0711.l2",
-        "name": "Item Location 73"
+        "name": "Item Location 73",
+        "logic": "wallclimb + rapier"
     },
     {
         "id": "Z0715.c0",
         "name": "Item Location 74",
-        "flags": "C"
+        "flags": "C",
+        "logic": "wallclimb + rapier"
     },
     {
         "id": "Z0721.i2",
-        "name": "Item Location 75"
+        "name": "Item Location 75",
+        "logic": "wallclimb + rapier"
     },
     {
         "id": "Z0722.i0.a",
-        "name": "Item Location 76"
+        "name": "Item Location 76",
+        "logic": "wallclimb + rapier"
     },
     {
         "id": "Z0722.i0.b",
-        "name": "Item Location 77"
+        "name": "Item Location 77",
+        "logic": "wallclimb + rapier"
     },
     {
         "id": "Z0723.l2",
-        "name": "Item Location 78"
+        "name": "Item Location 78",
+        "logic": "wallclimb + rapier"
     },
     {
         "id": "Z0725.i1",
-        "name": "Item Location 79"
+        "name": "Item Location 79",
+        "logic": "wallclimb + rapier"
     },
     {
         "id": "Z0728.i2",
-        "name": "Item Location 80"
+        "name": "Item Location 80",
+        "logic": "wallclimb + rapier"
     },
     {
         "id": "Z0730.r6",
         "name": "Item Location 81",
-        "flags": "B"
+        "flags": "B",
+        "logic": "wallclimb + rapier"
     },
     {
         "id": "Z0730.l2",
-        "name": "Item Location 82"
+        "name": "Item Location 82",
+        "logic": "wallclimb + rapier"
     },
     {
         "id": "Z0805.l0",
-        "name": "Item Location 83"
+        "name": "Item Location 83",
+        "logic": "wallclimb"
     },
     {
         "id": "Z0806.c0",
         "name": "Item Location 84",
-        "flags": "C"
+        "flags": "C",
+        "logic": "wallclimb"
     },
     {
         "id": "Z0809.c0",
         "name": "Item Location 85",
-        "flags": "C"
+        "flags": "C",
+        "logic": "wallclimb"
     },
     {
         "id": "Z0810.l0",
-        "name": "Item Location 86"
+        "name": "Item Location 86",
+        "logic": "wallclimb"
     },
     {
         "id": "Z0811.w0",
         "name": "Item Location 87",
-        "flags": "W"
+        "flags": "W",
+        "logic": "wallclimb"
     },
     {
         "id": "Z0814.l6",
-        "name": "Item Location 88"
+        "name": "Item Location 88",
+        "logic": "wallclimb"
     },
     {
         "id": "Z0815.i0",
-        "name": "Item Location 89"
+        "name": "Item Location 89",
+        "logic": "wallclimb"
     },
     {
         "id": "Z0817.l0",
-        "name": "Item Location 90"
+        "name": "Item Location 90",
+        "logic": "wallclimb"
     },
     {
         "id": "Z0822.l2",
-        "name": "Item Location 91"
+        "name": "Item Location 91",
+        "logic": "wallclimb"
     },
     {
         "id": "Z0823.a0",
         "name": "Item Location 92",
-        "flags": "A"
+        "flags": "A",
+        "logic": "wallclimb"
     },
     {
         "id": "Z0826.l13",
-        "name": "Item Location 93"
+        "name": "Item Location 93",
+        "logic": "wallclimb"
     },
     {
         "id": "Z0829.l2",
-        "name": "Item Location 94"
+        "name": "Item Location 94",
+        "logic": "wallclimb"
     },
     {
         "id": "Z0830.l7",
-        "name": "Item Location 95"
+        "name": "Item Location 95",
+        "logic": "wallclimb"
     },
     {
         "id": "Z0832.l5",
-        "name": "Item Location 96"
+        "name": "Item Location 96",
+        "logic": "wallclimb"
     },
     {
         "id": "Z0835.l7",
-        "name": "Item Location 97"
+        "name": "Item Location 97",
+        "logic": "wallclimb"
     },
     {
         "id": "Z0837.l5",
-        "name": "Item Location 98"
+        "name": "Item Location 98",
+        "logic": "wallclimb"
     },
     {
         "id": "Z0840.l1",
-        "name": "Item Location 99"
+        "name": "Item Location 99",
+        "logic": "wallclimb"
     },
     {
         "id": "Z0842.l2",
-        "name": "Item Location 100"
+        "name": "Item Location 100",
+        "logic": "wallclimb"
     },
     {
         "id": "Z0843.l17",
-        "name": "Item Location 101"
+        "name": "Item Location 101",
+        "logic": "wallclimb"
     },
     {
         "id": "Z0845.l4",
-        "name": "Item Location 102"
+        "name": "Item Location 102",
+        "logic": "wallclimb"
     },
     {
         "id": "Z0846.l22",
-        "name": "Item Location 103"
+        "name": "Item Location 103",
+        "logic": "wallclimb"
     },
     {
         "id": "Z0901.l3",
-        "name": "Item Location 104"
+        "name": "Item Location 104",
+        "logic": "wallclimb + blade"
     },
     {
         "id": "Z0901.l1",
-        "name": "Item Location 105"
+        "name": "Item Location 105",
+        "logic": "wallclimb + blade"
     },
     {
         "id": "Z0903.l2",
-        "name": "Item Location 106"
+        "name": "Item Location 106",
+        "logic": "wallclimb + blade"
     },
     {
         "id": "Z0905.l2",
-        "name": "Item Location 107"
+        "name": "Item Location 107",
+        "logic": "wallclimb + blade"
     },
     {
         "id": "Z0908.l9",
-        "name": "Item Location 108"
+        "name": "Item Location 108",
+        "logic": "wallclimb + blade"
     },
     {
         "id": "Z0909.l5",
-        "name": "Item Location 109"
+        "name": "Item Location 109",
+        "logic": "wallclimb + blade"
     },
     {
         "id": "Z0912.l8",
-        "name": "Item Location 110"
+        "name": "Item Location 110",
+        "logic": "wallclimb + blade"
     },
     {
         "id": "Z0913.l1",
-        "name": "Item Location 111"
+        "name": "Item Location 111",
+        "logic": "wallclimb + blade"
     },
     {
         "id": "Z0915.l9",
-        "name": "Item Location 112"
+        "name": "Item Location 112",
+        "logic": "wallclimb + blade"
     },
     {
         "id": "Z0921.r14",
         "name": "Item Location 113",
-        "flags": "B"
+        "flags": "B",
+        "logic": "wallclimb + blade"
     },
     {
         "id": "Z0923.c0",
         "name": "Item Location 114",
-        "flags": "C"
+        "flags": "C",
+        "logic": "wallclimb + blade"
     },
     {
         "id": "Z0926.a0",
         "name": "Item Location 115",
-        "flags": "A"
+        "flags": "A",
+        "logic": "wallclimb + blade"
     },
     {
         "id": "Z0927.l4",
-        "name": "Item Location 116"
+        "name": "Item Location 116",
+        "logic": "wallclimb + blade"
     },
     {
         "id": "Z0928.c0",
         "name": "Item Location 117",
-        "flags": "C"
+        "flags": "C",
+        "logic": "wallclimb + blade"
     },
     {
         "id": "Z0929.w0",
         "name": "Item Location 118",
-        "flags": "W"
+        "flags": "W",
+        "logic": "wallclimb + blade"
     },
     {
         "id": "Z1003.l0",
-        "name": "Item Location 119"
+        "name": "Item Location 119",
+        "logic": "wallclimb + doublejump + censer + rapier + blade"
     },
     {
         "id": "Z1004.l10",
-        "name": "Item Location 120"
+        "name": "Item Location 120",
+        "logic": "wallclimb + doublejump + censer + rapier + blade"
     },
     {
         "id": "Z1007.l2",
-        "name": "Item Location 121"
+        "name": "Item Location 121",
+        "logic": "wallclimb + doublejump + censer + rapier + blade"
     },
     {
         "id": "Z1011.l4",
-        "name": "Item Location 122"
+        "name": "Item Location 122",
+        "logic": "wallclimb + doublejump + censer + rapier + blade"
     },
     {
         "id": "Z1015.l0",
-        "name": "Item Location 123"
+        "name": "Item Location 123",
+        "logic": "wallclimb + doublejump + censer + rapier + blade"
     },
     {
         "id": "Z1015.l1",
-        "name": "Item Location 124"
+        "name": "Item Location 124",
+        "logic": "wallclimb + doublejump + censer + rapier + blade"
     },
     {
         "id": "Z1017.w0",
-        "name": "Item Location 125"
+        "name": "Item Location 125",
+        "logic": "wallclimb + doublejump + censer + rapier + blade"
     },
     {
         "id": "Z1018.l3",
-        "name": "Item Location 126"
+        "name": "Item Location 126",
+        "logic": "wallclimb + doublejump + censer + rapier + blade"
     },
     {
         "id": "Z1019.l9",
-        "name": "Item Location 127"
+        "name": "Item Location 127",
+        "logic": "wallclimb + doublejump + censer + rapier + blade"
     },
     {
         "id": "Z1019.c0",
         "name": "Item Location 128",
-        "flags": "C"
+        "flags": "C",
+        "logic": "wallclimb + doublejump + censer + rapier + blade"
     },
     {
         "id": "Z1023.l8",
-        "name": "Item Location 129"
+        "name": "Item Location 129",
+        "logic": "wallclimb + doublejump + censer + rapier + blade"
     },
     {
         "id": "Z1023.c0",
         "name": "Item Location 130",
-        "flags": "C"
+        "flags": "C",
+        "logic": "wallclimb + doublejump + censer + rapier + blade"
     },
     {
         "id": "Z1045.l0",
-        "name": "Item Location 131"
+        "name": "Item Location 131",
+        "logic": "wallclimb + doublejump + censer + rapier + blade"
     },
     {
         "id": "Z1050.l7",
-        "name": "Item Location 132"
+        "name": "Item Location 132",
+        "logic": "wallclimb + doublejump + censer + rapier + blade"
     },
     {
         "id": "Z1050.c0",
         "name": "Item Location 133",
-        "flags": "C"
+        "flags": "C",
+        "logic": "wallclimb + doublejump + censer + rapier + blade"
     },
     {
         "id": "Z1058.c0",
         "name": "Item Location 134",
-        "flags": "C"
+        "flags": "C",
+        "logic": "wallclimb + doublejump + censer + rapier + blade"
     },
     {
         "id": "Z1063.w0",
         "name": "Item Location 135",
-        "flags": "W"
+        "flags": "W",
+        "logic": "wallclimb + doublejump + censer + rapier + blade"
     },
     {
         "id": "Z1064.i0",
         "name": "Item Location 136",
-        "flags": "V"
+        "flags": "V",
+        "logic": "wallclimb + doublejump + censer + rapier + blade"
     },
     {
         "id": "Z1065.l4",
-        "name": "Item Location 137"
+        "name": "Item Location 137",
+        "logic": "wallclimb + doublejump + censer + rapier + blade"
     },
     {
         "id": "Z1067.l9",
-        "name": "Item Location 138"
+        "name": "Item Location 138",
+        "logic": "wallclimb + doublejump + censer + rapier + blade"
     },
     {
         "id": "Z1103.l1",
-        "name": "Item Location 139"
+        "name": "Item Location 139",
+        "logic": "wallclimb + doublejump + airdash + censer + rapier + blade"
     },
     {
         "id": "Z1107.l5",
-        "name": "Item Location 140"
+        "name": "Item Location 140",
+        "logic": "wallclimb + doublejump + airdash + censer + rapier + blade"
     },
     {
         "id": "Z1109.l0",
-        "name": "Item Location 141"
+        "name": "Item Location 141",
+        "logic": "wallclimb + doublejump + airdash + censer + rapier + blade"
     },
     {
         "id": "Z1113.r8",
         "name": "Item Location 142",
-        "flags": "B"
+        "flags": "B",
+        "logic": "wallclimb + doublejump + airdash + censer + rapier + blade"
     },
     {
         "id": "Z1113.i8",
         "name": "Item Location 143",
-        "flags": "B"
+        "flags": "B",
+        "logic": "wallclimb + doublejump + airdash + censer + rapier + blade"
     },
     {
         "id": "Z1114.c0",
         "name": "Item Location 144",
-        "flags": "C"
+        "flags": "C",
+        "logic": "wallclimb + doublejump + airdash + censer + rapier + blade"
     },
     {
         "id": "Z1202.c0",
         "name": "Item Location 145",
-        "flags": "C"
+        "flags": "C",
+        "logic": "wallclimb + doublejump + airdash + censer + rapier + blade"
     },
     {
         "id": "Z1203.i2",
-        "name": "Item Location 146"
+        "name": "Item Location 146",
+        "logic": "wallclimb + doublejump + airdash + censer + rapier + blade"
     },
     {
         "id": "Z1205.w0",
         "name": "Item Location 147",
-        "flags": "W"
+        "flags": "W",
+        "logic": "wallclimb + doublejump + airdash + censer + rapier + blade"
     },
     {
         "id": "Z1209.l1",
-        "name": "Item Location 148"
+        "name": "Item Location 148",
+        "logic": "wallclimb + doublejump + airdash + censer + rapier + blade"
     },
     {
         "id": "Z1209.l2",
-        "name": "Item Location 149"
+        "name": "Item Location 149",
+        "logic": "wallclimb + doublejump + airdash + censer + rapier + blade"
     },
     {
         "id": "Z1210.l2",
-        "name": "Item Location 150"
+        "name": "Item Location 150",
+        "logic": "wallclimb + doublejump + airdash + censer + rapier + blade"
     },
     {
         "id": "Z1216.i9",
         "name": "Item Location 151",
-        "flags": "B"
+        "flags": "B",
+        "logic": "wallclimb + doublejump + airdash + censer + rapier + blade"
     },
     {
         "id": "Z1216.r9",
         "name": "Item Location 152",
-        "flags": "B"
+        "flags": "B",
+        "logic": "wallclimb + doublejump + airdash + censer + rapier + blade"
     },
     {
         "id": "Z1219.l13",
-        "name": "Item Location 153"
+        "name": "Item Location 153",
+        "logic": "wallclimb + doublejump + airdash + censer + rapier + blade"
     },
     {
         "id": "Z1303.c0",
         "name": "Item Location 154",
-        "flags": "C"
+        "flags": "C",
+        "logic": "wallclimb + doublejump + airdash + ringclimb + censer + rapier + blade"
     },
     {
         "id": "Z1304.c0",
         "name": "Item Location 155",
-        "flags": "C"
+        "flags": "C",
+        "logic": "wallclimb + doublejump + airdash + ringclimb + censer + rapier + blade"
     },
     {
         "id": "Z1307.l7",
-        "name": "Item Location 156"
+        "name": "Item Location 156",
+        "logic": "wallclimb + doublejump + airdash + ringclimb + censer + rapier + blade"
     },
     {
         "id": "Z1308.l7",
-        "name": "Item Location 157"
+        "name": "Item Location 157",
+        "logic": "wallclimb + doublejump + airdash + ringclimb + censer + rapier + blade"
     },
     {
         "id": "Z1310.l0",
-        "name": "Item Location 158"
+        "name": "Item Location 158",
+        "logic": "wallclimb + doublejump + airdash + ringclimb + censer + rapier + blade"
     },
     {
         "id": "Z1311.l7",
-        "name": "Item Location 159"
+        "name": "Item Location 159",
+        "logic": "wallclimb + doublejump + airdash + ringclimb + censer + rapier + blade"
     },
     {
         "id": "Z1312.l4",
-        "name": "Item Location 160"
+        "name": "Item Location 160",
+        "logic": "wallclimb + doublejump + airdash + ringclimb + censer + rapier + blade"
     },
     {
         "id": "Z1314.l6",
-        "name": "Item Location 161"
+        "name": "Item Location 161",
+        "logic": "wallclimb + doublejump + airdash + ringclimb + censer + rapier + blade"
     },
     {
         "id": "Z1326.i0",
-        "name": "Item Location 162"
+        "name": "Item Location 162",
+        "logic": "wallclimb + doublejump + airdash + ringclimb + censer + rapier + blade"
     },
     {
         "id": "Z1327.r7",
         "name": "Item Location 163",
-        "flags": "B"
+        "flags": "B",
+        "logic": "wallclimb + doublejump + airdash + ringclimb + censer + rapier + blade"
     },
     {
         "id": "Z1327.i7",
         "name": "Item Location 164",
-        "flags": "B"
+        "flags": "B",
+        "logic": "wallclimb + doublejump + airdash + ringclimb + censer + rapier + blade"
     },
     {
         "id": "Z1327.l3",
-        "name": "Item Location 165"
-    },
-    {
-        "id": "Z1327.unknown",
-        "name": "Item Location 166"
+        "name": "Item Location 165",
+        "logic": "wallclimb + doublejump + airdash + ringclimb + censer + rapier + blade"
     },
     {
         "id": "Z1329.l0",
-        "name": "Item Location 167"
+        "name": "Item Location 167",
+        "logic": "wallclimb + doublejump + airdash + ringclimb + censer + rapier + blade"
     },
     {
         "id": "Z1330.l5",
-        "name": "Item Location 168"
+        "name": "Item Location 168",
+        "logic": "wallclimb + doublejump + airdash + ringclimb + censer + rapier + blade"
     },
     {
         "id": "Z1404.c0",
         "name": "Item Location 169",
-        "flags": "C"
+        "flags": "C",
+        "logic": "wallclimb + doublejump + censer + rapier"
     },
     {
         "id": "Z1404.l15",
-        "name": "Item Location 170"
+        "name": "Item Location 170",
+        "logic": "wallclimb + doublejump + censer + rapier"
     },
     {
         "id": "Z1404.l8",
-        "name": "Item Location 171"
+        "name": "Item Location 171",
+        "logic": "wallclimb + doublejump + censer + rapier"
     },
     {
         "id": "Z1405.l3",
-        "name": "Item Location 172"
+        "name": "Item Location 172",
+        "logic": "wallclimb + doublejump + censer + rapier"
     },
     {
         "id": "Z1407.l1",
-        "name": "Item Location 173"
+        "name": "Item Location 173",
+        "logic": "wallclimb + doublejump + censer + rapier"
     },
     {
         "id": "Z1408.c0",
         "name": "Item Location 174",
-        "flags": "C"
+        "flags": "C",
+        "logic": "wallclimb + doublejump + censer + rapier"
     },
     {
         "id": "Z1418.l5",
-        "name": "Item Location 175"
+        "name": "Item Location 175",
+        "logic": "wallclimb + doublejump + censer + rapier"
     },
     {
         "id": "Z1419.l2",
-        "name": "Item Location 176"
+        "name": "Item Location 176",
+        "logic": "wallclimb + doublejump + censer + rapier"
     },
     {
         "id": "Z1421.l1",
-        "name": "Item Location 177"
+        "name": "Item Location 177",
+        "logic": "wallclimb + doublejump + censer + rapier"
     },
     {
         "id": "Z1422.l8",
-        "name": "Item Location 178"
+        "name": "Item Location 178",
+        "logic": "wallclimb + doublejump + censer + rapier"
     },
     {
         "id": "Z1424.l3",
-        "name": "Item Location 179"
+        "name": "Item Location 179",
+        "logic": "wallclimb + doublejump + censer + rapier"
     },
     {
         "id": "Z1427.l0",
-        "name": "Item Location 180"
+        "name": "Item Location 180",
+        "logic": "wallclimb + doublejump + censer + rapier"
     },
     {
         "id": "Z1429.l11",
-        "name": "Item Location 181"
+        "name": "Item Location 181",
+        "logic": "wallclimb + doublejump + censer + rapier"
     },
     {
         "id": "Z1501.i0.a",
-        "name": "Item Location 182"
+        "name": "Item Location 182",
+        "logic": "wallclimb + doublejump + airdash + ringclimb + censer + rapier + blade"
     },
     {
         "id": "Z1501.i0.b",
-        "name": "Item Location 183"
+        "name": "Item Location 183",
+        "logic": "wallclimb + doublejump + airdash + ringclimb + censer + rapier + blade"
     },
     {
         "id": "Z1501.i0.c",
-        "name": "Item Location 184"
+        "name": "Item Location 184",
+        "logic": "wallclimb + doublejump + airdash + ringclimb + censer + rapier + blade"
     },
     {
         "id": "Z1501.i0.d",
-        "name": "Item Location 185"
+        "name": "Item Location 185",
+        "logic": "wallclimb + doublejump + airdash + ringclimb + censer + rapier + blade"
     },
     {
         "id": "Z1501.i0.e",
-        "name": "Item Location 186"
+        "name": "Item Location 186",
+        "logic": "wallclimb + doublejump + airdash + ringclimb + censer + rapier + blade"
     },
     {
         "id": "Z1602.l2",
-        "name": "Item Location 187"
+        "name": "Item Location 187",
+        "logic": "wallclimb + doublejump + airdash + ringclimb + censer + rapier + blade"
     },
     {
         "id": "Z1603.i2",
-        "name": "Item Location 188"
+        "name": "Item Location 188",
+        "logic": "wallclimb + doublejump + airdash + ringclimb + censer + rapier + blade"
     },
     {
         "id": "Z1605.c0",
         "name": "Item Location 189",
-        "flags": "C"
+        "flags": "C",
+        "logic": "wallclimb + doublejump + airdash + ringclimb + censer + rapier + blade"
     },
     {
         "id": "Z1605.l5",
-        "name": "Item Location 190"
+        "name": "Item Location 190",
+        "logic": "wallclimb + doublejump + airdash + ringclimb + censer + rapier + blade"
     },
     {
         "id": "Z1610.l4",
-        "name": "Item Location 191"
+        "name": "Item Location 191",
+        "logic": "wallclimb + doublejump + airdash + ringclimb + censer + rapier + blade"
     },
     {
         "id": "Z1615.a0",
         "name": "Item Location 192",
-        "flags": "A"
+        "flags": "A",
+        "logic": "wallclimb + doublejump + airdash + ringclimb + censer + rapier + blade"
     },
     {
         "id": "Z1616.i1",
-        "name": "Item Location 193"
+        "name": "Item Location 193",
+        "logic": "wallclimb + doublejump + airdash + ringclimb + censer + rapier + blade"
     },
     {
         "id": "Z1619.l6",
-        "name": "Item Location 194"
+        "name": "Item Location 194",
+        "logic": "wallclimb + doublejump + airdash + ringclimb + censer + rapier + blade"
     },
     {
         "id": "Z1621.l1",
-        "name": "Item Location 195"
+        "name": "Item Location 195",
+        "logic": "wallclimb + doublejump + airdash + ringclimb + censer + rapier + blade"
     },
     {
         "id": "Z1622.i6",
         "name": "Item Location 196",
-        "flags": "B"
+        "flags": "B",
+        "logic": "wallclimb + doublejump + airdash + ringclimb + censer + rapier + blade"
     },
     {
         "id": "Z1622.r6",
         "name": "Item Location 197",
-        "flags": "B"
+        "flags": "B",
+        "logic": "wallclimb + doublejump + airdash + ringclimb + censer + rapier + blade"
     },
     {
         "id": "Z1623.c0",
         "name": "Item Location 198",
-        "flags": "C"
+        "flags": "C",
+        "logic": "wallclimb + doublejump + airdash + ringclimb + censer + rapier + blade"
     },
     {
         "id": "Z1625.i2",
-        "name": "Item Location 199"
+        "name": "Item Location 199",
+        "logic": "wallclimb + doublejump + airdash + ringclimb + censer + rapier + blade"
     },
     {
         "id": "Z1701.c0",
         "name": "Item Location 200",
-        "flags": "C"
+        "flags": "C",
+        "logic": "wallclimb + doublejump + censer + rapier"
     },
     {
         "id": "Z1709.l0",
-        "name": "Item Location 201"
+        "name": "Item Location 201",
+        "logic": "wallclimb + doublejump + censer + rapier"
     },
     {
         "id": "Z1715.l0",
-        "name": "Item Location 202"
+        "name": "Item Location 202",
+        "logic": "wallclimb + doublejump + censer + rapier"
     },
     {
         "id": "Z1718.l0",
-        "name": "Item Location 203"
+        "name": "Item Location 203",
+        "logic": "wallclimb + doublejump + censer + rapier"
     },
     {
         "id": "Z1719.l3",
-        "name": "Item Location 204"
+        "name": "Item Location 204",
+        "logic": "wallclimb + doublejump + censer + rapier"
     },
     {
         "id": "Z1721.l7",
-        "name": "Item Location 205"
+        "name": "Item Location 205",
+        "logic": "wallclimb + doublejump + censer + rapier"
     },
     {
         "id": "Z1722.i1",
         "name": "Item Location 206",
-        "flags": "D"
+        "flags": "D",
+        "logic": "wallclimb + doublejump + censer + rapier"
     },
     {
         "id": "Z1801.l1",
-        "name": "Item Location 207"
+        "name": "Item Location 207",
+        "logic": "wallclimb + doublejump + airdash + ringclimb + censer + rapier + blade"
     },
     {
         "id": "Z1802.l7",
-        "name": "Item Location 208"
+        "name": "Item Location 208",
+        "logic": "wallclimb + doublejump + airdash + ringclimb + censer + rapier + blade"
     },
     {
         "id": "Z1803.l7",
-        "name": "Item Location 209"
+        "name": "Item Location 209",
+        "logic": "wallclimb + doublejump + airdash + ringclimb + censer + rapier + blade"
     },
     {
         "id": "Z1804.l2",
-        "name": "Item Location 210"
+        "name": "Item Location 210",
+        "logic": "wallclimb + doublejump + airdash + ringclimb + censer + rapier + blade"
     },
     {
         "id": "Z1808.i6",
-        "name": "Item Location 211"
+        "name": "Item Location 211",
+        "logic": "wallclimb + doublejump + airdash + ringclimb + censer + rapier + blade"
     },
     {
         "id": "Z1808.r6",
-        "name": "Item Location 212"
+        "name": "Item Location 212",
+        "logic": "wallclimb + doublejump + airdash + ringclimb + censer + rapier + blade"
     },
     {
         "id": "Z1901.l0",
-        "name": "Item Location 213"
+        "name": "Item Location 213",
+        "logic": "wallclimb"
     },
     {
         "id": "Z1903.l1",
-        "name": "Item Location 214"
+        "name": "Item Location 214",
+        "logic": "wallclimb"
     },
     {
         "id": "Z1905.c0",
         "name": "Item Location 215",
-        "flags": "C"
+        "flags": "C",
+        "logic": "wallclimb"
     },
     {
         "id": "Z1906.i1",
-        "name": "Item Location 216"
+        "name": "Item Location 216",
+        "logic": "wallclimb"
     },
     {
         "id": "Z1907.i0",
-        "name": "Item Location 217"
+        "name": "Item Location 217",
+        "logic": "wallclimb"
     },
     {
         "id": "Z1909.l0",
-        "name": "Item Location 218"
+        "name": "Item Location 218",
+        "logic": "wallclimb"
     },
     {
         "id": "Z1910.l4",
-        "name": "Item Location 219"
+        "name": "Item Location 219",
+        "logic": "wallclimb"
     },
     {
         "id": "Z1910.l0",
-        "name": "Item Location 220"
+        "name": "Item Location 220",
+        "logic": "wallclimb"
     },
     {
         "id": "Z1913.l1",
-        "name": "Item Location 221"
+        "name": "Item Location 221",
+        "logic": "wallclimb"
     },
     {
         "id": "Z1914.i2",
-        "name": "Item Location 222"
+        "name": "Item Location 222",
+        "logic": "wallclimb"
     },
     {
         "id": "Z1917.l3",
-        "name": "Item Location 223"
+        "name": "Item Location 223",
+        "logic": "wallclimb"
     },
     {
         "id": "Z1917.i0",
-        "name": "Item Location 224"
+        "name": "Item Location 224",
+        "logic": "wallclimb"
     },
     {
         "id": "Z1918.l2",
-        "name": "Item Location 225"
+        "name": "Item Location 225",
+        "logic": "wallclimb"
     },
     {
         "id": "Z1919.a0",
         "name": "Item Location 226",
-        "flags": "A"
+        "flags": "A",
+        "logic": "wallclimb"
     },
     {
         "id": "Z1919.l3",
-        "name": "Item Location 227"
+        "name": "Item Location 227",
+        "logic": "wallclimb"
     },
     {
         "id": "Z2001.l1",
-        "name": "Item Location 228"
+        "name": "Item Location 228",
+        "logic": "wallclimb"
     },
     {
         "id": "Z2004.c0",
         "name": "Item Location 229",
-        "flags": "C"
+        "flags": "C",
+        "logic": "wallclimb + doublejump + airdash + censer"
     },
     {
         "id": "Z2102.l0",
-        "name": "Item Location 230"
+        "name": "Item Location 230",
+        "logic": "wallclimb + doublejump + airdash + censer + blade"
     },
     {
         "id": "Z2103.l0",
-        "name": "Item Location 231"
+        "name": "Item Location 231",
+        "logic": "wallclimb + doublejump + airdash + censer + blade"
     },
     {
         "id": "Z2104.l7",
-        "name": "Item Location 232"
+        "name": "Item Location 232",
+        "logic": "wallclimb + doublejump + airdash + censer + blade"
     },
     {
         "id": "Z2106.l4",
-        "name": "Item Location 233"
+        "name": "Item Location 233",
+        "logic": "wallclimb + doublejump + airdash + censer + blade"
     },
     {
         "id": "Z2112.l0",
-        "name": "Item Location 234"
+        "name": "Item Location 234",
+        "logic": "wallclimb + doublejump + airdash + censer + blade"
     },
     {
         "id": "Z2115.c0",
         "name": "Item Location 235",
-        "flags": "C"
+        "flags": "C",
+        "logic": "wallclimb + doublejump + airdash + censer + blade"
     },
     {
         "id": "Z2116.l2",
-        "name": "Item Location 236"
+        "name": "Item Location 236",
+        "logic": "wallclimb + doublejump + airdash + censer + blade"
     },
     {
         "id": "Z2117.l1",
-        "name": "Item Location 237"
+        "name": "Item Location 237",
+        "logic": "wallclimb + doublejump + airdash + censer + blade"
     },
     {
         "id": "Z2117.c0",
         "name": "Item Location 238",
-        "flags": "C"
+        "flags": "C",
+        "logic": "wallclimb + doublejump + airdash + censer + blade"
     },
     {
         "id": "Z2119.i0",
-        "name": "Item Location 239"
+        "name": "Item Location 239",
+        "logic": "wallclimb + doublejump + airdash + censer + blade"
     },
     {
         "id": "Z2120.i2",
-        "name": "Item Location 240"
+        "name": "Item Location 240",
+        "logic": "wallclimb + doublejump + airdash + censer + blade"
     },
     {
         "id": "Z2123.l2",
-        "name": "Item Location 241"
+        "name": "Item Location 241",
+        "logic": "wallclimb + doublejump + airdash + censer + blade"
     },
     {
         "id": "Z2127.l21",
-        "name": "Item Location 242"
+        "name": "Item Location 242",
+        "logic": "wallclimb + doublejump + airdash + censer + blade"
     },
     {
         "id": "Z2132.l7",
-        "name": "Item Location 243"
+        "name": "Item Location 243",
+        "logic": "wallclimb + doublejump + airdash + censer + blade"
     },
     {
         "id": "Z2133.l2",
-        "name": "Item Location 244"
+        "name": "Item Location 244",
+        "logic": "wallclimb + doublejump + airdash + censer + blade"
     },
     {
         "id": "Z2136.l1",
-        "name": "Item Location 245"
+        "name": "Item Location 245",
+        "logic": "wallclimb + doublejump + airdash + censer + blade"
+    },
+    {
+        "id": "Z2140.l7",
+        "name": "Item Location 246",
+        "logic": "wallclimb + doublejump + airdash + censer + blade"
     },
     {
         "id": "Z2145.l1",
-        "name": "Item Location 247"
+        "name": "Item Location 247",
+        "logic": "wallclimb + doublejump + airdash + censer + blade"
     },
     {
         "id": "Z2146.l12",
-        "name": "Item Location 248"
+        "name": "Item Location 248",
+        "logic": "wallclimb + doublejump + airdash + censer + blade"
     },
     {
         "id": "Z2147.l0",
-        "name": "Item Location 249"
+        "name": "Item Location 249",
+        "logic": "wallclimb + doublejump + airdash + censer + blade"
     },
     {
         "id": "Z2149.l0",
-        "name": "Item Location 250"
+        "name": "Item Location 250",
+        "logic": "wallclimb + doublejump + airdash + censer + blade"
     },
     {
         "id": "Z2150.i0.a",
-        "name": "Item Location 251"
+        "name": "Item Location 251",
+        "logic": "wallclimb + doublejump + airdash + censer + blade"
     },
     {
         "id": "Z2150.i0.b",
-        "name": "Item Location 252"
+        "name": "Item Location 252",
+        "logic": "wallclimb + doublejump + airdash + censer + blade"
     },
     {
         "id": "Z2301.l16",
-        "name": "Item Location 253"
+        "name": "Item Location 253",
+        "logic": "wallclimb + censer + blade + rapier"
     },
     {
         "id": "Z2304.r15",
         "name": "Item Location 254",
-        "flags": "B"
+        "flags": "B",
+        "logic": "wallclimb + censer + blade + rapier"
     },
     {
         "id": "Z2306.c0",
         "name": "Item Location 255",
-        "flags": "C"
+        "flags": "C",
+        "logic": "wallclimb + censer + blade + rapier"
     },
     {
         "id": "Z2308.a0",
         "name": "Item Location 256",
-        "flags": "A"
+        "flags": "A",
+        "logic": "wallclimb + censer + blade + rapier"
     },
     {
         "id": "Z2310.w0",
         "name": "Item Location 257",
-        "flags": "W"
+        "flags": "W",
+        "logic": "wallclimb + censer + blade + rapier"
     },
     {
         "id": "Z2311.l8",
-        "name": "Item Location 258"
+        "name": "Item Location 258",
+        "logic": "wallclimb + censer + blade + rapier"
     },
     {
         "id": "Z2314.l10",
-        "name": "Item Location 259"
+        "name": "Item Location 259",
+        "logic": "wallclimb + censer + blade + rapier"
     },
     {
         "id": "Z2317.l2",
-        "name": "Item Location 260"
+        "name": "Item Location 260",
+        "logic": "wallclimb + censer + blade + rapier"
     },
     {
         "id": "Z2401.i0",
         "name": "Item Location 261",
-        "flags": "L"
+        "flags": "L",
+        "logic": "wallclimb + doublejump + airdash + ringclimb + censer + rapier + blade"
     },
     {
         "id": "Z2401.l2",
-        "name": "Item Location 262"
+        "name": "Item Location 262",
+        "logic": "wallclimb + doublejump + airdash + ringclimb + censer + rapier + blade"
     },
     {
         "id": "Z2401.l3",
-        "name": "Item Location 263"
+        "name": "Item Location 263",
+        "logic": "wallclimb + doublejump + airdash + ringclimb + censer + rapier + blade"
     },
     {
         "id": "Z2401.l2.x",
-        "name": "Item Location 264"
+        "name": "Item Location 264",
+        "logic": "wallclimb + doublejump + airdash + ringclimb + censer + rapier + blade"
     },
     {
         "id": "Z2402.l1",
         "name": "Item Location 265",
-        "flags": "L"
+        "flags": "L",
+        "logic": "wallclimb + doublejump + airdash + ringclimb + censer + rapier + blade"
     },
     {
         "id": "Z2402.l0",
         "name": "Item Location 266",
-        "flags": "L"
+        "flags": "L",
+        "logic": "wallclimb + doublejump + airdash + ringclimb + censer + rapier + blade"
     },
     {
         "id": "Z2402.l2",
         "name": "Item Location 267",
-        "flags": "L"
-    },
-    {
-        "id": "Z2601.unknown",
-        "name": "Item Location 268"
+        "flags": "L",
+        "logic": "wallclimb + doublejump + airdash + ringclimb + censer + rapier + blade"
     },
     {
         "id": "Z2702.i0",
-        "name": "Item Location 269"
+        "name": "Item Location 269",
+        "logic": "wallclimb + doublejump + airdash + censer + rapier + blade + meaculpa"
     },
     {
         "id": "Z2703.l1",
-        "name": "Item Location 270"
+        "name": "Item Location 270",
+        "logic": "wallclimb + doublejump + airdash + censer + rapier + blade + meaculpa"
     },
     {
         "id": "Z2704.l6",
-        "name": "Item Location 271"
+        "name": "Item Location 271",
+        "logic": "wallclimb + doublejump + airdash + censer + rapier + blade + meaculpa"
     },
     {
         "id": "Z2704.l7",
-        "name": "Item Location 272"
+        "name": "Item Location 272",
+        "logic": "wallclimb + doublejump + airdash + censer + rapier + blade + meaculpa"
     },
     {
         "id": "Z2705.l5",
-        "name": "Item Location 273"
+        "name": "Item Location 273",
+        "logic": "wallclimb + doublejump + airdash + censer + rapier + blade + meaculpa"
     },
     {
         "id": "Z2705.i6",
-        "name": "Item Location 274"
+        "name": "Item Location 274",
+        "logic": "wallclimb + doublejump + airdash + censer + rapier + blade + meaculpa"
     },
     {
         "id": "Z2706.l10",
-        "name": "Item Location 275"
+        "name": "Item Location 275",
+        "logic": "wallclimb + doublejump + airdash + censer + rapier + blade + meaculpa"
     },
     {
         "id": "Z2708.l9",
-        "name": "Item Location 276"
+        "name": "Item Location 276",
+        "logic": "wallclimb + doublejump + airdash + censer + rapier + blade + meaculpa"
     },
     {
         "id": "Z2712.l14",
-        "name": "Item Location 277"
+        "name": "Item Location 277",
+        "logic": "wallclimb + doublejump + airdash + censer + rapier + blade + meaculpa"
     },
     {
         "id": "Z2716.l5",
-        "name": "Item Location 278"
+        "name": "Item Location 278",
+        "logic": "wallclimb + doublejump + airdash + censer + rapier + blade + meaculpa"
     },
     {
         "id": "Z2719.l5",
-        "name": "Item Location 279"
+        "name": "Item Location 279",
+        "logic": "wallclimb + doublejump + airdash + censer + rapier + blade + meaculpa"
     },
     {
         "id": "Z2724.l12",
-        "name": "Item Location 280"
+        "name": "Item Location 280",
+        "logic": "wallclimb + doublejump + airdash + censer + rapier + blade + meaculpa"
     },
     {
         "id": "Z2731.l2",
-        "name": "Item Location 281"
+        "name": "Item Location 281",
+        "logic": "wallclimb + doublejump + airdash + censer + rapier + blade + meaculpa"
     },
     {
         "id": "Z2735.r7",
-        "name": "Item Location 282"
+        "name": "Item Location 282",
+        "logic": "wallclimb + doublejump + airdash + censer + rapier + blade + meaculpa"
     },
     {
         "id": "Z2741.i0",
-        "name": "Item Location 283"
+        "name": "Item Location 283",
+        "logic": "wallclimb + doublejump + airdash + censer + rapier + blade + meaculpa"
     },
     {
         "id": "Z2743.i0",
-        "name": "Item Location 284"
+        "name": "Item Location 284",
+        "logic": "wallclimb + doublejump + airdash + censer + rapier + blade + meaculpa"
     },
     {
         "id": "Z2744.l21",
-        "name": "Item Location 285"
+        "name": "Item Location 285",
+        "logic": "wallclimb + doublejump + airdash + censer + rapier + blade + meaculpa"
     },
     {
         "id": "Z2746.i0",
-        "name": "Item Location 286"
+        "name": "Item Location 286",
+        "logic": "wallclimb + doublejump + airdash + censer + rapier + blade + meaculpa"
     },
     {
         "id": "Z2801.l9",
-        "name": "Item Location 287"
+        "name": "Item Location 287",
+        "logic": "wallclimb + doublejump + airdash + censer + rapier + blade + meaculpa"
     },
     {
         "id": "Z2804.i8",
-        "name": "Item Location 288"
+        "name": "Item Location 288",
+        "logic": "wallclimb + doublejump + airdash + censer + rapier + blade + meaculpa"
     },
     {
         "id": "Z2804.w0",
-        "name": "Item Location 289"
+        "name": "Item Location 289",
+        "logic": "wallclimb + doublejump + airdash + censer + rapier + blade + meaculpa"
     },
     {
         "id": "Z2804.r0",
-        "name": "Item Location 290"
+        "name": "Item Location 290",
+        "logic": "wallclimb + doublejump + airdash + censer + rapier + blade + meaculpa"
     },
     {
         "id": "Z2805.i0",
-        "name": "Item Location 291"
+        "name": "Item Location 291",
+        "logic": "wallclimb + doublejump + airdash + censer + rapier + blade + meaculpa"
     },
     {
         "id": "Z2814.w0",
         "name": "Item Location 292",
-        "flags": "W"
+        "flags": "W",
+        "logic": "wallclimb + doublejump + airdash + censer + rapier + blade + meaculpa"
     },
     {
         "id": "Z2815.l13",
-        "name": "Item Location 293"
+        "name": "Item Location 293",
+        "logic": "wallclimb + doublejump + airdash + censer + rapier + blade + meaculpa"
     },
     {
         "id": "Z2816.i7",
-        "name": "Item Location 294"
+        "name": "Item Location 294",
+        "logic": "wallclimb + doublejump + airdash + censer + rapier + blade + meaculpa"
     },
     {
         "id": "Z2823.l22",
-        "name": "Item Location 295"
+        "name": "Item Location 295",
+        "logic": "wallclimb + doublejump + airdash + censer + rapier + blade + meaculpa"
     },
     {
         "id": "Z2827.r7",
-        "name": "Item Location 296"
+        "name": "Item Location 296",
+        "logic": "wallclimb + doublejump + airdash + censer + rapier + blade + meaculpa"
     },
     {
         "id": "Z2828.l16",
-        "name": "Item Location 297"
+        "name": "Item Location 297",
+        "logic": "wallclimb + doublejump + airdash + censer + rapier + blade + meaculpa"
     },
     {
         "id": "Z2828.i17",
-        "name": "Item Location 298"
+        "name": "Item Location 298",
+        "logic": "wallclimb + doublejump + airdash + censer + rapier + blade + meaculpa"
     },
     {
         "id": "Z2828.l18",
-        "name": "Item Location 299"
+        "name": "Item Location 299",
+        "logic": "wallclimb + doublejump + airdash + censer + rapier + blade + meaculpa"
     },
     {
         "id": "Z2828.l15",
-        "name": "Item Location 300"
+        "name": "Item Location 300",
+        "logic": "wallclimb + doublejump + airdash + censer + rapier + blade + meaculpa"
     },
     {
         "id": "Z2829.l23",
-        "name": "Item Location 301"
+        "name": "Item Location 301",
+        "logic": "wallclimb + doublejump + airdash + censer + rapier + blade + meaculpa"
     },
     {
         "id": "Z2834.l0",
         "name": "Item Location 302",
-        "flags": "V"
+        "flags": "V",
+        "logic": "wallclimb + doublejump + airdash + censer + rapier + blade + meaculpa"
     },
     {
         "id": "Z2835.l12",
-        "name": "Item Location 303"
+        "name": "Item Location 303",
+        "logic": "wallclimb + doublejump + airdash + censer + rapier + blade + meaculpa"
     },
     {
         "id": "Z2835.i0",
-        "name": "Item Location 304"
+        "name": "Item Location 304",
+        "logic": "wallclimb + doublejump + airdash + censer + rapier + blade + meaculpa"
     },
     {
         "id": "SHOPHAND.o0",
         "name": "Item Location 305",
-        "flags": "S"
+        "flags": "S",
+        "logic": "wallclimb + doublejump + airdash + ringclimb + censer + rapier + blade"
     },
     {
         "id": "SHOPHAND.o1",
         "name": "Item Location 306",
-        "flags": "S"
+        "flags": "S",
+        "logic": "wallclimb + doublejump + airdash + ringclimb + censer + rapier + blade"
     },
     {
         "id": "SHOPHAND.o2",
         "name": "Item Location 307",
-        "flags": "S"
+        "flags": "S",
+        "logic": "wallclimb + doublejump + airdash + ringclimb + censer + rapier + blade"
     },
     {
         "id": "SHOPHAND.o3",
         "name": "Item Location 308",
-        "flags": "S"
+        "flags": "S",
+        "logic": "wallclimb + doublejump + airdash + ringclimb + censer + rapier + blade"
     },
     {
         "id": "SHOPHAND.o4",
         "name": "Item Location 309",
-        "flags": "S"
+        "flags": "S",
+        "logic": "wallclimb + doublejump + airdash + ringclimb + censer + rapier + blade"
     },
     {
         "id": "SHOPHAND.o5",
         "name": "Item Location 310",
-        "flags": "S"
+        "flags": "S",
+        "logic": "wallclimb + doublejump + airdash + ringclimb + censer + rapier + blade"
     },
     {
         "id": "SHOPHAND.o6",
         "name": "Item Location 311",
-        "flags": "S"
+        "flags": "S",
+        "logic": "wallclimb + doublejump + airdash + ringclimb + censer + rapier + blade"
     },
     {
         "id": "SHOPHAND.o7",
         "name": "Item Location 312",
-        "flags": "S"
+        "flags": "S",
+        "logic": "wallclimb + doublejump + airdash + ringclimb + censer + rapier + blade"
     },
     {
         "id": "SHOPHAND.o8",
         "name": "Item Location 313",
-        "flags": "S"
+        "flags": "S",
+        "logic": "wallclimb + doublejump + airdash + ringclimb + censer + rapier + blade"
     },
     {
         "id": "SHOPHAND.o9",
         "name": "Item Location 314",
-        "flags": "S"
+        "flags": "S",
+        "logic": "wallclimb + doublejump + airdash + ringclimb + censer + rapier + blade"
     },
     {
         "id": "SHOPHAND.o10",
         "name": "Item Location 315",
-        "flags": "S"
+        "flags": "S",
+        "logic": "wallclimb + doublejump + airdash + ringclimb + censer + rapier + blade"
     },
     {
         "id": "SHOPHAND.o11",
         "name": "Item Location 316",
-        "flags": "S"
+        "flags": "S",
+        "logic": "wallclimb + doublejump + airdash + ringclimb + censer + rapier + blade"
     },
     {
         "id": "SHOPITINERANT.o0",
         "name": "Item Location 317",
-        "flags": "S"
+        "flags": "S",
+        "logic": "wallclimb + doublejump + airdash + ringclimb + censer + rapier + blade"
     },
     {
         "id": "SHOPITINERANT.o1",
         "name": "Item Location 318",
-        "flags": "S"
+        "flags": "S",
+        "logic": "wallclimb + doublejump + airdash + ringclimb + censer + rapier + blade"
     },
     {
         "id": "SHOPITINERANT.o2",
         "name": "Item Location 319",
-        "flags": "S"
+        "flags": "S",
+        "logic": "wallclimb + doublejump + airdash + ringclimb + censer + rapier + blade"
     },
     {
         "id": "SHOPITINERANT.o3",
         "name": "Item Location 320",
-        "flags": "S"
+        "flags": "S",
+        "logic": "wallclimb + doublejump + airdash + ringclimb + censer + rapier + blade"
     },
     {
         "id": "SHOPITINERANT.o4",
         "name": "Item Location 321",
-        "flags": "S"
+        "flags": "S",
+        "logic": "wallclimb + doublejump + airdash + ringclimb + censer + rapier + blade"
     },
     {
         "id": "SHOPITINERANT.o5",
         "name": "Item Location 322",
-        "flags": "S"
+        "flags": "S",
+        "logic": "wallclimb + doublejump + airdash + ringclimb + censer + rapier + blade"
     },
     {
         "id": "SHOPITINERANT.o6",
         "name": "Item Location 323",
-        "flags": "S"
+        "flags": "S",
+        "logic": "wallclimb + doublejump + airdash + ringclimb + censer + rapier + blade"
     },
     {
         "id": "SHOPITINERANT.o7",
         "name": "Item Location 324",
-        "flags": "S"
+        "flags": "S",
+        "logic": "wallclimb + doublejump + airdash + ringclimb + censer + rapier + blade"
     },
     {
         "id": "SHOPMISSABLES.o0",
         "name": "Item Location 325",
-        "flags": "S"
+        "flags": "S",
+        "logic": "wallclimb + doublejump + airdash + ringclimb + censer + rapier + blade"
     },
     {
         "id": "SHOPMISSABLES.o1",
         "name": "Item Location 326",
-        "flags": "S"
+        "flags": "S",
+        "logic": "wallclimb + doublejump + airdash + ringclimb + censer + rapier + blade"
     },
     {
         "id": "SHOPMISSABLES.o2",
         "name": "Item Location 327",
-        "flags": "S"
+        "flags": "S",
+        "logic": "wallclimb + doublejump + airdash + ringclimb + censer + rapier + blade"
     },
     {
         "id": "SHOPMISSABLES.o3",
         "name": "Item Location 328",
-        "flags": "S"
+        "flags": "S",
+        "logic": "wallclimb + doublejump + airdash + ringclimb + censer + rapier + blade"
     },
     {
         "id": "SHOPMISSABLES.o4",
         "name": "Item Location 329",
-        "flags": "S"
+        "flags": "S",
+        "logic": "wallclimb + doublejump + airdash + ringclimb + censer + rapier + blade"
     },
     {
         "id": "SHOPMISSABLES.o5",
         "name": "Item Location 330",
-        "flags": "S"
+        "flags": "S",
+        "logic": "wallclimb + doublejump + airdash + ringclimb + censer + rapier + blade"
     },
     {
         "id": "SHOPMISSABLES.o6",
         "name": "Item Location 331",
-        "flags": "S"
+        "flags": "S",
+        "logic": "wallclimb + doublejump + airdash + ringclimb + censer + rapier + blade"
     }
 ]
