@@ -48,10 +48,12 @@ public class RandomizerSettings
     /// </summary>
     public string FormatInfo()
     {
-        string logic = LogicType == 0 ? "Easy" : LogicType == 1 ? "Normal" : "Hard";
-        string keys = RequiredKeys > 0 ? (RequiredKeys - 1).ToString() : "Random";
-        string[] weapons = new string[] { "Veredicto", "Ruego", "Sarmiento" };
-        string weapon = StartingWeapon > 0 ? weapons[StartingWeapon - 1] : "Random";
+        string[] logics = ["Easy", "Normal", "Hard"];
+        string[] weapons = ["Veredicto", "Ruego", "Sarmiento", "Mea Culpa"];
+
+        string logic = logics[LogicType];
+        string keys = RequiredKeys == -1 ? "Random" : RequiredKeys.ToString();
+        string weapon = StartingWeapon == -1 ? "Random" : weapons[StartingWeapon];
 
         var sb = new StringBuilder();
         sb.AppendLine("RANDOMIZER SETTINGS");
@@ -72,11 +74,13 @@ public class RandomizerSettings
     /// <returns></returns>
     public string FormatSpoiler()
     {
-        string logic = LogicType == 0 ? "Easy" : LogicType == 1 ? "Normal" : "Hard";
-        string keys = RequiredKeys > 0 ? (RequiredKeys - 1).ToString() : $"[{RealRequiredKeys}]";
-        string[] weapons = new string[] { "Veredicto", "Ruego", "Sarmiento" };
-        string weapon = StartingWeapon > 0 ? weapons[StartingWeapon - 1] : $"[{weapons[RealStartingWeapon]}]";
+        string[] logics = ["Easy", "Normal", "Hard"];
+        string[] weapons = ["Veredicto", "Ruego", "Sarmiento", "Mea Culpa" ];
         var line = new string('=', 35);
+
+        string logic = logics[LogicType];
+        string keys = RequiredKeys == -1 ? $"[{RealRequiredKeys}]" : RequiredKeys.ToString();
+        string weapon = StartingWeapon == -1 ? $"[{weapons[RealStartingWeapon]}]" : weapons[StartingWeapon];
 
         var sb = new StringBuilder();
         sb.AppendLine("Seed: " + Seed);
@@ -100,10 +104,10 @@ public class RandomizerSettings
     {
         get
         {
-            if (StartingWeapon >= 1 && StartingWeapon <= 3)
-                return StartingWeapon - 1;
+            if (StartingWeapon == -1)
+                return new Random(Seed).Next(0, 4);
 
-            return new Random(Seed).Next(0, 3);
+            return StartingWeapon;
         }
     }
 
@@ -115,10 +119,10 @@ public class RandomizerSettings
     {
         get
         {
-            if (RequiredKeys >= 1 && RequiredKeys <= 6)
-                return RequiredKeys - 1;
+            if (RequiredKeys == -1)
+                return new Random(Seed).Next(0, 6);
 
-            return new Random(Seed).Next(0, 6);
+            return RequiredKeys;
         }
     }
 
@@ -129,8 +133,8 @@ public class RandomizerSettings
     {
         Seed = RANDOM_SEED,
         LogicType = 1,
-        RequiredKeys = 5,
-        StartingWeapon = 0,
+        RequiredKeys = 4,
+        StartingWeapon = -1,
         ShuffleLongQuests = false,
         ShuffleShops = true,
     };

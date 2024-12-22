@@ -60,7 +60,7 @@ public class ItemHandler
     public void DisplayItem(Item item)
     {
         CoreCache.UINavigationHelper.ShowItemPopup(
-            Main.Randomizer.LocalizationHandler.Localize("otex"),
+            Main.Randomizer.LocalizationHandler.Localize("popup/item"),
             item.GetName(),
             item.GetSprite(),
             false);

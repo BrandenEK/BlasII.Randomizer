@@ -1,215 +1,204 @@
 lang: en
 
 # Special items
-Censer.name: Veredicto
-Censer.desc: A weapon that can be used to ring bronze bells.
-RosaryBlade.name: Ruego Al Alba
-RosaryBlade.desc: A weapon that can be used to pierce bone blockades.
-Rapier.name: Sarmiento & Centella
-Rapier.desc: A weapon that can be used to activate magic mirrors.
-MeaCulpa.name: Mea Culpa
-MeaCulpa.desc: The old sword of legend
-WallClimb.name: Ivy of Ascension
-WallClimb.desc: The ability to climb up large walls.
-AirJump.name: Passage of Ash
-AirJump.desc: The ability to jump twice while in the air.
-AirDash.name: Mercy of the Wind
-AirDash.desc: The ability to dash while in the air.
-MagicRingClimb.name: Scion's Protection
-MagicRingClimb.desc: The ability to spawn cherubs rings.
-GlassWalk.name: Broken Step
-GlassWalk.desc: The ability to walk on glass platforms
-Cherub.name: Brother of Proximo
-Cherub.desc: A little floating baby that you rescued from a cage.
-Tears.name: Tears of Atonement
-Tears.desc: Can be used to buy stuff.
-Marks.name: Marks of Martyrdom
-Marks.desc: Can be used to buy more stuff.
-PreMarks.name: Marks of the Preceptor
-PreMarks.desc: Can be used to buy even more stuff.
+weapon/censer/name: Veredicto
+weapon/censer/desc: A weapon that can be used to ring bronze bells.
+weapon/rosaryblade/name: Ruego Al Alba
+weapon/rosaryblade/desc: A weapon that can be used to pierce bone blockades.
+weapon/rapier/name: Sarmiento & Centella
+weapon/rapier/desc: A weapon that can be used to activate magic mirrors.
+weapon/meaculpa/name: Mea Culpa
+weapon/meaculpa/desc: The old sword of legend
+ability/wallclimb/name: Ivy of Ascension
+ability/wallclimb/desc: The ability to climb up large walls.
+ability/airjump/name: Passage of Ash
+ability/airjump/desc: The ability to jump twice while in the air.
+ability/airdash/name: Mercy of the Wind
+ability/airdash/desc: The ability to dash while in the air.
+ability/magicringclimb/name: Scion's Protection
+ability/magicringclimb/desc: The ability to spawn cherubs rings.
+ability/glasswalk/name: Broken Step
+ability/glasswalk/desc: The ability to walk on glass platforms
+currency/cherub/name: Brother of Proximo
+currency/cherub/desc: A little floating baby that you rescued from a cage.
+currency/tears/name: Tears of Atonement
+currency/tears/desc: Can be used to buy stuff.
+currency/marks/name: Marks of Martyrdom
+currency/marks/desc: Can be used to buy more stuff.
+currency/premarks/name: Marks of the Preceptor
+currency/premarks/desc: Can be used to buy even more stuff.
 
 # Gameplay changes
-otex: You have acquired
-popup.keys: "The Mother said: 'Locate the * keys that herald the Birth."
-popup.sisters: ...
-popup.mud: The Mud Key remains intact.
+popup/item: You have acquired
+popup/keys: "The Mother said: 'Locate the * keys that herald the Birth."
+popup/sisters: ...
+popup/mud: The Mud Key remains intact.
 
 # Settings menu
-head: RANDOMIZER SETTINGS
-btnb: Begin
-btnc: Cancel
-seed: Seed:
-rand: Random
-opsl: Shuffle long quests
-opss: Shuffle shops
-opsw: Starting weapon
-o1sw: Veredicto
-o2sw: Ruego
-o3sw: Sarmiento
-opld: Logic difficulty
-o1ld: Easy
-o2ld: Normal
-o3ld: Hard
-oprq: Required keys
-o1rq: Zero
-o2rq: One
-o3rq: Two
-o4rq: Three
-o5rq: Four
-o6rq: Five
+option/seed: Seed:
+option/random: Random
+option/long: Shuffle long quests
+option/shops: Shuffle shops
+option/weapon: Starting weapon
+option/weapon/censer: Veredicto
+option/weapon/rosary: Ruego
+option/weapon/rapier: Sarmiento
+option/weapon/meaculpa: Mea Culpa
+option/logic: Logic difficulty
+option/logic/easy: Easy
+option/logic/normal: Normal
+option/logic/hard: Hard
+option/keys: Required keys
+option/keys/zero: Zero
+option/keys/one: One
+option/keys/two: Two
+option/keys/three: Three
+option/keys/four: Four
+option/keys/five: Five
 
 lang: es
 
 # Special items
-Censer.name: Veredicto
-Censer.desc: Arma que puede usarse para tañer campanas de bronce.
-RosaryBlade.name: Ruego Al Alba
-RosaryBlade.desc: Arma que puede usarse para perforar barreras de hueso.
-Rapier.name: Sarmiento y Centella
-Rapier.desc: Arma que puede usarse para activar espejos mágicos.
-WallClimb.name: Hiedra de la Ascensión
-WallClimb.desc: La habilidad para escalar paredes altas.
-AirJump.name: Paso de Ceniza
-AirJump.desc: La habilidad para saltar por segunda vez en el aire.
-AirDash.name: Merced del Viento
-AirDash.desc: La habilidad para esquivar en el aire.
-MagicRingClimb.name: Amparo de los Vástagos
-MagicRingClimb.desc: La habilidad para hacer aparecer querubines con anillas.
-Cherub.name: Hermano de Próximo
-Cherub.desc: Un pequeño bebé flotante que rescataste de una jaula.
-Tears.name: Lágrimas de Enmienda
-Tears.desc: Pueden usarse para comprar cosas.
-Marks.name: Marcas del Martirio
-Marks.desc: Puede usarse para comprar más cosas.
+weapon/censer/name: Veredicto
+weapon/censer/desc: Arma que puede usarse para tañer campanas de bronce.
+weapon/rosaryblade/name: Ruego Al Alba
+weapon/rosaryblade/desc: Arma que puede usarse para perforar barreras de hueso.
+weapon/rapier/name: Sarmiento y Centella
+weapon/rapier/desc: Arma que puede usarse para activar espejos mágicos.
+ability/wallclimb/name: Hiedra de la Ascensión
+ability/wallclimb/desc: La habilidad para escalar paredes altas.
+ability/airjump/name: Paso de Ceniza
+ability/airjump/desc: La habilidad para saltar por segunda vez en el aire.
+ability/airdash/name: Merced del Viento
+ability/airdash/desc: La habilidad para esquivar en el aire.
+ability/magicringclimb/name: Amparo de los Vástagos
+ability/magicringclimb/desc: La habilidad para hacer aparecer querubines con anillas.
+currency/cherub/name: Hermano de Próximo
+currency/cherub/desc: Un pequeño bebé flotante que rescataste de una jaula.
+currency/tears/name: Lágrimas de Enmienda
+currency/tears/desc: Pueden usarse para comprar cosas.
+currency/marks/name: Marcas del Martirio
+currency/marks/desc: Puede usarse para comprar más cosas.
 
 # Gameplay changes
-otex: Has obtenido
-popup.keys: "La Madre dijo: 'Encontrad las * llaves que anuncian el Nacimiento'"
+popup/item: Has obtenido
+popup/keys: "La Madre dijo: 'Encontrad las * llaves que anuncian el Nacimiento'"
 
 # Settings menu
-head: AJUSTES DEL RANDOMIZADOR
-btnb: Empezar
-btnc: Cancelar
-seed: Semilla:
-rand: Aleatoria
-opsl: Añadir misiones largas
-opss: Añadir tiendas
-opsw: Arma inicial
-o1sw: Veredicto
-o2sw: Ruego
-o3sw: Sarmiento
-opld: Dificultad de la lógica
-o1ld: Fácil
-o2ld: Normal
-o3ld: Difícil
-oprq: Llaves requeridas
-o1rq: Cero
-o2rq: Una
-o3rq: Dos
-o4rq: Tres
-o5rq: Cuatro
-o6rq: Cinco
+option/seed: Semilla:
+option/random: Aleatoria
+option/long: Añadir misiones largas
+option/shops: Añadir tiendas
+option/weapon: Arma inicial
+option/weapon/censer: Veredicto
+option/weapon/rosary: Ruego
+option/weapon/rapier: Sarmiento
+option/logic: Dificultad de la lógica
+option/logic/easy: Fácil
+option/logic/normal: Normal
+option/logic/hard: Difícil
+option/keys: Llaves requeridas
+option/keys/zero: Cero
+option/keys/one: Una
+option/keys/two: Dos
+option/keys/three: Tres
+option/keys/four: Cuatro
+option/keys/five: Cinco
 
 lang : fr
 
 # Special items
-Censer.name: Veredicto
-Censer.desc: Une arme qui permet de faire sonner les cloches de bronze.
-RosaryBlade.name: Ruego Al Alba
-RosaryBlade.desc: Une arme qui permet de détruire les barricades d'os.
-Rapier.name: Sarmiento & Centella
-Rapier.desc: Une arme qui permet d'activer les mirroirs magiques.
-WallClimb.name: Lierre d'ascension
-WallClimb.desc: La capacité d'escalader les grands murs.
-AirJump.name: Passage des cendres
-AirJump.desc: La capacité de sauter une deuxieme fois dans les airs.
-AirDash.name: Clémence du vent
-AirDash.desc: La capacité de ruer dans les airs.
-MagicRingClimb.name: Protection du descendant
-MagicRingClimb.desc: La capacité de faire aparaitre les anneau de cherubins.
-Cherub.name: Frères du miracle
-Cherub.desc: Un petit cherubin flottant que vous libérez d'un cage.
-Tears.name: Larmes d'expiation
-Tears.desc: Permettent acheter des choses.
-Marks.name: Marques du martyr
-Marks.desc: Permettent d'acheter d'autres choses.
+weapon/censer/name: Veredicto
+weapon/censer/desc: Une arme qui permet de faire sonner les cloches de bronze.
+weapon/rosaryblade/name: Ruego Al Alba
+weapon/rosaryblade/desc: Une arme qui permet de détruire les barricades d'os.
+weapon/rapier/name: Sarmiento & Centella
+weapon/rapier/desc: Une arme qui permet d'activer les mirroirs magiques.
+ability/wallclimb/name: Lierre d'ascension
+ability/wallclimb/desc: La capacité d'escalader les grands murs.
+ability/airjump/name: Passage des cendres
+ability/airjump/desc: La capacité de sauter une deuxieme fois dans les airs.
+ability/airdash/name: Clémence du vent
+ability/airdash/desc: La capacité de ruer dans les airs.
+ability/magicringclimb/name: Protection du descendant
+ability/magicringclimb/desc: La capacité de faire aparaitre les anneau de cherubins.
+currency/cherub/name: Frères du miracle
+currency/cherub/desc: Un petit cherubin flottant que vous libérez d'un cage.
+currency/tears/name: Larmes d'expiation
+currency/tears/desc: Permettent acheter des choses.
+currency/marks/name: Marques du martyr
+currency/marks/desc: Permettent d'acheter d'autres choses.
 
 # Gameplay changes
-otex: Vous avez acquis
-popup.keys: "La Mère dit : 'Trouvez les * clés qui annoncent la Naissance.'"
+popup/item: Vous avez acquis
+popup/keys: "La Mère dit : 'Trouvez les * clés qui annoncent la Naissance.'"
 
 # Settings menu
-head: PARAMETRES DU RANDOMIZER
-btnb: Commencer
-btnc: Annuler
-seed: Seed:
-rand: Aléatoire
-opsl: Longue quêtes aléatoires
-opss: Magasins aléatoires
-opsw: Arme de départ
-o1sw: Veredicto
-o2sw: Ruego
-o3sw: Sarmiento
-opld: Difficulté de la logique
-o1ld: Simple
-o2ld: Normal
-o3ld: Difficile
-oprq: Clés requises
-o1rq: Zero
-o2rq: Une
-o3rq: Deux
-o4rq: Trois
-o5rq: Quatre
-o6rq: Cinq
+option/seed: Seed:
+option/random: Aléatoire
+option/long: Longue quêtes aléatoires
+option/shops: Magasins aléatoires
+option/weapon: Arme de départ
+option/weapon/censer: Veredicto
+option/weapon/rosary: Ruego
+option/weapon/rapier: Sarmiento
+option/logic: Difficulté de la logique
+option/logic/easy: Simple
+option/logic/normal: Normal
+option/logic/hard: Difficile
+option/keys: Clés requises
+option/keys/zero: Zero
+option/keys/one: Une
+option/keys/two: Deux
+option/keys/three: Trois
+option/keys/four: Quatre
+option/keys/five: Cinq
 
 lang: pt-BR
 
 # Special items
-Censer.name: Veredicto
-Censer.desc: Arma que pode ser usada para tocar sinos.
-RosaryBlade.name: Ruego Al Alba
-RosaryBlade.desc: Arma que pode ser usada para perfurar barreiras de ossos.
-Rapier.name: Sarmiento e Centella
-Rapier.desc: Arma que pode ser usada para ativar espelhos mágicos.
-WallClimb.name: Hera da Ascensão
-WallClimb.desc: Habilidade de subir paredes altas.
-AirJump.name: Passagem das Cinzas
-AirJump.desc: Habilidade de pular uma segunda vez no ar.
-AirDash.name: Piedade do Vento
-AirDash.desc: Habilidade de esquivar no ar.
-MagicRingClimb.name: Proteção dos Rebentos
-MagicRingClimb.desc: Habilidade de invocar querubins com anilhas.
-Cherub.name: Irmão de Proximo
-Cherub.desc: Um pequeno bebê flutuante que você resgatou de uma gaiola.
-Tears.name: Lágrimas de Redenção
-Tears.desc: Pode ser usado para comprar coisas.
-Marks.name: Marcas do Martírio
-Marks.desc: Pode ser usado para comprar mais coisas.
+weapon/censer/name: Veredicto
+weapon/censer/desc: Arma que pode ser usada para tocar sinos.
+weapon/rosaryblade/name: Ruego Al Alba
+weapon/rosaryblade/desc: Arma que pode ser usada para perfurar barreiras de ossos.
+weapon/rapier/name: Sarmiento e Centella
+weapon/rapier/desc: Arma que pode ser usada para ativar espelhos mágicos.
+ability/wallclimb/name: Hera da Ascensão
+ability/wallclimb/desc: Habilidade de subir paredes altas.
+ability/airjump/name: Passagem das Cinzas
+ability/airjump/desc: Habilidade de pular uma segunda vez no ar.
+ability/airdash/name: Piedade do Vento
+ability/airdash/desc: Habilidade de esquivar no ar.
+ability/magicringclimb/name: Proteção dos Rebentos
+ability/magicringclimb/desc: Habilidade de invocar querubins com anilhas.
+currency/cherub/name: Irmão de Proximo
+currency/cherub/desc: Um pequeno bebê flutuante que você resgatou de uma gaiola.
+currency/tears/name: Lágrimas de Redenção
+currency/tears/desc: Pode ser usado para comprar coisas.
+currency/marks/name: Marcas do Martírio
+currency/marks/desc: Pode ser usado para comprar mais coisas.
 
 # Gameplay changes
-otex: Você obteve
-popup.keys: "Disse a Mãe: 'Encontre as * chaves que anunciam o Nascimento.'"
+popup/item: Você obteve
+popup/keys: "Disse a Mãe: 'Encontre as * chaves que anunciam o Nascimento.'"
 
 # Settings menu
-head: CONFIGURAÇÕES DO RANDOMIZADOR
-btnb: Começar
-btnc: Cancelar
-seed: Semente:
-rand: Aleatória
-opsl: Embaralhar missões longas
-opss: Embaralhar lojas
-opsw: Arma inicial
-o1sw: Veredicto
-o2sw: Ruego
-o3sw: Sarmiento
-opld: Dificuldade da lógica
-o1ld: Fácil
-o2ld: Normal
-o3ld: Difícil
-oprq: Chaves necessárias
-o1rq: Zero
-o2rq: Uma
-o3rq: Duas
-o4rq: Três
-o5rq: Quatro
-o6rq: Cinco
+option/seed: Semente:
+option/random: Aleatória
+option/long: Embaralhar missões longas
+option/shops: Embaralhar lojas
+option/weapon: Arma inicial
+option/weapon/censer: Veredicto
+option/weapon/rosary: Ruego
+option/weapon/rapier: Sarmiento
+option/logic: Dificuldade da lógica
+option/logic/easy: Fácil
+option/logic/normal: Normal
+option/logic/hard: Difícil
+option/keys: Chaves necessárias
+option/keys/zero: Zero
+option/keys/one: Uma
+option/keys/two: Duas
+option/keys/three: Três
+option/keys/four: Quatro
+option/keys/five: Cinco

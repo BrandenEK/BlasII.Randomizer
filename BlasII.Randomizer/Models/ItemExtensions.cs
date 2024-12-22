@@ -50,12 +50,12 @@ public static class ItemExtensions
             Item.ItemType.QuestItem => AssetStorage.QuestItems[item.Id].caption,
             Item.ItemType.ProgressiveQuestItem => item.GetProgressiveItem(true).caption,
             Item.ItemType.GoldLump => AssetStorage.QuestItems["QI105"].caption,
-            Item.ItemType.Weapon => Main.Randomizer.LocalizationHandler.Localize($"{item.Id}.name"),
-            Item.ItemType.Ability => Main.Randomizer.LocalizationHandler.Localize($"{item.Id}.name"),
-            Item.ItemType.Cherub => Main.Randomizer.LocalizationHandler.Localize("Cherub.name"),
-            Item.ItemType.Tears => item.GetAmount() + " " + Main.Randomizer.LocalizationHandler.Localize("Tears.name"),
-            Item.ItemType.Marks => item.GetAmount() + " " + Main.Randomizer.LocalizationHandler.Localize("Marks.name"),
-            Item.ItemType.PreMarks => item.GetAmount() + " " + Main.Randomizer.LocalizationHandler.Localize("PreMarks.name"),
+            Item.ItemType.Weapon => Main.Randomizer.LocalizationHandler.Localize($"weapon/{item.Id.ToLower()}/name"),
+            Item.ItemType.Ability => Main.Randomizer.LocalizationHandler.Localize($"ability/{item.Id.ToLower()}/name"),
+            Item.ItemType.Cherub => Main.Randomizer.LocalizationHandler.Localize("currency/cherub/name"),
+            Item.ItemType.Tears => item.GetAmount() + " " + Main.Randomizer.LocalizationHandler.Localize("currency/tears/name"),
+            Item.ItemType.Marks => item.GetAmount() + " " + Main.Randomizer.LocalizationHandler.Localize("currency/marks/name"),
+            Item.ItemType.PreMarks => item.GetAmount() + " " + Main.Randomizer.LocalizationHandler.Localize("currency/premarks/name"),
 
             Item.ItemType.Invalid => "Invalid Item",
             _ => null,
@@ -75,12 +75,12 @@ public static class ItemExtensions
             Item.ItemType.QuestItem => AssetStorage.QuestItems[item.Id].description,
             Item.ItemType.ProgressiveQuestItem => item.GetProgressiveItem(true).description,
             Item.ItemType.GoldLump => AssetStorage.QuestItems["QI105"].description,
-            Item.ItemType.Weapon => Main.Randomizer.LocalizationHandler.Localize($"{item.Id}.desc"),
-            Item.ItemType.Ability => Main.Randomizer.LocalizationHandler.Localize($"{item.Id}.desc"),
-            Item.ItemType.Cherub => Main.Randomizer.LocalizationHandler.Localize("Cherub.desc"),
-            Item.ItemType.Tears => Main.Randomizer.LocalizationHandler.Localize("Tears.desc"),
-            Item.ItemType.Marks => Main.Randomizer.LocalizationHandler.Localize("Marks.desc"),
-            Item.ItemType.PreMarks => Main.Randomizer.LocalizationHandler.Localize("PreMarks.desc"),
+            Item.ItemType.Weapon => Main.Randomizer.LocalizationHandler.Localize($"weapon/{item.Id.ToLower()}/desc"),
+            Item.ItemType.Ability => Main.Randomizer.LocalizationHandler.Localize($"ability/{item.Id.ToLower()}/desc"),
+            Item.ItemType.Cherub => Main.Randomizer.LocalizationHandler.Localize("currency/cherub/desc"),
+            Item.ItemType.Tears => Main.Randomizer.LocalizationHandler.Localize("currency/tears/desc"),
+            Item.ItemType.Marks => Main.Randomizer.LocalizationHandler.Localize("currency/marks/desc"),
+            Item.ItemType.PreMarks => Main.Randomizer.LocalizationHandler.Localize("currency/premarks/desc"),
 
             Item.ItemType.Invalid => "You should not see this.",
             _ => null,
@@ -155,14 +155,24 @@ public static class ItemExtensions
                     {
                         // Upgrade the weapon
                         CoreCache.WeaponMemoryManager.UpgradeWeaponTier(weapon);
+                        break;
                     }
-                    else
+
+                    // Unlock the weapon and give the switching ability
+                    var ability = AssetStorage.Abilities[ABILITY_IDS.ChangeWeapon];
+                    CoreCache.EquipmentManager.Unlock(weapon);
+                    CoreCache.AbilitiesUnlockManager.SetAbility(ability, true);
+
+                    // Handle special case for Ruego/MeaCulpa switching
+                    if (item.Id == "RosaryBlade" || item.Id == "MeaCulpa")
                     {
-                        // Unlock the weapon and give the switching ability
-                        var ability = AssetStorage.Abilities[ABILITY_IDS.ChangeWeapon];
-                        CoreCache.EquipmentManager.Unlock(weapon);
-                        CoreCache.AbilitiesUnlockManager.SetAbility(ability, true);
+                        var otherWeapon = AssetStorage.Weapons[item.Id == "RosaryBlade" ? WEAPON_IDS.MeaCulpa : WEAPON_IDS.RosaryBlade];
+                        int slot = CoreCache.EquipmentManager.GetWeaponSlot(weapon);
+
+                        if (slot != -1 && CoreCache.EquipmentManager.HasWeapon(otherWeapon))
+                            CoreCache.EquipmentManager.ForceSetWeaponToSlot(null, slot);
                     }
+
                     break;
                 }
             case Item.ItemType.Ability:
