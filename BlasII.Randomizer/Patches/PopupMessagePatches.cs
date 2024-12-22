@@ -19,7 +19,7 @@ class PopupMessageLogic_ShowMessageAndWait_Patch
         // When reading the CR door, show how many keys you must find
         if (message.name == "MSG_0003")
         {
-            string text = Main.Randomizer.LocalizationHandler.Localize("popup.keys")
+            string text = Main.Randomizer.LocalizationHandler.Localize("popup/keys")
                 .Replace("*", Main.Randomizer.CurrentSettings.RealRequiredKeys.ToString());
             __instance.textCtrl.SetText(text);
             return;
@@ -38,7 +38,7 @@ class PopupMessageLogic_ShowMessageAndWait_Patch
             message.name == "MSG_2502" ||
             message.name == "MSG_2503")
         {
-            string text = Main.Randomizer.LocalizationHandler.Localize("popup.sisters");
+            string text = Main.Randomizer.LocalizationHandler.Localize("popup/sisters");
             __instance.textCtrl.SetText(text);
             return;
         }
@@ -46,7 +46,7 @@ class PopupMessageLogic_ShowMessageAndWait_Patch
         // When opening a mud door, dont show the removal
         if (message.name == "MSG_10101")
         {
-            string text = Main.Randomizer.LocalizationHandler.Localize("popup.mud");
+            string text = Main.Randomizer.LocalizationHandler.Localize("popup/mud");
             __instance.textCtrl.SetText(text);
             return;
         }

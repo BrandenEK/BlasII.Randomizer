@@ -29,15 +29,12 @@ PreMarks.name: Marks of the Preceptor
 PreMarks.desc: Can be used to buy even more stuff.
 
 # Gameplay changes
-otex: You have acquired
-popup.keys: "The Mother said: 'Locate the * keys that herald the Birth."
-popup.sisters: ...
-popup.mud: The Mud Key remains intact.
+popup/item: You have acquired
+popup/keys: "The Mother said: 'Locate the * keys that herald the Birth."
+popup/sisters: ...
+popup/mud: The Mud Key remains intact.
 
 # Settings menu
-head: RANDOMIZER SETTINGS
-btnb: Begin
-btnc: Cancel
 option/seed: Seed:
 option/random: Random
 option/long: Shuffle long quests
@@ -84,13 +81,10 @@ Marks.name: Marcas del Martirio
 Marks.desc: Puede usarse para comprar más cosas.
 
 # Gameplay changes
-otex: Has obtenido
-popup.keys: "La Madre dijo: 'Encontrad las * llaves que anuncian el Nacimiento'"
+popup/item: Has obtenido
+popup/keys: "La Madre dijo: 'Encontrad las * llaves que anuncian el Nacimiento'"
 
 # Settings menu
-head: AJUSTES DEL RANDOMIZADOR
-btnb: Empezar
-btnc: Cancelar
 option/seed: Semilla:
 option/random: Aleatoria
 option/long: Añadir misiones largas
@@ -136,13 +130,10 @@ Marks.name: Marques du martyr
 Marks.desc: Permettent d'acheter d'autres choses.
 
 # Gameplay changes
-otex: Vous avez acquis
-popup.keys: "La Mère dit : 'Trouvez les * clés qui annoncent la Naissance.'"
+popup/item: Vous avez acquis
+popup/keys: "La Mère dit : 'Trouvez les * clés qui annoncent la Naissance.'"
 
 # Settings menu
-head: PARAMETRES DU RANDOMIZER
-btnb: Commencer
-btnc: Annuler
 option/seed: Seed:
 option/random: Aléatoire
 option/long: Longue quêtes aléatoires
@@ -188,13 +179,10 @@ Marks.name: Marcas do Martírio
 Marks.desc: Pode ser usado para comprar mais coisas.
 
 # Gameplay changes
-otex: Você obteve
-popup.keys: "Disse a Mãe: 'Encontre as * chaves que anunciam o Nascimento.'"
+popup/item: Você obteve
+popup/keys: "Disse a Mãe: 'Encontre as * chaves que anunciam o Nascimento.'"
 
 # Settings menu
-head: CONFIGURAÇÕES DO RANDOMIZADOR
-btnb: Começar
-btnc: Cancelar
 option/seed: Semente:
 option/random: Aleatória
 option/long: Embaralhar missões longas
