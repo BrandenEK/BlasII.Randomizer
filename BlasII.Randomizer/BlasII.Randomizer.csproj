@@ -20,7 +20,7 @@
   </PropertyGroup>
   
   <ItemGroup>
-    <PackageReference Include="Basalt.LogicParser" Version="2.0.0" />
+    <PackageReference Include="Basalt.LogicParser" Version="2.0.1" />
     <PackageReference Include="BlasII.Framework.Menus" Version="0.2.0" />
     <PackageReference Include="BlasII.GameLibs" Version="2.2.0" />
     <PackageReference Include="BlasII.ModdingAPI" Version="1.1.0" />
