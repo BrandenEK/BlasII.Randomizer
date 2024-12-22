@@ -22,14 +22,11 @@ class LootInteractable_Use_Patch
     public static void Prefix(LootInteractable __instance)
     {
         string locationId = $"{CoreCache.Room.CurrentRoom.Name}.l{__instance.transform.GetSiblingIndex()}";
+        locationId = locationId.CalculateSpecialId(__instance.loot?.size.ToString());
         ModLog.Error("LootInteractable.UseLootByInteractor - " + locationId);
 
         if (!Main.Randomizer.IsRandomizerMode)
             return;
-
-        ModLog.Info(__instance.loot.lootType);
-        ModLog.Info(__instance.loot.size);
-        ModLog.Info(__instance.loot.stackSize);
 
         Main.Randomizer.ItemHandler.GiveItemAtLocation(locationId);
         __instance.loot = null; // Should this just return false instead ??

@@ -1347,17 +1347,17 @@
         "logic": "censer + rapier + rosary + wallclimb + doublejump + airdash + ringclimb"
     },
     {
-        "id": "Z2401.l2",
+        "id": "Z2401.l0.a",
         "name": "basin",
         "logic": "censer + rapier + rosary + wallclimb"
     },
     {
-        "id": "Z2401.l3",
+        "id": "Z2401.l0.b",
         "name": "basin",
         "logic": "censer + rapier + rosary + wallclimb + doublejump + airdash + ringclimb"
     },
     {
-        "id": "Z2401.l2.x",
+        "id": "Z2401.l0.c",
         "name": "basin",
         "logic": "censer + rapier + rosary + wallclimb + doublejump + airdash + ringclimb"
     },

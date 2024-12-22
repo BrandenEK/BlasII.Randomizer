@@ -10,6 +10,14 @@ internal static class StringExtensions
     {
         return locationId switch
         {
+            // Cherub basins
+            "Z2401.l2" or "Z2401.l3" => extra switch
+            {
+                "1" => "Z2401.l0.a",
+                "2" => "Z2401.l0.b",
+                "3" => "Z2401.l0.c",
+                _ => string.Empty
+            },
             // Confessor items
             "Z05BZ01.i0" => extra switch
             {
