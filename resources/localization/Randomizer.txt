@@ -1,32 +1,32 @@
 lang: en
 
 # Special items
-Censer.name: Veredicto
-Censer.desc: A weapon that can be used to ring bronze bells.
-RosaryBlade.name: Ruego Al Alba
-RosaryBlade.desc: A weapon that can be used to pierce bone blockades.
-Rapier.name: Sarmiento & Centella
-Rapier.desc: A weapon that can be used to activate magic mirrors.
-MeaCulpa.name: Mea Culpa
-MeaCulpa.desc: The old sword of legend
-WallClimb.name: Ivy of Ascension
-WallClimb.desc: The ability to climb up large walls.
-AirJump.name: Passage of Ash
-AirJump.desc: The ability to jump twice while in the air.
-AirDash.name: Mercy of the Wind
-AirDash.desc: The ability to dash while in the air.
-MagicRingClimb.name: Scion's Protection
-MagicRingClimb.desc: The ability to spawn cherubs rings.
-GlassWalk.name: Broken Step
-GlassWalk.desc: The ability to walk on glass platforms
-Cherub.name: Brother of Proximo
-Cherub.desc: A little floating baby that you rescued from a cage.
-Tears.name: Tears of Atonement
-Tears.desc: Can be used to buy stuff.
-Marks.name: Marks of Martyrdom
-Marks.desc: Can be used to buy more stuff.
-PreMarks.name: Marks of the Preceptor
-PreMarks.desc: Can be used to buy even more stuff.
+weapon/censer/name: Veredicto
+weapon/censer/desc: A weapon that can be used to ring bronze bells.
+weapon/rosaryblade/name: Ruego Al Alba
+weapon/rosaryblade/desc: A weapon that can be used to pierce bone blockades.
+weapon/rapier/name: Sarmiento & Centella
+weapon/rapier/desc: A weapon that can be used to activate magic mirrors.
+weapon/meaculpa/name: Mea Culpa
+weapon/meaculpa/desc: The old sword of legend
+ability/wallclimb/name: Ivy of Ascension
+ability/wallclimb/desc: The ability to climb up large walls.
+ability/airjump/name: Passage of Ash
+ability/airjump/desc: The ability to jump twice while in the air.
+ability/airdash/name: Mercy of the Wind
+ability/airdash/desc: The ability to dash while in the air.
+ability/magicringclimb/name: Scion's Protection
+ability/magicringclimb/desc: The ability to spawn cherubs rings.
+ability/glasswalk/name: Broken Step
+ability/glasswalk/desc: The ability to walk on glass platforms
+currency/cherub/name: Brother of Proximo
+currency/cherub/desc: A little floating baby that you rescued from a cage.
+currency/tears/name: Tears of Atonement
+currency/tears/desc: Can be used to buy stuff.
+currency/marks/name: Marks of Martyrdom
+currency/marks/desc: Can be used to buy more stuff.
+currency/premarks/name: Marks of the Preceptor
+currency/premarks/desc: Can be used to buy even more stuff.
 
 # Gameplay changes
 popup/item: You have acquired
@@ -59,26 +59,26 @@ option/keys/five: Five
 lang: es
 
 # Special items
-Censer.name: Veredicto
-Censer.desc: Arma que puede usarse para tañer campanas de bronce.
-RosaryBlade.name: Ruego Al Alba
-RosaryBlade.desc: Arma que puede usarse para perforar barreras de hueso.
-Rapier.name: Sarmiento y Centella
-Rapier.desc: Arma que puede usarse para activar espejos mágicos.
-WallClimb.name: Hiedra de la Ascensión
-WallClimb.desc: La habilidad para escalar paredes altas.
-AirJump.name: Paso de Ceniza
-AirJump.desc: La habilidad para saltar por segunda vez en el aire.
-AirDash.name: Merced del Viento
-AirDash.desc: La habilidad para esquivar en el aire.
-MagicRingClimb.name: Amparo de los Vástagos
-MagicRingClimb.desc: La habilidad para hacer aparecer querubines con anillas.
-Cherub.name: Hermano de Próximo
-Cherub.desc: Un pequeño bebé flotante que rescataste de una jaula.
-Tears.name: Lágrimas de Enmienda
-Tears.desc: Pueden usarse para comprar cosas.
-Marks.name: Marcas del Martirio
-Marks.desc: Puede usarse para comprar más cosas.
+weapon/censer/name: Veredicto
+weapon/censer/desc: Arma que puede usarse para tañer campanas de bronce.
+weapon/rosaryblade/name: Ruego Al Alba
+weapon/rosaryblade/desc: Arma que puede usarse para perforar barreras de hueso.
+weapon/rapier/name: Sarmiento y Centella
+weapon/rapier/desc: Arma que puede usarse para activar espejos mágicos.
+ability/wallclimb/name: Hiedra de la Ascensión
+ability/wallclimb/desc: La habilidad para escalar paredes altas.
+ability/airjump/name: Paso de Ceniza
+ability/airjump/desc: La habilidad para saltar por segunda vez en el aire.
+ability/airdash/name: Merced del Viento
+ability/airdash/desc: La habilidad para esquivar en el aire.
+ability/magicringclimb/name: Amparo de los Vástagos
+ability/magicringclimb/desc: La habilidad para hacer aparecer querubines con anillas.
+currency/cherub/name: Hermano de Próximo
+currency/cherub/desc: Un pequeño bebé flotante que rescataste de una jaula.
+currency/tears/name: Lágrimas de Enmienda
+currency/tears/desc: Pueden usarse para comprar cosas.
+currency/marks/name: Marcas del Martirio
+currency/marks/desc: Puede usarse para comprar más cosas.
 
 # Gameplay changes
 popup/item: Has obtenido
@@ -108,26 +108,26 @@ option/keys/five: Cinco
 lang : fr
 
 # Special items
-Censer.name: Veredicto
-Censer.desc: Une arme qui permet de faire sonner les cloches de bronze.
-RosaryBlade.name: Ruego Al Alba
-RosaryBlade.desc: Une arme qui permet de détruire les barricades d'os.
-Rapier.name: Sarmiento & Centella
-Rapier.desc: Une arme qui permet d'activer les mirroirs magiques.
-WallClimb.name: Lierre d'ascension
-WallClimb.desc: La capacité d'escalader les grands murs.
-AirJump.name: Passage des cendres
-AirJump.desc: La capacité de sauter une deuxieme fois dans les airs.
-AirDash.name: Clémence du vent
-AirDash.desc: La capacité de ruer dans les airs.
-MagicRingClimb.name: Protection du descendant
-MagicRingClimb.desc: La capacité de faire aparaitre les anneau de cherubins.
-Cherub.name: Frères du miracle
-Cherub.desc: Un petit cherubin flottant que vous libérez d'un cage.
-Tears.name: Larmes d'expiation
-Tears.desc: Permettent acheter des choses.
-Marks.name: Marques du martyr
-Marks.desc: Permettent d'acheter d'autres choses.
+weapon/censer/name: Veredicto
+weapon/censer/desc: Une arme qui permet de faire sonner les cloches de bronze.
+weapon/rosaryblade/name: Ruego Al Alba
+weapon/rosaryblade/desc: Une arme qui permet de détruire les barricades d'os.
+weapon/rapier/name: Sarmiento & Centella
+weapon/rapier/desc: Une arme qui permet d'activer les mirroirs magiques.
+ability/wallclimb/name: Lierre d'ascension
+ability/wallclimb/desc: La capacité d'escalader les grands murs.
+ability/airjump/name: Passage des cendres
+ability/airjump/desc: La capacité de sauter une deuxieme fois dans les airs.
+ability/airdash/name: Clémence du vent
+ability/airdash/desc: La capacité de ruer dans les airs.
+ability/magicringclimb/name: Protection du descendant
+ability/magicringclimb/desc: La capacité de faire aparaitre les anneau de cherubins.
+currency/cherub/name: Frères du miracle
+currency/cherub/desc: Un petit cherubin flottant que vous libérez d'un cage.
+currency/tears/name: Larmes d'expiation
+currency/tears/desc: Permettent acheter des choses.
+currency/marks/name: Marques du martyr
+currency/marks/desc: Permettent d'acheter d'autres choses.
 
 # Gameplay changes
 popup/item: Vous avez acquis
@@ -157,26 +157,26 @@ option/keys/five: Cinq
 lang: pt-BR
 
 # Special items
-Censer.name: Veredicto
-Censer.desc: Arma que pode ser usada para tocar sinos.
-RosaryBlade.name: Ruego Al Alba
-RosaryBlade.desc: Arma que pode ser usada para perfurar barreiras de ossos.
-Rapier.name: Sarmiento e Centella
-Rapier.desc: Arma que pode ser usada para ativar espelhos mágicos.
-WallClimb.name: Hera da Ascensão
-WallClimb.desc: Habilidade de subir paredes altas.
-AirJump.name: Passagem das Cinzas
-AirJump.desc: Habilidade de pular uma segunda vez no ar.
-AirDash.name: Piedade do Vento
-AirDash.desc: Habilidade de esquivar no ar.
-MagicRingClimb.name: Proteção dos Rebentos
-MagicRingClimb.desc: Habilidade de invocar querubins com anilhas.
-Cherub.name: Irmão de Proximo
-Cherub.desc: Um pequeno bebê flutuante que você resgatou de uma gaiola.
-Tears.name: Lágrimas de Redenção
-Tears.desc: Pode ser usado para comprar coisas.
-Marks.name: Marcas do Martírio
-Marks.desc: Pode ser usado para comprar mais coisas.
+weapon/censer/name: Veredicto
+weapon/censer/desc: Arma que pode ser usada para tocar sinos.
+weapon/rosaryblade/name: Ruego Al Alba
+weapon/rosaryblade/desc: Arma que pode ser usada para perfurar barreiras de ossos.
+weapon/rapier/name: Sarmiento e Centella
+weapon/rapier/desc: Arma que pode ser usada para ativar espelhos mágicos.
+ability/wallclimb/name: Hera da Ascensão
+ability/wallclimb/desc: Habilidade de subir paredes altas.
+ability/airjump/name: Passagem das Cinzas
+ability/airjump/desc: Habilidade de pular uma segunda vez no ar.
+ability/airdash/name: Piedade do Vento
+ability/airdash/desc: Habilidade de esquivar no ar.
+ability/magicringclimb/name: Proteção dos Rebentos
+ability/magicringclimb/desc: Habilidade de invocar querubins com anilhas.
+currency/cherub/name: Irmão de Proximo
+currency/cherub/desc: Um pequeno bebê flutuante que você resgatou de uma gaiola.
+currency/tears/name: Lágrimas de Redenção
+currency/tears/desc: Pode ser usado para comprar coisas.
+currency/marks/name: Marcas do Martírio
+currency/marks/desc: Pode ser usado para comprar mais coisas.
 
 # Gameplay changes
 popup/item: Você obteve
