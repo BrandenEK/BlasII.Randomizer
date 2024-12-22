@@ -79,6 +79,26 @@ class Check_ItemsOwned_Patch
         return true;
     }
 }
+[HarmonyPatch(typeof(RemoveItem), nameof(RemoveItem.OnEnter))]
+class RemoveItem_OnEnter_Patch
+{
+    public static bool Prefix(RemoveItem __instance)
+    {
+        string scene = CoreCache.Room.CurrentRoom?.Name;
+        string item = __instance.itemID.name;
+
+        ModLog.Warn($"{__instance.Owner.name} is trying to remove item: {item}");
+
+        // Mud quest
+        if (item == "QI101")
+        {
+            __instance.Finish();
+            return false;
+        }
+
+        return true;
+    }
+}
 
 // =======
 // Weapons
