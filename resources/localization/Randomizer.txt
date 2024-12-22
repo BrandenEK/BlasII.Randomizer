@@ -30,7 +30,9 @@ PreMarks.desc: Can be used to buy even more stuff.
 
 # Gameplay changes
 otex: You have acquired
-ktex: "The Mother said: 'Locate the * keys that herald the Birth."
+popup.keys: "The Mother said: 'Locate the * keys that herald the Birth."
+popup.sisters: ...
+popup.mud: The Mud Key remains intact.
 
 # Settings menu
 head: RANDOMIZER SETTINGS
@@ -82,7 +84,7 @@ Marks.desc: Puede usarse para comprar más cosas.
 
 # Gameplay changes
 otex: Has obtenido
-ktex: "La Madre dijo: 'Encontrad las * llaves que anuncian el Nacimiento'"
+popup.keys: "La Madre dijo: 'Encontrad las * llaves que anuncian el Nacimiento'"
 
 # Settings menu
 head: AJUSTES DEL RANDOMIZADOR
@@ -134,7 +136,7 @@ Marks.desc: Permettent d'acheter d'autres choses.
 
 # Gameplay changes
 otex: Vous avez acquis
-ktex: "La Mère dit : 'Trouvez les * clés qui annoncent la Naissance.'"
+popup.keys: "La Mère dit : 'Trouvez les * clés qui annoncent la Naissance.'"
 
 # Settings menu
 head: PARAMETRES DU RANDOMIZER
@@ -186,7 +188,7 @@ Marks.desc: Pode ser usado para comprar mais coisas.
 
 # Gameplay changes
 otex: Você obteve
-ktex: "Disse a Mãe: 'Encontre as * chaves que anunciam o Nascimento.'"
+popup.keys: "Disse a Mãe: 'Encontre as * chaves que anunciam o Nascimento.'"
 
 # Settings menu
 head: CONFIGURAÇÕES DO RANDOMIZADOR
