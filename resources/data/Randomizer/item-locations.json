@@ -991,7 +991,7 @@
     {
         "id": "Z1616.i1",
         "name": "gift",
-        "logic": "wallclimb + doublejump + airdash + rosary + rapier + ringclimb + waxSeeds >= 6"
+        "logic": "wallclimb + doublejump + airdash + rosary + rapier + ringclimb + waxseeds >= 6"
     },
     {
         "id": "Z1619.l6",
@@ -1349,7 +1349,7 @@
     {
         "id": "Z2401.l2",
         "name": "basin",
-        "logic": "censer + rapier + rosary + wallclimb "
+        "logic": "censer + rapier + rosary + wallclimb"
     },
     {
         "id": "Z2401.l3",
