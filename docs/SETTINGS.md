@@ -18,7 +18,7 @@
   </tr>
   <tr>
     <td align="center"> Starting Weapon </td>
-    <td align="center"> Which weapon will be available to pickup in the weapon selection room </td>
+    <td align="center"> Which weapon will be unlocked at the start of the run </td>
     <td align="center"> Random </td>
   </tr>
   <tr>
