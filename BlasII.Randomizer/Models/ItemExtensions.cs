@@ -155,14 +155,24 @@ public static class ItemExtensions
                     {
                         // Upgrade the weapon
                         CoreCache.WeaponMemoryManager.UpgradeWeaponTier(weapon);
+                        break;
                     }
-                    else
+
+                    // Unlock the weapon and give the switching ability
+                    var ability = AssetStorage.Abilities[ABILITY_IDS.ChangeWeapon];
+                    CoreCache.EquipmentManager.Unlock(weapon);
+                    CoreCache.AbilitiesUnlockManager.SetAbility(ability, true);
+
+                    // Handle special case for Ruego/MeaCulpa switching
+                    if (item.Id == "RosaryBlade" || item.Id == "MeaCulpa")
                     {
-                        // Unlock the weapon and give the switching ability
-                        var ability = AssetStorage.Abilities[ABILITY_IDS.ChangeWeapon];
-                        CoreCache.EquipmentManager.Unlock(weapon);
-                        CoreCache.AbilitiesUnlockManager.SetAbility(ability, true);
+                        var otherWeapon = AssetStorage.Weapons[item.Id == "RosaryBlade" ? WEAPON_IDS.MeaCulpa : WEAPON_IDS.RosaryBlade];
+                        int slot = CoreCache.EquipmentManager.GetWeaponSlot(weapon);
+
+                        if (slot != -1 && CoreCache.EquipmentManager.HasWeapon(otherWeapon))
+                            CoreCache.EquipmentManager.ForceSetWeaponToSlot(null, slot);
                     }
+
                     break;
                 }
             case Item.ItemType.Ability:
