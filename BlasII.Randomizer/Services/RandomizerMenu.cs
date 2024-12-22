@@ -79,14 +79,23 @@ public class RandomizerMenu : ModMenu
             TextSize = TEXT_SIZE,
         };
 
-        _setSeed = text.CreateOption("Seed", ui, new Vector2(0, 300),
-            "seed", true, false, 6);
+        _setSeed = text.CreateOption("Seed", ui, new Vector2(0, 300), "option/seed", true, false, 6);
 
-        _setLogicDifficulty = arrow.CreateOption("LD", ui, new Vector2(-300, 80),
-            "opld", _opLogic);
+        _setLogicDifficulty = arrow.CreateOption("LD", ui, new Vector2(-300, 80), "option/logic", new string[]
+        {
+            "option/logic/normal",
+        });
 
-        _setRequiredKeys = arrow.CreateOption("RQ", ui, new Vector2(-300, -80),
-            "oprq", _opKeys);
+        _setRequiredKeys = arrow.CreateOption("RQ", ui, new Vector2(-300, -80), "option/keys", new string[]
+        {
+            "option/random",
+            "option/keys/zero",
+            "option/keys/one",
+            "option/keys/two",
+            "option/keys/three",
+            "option/keys/four",
+            "option/keys/five",
+        });
 
         _setStartingWeapon = arrow.CreateOption("SW", ui, new Vector2(-300, -240), "option/weapon", new string[]
         {
@@ -97,19 +106,14 @@ public class RandomizerMenu : ModMenu
             "option/weapon/meaculpa",
         });
 
-        _setShuffleLongQuests = toggle.CreateOption("SL", ui, new Vector2(150, 70),
-            "opsl");
+        _setShuffleLongQuests = toggle.CreateOption("SL", ui, new Vector2(150, 70), "option/long");
 
-        _setShuffleShops = toggle.CreateOption("SS", ui, new Vector2(150, -10),
-            "opss");
+        _setShuffleShops = toggle.CreateOption("SS", ui, new Vector2(150, -10), "option/shops");
     }
 
     private const int TEXT_SIZE = 55;
     private readonly Color SILVER = new Color32(192, 192, 192, 255);
     private readonly Color YELLOW = new Color32(255, 231, 65, 255);
-
-    private readonly string[] _opLogic = new string[] { "o2ld" }; // "Easy", "Normal", "Hard"
-    private readonly string[] _opKeys = new string[] { "option/random", "o1rq", "o2rq", "o3rq", "o4rq", "o5rq", "o6rq" };
 
     private TextOption _setSeed;
 

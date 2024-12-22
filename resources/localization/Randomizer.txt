@@ -38,26 +38,26 @@ popup.mud: The Mud Key remains intact.
 head: RANDOMIZER SETTINGS
 btnb: Begin
 btnc: Cancel
-seed: Seed:
+option/seed: Seed:
 option/random: Random
-opsl: Shuffle long quests
-opss: Shuffle shops
+option/long: Shuffle long quests
+option/shops: Shuffle shops
 option/weapon: Starting weapon
 option/weapon/censer: Veredicto
 option/weapon/rosary: Ruego
 option/weapon/rapier: Sarmiento
 option/weapon/meaculpa: Mea Culpa
-opld: Logic difficulty
-o1ld: Easy
-o2ld: Normal
-o3ld: Hard
-oprq: Required keys
-o1rq: Zero
-o2rq: One
-o3rq: Two
-o4rq: Three
-o5rq: Four
-o6rq: Five
+option/logic: Logic difficulty
+option/logic/easy: Easy
+option/logic/normal: Normal
+option/logic/hard: Hard
+option/keys: Required keys
+option/keys/zero: Zero
+option/keys/one: One
+option/keys/two: Two
+option/keys/three: Three
+option/keys/four: Four
+option/keys/five: Five
 
 lang: es
 
@@ -91,25 +91,25 @@ popup.keys: "La Madre dijo: 'Encontrad las * llaves que anuncian el Nacimiento'"
 head: AJUSTES DEL RANDOMIZADOR
 btnb: Empezar
 btnc: Cancelar
-seed: Semilla:
+option/seed: Semilla:
 option/random: Aleatoria
-opsl: Añadir misiones largas
-opss: Añadir tiendas
+option/long: Añadir misiones largas
+option/shops: Añadir tiendas
 option/weapon: Arma inicial
 option/weapon/censer: Veredicto
 option/weapon/rosary: Ruego
 option/weapon/rapier: Sarmiento
-opld: Dificultad de la lógica
-o1ld: Fácil
-o2ld: Normal
-o3ld: Difícil
-oprq: Llaves requeridas
-o1rq: Cero
-o2rq: Una
-o3rq: Dos
-o4rq: Tres
-o5rq: Cuatro
-o6rq: Cinco
+option/logic: Dificultad de la lógica
+option/logic/easy: Fácil
+option/logic/normal: Normal
+option/logic/hard: Difícil
+option/keys: Llaves requeridas
+option/keys/zero: Cero
+option/keys/one: Una
+option/keys/two: Dos
+option/keys/three: Tres
+option/keys/four: Cuatro
+option/keys/five: Cinco
 
 lang : fr
 
@@ -143,25 +143,25 @@ popup.keys: "La Mère dit : 'Trouvez les * clés qui annoncent la Naissance.'"
 head: PARAMETRES DU RANDOMIZER
 btnb: Commencer
 btnc: Annuler
-seed: Seed:
+option/seed: Seed:
 option/random: Aléatoire
-opsl: Longue quêtes aléatoires
-opss: Magasins aléatoires
+option/long: Longue quêtes aléatoires
+option/shops: Magasins aléatoires
 option/weapon: Arme de départ
 option/weapon/censer: Veredicto
 option/weapon/rosary: Ruego
 option/weapon/rapier: Sarmiento
-opld: Difficulté de la logique
-o1ld: Simple
-o2ld: Normal
-o3ld: Difficile
-oprq: Clés requises
-o1rq: Zero
-o2rq: Une
-o3rq: Deux
-o4rq: Trois
-o5rq: Quatre
-o6rq: Cinq
+option/logic: Difficulté de la logique
+option/logic/easy: Simple
+option/logic/normal: Normal
+option/logic/hard: Difficile
+option/keys: Clés requises
+option/keys/zero: Zero
+option/keys/one: Une
+option/keys/two: Deux
+option/keys/three: Trois
+option/keys/four: Quatre
+option/keys/five: Cinq
 
 lang: pt-BR
 
@@ -195,22 +195,22 @@ popup.keys: "Disse a Mãe: 'Encontre as * chaves que anunciam o Nascimento.'"
 head: CONFIGURAÇÕES DO RANDOMIZADOR
 btnb: Começar
 btnc: Cancelar
-seed: Semente:
+option/seed: Semente:
 option/random: Aleatória
-opsl: Embaralhar missões longas
-opss: Embaralhar lojas
+option/long: Embaralhar missões longas
+option/shops: Embaralhar lojas
 option/weapon: Arma inicial
 option/weapon/censer: Veredicto
 option/weapon/rosary: Ruego
 option/weapon/rapier: Sarmiento
-opld: Dificuldade da lógica
-o1ld: Fácil
-o2ld: Normal
-o3ld: Difícil
-oprq: Chaves necessárias
-o1rq: Zero
-o2rq: Uma
-o3rq: Duas
-o4rq: Três
-o5rq: Quatro
-o6rq: Cinco
+option/logic: Dificuldade da lógica
+option/logic/easy: Fácil
+option/logic/normal: Normal
+option/logic/hard: Difícil
+option/keys: Chaves necessárias
+option/keys/zero: Zero
+option/keys/one: Uma
+option/keys/two: Duas
+option/keys/three: Três
+option/keys/four: Quatro
+option/keys/five: Cinco
