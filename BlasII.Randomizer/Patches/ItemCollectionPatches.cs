@@ -50,8 +50,15 @@ class PlayMaker_AddItem_Patch
 {
     public static bool Prefix(AddItem __instance)
     {
+        // Prevent broken key being given
+        if (__instance.itemID?.name == "QI102")
+        {
+            __instance.Finish();
+            return false;
+        }
+
         string locationId = __instance.CalculateId();
-        ModLog.Error($"AddItem.OnEnter - {locationId} ({__instance.itemID.name})");
+        ModLog.Error($"AddItem.OnEnter - {locationId} ({__instance.itemID?.name})");
 
         if (!Main.Randomizer.IsRandomizerMode)
             return true;

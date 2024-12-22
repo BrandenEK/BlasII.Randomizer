@@ -42,6 +42,14 @@ class PopupMessageLogic_ShowMessageAndWait_Patch
             __instance.textCtrl.SetText(text);
             return;
         }
+
+        // When opening a mud door, dont show the removal
+        if (message.name == "MSG_10101")
+        {
+            string text = "Nothing happened to the mud key";
+            __instance.textCtrl.SetText(text);
+            return;
+        }
     }
 }
 

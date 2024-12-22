@@ -33,7 +33,7 @@ internal static class IdExtensions
     public static string CalculateId(this AddItem action)
     {
         string id = $"{CoreCache.Room.CurrentRoom.Name}.i{action.owner.transform.GetSiblingIndex()}";
-        return id.CalculateSpecialId(action.itemID.name);
+        return id.CalculateSpecialId(action.itemID?.name);
     }
 
     /// <summary>
