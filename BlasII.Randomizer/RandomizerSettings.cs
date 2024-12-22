@@ -50,7 +50,7 @@ public class RandomizerSettings
     {
         string logic = LogicType == 0 ? "Easy" : LogicType == 1 ? "Normal" : "Hard";
         string keys = RequiredKeys > 0 ? (RequiredKeys - 1).ToString() : "Random";
-        string[] weapons = new string[] { "Veredicto", "Ruego", "Sarmiento" };
+        string[] weapons = new string[] { "Veredicto", "Ruego", "Sarmiento", "Mea Culpa" };
         string weapon = StartingWeapon > 0 ? weapons[StartingWeapon - 1] : "Random";
 
         var sb = new StringBuilder();
@@ -74,7 +74,7 @@ public class RandomizerSettings
     {
         string logic = LogicType == 0 ? "Easy" : LogicType == 1 ? "Normal" : "Hard";
         string keys = RequiredKeys > 0 ? (RequiredKeys - 1).ToString() : $"[{RealRequiredKeys}]";
-        string[] weapons = new string[] { "Veredicto", "Ruego", "Sarmiento" };
+        string[] weapons = new string[] { "Veredicto", "Ruego", "Sarmiento", "Mea Culpa" };
         string weapon = StartingWeapon > 0 ? weapons[StartingWeapon - 1] : $"[{weapons[RealStartingWeapon]}]";
         var line = new string('=', 35);
 
@@ -100,10 +100,10 @@ public class RandomizerSettings
     {
         get
         {
-            if (StartingWeapon >= 1 && StartingWeapon <= 3)
+            if (StartingWeapon >= 1 && StartingWeapon <= 4)
                 return StartingWeapon - 1;
 
-            return new Random(Seed).Next(0, 3);
+            return new Random(Seed).Next(0, 4);
         }
     }
 

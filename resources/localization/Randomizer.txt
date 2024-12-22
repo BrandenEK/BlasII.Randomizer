@@ -39,13 +39,14 @@ head: RANDOMIZER SETTINGS
 btnb: Begin
 btnc: Cancel
 seed: Seed:
-rand: Random
+option/random: Random
 opsl: Shuffle long quests
 opss: Shuffle shops
-opsw: Starting weapon
-o1sw: Veredicto
-o2sw: Ruego
-o3sw: Sarmiento
+option/weapon: Starting weapon
+option/weapon/censer: Veredicto
+option/weapon/rosary: Ruego
+option/weapon/rapier: Sarmiento
+option/weapon/meaculpa: Mea Culpa
 opld: Logic difficulty
 o1ld: Easy
 o2ld: Normal
@@ -91,13 +92,13 @@ head: AJUSTES DEL RANDOMIZADOR
 btnb: Empezar
 btnc: Cancelar
 seed: Semilla:
-rand: Aleatoria
+option/random: Aleatoria
 opsl: Añadir misiones largas
 opss: Añadir tiendas
-opsw: Arma inicial
-o1sw: Veredicto
-o2sw: Ruego
-o3sw: Sarmiento
+option/weapon: Arma inicial
+option/weapon/censer: Veredicto
+option/weapon/rosary: Ruego
+option/weapon/rapier: Sarmiento
 opld: Dificultad de la lógica
 o1ld: Fácil
 o2ld: Normal
@@ -143,13 +144,13 @@ head: PARAMETRES DU RANDOMIZER
 btnb: Commencer
 btnc: Annuler
 seed: Seed:
-rand: Aléatoire
+option/random: Aléatoire
 opsl: Longue quêtes aléatoires
 opss: Magasins aléatoires
-opsw: Arme de départ
-o1sw: Veredicto
-o2sw: Ruego
-o3sw: Sarmiento
+option/weapon: Arme de départ
+option/weapon/censer: Veredicto
+option/weapon/rosary: Ruego
+option/weapon/rapier: Sarmiento
 opld: Difficulté de la logique
 o1ld: Simple
 o2ld: Normal
@@ -195,13 +196,13 @@ head: CONFIGURAÇÕES DO RANDOMIZADOR
 btnb: Começar
 btnc: Cancelar
 seed: Semente:
-rand: Aleatória
+option/random: Aleatória
 opsl: Embaralhar missões longas
 opss: Embaralhar lojas
-opsw: Arma inicial
-o1sw: Veredicto
-o2sw: Ruego
-o3sw: Sarmiento
+option/weapon: Arma inicial
+option/weapon/censer: Veredicto
+option/weapon/rosary: Ruego
+option/weapon/rapier: Sarmiento
 opld: Dificuldade da lógica
 o1ld: Fácil
 o2ld: Normal

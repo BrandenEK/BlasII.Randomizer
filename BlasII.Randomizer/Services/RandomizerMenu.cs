@@ -88,8 +88,14 @@ public class RandomizerMenu : ModMenu
         _setRequiredKeys = arrow.CreateOption("RQ", ui, new Vector2(-300, -80),
             "oprq", _opKeys);
 
-        _setStartingWeapon = arrow.CreateOption("SW", ui, new Vector2(-300, -240),
-            "opsw", _opWeapon);
+        _setStartingWeapon = arrow.CreateOption("SW", ui, new Vector2(-300, -240), "option/weapon", new string[]
+        {
+            "option/random",
+            "option/weapon/censer",
+            "option/weapon/rosary",
+            "option/weapon/rapier",
+            "option/weapon/meaculpa",
+        });
 
         _setShuffleLongQuests = toggle.CreateOption("SL", ui, new Vector2(150, 70),
             "opsl");
@@ -103,8 +109,7 @@ public class RandomizerMenu : ModMenu
     private readonly Color YELLOW = new Color32(255, 231, 65, 255);
 
     private readonly string[] _opLogic = new string[] { "o2ld" }; // "Easy", "Normal", "Hard"
-    private readonly string[] _opKeys = new string[] { "rand", "o1rq", "o2rq", "o3rq", "o4rq", "o5rq", "o6rq" };
-    private readonly string[] _opWeapon = new string[] { "rand", "o1sw", "o2sw", "o3sw" };
+    private readonly string[] _opKeys = new string[] { "option/random", "o1rq", "o2rq", "o3rq", "o4rq", "o5rq", "o6rq" };
 
     private TextOption _setSeed;
 
