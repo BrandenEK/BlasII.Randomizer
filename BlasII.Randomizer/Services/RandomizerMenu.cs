@@ -20,8 +20,8 @@ public class RandomizerMenu : ModMenu
             {
                 Seed = _setSeed.CurrentNumericValue == 0 ? RandomizerSettings.RANDOM_SEED : _setSeed.CurrentNumericValue,
                 LogicType = 1,
-                RequiredKeys = _setRequiredKeys.CurrentOption,
-                StartingWeapon = _setStartingWeapon.CurrentOption,
+                RequiredKeys = _setRequiredKeys.CurrentOption - 1,
+                StartingWeapon = _setStartingWeapon.CurrentOption - 1,
                 ShuffleLongQuests = _setShuffleLongQuests.Toggled,
                 ShuffleShops = _setShuffleShops.Toggled,
             };
@@ -29,8 +29,8 @@ public class RandomizerMenu : ModMenu
         set
         {
             _setLogicDifficulty.CurrentOption = 0;
-            _setRequiredKeys.CurrentOption = value.RequiredKeys;
-            _setStartingWeapon.CurrentOption = value.StartingWeapon;
+            _setRequiredKeys.CurrentOption = value.RequiredKeys + 1;
+            _setStartingWeapon.CurrentOption = value.StartingWeapon + 1;
             _setShuffleLongQuests.Toggled = value.ShuffleLongQuests;
             _setShuffleShops.Toggled = value.ShuffleShops;
 
