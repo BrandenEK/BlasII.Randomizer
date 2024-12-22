@@ -1,1714 +1,1726 @@
 [
     {
         "id": "Z0105.l3",
-        "name": "Item Location 1"
+        "name": "basin",
+        "logic": "doublejump + airdash + ringclimb"
     },
     {
         "id": "Z0106.r8",
-        "name": "Item Location 2",
+        "name": "boss",
         "flags": "B"
     },
     {
         "id": "Z0108.l2",
-        "name": "Item Location 3"
+        "name": "pickup",
+        "logic": "doublejump"
     },
     {
         "id": "Z0203.l6",
-        "name": "Item Location 4"
+        "name": "basin",
+        "logic": "doublejump + censer"
     },
     {
         "id": "Z0203.l7",
-        "name": "Item Location 5"
+        "name": "basin"
     },
     {
         "id": "Z0203.l8",
-        "name": "Item Location 6"
+        "name": "pickup"
     },
     {
         "id": "Z0203.c0",
-        "name": "Item Location 7",
-        "flags": "C"
+        "name": "cherub",
+        "flags": "C",
+        "logic": "doublejump + censer + ringclimb"
     },
     {
         "id": "Z0204.l3",
-        "name": "Item Location 8"
+        "name": "chest",
+        "logic": "doublejump + rosary"
     },
     {
         "id": "Z0204.l4",
-        "name": "Item Location 9"
+        "name": "arena",
+        "logic": "doublejump + rosary"
     },
     {
         "id": "Z0204.c0",
-        "name": "Item Location 10",
+        "name": "cherub",
         "flags": "C"
     },
     {
         "id": "Z0301.l10",
-        "name": "Item Location 11",
-        "logic": "wallclimb"
+        "name": "basin",
+        "logic": "wallclimb + airdash"
     },
     {
         "id": "Z0301.l11",
-        "name": "Item Location 12",
-        "logic": "wallclimb"
+        "name": "pickup",
+        "logic": "wallclimb + censer + rapier"
     },
     {
         "id": "Z0302.c0",
-        "name": "Item Location 13",
+        "name": "cherub",
         "flags": "C",
         "logic": "wallclimb"
     },
     {
         "id": "Z0303.l6",
-        "name": "Item Location 14",
-        "logic": "wallclimb"
+        "name": "basin",
+        "logic": "wallclimb + doublejump + ringclimb"
     },
     {
         "id": "Z0304.l8",
-        "name": "Item Location 15",
+        "name": "basin",
         "logic": "wallclimb"
     },
     {
         "id": "Z0304.l3",
-        "name": "Item Location 16",
+        "name": "chest",
         "logic": "wallclimb"
     },
     {
         "id": "Z0305.l6",
-        "name": "Item Location 17",
-        "logic": "wallclimb"
+        "name": "arena",
+        "logic": "wallclimb + airdash"
     },
     {
         "id": "Z0305.l5",
-        "name": "Item Location 18",
-        "logic": "wallclimb"
+        "name": "chest",
+        "logic": "wallclimb + (doublejump | airdash)"
     },
     {
         "id": "Z0306.l12",
-        "name": "Item Location 19",
-        "logic": "wallclimb"
+        "name": "pickup",
+        "logic": "wallclimb + ringclimb + doublejump"
     },
     {
         "id": "Z0307.l8",
-        "name": "Item Location 20",
-        "logic": "wallclimb"
+        "name": "basin",
+        "logic": "wallclimb + censer + rosary"
     },
     {
         "id": "Z0308.l27",
-        "name": "Item Location 21",
-        "logic": "wallclimb"
-    },
-    {
-        "id": "Z0308.l26",
-        "name": "Item Location 22",
-        "logic": "wallclimb"
-    },
-    {
-        "id": "Z0308.c0",
-        "name": "Item Location 23",
-        "flags": "C",
-        "logic": "wallclimb"
-    },
-    {
-        "id": "Z0312.c0",
-        "name": "Item Location 24",
-        "flags": "C",
-        "logic": "wallclimb"
-    },
-    {
-        "id": "Z0313.l9",
-        "name": "Item Location 25",
-        "logic": "wallclimb"
-    },
-    {
-        "id": "Z0402.l15",
-        "name": "Item Location 26",
+        "name": "basin",
         "logic": "wallclimb + censer"
     },
     {
+        "id": "Z0308.l26",
+        "name": "basin",
+        "logic": "wallclimb + censer + doublejump + ringclimb"
+    },
+    {
+        "id": "Z0308.c0",
+        "name": "cherub",
+        "flags": "C",
+        "logic": "wallclimb + censer"
+    },
+    {
+        "id": "Z0312.c0",
+        "name": "cherub",
+        "flags": "C",
+        "logic": "wallclimb + censer"
+    },
+    {
+        "id": "Z0313.l9",
+        "name": "basin",
+        "logic": "wallclimb + censer + doublejump + airdash"
+    },
+    {
+        "id": "Z0402.l15",
+        "name": "pickup",
+        "logic": "wallclimb + censer + (rapier + glasswalk | doublejump + (glasswalk | airdash))"
+    },
+    {
         "id": "Z0402.l13",
-        "name": "Item Location 27",
+        "name": "pickup",
         "logic": "wallclimb + censer"
     },
     {
         "id": "Z0406.c0",
-        "name": "Item Location 28",
+        "name": "cherub",
         "flags": "C",
-        "logic": "wallclimb + censer"
+        "logic": "wallclimb + (doublejump | airdash)"
     },
     {
         "id": "Z0406.l4",
-        "name": "Item Location 29",
-        "logic": "wallclimb + censer"
+        "name": "pickup",
+        "logic": "wallclimb"
     },
     {
         "id": "Z0409.l7",
-        "name": "Item Location 30",
-        "logic": "wallclimb + censer"
+        "name": "pickup",
+        "logic": "wallclimb + censer + doublejump"
     },
     {
         "id": "Z0410.l6",
-        "name": "Item Location 31",
+        "name": "chest",
         "logic": "wallclimb + censer"
     },
     {
         "id": "Z0412.l2",
-        "name": "Item Location 32",
-        "logic": "wallclimb + censer"
+        "name": "chest",
+        "logic": "wallclimb + (censer | doublejump) + rosary"
     },
     {
         "id": "Z0412.l1",
-        "name": "Item Location 33",
-        "logic": "wallclimb + censer"
+        "name": "basin",
+        "logic": "wallclimb + (censer | doublejump) + airdash"
     },
     {
         "id": "Z0413.l0",
-        "name": "Item Location 34",
-        "logic": "wallclimb + censer"
+        "name": "pickup",
+        "logic": "wallclimb"
     },
     {
         "id": "Z0414.l4",
-        "name": "Item Location 35",
-        "logic": "wallclimb + censer"
+        "name": "basin",
+        "logic": "wallclimb"
     },
     {
         "id": "Z0415.l2",
-        "name": "Item Location 36",
-        "logic": "wallclimb + censer"
+        "name": "basin",
+        "logic": "wallclimb"
     },
     {
         "id": "Z0415.l4",
-        "name": "Item Location 37",
-        "logic": "wallclimb + censer"
+        "name": "chest",
+        "logic": "wallclimb + doublejump"
     },
     {
         "id": "Z0417.l4",
-        "name": "Item Location 38",
-        "logic": "wallclimb + censer"
+        "name": "chest",
+        "logic": "wallclimb + rapier + doublejump + rosary"
     },
     {
         "id": "Z0421.r8",
-        "name": "Item Location 39",
+        "name": "boss",
         "flags": "B",
-        "logic": "wallclimb + censer"
+        "logic": "wallclimb"
     },
     {
         "id": "Z0423.l1",
-        "name": "Item Location 40",
-        "logic": "wallclimb + censer"
+        "name": "statue",
+        "logic": "wallclimb + censer + doublejump"
     },
     {
         "id": "Z0427.l6",
-        "name": "Item Location 41",
-        "logic": "wallclimb + censer"
+        "name": "chest",
+        "logic": "doublejump + airdash + glasswalk + wallclimb + censer"
     },
     {
         "id": "Z0501.c0",
-        "name": "Item Location 42",
-        "flags": "C"
+        "name": "cherub",
+        "flags": "C",
+        "logic": "wallclimb + airdash | doublejump"
     },
     {
         "id": "Z0502.c0",
-        "name": "Item Location 43",
-        "flags": "C"
-    },
-    {
-        "id": "Z0502.i1",
-        "name": "Item Location 44"
-    },
-    {
-        "id": "Z0503.l4",
-        "name": "Item Location 45"
-    },
-    {
-        "id": "Z0503.c0",
-        "name": "Item Location 46",
-        "flags": "C"
-    },
-    {
-        "id": "Z0503.i9",
-        "name": "Item Location 47"
-    },
-    {
-        "id": "Z0506.i0",
-        "name": "Item Location 48"
-    },
-    {
-        "id": "Z0511.l0",
-        "name": "Item Location 49"
-    },
-    {
-        "id": "Z05BZ01.l0",
-        "name": "Item Location 50",
-        "flags": "L"
-    },
-    {
-        "id": "Z05BZ01.l16",
-        "name": "Item Location 51",
-        "flags": "L"
-    },
-    {
-        "id": "Z05BZ01.i0.a",
-        "name": "Item Location 52",
-        "flags": "L"
-    },
-    {
-        "id": "Z05BZ01.i0.b",
-        "name": "Item Location 53"
-    },
-    {
-        "id": "Z05BZ02.i0",
-        "name": "Item Location 54"
-    },
-    {
-        "id": "Z05BZ02.l1",
-        "name": "Item Location 55"
-    },
-    {
-        "id": "Z05BZ04.l0",
-        "name": "Item Location 56"
-    },
-    {
-        "id": "Z05BZ05.l1",
-        "name": "Item Location 57"
-    },
-    {
-        "id": "Z05BZ06.l0",
-        "name": "Item Location 58"
-    },
-    {
-        "id": "Z0602.l2",
-        "name": "Item Location 59",
-        "logic": "wallclimb"
-    },
-    {
-        "id": "Z0605.l11",
-        "name": "Item Location 60",
-        "logic": "wallclimb"
-    },
-    {
-        "id": "Z0605.l10",
-        "name": "Item Location 61",
-        "logic": "wallclimb"
-    },
-    {
-        "id": "Z0608.c0",
-        "name": "Item Location 62",
+        "name": "cherub",
         "flags": "C",
         "logic": "wallclimb"
     },
     {
+        "id": "Z0502.i1",
+        "name": "gift",
+        "logic": "letter2"
+    },
+    {
+        "id": "Z0503.l4",
+        "name": "basin",
+        "logic": "censer + doublejump + airdash"
+    },
+    {
+        "id": "Z0503.c0",
+        "name": "cherub",
+        "flags": "C",
+        "logic": "censer + doublejump + airdash"
+    },
+    {
+        "id": "Z0503.i9",
+        "name": "gift",
+        "logic": "wallclimb + letter4"
+    },
+    {
+        "id": "Z0506.i0",
+        "name": "gift",
+        "flags": "L",
+        "logic": "wallclimb + doublejump + airdash + censer + rosary + rapier + tributes >= 3"
+    },
+    {
+        "id": "Z0511.l0",
+        "name": "chest",
+        "logic": "wallclimb + doublejump + ringclimb + censer"
+    },
+    {
+        "id": "Z05BZ01.l0",
+        "name": "pickup",
+        "flags": "L"
+    },
+    {
+        "id": "Z05BZ01.l16",
+        "name": "pickup",
+        "flags": "L"
+    },
+    {
+        "id": "Z05BZ01.i0.a",
+        "name": "gift",
+        "flags": "L"
+    },
+    {
+        "id": "Z05BZ01.i0.b",
+        "name": "gift",
+        "logic": "kisses >= 5 + censer + rapier"
+    },
+    {
+        "id": "Z05BZ02.i0",
+        "name": "gift"
+    },
+    {
+        "id": "Z05BZ02.l1",
+        "name": "pickup",
+        "logic": "tools >= 5"
+    },
+    {
+        "id": "Z05BZ04.l0",
+        "name": "chest",
+        "logic": "doublejump + censer"
+    },
+    {
+        "id": "Z05BZ05.l1",
+        "name": "pickup",
+        "logic": "wallclimb + airdash | doublejump"
+    },
+    {
+        "id": "Z05BZ06.l0",
+        "name": "basin",
+        "logic": "doublejump + censer"
+    },
+    {
+        "id": "Z0602.l2",
+        "name": "pickup",
+        "logic": "wallclimb + doublejump"
+    },
+    {
+        "id": "Z0605.l11",
+        "name": "basin",
+        "logic": "wallclimb + rosary + (doublejump | airdash)"
+    },
+    {
+        "id": "Z0605.l10",
+        "name": "basin",
+        "logic": "wallclimb + doublejump + ringclimb + rosary"
+    },
+    {
+        "id": "Z0608.c0",
+        "name": "cherub",
+        "flags": "C",
+        "logic": "wallclimb + glasswalk"
+    },
+    {
         "id": "Z0611.l2",
-        "name": "Item Location 63",
-        "logic": "wallclimb"
+        "name": "chest",
+        "logic": "censer + rapier + rosary + doublejump"
     },
     {
         "id": "Z0611.r2",
-        "name": "Item Location 64",
+        "name": "arena",
         "logic": "wallclimb"
     },
     {
         "id": "Z0612.l6",
-        "name": "Item Location 65",
+        "name": "chest",
         "logic": "wallclimb"
     },
     {
         "id": "Z0614.l6",
-        "name": "Item Location 66",
-        "logic": "wallclimb"
+        "name": "pickup",
+        "logic": "censer + rapier + rosary + doublejump + ringclimb"
     },
     {
         "id": "Z0614.l7",
-        "name": "Item Location 67",
+        "name": "chest",
         "logic": "wallclimb"
     },
     {
         "id": "Z0615.r2",
-        "name": "Item Location 68",
-        "logic": "wallclimb"
+        "name": "arena",
+        "logic": "wallclimb + (doublejump | rapier)"
     },
     {
         "id": "Z0616.l14",
-        "name": "Item Location 69",
-        "logic": "wallclimb"
+        "name": "pickup",
+        "logic": "wallclimb + censer + rosary"
     },
     {
         "id": "Z0617.l8",
-        "name": "Item Location 70",
-        "logic": "wallclimb"
+        "name": "chest",
+        "logic": "wallclimb + doublejump + airdash + censer + rosary + rapier"
     },
     {
         "id": "Z0707.i2",
-        "name": "Item Location 71",
+        "name": "arena",
         "logic": "wallclimb + rapier"
     },
     {
         "id": "Z0709.l1",
-        "name": "Item Location 72",
-        "logic": "wallclimb + rapier"
+        "name": "statue",
+        "logic": "wallclimb"
     },
     {
         "id": "Z0711.l2",
-        "name": "Item Location 73",
+        "name": "chest",
         "logic": "wallclimb + rapier"
     },
     {
         "id": "Z0715.c0",
-        "name": "Item Location 74",
+        "name": "cherub",
         "flags": "C",
         "logic": "wallclimb + rapier"
     },
     {
         "id": "Z0721.i2",
-        "name": "Item Location 75",
-        "logic": "wallclimb + rapier"
+        "name": "arena",
+        "logic": "wallclimb + rapier + rosary"
     },
     {
         "id": "Z0722.i0.a",
-        "name": "Item Location 76",
-        "logic": "wallclimb + rapier"
+        "name": "gift",
+        "logic": "wallclimb + rapier + elderscroll"
     },
     {
         "id": "Z0722.i0.b",
-        "name": "Item Location 77",
-        "logic": "wallclimb + rapier"
+        "name": "gift",
+        "logic": "wallclimb + rapier + eldercloth"
     },
     {
         "id": "Z0723.l2",
-        "name": "Item Location 78",
+        "name": "chest",
         "logic": "wallclimb + rapier"
     },
     {
         "id": "Z0725.i1",
-        "name": "Item Location 79",
-        "logic": "wallclimb + rapier"
+        "name": "arena",
+        "logic": "wallclimb + rapier + censer"
     },
     {
         "id": "Z0728.i2",
-        "name": "Item Location 80",
-        "logic": "wallclimb + rapier"
+        "name": "arena",
+        "logic": "wallclimb + rosary"
     },
     {
         "id": "Z0730.r6",
-        "name": "Item Location 81",
+        "name": "boss",
         "flags": "B",
         "logic": "wallclimb + rapier"
     },
     {
         "id": "Z0730.l2",
-        "name": "Item Location 82",
+        "name": "basin",
         "logic": "wallclimb + rapier"
     },
     {
         "id": "Z0805.l0",
-        "name": "Item Location 83",
-        "logic": "wallclimb"
+        "name": "chest",
+        "logic": "wallclimb + doublejump + airdash"
     },
     {
         "id": "Z0806.c0",
-        "name": "Item Location 84",
+        "name": "cherub",
         "flags": "C",
         "logic": "wallclimb"
     },
     {
         "id": "Z0809.c0",
-        "name": "Item Location 85",
+        "name": "cherub",
         "flags": "C",
         "logic": "wallclimb"
     },
     {
         "id": "Z0810.l0",
-        "name": "Item Location 86",
-        "logic": "wallclimb"
+        "name": "basin",
+        "logic": "wallclimb + tributes >= 1"
     },
     {
         "id": "Z0811.w0",
-        "name": "Item Location 87",
+        "name": "statue",
         "flags": "W",
-        "logic": "wallclimb"
+        "logic": "wallclimb + doublejump + rapier"
     },
     {
         "id": "Z0814.l6",
-        "name": "Item Location 88",
-        "logic": "wallclimb"
+        "name": "chest",
+        "logic": "wallclimb + censer"
     },
     {
         "id": "Z0815.i0",
-        "name": "Item Location 89",
-        "logic": "wallclimb"
+        "name": "gift",
+        "logic": "wallclimb + rapier"
     },
     {
         "id": "Z0817.l0",
-        "name": "Item Location 90",
-        "logic": "wallclimb"
+        "name": "basin",
+        "logic": "wallclimb + tributes >= 3"
     },
     {
         "id": "Z0822.l2",
-        "name": "Item Location 91",
-        "logic": "wallclimb"
+        "name": "chest",
+        "logic": "wallclimb + glasswalk"
     },
     {
         "id": "Z0823.a0",
-        "name": "Item Location 92",
+        "name": "statue",
         "flags": "A",
         "logic": "wallclimb"
     },
     {
         "id": "Z0826.l13",
-        "name": "Item Location 93",
-        "logic": "wallclimb"
+        "name": "chest",
+        "logic": "wallclimb + glasswalk + doublejump + airdash + ringclimb"
     },
     {
         "id": "Z0829.l2",
-        "name": "Item Location 94",
-        "logic": "wallclimb"
+        "name": "pickup",
+        "logic": "wallclimb + glasswalk + doublejump + airdash"
     },
     {
         "id": "Z0830.l7",
-        "name": "Item Location 95",
-        "logic": "wallclimb"
+        "name": "chest",
+        "logic": "wallclimb + glasswalk + doublejump"
     },
     {
         "id": "Z0832.l5",
-        "name": "Item Location 96",
-        "logic": "wallclimb"
+        "name": "basin",
+        "logic": "wallclimb + glasswalk + doublejump + meaculpa"
     },
     {
         "id": "Z0835.l7",
-        "name": "Item Location 97",
-        "logic": "wallclimb"
+        "name": "pickup",
+        "logic": "wallclimb + glasswalk + doublejump + meaculpa + mudkey"
     },
     {
         "id": "Z0837.l5",
-        "name": "Item Location 98",
-        "logic": "wallclimb"
+        "name": "chest",
+        "logic": "wallclimb + glasswalk + doublejump"
     },
     {
         "id": "Z0840.l1",
-        "name": "Item Location 99",
-        "logic": "wallclimb"
+        "name": "basin",
+        "logic": "wallclimb + glasswalk + doublejump + meaculpa"
     },
     {
         "id": "Z0842.l2",
-        "name": "Item Location 100",
-        "logic": "wallclimb"
+        "name": "pickup",
+        "logic": "wallclimb + glasswalk + doublejump"
     },
     {
         "id": "Z0843.l17",
-        "name": "Item Location 101",
-        "logic": "wallclimb"
+        "name": "pickup",
+        "logic": "wallclimb + glasswalk + doublejump + airdash + ringclimb + censer"
     },
     {
         "id": "Z0845.l4",
-        "name": "Item Location 102",
-        "logic": "wallclimb"
+        "name": "basin",
+        "logic": "wallclimb + glasswalk + doublejump + airdash + censer + rapier + meaculpa"
     },
     {
         "id": "Z0846.l22",
-        "name": "Item Location 103",
-        "logic": "wallclimb"
+        "name": "chest",
+        "logic": "wallclimb + glasswalk + doublejump + censer"
     },
     {
         "id": "Z0901.l3",
-        "name": "Item Location 104",
-        "logic": "wallclimb + blade"
+        "name": "pickup",
+        "logic": "wallclimb + rosary"
     },
     {
         "id": "Z0901.l1",
-        "name": "Item Location 105",
-        "logic": "wallclimb + blade"
+        "name": "basin",
+        "logic": "wallclimb + rosary + ringclimb + doublejump"
     },
     {
         "id": "Z0903.l2",
-        "name": "Item Location 106",
-        "logic": "wallclimb + blade"
+        "name": "pickup",
+        "logic": "wallclimb"
     },
     {
         "id": "Z0905.l2",
-        "name": "Item Location 107",
-        "logic": "wallclimb + blade"
+        "name": "chest",
+        "logic": "wallclimb + doublejump + censer"
     },
     {
         "id": "Z0908.l9",
-        "name": "Item Location 108",
-        "logic": "wallclimb + blade"
+        "name": "pickup",
+        "logic": "wallclimb + rosary + censer + rapier"
     },
     {
         "id": "Z0909.l5",
-        "name": "Item Location 109",
-        "logic": "wallclimb + blade"
+        "name": "chest",
+        "logic": "wallclimb + rosary"
     },
     {
         "id": "Z0912.l8",
-        "name": "Item Location 110",
-        "logic": "wallclimb + blade"
+        "name": "chest",
+        "logic": "wallclimb + rosary + rapier"
     },
     {
         "id": "Z0913.l1",
-        "name": "Item Location 111",
-        "logic": "wallclimb + blade"
+        "name": "statue",
+        "logic": "wallclimb"
     },
     {
         "id": "Z0915.l9",
-        "name": "Item Location 112",
-        "logic": "wallclimb + blade"
+        "name": "chest",
+        "logic": "wallclimb + rosary"
     },
     {
         "id": "Z0921.r14",
-        "name": "Item Location 113",
+        "name": "boss",
         "flags": "B",
-        "logic": "wallclimb + blade"
+        "logic": "wallclimb + rosary"
     },
     {
         "id": "Z0923.c0",
-        "name": "Item Location 114",
+        "name": "cherub",
         "flags": "C",
-        "logic": "wallclimb + blade"
+        "logic": "wallclimb + doublejump"
     },
     {
         "id": "Z0926.a0",
-        "name": "Item Location 115",
+        "name": "statue",
         "flags": "A",
-        "logic": "wallclimb + blade"
+        "logic": "wallclimb + rosary + doublejump + rapier"
     },
     {
         "id": "Z0927.l4",
-        "name": "Item Location 116",
-        "logic": "wallclimb + blade"
+        "name": "basin",
+        "logic": "wallclimb + rosary"
     },
     {
         "id": "Z0928.c0",
-        "name": "Item Location 117",
+        "name": "cherub",
         "flags": "C",
-        "logic": "wallclimb + blade"
+        "logic": "wallclimb + rosary"
     },
     {
         "id": "Z0929.w0",
-        "name": "Item Location 118",
+        "name": "statue",
         "flags": "W",
-        "logic": "wallclimb + blade"
+        "logic": "wallclimb + rosary + doublejump + airdash"
     },
     {
         "id": "Z1003.l0",
-        "name": "Item Location 119",
-        "logic": "wallclimb + doublejump + censer + rapier + blade"
+        "name": "chest",
+        "logic": "wallclimb + doublejump + censer + rapier"
     },
     {
         "id": "Z1004.l10",
-        "name": "Item Location 120",
-        "logic": "wallclimb + doublejump + censer + rapier + blade"
+        "name": "pickup",
+        "logic": "wallclimb + doublejump + censer + rapier + rosary"
     },
     {
         "id": "Z1007.l2",
-        "name": "Item Location 121",
-        "logic": "wallclimb + doublejump + censer + rapier + blade"
+        "name": "pickup",
+        "logic": "wallclimb + doublejump + censer + rapier + rosary"
     },
     {
         "id": "Z1011.l4",
-        "name": "Item Location 122",
-        "logic": "wallclimb + doublejump + censer + rapier + blade"
+        "name": "pickup",
+        "logic": "wallclimb + doublejump + censer + rapier"
     },
     {
         "id": "Z1015.l0",
-        "name": "Item Location 123",
-        "logic": "wallclimb + doublejump + censer + rapier + blade"
+        "name": "chest",
+        "logic": "wallclimb + doublejump + censer + rapier + rosary"
     },
     {
         "id": "Z1015.l1",
-        "name": "Item Location 124",
-        "logic": "wallclimb + doublejump + censer + rapier + blade"
+        "name": "chest",
+        "logic": "wallclimb + doublejump + airdash + ringclimb + censer + rapier + rosary"
     },
     {
         "id": "Z1017.w0",
-        "name": "Item Location 125",
-        "logic": "wallclimb + doublejump + censer + rapier + blade"
+        "name": "statue",
+        "logic": "wallclimb + doublejump + censer + rapier + rosary"
     },
     {
         "id": "Z1018.l3",
-        "name": "Item Location 126",
-        "logic": "wallclimb + doublejump + censer + rapier + blade"
+        "name": "pickup",
+        "logic": "wallclimb + doublejump + airdash + ringclimb + censer + rapier + rosary"
     },
     {
         "id": "Z1019.l9",
-        "name": "Item Location 127",
-        "logic": "wallclimb + doublejump + censer + rapier + blade"
+        "name": "chest",
+        "logic": "wallclimb + doublejump + airdash + censer + rapier + rosary"
     },
     {
         "id": "Z1019.c0",
-        "name": "Item Location 128",
+        "name": "cherub",
         "flags": "C",
-        "logic": "wallclimb + doublejump + censer + rapier + blade"
+        "logic": "wallclimb + doublejump + censer + rapier + rosary"
     },
     {
         "id": "Z1023.l8",
-        "name": "Item Location 129",
-        "logic": "wallclimb + doublejump + censer + rapier + blade"
+        "name": "pickup",
+        "logic": "wallclimb + doublejump + airdash + ringclimb + censer + rapier + rosary"
     },
     {
         "id": "Z1023.c0",
-        "name": "Item Location 130",
+        "name": "cherub",
         "flags": "C",
-        "logic": "wallclimb + doublejump + censer + rapier + blade"
+        "logic": "wallclimb + doublejump + airdash + censer + rapier + rosary"
     },
     {
         "id": "Z1045.l0",
-        "name": "Item Location 131",
-        "logic": "wallclimb + doublejump + censer + rapier + blade"
+        "name": "pickup",
+        "logic": "wallclimb + doublejump + censer + rapier + rosary"
     },
     {
         "id": "Z1050.l7",
-        "name": "Item Location 132",
-        "logic": "wallclimb + doublejump + censer + rapier + blade"
+        "name": "basin",
+        "logic": "wallclimb + doublejump + censer + rapier"
     },
     {
         "id": "Z1050.c0",
-        "name": "Item Location 133",
+        "name": "cherub",
         "flags": "C",
-        "logic": "wallclimb + doublejump + censer + rapier + blade"
+        "logic": "wallclimb + doublejump + censer + rapier"
     },
     {
         "id": "Z1058.c0",
-        "name": "Item Location 134",
+        "name": "cherub",
         "flags": "C",
-        "logic": "wallclimb + doublejump + censer + rapier + blade"
+        "logic": "wallclimb + doublejump + censer + rapier + rosary"
     },
     {
         "id": "Z1063.w0",
-        "name": "Item Location 135",
+        "name": "statue",
         "flags": "W",
-        "logic": "wallclimb + doublejump + censer + rapier + blade"
-    },
-    {
-        "id": "Z1064.i0",
-        "name": "Item Location 136",
-        "flags": "V",
-        "logic": "wallclimb + doublejump + censer + rapier + blade"
+        "logic": "wallclimb + doublejump + ringclimb + censer + rapier + rosary"
     },
     {
         "id": "Z1065.l4",
-        "name": "Item Location 137",
-        "logic": "wallclimb + doublejump + censer + rapier + blade"
+        "name": "chest",
+        "logic": "wallclimb + doublejump + airdash + ringclimb + censer + rapier"
     },
     {
         "id": "Z1067.l9",
-        "name": "Item Location 138",
-        "logic": "wallclimb + doublejump + censer + rapier + blade"
+        "name": "pickup",
+        "logic": "wallclimb + doublejump + airdash + censer + rapier + rosary"
     },
     {
         "id": "Z1103.l1",
-        "name": "Item Location 139",
-        "logic": "wallclimb + doublejump + airdash + censer + rapier + blade"
+        "name": "basin",
+        "logic": "wallclimb + doublejump + airdash + rosary"
     },
     {
         "id": "Z1107.l5",
-        "name": "Item Location 140",
-        "logic": "wallclimb + doublejump + airdash + censer + rapier + blade"
+        "name": "chest",
+        "logic": "wallclimb + doublejump + airdash + rosary + rapier"
     },
     {
         "id": "Z1109.l0",
-        "name": "Item Location 141",
-        "logic": "wallclimb + doublejump + airdash + censer + rapier + blade"
+        "name": "pickup",
+        "logic": "wallclimb + doublejump + airdash + rosary + rapier + censer"
     },
     {
         "id": "Z1113.r8",
-        "name": "Item Location 142",
+        "name": "boss",
         "flags": "B",
-        "logic": "wallclimb + doublejump + airdash + censer + rapier + blade"
+        "logic": "wallclimb + doublejump + airdash + rosary + rapier + censer"
     },
     {
         "id": "Z1113.i8",
-        "name": "Item Location 143",
+        "name": "boss",
         "flags": "B",
-        "logic": "wallclimb + doublejump + airdash + censer + rapier + blade"
+        "logic": "wallclimb + doublejump + airdash + rosary + rapier + censer"
     },
     {
         "id": "Z1114.c0",
-        "name": "Item Location 144",
+        "name": "cherub",
         "flags": "C",
-        "logic": "wallclimb + doublejump + airdash + censer + rapier + blade"
+        "logic": "wallclimb + doublejump + airdash + rosary + rapier + censer"
     },
     {
         "id": "Z1202.c0",
-        "name": "Item Location 145",
+        "name": "cherub",
         "flags": "C",
-        "logic": "wallclimb + doublejump + airdash + censer + rapier + blade"
+        "logic": "wallclimb + doublejump + airdash"
     },
     {
         "id": "Z1203.i2",
-        "name": "Item Location 146",
-        "logic": "wallclimb + doublejump + airdash + censer + rapier + blade"
+        "name": "arena",
+        "logic": "wallclimb + doublejump + airdash"
     },
     {
         "id": "Z1205.w0",
-        "name": "Item Location 147",
+        "name": "statue",
         "flags": "W",
-        "logic": "wallclimb + doublejump + airdash + censer + rapier + blade"
+        "logic": "wallclimb + doublejump + airdash + censer"
     },
     {
         "id": "Z1209.l1",
-        "name": "Item Location 148",
-        "logic": "wallclimb + doublejump + airdash + censer + rapier + blade"
+        "name": "chest",
+        "logic": "wallclimb + doublejump + airdash"
     },
     {
         "id": "Z1209.l2",
-        "name": "Item Location 149",
-        "logic": "wallclimb + doublejump + airdash + censer + rapier + blade"
+        "name": "basin",
+        "logic": "wallclimb + doublejump + airdash"
     },
     {
         "id": "Z1210.l2",
-        "name": "Item Location 150",
-        "logic": "wallclimb + doublejump + airdash + censer + rapier + blade"
+        "name": "basin",
+        "logic": "wallclimb + doublejump + airdash + ringclimb"
     },
     {
         "id": "Z1216.i9",
-        "name": "Item Location 151",
+        "name": "boss",
         "flags": "B",
-        "logic": "wallclimb + doublejump + airdash + censer + rapier + blade"
+        "logic": "wallclimb + doublejump + airdash"
     },
     {
         "id": "Z1216.r9",
-        "name": "Item Location 152",
+        "name": "boss",
         "flags": "B",
-        "logic": "wallclimb + doublejump + airdash + censer + rapier + blade"
+        "logic": "wallclimb + doublejump + airdash"
     },
     {
         "id": "Z1219.l13",
-        "name": "Item Location 153",
-        "logic": "wallclimb + doublejump + airdash + censer + rapier + blade"
+        "name": "pickup",
+        "logic": "wallclimb + doublejump + airdash + rapier"
     },
     {
         "id": "Z1303.c0",
-        "name": "Item Location 154",
+        "name": "cherub",
         "flags": "C",
-        "logic": "wallclimb + doublejump + airdash + ringclimb + censer + rapier + blade"
+        "logic": "wallclimb + doublejump + airdash + ringclimb + rosary + censer + rapier"
     },
     {
         "id": "Z1304.c0",
-        "name": "Item Location 155",
+        "name": "cherub",
         "flags": "C",
-        "logic": "wallclimb + doublejump + airdash + ringclimb + censer + rapier + blade"
+        "logic": "wallclimb + doublejump + airdash + ringclimb + rosary + censer + rapier"
     },
     {
         "id": "Z1307.l7",
-        "name": "Item Location 156",
-        "logic": "wallclimb + doublejump + airdash + ringclimb + censer + rapier + blade"
+        "name": "basin",
+        "logic": "wallclimb + doublejump + airdash + ringclimb + rosary"
     },
     {
         "id": "Z1308.l7",
-        "name": "Item Location 157",
-        "logic": "wallclimb + doublejump + airdash + ringclimb + censer + rapier + blade"
+        "name": "pickup",
+        "logic": "wallclimb + doublejump + airdash + ringclimb + rosary + censer + rapier"
     },
     {
         "id": "Z1310.l0",
-        "name": "Item Location 158",
-        "logic": "wallclimb + doublejump + airdash + ringclimb + censer + rapier + blade"
+        "name": "basin",
+        "logic": "wallclimb + doublejump + airdash + ringclimb"
     },
     {
         "id": "Z1311.l7",
-        "name": "Item Location 159",
-        "logic": "wallclimb + doublejump + airdash + ringclimb + censer + rapier + blade"
+        "name": "chest",
+        "logic": "wallclimb + doublejump + airdash + ringclimb + rosary + censer"
     },
     {
         "id": "Z1312.l4",
-        "name": "Item Location 160",
-        "logic": "wallclimb + doublejump + airdash + ringclimb + censer + rapier + blade"
+        "name": "chest",
+        "logic": "wallclimb + doublejump + airdash + ringclimb"
     },
     {
         "id": "Z1314.l6",
-        "name": "Item Location 161",
-        "logic": "wallclimb + doublejump + airdash + ringclimb + censer + rapier + blade"
+        "name": "pickup",
+        "logic": "wallclimb + doublejump + airdash + ringclimb + rosary + censer + rapier"
     },
     {
         "id": "Z1326.i0",
-        "name": "Item Location 162",
-        "logic": "wallclimb + doublejump + airdash + ringclimb + censer + rapier + blade"
+        "name": "gift",
+        "logic": "wallclimb + doublejump + airdash + ringclimb + rosary + censer + rapier + letter1"
     },
     {
         "id": "Z1327.r7",
-        "name": "Item Location 163",
+        "name": "boss",
         "flags": "B",
-        "logic": "wallclimb + doublejump + airdash + ringclimb + censer + rapier + blade"
+        "logic": "wallclimb + doublejump + airdash + ringclimb + rosary + censer + rapier + holyoil"
     },
     {
         "id": "Z1327.i7",
-        "name": "Item Location 164",
+        "name": "boss",
         "flags": "B",
-        "logic": "wallclimb + doublejump + airdash + ringclimb + censer + rapier + blade"
+        "logic": "wallclimb + doublejump + airdash + ringclimb + rosary + censer + rapier + holyoil"
     },
     {
         "id": "Z1327.l3",
-        "name": "Item Location 165",
-        "logic": "wallclimb + doublejump + airdash + ringclimb + censer + rapier + blade"
+        "name": "pickup",
+        "logic": "wallclimb + doublejump + airdash + ringclimb + rosary + censer + rapier + holyoil"
     },
     {
         "id": "Z1329.l0",
-        "name": "Item Location 167",
-        "logic": "wallclimb + doublejump + airdash + ringclimb + censer + rapier + blade"
+        "name": "basin",
+        "logic": "wallclimb + doublejump + airdash + ringclimb"
     },
     {
         "id": "Z1330.l5",
-        "name": "Item Location 168",
-        "logic": "wallclimb + doublejump + airdash + ringclimb + censer + rapier + blade"
+        "name": "basin",
+        "logic": "wallclimb + doublejump + airdash + ringclimb + rosary + censer + rapier"
     },
     {
         "id": "Z1404.c0",
-        "name": "Item Location 169",
+        "name": "cherub",
         "flags": "C",
-        "logic": "wallclimb + doublejump + censer + rapier"
+        "logic": "wallclimb + censer + rapier + (doublejump | airdash)"
     },
     {
         "id": "Z1404.l15",
-        "name": "Item Location 170",
-        "logic": "wallclimb + doublejump + censer + rapier"
+        "name": "pickup",
+        "logic": "wallclimb + censer + rapier + rosary + doublejump"
     },
     {
         "id": "Z1404.l8",
-        "name": "Item Location 171",
-        "logic": "wallclimb + doublejump + censer + rapier"
+        "name": "basin",
+        "logic": "wallclimb + censer + rapier"
     },
     {
         "id": "Z1405.l3",
-        "name": "Item Location 172",
-        "logic": "wallclimb + doublejump + censer + rapier"
+        "name": "basin",
+        "logic": "wallclimb + censer + rapier"
     },
     {
         "id": "Z1407.l1",
-        "name": "Item Location 173",
-        "logic": "wallclimb + doublejump + censer + rapier"
+        "name": "chest",
+        "logic": "wallclimb + censer + rapier"
     },
     {
         "id": "Z1408.c0",
-        "name": "Item Location 174",
+        "name": "cherub",
         "flags": "C",
-        "logic": "wallclimb + doublejump + censer + rapier"
+        "logic": "wallclimb + censer + rapier"
     },
     {
         "id": "Z1418.l5",
-        "name": "Item Location 175",
-        "logic": "wallclimb + doublejump + censer + rapier"
+        "name": "basin",
+        "logic": "wallclimb + doublejump + ringclimb + censer + rapier"
     },
     {
         "id": "Z1419.l2",
-        "name": "Item Location 176",
+        "name": "basin",
         "logic": "wallclimb + doublejump + censer + rapier"
     },
     {
         "id": "Z1421.l1",
-        "name": "Item Location 177",
-        "logic": "wallclimb + doublejump + censer + rapier"
+        "name": "chest",
+        "logic": "wallclimb + censer + rapier"
     },
     {
         "id": "Z1422.l8",
-        "name": "Item Location 178",
-        "logic": "wallclimb + doublejump + censer + rapier"
+        "name": "pickup",
+        "logic": "wallclimb + censer + rapier + rosary"
     },
     {
         "id": "Z1424.l3",
-        "name": "Item Location 179",
-        "logic": "wallclimb + doublejump + censer + rapier"
+        "name": "chest",
+        "logic": "wallclimb + censer + rapier"
     },
     {
         "id": "Z1427.l0",
-        "name": "Item Location 180",
-        "logic": "wallclimb + doublejump + censer + rapier"
+        "name": "pickup",
+        "logic": "wallclimb + censer + rapier + letter3"
     },
     {
         "id": "Z1429.l11",
-        "name": "Item Location 181",
-        "logic": "wallclimb + doublejump + censer + rapier"
+        "name": "pickup",
+        "logic": "wallclimb + doublejump + airdash + censer + rapier"
     },
     {
         "id": "Z1501.i0.a",
-        "name": "Item Location 182",
-        "logic": "wallclimb + doublejump + airdash + ringclimb + censer + rapier + blade"
+        "name": "Arena 1",
+        "logic": "censer + rapier + daughterrooms >= 1"
     },
     {
         "id": "Z1501.i0.b",
-        "name": "Item Location 183",
-        "logic": "wallclimb + doublejump + airdash + ringclimb + censer + rapier + blade"
+        "name": "Arena 2",
+        "logic": "censer + rapier + daughterrooms >= 2"
     },
     {
         "id": "Z1501.i0.c",
-        "name": "Item Location 184",
-        "logic": "wallclimb + doublejump + airdash + ringclimb + censer + rapier + blade"
+        "name": "Arena 3",
+        "logic": "censer + rapier + daughterrooms >= 3"
     },
     {
         "id": "Z1501.i0.d",
-        "name": "Item Location 185",
-        "logic": "wallclimb + doublejump + airdash + ringclimb + censer + rapier + blade"
+        "name": "Arena 4",
+        "logic": "censer + rapier + daughterrooms >= 4"
     },
     {
         "id": "Z1501.i0.e",
-        "name": "Item Location 186",
-        "logic": "wallclimb + doublejump + airdash + ringclimb + censer + rapier + blade"
+        "name": "Arena 5",
+        "logic": "censer + rapier + daughterrooms >= 5"
     },
     {
         "id": "Z1602.l2",
-        "name": "Item Location 187",
-        "logic": "wallclimb + doublejump + airdash + ringclimb + censer + rapier + blade"
+        "name": "basin",
+        "logic": "wallclimb + doublejump + airdash + rosary"
     },
     {
         "id": "Z1603.i2",
-        "name": "Item Location 188",
-        "logic": "wallclimb + doublejump + airdash + ringclimb + censer + rapier + blade"
+        "name": "arena",
+        "logic": "wallclimb + doublejump + airdash + rosary"
     },
     {
         "id": "Z1605.c0",
-        "name": "Item Location 189",
+        "name": "cherub",
         "flags": "C",
-        "logic": "wallclimb + doublejump + airdash + ringclimb + censer + rapier + blade"
+        "logic": "wallclimb + doublejump + airdash + rosary + rapier + ringclimb"
     },
     {
         "id": "Z1605.l5",
-        "name": "Item Location 190",
-        "logic": "wallclimb + doublejump + airdash + ringclimb + censer + rapier + blade"
+        "name": "basin",
+        "logic": "wallclimb + doublejump + airdash + rosary + rapier + ringclimb"
     },
     {
         "id": "Z1610.l4",
-        "name": "Item Location 191",
-        "logic": "wallclimb + doublejump + airdash + ringclimb + censer + rapier + blade"
+        "name": "pickup",
+        "logic": "wallclimb + doublejump + airdash + rosary + rapier"
     },
     {
         "id": "Z1615.a0",
-        "name": "Item Location 192",
+        "name": "statue",
         "flags": "A",
-        "logic": "wallclimb + doublejump + airdash + ringclimb + censer + rapier + blade"
+        "logic": "wallclimb + doublejump + airdash + rosary + rapier"
     },
     {
         "id": "Z1616.i1",
-        "name": "Item Location 193",
-        "logic": "wallclimb + doublejump + airdash + ringclimb + censer + rapier + blade"
+        "name": "gift",
+        "logic": "wallclimb + doublejump + airdash + rosary + rapier + ringclimb + waxSeeds >= 6"
     },
     {
         "id": "Z1619.l6",
-        "name": "Item Location 194",
-        "logic": "wallclimb + doublejump + airdash + ringclimb + censer + rapier + blade"
+        "name": "basin",
+        "logic": "wallclimb + tributes >= 3 + airdash"
     },
     {
         "id": "Z1621.l1",
-        "name": "Item Location 195",
-        "logic": "wallclimb + doublejump + airdash + ringclimb + censer + rapier + blade"
+        "name": "chest",
+        "logic": "wallclimb + tributes >= 3"
     },
     {
         "id": "Z1622.i6",
-        "name": "Item Location 196",
+        "name": "boss",
         "flags": "B",
-        "logic": "wallclimb + doublejump + airdash + ringclimb + censer + rapier + blade"
+        "logic": "wallclimb + doublejump + airdash + rosary + rapier + ringclimb"
     },
     {
         "id": "Z1622.r6",
-        "name": "Item Location 197",
+        "name": "boss",
         "flags": "B",
-        "logic": "wallclimb + doublejump + airdash + ringclimb + censer + rapier + blade"
+        "logic": "wallclimb + doublejump + airdash + rosary + rapier + ringclimb"
     },
     {
         "id": "Z1623.c0",
-        "name": "Item Location 198",
+        "name": "cherub",
         "flags": "C",
-        "logic": "wallclimb + doublejump + airdash + ringclimb + censer + rapier + blade"
+        "logic": "wallclimb + doublejump + airdash + rosary + rapier"
     },
     {
         "id": "Z1625.i2",
-        "name": "Item Location 199",
-        "logic": "wallclimb + doublejump + airdash + ringclimb + censer + rapier + blade"
+        "name": "arena",
+        "logic": "wallclimb + doublejump + airdash + rosary + rapier + ringclimb"
     },
     {
         "id": "Z1701.c0",
-        "name": "Item Location 200",
+        "name": "cherub",
         "flags": "C",
-        "logic": "wallclimb + doublejump + censer + rapier"
+        "logic": "censer + rapier + doublejump + airdash"
     },
     {
         "id": "Z1709.l0",
-        "name": "Item Location 201",
-        "logic": "wallclimb + doublejump + censer + rapier"
+        "name": "pickup",
+        "logic": "censer + rapier + brokenkey"
     },
     {
         "id": "Z1715.l0",
-        "name": "Item Location 202",
-        "logic": "wallclimb + doublejump + censer + rapier"
+        "name": "pickup",
+        "logic": "censer + rapier + doublejump + ringclimb"
     },
     {
         "id": "Z1718.l0",
-        "name": "Item Location 203",
-        "logic": "wallclimb + doublejump + censer + rapier"
+        "name": "basin",
+        "logic": "censer + rapier + doublejump"
     },
     {
         "id": "Z1719.l3",
-        "name": "Item Location 204",
-        "logic": "wallclimb + doublejump + censer + rapier"
+        "name": "pickup",
+        "logic": "censer + rapier + doublejump + airdash"
     },
     {
         "id": "Z1721.l7",
-        "name": "Item Location 205",
-        "logic": "wallclimb + doublejump + censer + rapier"
+        "name": "chest",
+        "logic": "censer + rapier + doublejump + airdash + glasswalk"
     },
     {
         "id": "Z1722.i1",
-        "name": "Item Location 206",
+        "name": "gift",
         "flags": "D",
-        "logic": "wallclimb + doublejump + censer + rapier"
+        "logic": "censer + rapier"
     },
     {
         "id": "Z1801.l1",
-        "name": "Item Location 207",
-        "logic": "wallclimb + doublejump + airdash + ringclimb + censer + rapier + blade"
+        "name": "pickup",
+        "logic": "wallclimb + doublejump + airdash + ringclimb + censer + rapier + rosary + bosskeys >= 5"
     },
     {
         "id": "Z1802.l7",
-        "name": "Item Location 208",
-        "logic": "wallclimb + doublejump + airdash + ringclimb + censer + rapier + blade"
+        "name": "pickup",
+        "logic": "wallclimb + doublejump + airdash + ringclimb + censer + rapier + rosary + bosskeys >= 5"
     },
     {
         "id": "Z1803.l7",
-        "name": "Item Location 209",
-        "logic": "wallclimb + doublejump + airdash + ringclimb + censer + rapier + blade"
+        "name": "pickup",
+        "logic": "wallclimb + doublejump + airdash + ringclimb + censer + rapier + rosary + bosskeys >= 5"
     },
     {
         "id": "Z1804.l2",
-        "name": "Item Location 210",
-        "logic": "wallclimb + doublejump + airdash + ringclimb + censer + rapier + blade"
+        "name": "pickup",
+        "logic": "wallclimb + doublejump + airdash + ringclimb + censer + rapier + rosary + bosskeys >= 5"
     },
     {
         "id": "Z1808.i6",
-        "name": "Item Location 211",
-        "logic": "wallclimb + doublejump + airdash + ringclimb + censer + rapier + blade"
+        "name": "boss",
+        "logic": "wallclimb + doublejump + airdash + ringclimb + censer + rapier + rosary + bosskeys >= 5"
     },
     {
         "id": "Z1808.r6",
-        "name": "Item Location 212",
-        "logic": "wallclimb + doublejump + airdash + ringclimb + censer + rapier + blade"
+        "name": "boss",
+        "logic": "wallclimb + doublejump + airdash + ringclimb + censer + rapier + rosary + bosskeys >= 5"
     },
     {
         "id": "Z1901.l0",
-        "name": "Item Location 213",
-        "logic": "wallclimb"
+        "name": "basin",
+        "logic": "wallclimb | doublejump | airdash"
     },
     {
         "id": "Z1903.l1",
-        "name": "Item Location 214",
-        "logic": "wallclimb"
+        "name": "basin",
+        "logic": "doublejump"
     },
     {
         "id": "Z1905.c0",
-        "name": "Item Location 215",
+        "name": "cherub",
         "flags": "C",
-        "logic": "wallclimb"
+        "logic": "censer"
     },
     {
         "id": "Z1906.i1",
-        "name": "Item Location 216",
-        "logic": "wallclimb"
+        "name": "gift",
+        "logic": "lullabies >= 5 + doublejump + airdash + censer + rapier"
     },
     {
         "id": "Z1907.i0",
-        "name": "Item Location 217",
-        "logic": "wallclimb"
+        "name": "gift"
     },
     {
         "id": "Z1909.l0",
-        "name": "Item Location 218",
-        "logic": "wallclimb"
+        "name": "basin",
+        "logic": "doublejump + airdash + censer + rapier"
     },
     {
         "id": "Z1910.l4",
-        "name": "Item Location 219",
-        "logic": "wallclimb"
+        "name": "pickup",
+        "logic": "wallclimb + tributes >= 1"
     },
     {
         "id": "Z1910.l0",
-        "name": "Item Location 220",
-        "logic": "wallclimb"
+        "name": "basin",
+        "logic": "wallclimb + tributes >= 2"
     },
     {
         "id": "Z1913.l1",
-        "name": "Item Location 221",
+        "name": "pickup",
         "logic": "wallclimb"
     },
     {
         "id": "Z1914.i2",
-        "name": "Item Location 222",
+        "name": "arena",
         "logic": "wallclimb"
     },
     {
         "id": "Z1917.l3",
-        "name": "Item Location 223",
+        "name": "pickup",
         "logic": "wallclimb"
     },
     {
         "id": "Z1917.i0",
-        "name": "Item Location 224",
-        "logic": "wallclimb"
+        "name": "gift",
+        "logic": "wallclimb + letter5"
     },
     {
         "id": "Z1918.l2",
-        "name": "Item Location 225",
-        "logic": "wallclimb"
+        "name": "basin",
+        "logic": "doublejump + airdash"
     },
     {
         "id": "Z1919.a0",
-        "name": "Item Location 226",
-        "flags": "A",
-        "logic": "wallclimb"
+        "name": "statue",
+        "flags": "A"
     },
     {
         "id": "Z1919.l3",
-        "name": "Item Location 227",
-        "logic": "wallclimb"
+        "name": "chest",
+        "logic": "wallclimb | doublejump"
     },
     {
         "id": "Z2001.l1",
-        "name": "Item Location 228",
+        "name": "pickup",
         "logic": "wallclimb"
     },
     {
         "id": "Z2004.c0",
-        "name": "Item Location 229",
+        "name": "cherub",
         "flags": "C",
         "logic": "wallclimb + doublejump + airdash + censer"
     },
     {
         "id": "Z2102.l0",
-        "name": "Item Location 230",
-        "logic": "wallclimb + doublejump + airdash + censer + blade"
+        "name": "chest",
+        "logic": "wallclimb + doublejump + airdash"
     },
     {
         "id": "Z2103.l0",
-        "name": "Item Location 231",
-        "logic": "wallclimb + doublejump + airdash + censer + blade"
+        "name": "basin",
+        "logic": "wallclimb + doublejump + airdash"
     },
     {
         "id": "Z2104.l7",
-        "name": "Item Location 232",
-        "logic": "wallclimb + doublejump + airdash + censer + blade"
+        "name": "chest",
+        "logic": "wallclimb + doublejump + airdash + rosary + censer"
     },
     {
         "id": "Z2106.l4",
-        "name": "Item Location 233",
-        "logic": "wallclimb + doublejump + airdash + censer + blade"
+        "name": "basin",
+        "logic": "wallclimb + doublejump + airdash + rosary"
     },
     {
         "id": "Z2112.l0",
-        "name": "Item Location 234",
-        "logic": "wallclimb + doublejump + airdash + censer + blade"
+        "name": "chest",
+        "logic": "wallclimb + doublejump + airdash + rosary"
     },
     {
         "id": "Z2115.c0",
-        "name": "Item Location 235",
+        "name": "cherub",
         "flags": "C",
-        "logic": "wallclimb + doublejump + airdash + censer + blade"
+        "logic": "wallclimb + doublejump + airdash + rosary"
     },
     {
         "id": "Z2116.l2",
-        "name": "Item Location 236",
-        "logic": "wallclimb + doublejump + airdash + censer + blade"
+        "name": "pickup",
+        "logic": "wallclimb + doublejump + airdash + rosary + ringclimb"
     },
     {
         "id": "Z2117.l1",
-        "name": "Item Location 237",
-        "logic": "wallclimb + doublejump + airdash + censer + blade"
+        "name": "pickup",
+        "logic": "wallclimb + doublejump + airdash + rosary"
     },
     {
         "id": "Z2117.c0",
-        "name": "Item Location 238",
+        "name": "cherub",
         "flags": "C",
-        "logic": "wallclimb + doublejump + airdash + censer + blade"
+        "logic": "wallclimb + doublejump + airdash + rosary"
     },
     {
         "id": "Z2119.i0",
-        "name": "Item Location 239",
-        "logic": "wallclimb + doublejump + airdash + censer + blade"
+        "name": "gift",
+        "logic": "wallclimb + doublejump + airdash + rosary + regulacloth"
     },
     {
         "id": "Z2120.i2",
-        "name": "Item Location 240",
-        "logic": "wallclimb + doublejump + airdash + censer + blade"
+        "name": "gift",
+        "logic": "wallclimb + doublejump + airdash + rosary"
     },
     {
         "id": "Z2123.l2",
-        "name": "Item Location 241",
-        "logic": "wallclimb + doublejump + airdash + censer + blade"
+        "name": "pickup",
+        "logic": "wallclimb + doublejump + airdash + rosary"
     },
     {
         "id": "Z2127.l21",
-        "name": "Item Location 242",
-        "logic": "wallclimb + doublejump + airdash + censer + blade"
+        "name": "chest",
+        "logic": "wallclimb + doublejump + airdash + rapier"
     },
     {
         "id": "Z2132.l7",
-        "name": "Item Location 243",
-        "logic": "wallclimb + doublejump + airdash + censer + blade"
+        "name": "chest",
+        "logic": "wallclimb + doublejump + airdash + ringclimb + rapier"
     },
     {
         "id": "Z2133.l2",
-        "name": "Item Location 244",
-        "logic": "wallclimb + doublejump + airdash + censer + blade"
+        "name": "chest",
+        "logic": "wallclimb + doublejump + airdash + ringclimb + rapier"
     },
     {
         "id": "Z2136.l1",
-        "name": "Item Location 245",
-        "logic": "wallclimb + doublejump + airdash + censer + blade"
+        "name": "pickup",
+        "logic": "wallclimb + doublejump + airdash + ringclimb + rapier"
     },
     {
         "id": "Z2140.l7",
-        "name": "Item Location 246",
-        "logic": "wallclimb + doublejump + airdash + censer + blade"
+        "name": "pickup",
+        "logic": "wallclimb + doublejump + airdash + ringclimb + rapier + mudkey"
     },
     {
         "id": "Z2145.l1",
-        "name": "Item Location 247",
-        "logic": "wallclimb + doublejump + airdash + censer + blade"
+        "name": "basin",
+        "logic": "wallclimb + doublejump + airdash + ringclimb + rapier + meaculpa + mudkey"
     },
     {
         "id": "Z2146.l12",
-        "name": "Item Location 248",
-        "logic": "wallclimb + doublejump + airdash + censer + blade"
+        "name": "basin",
+        "logic": "wallclimb + doublejump + airdash + ringclimb + rapier + meaculpa"
     },
     {
         "id": "Z2147.l0",
-        "name": "Item Location 249",
-        "logic": "wallclimb + doublejump + airdash + censer + blade"
+        "name": "chest",
+        "logic": "wallclimb + doublejump + airdash + rapier"
     },
     {
         "id": "Z2149.l0",
-        "name": "Item Location 250",
-        "logic": "wallclimb + doublejump + airdash + censer + blade"
+        "name": "pickup",
+        "logic": "wallclimb + doublejump + censer + rapier + rosary"
     },
     {
         "id": "Z2150.i0.a",
-        "name": "Item Location 251",
-        "logic": "wallclimb + doublejump + airdash + censer + blade"
+        "name": "gift",
+        "logic": "wallclimb + doublejump + censer + rapier + rosary + goldlumps >= 10"
     },
     {
         "id": "Z2150.i0.b",
-        "name": "Item Location 252",
-        "logic": "wallclimb + doublejump + airdash + censer + blade"
+        "name": "gift",
+        "logic": "wallclimb + doublejump + censer + rapier + rosary + goldlumps >= 20"
     },
     {
         "id": "Z2301.l16",
-        "name": "Item Location 253",
-        "logic": "wallclimb + censer + blade + rapier"
+        "name": "pickup",
+        "logic": "wallclimb + (doublejump | airdash) + censer + rapier + rosary"
     },
     {
         "id": "Z2304.r15",
-        "name": "Item Location 254",
+        "name": "boss",
         "flags": "B",
-        "logic": "wallclimb + censer + blade + rapier"
+        "logic": "wallclimb + censer + rapier + rosary"
     },
     {
         "id": "Z2306.c0",
-        "name": "Item Location 255",
+        "name": "cherub",
         "flags": "C",
-        "logic": "wallclimb + censer + blade + rapier"
+        "logic": "wallclimb + doublejump + censer + rapier + rosary"
     },
     {
         "id": "Z2308.a0",
-        "name": "Item Location 256",
+        "name": "statue",
         "flags": "A",
-        "logic": "wallclimb + censer + blade + rapier"
+        "logic": "wallclimb + censer + rapier + rosary"
     },
     {
         "id": "Z2310.w0",
-        "name": "Item Location 257",
+        "name": "statue",
         "flags": "W",
-        "logic": "wallclimb + censer + blade + rapier"
+        "logic": "wallclimb + doublejump + censer + rapier + rosary"
     },
     {
         "id": "Z2311.l8",
-        "name": "Item Location 258",
-        "logic": "wallclimb + censer + blade + rapier"
+        "name": "chest",
+        "logic": "wallclimb + doublejump + censer + rapier + rosary"
     },
     {
         "id": "Z2314.l10",
-        "name": "Item Location 259",
-        "logic": "wallclimb + censer + blade + rapier"
+        "name": "basin",
+        "logic": "wallclimb + doublejump + glasswalk + censer + rapier + rosary + meaculpa"
     },
     {
         "id": "Z2317.l2",
-        "name": "Item Location 260",
-        "logic": "wallclimb + censer + blade + rapier"
+        "name": "pickup",
+        "logic": "wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosary"
     },
     {
         "id": "Z2401.i0",
-        "name": "Item Location 261",
+        "name": "gift",
         "flags": "L",
-        "logic": "wallclimb + doublejump + airdash + ringclimb + censer + rapier + blade"
+        "logic": "censer + rapier + rosary + wallclimb + doublejump + airdash + ringclimb"
     },
     {
         "id": "Z2401.l2",
-        "name": "Item Location 262",
-        "logic": "wallclimb + doublejump + airdash + ringclimb + censer + rapier + blade"
+        "name": "basin",
+        "logic": "censer + rapier + rosary + wallclimb "
     },
     {
         "id": "Z2401.l3",
-        "name": "Item Location 263",
-        "logic": "wallclimb + doublejump + airdash + ringclimb + censer + rapier + blade"
+        "name": "basin",
+        "logic": "censer + rapier + rosary + wallclimb + doublejump + airdash + ringclimb"
     },
     {
         "id": "Z2401.l2.x",
-        "name": "Item Location 264",
-        "logic": "wallclimb + doublejump + airdash + ringclimb + censer + rapier + blade"
+        "name": "basin",
+        "logic": "censer + rapier + rosary + wallclimb + doublejump + airdash + ringclimb"
     },
     {
         "id": "Z2402.l1",
-        "name": "Item Location 265",
+        "name": "basin",
         "flags": "L",
-        "logic": "wallclimb + doublejump + airdash + ringclimb + censer + rapier + blade"
+        "logic": "censer + rapier + rosary + wallclimb + doublejump + airdash + ringclimb"
     },
     {
         "id": "Z2402.l0",
-        "name": "Item Location 266",
+        "name": "pickup",
         "flags": "L",
-        "logic": "wallclimb + doublejump + airdash + ringclimb + censer + rapier + blade"
+        "logic": "censer + rapier + rosary + wallclimb + doublejump + airdash + ringclimb"
     },
     {
         "id": "Z2402.l2",
-        "name": "Item Location 267",
+        "name": "chest",
         "flags": "L",
-        "logic": "wallclimb + doublejump + airdash + ringclimb + censer + rapier + blade"
+        "logic": "censer + rapier + rosary + wallclimb + doublejump + airdash + ringclimb"
     },
     {
         "id": "Z2702.i0",
-        "name": "Item Location 269",
-        "logic": "wallclimb + doublejump + airdash + censer + rapier + blade + meaculpa"
+        "name": "dlc location",
+        "logic": "wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosary + meaculpa + mudkey + ceramickey"
     },
     {
         "id": "Z2703.l1",
-        "name": "Item Location 270",
-        "logic": "wallclimb + doublejump + airdash + censer + rapier + blade + meaculpa"
+        "name": "dlc location",
+        "logic": "wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosary + meaculpa + mudkey + ceramickey"
     },
     {
         "id": "Z2704.l6",
-        "name": "Item Location 271",
-        "logic": "wallclimb + doublejump + airdash + censer + rapier + blade + meaculpa"
+        "name": "dlc location",
+        "logic": "wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosary + meaculpa + mudkey + ceramickey"
     },
     {
         "id": "Z2704.l7",
-        "name": "Item Location 272",
-        "logic": "wallclimb + doublejump + airdash + censer + rapier + blade + meaculpa"
+        "name": "dlc location",
+        "logic": "wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosary + meaculpa + mudkey + ceramickey"
     },
     {
         "id": "Z2705.l5",
-        "name": "Item Location 273",
-        "logic": "wallclimb + doublejump + airdash + censer + rapier + blade + meaculpa"
+        "name": "dlc location",
+        "logic": "wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosary + meaculpa + mudkey + ceramickey"
     },
     {
         "id": "Z2705.i6",
-        "name": "Item Location 274",
-        "logic": "wallclimb + doublejump + airdash + censer + rapier + blade + meaculpa"
+        "name": "dlc location",
+        "logic": "wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosary + meaculpa + mudkey + ceramickey"
     },
     {
         "id": "Z2706.l10",
-        "name": "Item Location 275",
-        "logic": "wallclimb + doublejump + airdash + censer + rapier + blade + meaculpa"
+        "name": "dlc location",
+        "logic": "wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosary + meaculpa + mudkey + ceramickey"
     },
     {
         "id": "Z2708.l9",
-        "name": "Item Location 276",
-        "logic": "wallclimb + doublejump + airdash + censer + rapier + blade + meaculpa"
+        "name": "dlc location",
+        "logic": "wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosary + meaculpa + mudkey + ceramickey"
     },
     {
         "id": "Z2712.l14",
-        "name": "Item Location 277",
-        "logic": "wallclimb + doublejump + airdash + censer + rapier + blade + meaculpa"
+        "name": "dlc location",
+        "logic": "wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosary + meaculpa + mudkey + ceramickey"
     },
     {
         "id": "Z2716.l5",
-        "name": "Item Location 278",
-        "logic": "wallclimb + doublejump + airdash + censer + rapier + blade + meaculpa"
+        "name": "dlc location",
+        "logic": "wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosary + meaculpa + mudkey + ceramickey"
     },
     {
         "id": "Z2719.l5",
-        "name": "Item Location 279",
-        "logic": "wallclimb + doublejump + airdash + censer + rapier + blade + meaculpa"
+        "name": "dlc location",
+        "logic": "wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosary + meaculpa + mudkey + ceramickey"
     },
     {
         "id": "Z2724.l12",
-        "name": "Item Location 280",
-        "logic": "wallclimb + doublejump + airdash + censer + rapier + blade + meaculpa"
+        "name": "dlc location",
+        "logic": "wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosary + meaculpa + mudkey + ceramickey"
     },
     {
         "id": "Z2731.l2",
-        "name": "Item Location 281",
-        "logic": "wallclimb + doublejump + airdash + censer + rapier + blade + meaculpa"
+        "name": "dlc location",
+        "logic": "wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosary + meaculpa + mudkey + ceramickey"
     },
     {
         "id": "Z2735.r7",
-        "name": "Item Location 282",
-        "logic": "wallclimb + doublejump + airdash + censer + rapier + blade + meaculpa"
+        "name": "dlc location",
+        "logic": "wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosary + meaculpa + mudkey + ceramickey"
     },
     {
         "id": "Z2741.i0",
-        "name": "Item Location 283",
-        "logic": "wallclimb + doublejump + airdash + censer + rapier + blade + meaculpa"
+        "name": "dlc location",
+        "logic": "wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosary + meaculpa + mudkey + ceramickey"
     },
     {
         "id": "Z2743.i0",
-        "name": "Item Location 284",
-        "logic": "wallclimb + doublejump + airdash + censer + rapier + blade + meaculpa"
+        "name": "dlc location",
+        "logic": "wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosary + meaculpa + mudkey + ceramickey"
     },
     {
         "id": "Z2744.l21",
-        "name": "Item Location 285",
-        "logic": "wallclimb + doublejump + airdash + censer + rapier + blade + meaculpa"
+        "name": "dlc location",
+        "logic": "wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosary + meaculpa + mudkey + ceramickey"
     },
     {
         "id": "Z2746.i0",
-        "name": "Item Location 286",
-        "logic": "wallclimb + doublejump + airdash + censer + rapier + blade + meaculpa"
+        "name": "dlc location",
+        "logic": "wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosary + meaculpa + mudkey + ceramickey"
     },
     {
         "id": "Z2801.l9",
-        "name": "Item Location 287",
-        "logic": "wallclimb + doublejump + airdash + censer + rapier + blade + meaculpa"
+        "name": "dlc location",
+        "logic": "wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosary + meaculpa + mudkey + ceramickey"
     },
     {
         "id": "Z2804.i8",
-        "name": "Item Location 288",
-        "logic": "wallclimb + doublejump + airdash + censer + rapier + blade + meaculpa"
+        "name": "dlc location",
+        "logic": "wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosary + meaculpa + mudkey + ceramickey"
     },
     {
         "id": "Z2804.w0",
-        "name": "Item Location 289",
-        "logic": "wallclimb + doublejump + airdash + censer + rapier + blade + meaculpa"
+        "name": "dlc location",
+        "logic": "wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosary + meaculpa + mudkey + ceramickey"
     },
     {
         "id": "Z2804.r0",
-        "name": "Item Location 290",
-        "logic": "wallclimb + doublejump + airdash + censer + rapier + blade + meaculpa"
+        "name": "dlc location",
+        "logic": "wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosary + meaculpa + mudkey + ceramickey"
     },
     {
         "id": "Z2805.i0",
-        "name": "Item Location 291",
-        "logic": "wallclimb + doublejump + airdash + censer + rapier + blade + meaculpa"
+        "name": "dlc location",
+        "logic": "wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosary + meaculpa + mudkey + ceramickey"
     },
     {
         "id": "Z2814.w0",
-        "name": "Item Location 292",
+        "name": "dlc location",
         "flags": "W",
-        "logic": "wallclimb + doublejump + airdash + censer + rapier + blade + meaculpa"
+        "logic": "wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosary + meaculpa + mudkey + ceramickey"
     },
     {
         "id": "Z2815.l13",
-        "name": "Item Location 293",
-        "logic": "wallclimb + doublejump + airdash + censer + rapier + blade + meaculpa"
+        "name": "dlc location",
+        "logic": "wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosary + meaculpa + mudkey + ceramickey"
     },
     {
         "id": "Z2816.i7",
-        "name": "Item Location 294",
-        "logic": "wallclimb + doublejump + airdash + censer + rapier + blade + meaculpa"
+        "name": "dlc location",
+        "logic": "wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosary + meaculpa + mudkey + ceramickey"
     },
     {
         "id": "Z2823.l22",
-        "name": "Item Location 295",
-        "logic": "wallclimb + doublejump + airdash + censer + rapier + blade + meaculpa"
+        "name": "dlc location",
+        "logic": "wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosary + meaculpa + mudkey + ceramickey"
     },
     {
         "id": "Z2827.r7",
-        "name": "Item Location 296",
-        "logic": "wallclimb + doublejump + airdash + censer + rapier + blade + meaculpa"
+        "name": "dlc location",
+        "logic": "wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosary + meaculpa + mudkey + ceramickey"
     },
     {
         "id": "Z2828.l16",
-        "name": "Item Location 297",
-        "logic": "wallclimb + doublejump + airdash + censer + rapier + blade + meaculpa"
+        "name": "dlc location",
+        "logic": "wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosary + meaculpa + mudkey + ceramickey"
     },
     {
         "id": "Z2828.i17",
-        "name": "Item Location 298",
-        "logic": "wallclimb + doublejump + airdash + censer + rapier + blade + meaculpa"
+        "name": "dlc location",
+        "logic": "wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosary + meaculpa + mudkey + ceramickey"
     },
     {
         "id": "Z2828.l18",
-        "name": "Item Location 299",
-        "logic": "wallclimb + doublejump + airdash + censer + rapier + blade + meaculpa"
+        "name": "dlc location",
+        "logic": "wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosary + meaculpa + mudkey + ceramickey"
     },
     {
         "id": "Z2828.l15",
-        "name": "Item Location 300",
-        "logic": "wallclimb + doublejump + airdash + censer + rapier + blade + meaculpa"
+        "name": "dlc location",
+        "logic": "wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosary + meaculpa + mudkey + ceramickey"
     },
     {
         "id": "Z2829.l23",
-        "name": "Item Location 301",
-        "logic": "wallclimb + doublejump + airdash + censer + rapier + blade + meaculpa"
+        "name": "dlc location",
+        "logic": "wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosary + meaculpa + mudkey + ceramickey"
     },
     {
         "id": "Z2834.l0",
-        "name": "Item Location 302",
+        "name": "dlc location",
         "flags": "V",
-        "logic": "wallclimb + doublejump + airdash + censer + rapier + blade + meaculpa"
+        "logic": "wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosary + meaculpa + mudkey + ceramickey"
     },
     {
         "id": "Z2835.l12",
-        "name": "Item Location 303",
-        "logic": "wallclimb + doublejump + airdash + censer + rapier + blade + meaculpa"
+        "name": "dlc location",
+        "logic": "wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosary + meaculpa + mudkey + ceramickey"
     },
     {
         "id": "Z2835.i0",
-        "name": "Item Location 304",
-        "logic": "wallclimb + doublejump + airdash + censer + rapier + blade + meaculpa"
+        "name": "dlc location",
+        "logic": "wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosary + meaculpa + mudkey + ceramickey"
     },
     {
         "id": "SHOPHAND.o0",
-        "name": "Item Location 305",
+        "name": "shop location",
         "flags": "S",
-        "logic": "wallclimb + doublejump + airdash + ringclimb + censer + rapier + blade"
+        "logic": "wallclimb"
     },
     {
         "id": "SHOPHAND.o1",
-        "name": "Item Location 306",
+        "name": "shop location",
         "flags": "S",
-        "logic": "wallclimb + doublejump + airdash + ringclimb + censer + rapier + blade"
+        "logic": "wallclimb"
     },
     {
         "id": "SHOPHAND.o2",
-        "name": "Item Location 307",
+        "name": "shop location",
         "flags": "S",
-        "logic": "wallclimb + doublejump + airdash + ringclimb + censer + rapier + blade"
+        "logic": "wallclimb"
     },
     {
         "id": "SHOPHAND.o3",
-        "name": "Item Location 308",
+        "name": "shop location",
         "flags": "S",
-        "logic": "wallclimb + doublejump + airdash + ringclimb + censer + rapier + blade"
+        "logic": "wallclimb"
     },
     {
         "id": "SHOPHAND.o4",
-        "name": "Item Location 309",
+        "name": "shop location",
         "flags": "S",
-        "logic": "wallclimb + doublejump + airdash + ringclimb + censer + rapier + blade"
+        "logic": "wallclimb"
     },
     {
         "id": "SHOPHAND.o5",
-        "name": "Item Location 310",
+        "name": "shop location",
         "flags": "S",
-        "logic": "wallclimb + doublejump + airdash + ringclimb + censer + rapier + blade"
+        "logic": "wallclimb"
     },
     {
         "id": "SHOPHAND.o6",
-        "name": "Item Location 311",
+        "name": "shop location",
         "flags": "S",
-        "logic": "wallclimb + doublejump + airdash + ringclimb + censer + rapier + blade"
+        "logic": "wallclimb"
     },
     {
         "id": "SHOPHAND.o7",
-        "name": "Item Location 312",
+        "name": "shop location",
         "flags": "S",
-        "logic": "wallclimb + doublejump + airdash + ringclimb + censer + rapier + blade"
+        "logic": "wallclimb"
     },
     {
         "id": "SHOPHAND.o8",
-        "name": "Item Location 313",
+        "name": "shop location",
         "flags": "S",
-        "logic": "wallclimb + doublejump + airdash + ringclimb + censer + rapier + blade"
+        "logic": "wallclimb"
     },
     {
         "id": "SHOPHAND.o9",
-        "name": "Item Location 314",
+        "name": "shop location",
         "flags": "S",
-        "logic": "wallclimb + doublejump + airdash + ringclimb + censer + rapier + blade"
+        "logic": "wallclimb"
     },
     {
         "id": "SHOPHAND.o10",
-        "name": "Item Location 315",
+        "name": "shop location",
         "flags": "S",
-        "logic": "wallclimb + doublejump + airdash + ringclimb + censer + rapier + blade"
+        "logic": "wallclimb"
     },
     {
         "id": "SHOPHAND.o11",
-        "name": "Item Location 316",
+        "name": "shop location",
         "flags": "S",
-        "logic": "wallclimb + doublejump + airdash + ringclimb + censer + rapier + blade"
+        "logic": "wallclimb"
     },
     {
         "id": "SHOPITINERANT.o0",
-        "name": "Item Location 317",
+        "name": "shop location",
         "flags": "S",
-        "logic": "wallclimb + doublejump + airdash + ringclimb + censer + rapier + blade"
+        "logic": "shoprooms >= 1"
     },
     {
         "id": "SHOPITINERANT.o1",
-        "name": "Item Location 318",
+        "name": "shop location",
         "flags": "S",
-        "logic": "wallclimb + doublejump + airdash + ringclimb + censer + rapier + blade"
+        "logic": "shoprooms >= 1"
     },
     {
         "id": "SHOPITINERANT.o2",
-        "name": "Item Location 319",
+        "name": "shop location",
         "flags": "S",
-        "logic": "wallclimb + doublejump + airdash + ringclimb + censer + rapier + blade"
+        "logic": "shoprooms >= 2"
     },
     {
         "id": "SHOPITINERANT.o3",
-        "name": "Item Location 320",
+        "name": "shop location",
         "flags": "S",
-        "logic": "wallclimb + doublejump + airdash + ringclimb + censer + rapier + blade"
+        "logic": "shoprooms >= 3"
     },
     {
         "id": "SHOPITINERANT.o4",
-        "name": "Item Location 321",
+        "name": "shop location",
         "flags": "S",
-        "logic": "wallclimb + doublejump + airdash + ringclimb + censer + rapier + blade"
+        "logic": "shoprooms >= 4"
     },
     {
         "id": "SHOPITINERANT.o5",
-        "name": "Item Location 322",
+        "name": "shop location",
         "flags": "S",
-        "logic": "wallclimb + doublejump + airdash + ringclimb + censer + rapier + blade"
+        "logic": "shoprooms >= 5"
     },
     {
         "id": "SHOPITINERANT.o6",
-        "name": "Item Location 323",
+        "name": "shop location",
         "flags": "S",
-        "logic": "wallclimb + doublejump + airdash + ringclimb + censer + rapier + blade"
+        "logic": "shoprooms >= 6"
     },
     {
         "id": "SHOPITINERANT.o7",
-        "name": "Item Location 324",
+        "name": "shop location",
         "flags": "S",
-        "logic": "wallclimb + doublejump + airdash + ringclimb + censer + rapier + blade"
+        "logic": "shoprooms >= 7"
     },
     {
         "id": "SHOPMISSABLES.o0",
-        "name": "Item Location 325",
+        "name": "shop location",
         "flags": "S",
-        "logic": "wallclimb + doublejump + airdash + ringclimb + censer + rapier + blade"
+        "logic": "censer + rapier + doublejump"
     },
     {
         "id": "SHOPMISSABLES.o1",
-        "name": "Item Location 326",
+        "name": "shop location",
         "flags": "S",
-        "logic": "wallclimb + doublejump + airdash + ringclimb + censer + rapier + blade"
+        "logic": "censer + rapier + doublejump"
     },
     {
         "id": "SHOPMISSABLES.o2",
-        "name": "Item Location 327",
+        "name": "shop location",
         "flags": "S",
-        "logic": "wallclimb + doublejump + airdash + ringclimb + censer + rapier + blade"
+        "logic": "censer + rapier + doublejump"
     },
     {
         "id": "SHOPMISSABLES.o3",
-        "name": "Item Location 328",
+        "name": "shop location",
         "flags": "S",
-        "logic": "wallclimb + doublejump + airdash + ringclimb + censer + rapier + blade"
+        "logic": "censer + rapier + doublejump"
     },
     {
         "id": "SHOPMISSABLES.o4",
-        "name": "Item Location 329",
+        "name": "shop location",
         "flags": "S",
-        "logic": "wallclimb + doublejump + airdash + ringclimb + censer + rapier + blade"
+        "logic": "censer + rapier + rosary + wallclimb + doublejump + airdash + ringclimb"
     },
     {
         "id": "SHOPMISSABLES.o5",
-        "name": "Item Location 330",
+        "name": "shop location",
         "flags": "S",
-        "logic": "wallclimb + doublejump + airdash + ringclimb + censer + rapier + blade"
+        "logic": "censer + rapier + rosary + wallclimb + doublejump + airdash + ringclimb"
     },
     {
         "id": "SHOPMISSABLES.o6",
-        "name": "Item Location 331",
+        "name": "shop location",
         "flags": "S",
-        "logic": "wallclimb + doublejump + airdash + ringclimb + censer + rapier + blade"
+        "logic": "censer + rapier + rosary + wallclimb + doublejump + airdash + ringclimb"
     }
 ]
