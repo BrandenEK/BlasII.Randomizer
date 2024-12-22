@@ -1,4 +1,5 @@
 using BlasII.ModdingAPI;
+using BlasII.Randomizer.Extensions;
 using HarmonyLib;
 using Il2CppPlaymaker.Characters;
 using Il2CppPlaymaker.Inventory;
@@ -26,6 +27,10 @@ class LootInteractable_Use_Patch
         if (!Main.Randomizer.IsRandomizerMode)
             return;
 
+        ModLog.Info(__instance.loot.lootType);
+        ModLog.Info(__instance.loot.size);
+        ModLog.Info(__instance.loot.stackSize);
+
         Main.Randomizer.ItemHandler.GiveItemAtLocation(locationId);
         __instance.loot = null; // Should this just return false instead ??
     }
@@ -51,7 +56,7 @@ class PlayMaker_AddItem_Patch
     public static bool Prefix(AddItem __instance)
     {
         string locationId = $"{CoreCache.Room.CurrentRoom.Name}.i{__instance.owner.transform.GetSiblingIndex()}";
-        locationId = CalculateSpecialLocationId(locationId, __instance.itemID.name);
+        locationId = locationId.CalculateSpecialId(__instance.itemID.name);
         ModLog.Error($"AddItem.OnEnter - {locationId} ({__instance.itemID.name})");
 
         if (!Main.Randomizer.IsRandomizerMode)
@@ -60,45 +65,6 @@ class PlayMaker_AddItem_Patch
         Main.Randomizer.ItemHandler.GiveItemAtLocation(locationId);
         __instance.Finish();
         return false;
-    }
-
-    private static string CalculateSpecialLocationId(string locationId, string originalItem)
-    {
-        return locationId switch
-        {
-            // Confessor items
-            "Z05BZ01.i0" => originalItem switch
-            {
-                "QI04" => locationId + ".a",
-                "QI28" => locationId + ".b",
-                _ => string.Empty
-            },
-            // Palace elders
-            "Z0722.i0" => originalItem switch
-            {
-                "QI09" => locationId + ".a",
-                "QI10" => locationId + ".b",
-                _ => string.Empty
-            },
-            // Battle arenas
-            "Z1501.i0" => originalItem switch
-            {
-                "FG27" => locationId + ".a",
-                "FG28" => locationId + ".b",
-                "QI49" => locationId + ".c",
-                "QI46" => locationId + ".d",
-                "FG32" => locationId + ".e",
-                _ => string.Empty
-            },
-            // Gold rewards
-            "Z2150.i0" => originalItem switch
-            {
-                "RB103" => locationId + ".a",
-                "FG112" => locationId + ".b",
-                _ => string.Empty
-            },
-            _ => locationId
-        };
     }
 }
 
