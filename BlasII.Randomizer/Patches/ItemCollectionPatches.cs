@@ -29,7 +29,7 @@ class LootInteractable_Use_Patch
             return;
 
         Main.Randomizer.ItemHandler.GiveItemAtLocation(locationId);
-        __instance.loot = null; // Should this just return false instead ??
+        __instance.loot = null; // Can not simply return false
     }
 }
 [HarmonyPatch(typeof(LootInteractableST103), nameof(LootInteractableST103.UseLootByInteractor))]
