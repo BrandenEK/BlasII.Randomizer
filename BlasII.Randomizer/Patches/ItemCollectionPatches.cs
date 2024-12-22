@@ -6,7 +6,6 @@ using Il2CppPlaymaker.Inventory;
 using Il2CppPlaymaker.Loot;
 using Il2CppPlaymaker.PrieDieu;
 using Il2CppPlaymaker.UI;
-using Il2CppTGK.Game;
 using Il2CppTGK.Game.Components.Interactables;
 using Il2CppTGK.Game.Inventory.PlayMaker;
 
@@ -21,8 +20,7 @@ class LootInteractable_Use_Patch
 {
     public static void Prefix(LootInteractable __instance)
     {
-        string locationId = $"{CoreCache.Room.CurrentRoom.Name}.l{__instance.transform.GetSiblingIndex()}";
-        locationId = locationId.CalculateSpecialId(__instance.loot?.size.ToString());
+        string locationId = __instance.CalculateId();
         ModLog.Error("LootInteractable.UseLootByInteractor - " + locationId);
 
         if (!Main.Randomizer.IsRandomizerMode)
@@ -37,7 +35,7 @@ class LootInteractableST103_Use_Patch
 {
     public static bool Prefix(LootInteractableST103 __instance)
     {
-        string locationId = $"{CoreCache.Room.CurrentRoom.Name}.l{__instance.transform.GetSiblingIndex()}";
+        string locationId = __instance.CalculateId();
         ModLog.Error("LootInteractableST103.UseLootByInteractor - " + locationId);
 
         if (!Main.Randomizer.IsRandomizerMode)
@@ -52,8 +50,7 @@ class PlayMaker_AddItem_Patch
 {
     public static bool Prefix(AddItem __instance)
     {
-        string locationId = $"{CoreCache.Room.CurrentRoom.Name}.i{__instance.owner.transform.GetSiblingIndex()}";
-        locationId = locationId.CalculateSpecialId(__instance.itemID.name);
+        string locationId = __instance.CalculateId();
         ModLog.Error($"AddItem.OnEnter - {locationId} ({__instance.itemID.name})");
 
         if (!Main.Randomizer.IsRandomizerMode)
@@ -74,7 +71,7 @@ class PlayMaker_GiveReward_Patch
 {
     public static bool Prefix(GiveReward __instance)
     {
-        string locationId = $"{CoreCache.Room.CurrentRoom.Name}.r{__instance.owner.transform.GetSiblingIndex()}";
+        string locationId = __instance.CalculateId();
         ModLog.Error("GiveReward.OnEnter - " + locationId);
 
         if (!Main.Randomizer.IsRandomizerMode)
@@ -107,7 +104,7 @@ class PlayMaker_UnlockWeapon_Patch
 {
     public static bool Prefix(UnlockWeapon __instance)
     {
-        string locationId = $"{CoreCache.Room.CurrentRoom.Name}.w0";
+        string locationId = __instance.CalculateId();
         ModLog.Error("UnlockWeapon.OnEnter - " + locationId);
 
         if (!Main.Randomizer.IsRandomizerMode)
@@ -140,7 +137,7 @@ class PlayMaker_UpgradeWeapon_Patch
 {
     public static bool Prefix(UpgradeWeaponTier __instance)
     {
-        string locationId = $"{CoreCache.Room.CurrentRoom.Name}.w0";
+        string locationId = __instance.CalculateId();
         ModLog.Error("UpgradeWeaponTier.OnEnter - " + locationId);
 
         if (!Main.Randomizer.IsRandomizerMode)
@@ -173,7 +170,7 @@ class PlayMaker_UnlockAbility_Patch
 {
     public static bool Prefix(UnlockAbility __instance)
     {
-        string locationId = $"{CoreCache.Room.CurrentRoom.Name}.a0";
+        string locationId = __instance.CalculateId();
         ModLog.Error("UnlockAbility.OnEnter - " + locationId);
 
         if (!Main.Randomizer.IsRandomizerMode)
