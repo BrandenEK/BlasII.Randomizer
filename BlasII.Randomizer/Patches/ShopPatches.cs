@@ -1,5 +1,6 @@
 ﻿using BlasII.ModdingAPI;
 using BlasII.ModdingAPI.Assets;
+using BlasII.Randomizer.Extensions;
 using BlasII.Randomizer.Models;
 using HarmonyLib;
 using Il2CppTGK.Game.Components.UI;
@@ -89,7 +90,7 @@ class ShopManager_SellOrb_Patch
 {
     public static void Postfix(Shop shop, int orbIdx)
     {
-        string locationId = $"{shop.name}.s{orbIdx}";
+        string locationId = shop.CalculateId(orbIdx);
         ModLog.Error("ShopManager.SellOrb - " + locationId);
 
         Main.Randomizer.ItemHandler.GiveItemAtLocation(locationId);
