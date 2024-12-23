@@ -32,11 +32,17 @@
 ---
 
 ### Useful Info
-- Currently works with both version 1.0.5 and 1.1.0
-- In order to avoid softlocks, it is recommended to use the Save & Quit mod
-- The Quality of Life mod is required for various mechanics to function correctly
+- Currently works with only version 2.2.0
 - Pressing 'F8' will display a list of your current settings
 - A spoiler will be generated in the Modding/content/Randomizer folder
+
+---
+
+### Recommended Mods
+- Save & Quit - Prevents softlocks
+- Rando Map - Adds location info to the map screen
+- Quality of Life - Can be used to skip cutscenes, among other uses
+- Glitch Reviver - Reintoduces glitches that may be required in logic
 
 ---
 
@@ -49,10 +55,12 @@ A full breakdown of all the available settings can be found [here](SETTINGS.md)
 - All regions of the game are unlocked from the beginning, though you will still need movement items to reach them
 - The door to Crimson Rains will be unlocked after obtaining a certain number of keys, specified in your settings
 - Weapon memories can be purchased from the beginning, the lance is no longer necessary
+- The Mud Key will not break after being used
 - The map screen will display the number of items collected
+- Save files can not be ascended
 
 ---
 
 ### Installation
 This mod is available for download through the [Blasphemous Mod Installer](https://github.com/BrandenEK/Blasphemous.Modding.Installer)
-- Required dependencies: Modding API, Menu Framework, UI Framework, Quality of Life
+- Required dependencies: Modding API, Menu Framework, UI Framework
