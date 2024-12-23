@@ -44,6 +44,20 @@ public abstract class BaseInfoStorage<TValue> where TValue : class, IUnique
     /// </summary>
     public TValue this[string id]
     {
-        get => _values.TryGetValue(id, out TValue value) ? value : null;
+        get
+        {
+            if (!_values.TryGetValue(id, out TValue value))
+                throw new System.Exception($"{GetType().Name}: The id {id} does not exist");
+
+            return value;
+        }
+    }
+
+    /// <summary>
+    /// Tries to return the specified info
+    /// </summary>
+    public bool TryGetValue(string id, out TValue value)
+    {
+        return _values.TryGetValue(id, out value);
     }
 }

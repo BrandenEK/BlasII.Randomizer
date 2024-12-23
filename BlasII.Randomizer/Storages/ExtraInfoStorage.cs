@@ -36,6 +36,8 @@ public class ExtraInfoStorage
         { "Z21", "Labyrinth of Tides" },
         { "Z23", "Beneath Her Sacred Grounds" },
         { "Z24", "Garden of the High Choirs" },
+        { "Z27", "Icebound Mausoleum" },
+        { "Z28", "Santa Vigilia" },
         { "SHO", "Shops" },
     };
 
