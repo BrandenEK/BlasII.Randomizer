@@ -145,6 +145,12 @@ class QuestManager_GetVarBool_Patch
             __result = true;
         }
 
+        // Always have ET unlocked
+        else if (scene == "Z0504" && quest.StartsWith("Bosses"))
+        {
+            __result = true;
+        }
+
         // Always have sand emptied
         else if (quest.StartsWith("Z04"))
         {
