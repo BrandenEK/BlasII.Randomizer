@@ -57,6 +57,7 @@ A full breakdown of all the available settings can be found [here](SETTINGS.md)
 - Weapon memories can be purchased from the beginning, the lance is no longer necessary
 - The Mud Key will not break after being used
 - The map screen will display the number of items collected
+- Save files can not be ascended
 
 ---
 
