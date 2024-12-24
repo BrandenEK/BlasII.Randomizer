@@ -574,13 +574,6 @@
         "count": 0
     },
     {
-        "id": "FG24",
-        "name": "La Doncella",
-        "type": "Figurine",
-        "progression": false,
-        "count": 1
-    },
-    {
         "id": "FG25",
         "name": "The Traitor",
         "type": "Figurine",
@@ -1204,13 +1197,6 @@
         "count": 0
     },
     {
-        "id": "GL",
-        "name": "Lump of Gold",
-        "type": "GoldLump",
-        "progression": true,
-        "count": 20
-    },
-    {
         "id": "UL",
         "name": "Piece of the Lullaby",
         "type": "ProgressiveQuestItem",
@@ -1223,6 +1209,13 @@
         "type": "ProgressiveQuestItem",
         "progression": false,
         "count": 5
+    },
+    {
+        "id": "GL",
+        "name": "Lump of Gold",
+        "type": "GoldLump",
+        "progression": true,
+        "count": 20
     },
     {
         "id": "Censer",
