@@ -13,7 +13,7 @@ internal static class InfoExtensions
         return transform.DisplayHierarchy_INTERNAL(new StringBuilder(), 0, maxLevel, includeComponents).ToString();
     }
 
-    public static StringBuilder DisplayHierarchy_INTERNAL(this Transform transform, StringBuilder currentHierarchy, int currentLevel, int maxLevel, bool includeComponents)
+    private static StringBuilder DisplayHierarchy_INTERNAL(this Transform transform, StringBuilder currentHierarchy, int currentLevel, int maxLevel, bool includeComponents)
     {
         // Indent
         for (int i = 0; i < currentLevel; i++)
@@ -27,7 +27,7 @@ internal static class InfoExtensions
         {
             currentHierarchy.Append(" - ");
             foreach (Component c in transform.GetComponents<Component>())
-                currentHierarchy.Append(c.ToString() + ", ");
+                currentHierarchy.Append(c.GetIl2CppType().FullName + ", ");
         }
         currentHierarchy.AppendLine();
 
