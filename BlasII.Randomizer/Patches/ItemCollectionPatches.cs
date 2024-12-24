@@ -41,6 +41,9 @@ class LootInteractableST103_Use_Patch
         if (!Main.Randomizer.IsRandomizerMode)
             return true;
 
+        // This is necessary to force the actual interaction to take place
+        __instance.GetComponent<RoomInteractable>().Use();
+
         Main.Randomizer.ItemHandler.GiveItemAtLocation(locationId);
         return false;
     }

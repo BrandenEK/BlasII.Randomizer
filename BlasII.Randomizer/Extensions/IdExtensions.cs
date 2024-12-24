@@ -5,6 +5,7 @@ using Il2CppPlaymaker.PrieDieu;
 using Il2CppTGK.Game;
 using Il2CppTGK.Game.Components.Interactables;
 using Il2CppTGK.Game.Inventory.PlayMaker;
+using Il2CppTGK.Game.ShopSystem;
 
 namespace BlasII.Randomizer.Extensions;
 
@@ -66,6 +67,14 @@ internal static class IdExtensions
     public static string CalculateId(this UnlockAbility _)
     {
         return $"{CoreCache.Room.CurrentRoom.Name}.a0";
+    }
+
+    /// <summary>
+    /// Calculates the id for a <see cref="Shop"/>
+    /// </summary>
+    public static string CalculateId(this Shop shop, int orbIdx)
+    {
+        return $"{shop.name}.o{orbIdx}";
     }
 
     /// <summary>

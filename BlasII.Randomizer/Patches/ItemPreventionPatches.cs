@@ -145,6 +145,12 @@ class QuestManager_GetVarBool_Patch
             __result = true;
         }
 
+        // Always have ET unlocked
+        else if (scene == "Z0504" && quest.StartsWith("Bosses"))
+        {
+            __result = true;
+        }
+
         // Always have sand emptied
         else if (quest.StartsWith("Z04"))
         {
@@ -224,5 +230,18 @@ class QuestManager_GetVar_Patch
                 __result = "WEAPON_ROSARY";
             }
         }
+    }
+}
+
+/// <summary>
+/// Prevent the GoldenLumpsCountFix from functioning
+/// </summary>
+[HarmonyPatch(typeof(GoldenLumpsCountFix), nameof(GoldenLumpsCountFix.PlayerSpawnManager_OnPlayerSpawned))]
+class GoldenLumpsCountFix_OnPlayerSpawned_Patch
+{
+    public static bool Prefix()
+    {
+        ModLog.Info("Preventing gold lump sync");
+        return false;
     }
 }
