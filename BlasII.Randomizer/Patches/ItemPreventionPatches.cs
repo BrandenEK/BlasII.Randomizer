@@ -232,3 +232,16 @@ class QuestManager_GetVar_Patch
         }
     }
 }
+
+/// <summary>
+/// Prevent the GoldenLumpsCountFix from functioning
+/// </summary>
+[HarmonyPatch(typeof(GoldenLumpsCountFix), nameof(GoldenLumpsCountFix.PlayerSpawnManager_OnPlayerSpawned))]
+class GoldenLumpsCountFix_OnPlayerSpawned_Patch
+{
+    public static bool Prefix()
+    {
+        ModLog.Info("Preventing gold lump sync");
+        return false;
+    }
+}
