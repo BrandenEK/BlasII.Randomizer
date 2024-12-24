@@ -962,6 +962,11 @@
         "logic": "censer + rapier + daughterrooms >= 5"
     },
     {
+        "id": "Z1507.i0",
+        "name": "gift",
+        "logic": "wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosary + meaculpa + mudkey + ceramickey"
+    },
+    {
         "id": "Z1602.l2",
         "name": "basin",
         "logic": "wallclimb + doublejump + airdash + rosary"
