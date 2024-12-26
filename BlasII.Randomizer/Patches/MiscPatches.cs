@@ -57,7 +57,9 @@ class PlayerInactiveDetection_IsInactive_Patch
 {
     public static void Prefix(PlayerInactiveDetection __instance)
     {
-        // Check for scene
+        string scene = CoreCache.Room.CurrentRoom?.Name;
+        if (scene != "Z2702" && scene != "Z2705" && scene != "Z2816" && scene != "Z2828")
+            return;
 
         ModLog.Info("Skipping inactive timer");
         __instance.timeleft = 0;
