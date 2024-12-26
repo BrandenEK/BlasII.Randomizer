@@ -1,5 +1,6 @@
 ﻿using BlasII.ModdingAPI;
 using BlasII.ModdingAPI.Assets;
+using BlasII.Randomizer.Models;
 using HarmonyLib;
 using Il2CppPlaymaker.Inventory;
 using Il2CppTGK.Game;
@@ -22,6 +23,16 @@ class Check_ItemOwned_Patch
         string item = __instance.itemID.name;
 
         ModLog.Warn($"{__instance.Owner.name} is checking for item: {item}");
+
+        if (!Main.Randomizer.ExtraInfoStorage.TryGetQuestBypassInfo(scene, item, out QuestBypassInfo info))
+            return true;
+
+        bool collected = Main.Randomizer.ItemHandler.IsLocationCollected(info.Location);
+        ModLog.Warn($"Replacing item check with location check {info.Location}: {collected}");
+
+        __instance.Fsm.Event(collected ? __instance.yesEvent : __instance.noEvent);
+        __instance.Finish();
+        return false;
 
         // Cursed letter quest
         if (scene == "Z1326" && (item == "PR15" || item == "QI15" || item == "QI16") ||

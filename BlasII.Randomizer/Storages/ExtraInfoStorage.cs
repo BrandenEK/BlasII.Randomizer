@@ -84,6 +84,7 @@ public class ExtraInfoStorage
     private readonly QuestBypassInfo[] _questBypasses =
     [
         new QuestBypassInfo("Z1064", "QI69", "Z1064.i0"), // Incense of Envoys
+        new QuestBypassInfo("Z1421", "PR03", "Z1421.l1"), // Chime prayer
     ];
 
     /// <summary>
