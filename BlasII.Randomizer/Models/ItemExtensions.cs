@@ -242,6 +242,6 @@ public static class ItemExtensions
 
         return level >= 0 && level < itemIds.Length
             ? AssetStorage.QuestItems[itemIds[level]]
-            : null;
+            : throw new Exception($"Accessing invalid level ({level}) for item {item.Id}");
     }
 }

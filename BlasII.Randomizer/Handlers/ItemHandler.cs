@@ -53,8 +53,8 @@ public class ItemHandler
         ModLog.Warn($"Giving item at location: {locationId} ({item.Id})");
 
         Main.Randomizer.MessageHandler.Broadcast("LOCATION", locationId);
-        item.GiveReward();
         DisplayItem(item);
+        item.GiveReward();
     }
 
     public void DisplayItem(Item item)
