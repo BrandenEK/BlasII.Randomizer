@@ -499,6 +499,11 @@
         "logic": "wallclimb + glasswalk + doublejump + meaculpa + mudkey"
     },
     {
+        "id": "Z0836.i0",
+        "name": "mud",
+        "logic": "wallclimb + glasswalk + doublejump + meaculpa + mudkey"
+    },
+    {
         "id": "Z0837.l5",
         "name": "chest",
         "logic": "wallclimb + glasswalk + doublejump"
@@ -697,6 +702,11 @@
         "name": "statue",
         "flags": "W",
         "logic": "wallclimb + doublejump + ringclimb + censer + rapier + rosary"
+    },
+    {
+        "id": "Z1064.i0",
+        "name": "gift",
+        "logic": "wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosary + meaculpa + mudkey + ceramickey"
     },
     {
         "id": "Z1065.l4",
@@ -955,6 +965,11 @@
         "id": "Z1501.i0.e",
         "name": "Arena 5",
         "logic": "censer + rapier + daughterrooms >= 5"
+    },
+    {
+        "id": "Z1507.i0",
+        "name": "gift",
+        "logic": "wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosary + meaculpa + mudkey + ceramickey"
     },
     {
         "id": "Z1602.l2",
@@ -1267,6 +1282,11 @@
         "logic": "wallclimb + doublejump + airdash + ringclimb + rapier + mudkey"
     },
     {
+        "id": "Z2141.i0",
+        "name": "mud",
+        "logic": "wallclimb + doublejump + airdash + ringclimb + rapier + mudkey"
+    },
+    {
         "id": "Z2145.l1",
         "name": "basin",
         "logic": "wallclimb + doublejump + airdash + ringclimb + rapier + meaculpa + mudkey"
@@ -1456,7 +1476,7 @@
     },
     {
         "id": "Z2743.i0",
-        "name": "dlc location",
+        "name": "mud",
         "logic": "wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosary + meaculpa + mudkey + ceramickey"
     },
     {
@@ -1557,7 +1577,7 @@
         "logic": "wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosary + meaculpa + mudkey + ceramickey"
     },
     {
-        "id": "Z2835.i0",
+        "id": "mud",
         "name": "dlc location",
         "logic": "wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosary + meaculpa + mudkey + ceramickey"
     },
