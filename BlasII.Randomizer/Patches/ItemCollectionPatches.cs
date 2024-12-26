@@ -8,6 +8,7 @@ using Il2CppPlaymaker.PrieDieu;
 using Il2CppPlaymaker.UI;
 using Il2CppTGK.Game.Components.Interactables;
 using Il2CppTGK.Game.Inventory.PlayMaker;
+using System.Linq;
 
 namespace BlasII.Randomizer.Patches;
 
@@ -53,15 +54,25 @@ class PlayMaker_AddItem_Patch
 {
     public static bool Prefix(AddItem __instance)
     {
-        // Prevent broken key being given
-        if (__instance.itemID?.name == "QI102")
+        if (__instance.itemID == null)
+            return true;
+        string itemName = __instance.itemID.name;
+
+        // Always give item in ALWAYS_GIVE
+        if (ALWAYS_GIVE.Contains(itemName))
+        {
+            return true;
+        }
+
+        // Never give items in NEVER_GIVE
+        if (NEVER_GIVE.Contains(itemName))
         {
             __instance.Finish();
             return false;
         }
 
         string locationId = __instance.CalculateId();
-        ModLog.Error($"AddItem.OnEnter - {locationId} ({__instance.itemID?.name})");
+        ModLog.Error($"AddItem.OnEnter - {locationId} ({itemName})");
 
         if (!Main.Randomizer.IsRandomizerMode)
             return true;
@@ -70,6 +81,9 @@ class PlayMaker_AddItem_Patch
         __instance.Finish();
         return false;
     }
+
+    private static readonly string[] ALWAYS_GIVE = ["FG40", "FG41", "FG42", "FG43"]; // Burnt figures
+    private static readonly string[] NEVER_GIVE = ["QI102"]; // Broken key
 }
 
 // =================
