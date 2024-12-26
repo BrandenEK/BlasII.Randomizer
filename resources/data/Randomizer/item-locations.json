@@ -1577,8 +1577,8 @@
         "logic": "wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosary + meaculpa + mudkey + ceramickey"
     },
     {
-        "id": "mud",
-        "name": "dlc location",
+        "id": "Z2835.i0",
+        "name": "mud",
         "logic": "wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosary + meaculpa + mudkey + ceramickey"
     },
     {
