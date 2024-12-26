@@ -68,8 +68,7 @@ class RemoveItem_OnEnter_Patch
 
         ModLog.Warn($"{__instance.Owner.name} is trying to remove item: {item}");
 
-        // Mud quest
-        if (item == "QI101")
+        if (NEVER_REMOVE.Contains(item))
         {
             __instance.Finish();
             return false;
@@ -77,6 +76,8 @@ class RemoveItem_OnEnter_Patch
 
         return true;
     }
+
+    private static readonly string[] NEVER_REMOVE = ["QI101", "QI110"]; // Mud key, Lacrimatorio
 }
 
 // =======

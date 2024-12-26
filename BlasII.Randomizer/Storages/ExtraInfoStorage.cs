@@ -110,6 +110,7 @@ public class ExtraInfoStorage
         new QuestBypassInfo("Z2828", "QI107", "Z2828.i17"), // Lacrimatorio #4
         new QuestBypassInfo("Z2828", "QI108", "Z2828.i17"), // Lacrimatorio #4
         new QuestBypassInfo("Z2828", "QI109", "---------"), // Lacrimatorio #4
+        new QuestBypassInfo("Z2746", "QI111", "Z2746.i0"), // Lacrimatorio #5
     ];
 
     /// <summary>
