@@ -20,7 +20,6 @@ class Check_ItemOwned_Patch
     {
         string scene = CoreCache.Room.CurrentRoom?.Name;
         string item = __instance.itemID.name;
-        bool skipToNo = false;
 
         ModLog.Warn($"{__instance.Owner.name} is checking for item: {item}");
 
@@ -30,35 +29,38 @@ class Check_ItemOwned_Patch
             scene == "Z0503" && item == "PR15" || // The rest of check is in other patch
             scene == "Z1917" && item == "PR15")
         {
-            skipToNo = true;
+            RunEvent(__instance, false);
+            return false;
         }
 
         // Lullaby quest
         if (scene == "Z1906" && item == "PR16")
         {
-            skipToNo = true;
+            RunEvent(__instance, false);
+            return false;
         }
 
         // Chime symbol quest
         if (scene == "Z1421" && item == "PR03")
         {
-            skipToNo = !Main.Randomizer.ItemHandler.IsLocationCollected("Z1421.l1");
+            RunEvent(__instance, Main.Randomizer.ItemHandler.IsLocationCollected("Z1421.l1"));
+            return false;
         }
 
         // Incense quest
         if (scene == "Z1064" && item == "QI69")
         {
-            skipToNo = !Main.Randomizer.ItemHandler.IsLocationCollected("Z1064.i0");
-        }
-
-        if (skipToNo)
-        {
-            __instance.Fsm.Event(__instance.noEvent);
-            __instance.Finish();
+            RunEvent(__instance, Main.Randomizer.ItemHandler.IsLocationCollected("Z1064.i0"));
             return false;
         }
 
         return true;
+    }
+
+    private static void RunEvent(IsItemOwned action, bool hasItem)
+    {
+        action.Fsm.Event(hasItem ? action.yesEvent : action.noEvent);
+        action.Finish();
     }
 }
 [HarmonyPatch(typeof(AreAnyItemOwned), nameof(AreAnyItemOwned.OnEnter))]
@@ -77,12 +79,17 @@ class Check_ItemsOwned_Patch
         // Cursed letter quest again
         if (scene == "Z0503" && firstItem == "QI21")
         {
-            __instance.Fsm.Event(__instance.noEvent);
-            __instance.Finish();
+            RunEvent(__instance, false);
             return false;
         }
 
         return true;
+    }
+
+    private static void RunEvent(AreAnyItemOwned action, bool hasItem)
+    {
+        action.Fsm.Event(hasItem ? action.yesEvent : action.noEvent);
+        action.Finish();
     }
 }
 [HarmonyPatch(typeof(RemoveItem), nameof(RemoveItem.OnEnter))]
