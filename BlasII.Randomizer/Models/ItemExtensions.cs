@@ -232,7 +232,7 @@ public static class ItemExtensions
         string[] itemIds = item.Id switch
         {
             "UL" => ["QI23", "QI24", "QI25", "QI26", "QI27"],
-            "IL" => ["QI106", "QI107", "QI108", "QI109", "QI111"],
+            "IL" => ["QI106", "QI107", "QI108", "QI110", "QI111"],
             _ => throw new Exception($"Invalid {Item.ItemType.ProgressiveQuestItem}: {item.Id}")
         };
 

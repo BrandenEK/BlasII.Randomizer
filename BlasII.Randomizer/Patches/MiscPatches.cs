@@ -3,6 +3,7 @@ using HarmonyLib;
 using Il2CppPlaymaker.UI;
 using Il2CppTGK.Game;
 using Il2CppTGK.Game.Components;
+using Il2CppTGK.Game.Components.Characters;
 using Il2CppTGK.Game.Components.Inventory;
 using Il2CppTGK.Inventory;
 
@@ -45,5 +46,20 @@ class Inventory_HasItem_Patch
     public static void Postfix(ItemID itemID, ref bool __result)
     {
         __result = __result || itemID.name == "QI70" && Main.Randomizer.GetQuestBool("ST00", "WEAPON_EVENT");
+    }
+}
+
+/// <summary>
+/// Instantly complete inactive timer for dlc ghosts
+/// </summary>
+[HarmonyPatch(typeof(PlayerInactiveDetection), nameof(PlayerInactiveDetection.IsInactive))]
+class PlayerInactiveDetection_IsInactive_Patch
+{
+    public static void Prefix(PlayerInactiveDetection __instance)
+    {
+        // Check for scene
+
+        ModLog.Info("Skipping inactive timer");
+        __instance.timeleft = 0;
     }
 }
