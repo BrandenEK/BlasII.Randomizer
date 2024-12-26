@@ -1,11 +1,13 @@
 ﻿using BlasII.ModdingAPI;
 using BlasII.ModdingAPI.Assets;
+using BlasII.Randomizer.Models;
 using HarmonyLib;
 using Il2CppPlaymaker.Inventory;
 using Il2CppTGK.Game;
 using Il2CppTGK.Game.Components.Attack.Data;
 using Il2CppTGK.Game.Inventory.PlayMaker;
 using Il2CppTGK.Game.Managers;
+using System.Linq;
 
 namespace BlasII.Randomizer.Patches;
 
@@ -23,44 +25,15 @@ class Check_ItemOwned_Patch
 
         ModLog.Warn($"{__instance.Owner.name} is checking for item: {item}");
 
-        // Cursed letter quest
-        if (scene == "Z1326" && (item == "PR15" || item == "QI15" || item == "QI16") ||
-            scene == "Z0502" && item == "PR15" ||
-            scene == "Z0503" && item == "PR15" || // The rest of check is in other patch
-            scene == "Z1917" && item == "PR15")
-        {
-            RunEvent(__instance, false);
-            return false;
-        }
+        if (!Main.Randomizer.ExtraInfoStorage.TryGetQuestBypassInfo(scene, item, out QuestBypassInfo info))
+            return true;
 
-        // Lullaby quest
-        if (scene == "Z1906" && item == "PR16")
-        {
-            RunEvent(__instance, false);
-            return false;
-        }
+        bool collected = Main.Randomizer.ItemHandler.IsLocationCollected(info.Location);
+        ModLog.Warn($"Replacing item check with location check {info.Location}: {collected}");
 
-        // Chime symbol quest
-        if (scene == "Z1421" && item == "PR03")
-        {
-            RunEvent(__instance, Main.Randomizer.ItemHandler.IsLocationCollected("Z1421.l1"));
-            return false;
-        }
-
-        // Incense quest
-        if (scene == "Z1064" && item == "QI69")
-        {
-            RunEvent(__instance, Main.Randomizer.ItemHandler.IsLocationCollected("Z1064.i0"));
-            return false;
-        }
-
-        return true;
-    }
-
-    private static void RunEvent(IsItemOwned action, bool hasItem)
-    {
-        action.Fsm.Event(hasItem ? action.yesEvent : action.noEvent);
-        action.Finish();
+        __instance.Fsm.Event(collected ? __instance.yesEvent : __instance.noEvent);
+        __instance.Finish();
+        return false;
     }
 }
 [HarmonyPatch(typeof(AreAnyItemOwned), nameof(AreAnyItemOwned.OnEnter))]
@@ -70,26 +43,19 @@ class Check_ItemsOwned_Patch
     {
         string scene = CoreCache.Room.CurrentRoom?.Name;
         string firstItem = __instance.items[0].name;
-        string items = "";
-        foreach (var item in __instance.items)
-            items += item.name + " ";
+        string items = string.Join(", ", __instance.items.Select(x => x.name));
 
         ModLog.Warn($"{__instance.Owner.name} is checking for items: {items}");
 
-        // Cursed letter quest again
-        if (scene == "Z0503" && firstItem == "QI21")
-        {
-            RunEvent(__instance, false);
-            return false;
-        }
+        if (!Main.Randomizer.ExtraInfoStorage.TryGetQuestBypassInfo(scene, firstItem, out QuestBypassInfo info))
+            return true;
 
-        return true;
-    }
+        bool collected = Main.Randomizer.ItemHandler.IsLocationCollected(info.Location);
+        ModLog.Warn($"Replacing item check with location check {info.Location}: {collected}");
 
-    private static void RunEvent(AreAnyItemOwned action, bool hasItem)
-    {
-        action.Fsm.Event(hasItem ? action.yesEvent : action.noEvent);
-        action.Finish();
+        __instance.Fsm.Event(collected ? __instance.yesEvent : __instance.noEvent);
+        __instance.Finish();
+        return false;
     }
 }
 [HarmonyPatch(typeof(RemoveItem), nameof(RemoveItem.OnEnter))]
