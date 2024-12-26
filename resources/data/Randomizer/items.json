@@ -1159,7 +1159,7 @@
         "name": "Incense of the Envoys",
         "type": "QuestItem",
         "progression": true,
-        "count": 0
+        "count": 1
     },
     {
         "id": "QI70",

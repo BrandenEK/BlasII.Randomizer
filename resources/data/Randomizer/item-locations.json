@@ -704,6 +704,11 @@
         "logic": "wallclimb + doublejump + ringclimb + censer + rapier + rosary"
     },
     {
+        "id": "Z1064.i0",
+        "name": "gift",
+        "logic": "wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosary + meaculpa + mudkey + ceramickey"
+    },
+    {
         "id": "Z1065.l4",
         "name": "chest",
         "logic": "wallclimb + doublejump + airdash + ringclimb + censer + rapier"

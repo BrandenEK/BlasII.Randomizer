@@ -45,6 +45,12 @@ class Check_ItemOwned_Patch
             skipToNo = !Main.Randomizer.ItemHandler.IsLocationCollected("Z1421.l1");
         }
 
+        // Incense quest
+        if (scene == "Z1064" && item == "QI69")
+        {
+            skipToNo = !Main.Randomizer.ItemHandler.IsLocationCollected("Z1064.i0");
+        }
+
         if (skipToNo)
         {
             __instance.Fsm.Event(__instance.noEvent);
