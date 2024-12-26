@@ -1,10 +1,11 @@
-﻿
+﻿using System;
+
 namespace BlasII.Randomizer.Models;
 
 /// <summary>
 /// Represents how item/quest flags should be bypassed for a location
 /// </summary>
-public class QuestBypassInfo(string scene, string item, string location)
+public class QuestBypassInfo(string scene, string item, Func<bool> itemOverride)
 {
     /// <summary>
     /// The scene name that this bypass takes effect in
@@ -17,7 +18,7 @@ public class QuestBypassInfo(string scene, string item, string location)
     public string Item { get; set; } = item;
 
     /// <summary>
-    /// The location id that should be used instead
+    /// The method to override the item check with
     /// </summary>
-    public string Location { get; set; } = location;
+    public Func<bool> ItemOverride { get; set; } = itemOverride;
 }
