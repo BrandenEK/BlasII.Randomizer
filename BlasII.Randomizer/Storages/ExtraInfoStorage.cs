@@ -78,4 +78,19 @@ public class ExtraInfoStorage
     {
         return (result = _bossTeleports.FirstOrDefault(x => x.ExitSceneHash == hash)) != null;
     }
+
+    // Quest bypasses
+
+    private readonly QuestBypassInfo[] _questBypasses =
+    [
+        new QuestBypassInfo("Z1064", "QI69", "Z1064.i0"), // Incense of Envoys
+    ];
+
+    /// <summary>
+    /// Retrieves a <see cref="QuestBypassInfo"/> with the specified scene and item
+    /// </summary>
+    public bool TryGetQuestBypassInfo(string scene, string item, out QuestBypassInfo result)
+    {
+        return (result = _questBypasses.FirstOrDefault(x => x.Scene == scene && x.Item == item)) != null;
+    }
 }
