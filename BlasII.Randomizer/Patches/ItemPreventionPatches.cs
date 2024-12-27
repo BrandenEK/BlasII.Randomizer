@@ -161,6 +161,18 @@ class QuestManager_GetVarBool_Patch
         {
             __result = AssetStorage.PlayerStats.GetMaxValue(AssetStorage.RangeStats["Health"]) >= 330 || !Main.Randomizer.GetQuestBool("ST11", "FLASKH_FINISHED") || !Main.Randomizer.GetQuestBool("ST11", "FLASKN_FINISHED") || !Main.Randomizer.GetQuestBool("ST11", "HEALTH_FINISHED");
         }
+
+        // Only open Susona door with the holy oil
+        else if (scene == "Z1323" && quest == "ST14.SUSONA_EVENT")
+        {
+            __result = AssetStorage.PlayerInventory.HasItem(AssetStorage.QuestItems["QI68"]);
+        }
+
+        // Always have Yerma appear dead
+        else if (scene == "Z1327" && quest == "ST23.BAD_ENDING")
+        {
+            __result = true;
+        }
     }
 
     private static int OwnedKeys
