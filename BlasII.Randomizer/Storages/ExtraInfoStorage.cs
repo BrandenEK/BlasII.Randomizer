@@ -124,6 +124,7 @@ public class ExtraInfoStorage
         new QuestBypassInfo("Z2828", "QI108", () => Main.Randomizer.ItemHandler.IsLocationCollected("Z2828.i17")),
         new QuestBypassInfo("Z2828", "QI109", () => false),
         // Lacrimatorio #5
+        new QuestBypassInfo("Z2746", "QI110", () => Enumerable.Range(1, 4).All(x => Main.Randomizer.GetQuestBool("ST105", $"TOMB{x}_FINISHED"))),
         new QuestBypassInfo("Z2746", "QI111", () => Main.Randomizer.ItemHandler.IsLocationCollected("Z2746.i0")),
     ];
 
