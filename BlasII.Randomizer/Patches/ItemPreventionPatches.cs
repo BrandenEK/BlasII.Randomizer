@@ -28,8 +28,8 @@ class Check_ItemOwned_Patch
         if (!Main.Randomizer.ExtraInfoStorage.TryGetQuestBypassInfo(scene, item, out QuestBypassInfo info))
             return true;
 
-        bool collected = Main.Randomizer.ItemHandler.IsLocationCollected(info.Location);
-        ModLog.Warn($"Replacing item check with location check {info.Location}: {collected}");
+        bool collected = info.ItemOverride();
+        ModLog.Warn($"Result from overriding item check: {collected}");
 
         __instance.Fsm.Event(collected ? __instance.yesEvent : __instance.noEvent);
         __instance.Finish();
@@ -50,8 +50,8 @@ class Check_ItemsOwned_Patch
         if (!Main.Randomizer.ExtraInfoStorage.TryGetQuestBypassInfo(scene, firstItem, out QuestBypassInfo info))
             return true;
 
-        bool collected = Main.Randomizer.ItemHandler.IsLocationCollected(info.Location);
-        ModLog.Warn($"Replacing item check with location check {info.Location}: {collected}");
+        bool collected = info.ItemOverride();
+        ModLog.Warn($"Result from overriding item check: {collected}");
 
         __instance.Fsm.Event(collected ? __instance.yesEvent : __instance.noEvent);
         __instance.Finish();
@@ -68,8 +68,7 @@ class RemoveItem_OnEnter_Patch
 
         ModLog.Warn($"{__instance.Owner.name} is trying to remove item: {item}");
 
-        // Mud quest
-        if (item == "QI101")
+        if (NEVER_REMOVE.Contains(item))
         {
             __instance.Finish();
             return false;
@@ -77,6 +76,8 @@ class RemoveItem_OnEnter_Patch
 
         return true;
     }
+
+    private static readonly string[] NEVER_REMOVE = ["QI101", "QI110"]; // Mud key, Lacrimatorio
 }
 
 // =======

@@ -129,12 +129,21 @@ public static class ItemExtensions
                 }
             case Item.ItemType.ProgressiveQuestItem:
                 {
+                    // Remove current item if you have one
                     var currentItem = item.GetProgressiveItem(false);
-                    var nextItem = item.GetProgressiveItem(true);
                     if (currentItem != null)
+                    {
                         AssetStorage.PlayerInventory.RemoveItem(currentItem);
+                    }
+
+                    // Add next item if there is one
+                    var nextItem = item.GetProgressiveItem(true);
                     if (nextItem != null)
+                    {
                         AssetStorage.PlayerInventory.AddItemAsync(nextItem);
+                        if (nextItem.name == "QI111")
+                            CoreCache.AbilitiesUnlockManager.SetAbility(AssetStorage.Abilities[ABILITY_IDS.GoldFlask], true);
+                    }
                     break;
                 }
             case Item.ItemType.GoldLump:
@@ -232,7 +241,7 @@ public static class ItemExtensions
         string[] itemIds = item.Id switch
         {
             "UL" => ["QI23", "QI24", "QI25", "QI26", "QI27"],
-            "IL" => ["QI106", "QI107", "QI108", "QI109", "QI111"],
+            "IL" => ["QI106", "QI107", "QI108", "QI110", "QI111"],
             _ => throw new Exception($"Invalid {Item.ItemType.ProgressiveQuestItem}: {item.Id}")
         };
 

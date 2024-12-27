@@ -217,6 +217,18 @@ class Ability_Skip_Patch
         return false;
     }
 }
+[HarmonyPatch(typeof(ActivateGoldFlaskAbilityAction), nameof(ActivateGoldFlaskAbilityAction.OnEnter))]
+class ActivateGoldFlaskAbilityAction_OnEnter_Patch
+{
+    public static bool Prefix(ActivateGoldFlaskAbilityAction __instance)
+    {
+        if (!Main.Randomizer.IsRandomizerMode)
+            return true;
+
+        __instance.Finish();
+        return false;
+    }
+}
 
 // =============
 // Caged cherubs
