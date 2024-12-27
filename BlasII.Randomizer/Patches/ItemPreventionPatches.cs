@@ -155,6 +155,12 @@ class QuestManager_GetVarBool_Patch
         {
             __result = __result && Main.Randomizer.GetQuestInt("ST12", "KISSES_DELIVERED") >= 5;
         }
+
+        // Always allow the extra health from the chalice lady
+        else if (scene == "Z0510" && quest == "ST11.CHALICE_FULL")
+        {
+            __result = AssetStorage.PlayerStats.GetMaxValue(AssetStorage.RangeStats["Health"]) >= 330 || !Main.Randomizer.GetQuestBool("ST11", "FLASKH_FINISHED") || !Main.Randomizer.GetQuestBool("ST11", "FLASKN_FINISHED") || !Main.Randomizer.GetQuestBool("ST11", "HEALTH_FINISHED");
+        }
     }
 
     private static int OwnedKeys
