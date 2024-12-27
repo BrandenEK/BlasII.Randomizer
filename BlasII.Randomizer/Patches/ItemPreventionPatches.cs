@@ -153,7 +153,25 @@ class QuestManager_GetVarBool_Patch
         // Always allow the hand to upgrade fervour
         else if (scene == "Z1708" && quest == "ST12.HAND_SECRET")
         {
-            __result = false;
+            __result = __result && Main.Randomizer.GetQuestInt("ST12", "KISSES_DELIVERED") >= 5;
+        }
+
+        // Always allow the extra health from the chalice lady
+        else if (scene == "Z0510" && quest == "ST11.CHALICE_FULL")
+        {
+            __result = AssetStorage.PlayerStats.GetMaxValue(AssetStorage.RangeStats["Health"]) >= 330 || !Main.Randomizer.GetQuestBool("ST11", "FLASKH_FINISHED") || !Main.Randomizer.GetQuestBool("ST11", "FLASKN_FINISHED") || !Main.Randomizer.GetQuestBool("ST11", "HEALTH_FINISHED");
+        }
+
+        // Only open Susona door with the holy oil
+        else if (scene == "Z1323" && quest == "ST14.SUSONA_EVENT")
+        {
+            __result = AssetStorage.PlayerInventory.HasItem(AssetStorage.QuestItems["QI68"]);
+        }
+
+        // Always have Yerma appear dead
+        else if (scene == "Z1327" && quest == "ST23.BAD_ENDING")
+        {
+            __result = true;
         }
     }
 
@@ -177,6 +195,19 @@ class QuestManager_GetVarInt_Patch
 {
     [HarmonyPriority(Priority.High)]
     public static void Postfix(int questId, int varId, ref int __result)
+    {
+        string scene = CoreCache.Room.CurrentRoom?.Name;
+        string quest = Main.Randomizer.GetQuestName(questId, varId);
+
+        // No checks yet
+    }
+}
+
+[HarmonyPatch(typeof(QuestManager), nameof(QuestManager.GetQuestVarFloatValue))]
+class QuestManager_GetVarFloat_Patch
+{
+    [HarmonyPriority(Priority.High)]
+    public static void Postfix(int questId, int varId, ref float __result)
     {
         string scene = CoreCache.Room.CurrentRoom?.Name;
         string quest = Main.Randomizer.GetQuestName(questId, varId);
@@ -209,6 +240,23 @@ class QuestManager_GetVar_Patch
             {
                 __result = "WEAPON_ROSARY";
             }
+        }
+    }
+}
+
+[HarmonyPatch(typeof(QuestManager), nameof(QuestManager.GetQuestStatus))]
+class QuestManager_GetQuestStatus_Patch
+{
+    [HarmonyPriority(Priority.High)]
+    public static void Postfix(int questId, ref string __result)
+    {
+        string scene = CoreCache.Room.CurrentRoom?.Name;
+        string quest = CoreCache.Quest.GetQuestData(questId, string.Empty).Name;
+
+        // Always have the hand in the better state
+        if (quest == "ST12")
+        {
+            __result = "HAND_RESENTFUL";
         }
     }
 }

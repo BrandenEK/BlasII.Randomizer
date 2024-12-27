@@ -97,10 +97,18 @@ public class Randomizer : BlasIIMod, IPersistentMod
             LoadWeaponDisplayRoom();
         else if (sceneName == "Z0206")
             LoadTriggerRemovalRoom("Event Trigger");
+        else if (sceneName == "Z0419")
+            LoadYermaRoom();
         else if (sceneName == "Z0420")
             LoadTriggerRemovalRoom("trigger area");
+        else if (sceneName == "Z1323")
+            LoadYermaRoom();
         else if (sceneName == "Z1506")
             LoadWeaponSelectRoom();
+        else if (sceneName == "Z1612")
+            LoadYermaRoom();
+        else if (sceneName == "Z2301")
+            LoadYermaRoom();
         else if (sceneName == "Z2401")
             LoadCherubRoom();
         else if (sceneName == "Z2501")
@@ -266,27 +274,31 @@ public class Randomizer : BlasIIMod, IPersistentMod
 
     private void LoadChapelRoom()
     {
-        foreach (var fsm in Object.FindObjectsOfType<PlayMakerFSM>())
+        foreach (var fsm in Object.FindObjectsOfType<PlayMakerFSM>().Where(x => x.name == "NPC13_ST09_PILGRIM"))
         {
-            if (fsm.name == "NPC13_ST09_PILGRIM")
-            {
-                // Remove this npc's trigger so that he cant give you a key
-                Object.Destroy(fsm.gameObject.GetComponent<BoxCollider2D>());
-            }
+            // Remove this npc's trigger so that he cant give you a key
+            ModLog.Info("Removing pilgrim");
+            Object.Destroy(fsm.gameObject.GetComponent<BoxCollider2D>());
         }
     }
 
     private void LoadTriggerRemovalRoom(string trigger)
     {
-        foreach (var collider in Object.FindObjectsOfType<BoxCollider2D>(true))
+        foreach (var collider in Object.FindObjectsOfType<BoxCollider2D>(true).Where(x => x.name == trigger))
         {
-            //LogWarning(collider.name);
-            if (collider.name == trigger)
-            {
-                ModLog.Warn("Removing trigger: " + trigger);
-                Object.Destroy(collider);
-                return;
-            }
+            // Remove certain triggers
+            ModLog.Info("Removing trigger: " + trigger);
+            Object.Destroy(collider);
+        }
+    }
+
+    private void LoadYermaRoom()
+    {
+        foreach (var fsm in Object.FindObjectsOfType<PlayMakerFSM>().Where(x => x.name == "NPC09_ST23_VARALES"))
+        {
+            // Disable yerma so her quest cant progress
+            ModLog.Info("Removing yerma");
+            fsm.gameObject.SetActive(false);
         }
     }
 

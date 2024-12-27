@@ -17,11 +17,16 @@ class DoorInteractable_ChangeScene_Patch
         string doorId = $"{CoreCache.Room.CurrentRoom.Name}[{__instance.entryId}]";
         ModLog.Info("Entering door: " + doorId);
 
+        // Temp until all door transitions are handled through data
         if (doorId == "Z0101[-]")
         {
-            // Temp until all door transitions are handled through data
             ModLog.Info("Avoiding weapon room");
             __instance.destinationScene = "Z0102";
+        }
+        else if (doorId == "Z1324[DOOR_W_63-60]")
+        {
+            ModLog.Info("Avoiding susona dream room");
+            __instance.destinationScene = "Z1328";
         }
     }
 }
