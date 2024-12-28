@@ -167,6 +167,8 @@ public class Randomizer : BlasIIMod, IPersistentMod
         ItemHandler.ShuffleItems(CurrentSettings.Seed, CurrentSettings);
 
         AllowPrieDieuWarp();
+        SetQuestValue("ST00", "WEAPON_EVENT", true);
+        SetQuestValue("ST00", "INTRO", true);
         IsNewGame = true;
     }
 
