@@ -86,6 +86,11 @@ public class ItemHandler
             return false;
         }
 
+        foreach (var item in _mappedItems)
+        {
+            _mappedItems[item.Key] = "UL";
+        }
+
         ModLog.Info($"Shuffled {_mappedItems.Count} items!");
         GenerateSpoiler(settings);
         return true;

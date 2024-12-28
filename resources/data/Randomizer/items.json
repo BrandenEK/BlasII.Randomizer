@@ -868,6 +868,41 @@
         "count": 1
     },
     {
+        "id": "QI23",
+        "name": "Unfinished Lullaby",
+        "type": "QuestItem",
+        "progression": false,
+        "count": 0
+    },
+    {
+        "id": "QI24",
+        "name": "Unfinished Lullaby",
+        "type": "QuestItem",
+        "progression": false,
+        "count": 0
+    },
+    {
+        "id": "QI25",
+        "name": "Unfinished Lullaby",
+        "type": "QuestItem",
+        "progression": false,
+        "count": 0
+    },
+    {
+        "id": "QI26",
+        "name": "Unfinished Lullaby",
+        "type": "QuestItem",
+        "progression": false,
+        "count": 0
+    },
+    {
+        "id": "QI27",
+        "name": "Lullaby of the White Shore",
+        "type": "QuestItem",
+        "progression": false,
+        "count": 0
+    },
+    {
         "id": "QI28",
         "name": "Broken Key",
         "type": "QuestItem",
@@ -1192,6 +1227,48 @@
     {
         "id": "QI104",
         "name": "Mea Culpa Hilt",
+        "type": "QuestItem",
+        "progression": false,
+        "count": 0
+    },
+    {
+        "id": "QI106",
+        "name": "Imperfectus Lacrimatorio",
+        "type": "QuestItem",
+        "progression": false,
+        "count": 0
+    },
+    {
+        "id": "QI107",
+        "name": "Imperfectus Lacrimatorio",
+        "type": "QuestItem",
+        "progression": false,
+        "count": 0
+    },
+    {
+        "id": "QI108",
+        "name": "Imperfectus Lacrimatorio",
+        "type": "QuestItem",
+        "progression": false,
+        "count": 0
+    },
+    {
+        "id": "QI109",
+        "name": "Imperfectus Lacrimatorio",
+        "type": "QuestItem",
+        "progression": false,
+        "count": 0
+    },
+    {
+        "id": "QI110",
+        "name": "Plenus Lacrimatorio",
+        "type": "QuestItem",
+        "progression": false,
+        "count": 0
+    },
+    {
+        "id": "QI111",
+        "name": "Beatus Lacrimatorio",
         "type": "QuestItem",
         "progression": false,
         "count": 0
