@@ -51,10 +51,17 @@ public class Randomizer : BlasIIMod, IPersistentMod
     /// <inheritdoc/>
     public ExtraInfoStorage ExtraInfoStorage { get; private set; }
 
+    // Properties
+
     /// <summary>
     /// Whether or not randomizer effects should take place.  Used for testing item/location ids
     /// </summary>
     public bool IsRandomizerMode { get; } = true;
+
+    /// <summary>
+    /// Whether a new game has just started and the player hasn't received their starting equipment yet
+    /// </summary>
+    public bool IsNewGame { get; private set; } = false;
 
     protected override void OnInitialize()
     {
@@ -158,7 +165,9 @@ public class Randomizer : BlasIIMod, IPersistentMod
     {
         ModLog.Info($"Performing shuffle for seed {CurrentSettings.Seed}");
         ItemHandler.ShuffleItems(CurrentSettings.Seed, CurrentSettings);
+
         AllowPrieDieuWarp();
+        IsNewGame = true;
     }
 
     public SaveData SaveGame()
@@ -210,19 +219,16 @@ public class Randomizer : BlasIIMod, IPersistentMod
     // Special rooms
 
     /// <summary>
-    /// Gives the starting weapon.  Called from the quote patch
+    /// Gives the starting equipment, only called if it hasnt already given it
     /// </summary>
-    public void LoadStartingRoom()
+    public void GiveStartingEquipment()
     {
-        ModLog.Info("Giving starting weapon");
+        ModLog.Info("Giving starting equipment");
+        IsNewGame = false;
+
         var weapon = AssetStorage.Weapons[(WEAPON_IDS)CurrentSettings.RealStartingWeapon];
-
-        CoreCache.AbilitiesUnlockManager.SetAbility(AssetStorage.Abilities[ABILITY_IDS.Jump], true);
-        CoreCache.AbilitiesUnlockManager.SetAbility(AssetStorage.Abilities[ABILITY_IDS.Dash], true);
-
         CoreCache.EquipmentManager.Unlock(weapon);
         CoreCache.PlayerSpawn.PlayerControllerRef.GetAbility<ChangeWeaponAbility>().ChangeWeapon(weapon);
-        SetQuestValue("ST00", "WEAPON_EVENT", true);
     }
 
     /// <summary>
