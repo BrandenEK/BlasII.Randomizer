@@ -6,6 +6,7 @@ using Il2CppPlaymaker.Inventory;
 using Il2CppPlaymaker.Loot;
 using Il2CppPlaymaker.PrieDieu;
 using Il2CppPlaymaker.UI;
+using Il2CppTGK.Game;
 using Il2CppTGK.Game.Components.Interactables;
 using Il2CppTGK.Game.Inventory.PlayMaker;
 using System.Linq;
@@ -54,18 +55,17 @@ class PlayMaker_AddItem_Patch
 {
     public static bool Prefix(AddItem __instance)
     {
-        if (__instance.itemID == null)
-            return true;
+        string sceneName = CoreCache.Room.CurrentRoom?.Name;
         string itemName = __instance.itemID.name;
 
-        // Always give item in ALWAYS_GIVE
-        if (ALWAYS_GIVE.Contains(itemName))
+        // Always give location if certain room or item
+        if (ROOMS_ALWAYS.Contains(sceneName) || ITEMS_ALWAYS.Contains(itemName))
         {
             return true;
         }
 
-        // Never give items in NEVER_GIVE
-        if (NEVER_GIVE.Contains(itemName))
+        // Never give location if certain room or item
+        if (ROOMS_NEVER.Contains(sceneName) || ITEMS_NEVER.Contains(itemName))
         {
             __instance.Finish();
             return false;
@@ -82,8 +82,10 @@ class PlayMaker_AddItem_Patch
         return false;
     }
 
-    private static readonly string[] ALWAYS_GIVE = ["FG40", "FG41", "FG42", "FG43"]; // Burnt figures
-    private static readonly string[] NEVER_GIVE = ["QI102"]; // Broken key
+    private static readonly string[] ROOMS_ALWAYS = ["Z1809"]; // Ending A
+    private static readonly string[] ITEMS_ALWAYS = ["FG40", "FG41", "FG42", "FG43"]; // Burnt figures
+    private static readonly string[] ROOMS_NEVER = []; // None
+    private static readonly string[] ITEMS_NEVER = ["QI102"]; // Broken key
 }
 
 // =================
