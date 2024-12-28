@@ -1,7 +1,6 @@
 ﻿using BlasII.ModdingAPI;
 using BlasII.ModdingAPI.Assets;
 using Il2CppTGK.Game;
-using Il2CppTGK.Inventory;
 using System;
 using UnityEngine;
 
@@ -13,6 +12,14 @@ namespace BlasII.Randomizer.Models;
 public static class ItemExtensions
 {
     /// <summary>
+    /// Ensures the item is not of type INVALID
+    /// </summary>
+    public static bool IsValid(this Item item)
+    {
+        return item.Type != Item.ItemType.Invalid;
+    }
+
+    /// <summary>
     /// Retrieves the sprite for this item
     /// </summary>
     public static Sprite GetSprite(this Item item)
@@ -23,7 +30,7 @@ public static class ItemExtensions
             Item.ItemType.Prayer => AssetStorage.Prayers[item.Id].image,
             Item.ItemType.Figurine => AssetStorage.Figures[item.Id].image,
             Item.ItemType.QuestItem => AssetStorage.QuestItems[item.Id].image,
-            Item.ItemType.ProgressiveQuestItem => item.GetProgressiveItem(true).image,
+            Item.ItemType.ProgressiveQuestItem => item.GetProgressiveItem(true).GetSprite(),
             Item.ItemType.GoldLump => AssetStorage.QuestItems["QI105"].image,
             Item.ItemType.Weapon => Main.Randomizer.EmbeddedIconStorage.GetImage(item.Id),
             Item.ItemType.Ability => Main.Randomizer.EmbeddedIconStorage.GetImage(item.Id),
@@ -33,7 +40,7 @@ public static class ItemExtensions
             Item.ItemType.PreMarks => Main.Randomizer.EmbeddedIconStorage.GetImage("PreMarks"),
 
             Item.ItemType.Invalid => Main.Randomizer.CustomIconStorage.GetImage(Storages.CustomIconStorage.IconType.Invalid),
-            _ => null,
+            _ => throw new Exception($"Invalid item type: {item.Type}")
         };
     }
 
@@ -48,7 +55,7 @@ public static class ItemExtensions
             Item.ItemType.Prayer => AssetStorage.Prayers[item.Id].caption,
             Item.ItemType.Figurine => AssetStorage.Figures[item.Id].caption,
             Item.ItemType.QuestItem => AssetStorage.QuestItems[item.Id].caption,
-            Item.ItemType.ProgressiveQuestItem => item.GetProgressiveItem(true).caption,
+            Item.ItemType.ProgressiveQuestItem => item.GetProgressiveItem(true).GetName(),
             Item.ItemType.GoldLump => AssetStorage.QuestItems["QI105"].caption,
             Item.ItemType.Weapon => Main.Randomizer.LocalizationHandler.Localize($"weapon/{item.Id.ToLower()}/name"),
             Item.ItemType.Ability => Main.Randomizer.LocalizationHandler.Localize($"ability/{item.Id.ToLower()}/name"),
@@ -58,7 +65,7 @@ public static class ItemExtensions
             Item.ItemType.PreMarks => item.GetAmount() + " " + Main.Randomizer.LocalizationHandler.Localize("currency/premarks/name"),
 
             Item.ItemType.Invalid => "Invalid Item",
-            _ => null,
+            _ => throw new Exception($"Invalid item type: {item.Type}")
         };
     }
 
@@ -73,7 +80,7 @@ public static class ItemExtensions
             Item.ItemType.Prayer => AssetStorage.Prayers[item.Id].description,
             Item.ItemType.Figurine => AssetStorage.Figures[item.Id].description,
             Item.ItemType.QuestItem => AssetStorage.QuestItems[item.Id].description,
-            Item.ItemType.ProgressiveQuestItem => item.GetProgressiveItem(true).description,
+            Item.ItemType.ProgressiveQuestItem => item.GetProgressiveItem(true).GetDescription(),
             Item.ItemType.GoldLump => AssetStorage.QuestItems["QI105"].description,
             Item.ItemType.Weapon => Main.Randomizer.LocalizationHandler.Localize($"weapon/{item.Id.ToLower()}/desc"),
             Item.ItemType.Ability => Main.Randomizer.LocalizationHandler.Localize($"ability/{item.Id.ToLower()}/desc"),
@@ -83,7 +90,7 @@ public static class ItemExtensions
             Item.ItemType.PreMarks => Main.Randomizer.LocalizationHandler.Localize("currency/premarks/desc"),
 
             Item.ItemType.Invalid => "You should not see this.",
-            _ => null,
+            _ => throw new Exception($"Invalid item type: {item.Type}")
         };
     }
 
@@ -129,21 +136,24 @@ public static class ItemExtensions
                 }
             case Item.ItemType.ProgressiveQuestItem:
                 {
-                    // Remove current item if you have one
-                    var currentItem = item.GetProgressiveItem(false);
-                    if (currentItem != null)
+                    var nextItem = item.GetProgressiveItem(true);
+                    if (!nextItem.IsValid())
                     {
-                        AssetStorage.PlayerInventory.RemoveItem(currentItem);
+                        ModLog.Error($"Attempting to add invalid level of item {item.Id}");
+                        break;
                     }
 
                     // Add next item if there is one
-                    var nextItem = item.GetProgressiveItem(true);
-                    if (nextItem != null)
-                    {
-                        AssetStorage.PlayerInventory.AddItemAsync(nextItem);
-                        if (nextItem.name == "QI111")
-                            CoreCache.AbilitiesUnlockManager.SetAbility(AssetStorage.Abilities[ABILITY_IDS.GoldFlask], true);
-                    }
+                    AssetStorage.PlayerInventory.AddItemAsync(AssetStorage.QuestItems[nextItem.Id]);
+                    if (nextItem.Id == "QI111")
+                        CoreCache.AbilitiesUnlockManager.SetAbility(AssetStorage.Abilities[ABILITY_IDS.GoldFlask], true);
+
+                    var currentItem = item.GetProgressiveItem(false);
+                    if (!currentItem.IsValid())
+                        break;
+
+                    // Remove current item if you have one
+                    AssetStorage.PlayerInventory.RemoveItem(AssetStorage.QuestItems[currentItem.Id]);
                     break;
                 }
             case Item.ItemType.GoldLump:
@@ -228,15 +238,17 @@ public static class ItemExtensions
                     AssetStorage.PlayerStats.AddToCurrentValue(AssetStorage.ValueStats["MarksPreceptor"], item.GetAmount());
                     break;
                 }
+            default:
+                throw new Exception($"Invalid item type: {item.Type}");
         }
 
         Main.Randomizer.ItemHandler.SetItemCollected(item.Id);
     }
 
     /// <summary>
-    /// Returns the current or upgraded quest itm
+    /// Returns the current or upgraded item
     /// </summary>
-    private static QuestItemID GetProgressiveItem(this Item item, bool upgraded)
+    private static Item GetProgressiveItem(this Item item, bool upgraded)
     {
         string[] itemIds = item.Id switch
         {
@@ -250,7 +262,7 @@ public static class ItemExtensions
             level--;
 
         return level >= 0 && level < itemIds.Length
-            ? AssetStorage.QuestItems[itemIds[level]]
-            : null;
+            ? Main.Randomizer.ItemStorage[itemIds[level]]
+            : Main.Randomizer.ItemStorage.InvalidItem;
     }
 }

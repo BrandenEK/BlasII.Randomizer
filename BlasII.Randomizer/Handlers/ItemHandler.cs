@@ -50,7 +50,7 @@ public class ItemHandler
             item = GetItemAtLocation(locationId);
         }
 
-        ModLog.Warn($"Giving item at location: {locationId} ({item.Id})");
+        ModLog.Custom($"Giving item at location: {locationId} ({item.Id})", System.Drawing.Color.Green);
 
         Main.Randomizer.MessageHandler.Broadcast("LOCATION", locationId);
         DisplayItem(item);

@@ -1,10 +1,10 @@
 ﻿using BlasII.ModdingAPI;
 using HarmonyLib;
-using Il2CppPlaymaker.UI;
 using Il2CppTGK.Game;
 using Il2CppTGK.Game.Components;
 using Il2CppTGK.Game.Components.Characters;
 using Il2CppTGK.Game.Components.Inventory;
+using Il2CppTGK.Game.Managers;
 using Il2CppTGK.Inventory;
 
 namespace BlasII.Randomizer.Patches;
@@ -26,14 +26,15 @@ class FadeSprite_DoFadeWithThisIndex_Patch
 }
 
 /// <summary>
-/// Only load starting room after some time
+/// Give start equipment if player just spawned in a new game
 /// </summary>
-[HarmonyPatch(typeof(ShowQuote), nameof(ShowQuote.OnEnter))]
-class ShowQuote_OnEnter_Patch
+[HarmonyPatch(typeof(AbilityLockManager), nameof(AbilityLockManager.OnPlayerSpawned))]
+class AbilityLockManager_OnPlayerSpawned_Patch
 {
     public static void Postfix()
     {
-        Main.Randomizer.LoadStartingRoom();
+        if (Main.Randomizer.IsNewGame)
+            Main.Randomizer.GiveStartingEquipment();
     }
 }
 

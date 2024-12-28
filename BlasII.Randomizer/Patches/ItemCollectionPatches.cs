@@ -22,7 +22,7 @@ class LootInteractable_Use_Patch
     public static void Prefix(LootInteractable __instance)
     {
         string locationId = __instance.CalculateId();
-        ModLog.Error("LootInteractable.UseLootByInteractor - " + locationId);
+        ModLog.Custom("LootInteractable.UseLootByInteractor - " + locationId, System.Drawing.Color.Green);
 
         if (!Main.Randomizer.IsRandomizerMode)
             return;
@@ -37,7 +37,7 @@ class LootInteractableST103_Use_Patch
     public static bool Prefix(LootInteractableST103 __instance)
     {
         string locationId = __instance.CalculateId();
-        ModLog.Error("LootInteractableST103.UseLootByInteractor - " + locationId);
+        ModLog.Custom("LootInteractableST103.UseLootByInteractor - " + locationId, System.Drawing.Color.Green);
 
         if (!Main.Randomizer.IsRandomizerMode)
             return true;
@@ -72,7 +72,7 @@ class PlayMaker_AddItem_Patch
         }
 
         string locationId = __instance.CalculateId();
-        ModLog.Error($"AddItem.OnEnter - {locationId} ({itemName})");
+        ModLog.Custom($"AddItem.OnEnter - {locationId} ({itemName})", System.Drawing.Color.Green);
 
         if (!Main.Randomizer.IsRandomizerMode)
             return true;
@@ -96,7 +96,7 @@ class PlayMaker_GiveReward_Patch
     public static bool Prefix(GiveReward __instance)
     {
         string locationId = __instance.CalculateId();
-        ModLog.Error("GiveReward.OnEnter - " + locationId);
+        ModLog.Custom("GiveReward.OnEnter - " + locationId, System.Drawing.Color.Green);
 
         if (!Main.Randomizer.IsRandomizerMode)
             return true;
@@ -129,7 +129,7 @@ class PlayMaker_UnlockWeapon_Patch
     public static bool Prefix(UnlockWeapon __instance)
     {
         string locationId = __instance.CalculateId();
-        ModLog.Error("UnlockWeapon.OnEnter - " + locationId);
+        ModLog.Custom("UnlockWeapon.OnEnter - " + locationId, System.Drawing.Color.Green);
 
         if (!Main.Randomizer.IsRandomizerMode)
             return true;
@@ -162,7 +162,7 @@ class PlayMaker_UpgradeWeapon_Patch
     public static bool Prefix(UpgradeWeaponTier __instance)
     {
         string locationId = __instance.CalculateId();
-        ModLog.Error("UpgradeWeaponTier.OnEnter - " + locationId);
+        ModLog.Custom("UpgradeWeaponTier.OnEnter - " + locationId, System.Drawing.Color.Green);
 
         if (!Main.Randomizer.IsRandomizerMode)
             return true;
@@ -195,7 +195,7 @@ class PlayMaker_UnlockAbility_Patch
     public static bool Prefix(UnlockAbility __instance)
     {
         string locationId = __instance.CalculateId();
-        ModLog.Error("UnlockAbility.OnEnter - " + locationId);
+        ModLog.Custom("UnlockAbility.OnEnter - " + locationId, System.Drawing.Color.Green);
 
         if (!Main.Randomizer.IsRandomizerMode)
             return true;
@@ -245,7 +245,7 @@ class ActivateGoldFlaskAbilityAction_OnEnter_Patch
 //    public static bool Prefix()
 //    {
 //        string locationId = $"{CoreCache.Room.CurrentRoom.Name}.c0";
-//        ModLog.Error("CherubCollectibleComponent.AddCherub - " + locationId);
+//        **ModLog.Error("CherubCollectibleComponent.AddCherub - " + locationId);
 
 //        if (!Main.Randomizer.IsRandomizerMode)
 //            return true;
@@ -265,7 +265,7 @@ class ActivateGoldFlaskAbilityAction_OnEnter_Patch
 //            return true;
 
 //        string locationId = $"{CoreCache.Room.CurrentRoom.Name}.c0";
-//        ModLog.Error("OperateQuestVar.CheckInputData - " + locationId);
+//        **ModLog.Error("OperateQuestVar.CheckInputData - " + locationId);
 
 //        if (!Main.Randomizer.IsRandomizerMode)
 //            return true;
