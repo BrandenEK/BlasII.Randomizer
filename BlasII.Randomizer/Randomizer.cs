@@ -226,9 +226,15 @@ public class Randomizer : BlasIIMod, IPersistentMod
         ModLog.Info("Giving starting equipment");
         IsNewGame = false;
 
+        // Unlock starting weapon
         var weapon = AssetStorage.Weapons[(WEAPON_IDS)CurrentSettings.RealStartingWeapon];
         CoreCache.EquipmentManager.Unlock(weapon);
         CoreCache.PlayerSpawn.PlayerControllerRef.GetAbility<ChangeWeaponAbility>().ChangeWeapon(weapon);
+
+        // TEMPORARY: lock certain abilities because I have no idea how they persist
+        var abilities = new ABILITY_IDS[] { ABILITY_IDS.AirDash, ABILITY_IDS.AirJump, ABILITY_IDS.GlassWalk, ABILITY_IDS.GoldFlask, ABILITY_IDS.MagicRingClimb, ABILITY_IDS.WallClimb };
+        foreach (var ability in abilities.Select(x => AssetStorage.Abilities[x]))
+            CoreCache.AbilitiesUnlockManager.SetAbility(ability, false);
     }
 
     /// <summary>
