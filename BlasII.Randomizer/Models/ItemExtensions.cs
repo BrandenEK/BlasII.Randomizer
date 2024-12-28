@@ -1,7 +1,6 @@
 ﻿using BlasII.ModdingAPI;
 using BlasII.ModdingAPI.Assets;
 using Il2CppTGK.Game;
-using Il2CppTGK.Inventory;
 using System;
 using UnityEngine;
 

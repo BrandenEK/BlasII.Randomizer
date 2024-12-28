@@ -50,7 +50,7 @@ public class ItemHandler
             item = GetItemAtLocation(locationId);
         }
 
-        ModLog.Warn($"Giving item at location: {locationId} ({item.Id})");
+        ModLog.Custom($"Giving item at location: {locationId} ({item.Id})", System.Drawing.Color.Green);
 
         Main.Randomizer.MessageHandler.Broadcast("LOCATION", locationId);
         DisplayItem(item);
@@ -84,11 +84,6 @@ public class ItemHandler
             ModLog.Error($"Failed to shuffle items in {maxAttempts} attempts");
             _mappedItems.Clear();
             return false;
-        }
-
-        foreach (var item in _mappedItems)
-        {
-            _mappedItems[item.Key] = "UL";
         }
 
         ModLog.Info($"Shuffled {_mappedItems.Count} items!");

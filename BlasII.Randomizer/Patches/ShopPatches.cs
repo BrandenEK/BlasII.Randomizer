@@ -91,7 +91,7 @@ class ShopManager_SellOrb_Patch
     public static void Postfix(Shop shop, int orbIdx)
     {
         string locationId = shop.CalculateId(orbIdx);
-        ModLog.Error("ShopManager.SellOrb - " + locationId);
+        ModLog.Custom("ShopManager.SellOrb - " + locationId, System.Drawing.Color.Green);
 
         Main.Randomizer.ItemHandler.GiveItemAtLocation(locationId);
 
