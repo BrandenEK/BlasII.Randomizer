@@ -137,21 +137,24 @@ public static class ItemExtensions
                 }
             case Item.ItemType.ProgressiveQuestItem:
                 {
-                    // Remove current item if you have one
-                    var currentItem = item.GetProgressiveItem(false);
-                    if (currentItem.IsValid())
+                    var nextItem = item.GetProgressiveItem(true);
+                    if (!nextItem.IsValid())
                     {
-                        AssetStorage.PlayerInventory.RemoveItem(AssetStorage.QuestItems[currentItem.Id]);
+                        ModLog.Error($"Attempting to add invalid level of item {item.Id}");
+                        break;
                     }
 
                     // Add next item if there is one
-                    var nextItem = item.GetProgressiveItem(true);
-                    if (nextItem.IsValid())
-                    {
-                        AssetStorage.PlayerInventory.AddItemAsync(AssetStorage.QuestItems[nextItem.Id]);
-                        if (nextItem.Id == "QI111")
-                            CoreCache.AbilitiesUnlockManager.SetAbility(AssetStorage.Abilities[ABILITY_IDS.GoldFlask], true);
-                    }
+                    AssetStorage.PlayerInventory.AddItemAsync(AssetStorage.QuestItems[nextItem.Id]);
+                    if (nextItem.Id == "QI111")
+                        CoreCache.AbilitiesUnlockManager.SetAbility(AssetStorage.Abilities[ABILITY_IDS.GoldFlask], true);
+
+                    var currentItem = item.GetProgressiveItem(false);
+                    if (!currentItem.IsValid())
+                        break;
+
+                    // Remove current item if you have one
+                    AssetStorage.PlayerInventory.RemoveItem(AssetStorage.QuestItems[currentItem.Id]);
                     break;
                 }
             case Item.ItemType.GoldLump:
