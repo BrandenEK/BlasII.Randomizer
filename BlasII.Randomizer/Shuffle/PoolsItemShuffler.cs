@@ -8,6 +8,15 @@ namespace BlasII.Randomizer.Shuffle;
 
 internal class PoolsItemShuffler : IShuffler
 {
+    private readonly Dictionary<string, ItemLocation> _allItemLocations;
+    private readonly Dictionary<string, Item> _allItems;
+
+    public PoolsItemShuffler(Dictionary<string, ItemLocation> itemLocations, Dictionary<string, Item> items)
+    {
+        _allItemLocations = itemLocations;
+        _allItems = items;
+    }
+
     public bool Shuffle(int seed, RandomizerSettings settings, Dictionary<string, string> output)
     {
         output.Clear();
@@ -47,7 +56,7 @@ internal class PoolsItemShuffler : IShuffler
     /// </summary>
     private void CreateLocationPool(LocationPool progressionLocations, LocationPool junkLocations, RandomizerSettings settings)
     {
-        foreach (var location in Main.Randomizer.ItemLocationStorage.AsSequence)
+        foreach (var location in _allItemLocations.Values)
         {
             AddLocationToPool(progressionLocations, junkLocations, location, settings);
         }
@@ -67,7 +76,7 @@ internal class PoolsItemShuffler : IShuffler
     /// </summary>
     private void CreateItemPool(ItemPool progressionItems, ItemPool junkItems, int numOfLocations, RandomizerSettings settings)
     {
-        foreach (var item in Main.Randomizer.ItemStorage.AsSequence)
+        foreach (var item in _allItems.Values)
         {
             AddItemToPool(progressionItems, junkItems, item);
         }
@@ -94,7 +103,7 @@ internal class PoolsItemShuffler : IShuffler
     private void RemoveStartingItemsFromItemPool(ItemPool items, RandomizerSettings settings)
     {
         // Remove the extra starting weapon
-        items.Remove(Main.Randomizer.ItemStorage[GetStartingWeaponId(settings)]);
+        items.Remove(_allItems[GetStartingWeaponId(settings)]);
     }
 
     /// <summary>
@@ -111,7 +120,7 @@ internal class PoolsItemShuffler : IShuffler
         // Add tear items until pools are equal
         while (progressionItems.Size + junkItems.Size < numOfLocations)
         {
-            junkItems.Add(Main.Randomizer.ItemStorage["Tears[800]"]);
+            junkItems.Add(_allItems["Tears[800]"]);
         }
     }
 
@@ -194,7 +203,7 @@ internal class PoolsItemShuffler : IShuffler
     /// </summary>        
     private void MovePriorityItems(ItemPool progressionItems)
     {
-        Item wallClimb = Main.Randomizer.ItemStorage["WallClimb"];
+        Item wallClimb = _allItems["WallClimb"];
         progressionItems.MoveToBeginning(wallClimb);
     }
 

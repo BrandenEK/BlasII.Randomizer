@@ -80,7 +80,7 @@ public class Randomizer : BlasIIMod, IPersistentMod
         ExtraInfoStorage = new ExtraInfoStorage();
 
         // Initialize handlers
-        ItemHandler = new ItemHandler(new PoolsItemShuffler());
+        ItemHandler = new ItemHandler(new PoolsItemShuffler(ItemLocationStorage.AsDictionary, ItemStorage.AsDictionary));
 
         //ShuffleTest(new ForwardItemShuffler(), 777, 500);
         //ShuffleTest(new ReverseItemShuffler(), 777, 500);
