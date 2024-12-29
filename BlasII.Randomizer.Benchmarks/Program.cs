@@ -1,5 +1,6 @@
 ﻿using BenchmarkDotNet.Columns;
 using BenchmarkDotNet.Configs;
+using BenchmarkDotNet.Exporters;
 using BenchmarkDotNet.Loggers;
 using BenchmarkDotNet.Running;
 
@@ -9,10 +10,11 @@ internal class Program
 {
     static void Main(string[] args)
     {
-        //var config = new ManualConfig();
-        //config.AddColumn(new TargetMethodColumn(), new SuccessRateColumn());
-        //config.AddLogger(new ConsoleLogger());
+        var config = new ManualConfig();
+        config.AddColumn(TargetMethodColumn.Method, new MeanAllColumn(), new MeanSuccessColumn(), new SuccessRateColumn());
+        config.AddLogger(ConsoleLogger.Default);
+        config.AddExporter(MarkdownExporter.GitHub);
 
-        var summary = BenchmarkRunner.Run<ShufflerBenchmarks>();
+        var summary = BenchmarkRunner.Run<ShufflerBenchmarks>(config);
     }
 }

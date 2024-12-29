@@ -1,28 +1,15 @@
 ﻿using BenchmarkDotNet.Attributes;
-using BenchmarkDotNet.Columns;
-using BenchmarkDotNet.Configs;
 using BlasII.Randomizer.Models;
 using BlasII.Randomizer.Shuffle;
 using Newtonsoft.Json;
 
 namespace BlasII.Randomizer.Benchmarks;
 
-[HideColumns(Column.Error, Column.StdDev)]
-[Config(typeof(Config))]
 public class ShufflerBenchmarks
 {
     private Random _rng;
     private IShuffler _shuffler;
     private RandomizerSettings _settings;
-
-    private class Config : ManualConfig
-    {
-        public Config()
-        {
-            AddColumn(new MeanSuccessColumn());
-            AddColumn(new SuccessRateColumn());
-        }
-    }
 
     [GlobalSetup]
     public void SetupShuffler()
