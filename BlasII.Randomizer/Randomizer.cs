@@ -34,7 +34,7 @@ public class Randomizer : BlasIIMod, IPersistentMod
     // Handlers
 
     /// <inheritdoc/>
-    public ItemHandler ItemHandler { get; } = new(new PoolsItemShuffler());
+    public ItemHandler ItemHandler { get; private set; }
 
     // Storages
 
@@ -78,6 +78,9 @@ public class Randomizer : BlasIIMod, IPersistentMod
         EmbeddedIconStorage = new EmbeddedIconStorage();
         CustomIconStorage = new CustomIconStorage();
         ExtraInfoStorage = new ExtraInfoStorage();
+
+        // Initialize handlers
+        ItemHandler = new ItemHandler(new PoolsItemShuffler());
 
         //ShuffleTest(new ForwardItemShuffler(), 777, 500);
         //ShuffleTest(new ReverseItemShuffler(), 777, 500);
