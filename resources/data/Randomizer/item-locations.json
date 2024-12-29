@@ -1401,7 +1401,7 @@
     },
     {
         "id": "Z2702.i0",
-        "name": "dlc location",
+        "name": "ghost",
         "logic": "wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosary + meaculpa + mudkey + ceramickey"
     },
     {
@@ -1426,7 +1426,7 @@
     },
     {
         "id": "Z2705.i6",
-        "name": "dlc location",
+        "name": "ghost",
         "logic": "wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosary + meaculpa + mudkey + ceramickey"
     },
     {
@@ -1486,7 +1486,7 @@
     },
     {
         "id": "Z2746.i0",
-        "name": "dlc location",
+        "name": "ghost",
         "logic": "wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosary + meaculpa + mudkey + ceramickey"
     },
     {
@@ -1510,11 +1510,6 @@
         "logic": "wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosary + meaculpa + mudkey + ceramickey"
     },
     {
-        "id": "Z2805.i0",
-        "name": "dlc location",
-        "logic": "wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosary + meaculpa + mudkey + ceramickey"
-    },
-    {
         "id": "Z2814.w0",
         "name": "dlc location",
         "flags": "W",
@@ -1527,7 +1522,7 @@
     },
     {
         "id": "Z2816.i7",
-        "name": "dlc location",
+        "name": "ghost",
         "logic": "wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosary + meaculpa + mudkey + ceramickey"
     },
     {
@@ -1547,7 +1542,7 @@
     },
     {
         "id": "Z2828.i17",
-        "name": "dlc location",
+        "name": "ghost",
         "logic": "wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosary + meaculpa + mudkey + ceramickey"
     },
     {
