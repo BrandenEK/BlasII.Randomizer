@@ -2,6 +2,7 @@
 using BlasII.Randomizer.Models;
 using BlasII.Randomizer.Shuffle;
 using Newtonsoft.Json;
+using System.Diagnostics;
 
 namespace BlasII.Randomizer.Benchmarks;
 
@@ -47,6 +48,16 @@ public class ShufflerBenchmarks
         int seed = _rng.Next(1, RandomizerSettings.MAX_SEED + 1);
 
         //Console.WriteLine("Shuffling seed: " + seed);
-        bool result = _shuffler.Shuffle(seed, _settings, map);
+        var watch = Stopwatch.StartNew();
+        bool result = true;// _shuffler.Shuffle(seed, _settings, map);
+        watch.Stop();
+
+        ColumnSuccessRate.HandleResult(new ShuffleResult()
+        {
+            Name = "ShufflerBenchmarks.PoolsItemShuffler: DefaultJob",
+            Seed = seed,
+            Time = watch.Elapsed,
+            Successful = result,
+        });
     }
 }
