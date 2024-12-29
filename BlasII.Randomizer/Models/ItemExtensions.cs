@@ -238,8 +238,6 @@ public static class ItemExtensions
                     AssetStorage.PlayerStats.AddToCurrentValue(AssetStorage.ValueStats["MarksPreceptor"], item.GetAmount());
                     break;
                 }
-            default:
-                throw new Exception($"Invalid item type: {item.Type}");
         }
 
         Main.Randomizer.ItemHandler.SetItemCollected(item.Id);

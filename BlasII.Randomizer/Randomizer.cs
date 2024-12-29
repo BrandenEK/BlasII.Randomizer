@@ -103,11 +103,11 @@ public class Randomizer : BlasIIMod, IPersistentMod
         if (sceneName == "Z0102")
             LoadWeaponDisplayRoom();
         else if (sceneName == "Z0206")
-            LoadTriggerRemovalRoom("Event Trigger");
+            LoadTriggerRemovalRoom("Event Trigger", "NPC10_ST22_ANUNCIADA");
         else if (sceneName == "Z0419")
             LoadYermaRoom();
         else if (sceneName == "Z0420")
-            LoadTriggerRemovalRoom("trigger area");
+            LoadTriggerRemovalRoom("trigger area", "Arena triggered template and gates");
         else if (sceneName == "Z1323")
             LoadYermaRoom();
         else if (sceneName == "Z1506")
@@ -120,6 +120,8 @@ public class Randomizer : BlasIIMod, IPersistentMod
             LoadCherubRoom();
         else if (sceneName == "Z2501")
             LoadChapelRoom();
+        else if (sceneName == "Z2716")
+            LoadTriggerRemovalRoom("trigger", "SPGEO_INTERACTABLE_GUILLOTINE");
 
         CoreCache.Shop.cachedInstancedShops.Clear();
     }
@@ -167,6 +169,8 @@ public class Randomizer : BlasIIMod, IPersistentMod
         ItemHandler.ShuffleItems(CurrentSettings.Seed, CurrentSettings);
 
         AllowPrieDieuWarp();
+        SetQuestValue("ST00", "WEAPON_EVENT", true);
+        SetQuestValue("ST00", "INTRO", true);
         IsNewGame = true;
     }
 
@@ -294,16 +298,6 @@ public class Randomizer : BlasIIMod, IPersistentMod
         }
     }
 
-    private void LoadTriggerRemovalRoom(string trigger)
-    {
-        foreach (var collider in Object.FindObjectsOfType<BoxCollider2D>(true).Where(x => x.name == trigger))
-        {
-            // Remove certain triggers
-            ModLog.Info("Removing trigger: " + trigger);
-            Object.Destroy(collider);
-        }
-    }
-
     private void LoadYermaRoom()
     {
         foreach (var fsm in Object.FindObjectsOfType<PlayMakerFSM>().Where(x => x.name == "NPC09_ST23_VARALES"))
@@ -312,6 +306,27 @@ public class Randomizer : BlasIIMod, IPersistentMod
             ModLog.Info("Removing yerma");
             fsm.gameObject.SetActive(false);
         }
+    }
+
+    private void LoadTriggerRemovalRoom(string trigger, string parent)
+    {
+        var colliders = Object.FindObjectsOfType<BoxCollider2D>(true)
+            .Where(x => x.gameObject.scene.name.StartsWith(CoreCache.Room.CurrentRoom.Name))
+            .OrderBy(x => x.name);
+
+        //foreach (var c in colliders)
+        //    ModLog.Info($"{c.name} (Child of {c.transform.parent?.name ?? "none"})");
+
+        var collider = colliders.FirstOrDefault(x => x.name == trigger && x.transform.parent?.name == parent);
+
+        if (collider == null)
+        {
+            ModLog.Warn($"Failed to find trigger: {parent}/{trigger}");
+            return;
+        }
+
+        ModLog.Info($"Removing trigger: {parent}/{trigger}");
+        Object.Destroy(collider);
     }
 
     // Quests

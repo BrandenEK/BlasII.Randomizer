@@ -173,12 +173,6 @@ class QuestManager_GetVarBool_Patch
         {
             __result = true;
         }
-
-        // Skip the intro cinematics
-        else if (scene == "Z0101" && (quest == "ST00.WEAPON_EVENT" || quest == "ST00.INTRO"))
-        {
-            __result = true;
-        }
     }
 
     private static int OwnedKeys
