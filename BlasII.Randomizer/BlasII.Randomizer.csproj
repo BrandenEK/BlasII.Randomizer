@@ -31,13 +31,13 @@
     <!-- Get plugin & resources -->
     <ItemGroup>
       <PluginDll Include="$(TargetPath)" />
-      <Resources Include="$(SolutionDir)\resources\**\*.*" />
+      <Resources Include="$(ProjectDir)\..\resources\**\*.*" />
     </ItemGroup>
 
     <!-- Get export directories -->
     <PropertyGroup>
       <DevFolder>C:\Program Files (x86)\Steam\steamapps\common\Blasphemous 2\Modding\</DevFolder>
-      <PublishFolder>$(SolutionDir)\publish\$(TargetName)</PublishFolder>
+      <PublishFolder>$(ProjectDir)\..\publish\$(TargetName)</PublishFolder>
     </PropertyGroup>
 
     <!-- Export to dev folder -->
