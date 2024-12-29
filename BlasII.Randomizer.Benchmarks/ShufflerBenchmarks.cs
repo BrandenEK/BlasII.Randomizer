@@ -19,6 +19,7 @@ public class ShufflerBenchmarks
     {
         public Config()
         {
+            AddColumn(new MeanSuccessColumn());
             AddColumn(new SuccessRateColumn());
         }
     }
