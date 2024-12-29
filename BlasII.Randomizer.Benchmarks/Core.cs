@@ -52,6 +52,7 @@ internal class Core
 
     static void DisplayOutput(string[,] output)
     {
+        Console.WriteLine();
         var sbs = new StringBuilder[output.GetLength(0)];
         for (int i = 0; i < sbs.Length; i++)
             sbs[i] = new StringBuilder("|");
