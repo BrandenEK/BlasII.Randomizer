@@ -1,5 +1,4 @@
-﻿using BenchmarkDotNet.Attributes;
-using BlasII.Randomizer.Models;
+﻿using BlasII.Randomizer.Models;
 using BlasII.Randomizer.Shuffle;
 using Newtonsoft.Json;
 
@@ -11,7 +10,7 @@ public class ShufflerBenchmarks
     private IShuffler _shuffler;
     private RandomizerSettings _settings;
 
-    [GlobalSetup]
+    //[GlobalSetup]
     public void SetupShuffler()
     {
         string dataFolder = GetDataFolder();
@@ -40,7 +39,7 @@ public class ShufflerBenchmarks
         return values.ToDictionary(x => x.Id, x => x);
     }
 
-    [Benchmark(Description = "PoolsItemShuffler")]
+    //[Benchmark(Description = "PoolsItemShuffler")]
     public bool Shuffle_Pools()
     {
         var map = new Dictionary<string, string>();
