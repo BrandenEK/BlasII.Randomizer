@@ -1,4 +1,5 @@
-﻿using BlasII.Randomizer.Models;
+﻿using BlasII.Randomizer.Benchmarks.Attributes;
+using BlasII.Randomizer.Models;
 using BlasII.Randomizer.Shuffle;
 using Newtonsoft.Json;
 
@@ -10,7 +11,7 @@ public class ShufflerBenchmarks
     private IShuffler _shuffler;
     private RandomizerSettings _settings;
 
-    //[GlobalSetup]
+    [GlobalSetup]
     public void SetupShuffler()
     {
         string dataFolder = GetDataFolder();
