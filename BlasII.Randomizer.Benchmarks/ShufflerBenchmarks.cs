@@ -1,10 +1,12 @@
 ﻿using BenchmarkDotNet.Attributes;
+using BenchmarkDotNet.Columns;
 using BlasII.Randomizer.Models;
 using BlasII.Randomizer.Shuffle;
 using Newtonsoft.Json;
 
 namespace BlasII.Randomizer.Benchmarks;
 
+[HideColumns(Column.Error, Column.StdDev)]
 public class ShufflerBenchmarks
 {
     private Random _rng;
@@ -41,12 +43,12 @@ public class ShufflerBenchmarks
     }
 
     [Benchmark]
-    public void Test_PoolsItemShuffler()
+    public void Shuffle_Pools()
     {
         var map = new Dictionary<string, string>();
         int seed = _rng.Next(1, RandomizerSettings.MAX_SEED + 1);
 
-        Console.WriteLine("Shuffling seed: " + seed);
-        _shuffler.Shuffle(seed, _settings, map);
+        //Console.WriteLine("Shuffling seed: " + seed);
+        bool result = _shuffler.Shuffle(seed, _settings, map);
     }
 }
