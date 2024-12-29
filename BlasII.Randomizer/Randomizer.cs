@@ -120,6 +120,8 @@ public class Randomizer : BlasIIMod, IPersistentMod
             LoadCherubRoom();
         else if (sceneName == "Z2501")
             LoadChapelRoom();
+        else if (sceneName == "Z2716")
+            LoadTriggerRemovalRoom("trigger", "SPGEO_INTERACTABLE_GUILLOTINE");
 
         CoreCache.Shop.cachedInstancedShops.Clear();
     }
@@ -296,16 +298,6 @@ public class Randomizer : BlasIIMod, IPersistentMod
         }
     }
 
-    private void LoadTriggerRemovalRoom(string trigger)
-    {
-        foreach (var collider in Object.FindObjectsOfType<BoxCollider2D>(true).Where(x => x.name == trigger))
-        {
-            // Remove certain triggers
-            ModLog.Info("Removing trigger: " + trigger);
-            Object.Destroy(collider);
-        }
-    }
-
     private void LoadYermaRoom()
     {
         foreach (var fsm in Object.FindObjectsOfType<PlayMakerFSM>().Where(x => x.name == "NPC09_ST23_VARALES"))
@@ -314,6 +306,42 @@ public class Randomizer : BlasIIMod, IPersistentMod
             ModLog.Info("Removing yerma");
             fsm.gameObject.SetActive(false);
         }
+    }
+
+    private void LoadTriggerRemovalRoom(string trigger)
+    {
+        //foreach (var collider in Object.FindObjectsOfType<BoxCollider2D>(true).OrderBy(x => x.name))
+        //    ModLog.Info($"{collider.name} (Child of {collider.transform.parent?.name ?? "none"})");
+
+        var collider = Object.FindObjectsOfType<BoxCollider2D>(true)
+            .FirstOrDefault(x => x.name == trigger);
+
+        if (collider == null)
+        {
+            ModLog.Warn($"Failed to find trigger: {trigger}");
+            return;
+        }
+
+        ModLog.Info($"Removing trigger: {trigger}");
+        Object.Destroy(collider);
+    }
+
+    private void LoadTriggerRemovalRoom(string trigger, string parent)
+    {
+        //foreach (var collider in Object.FindObjectsOfType<BoxCollider2D>(true).OrderBy(x => x.name))
+        //    ModLog.Info($"{collider.name} (Child of {collider.transform.parent?.name ?? "none"})");
+
+        var collider = Object.FindObjectsOfType<BoxCollider2D>(true)
+            .FirstOrDefault(x => x.name == trigger && x.transform.parent?.name == parent);
+
+        if (collider == null)
+        {
+            ModLog.Warn($"Failed to find trigger: {parent}/{trigger}");
+            return;
+        }
+
+        ModLog.Info($"Removing trigger: {parent}/{trigger}");
+        Object.Destroy(collider);
     }
 
     // Quests
