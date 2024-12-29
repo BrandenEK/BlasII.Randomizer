@@ -1,9 +1,11 @@
-﻿namespace BlasII.Randomizer.Benchmarks;
+﻿using BenchmarkDotNet.Running;
+
+namespace BlasII.Randomizer.Benchmarks;
 
 internal class Program
 {
     static void Main(string[] args)
     {
-        Console.WriteLine("Hello, World!");
+        var summary = BenchmarkRunner.Run<ShufflerBenchmarks>();
     }
 }
