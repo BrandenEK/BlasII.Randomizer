@@ -4,9 +4,9 @@ using BenchmarkDotNet.Running;
 
 namespace BlasII.Randomizer.Benchmarks;
 
-public class SuccessRateColumn : IColumn
+public class ColumnSuccessRate : IColumn
 {
-    public string Id { get; } = nameof(SuccessRateColumn);
+    public string Id { get; } = nameof(ColumnSuccessRate);
 
     public string ColumnName { get; } = "Success Rate";
 

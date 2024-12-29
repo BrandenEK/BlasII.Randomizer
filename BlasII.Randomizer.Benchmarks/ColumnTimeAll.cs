@@ -4,11 +4,11 @@ using BenchmarkDotNet.Running;
 
 namespace BlasII.Randomizer.Benchmarks;
 
-public class MeanSuccessColumn : IColumn
+public class ColumnTimeAll : IColumn
 {
-    public string Id { get; } = nameof(MeanSuccessColumn);
+    public string Id { get; } = nameof(ColumnTimeAll);
 
-    public string ColumnName { get; } = "Mean (Successful)";
+    public string ColumnName { get; } = "Avg. Time (All)";
 
     public bool AlwaysShow { get; } = true;
 
@@ -20,7 +20,7 @@ public class MeanSuccessColumn : IColumn
 
     public UnitType UnitType { get; } = UnitType.Time;
 
-    public string Legend { get; } = "Average time of successful attempts";
+    public string Legend { get; } = "Average time of all attempts";
 
     public string GetValue(Summary summary, BenchmarkCase benchmarkCase)
     {

@@ -11,7 +11,7 @@ internal class Program
     static void Main(string[] args)
     {
         var config = new ManualConfig();
-        config.AddColumn(TargetMethodColumn.Method, new MeanAllColumn(), new MeanSuccessColumn(), new SuccessRateColumn());
+        config.AddColumn(TargetMethodColumn.Method, new ColumnTimeAll(), new ColumnTimeSuccess(), new ColumnSuccessRate());
         config.AddLogger(ConsoleLogger.Default);
         config.AddExporter(MarkdownExporter.GitHub);
 
