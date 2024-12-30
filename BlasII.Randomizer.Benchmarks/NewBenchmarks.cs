@@ -69,7 +69,7 @@ public class NewBenchmarks
         int seed = _rng.Next(1, RandomizerSettings.MAX_SEED + 1);
         var map = new Dictionary<string, string>();
 
-        Console.WriteLine("Shuffling seed: " + seed);
+        //Console.WriteLine("Shuffling seed: " + seed);
         return _shuffler.Shuffle(seed, _settings, map);
     }
 

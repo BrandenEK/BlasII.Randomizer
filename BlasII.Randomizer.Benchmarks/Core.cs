@@ -23,8 +23,40 @@ internal class Core
         };
 
         RunAllBenchmarks(benchmark, benchmarkMethods);
+        DisplayOutput1(benchmarkMethods);
+    }
 
-        string[,] output = new string[benchmarkMethods.Count() + 1, _monitors.Count + 1];
+    static void RunAllBenchmarks(object obj, IEnumerable<MethodInfo> methods)
+    {
+        Console.WriteLine($"Running {methods.Count()} benchmarks");
+        foreach (var method in methods)
+        {
+            foreach (var setup in GetAllSetups<NewBenchmarks>(method.Name))
+                setup.Invoke(obj, null);
+
+            RunBenchmark(obj, method);
+        }
+    }
+
+    static void RunBenchmark(object obj, MethodInfo method)
+    {
+        Console.WriteLine($"Running benchmark {method.Name}");
+
+        var watch = new Stopwatch();
+        for (int i = 0; i < MAX_ITERATIONS; i++)
+        {
+            watch.Restart();
+            bool result = (bool)method.Invoke(obj, null);
+            watch.Stop();
+
+            foreach (var monitor in _monitors)
+                monitor.HandleResult(method.Name, watch.Elapsed, result);
+        }
+    }
+
+    static void DisplayOutput1(IEnumerable<MethodInfo> methods)
+    {
+        string[,] output = new string[methods.Count() + 1, _monitors.Count + 1];
 
         // Add header row
         output[0, 0] = "Method";
@@ -35,7 +67,7 @@ internal class Core
 
         // Add data rows
         int row = 0, col = 0;
-        foreach (var method in benchmarkMethods)
+        foreach (var method in methods)
         {
             output[++row, 0] = method.Name;
             foreach (var monitor in _monitors)
@@ -45,10 +77,10 @@ internal class Core
             col = 0;
         }
 
-        DisplayOutput(output);
+        DisplayOutput2(output);
     }
 
-    static void DisplayOutput(string[,] output)
+    static void DisplayOutput2(string[,] output)
     {
         Console.WriteLine();
         var sbs = new StringBuilder[output.GetLength(0)];
@@ -86,34 +118,6 @@ internal class Core
         foreach (var sb in sbs.Skip(1))
         {
             Console.WriteLine(sb);
-        }
-    }
-
-    static void RunAllBenchmarks(NewBenchmarks benchmark, IEnumerable<MethodInfo> methods)
-    {
-        Console.WriteLine($"Running {methods.Count()} benchmarks");
-        foreach (var method in methods)
-        {
-            foreach (var setup in GetAllSetups<NewBenchmarks>(method.Name))
-                setup.Invoke(benchmark, null);
-
-            RunBenchmark(benchmark, method);
-        }
-    }
-
-    static void RunBenchmark(NewBenchmarks benchmark, MethodInfo method)
-    {
-        Console.WriteLine($"Running benchmark {method.Name}");
-
-        var watch = new Stopwatch();
-        for (int i = 0; i < MAX_ITERATIONS; i++)
-        {
-            watch.Restart();
-            bool result = (bool)method.Invoke(benchmark, null);
-            watch.Stop();
-
-            foreach (var monitor in _monitors)
-                monitor.HandleResult(method.Name, watch.Elapsed, result);
         }
     }
 
