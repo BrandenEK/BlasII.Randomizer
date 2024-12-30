@@ -232,4 +232,7 @@ internal class Core
         BenchmarkSetupAttribute attribute = method.GetCustomAttribute<BenchmarkSetupAttribute>();
         return attribute != null && (string.IsNullOrEmpty(attribute.Target) || attribute.Target == target);
     }
+
+    public static string BASE_DIRECTORY { get; } = Assembly.GetExecutingAssembly().Location
+        .Substring(0, Assembly.GetExecutingAssembly().Location.IndexOf("BlasII.Randomizer.Benchmarks"));
 }
