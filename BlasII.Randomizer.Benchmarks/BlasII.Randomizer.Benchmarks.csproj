@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Basalt.CommandParser" Version="1.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\BlasII.Randomizer\BlasII.Randomizer.csproj" />
   </ItemGroup>
 

@@ -20,6 +20,8 @@ internal class Core
         RunAllWarmups(obj, benchmarks);
         RunAllBenchmarks(obj, benchmarks);
         DisplayOutput1(benchmarks);
+
+        Console.ReadKey(true);
     }
 
     public static void RegisterMonitors(params BaseMonitor[] monitors)
