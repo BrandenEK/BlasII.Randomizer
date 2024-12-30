@@ -140,10 +140,15 @@ internal class Core
             col = 0;
         }
 
-        DisplayOutput2(output);
+        IEnumerable<string> text = DisplayOutput2(output);
+
+        foreach (string t in text)
+        {
+            Console.WriteLine(t);
+        }
     }
 
-    static void DisplayOutput2(string[,] output)
+    static IEnumerable<string> DisplayOutput2(string[,] output)
     {
         Console.WriteLine();
         var sbs = new StringBuilder[output.GetLength(0)];
@@ -170,18 +175,19 @@ internal class Core
 
         string header = sbs[0].ToString();
         var line = new StringBuilder();
-        Console.WriteLine(header);
 
         foreach (char c in header)
         {
             line.Append(c == '|' ? '|' : '-');
         }
-        Console.WriteLine(line);
 
-        foreach (var sb in sbs.Skip(1))
+        var text = new List<string>()
         {
-            Console.WriteLine(sb);
-        }
+            header,
+            line.ToString()
+        };
+        text.AddRange(sbs.Skip(1).Select(x => x.ToString()));
+        return text;
     }
 
     static IEnumerable<object> GetParameters<T>(object obj, string name)
