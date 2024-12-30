@@ -1,4 +1,5 @@
 ﻿using BlasII.Randomizer.Benchmarks.Attributes;
+using BlasII.Randomizer.Benchmarks.Monitors;
 using System.Diagnostics;
 using System.Reflection;
 using System.Text;
