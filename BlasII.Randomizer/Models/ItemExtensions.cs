@@ -57,7 +57,9 @@ public static class ItemExtensions
             Item.ItemType.QuestItem => AssetStorage.QuestItems[item.Id].caption,
             Item.ItemType.ProgressiveQuestItem => item.GetProgressiveItem(true).GetName(),
             Item.ItemType.GoldLump => AssetStorage.QuestItems["QI105"].caption,
-            Item.ItemType.Weapon => Main.Randomizer.LocalizationHandler.Localize($"weapon/{item.Id.ToLower()}/name"),
+            Item.ItemType.Weapon => item.IsWeaponUnlocked()
+                ? Main.Randomizer.LocalizationHandler.Localize("{0} {1}", $"weapon/{item.Id.ToLower()}/name", "weapon/upgrade/name")
+                : Main.Randomizer.LocalizationHandler.Localize($"weapon/{item.Id.ToLower()}/name"),
             Item.ItemType.Ability => Main.Randomizer.LocalizationHandler.Localize($"ability/{item.Id.ToLower()}/name"),
             Item.ItemType.Cherub => Main.Randomizer.LocalizationHandler.Localize("currency/cherub/name"),
             Item.ItemType.Tears => item.GetAmount() + " " + Main.Randomizer.LocalizationHandler.Localize("currency/tears/name"),
@@ -82,7 +84,9 @@ public static class ItemExtensions
             Item.ItemType.QuestItem => AssetStorage.QuestItems[item.Id].description,
             Item.ItemType.ProgressiveQuestItem => item.GetProgressiveItem(true).GetDescription(),
             Item.ItemType.GoldLump => AssetStorage.QuestItems["QI105"].description,
-            Item.ItemType.Weapon => Main.Randomizer.LocalizationHandler.Localize($"weapon/{item.Id.ToLower()}/desc"),
+            Item.ItemType.Weapon => item.IsWeaponUnlocked()
+                ? Main.Randomizer.LocalizationHandler.Localize("{0} {1}", "weapon/upgrade/desc", $"weapon/{item.Id.ToLower()}/name")
+                : Main.Randomizer.LocalizationHandler.Localize($"weapon/{item.Id.ToLower()}/desc"),
             Item.ItemType.Ability => Main.Randomizer.LocalizationHandler.Localize($"ability/{item.Id.ToLower()}/desc"),
             Item.ItemType.Cherub => Main.Randomizer.LocalizationHandler.Localize("currency/cherub/desc"),
             Item.ItemType.Tears => Main.Randomizer.LocalizationHandler.Localize("currency/tears/desc"),
@@ -92,15 +96,6 @@ public static class ItemExtensions
             Item.ItemType.Invalid => "You should not see this.",
             _ => throw new Exception($"Invalid item type: {item.Type}")
         };
-    }
-
-    /// <summary>
-    /// Retrieves the numeric value of this item
-    /// </summary>
-    private static int GetAmount(this Item item)
-    {
-        int leftBracket = item.Id.IndexOf('['), rightBracket = item.Id.IndexOf(']');
-        return int.Parse(item.Id.Substring(leftBracket + 1, rightBracket - leftBracket - 1));
     }
 
     /// <summary>
@@ -244,6 +239,15 @@ public static class ItemExtensions
     }
 
     /// <summary>
+    /// Retrieves the numeric value of this item
+    /// </summary>
+    private static int GetAmount(this Item item)
+    {
+        int leftBracket = item.Id.IndexOf('['), rightBracket = item.Id.IndexOf(']');
+        return int.Parse(item.Id.Substring(leftBracket + 1, rightBracket - leftBracket - 1));
+    }
+
+    /// <summary>
     /// Returns the current or upgraded item
     /// </summary>
     private static Item GetProgressiveItem(this Item item, bool upgraded)
@@ -262,5 +266,14 @@ public static class ItemExtensions
         return level >= 0 && level < itemIds.Length
             ? Main.Randomizer.ItemStorage[itemIds[level]]
             : Main.Randomizer.ItemStorage.InvalidItem;
+    }
+
+    /// <summary>
+    /// Retrieves the unlock status of this item
+    /// </summary>
+    private static bool IsWeaponUnlocked(this Item item)
+    {
+        var weapon = AssetStorage.Weapons[Enum.Parse<WEAPON_IDS>(item.Id)];
+        return CoreCache.EquipmentManager.IsUnlocked(weapon);
     }
 }

@@ -9,6 +9,8 @@ weapon/rapier/name: Sarmiento & Centella
 weapon/rapier/desc: A weapon that can be used to activate magic mirrors.
 weapon/meaculpa/name: Mea Culpa
 weapon/meaculpa/desc: The old sword of legend
+weapon/upgrade/name: upgrade
+weapon/upgrade/desc: An upgrade for
 ability/wallclimb/name: Ivy of Ascension
 ability/wallclimb/desc: The ability to climb up large walls.
 ability/airjump/name: Passage of Ash
