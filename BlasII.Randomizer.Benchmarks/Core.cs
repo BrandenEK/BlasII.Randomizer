@@ -17,6 +17,7 @@ internal class Core
         var benchmarks = FindAllBenchmarks<NewBenchmarks>(obj);
 
         RegisterMonitors(new SuccessRateMonitor(), new AverageTimeMonitor(), new AverageSuccessTimeMonitor());
+        RunAllWarmups(obj, benchmarks);
         RunAllBenchmarks(obj, benchmarks);
         DisplayOutput1(benchmarks);
     }
@@ -55,6 +56,28 @@ internal class Core
         }
 
         return benchmarks;
+    }
+
+    static void RunAllWarmups(object obj, List<BenchmarkInfo> benchmarks)
+    {
+        Console.WriteLine($"Running {benchmarks.Count} warmups");
+        foreach (var benchmark in benchmarks)
+        {
+            foreach (var setup in GetAllSetups<NewBenchmarks>(benchmark.Id))
+                setup.Invoke(obj, null);
+
+            RunWarmup(obj, benchmark);
+        }
+    }
+
+    static void RunWarmup(object obj, BenchmarkInfo benchmark)
+    {
+        Console.WriteLine($"Running warmup {benchmark.Id}");
+
+        for (int i = 0; i < MAX_ITERATIONS_WARMUP; i++)
+        {
+            benchmark.Method.Invoke(obj, benchmark.Parameters);
+        }
     }
 
     static void RunAllBenchmarks(object obj, List<BenchmarkInfo> benchmarks)
@@ -176,4 +199,5 @@ internal class Core
     }
 
     private const int MAX_ITERATIONS = 100;
+    private const int MAX_ITERATIONS_WARMUP = 40;
 }
