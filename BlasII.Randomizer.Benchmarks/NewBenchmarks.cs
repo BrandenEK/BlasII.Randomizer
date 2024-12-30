@@ -66,11 +66,11 @@ public class NewBenchmarks
 
     private bool PerformShuffle()
     {
-        int seed = _rng.Next(1, RandomizerSettings.MAX_SEED + 1);
+        _settings.Seed = _rng.Next(1, RandomizerSettings.MAX_SEED + 1);
         var map = new Dictionary<string, string>();
 
         //Console.WriteLine("Shuffling seed: " + seed);
-        return _shuffler.Shuffle(seed, _settings, map);
+        return _shuffler.Shuffle(_settings.Seed, _settings, map);
     }
 
     [Benchmark("Default settings")]
@@ -80,27 +80,28 @@ public class NewBenchmarks
     private bool Pools_MoreLocs() => PerformShuffle();
 
     [Benchmark("PoolsItemShuffler")]
-    [BenchmarkParameters("test1", "other2", "fail3")]
-    private bool Shuffle_Pools(string message)
+    [BenchmarkParameters(nameof(SettingsParameters))]
+    private bool Shuffle_Pools(RandomizerSettings settings)
     {
-        int seed = _rng.Next(1, RandomizerSettings.MAX_SEED + 1);
+        settings.Seed = _rng.Next(1, RandomizerSettings.MAX_SEED + 1);
         var map = new Dictionary<string, string>();
 
-        Console.WriteLine(message + "Shuffling seed: " + seed);
-        return _shuffler.Shuffle(seed, _settings, map);
+        //Console.WriteLine(message + "Shuffling seed: " + seed);
+        return _shuffler.Shuffle(settings.Seed, settings, map);
     }
 
-    //private IEnumerable<RandomizerSettings> SettingsParameters
-    //{
-    //    get
-    //    {
-    //        yield return RandomizerSettings.DEFAULT;
-    //        yield return new RandomizerSettings()
-    //        {
-    //            ShuffleLongQuests = true,
-    //            ShuffleShops = true,
-    //            StartingWeapon = 0,
-    //        };
-    //    }
-    //}
+    private IEnumerable<SettingsWithDescription> SettingsParameters
+    {
+        get
+        {
+            yield return SettingsWithDescription.DEFAULT;
+            yield return new SettingsWithDescription()
+            {
+                Description = "More locations",
+                ShuffleLongQuests = true,
+                ShuffleShops = true,
+                StartingWeapon = 0,
+            };
+        }
+    }
 }

@@ -14,7 +14,7 @@ internal class Core
     static void Main(string[] args)
     {
         object obj = new NewBenchmarks();
-        var benchmarks = FindAllBenchmarks<NewBenchmarks>();
+        var benchmarks = FindAllBenchmarks<NewBenchmarks>(obj);
 
         RegisterMonitors(new SuccessRateMonitor(), new AverageTimeMonitor(), new AverageSuccessTimeMonitor());
         RunAllBenchmarks(obj, benchmarks);
@@ -26,7 +26,7 @@ internal class Core
         _monitors.AddRange(monitors);
     }
 
-    static List<BenchmarkInfo> FindAllBenchmarks<T>()
+    static List<BenchmarkInfo> FindAllBenchmarks<T>(object obj)
     {
         var benchmarks = new List<BenchmarkInfo>();
         var methods = typeof(T).GetMethods(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
@@ -46,8 +46,12 @@ internal class Core
                 continue;
             }
 
-            benchmarks.AddRange(bpAttribute.Parameters
-                .Select(x => new BenchmarkInfo(method.Name, bAttribute.Name ?? method.Name, method, new object[] { x })));
+            IEnumerable<object> parameters = bpAttribute.ParameterProperty != null
+                ? GetParameters<T>(obj, bpAttribute.ParameterProperty)
+                : bpAttribute.Parameters ?? throw new Exception("You have to add the parameter property or the list");
+
+            benchmarks.AddRange(parameters
+                .Select(x => new BenchmarkInfo($"{method.Name}.{x}", bAttribute.Name ?? method.Name, method, new object[] { x })));
         }
 
         return benchmarks;
@@ -148,6 +152,15 @@ internal class Core
         {
             Console.WriteLine(sb);
         }
+    }
+
+    static IEnumerable<object> GetParameters<T>(object obj, string name)
+    {
+        PropertyInfo property = typeof(T).GetProperty(name, BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
+
+        return property == null
+            ? throw new Exception($"Failed to find property with the name {name}")
+            : (IEnumerable<object>)property.GetValue(obj);
     }
 
     static IEnumerable<MethodInfo> GetAllSetups<TBenchmark>(string target) where TBenchmark : class
