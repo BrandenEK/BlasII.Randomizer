@@ -140,11 +140,5 @@ internal class Core
         return attribute != null && (string.IsNullOrEmpty(attribute.Target) || attribute.Target == target);
     }
 
-    static IEnumerable<MethodInfo> GetAllBenchmarks<TBenchmark>() where TBenchmark : class
-    {
-        return typeof(TBenchmark).GetMethods(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic)
-            .Where(x => x.GetCustomAttribute<BenchmarkAttribute>() != null);
-    }
-
-    private const int MAX_ITERATIONS = 50;
+    private const int MAX_ITERATIONS = 100;
 }
