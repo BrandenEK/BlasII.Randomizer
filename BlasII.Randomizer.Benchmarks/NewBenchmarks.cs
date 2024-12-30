@@ -13,7 +13,6 @@ public class NewBenchmarks
 
     private Random _rng;
     private IShuffler _shuffler;
-    private RandomizerSettings _settings;
 
     public NewBenchmarks()
     {
@@ -37,12 +36,34 @@ public class NewBenchmarks
     private void BenchmarkSetup()
     {
         _rng = new Random(102423);
+    }
+
+    [BenchmarkSetup(nameof(Shuffle_Reverse))]
+    private void BenchmarkSetup_Reverse()
+    {
         _shuffler = new PoolsItemShuffler(_allItemLocations, _allItems);
     }
 
-    [Benchmark("PoolsItemShuffler")]
+    [BenchmarkSetup(nameof(Shuffle_Forward))]
+    private void BenchmarkSetup_Forward()
+    {
+        _shuffler = new ForwardItemShuffler(_allItemLocations, _allItems);
+    }
+
+    [Benchmark("ReverseItemShuffler")]
     [BenchmarkParameters(nameof(SettingsParameters))]
-    private bool Shuffle_Pools(RandomizerSettings settings)
+    private bool Shuffle_Reverse(RandomizerSettings settings)
+    {
+        settings.Seed = _rng.Next(1, RandomizerSettings.MAX_SEED + 1);
+        var map = new Dictionary<string, string>();
+
+        //Console.WriteLine(message + "Shuffling seed: " + seed);
+        return _shuffler.Shuffle(settings.Seed, settings, map);
+    }
+
+    [Benchmark("ForwardItemShuffler")]
+    [BenchmarkParameters(nameof(SettingsParameters))]
+    private bool Shuffle_Forward(RandomizerSettings settings)
     {
         settings.Seed = _rng.Next(1, RandomizerSettings.MAX_SEED + 1);
         var map = new Dictionary<string, string>();

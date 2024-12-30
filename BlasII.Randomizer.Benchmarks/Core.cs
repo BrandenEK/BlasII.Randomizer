@@ -93,7 +93,7 @@ internal class Core
         Console.WriteLine($"Running {benchmarks.Count} warmups");
         foreach (var benchmark in benchmarks)
         {
-            foreach (var setup in GetAllSetups<NewBenchmarks>(benchmark.Id))
+            foreach (var setup in GetAllSetups<NewBenchmarks>(benchmark.Method.Name))
                 setup.Invoke(obj, null);
 
             RunWarmup(obj, benchmark, iterationCount);
@@ -115,7 +115,7 @@ internal class Core
         Console.WriteLine($"Running {benchmarks.Count} benchmarks");
         foreach (var benchmark in benchmarks)
         {
-            foreach (var setup in GetAllSetups<NewBenchmarks>(benchmark.Id))
+            foreach (var setup in GetAllSetups<NewBenchmarks>(benchmark.Method.Name))
                 setup.Invoke(obj, null);
 
             RunBenchmark(obj, benchmark, iterationCount);

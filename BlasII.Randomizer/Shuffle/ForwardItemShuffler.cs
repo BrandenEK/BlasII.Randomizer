@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace BlasII.Randomizer.Shuffle;
 
-public class ForwardItemShuffler
+public class ForwardItemShuffler : IShuffler
 {
     private readonly Dictionary<string, ItemLocation> _allItemLocations;
     private readonly Dictionary<string, Item> _allItems;
