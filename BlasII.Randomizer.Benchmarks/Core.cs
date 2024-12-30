@@ -15,13 +15,14 @@ internal class Core
     {
         var cmd = new BenchmarkCommand();
         cmd.Process(args);
+        RegisterMonitors(new SuccessRateMonitor(), new AverageTimeMonitor(), new AverageSuccessTimeMonitor());
 
         object obj = new NewBenchmarks();
         var benchmarks = FindAllBenchmarks<NewBenchmarks>(obj);
 
-        RegisterMonitors(new SuccessRateMonitor(), new AverageTimeMonitor(), new AverageSuccessTimeMonitor());
-        RunAllWarmups(obj, benchmarks);
-        RunAllBenchmarks(obj, benchmarks);
+        if (!cmd.SkipWarmup)
+            RunAllWarmups(obj, benchmarks, cmd.MaxIterations / 3);
+        RunAllBenchmarks(obj, benchmarks, cmd.MaxIterations);
         DisplayOutput1(benchmarks);
 
         if (cmd.WaitForInput)
@@ -64,7 +65,7 @@ internal class Core
         return benchmarks;
     }
 
-    static void RunAllWarmups(object obj, List<BenchmarkInfo> benchmarks)
+    static void RunAllWarmups(object obj, List<BenchmarkInfo> benchmarks, int iterationCount)
     {
         Console.WriteLine($"Running {benchmarks.Count} warmups");
         foreach (var benchmark in benchmarks)
@@ -72,21 +73,21 @@ internal class Core
             foreach (var setup in GetAllSetups<NewBenchmarks>(benchmark.Id))
                 setup.Invoke(obj, null);
 
-            RunWarmup(obj, benchmark);
+            RunWarmup(obj, benchmark, iterationCount);
         }
     }
 
-    static void RunWarmup(object obj, BenchmarkInfo benchmark)
+    static void RunWarmup(object obj, BenchmarkInfo benchmark, int iterationCount)
     {
         Console.WriteLine($"Running warmup {benchmark.Id}");
 
-        for (int i = 0; i < MAX_ITERATIONS_WARMUP; i++)
+        for (int i = 0; i < iterationCount; i++)
         {
             benchmark.Method.Invoke(obj, benchmark.Parameters);
         }
     }
 
-    static void RunAllBenchmarks(object obj, List<BenchmarkInfo> benchmarks)
+    static void RunAllBenchmarks(object obj, List<BenchmarkInfo> benchmarks, int iterationCount)
     {
         Console.WriteLine($"Running {benchmarks.Count} benchmarks");
         foreach (var benchmark in benchmarks)
@@ -94,16 +95,16 @@ internal class Core
             foreach (var setup in GetAllSetups<NewBenchmarks>(benchmark.Id))
                 setup.Invoke(obj, null);
 
-            RunBenchmark(obj, benchmark);
+            RunBenchmark(obj, benchmark, iterationCount);
         }
     }
 
-    static void RunBenchmark(object obj, BenchmarkInfo benchmark)
+    static void RunBenchmark(object obj, BenchmarkInfo benchmark, int iterationCount)
     {
         Console.WriteLine($"Running benchmark {benchmark.Id}");
 
         var watch = new Stopwatch();
-        for (int i = 0; i < MAX_ITERATIONS; i++)
+        for (int i = 0; i < iterationCount; i++)
         {
             watch.Restart();
             bool result = (bool)benchmark.Method.Invoke(obj, benchmark.Parameters);
@@ -203,7 +204,4 @@ internal class Core
         BenchmarkSetupAttribute attribute = method.GetCustomAttribute<BenchmarkSetupAttribute>();
         return attribute != null && (string.IsNullOrEmpty(attribute.Target) || attribute.Target == target);
     }
-
-    private const int MAX_ITERATIONS = 100;
-    private const int MAX_ITERATIONS_WARMUP = 40;
 }
