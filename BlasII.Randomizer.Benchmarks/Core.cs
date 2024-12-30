@@ -1,4 +1,5 @@
 ﻿using BlasII.Randomizer.Benchmarks.Attributes;
+using BlasII.Randomizer.Benchmarks.Models;
 using BlasII.Randomizer.Benchmarks.Monitors;
 using System.Diagnostics;
 using System.Reflection;
@@ -12,12 +13,12 @@ internal class Core
 
     static void Main(string[] args)
     {
-        var benchmark = new NewBenchmarks();
-        var benchmarkMethods = GetAllBenchmarks<NewBenchmarks>();
+        object obj = new NewBenchmarks();
+        var benchmarks = FindAllBenchmarks<NewBenchmarks>();
 
         RegisterMonitors(new SuccessRateMonitor(), new AverageTimeMonitor(), new AverageSuccessTimeMonitor());
-        RunAllBenchmarks(benchmark, benchmarkMethods);
-        DisplayOutput1(benchmarkMethods);
+        RunAllBenchmarks(obj, benchmarks);
+        DisplayOutput1(benchmarks);
     }
 
     public static void RegisterMonitors(params BaseMonitor[] monitors)
@@ -25,37 +26,44 @@ internal class Core
         _monitors.AddRange(monitors);
     }
 
-    static void RunAllBenchmarks(object obj, IEnumerable<MethodInfo> methods)
+    static IEnumerable<BenchmarkInfo> FindAllBenchmarks<T>()
     {
-        Console.WriteLine($"Running {methods.Count()} benchmarks");
-        foreach (var method in methods)
+        return typeof(T).GetMethods(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic)
+            .Where(x => x.GetCustomAttribute<BenchmarkAttribute>() != null)
+            .Select(x => new BenchmarkInfo(x.Name, x.GetCustomAttribute<BenchmarkAttribute>().Name ?? x.Name, x));
+    }
+
+    static void RunAllBenchmarks(object obj, IEnumerable<BenchmarkInfo> benchmarks)
+    {
+        Console.WriteLine($"Running {benchmarks.Count()} benchmarks");
+        foreach (var benchmark in benchmarks)
         {
-            foreach (var setup in GetAllSetups<NewBenchmarks>(method.Name))
+            foreach (var setup in GetAllSetups<NewBenchmarks>(benchmark.Id))
                 setup.Invoke(obj, null);
 
-            RunBenchmark(obj, method);
+            RunBenchmark(obj, benchmark);
         }
     }
 
-    static void RunBenchmark(object obj, MethodInfo method)
+    static void RunBenchmark(object obj, BenchmarkInfo benchmark)
     {
-        Console.WriteLine($"Running benchmark {method.Name}");
+        Console.WriteLine($"Running benchmark {benchmark.Id}");
 
         var watch = new Stopwatch();
         for (int i = 0; i < MAX_ITERATIONS; i++)
         {
             watch.Restart();
-            bool result = (bool)method.Invoke(obj, null);
+            bool result = (bool)benchmark.Method.Invoke(obj, null);
             watch.Stop();
 
             foreach (var monitor in _monitors)
-                monitor.HandleResult(method.Name, watch.Elapsed, result);
+                monitor.HandleResult(benchmark.Id, watch.Elapsed, result);
         }
     }
 
-    static void DisplayOutput1(IEnumerable<MethodInfo> methods)
+    static void DisplayOutput1(IEnumerable<BenchmarkInfo> benchmarks)
     {
-        string[,] output = new string[methods.Count() + 1, _monitors.Count + 1];
+        string[,] output = new string[benchmarks.Count() + 1, _monitors.Count + 1];
 
         // Add header row
         output[0, 0] = "Method";
@@ -66,12 +74,12 @@ internal class Core
 
         // Add data rows
         int row = 0, col = 0;
-        foreach (var method in methods)
+        foreach (var benchmark in benchmarks)
         {
-            output[++row, 0] = method.Name;
+            output[++row, 0] = benchmark.Name;
             foreach (var monitor in _monitors)
             {
-                output[row, ++col] = monitor.FormatResult(method.Name);
+                output[row, ++col] = monitor.FormatResult(benchmark.Id);
             }
             col = 0;
         }

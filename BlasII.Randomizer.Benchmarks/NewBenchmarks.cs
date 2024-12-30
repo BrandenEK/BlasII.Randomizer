@@ -73,9 +73,9 @@ public class NewBenchmarks
         return _shuffler.Shuffle(seed, _settings, map);
     }
 
-    [Benchmark]
+    [Benchmark("Default settings")]
     private bool Pools_Default() => PerformShuffle();
 
-    [Benchmark]
+    [Benchmark("Expanded settings")]
     private bool Pools_MoreLocs() => PerformShuffle();
 }
