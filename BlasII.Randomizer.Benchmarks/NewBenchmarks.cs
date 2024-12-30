@@ -62,14 +62,21 @@ public class NewBenchmarks
     {
         get
         {
-            yield return SettingsWithDescription.DEFAULT;
-            yield return new SettingsWithDescription()
-            {
-                Description = "More locations",
-                ShuffleLongQuests = true,
-                ShuffleShops = true,
-                StartingWeapon = 0,
-            };
+            yield return SettingsWithDescription.CreateDefault("Default");
+            yield return SettingsWithDescription.CreateDefault("More locations")
+                .SetLongQuests(true)
+                .SetShops(true);
+            yield return SettingsWithDescription.CreateDefault("Less locations")
+                .SetLongQuests(false)
+                .SetShops(false);
+            yield return SettingsWithDescription.CreateDefault("Start Veredicto")
+                .SetStartingWeapon(0);
+            yield return SettingsWithDescription.CreateDefault("Start Ruego")
+                .SetStartingWeapon(1);
+            yield return SettingsWithDescription.CreateDefault("Start Sarmiento")
+                .SetStartingWeapon(2);
+            yield return SettingsWithDescription.CreateDefault("Start MeaCulpa")
+                .SetStartingWeapon(3);
         }
     }
 }

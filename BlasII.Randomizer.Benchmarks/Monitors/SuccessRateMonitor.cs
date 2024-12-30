@@ -18,6 +18,6 @@ public class SuccessRateMonitor : BaseMonitor
             throw new DivideByZeroException("Attempts was zero");
 
         double rate = (double)status.SuccessfulAttempts / status.TotalAttempts * 100;
-        return $"{rate:F2}%";
+        return $"{rate:F2} %";
     }
 }
