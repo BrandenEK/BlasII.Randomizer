@@ -1,7 +1,6 @@
 ﻿using BlasII.ModdingAPI;
 using BlasII.Randomizer.Models;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 
 namespace BlasII.Randomizer.Storages;
 
@@ -37,7 +36,7 @@ public abstract class BaseInfoStorage<TValue> where TValue : class, IUnique
     /// <summary>
     /// Returns the infos as a Dictionary
     /// </summary>
-    public ReadOnlyDictionary<string, TValue> AsDictionary => new(_values);
+    public Dictionary<string, TValue> AsDictionary => _values;
 
     /// <summary>
     /// Returns the specified info

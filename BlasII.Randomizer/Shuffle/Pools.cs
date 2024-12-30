@@ -105,6 +105,14 @@ internal class BasePool<T> : IEnumerable<T>
     }
 
     /// <summary>
+    /// Removes all elements
+    /// </summary>
+    public void Clear()
+    {
+        _elements.Clear();
+    }
+
+    /// <summary>
     /// Moves an element to the beginning of the pool
     /// </summary>
     public void MoveToBeginning(T element)

@@ -3,15 +3,16 @@ using BlasII.ModdingAPI.Assets;
 using BlasII.Randomizer.Models;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace BlasII.Randomizer.Shuffle;
 
-public class PoolsItemShuffler : IShuffler
+public class ForwardItemShuffler : IShuffler
 {
     private readonly Dictionary<string, ItemLocation> _allItemLocations;
     private readonly Dictionary<string, Item> _allItems;
 
-    public PoolsItemShuffler(Dictionary<string, ItemLocation> itemLocations, Dictionary<string, Item> items)
+    public ForwardItemShuffler(Dictionary<string, ItemLocation> itemLocations, Dictionary<string, Item> items)
     {
         _allItemLocations = itemLocations;
         _allItems = items;
@@ -152,33 +153,41 @@ public class PoolsItemShuffler : IShuffler
     #region Shuffle
 
     /// <summary>
-    /// Using a reverse fill algorithm, place the last item at a random reachable location
+    /// Calculates a subset of the given locations that are reachable with the current inventory
+    /// </summary>
+    private LocationPool FindReachableLocations(LocationPool locations, GameInventory inventory)
+    {
+        var temp = new LocationPool(locations);
+        temp.Clear();
+
+        foreach (var location in locations.Where(x => inventory.Evaluate(x.Logic)))
+        {
+            temp.Add(location);
+        }
+
+        // Not ideal, but thats how the pools are set up
+        return temp;
+    }
+
+    /// <summary>
+    /// Using a forward fill algorithm, place the last item at a random reachable location
     /// </summary>
     private void FillProgressionItems(LocationPool locations, ItemPool items, Dictionary<string, string> output, GameInventory inventory)
     {
-        // Verify that all locations are reachable
-        foreach (var location in locations)
-        {
-            if (!inventory.Evaluate(location.Logic))
-                return;
-        }
-
         items.Shuffle();
         MovePriorityItems(items);
-        var reachableLocations = new LocationPool(locations);
+        var reachableLocations = FindReachableLocations(locations, inventory);
 
         while (reachableLocations.Size > 0 && items.Size > 0)
         {
-            Item item = items.RemoveLast();
-            inventory.Remove(item.Id);
-
-            RemoveUnreachableLocations(reachableLocations, inventory);
-            if (reachableLocations.Size == 0)
-                return;
-
             ItemLocation location = reachableLocations.RemoveRandom();
             locations.Remove(location);
+
+            Item item = items.RemoveLast();
+            inventory.Add(item.Id);
+
             output.Add(location.Id, item.Id);
+            reachableLocations = FindReachableLocations(locations, inventory);
         }
     }
 
@@ -204,7 +213,7 @@ public class PoolsItemShuffler : IShuffler
     private void MovePriorityItems(ItemPool progressionItems)
     {
         Item wallClimb = _allItems["WallClimb"];
-        progressionItems.MoveToBeginning(wallClimb);
+        progressionItems.MoveToEnd(wallClimb);
     }
 
     /// <summary>
