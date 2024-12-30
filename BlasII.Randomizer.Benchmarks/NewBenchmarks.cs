@@ -15,14 +15,14 @@ public class NewBenchmarks
     private IShuffler _shuffler;
     private RandomizerSettings _settings;
 
-    [GlobalSetup]
-    private void GlobalSetup()
+    public NewBenchmarks()
     {
         string dataFolder = GetDataFolder();
 
         _allItemLocations = LoadJsonDictionary<ItemLocation>(Path.Combine(dataFolder, "item-locations.json"));
         _allItems = LoadJsonDictionary<Item>(Path.Combine(dataFolder, "items.json"));
         _allDoors = LoadJsonDictionary<Door>(Path.Combine(dataFolder, "doors.json"));
+        Console.WriteLine($"Item locations: {_allItemLocations.Count}, Items: {_allItems.Count}, Doors: {_allDoors.Count}");
     }
 
     private string GetDataFolder()

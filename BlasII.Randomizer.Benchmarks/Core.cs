@@ -21,9 +21,6 @@ internal class Core
             new AverageSuccessTimeMonitor(),
         };
 
-        MethodInfo globalSetup = GetSetupMethod<NewBenchmarks, GlobalSetupAttribute>();
-        globalSetup?.Invoke(benchmark, null);
-
         RunGlobal(benchmark, benchmarkMethods);
 
         string[,] output = new string[benchmarkMethods.Count() + 1, _monitors.Count + 1];
@@ -105,13 +102,10 @@ internal class Core
 
     static void RunBenchmark(NewBenchmarks benchmark, MethodInfo method)
     {
-        MethodInfo setup = GetSetupMethod<NewBenchmarks, IterationSetupAttribute>();
-
         Console.WriteLine($"Running benchmark {method.Name}");
         for (int i = 0; i < MAX_ITERATIONS; i++)
         {
-            setup?.Invoke(benchmark, null);
-
+            // Remove this an keep stopwatch
             RunIteration(benchmark, method);
         }
     }
