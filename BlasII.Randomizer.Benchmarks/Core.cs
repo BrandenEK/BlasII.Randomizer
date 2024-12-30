@@ -83,20 +83,22 @@ internal class Core
 
     static void DisplayOutput1(List<BenchmarkInfo> benchmarks)
     {
-        string[,] output = new string[benchmarks.Count + 1, _monitors.Count + 1];
+        string[,] output = new string[benchmarks.Count + 1, _monitors.Count + 2];
 
         // Add header row
         output[0, 0] = "Method";
+        output[0, 1] = "Parameters";
         for (int i = 0; i < _monitors.Count; i++)
         {
-            output[0, i + 1] = _monitors[i].DisplayName;
+            output[0, i + 2] = _monitors[i].DisplayName;
         }
 
         // Add data rows
         int row = 0, col = 0;
         foreach (var benchmark in benchmarks)
         {
-            output[++row, 0] = benchmark.Name;
+            output[++row, col] = benchmark.Name;
+            output[row, ++col] = benchmark.Parameters?[0].ToString() ?? string.Empty;
             foreach (var monitor in _monitors)
             {
                 output[row, ++col] = monitor.FormatResult(benchmark.Id);
