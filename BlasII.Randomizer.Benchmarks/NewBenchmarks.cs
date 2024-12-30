@@ -47,38 +47,6 @@ public class NewBenchmarks
         _shuffler = new PoolsItemShuffler(_allItemLocations, _allItems);
     }
 
-    [BenchmarkSetup(nameof(Pools_Default))]
-    private void SetupDefault()
-    {
-        _settings = RandomizerSettings.DEFAULT;
-    }
-
-    [BenchmarkSetup(nameof(Pools_MoreLocs))]
-    private void SetupMoreLocs()
-    {
-        _settings = new RandomizerSettings()
-        {
-            ShuffleLongQuests = true,
-            ShuffleShops = true,
-            StartingWeapon = 0,
-        };
-    }
-
-    private bool PerformShuffle()
-    {
-        _settings.Seed = _rng.Next(1, RandomizerSettings.MAX_SEED + 1);
-        var map = new Dictionary<string, string>();
-
-        //Console.WriteLine("Shuffling seed: " + seed);
-        return _shuffler.Shuffle(_settings.Seed, _settings, map);
-    }
-
-    [Benchmark("Default settings")]
-    private bool Pools_Default() => PerformShuffle();
-
-    [Benchmark("Expanded settings")]
-    private bool Pools_MoreLocs() => PerformShuffle();
-
     [Benchmark("PoolsItemShuffler")]
     [BenchmarkParameters(nameof(SettingsParameters))]
     private bool Shuffle_Pools(RandomizerSettings settings)
