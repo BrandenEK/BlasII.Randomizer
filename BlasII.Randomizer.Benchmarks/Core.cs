@@ -93,12 +93,11 @@ internal class Core
 
     static void RunGlobal(NewBenchmarks benchmark, IEnumerable<MethodInfo> methods)
     {
-        MethodInfo setup = GetSetupMethod<NewBenchmarks, BenchmarkSetupAttribute>();
-
         Console.WriteLine($"Running {methods.Count()} benchmarks");
         foreach (var method in methods)
         {
-            setup?.Invoke(benchmark, null);
+            foreach (var setup in GetAllSetups<NewBenchmarks>(method.Name))
+                setup.Invoke(benchmark, null);
 
             RunBenchmark(benchmark, method);
         }
@@ -131,6 +130,18 @@ internal class Core
     {
         return typeof(TBenchmark).GetMethods(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic)
             .FirstOrDefault(x => x.GetCustomAttribute<TAttribute>(false) != null);
+    }
+
+    static IEnumerable<MethodInfo> GetAllSetups<TBenchmark>(string target) where TBenchmark : class
+    {
+        return typeof(TBenchmark).GetMethods(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic)
+            .Where(x => HasValidSetupAttribute(x, target));
+    }
+
+    static bool HasValidSetupAttribute(MethodInfo method, string target)
+    {
+        BenchmarkSetupAttribute attribute = method.GetCustomAttribute<BenchmarkSetupAttribute>();
+        return attribute != null && (string.IsNullOrEmpty(attribute.Target) || attribute.Target == target);
     }
 
     static IEnumerable<MethodInfo> GetAllBenchmarks<TBenchmark>() where TBenchmark : class

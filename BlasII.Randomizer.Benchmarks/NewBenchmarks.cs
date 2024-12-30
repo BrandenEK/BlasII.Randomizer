@@ -13,6 +13,7 @@ public class NewBenchmarks
 
     private Random _rng;
     private IShuffler _shuffler;
+    private RandomizerSettings _settings;
 
     [GlobalSetup]
     private void GlobalSetup()
@@ -46,30 +47,35 @@ public class NewBenchmarks
         _shuffler = new PoolsItemShuffler(_allItemLocations, _allItems);
     }
 
-    [Benchmark]
-    private bool Pools_Default()
+    [BenchmarkSetup(nameof(Pools_Default))]
+    private void SetupDefault()
     {
-        int seed = _rng.Next(1, RandomizerSettings.MAX_SEED + 1);
-        var map = new Dictionary<string, string>();
-        var settings = RandomizerSettings.DEFAULT;
-
-        //Console.WriteLine("Shuffling seed: " + seed);
-        return _shuffler.Shuffle(seed, settings, map);
+        _settings = RandomizerSettings.DEFAULT;
     }
 
-    [Benchmark]
-    private bool Pools_MoreLocs()
+    [BenchmarkSetup(nameof(Pools_MoreLocs))]
+    private void SetupMoreLocs()
     {
-        int seed = _rng.Next(1, RandomizerSettings.MAX_SEED + 1);
-        var map = new Dictionary<string, string>();
-        var settings = new RandomizerSettings()
+        _settings = new RandomizerSettings()
         {
             ShuffleLongQuests = true,
             ShuffleShops = true,
             StartingWeapon = 0,
         };
-
-        //Console.WriteLine("Shuffling seed: " + seed);
-        return _shuffler.Shuffle(seed, settings, map);
     }
+
+    private bool PerformShuffle()
+    {
+        int seed = _rng.Next(1, RandomizerSettings.MAX_SEED + 1);
+        var map = new Dictionary<string, string>();
+
+        Console.WriteLine("Shuffling seed: " + seed);
+        return _shuffler.Shuffle(seed, _settings, map);
+    }
+
+    [Benchmark]
+    private bool Pools_Default() => PerformShuffle();
+
+    [Benchmark]
+    private bool Pools_MoreLocs() => PerformShuffle();
 }
