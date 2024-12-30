@@ -22,7 +22,7 @@ internal class Core
             new AverageSuccessTimeMonitor(),
         };
 
-        RunGlobal(benchmark, benchmarkMethods);
+        RunAllBenchmarks(benchmark, benchmarkMethods);
 
         string[,] output = new string[benchmarkMethods.Count() + 1, _monitors.Count + 1];
 
@@ -89,7 +89,7 @@ internal class Core
         }
     }
 
-    static void RunGlobal(NewBenchmarks benchmark, IEnumerable<MethodInfo> methods)
+    static void RunAllBenchmarks(NewBenchmarks benchmark, IEnumerable<MethodInfo> methods)
     {
         Console.WriteLine($"Running {methods.Count()} benchmarks");
         foreach (var method in methods)
@@ -104,27 +104,17 @@ internal class Core
     static void RunBenchmark(NewBenchmarks benchmark, MethodInfo method)
     {
         Console.WriteLine($"Running benchmark {method.Name}");
+
+        var watch = new Stopwatch();
         for (int i = 0; i < MAX_ITERATIONS; i++)
         {
-            // Remove this an keep stopwatch
-            RunIteration(benchmark, method);
+            watch.Restart();
+            bool result = (bool)method.Invoke(benchmark, null);
+            watch.Stop();
+
+            foreach (var monitor in _monitors)
+                monitor.HandleResult(method.Name, watch.Elapsed, result);
         }
-    }
-
-    static void RunIteration(NewBenchmarks benchmark, MethodInfo method)
-    {
-        var watch = Stopwatch.StartNew();
-        bool result = (bool)method.Invoke(benchmark, null);
-        watch.Stop();
-
-        foreach (var monitor in _monitors)
-            monitor.HandleResult(method.Name, watch.Elapsed, result);
-    }
-
-    static MethodInfo GetSetupMethod<TBenchmark, TAttribute>() where TBenchmark : class where TAttribute : Attribute
-    {
-        return typeof(TBenchmark).GetMethods(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic)
-            .FirstOrDefault(x => x.GetCustomAttribute<TAttribute>(false) != null);
     }
 
     static IEnumerable<MethodInfo> GetAllSetups<TBenchmark>(string target) where TBenchmark : class
