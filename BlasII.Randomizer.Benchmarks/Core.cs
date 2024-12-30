@@ -26,16 +26,27 @@ internal class Core
         _monitors.AddRange(monitors);
     }
 
-    static IEnumerable<BenchmarkInfo> FindAllBenchmarks<T>()
+    static List<BenchmarkInfo> FindAllBenchmarks<T>()
     {
-        return typeof(T).GetMethods(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic)
-            .Where(x => x.GetCustomAttribute<BenchmarkAttribute>() != null)
-            .Select(x => new BenchmarkInfo(x.Name, x.GetCustomAttribute<BenchmarkAttribute>().Name ?? x.Name, x));
+        var benchmarks = new List<BenchmarkInfo>();
+        var methods = typeof(T).GetMethods(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
+
+        foreach (var method in methods)
+        {
+            BenchmarkAttribute attribute = method.GetCustomAttribute<BenchmarkAttribute>();
+
+            if (attribute == null)
+                continue;
+
+            benchmarks.Add(new BenchmarkInfo(method.Name, attribute.Name ?? method.Name, method));
+        }
+
+        return benchmarks;
     }
 
-    static void RunAllBenchmarks(object obj, IEnumerable<BenchmarkInfo> benchmarks)
+    static void RunAllBenchmarks(object obj, List<BenchmarkInfo> benchmarks)
     {
-        Console.WriteLine($"Running {benchmarks.Count()} benchmarks");
+        Console.WriteLine($"Running {benchmarks.Count} benchmarks");
         foreach (var benchmark in benchmarks)
         {
             foreach (var setup in GetAllSetups<NewBenchmarks>(benchmark.Id))
@@ -61,9 +72,9 @@ internal class Core
         }
     }
 
-    static void DisplayOutput1(IEnumerable<BenchmarkInfo> benchmarks)
+    static void DisplayOutput1(List<BenchmarkInfo> benchmarks)
     {
-        string[,] output = new string[benchmarks.Count() + 1, _monitors.Count + 1];
+        string[,] output = new string[benchmarks.Count + 1, _monitors.Count + 1];
 
         // Add header row
         output[0, 0] = "Method";
