@@ -17,13 +17,15 @@ internal class Core
         cmd.Process(args);
         RegisterMonitors(new SuccessRateMonitor(), new AverageTimeMonitor(), new AverageSuccessTimeMonitor());
 
+        IEnumerable<string> headerInfo = GetHeaderInfo(cmd.MaxIterations);
+
         object obj = new NewBenchmarks();
         var benchmarks = FindAllBenchmarks<NewBenchmarks>(obj);
 
         if (!cmd.SkipWarmup)
             RunAllWarmups(obj, benchmarks, cmd.MaxIterations / 3);
         RunAllBenchmarks(obj, benchmarks, cmd.MaxIterations);
-        DisplayOutput1(benchmarks);
+        DisplayOutput1(benchmarks, headerInfo);
 
         if (cmd.WaitForInput)
             Console.ReadKey(true);
@@ -63,6 +65,26 @@ internal class Core
         }
 
         return benchmarks;
+    }
+
+    static IEnumerable<string> GetHeaderInfo(int iterationCount)
+    {
+        var text = new List<string>()
+        {
+            $" Machine: {Environment.MachineName} {(Environment.Is64BitOperatingSystem ? "x64" : "x86")} ({Environment.ProcessorCount} processors)",
+            $" Operating system: {Environment.OSVersion}",
+            $" Start time: {DateTime.Now:MM/dd/yy H:mm:ss}",
+            $" Max iterations: {iterationCount}",
+            $" Debug mode: {Assembly.GetExecutingAssembly().GetCustomAttributes(false).OfType<DebuggableAttribute>().Any(x => x.IsJITTrackingEnabled)}",
+        };
+
+        var line = new string('=', text.Max(x => x.Length) + 1);
+
+        text.Insert(0, line);
+        text.Add(line);
+        text.Add(string.Empty);
+
+        return text;
     }
 
     static void RunAllWarmups(object obj, List<BenchmarkInfo> benchmarks, int iterationCount)
@@ -115,7 +137,7 @@ internal class Core
         }
     }
 
-    static void DisplayOutput1(List<BenchmarkInfo> benchmarks)
+    static void DisplayOutput1(List<BenchmarkInfo> benchmarks, IEnumerable<string> headerInfo)
     {
         string[,] output = new string[benchmarks.Count + 1, _monitors.Count + 2];
 
@@ -140,8 +162,9 @@ internal class Core
             col = 0;
         }
 
-        IEnumerable<string> text = DisplayOutput2(output);
+        IEnumerable<string> text = headerInfo.Concat(DisplayOutput2(output));
 
+        Console.WriteLine();
         foreach (string t in text)
         {
             Console.WriteLine(t);
@@ -150,7 +173,6 @@ internal class Core
 
     static IEnumerable<string> DisplayOutput2(string[,] output)
     {
-        Console.WriteLine();
         var sbs = new StringBuilder[output.GetLength(0)];
         for (int i = 0; i < sbs.Length; i++)
             sbs[i] = new StringBuilder("|");
