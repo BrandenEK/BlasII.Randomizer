@@ -33,12 +33,21 @@ internal class Core
 
         foreach (var method in methods)
         {
-            BenchmarkAttribute attribute = method.GetCustomAttribute<BenchmarkAttribute>();
+            BenchmarkAttribute bAttribute = method.GetCustomAttribute<BenchmarkAttribute>();
 
-            if (attribute == null)
+            if (bAttribute == null)
                 continue;
 
-            benchmarks.Add(new BenchmarkInfo(method.Name, attribute.Name ?? method.Name, method));
+            BenchmarkParametersAttribute bpAttribute = method.GetCustomAttribute<BenchmarkParametersAttribute>();
+
+            if (bpAttribute == null)
+            {
+                benchmarks.Add(new BenchmarkInfo(method.Name, bAttribute.Name ?? method.Name, method, null));
+                continue;
+            }
+
+            benchmarks.AddRange(bpAttribute.Parameters
+                .Select(x => new BenchmarkInfo(method.Name, bAttribute.Name ?? method.Name, method, new object[] { x })));
         }
 
         return benchmarks;
@@ -64,7 +73,7 @@ internal class Core
         for (int i = 0; i < MAX_ITERATIONS; i++)
         {
             watch.Restart();
-            bool result = (bool)benchmark.Method.Invoke(obj, null);
+            bool result = (bool)benchmark.Method.Invoke(obj, benchmark.Parameters);
             watch.Stop();
 
             foreach (var monitor in _monitors)

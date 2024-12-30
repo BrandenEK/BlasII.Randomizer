@@ -10,10 +10,13 @@ public class BenchmarkInfo
 
     public MethodInfo Method { get; }
 
-    public BenchmarkInfo(string id, string name, MethodInfo method)
+    public object[] Parameters { get; }
+
+    public BenchmarkInfo(string id, string name, MethodInfo method, object[] parameters)
     {
         Id = id;
         Name = name;
         Method = method;
+        Parameters = parameters;
     }
 }

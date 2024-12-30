@@ -78,4 +78,29 @@ public class NewBenchmarks
 
     [Benchmark("Expanded settings")]
     private bool Pools_MoreLocs() => PerformShuffle();
+
+    [Benchmark("PoolsItemShuffler")]
+    [BenchmarkParameters("test1", "other2", "fail3")]
+    private bool Shuffle_Pools(string message)
+    {
+        int seed = _rng.Next(1, RandomizerSettings.MAX_SEED + 1);
+        var map = new Dictionary<string, string>();
+
+        Console.WriteLine(message + "Shuffling seed: " + seed);
+        return _shuffler.Shuffle(seed, _settings, map);
+    }
+
+    //private IEnumerable<RandomizerSettings> SettingsParameters
+    //{
+    //    get
+    //    {
+    //        yield return RandomizerSettings.DEFAULT;
+    //        yield return new RandomizerSettings()
+    //        {
+    //            ShuffleLongQuests = true,
+    //            ShuffleShops = true,
+    //            StartingWeapon = 0,
+    //        };
+    //    }
+    //}
 }
