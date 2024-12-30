@@ -25,7 +25,7 @@ internal class Core
         if (!cmd.SkipWarmup)
             RunAllWarmups(obj, benchmarks, cmd.MaxIterations / 3);
         RunAllBenchmarks(obj, benchmarks, cmd.MaxIterations);
-        DisplayOutput1(benchmarks, headerInfo);
+        DisplayOutput1(benchmarks, headerInfo, cmd.ExportResults);
 
         if (cmd.WaitForInput)
             Console.ReadKey(true);
@@ -80,7 +80,8 @@ internal class Core
 
         var line = new string('=', text.Max(x => x.Length) + 1);
 
-        text.Insert(0, line);
+        text.Insert(0, string.Empty);
+        text.Insert(1, line);
         text.Add(line);
         text.Add(string.Empty);
 
@@ -137,7 +138,7 @@ internal class Core
         }
     }
 
-    static void DisplayOutput1(List<BenchmarkInfo> benchmarks, IEnumerable<string> headerInfo)
+    static void DisplayOutput1(List<BenchmarkInfo> benchmarks, IEnumerable<string> headerInfo, bool doExport)
     {
         string[,] output = new string[benchmarks.Count + 1, _monitors.Count + 2];
 
@@ -164,11 +165,13 @@ internal class Core
 
         IEnumerable<string> text = headerInfo.Concat(DisplayOutput2(output));
 
-        Console.WriteLine();
         foreach (string t in text)
         {
             Console.WriteLine(t);
         }
+
+        if (doExport)
+            ExportResults(text);
     }
 
     static IEnumerable<string> DisplayOutput2(string[,] output)
@@ -210,6 +213,14 @@ internal class Core
         };
         text.AddRange(sbs.Skip(1).Select(x => x.ToString()));
         return text;
+    }
+
+    static void ExportResults(IEnumerable<string> text)
+    {
+        string filePath = Path.Combine(BASE_DIRECTORY, "BenchmarkResults", "Latest.txt");
+        Directory.CreateDirectory(Path.GetDirectoryName(filePath));
+
+        File.WriteAllLines(filePath, text);
     }
 
     static IEnumerable<object> GetParameters<T>(object obj, string name)
