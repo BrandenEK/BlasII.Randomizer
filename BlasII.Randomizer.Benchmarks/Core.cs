@@ -13,6 +13,9 @@ internal class Core
 
     static void Main(string[] args)
     {
+        var cmd = new BenchmarkCommand();
+        cmd.Process(args);
+
         object obj = new NewBenchmarks();
         var benchmarks = FindAllBenchmarks<NewBenchmarks>(obj);
 
@@ -21,7 +24,8 @@ internal class Core
         RunAllBenchmarks(obj, benchmarks);
         DisplayOutput1(benchmarks);
 
-        Console.ReadKey(true);
+        if (cmd.WaitForInput)
+            Console.ReadKey(true);
     }
 
     public static void RegisterMonitors(params BaseMonitor[] monitors)
