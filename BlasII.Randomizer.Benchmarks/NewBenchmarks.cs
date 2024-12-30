@@ -17,19 +17,12 @@ public class NewBenchmarks
 
     public NewBenchmarks()
     {
-        string dataFolder = GetDataFolder();
+        string dataFolder = Path.Combine(Core.BASE_DIRECTORY, "resources", "data", "Randomizer");
 
         _allItemLocations = LoadJsonDictionary<ItemLocation>(Path.Combine(dataFolder, "item-locations.json"));
         _allItems = LoadJsonDictionary<Item>(Path.Combine(dataFolder, "items.json"));
         _allDoors = LoadJsonDictionary<Door>(Path.Combine(dataFolder, "doors.json"));
         Console.WriteLine($"Item locations: {_allItemLocations.Count}, Items: {_allItems.Count}, Doors: {_allDoors.Count}");
-    }
-
-    private string GetDataFolder()
-    {
-        string currentDir = Environment.CurrentDirectory;
-        string baseDir = currentDir.Substring(0, currentDir.IndexOf("BlasII.Randomizer.Benchmarks"));
-        return Path.Combine(baseDir, "resources", "data", "Randomizer");
     }
 
     private Dictionary<string, T> LoadJsonDictionary<T>(string path) where T : IUnique

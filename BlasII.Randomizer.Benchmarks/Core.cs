@@ -13,13 +13,22 @@ internal class Core
 
     static void Main(string[] args)
     {
+        var cmd = new BenchmarkCommand();
+        cmd.Process(args);
+        RegisterMonitors(new SuccessRateMonitor(), new AverageTimeMonitor(), new AverageSuccessTimeMonitor());
+
+        IEnumerable<string> headerInfo = GetHeaderInfo(cmd.MaxIterations);
+
         object obj = new NewBenchmarks();
         var benchmarks = FindAllBenchmarks<NewBenchmarks>(obj);
 
-        RegisterMonitors(new SuccessRateMonitor(), new AverageTimeMonitor(), new AverageSuccessTimeMonitor());
-        RunAllWarmups(obj, benchmarks);
-        RunAllBenchmarks(obj, benchmarks);
-        DisplayOutput1(benchmarks);
+        if (!cmd.SkipWarmup)
+            RunAllWarmups(obj, benchmarks, cmd.MaxIterations / 3);
+        RunAllBenchmarks(obj, benchmarks, cmd.MaxIterations);
+        DisplayOutput1(benchmarks, headerInfo, cmd.ExportResults);
+
+        if (cmd.WaitForInput)
+            Console.ReadKey(true);
     }
 
     public static void RegisterMonitors(params BaseMonitor[] monitors)
@@ -58,7 +67,28 @@ internal class Core
         return benchmarks;
     }
 
-    static void RunAllWarmups(object obj, List<BenchmarkInfo> benchmarks)
+    static IEnumerable<string> GetHeaderInfo(int iterationCount)
+    {
+        var text = new List<string>()
+        {
+            $" Machine: {Environment.MachineName} {(Environment.Is64BitOperatingSystem ? "x64" : "x86")} ({Environment.ProcessorCount} processors)",
+            $" Operating system: {Environment.OSVersion}",
+            $" Start time: {DateTime.Now:MM/dd/yy H:mm:ss}",
+            $" Max iterations: {iterationCount}",
+            $" Debug mode: {Assembly.GetExecutingAssembly().GetCustomAttributes(false).OfType<DebuggableAttribute>().Any(x => x.IsJITTrackingEnabled)}",
+        };
+
+        var line = new string('=', text.Max(x => x.Length) + 1);
+
+        text.Insert(0, string.Empty);
+        text.Insert(1, line);
+        text.Add(line);
+        text.Add(string.Empty);
+
+        return text;
+    }
+
+    static void RunAllWarmups(object obj, List<BenchmarkInfo> benchmarks, int iterationCount)
     {
         Console.WriteLine($"Running {benchmarks.Count} warmups");
         foreach (var benchmark in benchmarks)
@@ -66,21 +96,21 @@ internal class Core
             foreach (var setup in GetAllSetups<NewBenchmarks>(benchmark.Id))
                 setup.Invoke(obj, null);
 
-            RunWarmup(obj, benchmark);
+            RunWarmup(obj, benchmark, iterationCount);
         }
     }
 
-    static void RunWarmup(object obj, BenchmarkInfo benchmark)
+    static void RunWarmup(object obj, BenchmarkInfo benchmark, int iterationCount)
     {
         Console.WriteLine($"Running warmup {benchmark.Id}");
 
-        for (int i = 0; i < MAX_ITERATIONS_WARMUP; i++)
+        for (int i = 0; i < iterationCount; i++)
         {
             benchmark.Method.Invoke(obj, benchmark.Parameters);
         }
     }
 
-    static void RunAllBenchmarks(object obj, List<BenchmarkInfo> benchmarks)
+    static void RunAllBenchmarks(object obj, List<BenchmarkInfo> benchmarks, int iterationCount)
     {
         Console.WriteLine($"Running {benchmarks.Count} benchmarks");
         foreach (var benchmark in benchmarks)
@@ -88,16 +118,16 @@ internal class Core
             foreach (var setup in GetAllSetups<NewBenchmarks>(benchmark.Id))
                 setup.Invoke(obj, null);
 
-            RunBenchmark(obj, benchmark);
+            RunBenchmark(obj, benchmark, iterationCount);
         }
     }
 
-    static void RunBenchmark(object obj, BenchmarkInfo benchmark)
+    static void RunBenchmark(object obj, BenchmarkInfo benchmark, int iterationCount)
     {
         Console.WriteLine($"Running benchmark {benchmark.Id}");
 
         var watch = new Stopwatch();
-        for (int i = 0; i < MAX_ITERATIONS; i++)
+        for (int i = 0; i < iterationCount; i++)
         {
             watch.Restart();
             bool result = (bool)benchmark.Method.Invoke(obj, benchmark.Parameters);
@@ -108,7 +138,7 @@ internal class Core
         }
     }
 
-    static void DisplayOutput1(List<BenchmarkInfo> benchmarks)
+    static void DisplayOutput1(List<BenchmarkInfo> benchmarks, IEnumerable<string> headerInfo, bool doExport)
     {
         string[,] output = new string[benchmarks.Count + 1, _monitors.Count + 2];
 
@@ -133,12 +163,19 @@ internal class Core
             col = 0;
         }
 
-        DisplayOutput2(output);
+        IEnumerable<string> text = headerInfo.Concat(DisplayOutput2(output));
+
+        foreach (string t in text)
+        {
+            Console.WriteLine(t);
+        }
+
+        if (doExport)
+            ExportResults(text);
     }
 
-    static void DisplayOutput2(string[,] output)
+    static IEnumerable<string> DisplayOutput2(string[,] output)
     {
-        Console.WriteLine();
         var sbs = new StringBuilder[output.GetLength(0)];
         for (int i = 0; i < sbs.Length; i++)
             sbs[i] = new StringBuilder("|");
@@ -163,18 +200,27 @@ internal class Core
 
         string header = sbs[0].ToString();
         var line = new StringBuilder();
-        Console.WriteLine(header);
 
         foreach (char c in header)
         {
             line.Append(c == '|' ? '|' : '-');
         }
-        Console.WriteLine(line);
 
-        foreach (var sb in sbs.Skip(1))
+        var text = new List<string>()
         {
-            Console.WriteLine(sb);
-        }
+            header,
+            line.ToString()
+        };
+        text.AddRange(sbs.Skip(1).Select(x => x.ToString()));
+        return text;
+    }
+
+    static void ExportResults(IEnumerable<string> text)
+    {
+        string filePath = Path.Combine(BASE_DIRECTORY, "BenchmarkResults", "Latest.txt");
+        Directory.CreateDirectory(Path.GetDirectoryName(filePath));
+
+        File.WriteAllLines(filePath, text);
     }
 
     static IEnumerable<object> GetParameters<T>(object obj, string name)
@@ -198,6 +244,6 @@ internal class Core
         return attribute != null && (string.IsNullOrEmpty(attribute.Target) || attribute.Target == target);
     }
 
-    private const int MAX_ITERATIONS = 100;
-    private const int MAX_ITERATIONS_WARMUP = 40;
+    public static string BASE_DIRECTORY { get; } = Assembly.GetExecutingAssembly().Location
+        .Substring(0, Assembly.GetExecutingAssembly().Location.IndexOf("BlasII.Randomizer.Benchmarks"));
 }
