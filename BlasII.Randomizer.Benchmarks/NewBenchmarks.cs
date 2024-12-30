@@ -47,35 +47,36 @@ public class NewBenchmarks
         _shuffler = new PoolsItemShuffler(_allItemLocations, _allItems);
     }
 
-    [BenchmarkSetup(nameof(Pools_Default))]
-    private void SetupDefault()
+    [Benchmark("PoolsItemShuffler")]
+    [BenchmarkParameters(nameof(SettingsParameters))]
+    private bool Shuffle_Pools(RandomizerSettings settings)
     {
-        _settings = RandomizerSettings.DEFAULT;
-    }
-
-    [BenchmarkSetup(nameof(Pools_MoreLocs))]
-    private void SetupMoreLocs()
-    {
-        _settings = new RandomizerSettings()
-        {
-            ShuffleLongQuests = true,
-            ShuffleShops = true,
-            StartingWeapon = 0,
-        };
-    }
-
-    private bool PerformShuffle()
-    {
-        int seed = _rng.Next(1, RandomizerSettings.MAX_SEED + 1);
+        settings.Seed = _rng.Next(1, RandomizerSettings.MAX_SEED + 1);
         var map = new Dictionary<string, string>();
 
-        //Console.WriteLine("Shuffling seed: " + seed);
-        return _shuffler.Shuffle(seed, _settings, map);
+        //Console.WriteLine(message + "Shuffling seed: " + seed);
+        return _shuffler.Shuffle(settings.Seed, settings, map);
     }
 
-    [Benchmark("Default settings")]
-    private bool Pools_Default() => PerformShuffle();
-
-    [Benchmark("Expanded settings")]
-    private bool Pools_MoreLocs() => PerformShuffle();
+    private IEnumerable<SettingsWithDescription> SettingsParameters
+    {
+        get
+        {
+            yield return SettingsWithDescription.CreateDefault("Default");
+            yield return SettingsWithDescription.CreateDefault("More locations")
+                .SetLongQuests(true)
+                .SetShops(true);
+            yield return SettingsWithDescription.CreateDefault("Less locations")
+                .SetLongQuests(false)
+                .SetShops(false);
+            yield return SettingsWithDescription.CreateDefault("Start Veredicto")
+                .SetStartingWeapon(0);
+            yield return SettingsWithDescription.CreateDefault("Start Ruego")
+                .SetStartingWeapon(1);
+            yield return SettingsWithDescription.CreateDefault("Start Sarmiento")
+                .SetStartingWeapon(2);
+            yield return SettingsWithDescription.CreateDefault("Start MeaCulpa")
+                .SetStartingWeapon(3);
+        }
+    }
 }
