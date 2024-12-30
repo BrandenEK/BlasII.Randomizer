@@ -50,7 +50,7 @@ public class NewBenchmarks
         _shuffler = new ForwardItemShuffler(_allItemLocations, _allItems);
     }
 
-    [Benchmark("ReverseItemShuffler")]
+    [Benchmark("Reverse Fill")]
     [BenchmarkParameters(nameof(SettingsParameters))]
     private bool Shuffle_Reverse(RandomizerSettings settings)
     {
@@ -61,7 +61,7 @@ public class NewBenchmarks
         return _shuffler.Shuffle(settings.Seed, settings, map);
     }
 
-    [Benchmark("ForwardItemShuffler")]
+    [Benchmark("Forward Fill")]
     [BenchmarkParameters(nameof(SettingsParameters))]
     private bool Shuffle_Forward(RandomizerSettings settings)
     {

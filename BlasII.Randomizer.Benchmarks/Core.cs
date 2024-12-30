@@ -23,7 +23,7 @@ internal class Core
         var benchmarks = FindAllBenchmarks<NewBenchmarks>(obj);
 
         if (!cmd.SkipWarmup)
-            RunAllWarmups(obj, benchmarks, cmd.MaxIterations / 3);
+            RunAllWarmups(obj, benchmarks, cmd.MaxIterations / 5);
         RunAllBenchmarks(obj, benchmarks, cmd.MaxIterations);
         DisplayOutput1(benchmarks, headerInfo, cmd.ExportResults);
 
@@ -199,19 +199,34 @@ internal class Core
         }
 
         string header = sbs[0].ToString();
-        var line = new StringBuilder();
+        var dashLine = new StringBuilder();
+        var emptyLine = new StringBuilder();
 
         foreach (char c in header)
         {
-            line.Append(c == '|' ? '|' : '-');
+            dashLine.Append(c == '|' ? '|' : '-');
+            emptyLine.Append(c == '|' ? '|' : ' ');
         }
 
         var text = new List<string>()
         {
             header,
-            line.ToString()
+            dashLine.ToString()
         };
         text.AddRange(sbs.Skip(1).Select(x => x.ToString()));
+
+        // Add gaps
+        string lastMethod = text[2].Substring(2, text[2].IndexOf('|', 2));
+        for (int i = 2; i < text.Count; i++)
+        {
+            string currentMethod = text[i].Substring(2, text[i].IndexOf('|', 2));
+            if (currentMethod == lastMethod)
+                continue;
+
+            lastMethod = currentMethod;
+            text.Insert(i++, emptyLine.ToString());
+        }
+
         return text;
     }
 
