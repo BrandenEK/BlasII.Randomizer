@@ -3,6 +3,7 @@ using BlasII.ModdingAPI.Assets;
 using BlasII.Randomizer.Models;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace BlasII.Randomizer.Shuffle;
 
@@ -157,7 +158,12 @@ public class ForwardItemShuffler : IShuffler
     private LocationPool FindReachableLocations(LocationPool locations, GameInventory inventory)
     {
         var temp = new LocationPool(locations);
-        temp.RemoveConditional(loc => !inventory.Evaluate(loc.Logic));
+        temp.Clear();
+
+        foreach (var location in locations.Where(x => inventory.Evaluate(x.Logic)))
+        {
+            temp.Add(location);
+        }
 
         // Not ideal, but thats how the pools are set up
         return temp;
