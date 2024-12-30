@@ -8,22 +8,21 @@ namespace BlasII.Randomizer.Benchmarks;
 
 internal class Core
 {
-    private static List<BaseMonitor> _monitors;
+    private readonly static List<BaseMonitor> _monitors = new();
 
     static void Main(string[] args)
     {
         var benchmark = new NewBenchmarks();
         var benchmarkMethods = GetAllBenchmarks<NewBenchmarks>();
 
-        _monitors = new List<BaseMonitor>()
-        {
-            new SuccessRateMonitor(),
-            new AverageTimeMonitor(),
-            new AverageSuccessTimeMonitor(),
-        };
-
+        RegisterMonitors(new SuccessRateMonitor(), new AverageTimeMonitor(), new AverageSuccessTimeMonitor());
         RunAllBenchmarks(benchmark, benchmarkMethods);
         DisplayOutput1(benchmarkMethods);
+    }
+
+    public static void RegisterMonitors(params BaseMonitor[] monitors)
+    {
+        _monitors.AddRange(monitors);
     }
 
     static void RunAllBenchmarks(object obj, IEnumerable<MethodInfo> methods)
