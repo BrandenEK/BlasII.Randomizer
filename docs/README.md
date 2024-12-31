@@ -34,7 +34,7 @@
 ### Useful Info
 - Currently works with only version 2.2.0
 - Pressing 'F8' will display a list of your current settings
-- A spoiler will be generated in the Modding/content/Randomizer folder
+- A spoiler will be generated in the savegames folder
 
 ---
 
