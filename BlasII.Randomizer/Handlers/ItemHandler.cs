@@ -72,16 +72,20 @@ public class ItemHandler
     public bool ShuffleItems(int seed, RandomizerSettings settings)
     {
         int currentAttempt = 0, maxAttempts = 20;
+        var seedGen = new System.Random(seed);
 
-        while (!_shuffler.Shuffle(seed + currentAttempt, settings, _mappedItems) && currentAttempt < maxAttempts)
+        while (!_shuffler.Shuffle(seed, settings, _mappedItems) && currentAttempt < maxAttempts)
         {
-            ModLog.Warn($"Seed {seed + currentAttempt} was invalid!  Trying next...");
+            int failedSeed = seed;
+            seed = seedGen.Next(1, RandomizerSettings.MAX_SEED + 1);
+
+            ModLog.Warn($"Seed {failedSeed} was invalid! Trying {seed} next.");
             currentAttempt++;
         }
 
         if (currentAttempt >= maxAttempts)
         {
-            ModLog.Error($"Failed to shuffle items in {maxAttempts} attempts");
+            ModLog.Error($"Failed to shuffle items in {maxAttempts} attempts!");
             _mappedItems.Clear();
             return false;
         }
@@ -117,7 +121,7 @@ public class ItemHandler
         }
 
         // Save text to file
-        string path = Path.Combine(Main.Randomizer.FileHandler.ContentFolder, $"spoiler_{CoreCache.SaveData.CurrentSaveSlot + 1}.txt");
+        string path = Path.Combine(Main.Randomizer.FileHandler.SavegamesFolder, $"savegame_{CoreCache.SaveData.CurrentSaveSlot}_spoiler.txt");
         File.WriteAllText(path, sb.ToString());
     }
 
