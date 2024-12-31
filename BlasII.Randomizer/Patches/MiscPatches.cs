@@ -3,9 +3,7 @@ using HarmonyLib;
 using Il2CppTGK.Game;
 using Il2CppTGK.Game.Components;
 using Il2CppTGK.Game.Components.Characters;
-using Il2CppTGK.Game.Components.Inventory;
 using Il2CppTGK.Game.Managers;
-using Il2CppTGK.Inventory;
 
 namespace BlasII.Randomizer.Patches;
 
@@ -35,18 +33,6 @@ class AbilityLockManager_OnPlayerSpawned_Patch
     {
         if (Main.Randomizer.IsNewGame)
             Main.Randomizer.GiveStartingEquipment();
-    }
-}
-
-/// <summary>
-/// Always allow upgrading weapons, even without lance
-/// </summary>
-[HarmonyPatch(typeof(InventoryComponent), nameof(InventoryComponent.HasItem))]
-class Inventory_HasItem_Patch
-{
-    public static void Postfix(ItemID itemID, ref bool __result)
-    {
-        __result = __result || itemID.name == "QI70" && Main.Randomizer.GetQuestBool("ST00", "WEAPON_EVENT");
     }
 }
 

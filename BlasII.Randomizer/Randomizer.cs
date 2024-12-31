@@ -240,6 +240,9 @@ public class Randomizer : BlasIIMod, IPersistentMod
         CoreCache.EquipmentManager.Unlock(weapon);
         CoreCache.PlayerSpawn.PlayerControllerRef.GetAbility<ChangeWeaponAbility>().ChangeWeapon(weapon);
 
+        // Give lance
+        AssetStorage.PlayerInventory.AddItemAsync(AssetStorage.QuestItems["QI70"]);
+
         // TEMPORARY: lock certain abilities because I have no idea how they persist
         var abilities = new ABILITY_IDS[] { ABILITY_IDS.AirDash, ABILITY_IDS.AirJump, ABILITY_IDS.GlassWalk, ABILITY_IDS.GoldFlask, ABILITY_IDS.MagicRingClimb, ABILITY_IDS.WallClimb };
         foreach (var ability in abilities.Select(x => AssetStorage.Abilities[x]))
