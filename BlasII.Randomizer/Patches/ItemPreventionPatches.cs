@@ -173,6 +173,13 @@ class QuestManager_GetVarBool_Patch
         {
             __result = true;
         }
+
+        // Keep confessor alive until flowers are opened
+        else if (scene == "Z05BZ01" && quest == "ST01.CONFESSOR_READYTODIE")
+        {
+            __result = Main.Randomizer.ItemHandler.IsLocationCollected("Z05BZ01.l0")
+                && Main.Randomizer.ItemHandler.IsLocationCollected("Z05BZ01.l16");
+        }
     }
 
     private static int OwnedKeys
@@ -199,7 +206,11 @@ class QuestManager_GetVarInt_Patch
         string scene = CoreCache.Room.CurrentRoom?.Name;
         string quest = Main.Randomizer.GetQuestName(questId, varId);
 
-        // No checks yet
+        // Always keep guilt tracker empty
+        if (scene == "Z05BZ01" && quest == "ST01.GUILT_ACCUMULATED")
+        {
+            __result = 0;
+        }
     }
 }
 
@@ -240,6 +251,11 @@ class QuestManager_GetVar_Patch
             {
                 __result = "WEAPON_ROSARY";
             }
+        }
+
+        else if (scene == "Z05BZ01" && quest == "ST01.GUILT_LEVEL")
+        {
+            __result = "GUILT_LEVEL_4";
         }
     }
 }
