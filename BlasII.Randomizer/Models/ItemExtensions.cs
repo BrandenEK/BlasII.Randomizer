@@ -164,6 +164,8 @@ public static class ItemExtensions
             case Item.ItemType.Weapon:
                 {
                     var weapon = AssetStorage.Weapons[Enum.Parse<WEAPON_IDS>(item.Id)];
+                    var ruego = AssetStorage.Weapons[WEAPON_IDS.RosaryBlade];
+                    var meaculpa = AssetStorage.Weapons[WEAPON_IDS.MeaCulpa];
 
                     if (CoreCache.EquipmentManager.IsUnlocked(weapon))
                     {
@@ -172,21 +174,21 @@ public static class ItemExtensions
                         break;
                     }
 
+                    // Handle special case for getting regular weapon last
+                    if (CoreCache.EquipmentManager.CountUnlockedWeapons() == 3 &&
+                        CoreCache.EquipmentManager.GetWeaponSlot(ruego) != -1 &&
+                        CoreCache.EquipmentManager.GetWeaponSlot(meaculpa) != -1)
+                    {
+                        var swapWeapon = CoreCache.EquipmentManager.GetCurrentWeapon() == meaculpa ? ruego : meaculpa;
+
+                        ModLog.Info($"Hiding selection for weapon: {swapWeapon.name}");
+                        CoreCache.EquipmentManager.ForceSetWeaponToSlot(null, CoreCache.EquipmentManager.GetWeaponSlot(swapWeapon));
+                    }
+
                     // Unlock the weapon and give the switching ability
                     var ability = AssetStorage.Abilities[ABILITY_IDS.ChangeWeapon];
                     CoreCache.EquipmentManager.Unlock(weapon);
                     CoreCache.AbilitiesUnlockManager.SetAbility(ability, true);
-
-                    // Handle special case for Ruego/MeaCulpa switching
-                    if (item.Id == "RosaryBlade" || item.Id == "MeaCulpa")
-                    {
-                        var otherWeapon = AssetStorage.Weapons[item.Id == "RosaryBlade" ? WEAPON_IDS.MeaCulpa : WEAPON_IDS.RosaryBlade];
-                        int slot = CoreCache.EquipmentManager.GetWeaponSlot(weapon);
-
-                        if (slot != -1 && CoreCache.EquipmentManager.HasWeapon(otherWeapon))
-                            CoreCache.EquipmentManager.ForceSetWeaponToSlot(null, slot);
-                    }
-
                     break;
                 }
             case Item.ItemType.Ability:
