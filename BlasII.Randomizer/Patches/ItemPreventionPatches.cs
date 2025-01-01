@@ -180,6 +180,12 @@ class QuestManager_GetVarBool_Patch
             __result = Main.Randomizer.ItemHandler.IsLocationCollected("Z05BZ01.l0")
                 && Main.Randomizer.ItemHandler.IsLocationCollected("Z05BZ01.l16");
         }
+
+        // Only accept cobijada 9 sisters reward
+        else if (scene == "Z0506" && Enumerable.Range(1, 3).Any(x => quest == $"ST25.UPGRADE{x}_UNLOCKED"))
+        {
+            __result = true;
+        }
     }
 
     private static int OwnedKeys
@@ -253,6 +259,7 @@ class QuestManager_GetVar_Patch
             }
         }
 
+        // Always have confessor flowers active
         else if (scene == "Z05BZ01" && quest == "ST01.GUILT_LEVEL")
         {
             __result = "GUILT_LEVEL_4";
