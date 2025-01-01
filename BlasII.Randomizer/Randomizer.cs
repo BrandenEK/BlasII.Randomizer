@@ -216,9 +216,10 @@ public class Randomizer : BlasIIMod, IPersistentMod
     {
         foreach (var upgrade in CoreCache.PrieDieuManager.config.upgrades)
         {
-            if (upgrade.name == "TeleportToAnotherPrieuDieuUpgrade" ||
-                upgrade.name == "FervourFillUpgrade")
-                CoreCache.PrieDieuManager.Upgrade(upgrade);
+            if (upgrade.name == "TeleportToHUBUpgrade")
+                continue;
+
+            CoreCache.PrieDieuManager.Upgrade(upgrade);
         }
     }
 
