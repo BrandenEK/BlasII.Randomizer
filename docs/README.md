@@ -34,7 +34,7 @@
 ### Useful Info
 - Currently works with only version 2.2.0
 - Pressing 'F8' will display a list of your current settings
-- A spoiler will be generated in the Modding/content/Randomizer folder
+- A spoiler will be generated in the savegames folder
 
 ---
 
@@ -52,10 +52,12 @@ A full breakdown of all the available settings can be found [here](SETTINGS.md)
 ---
 
 ### Gameplay Differences
-- All regions of the game are unlocked from the beginning, though you will still need movement items to reach them
+- All story regions of the game are accessible from the beginning
+- The Steely Battle Lance is given at the beginning
 - The door to Crimson Rains will be unlocked after obtaining a certain number of keys, specified in your settings
-- Weapon memories can be purchased from the beginning, the lance is no longer necessary
+- The door to Susona requires the Holy Oil to open
 - The Mud Key will not break after being used
+- Many questlines have been modified to not have missable items
 - The map screen will display the number of items collected
 - Save files can not be ascended
 
