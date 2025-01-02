@@ -101,7 +101,6 @@ public class Randomizer : BlasIIMod, IPersistentMod
 
         if (InputHandler.GetKeyDown("DisplaySettings"))
         {
-            AssetStorage.PlayerStats.AddToCurrentValue(AssetStorage.RangeStats["Guilt"], 10);
             DisplaySettings();
         }
     }
