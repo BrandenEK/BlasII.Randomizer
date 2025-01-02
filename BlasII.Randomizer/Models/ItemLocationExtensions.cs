@@ -14,8 +14,8 @@ public static class ItemLocationExtensions
         if (string.IsNullOrEmpty(location.Flags))
             return true;
 
-        if (location.Flags.Contains('L') && !settings.ShuffleLongQuests)
-            return false;
+        //if (location.Flags.Contains('L') && !settings.ShuffleLongQuests)
+        //    return false;
 
         if (location.Flags.Contains('S') && !settings.ShuffleShops)
             return false;

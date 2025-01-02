@@ -1,5 +1,6 @@
 ﻿using BlasII.Framework.Menus;
 using BlasII.Framework.Menus.Options;
+using BlasII.Framework.UI;
 using UnityEngine;
 
 namespace BlasII.Randomizer.Services;
@@ -22,7 +23,7 @@ public class RandomizerMenu : ModMenu
                 LogicType = 1,
                 RequiredKeys = _setRequiredKeys.CurrentOption - 1,
                 StartingWeapon = _setStartingWeapon.CurrentOption - 1,
-                ShuffleLongQuests = _setShuffleLongQuests.Toggled,
+                ShuffleLongQuests = true,
                 ShuffleShops = _setShuffleShops.Toggled,
             };
         }
@@ -31,7 +32,7 @@ public class RandomizerMenu : ModMenu
             _setLogicDifficulty.CurrentOption = 0;
             _setRequiredKeys.CurrentOption = value.RequiredKeys + 1;
             _setStartingWeapon.CurrentOption = value.StartingWeapon + 1;
-            _setShuffleLongQuests.Toggled = value.ShuffleLongQuests;
+            _setShuffleLongQuests.Toggled = true;
             _setShuffleShops.Toggled = value.ShuffleShops;
 
             _setSeed.CurrentValue = string.Empty;
@@ -81,6 +82,19 @@ public class RandomizerMenu : ModMenu
 
         _setSeed = text.CreateOption("Seed", ui, new Vector2(0, 300), "option/seed", true, false, 6);
 
+        UIModder.Create(new RectCreationOptions()
+        {
+            Name = "Temp text",
+            Parent = ui,
+            Position = new Vector2(0, 200),
+        }).AddText(new TextCreationOptions()
+        {
+            Contents = "More options coming in the next update!",
+            Color = Color.cyan,
+            Alignment = Il2CppTMPro.TextAlignmentOptions.Center,
+            FontSize = 40,
+        });
+
         _setLogicDifficulty = arrow.CreateOption("LD", ui, new Vector2(-300, 80), "option/logic", new string[]
         {
             "option/logic/normal",
@@ -107,6 +121,7 @@ public class RandomizerMenu : ModMenu
         });
 
         _setShuffleLongQuests = toggle.CreateOption("SL", ui, new Vector2(150, 70), "option/long");
+        _setShuffleLongQuests.Enabled = false;
 
         _setShuffleShops = toggle.CreateOption("SS", ui, new Vector2(150, -10), "option/shops");
     }

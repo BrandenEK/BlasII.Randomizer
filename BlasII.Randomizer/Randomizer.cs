@@ -13,7 +13,6 @@ using Il2CppTGK.Game.Components.Abilities;
 using Il2CppTGK.Game.Components.Interactables;
 using Il2CppTGK.Game.PopupMessages;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using UnityEngine;
 
@@ -83,10 +82,6 @@ public class Randomizer : BlasIIMod, IPersistentMod
         ItemHandler = new ItemHandler(true
             ? new PoolsItemShuffler(ItemLocationStorage.AsDictionary, ItemStorage.AsDictionary)
             : new DebugShuffler(ItemLocationStorage.AsDictionary, "Censer"));
-
-        //ShuffleTest(new ForwardItemShuffler(), 777, 500);
-        //ShuffleTest(new ReverseItemShuffler(), 777, 500);
-        //ShuffleTest(new PoolsItemShuffler(), 777, 500);
     }
 
     protected override void OnRegisterServices(ModServiceProvider provider)
@@ -100,7 +95,9 @@ public class Randomizer : BlasIIMod, IPersistentMod
             return;
 
         if (InputHandler.GetKeyDown("DisplaySettings"))
+        {
             DisplaySettings();
+        }
     }
 
     protected override void OnSceneLoaded(string sceneName)
@@ -129,43 +126,6 @@ public class Randomizer : BlasIIMod, IPersistentMod
             LoadTriggerRemovalRoom("trigger", "SPGEO_INTERACTABLE_GUILLOTINE");
 
         CoreCache.Shop.cachedInstancedShops.Clear();
-    }
-
-    protected override void OnSceneUnloaded(string sceneName)
-    {
-    }
-
-    // Algorithm efficiency
-    // Forward: 500/500 (63.1)
-    // Reverse: 373/500 (27.9)
-    //   Pools: 379/500 (28.0)
-
-    // This is old data before 1.0.0 that allowed false negatives
-    // Initial forward: 500/500 (61.2)
-    // Initial reverse: 490/500 (25.3)
-    private void ShuffleTest(IShuffler shuffler, int initialSeed, int totalTries)
-    {
-        var seedGen = new System.Random(initialSeed);
-        var output = new Dictionary<string, string>();
-        var settings = RandomizerSettings.DEFAULT;
-
-        int successfulTries = 0;
-        double runningTime = 0;
-
-        for (int i = 0; i < totalTries; i++)
-        {
-            int seed = seedGen.Next(1, RandomizerSettings.MAX_SEED + 1);
-            var stopwatch = Stopwatch.StartNew();
-
-            if (shuffler.Shuffle(seed, settings, output))
-            {
-                successfulTries++;
-                runningTime += stopwatch.Elapsed.TotalMilliseconds;
-            }
-        }
-
-        ModLog.Error($"Successful attempts: {successfulTries}/{totalTries}");
-        ModLog.Error($"Average time: {System.Math.Round(runningTime / successfulTries, 1)} ms");
     }
 
     protected override void OnNewGame()
@@ -213,9 +173,10 @@ public class Randomizer : BlasIIMod, IPersistentMod
     {
         foreach (var upgrade in CoreCache.PrieDieuManager.config.upgrades)
         {
-            if (upgrade.name == "TeleportToAnotherPrieuDieuUpgrade" ||
-                upgrade.name == "FervourFillUpgrade")
-                CoreCache.PrieDieuManager.Upgrade(upgrade);
+            if (upgrade.name == "TeleportToHUBUpgrade")
+                continue;
+
+            CoreCache.PrieDieuManager.Upgrade(upgrade);
         }
     }
 
@@ -224,8 +185,6 @@ public class Randomizer : BlasIIMod, IPersistentMod
         var message = Resources.FindObjectsOfTypeAll<PopupMessageID>().First(x => x.name == "TESTPOPUP_id");
         CoreCache.UINavigationHelper.ShowPopupMessage(message, false);
     }
-
-    // Special rooms
 
     /// <summary>
     /// Gives the starting equipment, only called if it hasnt already given it
@@ -248,6 +207,8 @@ public class Randomizer : BlasIIMod, IPersistentMod
         foreach (var ability in abilities.Select(x => AssetStorage.Abilities[x]))
             CoreCache.AbilitiesUnlockManager.SetAbility(ability, false);
     }
+
+    // Special rooms
 
     /// <summary>
     /// Hide the weapon statues in the display room
