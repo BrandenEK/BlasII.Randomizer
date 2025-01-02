@@ -2,33 +2,33 @@ lang: en
 
 # Special items
 weapon/censer/name: Veredicto
-weapon/censer/desc: A weapon that can be used to ring bronze bells.
+weapon/censer/desc: An innately buffable weapon that provides high damage and can be used to ring bells.
 weapon/rosaryblade/name: Ruego Al Alba
-weapon/rosaryblade/desc: A weapon that can be used to pierce bone blockades.
+weapon/rosaryblade/desc: A balanced blade in terms of combat performance that can pierce bone blockades. Sacrifice HP to enter Blood Pact
 weapon/rapier/name: Sarmiento & Centella
-weapon/rapier/desc: A weapon that can be used to activate magic mirrors.
+weapon/rapier/desc: A lightning fast pair of blades that reward flawless defense and unrelenting offense, can activate magic mirrors.
 weapon/meaculpa/name: Mea Culpa
-weapon/meaculpa/desc: The old sword of legend
+weapon/meaculpa/desc: The blade of guilt, reborn from it and blood. Launches a projectile that allows warping through thorned surfaces.
 weapon/upgrade/name: upgrade
 weapon/upgrade/desc: An upgrade for
 ability/wallclimb/name: Ivy of Ascension
-ability/wallclimb/desc: The ability to climb up large walls.
+ability/wallclimb/desc: The ability to climb up certain walls as well as cling to them.
 ability/airjump/name: Passage of Ash
-ability/airjump/desc: The ability to jump twice while in the air.
+ability/airjump/desc: Grants the ability to double jump.
 ability/airdash/name: Mercy of the Wind
-ability/airdash/desc: The ability to dash while in the air.
+ability/airdash/desc: Grants the ability to dash while in the air, can also be used to pass through certain barriers.
 ability/magicringclimb/name: Scion's Protection
-ability/magicringclimb/desc: The ability to spawn cherubs rings.
+ability/magicringclimb/desc: Grants the ability to spawn cherubs rings and grab hold of them.
 ability/glasswalk/name: Broken Step
-ability/glasswalk/desc: The ability to walk on glass platforms
+ability/glasswalk/desc: Grants the ability to walk on glass platforms briefly before they shatter.
 currency/cherub/name: Brother of Proximo
-currency/cherub/desc: A little floating baby that you rescued from a cage.
+currency/cherub/desc: One of many cherubs found in cages all across the land.
 currency/tears/name: Tears of Atonement
-currency/tears/desc: Can be used to buy stuff.
+currency/tears/desc: Primarily used to purchase items from shops or exchange for other services.
 currency/marks/name: Marks of Martyrdom
-currency/marks/desc: Can be used to buy more stuff.
+currency/marks/desc: Used to enhance weapons or learn new weapon actions via the weapon stories, also used to further Altarpiece capacity.
 currency/premarks/name: Marks of the Preceptor
-currency/premarks/desc: Can be used to buy even more stuff.
+currency/premarks/desc: Ancient mark used to unlock skills and enhancements for Mea Culpa.
 
 # Gameplay changes
 popup/item: You have acquired
