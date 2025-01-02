@@ -12,7 +12,7 @@ weapon/meaculpa/desc: The blade of guilt, reborn from it and blood. Launches a p
 weapon/upgrade/name: upgrade
 weapon/upgrade/desc: An upgrade for
 ability/wallclimb/name: Ivy of Ascension
-ability/wallclimb/desc: The ability to climb up certain walls as well as cling to them.
+ability/wallclimb/desc: Grants the ability to climb up certain walls as well as cling to them.
 ability/airjump/name: Passage of Ash
 ability/airjump/desc: Grants the ability to double jump.
 ability/airdash/name: Mercy of the Wind
