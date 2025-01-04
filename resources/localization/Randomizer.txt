@@ -4,7 +4,7 @@ lang: en
 weapon/censer/name: Veredicto
 weapon/censer/desc: An innately buffable weapon that provides high damage and can be used to ring bells.
 weapon/rosaryblade/name: Ruego Al Alba
-weapon/rosaryblade/desc: A balanced blade in terms of combat performance that can pierce bone blockades. Sacrifice HP to enter Blood Pact
+weapon/rosaryblade/desc: A balanced blade in terms of combat performance that can pierce bone blockades. Sacrifice HP to enter Blood Pact.
 weapon/rapier/name: Sarmiento & Centella
 weapon/rapier/desc: A lightning fast pair of blades that reward flawless defense and unrelenting offense, can activate magic mirrors.
 weapon/meaculpa/name: Mea Culpa
