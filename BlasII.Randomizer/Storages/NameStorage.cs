@@ -11,6 +11,7 @@ namespace BlasII.Randomizer.Storages;
 public class NameStorage
 {
     private readonly Dictionary<string, string> _zoneNames;
+    private readonly Dictionary<string, string> _roomNames;
 
     /// <summary>
     /// Initializes the storage by loading the names from txt files
@@ -18,6 +19,7 @@ public class NameStorage
     public NameStorage()
     {
         _zoneNames = LoadNames("names_zones.txt", "zone");
+        _roomNames = LoadNames("names_rooms.txt", "room");
     }
 
     private Dictionary<string, string> LoadNames(string fileName, string type)
@@ -29,6 +31,7 @@ public class NameStorage
         }
 
         var nameDict = lines
+            .Where(x => x.Contains(':'))
             .Select(x => x.Split(':'))
             .ToDictionary(x => x[0].Trim(), x => x[1].Trim());
 
