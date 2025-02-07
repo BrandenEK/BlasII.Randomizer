@@ -102,18 +102,18 @@ public class ItemHandler
         sb.AppendLine($"Date: {System.DateTime.Now.ToString("MM/dd/yyyy")}");
         sb.Append(settings.FormatSpoiler());
 
-        string currentZoneId = string.Empty;
+        string currentZone = string.Empty;
         foreach (var location in Main.Randomizer.ItemLocationStorage.AsSequence)
         {
             // Make sure it has a valid item
             Item item = GetItemAtLocation(location.Id);
 
             // Display new zone section if different
-            string locationZoneId = location.Id[..3];
-            if (currentZoneId != locationZoneId && Main.Randomizer.ExtraInfoStorage.GetZoneName(locationZoneId, out string locationZoneName))
+            string zoneName = Main.Randomizer.NameStorage.GetZoneName(location);
+            if (currentZone != zoneName)
             {
-                sb.AppendLine($"\n - {locationZoneName} -\n");
-                currentZoneId = locationZoneId;
+                sb.AppendLine($"\n - {zoneName} -\n");
+                currentZone = zoneName;
             }
 
             // Add location to text

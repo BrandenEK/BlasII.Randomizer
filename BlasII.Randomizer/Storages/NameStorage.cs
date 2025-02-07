@@ -1,4 +1,5 @@
 ﻿using BlasII.ModdingAPI;
+using BlasII.Randomizer.Models;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -9,7 +10,7 @@ namespace BlasII.Randomizer.Storages;
 /// </summary>
 public class NameStorage
 {
-    public readonly Dictionary<string, string> _zoneNames;
+    private readonly Dictionary<string, string> _zoneNames;
 
     /// <summary>
     /// Initializes the storage by loading the names from txt files
@@ -33,5 +34,13 @@ public class NameStorage
 
         ModLog.Info($"Loaded {nameDict.Count} {type} names!");
         return nameDict;
+    }
+
+    /// <summary>
+    /// Gets the zone name for the specified item location
+    /// </summary>
+    public string GetZoneName(ItemLocation location)
+    {
+        return _zoneNames.TryGetValue(location.Id[..3], out string name) ? name : "[Unknown]";
     }
 }

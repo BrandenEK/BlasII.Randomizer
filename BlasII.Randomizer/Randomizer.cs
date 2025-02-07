@@ -100,15 +100,6 @@ public class Randomizer : BlasIIMod, IPersistentMod
         if (InputHandler.GetKeyDown("DisplaySettings"))
         {
             DisplaySettings();
-
-            foreach (var kvp in ExtraInfoStorage._zoneNames)
-            {
-                ModLog.Info(kvp.Key + " = " + kvp.Value);
-            }
-            foreach (var kvp in NameStorage._zoneNames)
-            {
-                ModLog.Warn(kvp.Key + " = " + kvp.Value);
-            }
         }
     }
 
