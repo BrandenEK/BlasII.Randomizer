@@ -46,4 +46,12 @@ public class NameStorage
     {
         return _zoneNames.TryGetValue(location.Id[..3], out string name) ? name : "[Unknown]";
     }
+
+    /// <summary>
+    /// Gets the room name for the specified item location
+    /// </summary>
+    public string GetRoomName(ItemLocation location)
+    {
+        return _roomNames.TryGetValue(location.Id[0..location.Id.IndexOf('.')], out string name) ? name : "[Unknown]";
+    }
 }

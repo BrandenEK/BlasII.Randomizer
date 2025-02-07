@@ -1,13 +1,13 @@
 # Repose of the Silent One
-Z0101: Z0101
-Z0102: Z0102
-Z0103: Z0103
-Z0105: Z0105
-Z0106: Z0106
-Z0107: Z0107
-Z0108: Z0108
-Z0109: Z0109
-Z0110: Z0110
+Z0101: Beginning room
+Z0102: Weapon room
+Z0103: Tutorial room
+Z0105: Prie dieu room
+Z0106: Boss room
+Z0107: Ravine entrance room
+Z0108: Tower entrance room
+Z0109: Cobijada room
+Z0110: Penitence room
 # Ravine of the High Stones
 Z0201: Z0201
 Z0202: Z0202
@@ -597,3 +597,7 @@ Z2833: Z2833
 Z2834: Z2834
 Z2835: Z2835
 Z2836: Z2836
+# Shops
+SHOPHAND: Hand shop
+SHOPITINERANT: Traveling shop
+SHOPMISSABLES: Patio shop

@@ -108,8 +108,11 @@ public class ItemHandler
             // Make sure it has a valid item
             Item item = GetItemAtLocation(location.Id);
 
-            // Display new zone section if different
+            // Get location text from name storage
             string zoneName = Main.Randomizer.NameStorage.GetZoneName(location);
+            string roomName = Main.Randomizer.NameStorage.GetRoomName(location);
+
+            // Display new zone section if different
             if (currentZone != zoneName)
             {
                 sb.AppendLine($"\n - {zoneName} -\n");
@@ -117,7 +120,7 @@ public class ItemHandler
             }
 
             // Add location to text
-            sb.AppendLine($"{location.Name}: {item.Name}");
+            sb.AppendLine($"{roomName} - {location.Name}: {item.Name}");
         }
 
         // Save text to file
