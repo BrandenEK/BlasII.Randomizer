@@ -90,6 +90,14 @@ public class ExtraInfoStorage
         // Lullaby of the Shore
         new QuestBypassInfo("Z1906", "PR16", () => Main.Randomizer.ItemHandler.IsLocationCollected("Z1906.i1")),
 
+        // Honey Maiden
+        new QuestBypassInfo("Z0815", "FG34", () => false),
+        new QuestBypassInfo("Z0815", "FG35", () => false),
+        new QuestBypassInfo("Z0815", "FG36", () => Main.Randomizer.ItemHandler.IsLocationCollected("Z0815.i0")),
+        new QuestBypassInfo("Z0815", "FG37", () => false),
+        new QuestBypassInfo("Z0815", "FG38", () => false),
+        new QuestBypassInfo("Z0815", "FG39", () => false),
+
         // Cursed Letter #1
         new QuestBypassInfo("Z1326", "PR15", () => Main.Randomizer.ItemHandler.IsLocationCollected("Z1326.i0")),
         new QuestBypassInfo("Z1326", "QI15", () => Main.Randomizer.ItemHandler.IsLocationCollected("Z1326.i0")),
