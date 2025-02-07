@@ -48,6 +48,8 @@ public class Randomizer : BlasIIMod, IPersistentMod
     /// <inheritdoc/>
     public CustomIconStorage CustomIconStorage { get; private set; }
     /// <inheritdoc/>
+    public NameStorage NameStorage { get; private set; }
+    /// <inheritdoc/>
     public ExtraInfoStorage ExtraInfoStorage { get; private set; }
 
     // Properties
@@ -76,6 +78,7 @@ public class Randomizer : BlasIIMod, IPersistentMod
         DoorStorage = new DoorStorage();
         EmbeddedIconStorage = new EmbeddedIconStorage();
         CustomIconStorage = new CustomIconStorage();
+        NameStorage = new NameStorage();
         ExtraInfoStorage = new ExtraInfoStorage();
 
         // Initialize handlers
