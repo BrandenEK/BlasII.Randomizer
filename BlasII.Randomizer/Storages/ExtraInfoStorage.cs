@@ -11,7 +11,7 @@ public class ExtraInfoStorage
 {
     // Zone names
 
-    private readonly Dictionary<string, string> _zoneNames = new()
+    public readonly Dictionary<string, string> _zoneNames = new()
     {
         { "Z01", "Repose of the Silent One" },
         { "Z02", "Ravine of the High Stones" },
