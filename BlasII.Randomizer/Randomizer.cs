@@ -106,6 +106,8 @@ public class Randomizer : BlasIIMod, IPersistentMod
             LoadWeaponDisplayRoom();
         else if (sceneName == "Z0206")
             LoadTriggerRemovalRoom("Event Trigger", "NPC10_ST22_ANUNCIADA");
+        else if (sceneName == "Z0402")
+            LoadTemporaryClothRoom();
         else if (sceneName == "Z0419")
             LoadYermaRoom();
         else if (sceneName == "Z0420")
@@ -249,6 +251,26 @@ public class Randomizer : BlasIIMod, IPersistentMod
                 Object.Destroy(statue.GetComponent<BoxCollider2D>());
                 Object.Destroy(statue.GetComponent<PlayMakerFSM>());
                 statue.transform.Find("sprite").GetComponent<Animator>().Play(disabledAnimations[weapon]);
+            }
+        }
+    }
+
+    /// <summary>
+    /// Temporary fix to the cloth bug in SE
+    /// </summary>
+    private void LoadTemporaryClothRoom()
+    {
+        if (!Main.Randomizer.ItemHandler.IsLocationCollected("Z0402.l13"))
+            return;
+
+        foreach (var loot in Object.FindObjectsOfType<LootInteractable>())
+        {
+            int index = loot.transform.GetSiblingIndex();
+            if (index == 13)
+            {
+                loot.gameObject.SetActive(false);
+                ModLog.Info("[TEMP] Hiding duplicate cloth item");
+                return;
             }
         }
     }
