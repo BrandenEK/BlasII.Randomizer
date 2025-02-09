@@ -3,20 +3,66 @@ using BlasII.ModdingAPI;
 using BlasII.ModdingAPI.Assets;
 using BlasII.ModdingAPI.Helpers;
 using BlasII.ModdingAPI.Persistence;
+using BlasII.Randomizer.Extensions;
 using BlasII.Randomizer.Handlers;
 using BlasII.Randomizer.Services;
 using BlasII.Randomizer.Shuffle;
 using BlasII.Randomizer.Storages;
+using HarmonyLib;
 using Il2Cpp;
 using Il2CppTGK.Game;
+using Il2CppTGK.Game.Components;
 using Il2CppTGK.Game.Components.Abilities;
 using Il2CppTGK.Game.Components.Interactables;
 using Il2CppTGK.Game.PopupMessages;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace BlasII.Randomizer;
+
+//[HarmonyPatch(typeof(EnemySpawnPoint), nameof(EnemySpawnPoint.SpawnEnemy))]
+//class t
+//{
+//    public static void Prefix(EnemySpawnPoint __instance)
+//    {
+//        ModLog.Error(nameof(EnemySpawnPoint.SpawnEnemy) + " prefix");
+
+//        ModLog.Info("Prefab: " + (__instance.prefab?.name ?? "null"));
+//    }
+
+//    public static void Postfix(EnemySpawnPoint __instance)
+//    {
+//        ModLog.Error(nameof(EnemySpawnPoint.SpawnEnemy) + " postfix");
+
+//        // Duplicate spawned enemy
+//        GameObject rogue1 = __instance.ObtainSpawnedEnemy();
+//        GameObject rogue2 = Object.Instantiate(rogue1, rogue1.transform.parent);
+//        rogue2.transform.position = rogue1.transform.position;
+//    }
+//}
+
+//[HarmonyPatch(typeof(EnemySpawnPoint), nameof(EnemySpawnPoint.SpawnEnemyAsync))]
+//class t2
+//{
+//    public static void Prefix(EnemySpawnPoint __instance)
+//    {
+//        ModLog.Error(nameof(EnemySpawnPoint.SpawnEnemyAsync) + " prefix");
+
+//        ModLog.Info("Prefab: " + (__instance.prefab?.name ?? "null"));
+//    }
+
+//    public static void Postfix(EnemySpawnPoint __instance)
+//    {
+//        ModLog.Error(nameof(EnemySpawnPoint.SpawnEnemyAsync) + " postfix");
+
+//        // Duplicate spawned enemy
+//        GameObject rogue1 = __instance.ObtainSpawnedEnemy();
+//        GameObject rogue2 = Object.Instantiate(rogue1, rogue1.transform.parent);
+//        rogue2.transform.position = rogue1.transform.position;
+//    }
+//}
 
 /// <summary>
 /// An item randomizer for the game Blasphemous 2
@@ -100,8 +146,55 @@ public class Randomizer : BlasIIMod, IPersistentMod
         if (InputHandler.GetKeyDown("DisplaySettings"))
         {
             DisplaySettings();
+
+            //foreach (var obj in SceneManager.GetActiveScene().GetRootGameObjects())
+            //{
+            //    ModLog.Info(obj.transform.DisplayHierarchy(5, true));
+            //}
+            //ModLog.Warn("Spawning rogue");
+            //EnemySpawnPoint spawn = Object.FindObjectOfType<EnemySpawnPoint>();
+            //ModLog.Info(spawn.name);
+
+            //GameObject rogue = spawn.ObtainSpawnedEnemy();
+            //ModLog.Info(rogue.transform.DisplayHierarchy(10, true));
+            //Transform child = rogue.transform.Find("debug stats info");
+            //ModLog.Warn(child.gameObject.activeSelf);
+            //child.gameObject.SetActive(true);
+
+            //_spawn = Object.Instantiate(spawn.gameObject).GetComponent<EnemySpawnPoint>();
+            //_spawn.uniqId.uniqueId = "rogue-boss-2";
+
+            // Duplicate spawned enemy
+            //GameObject rogue1 = spawn.ObtainSpawnedEnemy();
+            //GameObject rogue2 = Object.Instantiate(rogue1, rogue1.transform.parent);
+            //rogue2.transform.position = rogue1.transform.position;
+
+            // Duplicate spawn point
+            //EnemySpawnPoint spawn2 = Object.Instantiate(spawn).GetComponent<EnemySpawnPoint>();
+            //spawn2.ForceSpawnEnemy();
+            //spawn.ForceSpawnEnemy();
+            //GameObject boss1 = SceneManager.GetActiveScene().GetRootGameObjects().First(x => x.name.StartsWith("BS102"));//GameObject.Find("BS102 - Penitent Rogue - Second Encounter(Clone) pool");
+            //GameObject boss2 = GameObject.Instantiate(boss1);
+            //boss2.transform.position = new Vector3(-313, 272);
+        }
+
+        if (UnityEngine.Input.GetKeyDown(KeyCode.P))
+        {
+            //_spawn.ForceSpawnEnemy();
+            //GameObject rogue = _spawn.ObtainSpawnedEnemy();
+            //rogue.transform.position = new Vector3(-313, 272);
+
+            //ModLog.Warn(_spawn.ObtainSpawnedEnemy().name);
+            //ModLog.Warn(_spawn.ObtainSpawnedEnemy().transform.position);
+
+            //foreach (var fsm in Object.FindObjectsOfType<PlayMakerFSM>())
+            //{
+            //    fsm.DisplayActions();
+            //}
         }
     }
+
+    EnemySpawnPoint _spawn;
 
     protected override void OnSceneLoaded(string sceneName)
     {
