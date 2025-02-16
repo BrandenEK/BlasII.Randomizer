@@ -16,7 +16,7 @@
 ## Contributors
 
 ***- Programming and design -*** <br>
-[@BrandenEK](https://github.com/BrandenEK), [@LuceScarlet](https://github.com/LuceScarlet)
+[@BrandenEK](https://github.com/BrandenEK), [@LuceScarlet](https://github.com/LuceScarlet), [@ObsessiveBadguy](https://github.com/ObsessiveBadguy)
 
 ***- Artwork -*** <br>
 [@JimmyDiamonds](https://github.com/JimmyDiamonds), [@rcvrdt](https://github.com/rcvrdt), [@LuceScarlet](https://github.com/LuceScarlet)
@@ -34,7 +34,7 @@
 ### Useful Info
 - Currently works with only version 2.2.0
 - Pressing 'F8' will display a list of your current settings
-- A spoiler will be generated in the Modding/content/Randomizer folder
+- A spoiler will be generated in the savegames folder
 
 ---
 
@@ -52,12 +52,7 @@ A full breakdown of all the available settings can be found [here](SETTINGS.md)
 ---
 
 ### Gameplay Differences
-- All regions of the game are unlocked from the beginning, though you will still need movement items to reach them
-- The door to Crimson Rains will be unlocked after obtaining a certain number of keys, specified in your settings
-- Weapon memories can be purchased from the beginning, the lance is no longer necessary
-- The Mud Key will not break after being used
-- The map screen will display the number of items collected
-- Save files can not be ascended
+In order to prevent missable items and to make the game more fun, there are many differences between a Vanilla playthrough and a Randomized playthrough.  A full list of the gameplay/questline modifications can be found [here](GAMEPLAY.md)
 
 ---
 
