@@ -16,7 +16,7 @@
 ## Contributors
 
 ***- Programming and design -*** <br>
-[@BrandenEK](https://github.com/BrandenEK), [@LuceScarlet](https://github.com/LuceScarlet), [@ObsessiveBadguy](https://github.com/ObsessiveBadguy)
+[@BrandenEK](https://github.com/BrandenEK), [@LuceScarlet](https://github.com/LuceScarlet), [@ObsessiveBadguy](https://github.com/ObsessiveBadguy), [@Xanathar865](https://github.com/Xanathar865)
 
 ***- Artwork -*** <br>
 [@JimmyDiamonds](https://github.com/JimmyDiamonds), [@rcvrdt](https://github.com/rcvrdt), [@LuceScarlet](https://github.com/LuceScarlet)
