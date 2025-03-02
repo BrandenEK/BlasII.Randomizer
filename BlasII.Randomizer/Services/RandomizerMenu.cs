@@ -74,8 +74,6 @@ public class RandomizerMenu : ModMenu
 
     private void UpdateUniqueIdText(ulong id)
     {
-        ModLog.Info("Calculating new unique id: " + id); // temp
-
         var sb = new StringBuilder();
         ulong targetBase = (ulong)ID_CHARS.Length;
 

@@ -75,6 +75,7 @@ public class RandomizerSettings
     /// <summary>
     /// A unique ID based on the seed and all settings
     /// </summary>
+    [JsonIgnore]
     public ulong UniqueIdentifier
     {
         get
