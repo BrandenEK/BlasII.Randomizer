@@ -80,7 +80,7 @@ public class RandomizerMenu : ModMenu
             TextSize = TEXT_SIZE,
         };
 
-        _setSeed = text.CreateOption("Seed", ui, new Vector2(0, 300), "option/seed", true, false, 6);
+        _setSeed = text.CreateOption("Seed", ui, new Vector2(0, 300), "option/seed", true, false, RandomizerSettings.MAX_SEED.ToString().Length);
 
         UIModder.Create(new RectCreationOptions()
         {
