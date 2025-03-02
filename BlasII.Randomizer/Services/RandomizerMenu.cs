@@ -1,7 +1,8 @@
 ﻿using BlasII.Framework.Menus;
 using BlasII.Framework.Menus.Options;
 using BlasII.Framework.UI;
-using BlasII.ModdingAPI;
+using Il2CppTGK.Game.Components.UI;
+using Il2CppTMPro;
 using UnityEngine;
 
 namespace BlasII.Randomizer.Services;
@@ -45,7 +46,10 @@ public class RandomizerMenu : ModMenu
     /// </summary>
     public override void OnStart()
     {
-        MenuSettings = RandomizerSettings.DEFAULT;
+        RandomizerSettings settings = RandomizerSettings.DEFAULT;
+
+        MenuSettings = settings;
+        UpdateUniqueIdText(settings.UniqueIdentifier);
     }
 
     /// <summary>
@@ -63,7 +67,12 @@ public class RandomizerMenu : ModMenu
     {
         base.OnOptionsChanged();
 
-        ModLog.Warn($"ID: {MenuSettings.UniqueIdentifier}");
+        UpdateUniqueIdText(MenuSettings.UniqueIdentifier);
+    }
+
+    private void UpdateUniqueIdText(ulong id)
+    {
+        _idText.SetText($"Unique ID: {id}");
     }
 
     protected override void CreateUI(Transform ui)
@@ -92,19 +101,6 @@ public class RandomizerMenu : ModMenu
         };
 
         _setSeed = text.CreateOption("Seed", ui, new Vector2(0, 300), "option/seed", true, false, RandomizerSettings.MAX_SEED.ToString().Length);
-
-        UIModder.Create(new RectCreationOptions()
-        {
-            Name = "Temp text",
-            Parent = ui,
-            Position = new Vector2(0, 200),
-        }).AddText(new TextCreationOptions()
-        {
-            Contents = "More options coming in the next update!",
-            Color = Color.cyan,
-            Alignment = Il2CppTMPro.TextAlignmentOptions.Center,
-            FontSize = 40,
-        });
 
         _setLogicDifficulty = arrow.CreateOption("LD", ui, new Vector2(-300, 80), "option/logic", new string[]
         {
@@ -135,6 +131,35 @@ public class RandomizerMenu : ModMenu
         _setShuffleLongQuests.Enabled = false;
 
         _setShuffleShops = toggle.CreateOption("SS", ui, new Vector2(150, -10), "option/shops");
+
+        UIModder.Create(new RectCreationOptions()
+        {
+            Name = "Temp text",
+            Parent = ui,
+            Position = new Vector2(0, 200),
+        }).AddText(new TextCreationOptions()
+        {
+            Contents = "More options coming in the next update!",
+            Color = Color.cyan,
+            Alignment = TextAlignmentOptions.Center,
+            FontSize = 40,
+        });
+
+        _idText = UIModder.Create(new RectCreationOptions()
+        {
+            Name = "UniqueID",
+            Parent = ui,
+            Position = new Vector2(0, -130),
+            Pivot = Vector2.zero,
+            XRange = Vector2.zero,
+            YRange = Vector2.zero,
+        }).AddText(new TextCreationOptions()
+        {
+            Contents = "Unique ID: ---",
+            Color = SILVER,
+            Alignment = TextAlignmentOptions.Left,
+            FontSize = 42,
+        }).AddShadow();
     }
 
     private const int TEXT_SIZE = 55;
@@ -149,4 +174,6 @@ public class RandomizerMenu : ModMenu
 
     private ToggleOption _setShuffleLongQuests;
     private ToggleOption _setShuffleShops;
+
+    private UIPixelTextWithShadow _idText;
 }
