@@ -1,6 +1,7 @@
 ﻿using BlasII.Framework.Menus;
 using BlasII.Framework.Menus.Options;
 using BlasII.Framework.UI;
+using BlasII.ModdingAPI;
 using UnityEngine;
 
 namespace BlasII.Randomizer.Services;
@@ -53,6 +54,16 @@ public class RandomizerMenu : ModMenu
     public override void OnFinish()
     {
         Main.Randomizer.CurrentSettings = MenuSettings;
+    }
+
+    /// <summary>
+    /// Update the Unique ID when an option is changed
+    /// </summary>
+    public override void OnOptionsChanged()
+    {
+        base.OnOptionsChanged();
+
+        ModLog.Warn($"ID: {MenuSettings.UniqueIdentifier}");
     }
 
     protected override void CreateUI(Transform ui)
