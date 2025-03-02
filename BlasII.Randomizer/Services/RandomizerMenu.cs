@@ -1,8 +1,10 @@
 ﻿using BlasII.Framework.Menus;
 using BlasII.Framework.Menus.Options;
 using BlasII.Framework.UI;
+using BlasII.ModdingAPI;
 using Il2CppTGK.Game.Components.UI;
 using Il2CppTMPro;
+using System.Text;
 using UnityEngine;
 
 namespace BlasII.Randomizer.Services;
@@ -72,7 +74,19 @@ public class RandomizerMenu : ModMenu
 
     private void UpdateUniqueIdText(ulong id)
     {
-        _idText.SetText($"Unique ID: {id}");
+        ModLog.Info("Calculating new unique id: " + id); // temp
+
+        var sb = new StringBuilder();
+        ulong targetBase = (ulong)ID_CHARS.Length;
+
+        do
+        {
+            sb.Append($" {ID_CHARS[(int)(id % targetBase)]}");
+            id /= targetBase;
+        }
+        while (id > 0);
+
+        _idText.SetText($"Unique ID:{sb}");
     }
 
     protected override void CreateUI(Transform ui)
@@ -162,10 +176,6 @@ public class RandomizerMenu : ModMenu
         }).AddShadow();
     }
 
-    private const int TEXT_SIZE = 55;
-    private readonly Color SILVER = new Color32(192, 192, 192, 255);
-    private readonly Color YELLOW = new Color32(255, 231, 65, 255);
-
     private TextOption _setSeed;
 
     private ArrowOption _setLogicDifficulty;
@@ -176,4 +186,9 @@ public class RandomizerMenu : ModMenu
     private ToggleOption _setShuffleShops;
 
     private UIPixelTextWithShadow _idText;
+
+    private const int TEXT_SIZE = 55;
+    private const string ID_CHARS = "0123456789ABCDEGHJKLMNPQRSTUWXYZ";
+    private readonly Color SILVER = new Color32(192, 192, 192, 255);
+    private readonly Color YELLOW = new Color32(255, 231, 65, 255);
 }
