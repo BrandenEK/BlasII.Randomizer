@@ -86,6 +86,9 @@ public class RandomizerMenu : ModMenu
         }
         while (id > 0);
 
+        while (sb.Length < ID_DIGITS * 2)
+            sb.Append(" 0");
+
         _idText.SetText($"Unique ID:{sb}");
     }
 
@@ -188,6 +191,7 @@ public class RandomizerMenu : ModMenu
     private UIPixelTextWithShadow _idText;
 
     private const int TEXT_SIZE = 55;
+    private const int ID_DIGITS = 6;
     private const string ID_CHARS = "0123456789ABCDEGHJKLMNPQRSTUWXYZ";
     private readonly Color SILVER = new Color32(192, 192, 192, 255);
     private readonly Color YELLOW = new Color32(255, 231, 65, 255);
