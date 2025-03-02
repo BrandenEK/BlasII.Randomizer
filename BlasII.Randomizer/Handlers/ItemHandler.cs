@@ -1,4 +1,5 @@
 using BlasII.ModdingAPI;
+using BlasII.Randomizer.Extensions;
 using BlasII.Randomizer.Models;
 using BlasII.Randomizer.Shuffle;
 using Il2CppTGK.Game;
