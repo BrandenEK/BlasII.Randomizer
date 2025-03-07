@@ -1,6 +1,5 @@
 using Newtonsoft.Json;
 using System;
-using System.Text;
 
 namespace BlasII.Randomizer;
 
@@ -42,59 +41,6 @@ public class RandomizerSettings
     /// Whether locations that require a purchase can contain progression
     /// </summary>
     public bool ShuffleShops { get; set; }
-
-    /// <summary>
-    /// Formats the settings for the info popup
-    /// </summary>
-    public string FormatInfo()
-    {
-        string[] logics = ["Easy", "Normal", "Hard"];
-        string[] weapons = ["Veredicto", "Ruego", "Sarmiento", "Mea Culpa"];
-
-        string logic = logics[LogicType];
-        string keys = RequiredKeys == -1 ? "Random" : RequiredKeys.ToString();
-        string weapon = StartingWeapon == -1 ? "Random" : weapons[StartingWeapon];
-
-        var sb = new StringBuilder();
-        sb.AppendLine("RANDOMIZER SETTINGS");
-        sb.AppendLine("Seed: " + Seed);
-        sb.AppendLine();
-        sb.AppendLine("Logic difficulty: " + logic);
-        sb.AppendLine("Required keys: " + keys);
-        sb.AppendLine("Starting weapon: " + weapon);
-        sb.AppendLine("Shuffle long quests: " + ShuffleLongQuests);
-        sb.AppendLine("Shuffle shops: " + ShuffleShops);
-
-        return sb.ToString();
-    }
-
-    /// <summary>
-    /// Formats the settings for the spoiler
-    /// </summary>
-    /// <returns></returns>
-    public string FormatSpoiler()
-    {
-        string[] logics = ["Easy", "Normal", "Hard"];
-        string[] weapons = ["Veredicto", "Ruego", "Sarmiento", "Mea Culpa" ];
-        var line = new string('=', 35);
-
-        string logic = logics[LogicType];
-        string keys = RequiredKeys == -1 ? $"[{RealRequiredKeys}]" : RequiredKeys.ToString();
-        string weapon = StartingWeapon == -1 ? $"[{weapons[RealStartingWeapon]}]" : weapons[StartingWeapon];
-
-        var sb = new StringBuilder();
-        sb.AppendLine("Seed: " + Seed);
-        sb.AppendLine();
-        sb.AppendLine(line);
-        sb.AppendLine(" Logic difficulty: " + logic);
-        sb.AppendLine(" Required keys: " + keys);
-        sb.AppendLine(" Starting weapon: " + weapon);
-        sb.AppendLine(" Shuffle long quests: " + ShuffleLongQuests);
-        sb.AppendLine(" Shuffle shops: " + ShuffleShops);
-        sb.AppendLine(line);
-
-        return sb.ToString();
-    }
 
     /// <summary>
     /// The actual starting weapon with "Random" taken into account
@@ -147,5 +93,5 @@ public class RandomizerSettings
     /// <summary>
     /// The maximum seed allowed
     /// </summary>
-    public const int MAX_SEED = 999_999;
+    public const int MAX_SEED = 99_999_999;
 }
