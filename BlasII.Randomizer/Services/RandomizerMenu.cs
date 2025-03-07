@@ -200,7 +200,7 @@ public class RandomizerMenu : ModMenu
 
     private const int TEXT_SIZE = 55;
     private const int ID_DIGITS = 12;
-    private const string ID_CHARS = "0123456789ABCDEGHJKLMNPQRSTUWXYZ";
+    private const string ID_CHARS = "0123456789ABCDEFGHJKLMNPQRSTUVWXYZ";
     private readonly Color SILVER = new Color32(192, 192, 192, 255);
     private readonly Color YELLOW = new Color32(255, 231, 65, 255);
 }
