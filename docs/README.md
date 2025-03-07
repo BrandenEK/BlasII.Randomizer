@@ -32,7 +32,7 @@
 ---
 
 ### Useful Info
-- Currently works with only version 2.2.0
+- Currently only works with game version 2.2.0
 - Pressing 'F8' will display a list of your current settings
 - A spoiler will be generated in the savegames folder
 
@@ -47,7 +47,7 @@
 ---
 
 ### Randomizer Settings
-A full breakdown of all the available settings can be found [here](SETTINGS.md)
+Seeds can be in the range of 1 to 99,999,999.  A full breakdown of all the available settings can be found [here](SETTINGS.md)
 
 ---
 
