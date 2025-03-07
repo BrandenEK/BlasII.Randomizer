@@ -1,6 +1,7 @@
 ﻿using BlasII.Framework.Menus;
 using BlasII.Framework.Menus.Options;
 using BlasII.Framework.UI;
+using BlasII.ModdingAPI;
 using BlasII.Randomizer.Extensions;
 using Il2CppTGK.Game.Components.UI;
 using Il2CppTMPro;
@@ -9,8 +10,13 @@ using UnityEngine;
 
 namespace BlasII.Randomizer.Services;
 
+/// <summary>
+/// Displays generation settings for the Randomizer
+/// </summary>
 public class RandomizerMenu : ModMenu
 {
+    private int _generatedSeed = 0;
+
     /// <inheritdoc/>
     protected override int Priority { get; } = 100;
 
@@ -23,7 +29,7 @@ public class RandomizerMenu : ModMenu
         {
             return new RandomizerSettings()
             {
-                Seed = _setSeed.CurrentNumericValue == 0 ? RandomizerSettings.RANDOM_SEED : _setSeed.CurrentNumericValue,
+                Seed = _setSeed.CurrentNumericValue == 0 ? _generatedSeed : _setSeed.CurrentNumericValue,
                 LogicType = 1,
                 RequiredKeys = _setRequiredKeys.CurrentOption - 1,
                 StartingWeapon = _setStartingWeapon.CurrentOption - 1,
@@ -49,6 +55,9 @@ public class RandomizerMenu : ModMenu
     public override void OnStart()
     {
         RandomizerSettings settings = RandomizerSettings.DEFAULT;
+
+        _generatedSeed = RandomizerSettings.RANDOM_SEED;
+        ModLog.Info($"Generating default seed: {_generatedSeed}");
 
         MenuSettings = settings;
         UpdateUniqueIdText(settings.CalculateUID());
@@ -90,6 +99,7 @@ public class RandomizerMenu : ModMenu
         _idText.SetText($"Unique ID:{sb}");
     }
 
+    /// <inheritdoc/>
     protected override void CreateUI(Transform ui)
     {
         var toggle = new ToggleCreator(this)
