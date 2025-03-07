@@ -82,6 +82,14 @@ public static class SettingsExtensions
         SetBit(ref uid, ref idx, ref flip, (settings.Seed & 0x00_02_00_00) > 0);
         SetBit(ref uid, ref idx, ref flip, (settings.Seed & 0x00_04_00_00) > 0);
         SetBit(ref uid, ref idx, ref flip, (settings.Seed & 0x00_08_00_00) > 0);
+        SetBit(ref uid, ref idx, ref flip, (settings.Seed & 0x00_10_00_00) > 0);
+        SetBit(ref uid, ref idx, ref flip, (settings.Seed & 0x00_20_00_00) > 0);
+        SetBit(ref uid, ref idx, ref flip, (settings.Seed & 0x00_40_00_00) > 0);
+        SetBit(ref uid, ref idx, ref flip, (settings.Seed & 0x00_80_00_00) > 0);
+        SetBit(ref uid, ref idx, ref flip, (settings.Seed & 0x01_00_00_00) > 0);
+        SetBit(ref uid, ref idx, ref flip, (settings.Seed & 0x02_00_00_00) > 0);
+        SetBit(ref uid, ref idx, ref flip, (settings.Seed & 0x04_00_00_00) > 0);
+        SetBit(ref uid, ref idx, ref flip, (settings.Seed & 0x08_00_00_00) > 0);
 
         // LogicType
         SetBit(ref uid, ref idx, ref flip, (settings.LogicType + 1 & 0x01) > 0);

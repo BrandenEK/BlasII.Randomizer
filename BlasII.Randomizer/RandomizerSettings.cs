@@ -93,5 +93,5 @@ public class RandomizerSettings
     /// <summary>
     /// The maximum seed allowed
     /// </summary>
-    public const int MAX_SEED = 999_999;
+    public const int MAX_SEED = 99_999_999;
 }

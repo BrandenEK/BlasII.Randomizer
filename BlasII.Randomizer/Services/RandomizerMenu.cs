@@ -119,7 +119,7 @@ public class RandomizerMenu : ModMenu
 
         var text = new TextCreator(this)
         {
-            LineSize = 150,
+            LineSize = 200,
             TextColor = SILVER,
             TextColorAlt = YELLOW,
             TextSize = TEXT_SIZE,
