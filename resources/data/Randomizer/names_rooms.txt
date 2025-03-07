@@ -55,20 +55,20 @@ Z0427: Z0427
 Z0428: Z0428
 Z0429: Z0429
 # City of the Blessed Name
-Z0501: Z0501
-Z0502: Z0502
-Z0503: Z0503
-Z0504: Z0504
-Z0505: Z0505
-Z0506: Z0506
-Z0510: Z0510
-Z0511: Z0511
-Z05BZ01: Z05BZ01
-Z05BZ02: Z05BZ02
-Z05BZ03: Z05BZ03
-Z05BZ04: Z05BZ04
-Z05BZ05: Z05BZ05
-Z05BZ06: Z05BZ06
+Z0501: West side
+Z0502: Central building
+Z0503: East side
+Z0504: Rooftops
+Z0505: Teleport room
+Z0506: Cobijada room
+Z0510: Chalice room
+Z0511: Hidden chest room
+Z05BZ01: Confessor's room
+Z05BZ02: Sculptor's room
+Z05BZ03: Regina's shop
+Z05BZ04: City room 1
+Z05BZ05: City room 2
+Z05BZ06: City room 3
 # Grilles and Ruins
 Z0601: Z0601
 Z0602: Z0602
