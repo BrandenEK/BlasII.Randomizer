@@ -47,7 +47,7 @@
 ---
 
 ### Randomizer Settings
-A full breakdown of all the available settings can be found [here](SETTINGS.md)
+Seeds can be in the range of 1 to 99,999,999.  A full breakdown of all the available settings can be found [here](SETTINGS.md)
 
 ---
 
