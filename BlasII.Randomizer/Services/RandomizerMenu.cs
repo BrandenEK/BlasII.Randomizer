@@ -96,7 +96,7 @@ public class RandomizerMenu : ModMenu
         while (sb.Length < ID_DIGITS * 2)
             sb.Append(" 0");
 
-        _idText.SetText($"Unique ID:{sb}");
+        _idText.SetText($"Unique ID:<color=#B3E5B3>{sb}");
     }
 
     /// <inheritdoc/>
@@ -184,6 +184,7 @@ public class RandomizerMenu : ModMenu
             Color = SILVER,
             Alignment = TextAlignmentOptions.Left,
             FontSize = 42,
+            UseRichText = true,
         }).AddShadow();
     }
 
