@@ -1,7 +1,7 @@
 ﻿using BlasII.Framework.Menus;
 using BlasII.Framework.Menus.Options;
 using BlasII.Framework.UI;
-using BlasII.ModdingAPI;
+using BlasII.Randomizer.Extensions;
 using Il2CppTGK.Game.Components.UI;
 using Il2CppTMPro;
 using System.Text;
@@ -51,7 +51,7 @@ public class RandomizerMenu : ModMenu
         RandomizerSettings settings = RandomizerSettings.DEFAULT;
 
         MenuSettings = settings;
-        UpdateUniqueIdText(settings.UniqueIdentifier);
+        UpdateUniqueIdText(settings.CalculateUID());
     }
 
     /// <summary>
@@ -69,7 +69,7 @@ public class RandomizerMenu : ModMenu
     {
         base.OnOptionsChanged();
 
-        UpdateUniqueIdText(MenuSettings.UniqueIdentifier);
+        UpdateUniqueIdText(MenuSettings.CalculateUID());
     }
 
     private void UpdateUniqueIdText(ulong id)
@@ -189,7 +189,7 @@ public class RandomizerMenu : ModMenu
     private UIPixelTextWithShadow _idText;
 
     private const int TEXT_SIZE = 55;
-    private const int ID_DIGITS = 6;
+    private const int ID_DIGITS = 12;
     private const string ID_CHARS = "0123456789ABCDEGHJKLMNPQRSTUWXYZ";
     private readonly Color SILVER = new Color32(192, 192, 192, 255);
     private readonly Color YELLOW = new Color32(255, 231, 65, 255);

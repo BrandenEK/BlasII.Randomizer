@@ -73,35 +73,6 @@ public class RandomizerSettings
     }
 
     /// <summary>
-    /// A unique ID based on the seed and all settings
-    /// </summary>
-    [JsonIgnore]
-    public ulong UniqueIdentifier
-    {
-        get
-        {
-            // Simple version to start with
-            ulong id = (ulong)Seed;
-
-            int logic = LogicType;
-            if ((logic & 1) != 0) id |= 1 << 20; // Logic
-            if ((logic & 2) != 0) id |= 1 << 21;
-            int keys = RequiredKeys + 1;
-            if ((keys & 1) != 0) id |= 1 << 22; // Keys
-            if ((keys & 2) != 0) id |= 1 << 23;
-            if ((keys & 4) != 0) id |= 1 << 24;
-            int weapon = StartingWeapon + 1;
-            if ((weapon & 1) != 0) id |= 1 << 25; // Weapon
-            if ((weapon & 2) != 0) id |= 1 << 26;
-            if ((weapon & 4) != 0) id |= 1 << 27;
-            if (ShuffleLongQuests) id |= 1 << 28; // Quests
-            if (ShuffleShops) id |= 1 << 29; // Shops
-
-            return id;
-        }
-    }
-
-    /// <summary>
     /// A new settings object with default properties
     /// </summary>
     public static RandomizerSettings DEFAULT => new()
