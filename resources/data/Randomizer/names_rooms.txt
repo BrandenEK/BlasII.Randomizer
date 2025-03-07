@@ -4,18 +4,18 @@ Z0102: Weapon room
 Z0103: Tutorial room
 Z0105: Prie dieu room
 Z0106: Boss room
-Z0107: Ravine entrance room
-Z0108: Tower entrance room
+Z0107: Ravine entrance
+Z0108: Tower entrance
 Z0109: Cobijada room
 Z0110: Penitence room
 # Ravine of the High Stones
-Z0201: Z0201
-Z0202: Z0202
-Z0203: Z0203
-Z0204: Z0204
-Z0205: Z0205
-Z0206: Z0206
-Z0207: Z0207
+Z0201: Prie dieu room
+Z0202: Tutorial room
+Z0203: Bell room
+Z0204: Ladder shortcut room
+Z0205: City entrance
+Z0206: Repose entrance
+Z0207: Aquaducts entrance
 # Aqueduct of the Costales
 Z0301: Z0301
 Z0302: Z0302
@@ -55,20 +55,20 @@ Z0427: Z0427
 Z0428: Z0428
 Z0429: Z0429
 # City of the Blessed Name
-Z0501: Z0501
-Z0502: Z0502
-Z0503: Z0503
-Z0504: Z0504
-Z0505: Z0505
-Z0506: Z0506
-Z0510: Z0510
-Z0511: Z0511
-Z05BZ01: Z05BZ01
-Z05BZ02: Z05BZ02
-Z05BZ03: Z05BZ03
-Z05BZ04: Z05BZ04
-Z05BZ05: Z05BZ05
-Z05BZ06: Z05BZ06
+Z0501: West side
+Z0502: Central building
+Z0503: East side
+Z0504: Rooftops
+Z0505: Teleport room
+Z0506: Cobijada room
+Z0510: Chalice room
+Z0511: Hidden chest room
+Z05BZ01: Confessor's room
+Z05BZ02: Sculptor's room
+Z05BZ03: Regina's shop
+Z05BZ04: City room 1
+Z05BZ05: City room 2
+Z05BZ06: City room 3
 # Grilles and Ruins
 Z0601: Z0601
 Z0602: Z0602
@@ -426,11 +426,11 @@ Z1918: Z1918
 Z1919: Z1919
 Z1920: Z1920
 # Sea of Ink
-Z2001: Z2001
-Z2002: Z2002
-Z2003: Z2003
-Z2004: Z2004
-Z2005: Z2005
+Z2001: Eastern bridge
+Z2002: Odon battle room
+Z2003: Western bridge
+Z2004: Cathedral entrance
+Z2005: Elevator room
 # Labyrinth of Tides
 Z2101: Z2101
 Z2102: Z2102
