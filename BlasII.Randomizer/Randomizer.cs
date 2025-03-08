@@ -21,7 +21,7 @@ namespace BlasII.Randomizer;
 /// <summary>
 /// An item randomizer for the game Blasphemous 2
 /// </summary>
-public class Randomizer : BlasIIMod, ISlotPersistentMod<RandomizerSlotData>
+public class Randomizer : BlasIIMod, ISlotPersistentMod<RandomizerSlotData>, IGlobalPersistentMod<RandomizerGlobalData>
 {
     internal Randomizer() : base(ModInfo.MOD_ID, ModInfo.MOD_NAME, ModInfo.MOD_AUTHOR, ModInfo.MOD_VERSION) { }
 
@@ -53,6 +53,11 @@ public class Randomizer : BlasIIMod, ISlotPersistentMod<RandomizerSlotData>
     public ExtraInfoStorage ExtraInfoStorage { get; private set; }
 
     // Properties
+
+    /// <summary>
+    /// The total number of seeds generated since v2.2.1
+    /// </summary>
+    public int TotalSeedsGenerated { get; private set; } = 0;
 
     /// <summary>
     /// Whether or not randomizer effects should take place.  Used for testing item/location ids
@@ -142,6 +147,7 @@ public class Randomizer : BlasIIMod, ISlotPersistentMod<RandomizerSlotData>
         SetQuestValue("ST00", "WEAPON_EVENT", true);
         SetQuestValue("ST00", "INTRO", true);
         IsNewGame = true;
+        TotalSeedsGenerated++;
     }
 
     public RandomizerSlotData SaveSlot()
@@ -171,6 +177,19 @@ public class Randomizer : BlasIIMod, ISlotPersistentMod<RandomizerSlotData>
         ItemHandler.MappedItems.Clear();
         ItemHandler.CollectedLocations.Clear();
         ItemHandler.CollectedItems.Clear();
+    }
+
+    public RandomizerGlobalData SaveGlobal()
+    {
+        return new RandomizerGlobalData()
+        {
+            SeedsGenerated = TotalSeedsGenerated
+        };
+    }
+
+    public void LoadGlobal(RandomizerGlobalData data)
+    {
+        TotalSeedsGenerated = data.SeedsGenerated;
     }
 
     private void AllowPrieDieuWarp()
