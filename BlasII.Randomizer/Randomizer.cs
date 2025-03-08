@@ -21,7 +21,7 @@ namespace BlasII.Randomizer;
 /// <summary>
 /// An item randomizer for the game Blasphemous 2
 /// </summary>
-public class Randomizer : BlasIIMod, IPersistentMod
+public class Randomizer : BlasIIMod, ISlotPersistentMod<RandomizerSlotData>
 {
     internal Randomizer() : base(ModInfo.MOD_ID, ModInfo.MOD_NAME, ModInfo.MOD_AUTHOR, ModInfo.MOD_VERSION) { }
 
@@ -144,10 +144,10 @@ public class Randomizer : BlasIIMod, IPersistentMod
         IsNewGame = true;
     }
 
-    public SaveData SaveGame()
+    public RandomizerSlotData SaveSlot()
     {
         ModLog.Info($"Saved file with {ItemHandler.CollectedLocations.Count} collected locations");
-        return new RandomizerSaveData()
+        return new RandomizerSlotData()
         {
             mappedItems = ItemHandler.MappedItems,
             collectedLocations = ItemHandler.CollectedLocations,
@@ -156,18 +156,17 @@ public class Randomizer : BlasIIMod, IPersistentMod
         };
     }
 
-    public void LoadGame(SaveData data)
+    public void LoadSlot(RandomizerSlotData data)
     {
-        RandomizerSaveData randomizerData = data as RandomizerSaveData;
-        ItemHandler.MappedItems = randomizerData.mappedItems;
-        ItemHandler.CollectedLocations = randomizerData.collectedLocations;
-        ItemHandler.CollectedItems = randomizerData.collectedItems;
+        ItemHandler.MappedItems = data.mappedItems;
+        ItemHandler.CollectedLocations = data.collectedLocations;
+        ItemHandler.CollectedItems = data.collectedItems;
 
-        CurrentSettings = randomizerData.settings;
-        ModLog.Info($"Loaded file with {randomizerData.collectedLocations.Count} collected locations");
+        CurrentSettings = data.settings;
+        ModLog.Info($"Loaded file with {data.collectedLocations.Count} collected locations");
     }
 
-    public void ResetGame()
+    public void ResetSlot()
     {
         ItemHandler.MappedItems.Clear();
         ItemHandler.CollectedLocations.Clear();
