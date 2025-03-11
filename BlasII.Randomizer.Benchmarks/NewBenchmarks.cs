@@ -7,9 +7,9 @@ namespace BlasII.Randomizer.Benchmarks;
 
 public class NewBenchmarks
 {
-    private Dictionary<string, ItemLocation> _allItemLocations;
-    private Dictionary<string, Item> _allItems;
-    private Dictionary<string, Door> _allDoors;
+    private readonly Dictionary<string, ItemLocation> _allItemLocations;
+    private readonly Dictionary<string, Item> _allItems;
+    private readonly Dictionary<string, Door> _allDoors;
 
     private Random _rng;
     private IShuffler _shuffler;
