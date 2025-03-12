@@ -1,13 +1,14 @@
-﻿
+﻿using BlasII.Randomizer.Benchmarks.Models;
+
 namespace BlasII.Randomizer.Benchmarks.Monitors;
 
 public class SuccessRateMonitor : BaseMonitor
 {
     public override string DisplayName { get; } = "Success Rate";
 
-    protected override void HandleResult(MonitorStatus status, TimeSpan time, bool result)
+    protected override void HandleResult(MonitorStatus status, TimeSpan time, BenchmarkResult result)
     {
-        if (result)
+        if (result.WasSuccessful)
             status.SuccessfulAttempts++;
         status.TotalAttempts++;
     }

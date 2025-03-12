@@ -134,7 +134,7 @@ internal class Core
             watch.Stop();
 
             foreach (var monitor in _monitors)
-                monitor.HandleResult(benchmark.Id, watch.Elapsed, result.Result);
+                monitor.HandleResult(benchmark.Id, watch.Elapsed, result);
         }
     }
 

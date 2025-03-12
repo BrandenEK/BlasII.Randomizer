@@ -1,11 +1,12 @@
-﻿
+﻿using BlasII.Randomizer.Benchmarks.Models;
+
 namespace BlasII.Randomizer.Benchmarks.Monitors;
 
 public class AverageTimeMonitor : BaseMonitor
 {
     public override string DisplayName { get; } = "Avg. Time (All)";
 
-    protected override void HandleResult(MonitorStatus status, TimeSpan time, bool result)
+    protected override void HandleResult(MonitorStatus status, TimeSpan time, BenchmarkResult result)
     {
         status.TotalTime += time;
         status.TotalAttempts++;

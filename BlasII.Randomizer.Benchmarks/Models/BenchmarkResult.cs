@@ -3,13 +3,13 @@ namespace BlasII.Randomizer.Benchmarks.Models;
 
 public class BenchmarkResult
 {
-    public bool Result { get; }
+    public bool WasSuccessful { get; }
 
     public Dictionary<string, string> Mapping { get; }
 
-    public BenchmarkResult(bool result, Dictionary<string, string> mapping)
+    public BenchmarkResult(bool wasSuccessful, Dictionary<string, string> mapping)
     {
-        Result = result;
+        WasSuccessful = wasSuccessful;
         Mapping = mapping;
     }
 }

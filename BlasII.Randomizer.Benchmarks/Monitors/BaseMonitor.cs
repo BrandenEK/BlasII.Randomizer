@@ -1,4 +1,6 @@
-﻿namespace BlasII.Randomizer.Benchmarks.Monitors;
+﻿using BlasII.Randomizer.Benchmarks.Models;
+
+namespace BlasII.Randomizer.Benchmarks.Monitors;
 
 public abstract class BaseMonitor
 {
@@ -6,7 +8,7 @@ public abstract class BaseMonitor
 
     public abstract string DisplayName { get; }
 
-    public void HandleResult(string name, TimeSpan time, bool result)
+    public void HandleResult(string name, TimeSpan time, BenchmarkResult result)
     {
         if (!_statuses.TryGetValue(name, out MonitorStatus status))
         {
@@ -25,7 +27,7 @@ public abstract class BaseMonitor
         return FormatResult(status);
     }
 
-    protected abstract void HandleResult(MonitorStatus status, TimeSpan time, bool result);
+    protected abstract void HandleResult(MonitorStatus status, TimeSpan time, BenchmarkResult result);
 
     protected abstract string FormatResult(MonitorStatus status);
 }
