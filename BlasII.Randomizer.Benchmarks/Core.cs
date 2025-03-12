@@ -1,4 +1,5 @@
 ﻿using BlasII.Randomizer.Benchmarks.Attributes;
+using BlasII.Randomizer.Benchmarks.Metrics;
 using BlasII.Randomizer.Benchmarks.Models;
 using BlasII.Randomizer.Benchmarks.Monitors;
 using System.Diagnostics;
@@ -10,12 +11,14 @@ namespace BlasII.Randomizer.Benchmarks;
 internal class Core
 {
     private readonly static List<BaseMonitor> _monitors = new();
+    private static IMetric<BenchmarkResult>[] _metrics = Array.Empty<IMetric<BenchmarkResult>>();
 
     static void Main(string[] args)
     {
         var cmd = new BenchmarkCommand();
         cmd.Process(args);
         RegisterMonitors(new SuccessRateMonitor(), new AverageTimeMonitor(), new AverageSuccessTimeMonitor());
+        RegisterMetrics(new AverageTimeMetric());
 
         IEnumerable<string> headerInfo = GetHeaderInfo(cmd.MaxIterations);
 
@@ -34,6 +37,11 @@ internal class Core
     public static void RegisterMonitors(params BaseMonitor[] monitors)
     {
         _monitors.AddRange(monitors);
+    }
+
+    public static void RegisterMetrics(params IMetric<BenchmarkResult>[] metrics)
+    {
+        _metrics = metrics;
     }
 
     static List<BenchmarkInfo> FindAllBenchmarks<T>(object obj)
@@ -126,6 +134,13 @@ internal class Core
     {
         Console.WriteLine($"Running benchmark {benchmark.Id}");
 
+        string[] output = new string[_metrics.Length + 2];
+        output[0] = benchmark.Name;
+        output[1] = benchmark.Parameters?[0].ToString() ?? string.Empty;
+
+        foreach (var metric in _metrics)
+            metric.Reset();
+
         var watch = new Stopwatch();
         for (int i = 0; i < iterationCount; i++)
         {
@@ -135,7 +150,15 @@ internal class Core
 
             foreach (var monitor in _monitors)
                 monitor.HandleResult(benchmark.Id, watch.Elapsed, result);
+            foreach (var metric in _metrics)
+                metric.HandleResult(result, watch.Elapsed);
         }
+
+        for (int i = 0; i < _metrics.Length; i++)
+        {
+            output[i + 2] = _metrics[i].FormatMetric();
+        }
+        Console.WriteLine(string.Join(", ", output));
     }
 
     static void DisplayOutput1(List<BenchmarkInfo> benchmarks, IEnumerable<string> headerInfo, bool doExport)
