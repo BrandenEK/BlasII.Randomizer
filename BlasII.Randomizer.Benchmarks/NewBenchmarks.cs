@@ -1,4 +1,5 @@
 ﻿using BlasII.Randomizer.Benchmarks.Attributes;
+using BlasII.Randomizer.Benchmarks.Models;
 using BlasII.Randomizer.Models;
 using BlasII.Randomizer.Shuffle;
 using Newtonsoft.Json;
@@ -52,24 +53,28 @@ public class NewBenchmarks
 
     [Benchmark("Reverse Fill")]
     [BenchmarkParameters(nameof(SettingsParameters))]
-    private bool Shuffle_Reverse(RandomizerSettings settings)
+    private BenchmarkResult Shuffle_Reverse(RandomizerSettings settings)
     {
         settings.Seed = _rng.Next(1, RandomizerSettings.MAX_SEED + 1);
+
         var map = new Dictionary<string, string>();
+        bool result = _shuffler.Shuffle(settings.Seed, settings, map);
 
         //Console.WriteLine(message + "Shuffling seed: " + seed);
-        return _shuffler.Shuffle(settings.Seed, settings, map);
+        return new BenchmarkResult(result, map);
     }
 
     [Benchmark("Forward Fill")]
     [BenchmarkParameters(nameof(SettingsParameters))]
-    private bool Shuffle_Forward(RandomizerSettings settings)
+    private BenchmarkResult Shuffle_Forward(RandomizerSettings settings)
     {
         settings.Seed = _rng.Next(1, RandomizerSettings.MAX_SEED + 1);
+        
         var map = new Dictionary<string, string>();
+        bool result = _shuffler.Shuffle(settings.Seed, settings, map);
 
         //Console.WriteLine(message + "Shuffling seed: " + seed);
-        return _shuffler.Shuffle(settings.Seed, settings, map);
+        return new BenchmarkResult(result, map);
     }
 
     private IEnumerable<SettingsWithDescription> SettingsParameters

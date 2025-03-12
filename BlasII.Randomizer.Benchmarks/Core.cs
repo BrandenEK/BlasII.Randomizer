@@ -130,11 +130,11 @@ internal class Core
         for (int i = 0; i < iterationCount; i++)
         {
             watch.Restart();
-            bool result = (bool)benchmark.Method.Invoke(obj, benchmark.Parameters);
+            BenchmarkResult result = (BenchmarkResult)benchmark.Method.Invoke(obj, benchmark.Parameters);
             watch.Stop();
 
             foreach (var monitor in _monitors)
-                monitor.HandleResult(benchmark.Id, watch.Elapsed, result);
+                monitor.HandleResult(benchmark.Id, watch.Elapsed, result.Result);
         }
     }
 
