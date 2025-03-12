@@ -27,7 +27,21 @@ internal class Core
 
         if (!cmd.SkipWarmup)
             RunAllWarmups(obj, benchmarks, cmd.MaxIterations / 5);
-        RunAllBenchmarks(obj, benchmarks, cmd.MaxIterations);
+        
+        List<IEnumerable<string>> output = RunAllBenchmarks(obj, benchmarks, cmd.MaxIterations);
+
+        var header = new List<string>();
+        header.Add("Method");
+        header.Add("Parameters");
+        foreach (var metric in _metrics)
+            header.Add(metric.DisplayName);
+        output.Insert(0, header);
+
+        foreach (var line in output)
+        {
+            Console.WriteLine(string.Join(" | ", line));
+        }
+
         DisplayOutput1(benchmarks, headerInfo, cmd.ExportResults);
 
         if (cmd.WaitForInput)
@@ -118,19 +132,24 @@ internal class Core
         }
     }
 
-    static void RunAllBenchmarks(object obj, List<BenchmarkInfo> benchmarks, int iterationCount)
+    static List<IEnumerable<string>> RunAllBenchmarks(object obj, List<BenchmarkInfo> benchmarks, int iterationCount)
     {
         Console.WriteLine($"Running {benchmarks.Count} benchmarks");
+
+        var output = new List<IEnumerable<string>>();
+
         foreach (var benchmark in benchmarks)
         {
             foreach (var setup in GetAllSetups<NewBenchmarks>(benchmark.Method.Name))
                 setup.Invoke(obj, null);
 
-            RunBenchmark(obj, benchmark, iterationCount);
+            output.Add(RunBenchmark(obj, benchmark, iterationCount));
         }
+
+        return output;
     }
 
-    static void RunBenchmark(object obj, BenchmarkInfo benchmark, int iterationCount)
+    static IEnumerable<string> RunBenchmark(object obj, BenchmarkInfo benchmark, int iterationCount)
     {
         Console.WriteLine($"Running benchmark {benchmark.Id}");
 
@@ -158,7 +177,8 @@ internal class Core
         {
             output[i + 2] = _metrics[i].FormatMetric();
         }
-        Console.WriteLine(string.Join(", ", output));
+        
+        return output;
     }
 
     static void DisplayOutput1(List<BenchmarkInfo> benchmarks, IEnumerable<string> headerInfo, bool doExport)
