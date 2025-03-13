@@ -20,8 +20,6 @@ internal class Core
         RegisterMonitors(new SuccessRateMonitor(), new AverageTimeMonitor(), new AverageSuccessTimeMonitor());
         RegisterMetrics(new AverageTimeMetric());
 
-        IEnumerable<string> headerInfo = GetHeaderInfo(cmd.MaxIterations);
-
         object obj = new NewBenchmarks();
         var benchmarks = FindAllBenchmarks<NewBenchmarks>(obj);
 
@@ -29,13 +27,6 @@ internal class Core
             RunAllWarmups(obj, benchmarks, cmd.MaxIterations / 5);
         
         List<List<string>> output = RunAllBenchmarks(obj, benchmarks, cmd.MaxIterations);
-
-        var header = new List<string>();
-        header.Add("Method");
-        header.Add("Parameters");
-        foreach (var metric in _metrics)
-            header.Add(metric.DisplayName);
-        output.Insert(0, header);
 
         // Need to pad each section and add the pipes
         // Then add the dashed line and then any empty ones
@@ -45,14 +36,12 @@ internal class Core
         //Console.WriteLine(string.Join(" | ", maxLengths));
 
         string infoDisplay = GetInfoDisplay(cmd.MaxIterations);
+        string resultsDisplay = GetResultsDisplay(output);
 
         Console.WriteLine(infoDisplay);
-        foreach (var line in output)
-        {
-            Console.WriteLine($"| {string.Join(" | ", line)} |");
-        }
+        Console.WriteLine(resultsDisplay);
 
-        DisplayOutput1(benchmarks, headerInfo, cmd.ExportResults);
+        DisplayOutput1(benchmarks, new string[0], cmd.ExportResults);
 
         if (cmd.WaitForInput)
             Console.ReadKey(true);
@@ -79,6 +68,21 @@ internal class Core
         sb.AppendLine(line);
 
         return sb.ToString();;
+    }
+
+    private static string GetResultsDisplay(List<List<string>> results)
+    {
+        var header = new List<string>();
+        header.Add("Method");
+        header.Add("Parameters");
+        foreach (var metric in _metrics)
+            header.Add(metric.DisplayName);
+        results.Insert(0, header);
+
+        var sb = new StringBuilder();
+        sb.AppendJoin(Environment.NewLine, results.Select(line => $"| {string.Join(" | ", line)} |"));
+
+        return sb.ToString();
     }
 
     public static void RegisterMonitors(params BaseMonitor[] monitors)
