@@ -28,7 +28,7 @@ internal class Core
         if (!cmd.SkipWarmup)
             RunAllWarmups(obj, benchmarks, cmd.MaxIterations / 5);
         
-        List<IEnumerable<string>> output = RunAllBenchmarks(obj, benchmarks, cmd.MaxIterations);
+        List<List<string>> output = RunAllBenchmarks(obj, benchmarks, cmd.MaxIterations);
 
         var header = new List<string>();
         header.Add("Method");
@@ -37,9 +37,16 @@ internal class Core
             header.Add(metric.DisplayName);
         output.Insert(0, header);
 
+        // Need to pad each section and add the pipes
+        // Then add the dashed line and then any empty ones
+
+        // Use linq to get a list of MaxColumnLength, then go through each and pad by that amount and add the pipe
+        //var maxLengths = output.Select(row => row.Max(str => str.Length));
+        //Console.WriteLine(string.Join(" | ", maxLengths));
+
         foreach (var line in output)
         {
-            Console.WriteLine(string.Join(" | ", line));
+            Console.WriteLine($"| {string.Join(" | ", line)} |");
         }
 
         DisplayOutput1(benchmarks, headerInfo, cmd.ExportResults);
@@ -132,11 +139,11 @@ internal class Core
         }
     }
 
-    static List<IEnumerable<string>> RunAllBenchmarks(object obj, List<BenchmarkInfo> benchmarks, int iterationCount)
+    static List<List<string>> RunAllBenchmarks(object obj, List<BenchmarkInfo> benchmarks, int iterationCount)
     {
         Console.WriteLine($"Running {benchmarks.Count} benchmarks");
 
-        var output = new List<IEnumerable<string>>();
+        var output = new List<List<string>>();
 
         foreach (var benchmark in benchmarks)
         {
@@ -149,7 +156,7 @@ internal class Core
         return output;
     }
 
-    static IEnumerable<string> RunBenchmark(object obj, BenchmarkInfo benchmark, int iterationCount)
+    static List<string> RunBenchmark(object obj, BenchmarkInfo benchmark, int iterationCount)
     {
         Console.WriteLine($"Running benchmark {benchmark.Id}");
 
@@ -178,7 +185,7 @@ internal class Core
             output[i + 2] = _metrics[i].FormatMetric();
         }
         
-        return output;
+        return new List<string>(output);
     }
 
     static void DisplayOutput1(List<BenchmarkInfo> benchmarks, IEnumerable<string> headerInfo, bool doExport)
