@@ -44,6 +44,9 @@ internal class Core
         //var maxLengths = output.Select(row => row.Max(str => str.Length));
         //Console.WriteLine(string.Join(" | ", maxLengths));
 
+        string infoDisplay = GetInfoDisplay(cmd.MaxIterations);
+
+        Console.WriteLine(infoDisplay);
         foreach (var line in output)
         {
             Console.WriteLine($"| {string.Join(" | ", line)} |");
@@ -53,6 +56,29 @@ internal class Core
 
         if (cmd.WaitForInput)
             Console.ReadKey(true);
+    }
+
+    private static string GetInfoDisplay(int iterationCount)
+    {
+        var text = new List<string>()
+        {
+            $" Machine: {Environment.MachineName} {(Environment.Is64BitOperatingSystem ? "x64" : "x86")} ({Environment.ProcessorCount} processors)",
+            $" Operating system: {Environment.OSVersion}",
+            $" Start time: {DateTime.Now:MM/dd/yy H:mm:ss}",
+            $" Max iterations: {iterationCount}",
+            $" Debug mode: {Assembly.GetExecutingAssembly().GetCustomAttributes(false).OfType<DebuggableAttribute>().Any(x => x.IsJITTrackingEnabled)}",
+        };
+
+        var line = new string('=', text.Max(x => x.Length) + 1);
+
+        var sb = new StringBuilder();
+        sb.AppendLine();
+        sb.AppendLine(line);
+        sb.AppendJoin(Environment.NewLine, text);
+        sb.AppendLine();
+        sb.AppendLine(line);
+
+        return sb.ToString();;
     }
 
     public static void RegisterMonitors(params BaseMonitor[] monitors)
@@ -94,27 +120,6 @@ internal class Core
         }
 
         return benchmarks;
-    }
-
-    static IEnumerable<string> GetHeaderInfo(int iterationCount)
-    {
-        var text = new List<string>()
-        {
-            $" Machine: {Environment.MachineName} {(Environment.Is64BitOperatingSystem ? "x64" : "x86")} ({Environment.ProcessorCount} processors)",
-            $" Operating system: {Environment.OSVersion}",
-            $" Start time: {DateTime.Now:MM/dd/yy H:mm:ss}",
-            $" Max iterations: {iterationCount}",
-            $" Debug mode: {Assembly.GetExecutingAssembly().GetCustomAttributes(false).OfType<DebuggableAttribute>().Any(x => x.IsJITTrackingEnabled)}",
-        };
-
-        var line = new string('=', text.Max(x => x.Length) + 1);
-
-        text.Insert(0, string.Empty);
-        text.Insert(1, line);
-        text.Add(line);
-        text.Add(string.Empty);
-
-        return text;
     }
 
     static void RunAllWarmups(object obj, List<BenchmarkInfo> benchmarks, int iterationCount)
