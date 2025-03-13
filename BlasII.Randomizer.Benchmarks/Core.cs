@@ -27,21 +27,13 @@ internal class Core
             RunAllWarmups(obj, benchmarks, cmd.MaxIterations / 5);
         
         List<List<string>> output = RunAllBenchmarks(obj, benchmarks, cmd.MaxIterations);
-
-        // Need to pad each section and add the pipes
-        // Then add the dashed line and then any empty ones
-
-        // Use linq to get a list of MaxColumnLength, then go through each and pad by that amount and add the pipe
-        //var maxLengths = output.Select(row => row.Max(str => str.Length));
-        //Console.WriteLine(string.Join(" | ", maxLengths));
-
-        string infoDisplay = GetInfoDisplay(cmd.MaxIterations);
-        string resultsDisplay = GetResultsDisplay(output);
-
-        Console.WriteLine(infoDisplay);
-        Console.WriteLine(resultsDisplay);
+        string display = GetInfoDisplay(cmd.MaxIterations) + GetResultsDisplay(output);
 
         DisplayOutput1(benchmarks, new string[0], cmd.ExportResults);
+
+        Console.WriteLine(display);
+        if (cmd.ExportResults)
+            ExportResults(display);
 
         if (cmd.WaitForInput)
             Console.ReadKey(true);
@@ -66,8 +58,9 @@ internal class Core
         sb.AppendJoin(Environment.NewLine, text);
         sb.AppendLine();
         sb.AppendLine(line);
+        sb.AppendLine();
 
-        return sb.ToString();;
+        return sb.ToString();
     }
 
     private static string GetResultsDisplay(List<List<string>> results)
@@ -81,6 +74,13 @@ internal class Core
 
         var sb = new StringBuilder();
         sb.AppendJoin(Environment.NewLine, results.Select(line => $"| {string.Join(" | ", line)} |"));
+
+        // Need to pad each section and add the pipes
+        // Then add the dashed line and then any empty ones
+
+        // Use linq to get a list of MaxColumnLength, then go through each and pad by that amount and add the pipe
+        //var maxLengths = output.Select(row => row.Max(str => str.Length));
+        //Console.WriteLine(string.Join(" | ", maxLengths));
 
         return sb.ToString();
     }
@@ -228,9 +228,6 @@ internal class Core
         {
             Console.WriteLine(t);
         }
-
-        if (doExport)
-            ExportResults(text);
     }
 
     static IEnumerable<string> DisplayOutput2(string[,] output)
@@ -289,12 +286,12 @@ internal class Core
         return text;
     }
 
-    static void ExportResults(IEnumerable<string> text)
+    static void ExportResults(string text)
     {
         string filePath = Path.Combine(BASE_DIRECTORY, "BenchmarkResults", "Latest.txt");
         Directory.CreateDirectory(Path.GetDirectoryName(filePath));
 
-        File.WriteAllLines(filePath, text);
+        File.WriteAllText(filePath, text);
     }
 
     static IEnumerable<object> GetParameters<T>(object obj, string name)
