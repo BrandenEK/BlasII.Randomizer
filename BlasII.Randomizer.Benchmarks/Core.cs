@@ -31,8 +31,6 @@ internal class Core
 
         string display = GetInfoDisplay(cmd.MaxIterations) + GetResultsDisplay(results);
 
-        DisplayOutput1(benchmarks, new string[0], cmd.ExportResults);
-
         Console.WriteLine(display);
         if (cmd.ExportResults)
             ExportResults(display);
@@ -216,95 +214,6 @@ internal class Core
         {
             results[idx, i + 2] = _metrics[i].FormatMetric();
         }
-    }
-
-    static void DisplayOutput1(List<BenchmarkInfo> benchmarks, IEnumerable<string> headerInfo, bool doExport)
-    {
-        string[,] output = new string[benchmarks.Count + 1, _monitors.Count + 2];
-
-        // Add header row
-        output[0, 0] = "Method";
-        output[0, 1] = "Parameters";
-        for (int i = 0; i < _monitors.Count; i++)
-        {
-            output[0, i + 2] = _monitors[i].DisplayName;
-        }
-
-        // Add data rows
-        int row = 0, col = 0;
-        foreach (var benchmark in benchmarks)
-        {
-            output[++row, col] = benchmark.Name;
-            output[row, ++col] = benchmark.Parameters?[0].ToString() ?? string.Empty;
-            foreach (var monitor in _monitors)
-            {
-                output[row, ++col] = monitor.FormatResult(benchmark.Id);
-            }
-            col = 0;
-        }
-
-        IEnumerable<string> text = headerInfo.Concat(DisplayOutput2(output));
-
-        foreach (string t in text)
-        {
-            Console.WriteLine(t);
-        }
-    }
-
-    static IEnumerable<string> DisplayOutput2(string[,] output)
-    {
-        var sbs = new StringBuilder[output.GetLength(0)];
-        for (int i = 0; i < sbs.Length; i++)
-            sbs[i] = new StringBuilder("|");
-
-        for (int col = 0; col < output.GetLength(1); col++)
-        {
-            // Find maxwidth in the column
-            int maxWidth = 0;
-            for (int row = 0; row < output.GetLength(0); row++)
-            {
-                int width = output[row, col].Length;
-                if (width > maxWidth)
-                    maxWidth = width;
-            }
-
-            // Add each row's text
-            for (int row = 0; row < output.GetLength(0); row++)
-            {
-                sbs[row].Append(output[row, col].PadLeft(maxWidth + 1, ' ')).Append(" |");
-            }
-        }
-
-        string header = sbs[0].ToString();
-        var dashLine = new StringBuilder();
-        var emptyLine = new StringBuilder();
-
-        foreach (char c in header)
-        {
-            dashLine.Append(c == '|' ? '|' : '-');
-            emptyLine.Append(c == '|' ? '|' : ' ');
-        }
-
-        var text = new List<string>()
-        {
-            header,
-            dashLine.ToString()
-        };
-        text.AddRange(sbs.Skip(1).Select(x => x.ToString()));
-
-        // Add gaps
-        string lastMethod = text[2].Substring(2, text[2].IndexOf('|', 2));
-        for (int i = 2; i < text.Count; i++)
-        {
-            string currentMethod = text[i].Substring(2, text[i].IndexOf('|', 2));
-            if (currentMethod == lastMethod)
-                continue;
-
-            lastMethod = currentMethod;
-            text.Insert(i++, emptyLine.ToString());
-        }
-
-        return text;
     }
 
     static void ExportResults(string text)
