@@ -72,6 +72,11 @@ internal class Core
             header.Add(metric.DisplayName);
         results.Insert(0, header);
 
+        var dashLine = new List<string>();
+        for (int i = 0; i < _metrics.Length + 2; i++)
+            dashLine.Add(new string('-', 7));
+        results.Insert(1, dashLine);
+
         var sb = new StringBuilder();
         sb.AppendJoin(Environment.NewLine, results.Select(line => $"| {string.Join(" | ", line)} |"));
 
