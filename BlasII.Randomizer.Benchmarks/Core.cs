@@ -26,7 +26,7 @@ internal class Core
         if (!cmd.SkipWarmup)
             RunAllWarmups(obj, benchmarks, cmd.MaxIterations / 5);
 
-        var results = new string[benchmarks.Count + 1, _metrics.Length + 2];
+        var results = new string[benchmarks.Count + 2, _metrics.Length + 2];
         RunAllBenchmarks(obj, benchmarks, cmd.MaxIterations, results);
 
         string display = GetInfoDisplay(cmd.MaxIterations) + GetResultsDisplay(results);
@@ -67,11 +67,17 @@ internal class Core
 
     private static string GetResultsDisplay(string[,] results)
     {
+        var sb = new StringBuilder();
+
         // Fill header row
         results[0, 0] = "Method";
         results[0, 1] = "Parameters";
         for (int i = 0; i < _metrics.Length; i++)
             results[0, i + 2] = _metrics[i].DisplayName;
+
+        // Fill dashed row
+        for (int y = 0; y < results.GetLength(1); y++)
+            results[1, y] = "-";
 
         // Calculate maxwidth for each column
         var columnWidths = new int[results.GetLength(1)];
@@ -83,32 +89,19 @@ internal class Core
                     columnWidths[y] = results[x, y].Length;
             }
         }
-
-        //var dashLine = new List<string>();
-        //for (int i = 0; i < _metrics.Length + 2; i++)
-        //    dashLine.Add(new string('-', 7));
-        //results.Insert(1, dashLine);
-
-        var sb = new StringBuilder();
         
         // Add formatted data to the outout
         for (int x = 0; x < results.GetLength(0); x++)
         {
+            char padding = x == 1 ? '-' : ' ';
+
             sb.Append("|");
             for (int y = 0; y < results.GetLength(1); y++)
             {
-                sb.Append($" {results[x, y].PadLeft(columnWidths[y], ' ')} |");
+                sb.Append($"{padding}{results[x, y].PadLeft(columnWidths[y], padding)}{padding}|");
             }
             sb.AppendLine();
         }
-        //sb.AppendJoin(Environment.NewLine, results.Select(line => $"| {string.Join(" | ", line)} |"));
-
-        // Need to pad each section and add the pipes
-        // Then add the dashed line and then any empty ones
-
-        // Use linq to get a list of MaxColumnLength, then go through each and pad by that amount and add the pipe
-        //var maxLengths = output.Select(row => row.Max(str => str.Length));
-        //Console.WriteLine(string.Join(" | ", maxLengths));
 
         return sb.ToString();
     }
@@ -180,7 +173,7 @@ internal class Core
     {
         Console.WriteLine($"Running {benchmarks.Count} benchmarks");
 
-        int idx = 1;
+        int idx = 2;
         foreach (var benchmark in benchmarks)
         {
             foreach (var setup in GetAllSetups<NewBenchmarks>(benchmark.Method.Name))
