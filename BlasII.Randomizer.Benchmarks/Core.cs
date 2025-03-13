@@ -26,7 +26,7 @@ internal class Core
         if (!cmd.SkipWarmup)
             RunAllWarmups(obj, benchmarks, cmd.MaxIterations / 5);
 
-        var results = new string[benchmarks.Count + 2, _metrics.Length + 2];
+        var results = new string[benchmarks.Count + 1, _metrics.Length + 2];
         RunAllBenchmarks(obj, benchmarks, cmd.MaxIterations, results);
 
         string display = GetInfoDisplay(cmd.MaxIterations) + GetResultsDisplay(results);
@@ -75,10 +75,6 @@ internal class Core
         for (int i = 0; i < _metrics.Length; i++)
             results[0, i + 2] = _metrics[i].DisplayName;
 
-        // Fill dashed row
-        for (int y = 0; y < results.GetLength(1); y++)
-            results[1, y] = "-";
-
         // Calculate maxwidth for each column
         var columnWidths = new int[results.GetLength(1)];
         for (int y = 0; y < results.GetLength(1); y++)
@@ -89,16 +85,26 @@ internal class Core
                     columnWidths[y] = results[x, y].Length;
             }
         }
-        
+
         // Add formatted data to the outout
         for (int x = 0; x < results.GetLength(0); x++)
         {
-            char padding = x == 1 ? '-' : ' ';
+            char padding = x == 0 ? '-' : ' ';
 
-            sb.Append("|");
+            sb.Append('|');
             for (int y = 0; y < results.GetLength(1); y++)
             {
-                sb.Append($"{padding}{results[x, y].PadLeft(columnWidths[y], padding)}{padding}|");
+                sb.Append($" {results[x, y].PadLeft(columnWidths[y], ' ')} |");
+            }
+            sb.AppendLine();
+
+            if (x >= results.GetLength(0) - 1 || results[x, 0] == results[x + 1, 0])
+                continue;
+
+            sb.Append('|');
+            for (int y = 0; y < results.GetLength(1); y++)
+            {
+                sb.Append($"{new string(padding, columnWidths[y] + 2)}|");
             }
             sb.AppendLine();
         }
@@ -173,7 +179,7 @@ internal class Core
     {
         Console.WriteLine($"Running {benchmarks.Count} benchmarks");
 
-        int idx = 2;
+        int idx = 1;
         foreach (var benchmark in benchmarks)
         {
             foreach (var setup in GetAllSetups<NewBenchmarks>(benchmark.Method.Name))
