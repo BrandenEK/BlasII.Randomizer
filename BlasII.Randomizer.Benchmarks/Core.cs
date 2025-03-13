@@ -67,10 +67,22 @@ internal class Core
 
     private static string GetResultsDisplay(string[,] results)
     {
+        // Fill header row
         results[0, 0] = "Method";
         results[0, 1] = "Parameters";
         for (int i = 0; i < _metrics.Length; i++)
             results[0, i + 2] = _metrics[i].DisplayName;
+
+        // Calculate maxwidth for each column
+        var columnWidths = new int[results.GetLength(1)];
+        for (int y = 0; y < results.GetLength(1); y++)
+        {
+            for (int x = 0; x < results.GetLength(0); x++)
+            {
+                if (results[x, y].Length > columnWidths[y])
+                    columnWidths[y] = results[x, y].Length;
+            }
+        }
 
         //var dashLine = new List<string>();
         //for (int i = 0; i < _metrics.Length + 2; i++)
@@ -79,12 +91,13 @@ internal class Core
 
         var sb = new StringBuilder();
         
+        // Add formatted data to the outout
         for (int x = 0; x < results.GetLength(0); x++)
         {
             sb.Append("|");
             for (int y = 0; y < results.GetLength(1); y++)
             {
-                sb.Append($" {results[x, y]} |");
+                sb.Append($" {results[x, y].PadLeft(columnWidths[y], ' ')} |");
             }
             sb.AppendLine();
         }
