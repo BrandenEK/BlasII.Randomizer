@@ -25,9 +25,11 @@ internal class Core
 
         if (!cmd.SkipWarmup)
             RunAllWarmups(obj, benchmarks, cmd.MaxIterations / 5);
-        
-        List<List<string>> output = RunAllBenchmarks(obj, benchmarks, cmd.MaxIterations);
-        string display = GetInfoDisplay(cmd.MaxIterations) + GetResultsDisplay(output);
+
+        var results = new string[benchmarks.Count + 1, _metrics.Length + 2];
+
+        List<List<string>> output = RunAllBenchmarks(obj, benchmarks, cmd.MaxIterations, results);
+        string display = GetInfoDisplay(cmd.MaxIterations) + GetResultsDisplay(results);
 
         DisplayOutput1(benchmarks, new string[0], cmd.ExportResults);
 
@@ -63,22 +65,37 @@ internal class Core
         return sb.ToString();
     }
 
-    private static string GetResultsDisplay(List<List<string>> results)
+    private static string GetResultsDisplay(string[,] results)
     {
-        var header = new List<string>();
-        header.Add("Method");
-        header.Add("Parameters");
-        foreach (var metric in _metrics)
-            header.Add(metric.DisplayName);
-        results.Insert(0, header);
+        //var header = new List<string>();
+        //header.Add("Method");
+        //header.Add("Parameters");
+        //foreach (var metric in _metrics)
+        //    header.Add(metric.DisplayName);
+        //results.Insert(0, header);
 
-        var dashLine = new List<string>();
-        for (int i = 0; i < _metrics.Length + 2; i++)
-            dashLine.Add(new string('-', 7));
-        results.Insert(1, dashLine);
+        results[0, 0] = "Method";
+        results[0, 1] = "Parameters";
+        for (int i = 0; i < _metrics.Length; i++)
+            results[0, i + 2] = _metrics[i].DisplayName;
+
+        //var dashLine = new List<string>();
+        //for (int i = 0; i < _metrics.Length + 2; i++)
+        //    dashLine.Add(new string('-', 7));
+        //results.Insert(1, dashLine);
 
         var sb = new StringBuilder();
-        sb.AppendJoin(Environment.NewLine, results.Select(line => $"| {string.Join(" | ", line)} |"));
+        
+        for (int x = 0; x < results.GetLength(0); x++)
+        {
+            sb.Append("|");
+            for (int y = 0; y < results.GetLength(1); y++)
+            {
+                sb.Append($" {results[x, y]} |");
+            }
+            sb.AppendLine();
+        }
+        //sb.AppendJoin(Environment.NewLine, results.Select(line => $"| {string.Join(" | ", line)} |"));
 
         // Need to pad each section and add the pipes
         // Then add the dashed line and then any empty ones
@@ -153,30 +170,33 @@ internal class Core
         }
     }
 
-    static List<List<string>> RunAllBenchmarks(object obj, List<BenchmarkInfo> benchmarks, int iterationCount)
+    static List<List<string>> RunAllBenchmarks(object obj, List<BenchmarkInfo> benchmarks, int iterationCount, string[,] results)
     {
         Console.WriteLine($"Running {benchmarks.Count} benchmarks");
 
         var output = new List<List<string>>();
 
+        int idx = 1;
         foreach (var benchmark in benchmarks)
         {
             foreach (var setup in GetAllSetups<NewBenchmarks>(benchmark.Method.Name))
                 setup.Invoke(obj, null);
 
-            output.Add(RunBenchmark(obj, benchmark, iterationCount));
+            output.Add(RunBenchmark(obj, benchmark, iterationCount, results, idx++));
         }
 
         return output;
     }
 
-    static List<string> RunBenchmark(object obj, BenchmarkInfo benchmark, int iterationCount)
+    static List<string> RunBenchmark(object obj, BenchmarkInfo benchmark, int iterationCount, string[,] results, int idx)
     {
         Console.WriteLine($"Running benchmark {benchmark.Id}");
 
         string[] output = new string[_metrics.Length + 2];
         output[0] = benchmark.Name;
         output[1] = benchmark.Parameters?[0].ToString() ?? string.Empty;
+        results[idx, 0] = benchmark.Name;
+        results[idx, 1] = benchmark.Parameters?[0].ToString() ?? string.Empty;
 
         foreach (var metric in _metrics)
             metric.Reset();
@@ -197,8 +217,9 @@ internal class Core
         for (int i = 0; i < _metrics.Length; i++)
         {
             output[i + 2] = _metrics[i].FormatMetric();
+            results[idx, i + 2] = _metrics[i].FormatMetric();
         }
-        
+
         return new List<string>(output);
     }
 
