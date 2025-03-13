@@ -27,8 +27,8 @@ internal class Core
             RunAllWarmups(obj, benchmarks, cmd.MaxIterations / 5);
 
         var results = new string[benchmarks.Count + 1, _metrics.Length + 2];
+        RunAllBenchmarks(obj, benchmarks, cmd.MaxIterations, results);
 
-        List<List<string>> output = RunAllBenchmarks(obj, benchmarks, cmd.MaxIterations, results);
         string display = GetInfoDisplay(cmd.MaxIterations) + GetResultsDisplay(results);
 
         DisplayOutput1(benchmarks, new string[0], cmd.ExportResults);
@@ -67,13 +67,6 @@ internal class Core
 
     private static string GetResultsDisplay(string[,] results)
     {
-        //var header = new List<string>();
-        //header.Add("Method");
-        //header.Add("Parameters");
-        //foreach (var metric in _metrics)
-        //    header.Add(metric.DisplayName);
-        //results.Insert(0, header);
-
         results[0, 0] = "Method";
         results[0, 1] = "Parameters";
         for (int i = 0; i < _metrics.Length; i++)
@@ -170,11 +163,9 @@ internal class Core
         }
     }
 
-    static List<List<string>> RunAllBenchmarks(object obj, List<BenchmarkInfo> benchmarks, int iterationCount, string[,] results)
+    static void RunAllBenchmarks(object obj, List<BenchmarkInfo> benchmarks, int iterationCount, string[,] results)
     {
         Console.WriteLine($"Running {benchmarks.Count} benchmarks");
-
-        var output = new List<List<string>>();
 
         int idx = 1;
         foreach (var benchmark in benchmarks)
@@ -182,19 +173,14 @@ internal class Core
             foreach (var setup in GetAllSetups<NewBenchmarks>(benchmark.Method.Name))
                 setup.Invoke(obj, null);
 
-            output.Add(RunBenchmark(obj, benchmark, iterationCount, results, idx++));
+            RunBenchmark(obj, benchmark, iterationCount, results, idx++);
         }
-
-        return output;
     }
 
-    static List<string> RunBenchmark(object obj, BenchmarkInfo benchmark, int iterationCount, string[,] results, int idx)
+    static void RunBenchmark(object obj, BenchmarkInfo benchmark, int iterationCount, string[,] results, int idx)
     {
         Console.WriteLine($"Running benchmark {benchmark.Id}");
 
-        string[] output = new string[_metrics.Length + 2];
-        output[0] = benchmark.Name;
-        output[1] = benchmark.Parameters?[0].ToString() ?? string.Empty;
         results[idx, 0] = benchmark.Name;
         results[idx, 1] = benchmark.Parameters?[0].ToString() ?? string.Empty;
 
@@ -216,11 +202,8 @@ internal class Core
 
         for (int i = 0; i < _metrics.Length; i++)
         {
-            output[i + 2] = _metrics[i].FormatMetric();
             results[idx, i + 2] = _metrics[i].FormatMetric();
         }
-
-        return new List<string>(output);
     }
 
     static void DisplayOutput1(List<BenchmarkInfo> benchmarks, IEnumerable<string> headerInfo, bool doExport)
