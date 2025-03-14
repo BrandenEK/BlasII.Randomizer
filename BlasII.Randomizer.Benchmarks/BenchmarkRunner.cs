@@ -13,9 +13,21 @@ public class BenchmarkRunner<TResult>
     private static readonly List<IExporter> _exporters = new();
     private static readonly List<IMetric<TResult>> _metrics = new();
 
-    public void Run<TClass>(int iterations)
+    public void Run<TClass>(int iterations, bool doWarmup) where TClass : class, new()
     {
-        // Do the actual stuff
+        object obj = new TClass();
+        var benchmarks = FindAllBenchmarks<TClass>(obj);
+
+        if (doWarmup)
+            RunAllWarmups<TClass>(obj, benchmarks, iterations / 5);
+
+        var results = new string[benchmarks.Count + 1, _metrics.Count + 2];
+        RunAllBenchmarks<TClass>(obj, benchmarks, iterations, results);
+
+        string display = GetInfoDisplay(iterations) + GetResultsDisplay(results);
+
+        foreach (var exporter in _exporters)
+            exporter.Export(display);
     }
 
     // Finding benchmarks
