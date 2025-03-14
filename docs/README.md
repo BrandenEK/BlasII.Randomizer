@@ -47,7 +47,9 @@
 ---
 
 ### Randomizer Settings
-Seeds can be in the range of 1 to 99,999,999.  A full breakdown of all the available settings can be found [here](SETTINGS.md)
+Seeds can be in the range of 1 to 99,999,999.  A full breakdown of all the available settings can be found [here](SETTINGS.md).  There are also a variety of presets that can be selected:
+- Standard - Designed for the average player
+- Quick and Easy - A shorter playthrough with easier options
 
 ---
 
