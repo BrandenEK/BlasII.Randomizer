@@ -1,3 +1,4 @@
+using BlasII.Randomizer.Settings;
 using Newtonsoft.Json;
 using System;
 
@@ -75,15 +76,8 @@ public class RandomizerSettings
     /// <summary>
     /// A new settings object with default properties
     /// </summary>
-    public static RandomizerSettings DEFAULT => new()
-    {
-        Seed = RANDOM_SEED,
-        LogicType = 1,
-        RequiredKeys = 4,
-        StartingWeapon = -1,
-        ShuffleLongQuests = false,
-        ShuffleShops = true,
-    };
+    [Obsolete("Use new SettingsGenerator instead")]
+    public static RandomizerSettings DEFAULT => SettingsGenerator.CreateFromPreset(Preset.Standard);
 
     /// <summary>
     /// A random seed in the valid range

@@ -37,8 +37,12 @@ popup/sisters: ...
 popup/mud: The Mud Key remains intact.
 
 # Settings menu
-option/seed: Seed:
 option/random: Random
+option/seed: Seed:
+option/preset: Preset
+option/preset/custom: Custom
+option/preset/standard: Standard
+option/preset/quick: Quick and Easy
 option/long: Shuffle long quests
 option/shops: Shuffle shops
 option/weapon: Starting weapon

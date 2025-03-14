@@ -3,6 +3,7 @@ using BlasII.Framework.Menus.Options;
 using BlasII.Framework.UI;
 using BlasII.ModdingAPI;
 using BlasII.Randomizer.Extensions;
+using BlasII.Randomizer.Settings;
 using Il2CppTGK.Game.Components.UI;
 using Il2CppTMPro;
 using System.Text;
@@ -44,8 +45,6 @@ public class RandomizerMenu : ModMenu
             _setStartingWeapon.CurrentOption = value.StartingWeapon + 1;
             _setShuffleLongQuests.Toggled = true;
             _setShuffleShops.Toggled = value.ShuffleShops;
-
-            _setSeed.CurrentValue = string.Empty;
         }
     }
 
@@ -54,12 +53,15 @@ public class RandomizerMenu : ModMenu
     /// </summary>
     public override void OnStart()
     {
-        RandomizerSettings settings = RandomizerSettings.DEFAULT;
+        RandomizerSettings settings = SettingsGenerator.CreateFromPreset(Preset.Standard);
 
         _generatedSeed = RandomizerSettings.RANDOM_SEED;
         ModLog.Info($"Generating default seed: {_generatedSeed}");
 
         MenuSettings = settings;
+        _setSeed.CurrentValue = string.Empty;
+        _setPreset.CurrentOption = 1;
+
         UpdateUniqueIdText(settings.CalculateUID());
     }
 
@@ -72,13 +74,29 @@ public class RandomizerMenu : ModMenu
     }
 
     /// <summary>
-    /// Update the Unique ID when an option is changed
+    /// Handle changing an option (Apply presets, update UID)
     /// </summary>
-    public override void OnOptionsChanged()
+    public override void OnOptionsChanged(string option)
     {
-        base.OnOptionsChanged();
+        base.OnOptionsChanged(option);
+
+        if (option == "Preset")
+            UpdateSettingsFromPresetChange();
+        else if (option != "Seed")
+            _setPreset.CurrentOption = 0;
 
         UpdateUniqueIdText(MenuSettings.CalculateUID());
+    }
+
+    private void UpdateSettingsFromPresetChange()
+    {
+        if (_setPreset.CurrentOption == 0)
+            return;
+
+        Preset preset = (Preset)(_setPreset.CurrentOption - 1);
+
+        ModLog.Info($"Changed preset to {preset}");
+        MenuSettings = SettingsGenerator.CreateFromPreset(preset);
     }
 
     private void UpdateUniqueIdText(ulong id)
@@ -127,13 +145,13 @@ public class RandomizerMenu : ModMenu
 
         _setSeed = text.CreateOption("Seed", ui, new Vector2(0, 300), "option/seed", true, false, RandomizerSettings.MAX_SEED.ToString().Length);
 
-        _setLogicDifficulty = arrow.CreateOption("LD", ui, new Vector2(-300, 80), "option/logic", new string[]
-        {
+        _setLogicDifficulty = arrow.CreateOption("LD", ui, new Vector2(-300, 80), "option/logic",
+        [
             "option/logic/normal",
-        });
+        ]);
 
-        _setRequiredKeys = arrow.CreateOption("RQ", ui, new Vector2(-300, -80), "option/keys", new string[]
-        {
+        _setRequiredKeys = arrow.CreateOption("RQ", ui, new Vector2(-300, -80), "option/keys",
+        [
             "option/random",
             "option/keys/zero",
             "option/keys/one",
@@ -141,34 +159,44 @@ public class RandomizerMenu : ModMenu
             "option/keys/three",
             "option/keys/four",
             "option/keys/five",
-        });
+        ]);
 
-        _setStartingWeapon = arrow.CreateOption("SW", ui, new Vector2(-300, -240), "option/weapon", new string[]
-        {
+        _setStartingWeapon = arrow.CreateOption("SW", ui, new Vector2(-300, -240), "option/weapon",
+        [
             "option/random",
             "option/weapon/censer",
             "option/weapon/rosary",
             "option/weapon/rapier",
             "option/weapon/meaculpa",
-        });
+        ]);
 
         _setShuffleLongQuests = toggle.CreateOption("SL", ui, new Vector2(150, 70), "option/long");
         _setShuffleLongQuests.Enabled = false;
 
         _setShuffleShops = toggle.CreateOption("SS", ui, new Vector2(150, -10), "option/shops");
 
-        UIModder.Create(new RectCreationOptions()
-        {
-            Name = "Temp text",
-            Parent = ui,
-            Position = new Vector2(0, 200),
-        }).AddText(new TextCreationOptions()
-        {
-            Contents = "More options coming in the next update!",
-            Color = Color.cyan,
-            Alignment = TextAlignmentOptions.Center,
-            FontSize = 40,
-        });
+        arrow.ArrowSize = 40;
+        arrow.TextSize = 40;
+
+        _setPreset = arrow.CreateOption("Preset", ui, new Vector2(600, 400), "option/preset",
+        [
+            "option/preset/custom",
+            "option/preset/standard",
+            "option/preset/quick",
+        ]);
+
+        //UIModder.Create(new RectCreationOptions()
+        //{
+        //    Name = "Temp text",
+        //    Parent = ui,
+        //    Position = new Vector2(0, 200),
+        //}).AddText(new TextCreationOptions()
+        //{
+        //    Contents = "More options coming in the next update!",
+        //    Color = Color.cyan,
+        //    Alignment = TextAlignmentOptions.Center,
+        //    FontSize = 40,
+        //});
 
         _idText = UIModder.Create(new RectCreationOptions()
         {
@@ -189,11 +217,11 @@ public class RandomizerMenu : ModMenu
     }
 
     private TextOption _setSeed;
+    private ArrowOption _setPreset;
 
     private ArrowOption _setLogicDifficulty;
     private ArrowOption _setRequiredKeys;
     private ArrowOption _setStartingWeapon;
-
     private ToggleOption _setShuffleLongQuests;
     private ToggleOption _setShuffleShops;
 
