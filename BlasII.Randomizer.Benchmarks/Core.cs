@@ -1,4 +1,5 @@
 ﻿using BlasII.Randomizer.Benchmarks.Attributes;
+using BlasII.Randomizer.Benchmarks.Exporters;
 using BlasII.Randomizer.Benchmarks.Metrics;
 using BlasII.Randomizer.Benchmarks.Models;
 using System.Diagnostics;
@@ -10,12 +11,17 @@ namespace BlasII.Randomizer.Benchmarks;
 internal class Core
 {
     private static IMetric<BenchmarkResult>[] _metrics = Array.Empty<IMetric<BenchmarkResult>>();
+    private static readonly List<IExporter> _exporters = new();
 
     static void Main(string[] args)
     {
         var cmd = new BenchmarkCommand();
         cmd.Process(args);
+
         RegisterMetrics(new SuccessRateMetric(), new AverageTimeMetric(), new AverageSuccessTimeMetric());
+        AddExporter(new ConsoleExporter());
+        if (cmd.ExportResults)
+            AddExporter(new FileExporter(Path.Combine(BASE_DIRECTORY, "BenchmarkResults")));
 
         object obj = new NewBenchmarks();
         var benchmarks = FindAllBenchmarks<NewBenchmarks>(obj);
@@ -28,9 +34,8 @@ internal class Core
 
         string display = GetInfoDisplay(cmd.MaxIterations) + GetResultsDisplay(results);
 
-        Console.WriteLine(display);
-        if (cmd.ExportResults)
-            ExportResults(display);
+        foreach (var exporter in _exporters)
+            exporter.Export(display);
 
         if (cmd.WaitForInput)
             Console.ReadKey(true);
@@ -110,6 +115,16 @@ internal class Core
     public static void RegisterMetrics(params IMetric<BenchmarkResult>[] metrics)
     {
         _metrics = metrics;
+    }
+
+    public static void AddExporter(IExporter exporter)
+    {
+        _exporters.Add(exporter);
+    }
+
+    public static void AddExporters(params IExporter[] exporters)
+    {
+        _exporters.AddRange(exporters);
     }
 
     static List<BenchmarkInfo> FindAllBenchmarks<T>(object obj)
