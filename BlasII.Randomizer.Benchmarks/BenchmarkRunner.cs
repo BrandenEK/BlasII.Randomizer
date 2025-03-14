@@ -10,18 +10,16 @@ namespace BlasII.Randomizer.Benchmarks;
 
 public class BenchmarkRunner<TResult>
 {
-    private static readonly List<IExporter> _exporters = new();
-    private static readonly List<IMetric<TResult>> _metrics = new();
+    private readonly List<IExporter> _exporters = new();
+    private readonly List<IMetric<TResult>> _metrics = new();
 
-    public void Run<TClass>(int iterations, bool doWarmup) where TClass : class, new()
+    public void Run<TClass>(int iterations) where TClass : class, new()
     {
         object obj = new TClass();
         var benchmarks = FindAllBenchmarks<TClass>(obj);
-
-        if (doWarmup)
-            RunAllWarmups<TClass>(obj, benchmarks, iterations / 5);
-
         var results = new string[benchmarks.Count + 1, _metrics.Count + 2];
+
+        RunAllWarmups<TClass>(obj, benchmarks, iterations / 5);
         RunAllBenchmarks<TClass>(obj, benchmarks, iterations, results);
 
         string display = GetInfoDisplay(iterations) + GetResultsDisplay(results);

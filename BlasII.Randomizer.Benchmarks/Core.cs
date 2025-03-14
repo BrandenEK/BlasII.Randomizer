@@ -17,7 +17,7 @@ internal class Core
             .AddExporter(cmd.ExportResults, () => new FileExporter(Path.Combine(BASE_DIRECTORY, "BenchmarkResults")))
             .AddMetrics(new SuccessRateMetric(), new AverageTimeMetric(), new AverageSuccessTimeMetric());
 
-        runner.Run<NewBenchmarks>(cmd.MaxIterations, !cmd.SkipWarmup);
+        runner.Run<NewBenchmarks>(cmd.MaxIterations);
 
         if (cmd.WaitForInput)
             Console.ReadKey(true);
