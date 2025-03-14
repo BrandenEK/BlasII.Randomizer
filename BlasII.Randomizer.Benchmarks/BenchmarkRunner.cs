@@ -1,5 +1,7 @@
-﻿using BlasII.Randomizer.Benchmarks.Exporters;
+﻿using BlasII.Randomizer.Benchmarks.Attributes;
+using BlasII.Randomizer.Benchmarks.Exporters;
 using BlasII.Randomizer.Benchmarks.Metrics;
+using BlasII.Randomizer.Benchmarks.Models;
 using System.Diagnostics;
 using System.Reflection;
 using System.Text;
@@ -16,60 +18,104 @@ public class BenchmarkRunner<TResult>
         // Do the actual stuff
     }
 
-    // Adding exporters
+    // Finding benchmarks
 
-    public BenchmarkRunner<TResult> AddExporter(IExporter exporter)
+    private List<BenchmarkInfo> FindAllBenchmarks<T>(object obj)
     {
-        _exporters.Add(exporter);
-        return this;
+        var benchmarks = new List<BenchmarkInfo>();
+        var methods = typeof(T).GetMethods(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
+
+        foreach (var method in methods)
+        {
+            BenchmarkAttribute bAttribute = method.GetCustomAttribute<BenchmarkAttribute>();
+
+            if (bAttribute == null)
+                continue;
+
+            BenchmarkParametersAttribute bpAttribute = method.GetCustomAttribute<BenchmarkParametersAttribute>();
+
+            if (bpAttribute == null)
+            {
+                benchmarks.Add(new BenchmarkInfo(method.Name, bAttribute.Name ?? method.Name, method, null));
+                continue;
+            }
+
+            IEnumerable<object> parameters = bpAttribute.ParameterProperty != null
+                ? ReflectionHelper.GetParameters<T>(obj, bpAttribute.ParameterProperty)
+                : bpAttribute.Parameters ?? throw new Exception("You have to add the parameter property or the list");
+
+            benchmarks.AddRange(parameters
+                .Select(x => new BenchmarkInfo($"{method.Name}.{x}", bAttribute.Name ?? method.Name, method, new object[] { x })));
+        }
+
+        return benchmarks;
     }
 
-    public BenchmarkRunner<TResult> AddExporter(bool condition, Func<IExporter> createExporter)
+    // Running warmups
+
+    private void RunAllWarmups(object obj, List<BenchmarkInfo> benchmarks, int iterationCount)
     {
-        if (condition)
-            _exporters.Add(createExporter());
-        return this;
+        Console.WriteLine($"Running {benchmarks.Count} warmups");
+        foreach (var benchmark in benchmarks)
+        {
+            foreach (var setup in ReflectionHelper.GetAllSetups<NewBenchmarks>(benchmark.Method.Name))
+                setup.Invoke(obj, null);
+
+            RunWarmup(obj, benchmark, iterationCount);
+        }
     }
 
-    public BenchmarkRunner<TResult> AddExporters(params IExporter[] exporters)
+    private void RunWarmup(object obj, BenchmarkInfo benchmark, int iterationCount)
     {
-        _exporters.AddRange(exporters);
-        return this;
+        Console.WriteLine($"Running warmup {benchmark.Id}");
+
+        for (int i = 0; i < iterationCount; i++)
+        {
+            benchmark.Method.Invoke(obj, benchmark.Parameters);
+        }
     }
 
-    public BenchmarkRunner<TResult> AddExporters(bool condition, params Func<IExporter>[] createExporters)
+    // Running benchmarks
+
+    private void RunAllBenchmarks(object obj, List<BenchmarkInfo> benchmarks, int iterationCount, string[,] results)
     {
-        if (condition)
-            _exporters.AddRange(createExporters.Select(x => x.Invoke()));
-        return this;
+        Console.WriteLine($"Running {benchmarks.Count} benchmarks");
+
+        int idx = 1;
+        foreach (var benchmark in benchmarks)
+        {
+            foreach (var setup in ReflectionHelper.GetAllSetups<NewBenchmarks>(benchmark.Method.Name))
+                setup.Invoke(obj, null);
+
+            RunBenchmark(obj, benchmark, iterationCount, results, idx++);
+        }
     }
 
-    // Adding metrics
-
-    public BenchmarkRunner<TResult> AddMetric(IMetric<TResult> metric)
+    private void RunBenchmark(object obj, BenchmarkInfo benchmark, int iterationCount, string[,] results, int idx)
     {
-        _metrics.Add(metric);
-        return this;
-    }
+        Console.WriteLine($"Running benchmark {benchmark.Id}");
 
-    public BenchmarkRunner<TResult> AddMetric(bool condition, Func<IMetric<TResult>> createMetric)
-    {
-        if (condition)
-            _metrics.Add(createMetric());
-        return this;
-    }
+        results[idx, 0] = benchmark.Name;
+        results[idx, 1] = benchmark.Parameters?[0].ToString() ?? string.Empty;
 
-    public BenchmarkRunner<TResult> AddMetrics(params IMetric<TResult>[] metrics)
-    {
-        _metrics.AddRange(metrics);
-        return this;
-    }
+        foreach (var metric in _metrics)
+            metric.Reset();
 
-    public BenchmarkRunner<TResult> AddMetrics(bool condition, Func<IMetric<TResult>>[] createMetrics)
-    {
-        if (condition)
-            _metrics.AddRange(createMetrics.Select(x => x.Invoke()));
-        return this;
+        var watch = new Stopwatch();
+        for (int i = 0; i < iterationCount; i++)
+        {
+            watch.Restart();
+            TResult result = (TResult)benchmark.Method.Invoke(obj, benchmark.Parameters);
+            watch.Stop();
+
+            foreach (var metric in _metrics)
+                metric.HandleResult(result, watch.Elapsed);
+        }
+
+        for (int i = 0; i < _metrics.Count; i++)
+        {
+            results[idx, i + 2] = _metrics[i].FormatMetric();
+        }
     }
 
     // Calculating display
@@ -143,5 +189,61 @@ public class BenchmarkRunner<TResult>
         }
 
         return sb.ToString();
+    }
+
+    // Adding exporters
+
+    public BenchmarkRunner<TResult> AddExporter(IExporter exporter)
+    {
+        _exporters.Add(exporter);
+        return this;
+    }
+
+    public BenchmarkRunner<TResult> AddExporter(bool condition, Func<IExporter> createExporter)
+    {
+        if (condition)
+            _exporters.Add(createExporter());
+        return this;
+    }
+
+    public BenchmarkRunner<TResult> AddExporters(params IExporter[] exporters)
+    {
+        _exporters.AddRange(exporters);
+        return this;
+    }
+
+    public BenchmarkRunner<TResult> AddExporters(bool condition, params Func<IExporter>[] createExporters)
+    {
+        if (condition)
+            _exporters.AddRange(createExporters.Select(x => x.Invoke()));
+        return this;
+    }
+
+    // Adding metrics
+
+    public BenchmarkRunner<TResult> AddMetric(IMetric<TResult> metric)
+    {
+        _metrics.Add(metric);
+        return this;
+    }
+
+    public BenchmarkRunner<TResult> AddMetric(bool condition, Func<IMetric<TResult>> createMetric)
+    {
+        if (condition)
+            _metrics.Add(createMetric());
+        return this;
+    }
+
+    public BenchmarkRunner<TResult> AddMetrics(params IMetric<TResult>[] metrics)
+    {
+        _metrics.AddRange(metrics);
+        return this;
+    }
+
+    public BenchmarkRunner<TResult> AddMetrics(bool condition, Func<IMetric<TResult>>[] createMetrics)
+    {
+        if (condition)
+            _metrics.AddRange(createMetrics.Select(x => x.Invoke()));
+        return this;
     }
 }
