@@ -128,13 +128,13 @@ public class RandomizerMenu : ModMenu
 
         _setSeed = text.CreateOption("Seed", ui, new Vector2(0, 300), "option/seed", true, false, RandomizerSettings.MAX_SEED.ToString().Length);
 
-        _setLogicDifficulty = arrow.CreateOption("LD", ui, new Vector2(-300, 80), "option/logic", new string[]
-        {
+        _setLogicDifficulty = arrow.CreateOption("LD", ui, new Vector2(-300, 80), "option/logic",
+        [
             "option/logic/normal",
-        });
+        ]);
 
-        _setRequiredKeys = arrow.CreateOption("RQ", ui, new Vector2(-300, -80), "option/keys", new string[]
-        {
+        _setRequiredKeys = arrow.CreateOption("RQ", ui, new Vector2(-300, -80), "option/keys",
+        [
             "option/random",
             "option/keys/zero",
             "option/keys/one",
@@ -142,34 +142,44 @@ public class RandomizerMenu : ModMenu
             "option/keys/three",
             "option/keys/four",
             "option/keys/five",
-        });
+        ]);
 
-        _setStartingWeapon = arrow.CreateOption("SW", ui, new Vector2(-300, -240), "option/weapon", new string[]
-        {
+        _setStartingWeapon = arrow.CreateOption("SW", ui, new Vector2(-300, -240), "option/weapon",
+        [
             "option/random",
             "option/weapon/censer",
             "option/weapon/rosary",
             "option/weapon/rapier",
             "option/weapon/meaculpa",
-        });
+        ]);
 
         _setShuffleLongQuests = toggle.CreateOption("SL", ui, new Vector2(150, 70), "option/long");
         _setShuffleLongQuests.Enabled = false;
 
         _setShuffleShops = toggle.CreateOption("SS", ui, new Vector2(150, -10), "option/shops");
 
-        UIModder.Create(new RectCreationOptions()
-        {
-            Name = "Temp text",
-            Parent = ui,
-            Position = new Vector2(0, 200),
-        }).AddText(new TextCreationOptions()
-        {
-            Contents = "More options coming in the next update!",
-            Color = Color.cyan,
-            Alignment = TextAlignmentOptions.Center,
-            FontSize = 40,
-        });
+        arrow.ArrowSize = 40;
+        arrow.TextSize = 40;
+        arrow.CreateOption("Preset", ui, new Vector2(600, 400), "option/preset",
+        [
+            "option/preset/standard",
+            "option/preset/quick",
+            "option/preset/custom",
+        ]);
+
+
+        //UIModder.Create(new RectCreationOptions()
+        //{
+        //    Name = "Temp text",
+        //    Parent = ui,
+        //    Position = new Vector2(0, 200),
+        //}).AddText(new TextCreationOptions()
+        //{
+        //    Contents = "More options coming in the next update!",
+        //    Color = Color.cyan,
+        //    Alignment = TextAlignmentOptions.Center,
+        //    FontSize = 40,
+        //});
 
         _idText = UIModder.Create(new RectCreationOptions()
         {
