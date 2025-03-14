@@ -12,16 +12,23 @@ public class BenchmarkRunner
         return this;
     }
 
-    public BenchmarkRunner AddExporter(IExporter exporter, bool condition)
+    public BenchmarkRunner AddExporter(bool condition, Func<IExporter> createExporter)
     {
         if (condition)
-            _exporters.Add(exporter);
+            _exporters.Add(createExporter());
         return this;
     }
 
     public BenchmarkRunner AddExporters(params IExporter[] exporters)
     {
         _exporters.AddRange(exporters);
+        return this;
+    }
+
+    public BenchmarkRunner AddExporters(bool condition, params Func<IExporter>[] createExporters)
+    {
+        if (condition)
+            _exporters.AddRange(createExporters.Select(x => x.Invoke()));
         return this;
     }
 

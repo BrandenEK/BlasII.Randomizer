@@ -23,7 +23,7 @@ internal class Core
 
         new BenchmarkRunner()
             .AddExporter(new ConsoleExporter())
-            .AddExporter(new FileExporter(Path.Combine(BASE_DIRECTORY, "BenchmarkResults")), cmd.ExportResults)
+            .AddExporter(cmd.ExportResults, () => new FileExporter(Path.Combine(BASE_DIRECTORY, "BenchmarkResults")))
             .Run(cmd.MaxIterations);
 
         // New
