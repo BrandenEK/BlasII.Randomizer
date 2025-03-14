@@ -13,17 +13,17 @@ public class BenchmarkRunner<TResult>
     private static readonly List<IExporter> _exporters = new();
     private static readonly List<IMetric<TResult>> _metrics = new();
 
-    public void Run(int iterations)
+    public void Run<TClass>(int iterations)
     {
         // Do the actual stuff
     }
 
     // Finding benchmarks
 
-    private List<BenchmarkInfo> FindAllBenchmarks<T>(object obj)
+    private List<BenchmarkInfo> FindAllBenchmarks<TClass>(object obj)
     {
         var benchmarks = new List<BenchmarkInfo>();
-        var methods = typeof(T).GetMethods(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
+        var methods = typeof(TClass).GetMethods(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
 
         foreach (var method in methods)
         {
@@ -41,7 +41,7 @@ public class BenchmarkRunner<TResult>
             }
 
             IEnumerable<object> parameters = bpAttribute.ParameterProperty != null
-                ? ReflectionHelper.GetParameters<T>(obj, bpAttribute.ParameterProperty)
+                ? ReflectionHelper.GetParameters<TClass>(obj, bpAttribute.ParameterProperty)
                 : bpAttribute.Parameters ?? throw new Exception("You have to add the parameter property or the list");
 
             benchmarks.AddRange(parameters
@@ -53,12 +53,12 @@ public class BenchmarkRunner<TResult>
 
     // Running warmups
 
-    private void RunAllWarmups(object obj, List<BenchmarkInfo> benchmarks, int iterationCount)
+    private void RunAllWarmups<TClass>(object obj, List<BenchmarkInfo> benchmarks, int iterationCount) where TClass : class
     {
         Console.WriteLine($"Running {benchmarks.Count} warmups");
         foreach (var benchmark in benchmarks)
         {
-            foreach (var setup in ReflectionHelper.GetAllSetups<NewBenchmarks>(benchmark.Method.Name))
+            foreach (var setup in ReflectionHelper.GetAllSetups<TClass>(benchmark.Method.Name))
                 setup.Invoke(obj, null);
 
             RunWarmup(obj, benchmark, iterationCount);
@@ -77,14 +77,14 @@ public class BenchmarkRunner<TResult>
 
     // Running benchmarks
 
-    private void RunAllBenchmarks(object obj, List<BenchmarkInfo> benchmarks, int iterationCount, string[,] results)
+    private void RunAllBenchmarks<TClass>(object obj, List<BenchmarkInfo> benchmarks, int iterationCount, string[,] results) where TClass : class
     {
         Console.WriteLine($"Running {benchmarks.Count} benchmarks");
 
         int idx = 1;
         foreach (var benchmark in benchmarks)
         {
-            foreach (var setup in ReflectionHelper.GetAllSetups<NewBenchmarks>(benchmark.Method.Name))
+            foreach (var setup in ReflectionHelper.GetAllSetups<TClass>(benchmark.Method.Name))
                 setup.Invoke(obj, null);
 
             RunBenchmark(obj, benchmark, iterationCount, results, idx++);

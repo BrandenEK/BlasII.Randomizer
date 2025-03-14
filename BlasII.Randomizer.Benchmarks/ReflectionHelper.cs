@@ -5,18 +5,18 @@ namespace BlasII.Randomizer.Benchmarks;
 
 internal static class ReflectionHelper
 {
-    public static IEnumerable<object> GetParameters<T>(object obj, string name)
+    public static IEnumerable<object> GetParameters<TClass>(object obj, string name)
     {
-        PropertyInfo property = typeof(T).GetProperty(name, BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
+        PropertyInfo property = typeof(TClass).GetProperty(name, BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
 
         return property == null
             ? throw new Exception($"Failed to find property with the name {name}")
             : (IEnumerable<object>)property.GetValue(obj);
     }
 
-    public static IEnumerable<MethodInfo> GetAllSetups<TBenchmark>(string target) where TBenchmark : class
+    public static IEnumerable<MethodInfo> GetAllSetups<TClass>(string target) where TClass : class
     {
-        return typeof(TBenchmark).GetMethods(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic)
+        return typeof(TClass).GetMethods(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic)
             .Where(x => HasValidSetupAttribute(x, target));
     }
 
