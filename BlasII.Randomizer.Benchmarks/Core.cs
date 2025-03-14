@@ -18,7 +18,7 @@ internal class Core
         var cmd = new BenchmarkCommand();
         cmd.Process(args);
         RegisterMonitors(new SuccessRateMonitor(), new AverageTimeMonitor(), new AverageSuccessTimeMonitor());
-        RegisterMetrics(new AverageTimeMetric());
+        RegisterMetrics(new SuccessRateMetric(), new AverageTimeMetric(), new AverageSuccessTimeMetric());
 
         object obj = new NewBenchmarks();
         var benchmarks = FindAllBenchmarks<NewBenchmarks>(obj);
