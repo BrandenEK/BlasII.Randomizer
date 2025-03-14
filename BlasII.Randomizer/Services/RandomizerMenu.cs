@@ -82,6 +82,8 @@ public class RandomizerMenu : ModMenu
 
         if (option == "Preset")
             UpdateSettingsFromPresetChange();
+        else if (option != "Seed")
+            _setPreset.CurrentOption = SettingsGenerator.NumberOfPresets;
 
         UpdateUniqueIdText(MenuSettings.CalculateUID());
     }

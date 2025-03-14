@@ -39,5 +39,5 @@ public static class SettingsGenerator
     /// <summary>
     /// The number of available presets
     /// </summary>
-    public static int NumberOfPresets => Enum.GetNames(typeof(Preset)).Length;
+    public static int NumberOfPresets { get; } = Enum.GetNames(typeof(Preset)).Length;
 }
