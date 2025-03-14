@@ -21,9 +21,10 @@ internal class Core
 
         // New
 
-        new BenchmarkRunner()
+        new BenchmarkRunner<BenchmarkResult>()
             .AddExporter(new ConsoleExporter())
             .AddExporter(cmd.ExportResults, () => new FileExporter(Path.Combine(BASE_DIRECTORY, "BenchmarkResults")))
+            .AddMetrics(new SuccessRateMetric(), new AverageTimeMetric(), new AverageSuccessTimeMetric())
             .Run(cmd.MaxIterations);
 
         // New

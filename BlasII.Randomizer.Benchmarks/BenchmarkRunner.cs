@@ -6,9 +6,10 @@ using System.Text;
 
 namespace BlasII.Randomizer.Benchmarks;
 
-public class BenchmarkRunner
+public class BenchmarkRunner<TResult>
 {
     private static readonly List<IExporter> _exporters = new();
+    private static readonly List<IMetric<TResult>> _metrics = new();
 
     public void Run(int iterations)
     {
@@ -17,35 +18,63 @@ public class BenchmarkRunner
 
     // Adding exporters
 
-    public BenchmarkRunner AddExporter(IExporter exporter)
+    public BenchmarkRunner<TResult> AddExporter(IExporter exporter)
     {
         _exporters.Add(exporter);
         return this;
     }
 
-    public BenchmarkRunner AddExporter(bool condition, Func<IExporter> createExporter)
+    public BenchmarkRunner<TResult> AddExporter(bool condition, Func<IExporter> createExporter)
     {
         if (condition)
             _exporters.Add(createExporter());
         return this;
     }
 
-    public BenchmarkRunner AddExporters(params IExporter[] exporters)
+    public BenchmarkRunner<TResult> AddExporters(params IExporter[] exporters)
     {
         _exporters.AddRange(exporters);
         return this;
     }
 
-    public BenchmarkRunner AddExporters(bool condition, params Func<IExporter>[] createExporters)
+    public BenchmarkRunner<TResult> AddExporters(bool condition, params Func<IExporter>[] createExporters)
     {
         if (condition)
             _exporters.AddRange(createExporters.Select(x => x.Invoke()));
         return this;
     }
 
+    // Adding metrics
+
+    public BenchmarkRunner<TResult> AddMetric(IMetric<TResult> metric)
+    {
+        _metrics.Add(metric);
+        return this;
+    }
+
+    public BenchmarkRunner<TResult> AddMetric(bool condition, Func<IMetric<TResult>> createMetric)
+    {
+        if (condition)
+            _metrics.Add(createMetric());
+        return this;
+    }
+
+    public BenchmarkRunner<TResult> AddMetrics(params IMetric<TResult>[] metrics)
+    {
+        _metrics.AddRange(metrics);
+        return this;
+    }
+
+    public BenchmarkRunner<TResult> AddMetrics(bool condition, Func<IMetric<TResult>>[] createMetrics)
+    {
+        if (condition)
+            _metrics.AddRange(createMetrics.Select(x => x.Invoke()));
+        return this;
+    }
+
     // Calculating display
 
-    private static string GetInfoDisplay(int iterationCount)
+    private string GetInfoDisplay(int iterationCount)
     {
         var text = new List<string>()
         {
@@ -69,14 +98,14 @@ public class BenchmarkRunner
         return sb.ToString();
     }
 
-    private static string GetResultsDisplay(string[,] results)
+    private string GetResultsDisplay(string[,] results)
     {
         var sb = new StringBuilder();
 
         // Fill header row
         results[0, 0] = "Method";
         results[0, 1] = "Parameters";
-        for (int i = 0; i < _metrics.Length; i++)
+        for (int i = 0; i < _metrics.Count; i++)
             results[0, i + 2] = _metrics[i].DisplayName;
 
         // Calculate maxwidth for each column
