@@ -19,7 +19,7 @@ public class BenchmarkRunner<TResult>
         var benchmarks = FindAllBenchmarks<TClass>(obj);
         var results = new string[benchmarks.Count + 1, _metrics.Count + 2];
 
-        RunAllWarmups<TClass>(obj, benchmarks, iterations / 5);
+        RunAllWarmups<TClass>(obj, benchmarks, Math.Max(200 / benchmarks.Count, 1));
         RunAllBenchmarks<TClass>(obj, benchmarks, iterations, results);
 
         string display = GetInfoDisplay(iterations) + GetResultsDisplay(results);
