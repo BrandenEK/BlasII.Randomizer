@@ -1,7 +1,6 @@
 ﻿using BlasII.Randomizer.Benchmarks.Attributes;
 using BlasII.Randomizer.Benchmarks.Metrics;
 using BlasII.Randomizer.Benchmarks.Models;
-using BlasII.Randomizer.Benchmarks.Monitors;
 using System.Diagnostics;
 using System.Reflection;
 using System.Text;
@@ -10,14 +9,12 @@ namespace BlasII.Randomizer.Benchmarks;
 
 internal class Core
 {
-    private readonly static List<BaseMonitor> _monitors = new();
     private static IMetric<BenchmarkResult>[] _metrics = Array.Empty<IMetric<BenchmarkResult>>();
 
     static void Main(string[] args)
     {
         var cmd = new BenchmarkCommand();
         cmd.Process(args);
-        RegisterMonitors(new SuccessRateMonitor(), new AverageTimeMonitor(), new AverageSuccessTimeMonitor());
         RegisterMetrics(new SuccessRateMetric(), new AverageTimeMetric(), new AverageSuccessTimeMetric());
 
         object obj = new NewBenchmarks();
@@ -110,11 +107,6 @@ internal class Core
         return sb.ToString();
     }
 
-    public static void RegisterMonitors(params BaseMonitor[] monitors)
-    {
-        _monitors.AddRange(monitors);
-    }
-
     public static void RegisterMetrics(params IMetric<BenchmarkResult>[] metrics)
     {
         _metrics = metrics;
@@ -204,8 +196,6 @@ internal class Core
             BenchmarkResult result = (BenchmarkResult)benchmark.Method.Invoke(obj, benchmark.Parameters);
             watch.Stop();
 
-            foreach (var monitor in _monitors)
-                monitor.HandleResult(benchmark.Id, watch.Elapsed, result);
             foreach (var metric in _metrics)
                 metric.HandleResult(result, watch.Elapsed);
         }
