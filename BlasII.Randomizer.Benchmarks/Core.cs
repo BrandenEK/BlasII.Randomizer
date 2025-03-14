@@ -1,6 +1,6 @@
 ﻿using BlasII.Randomizer.Benchmarks.Attributes;
+using BlasII.Randomizer.Benchmarks.Metrics;
 using BlasII.Randomizer.Benchmarks.Models;
-using BlasII.Randomizer.Benchmarks.Monitors;
 using System.Diagnostics;
 using System.Reflection;
 using System.Text;
@@ -9,31 +9,107 @@ namespace BlasII.Randomizer.Benchmarks;
 
 internal class Core
 {
-    private readonly static List<BaseMonitor> _monitors = new();
+    private static IMetric<BenchmarkResult>[] _metrics = Array.Empty<IMetric<BenchmarkResult>>();
 
     static void Main(string[] args)
     {
         var cmd = new BenchmarkCommand();
         cmd.Process(args);
-        RegisterMonitors(new SuccessRateMonitor(), new AverageTimeMonitor(), new AverageSuccessTimeMonitor());
-
-        IEnumerable<string> headerInfo = GetHeaderInfo(cmd.MaxIterations);
+        RegisterMetrics(new SuccessRateMetric(), new AverageTimeMetric(), new AverageSuccessTimeMetric());
 
         object obj = new NewBenchmarks();
         var benchmarks = FindAllBenchmarks<NewBenchmarks>(obj);
 
         if (!cmd.SkipWarmup)
             RunAllWarmups(obj, benchmarks, cmd.MaxIterations / 5);
-        RunAllBenchmarks(obj, benchmarks, cmd.MaxIterations);
-        DisplayOutput1(benchmarks, headerInfo, cmd.ExportResults);
+
+        var results = new string[benchmarks.Count + 1, _metrics.Length + 2];
+        RunAllBenchmarks(obj, benchmarks, cmd.MaxIterations, results);
+
+        string display = GetInfoDisplay(cmd.MaxIterations) + GetResultsDisplay(results);
+
+        Console.WriteLine(display);
+        if (cmd.ExportResults)
+            ExportResults(display);
 
         if (cmd.WaitForInput)
             Console.ReadKey(true);
     }
 
-    public static void RegisterMonitors(params BaseMonitor[] monitors)
+    private static string GetInfoDisplay(int iterationCount)
     {
-        _monitors.AddRange(monitors);
+        var text = new List<string>()
+        {
+            $" Machine: {Environment.MachineName} {(Environment.Is64BitOperatingSystem ? "x64" : "x86")} ({Environment.ProcessorCount} processors)",
+            $" Operating system: {Environment.OSVersion}",
+            $" Start time: {DateTime.Now:MM/dd/yy H:mm:ss}",
+            $" Max iterations: {iterationCount}",
+            $" Debug mode: {Assembly.GetExecutingAssembly().GetCustomAttributes(false).OfType<DebuggableAttribute>().Any(x => x.IsJITTrackingEnabled)}",
+        };
+
+        var line = new string('=', text.Max(x => x.Length) + 1);
+
+        var sb = new StringBuilder();
+        sb.AppendLine();
+        sb.AppendLine(line);
+        sb.AppendJoin(Environment.NewLine, text);
+        sb.AppendLine();
+        sb.AppendLine(line);
+        sb.AppendLine();
+
+        return sb.ToString();
+    }
+
+    private static string GetResultsDisplay(string[,] results)
+    {
+        var sb = new StringBuilder();
+
+        // Fill header row
+        results[0, 0] = "Method";
+        results[0, 1] = "Parameters";
+        for (int i = 0; i < _metrics.Length; i++)
+            results[0, i + 2] = _metrics[i].DisplayName;
+
+        // Calculate maxwidth for each column
+        var columnWidths = new int[results.GetLength(1)];
+        for (int y = 0; y < results.GetLength(1); y++)
+        {
+            for (int x = 0; x < results.GetLength(0); x++)
+            {
+                if (results[x, y].Length > columnWidths[y])
+                    columnWidths[y] = results[x, y].Length;
+            }
+        }
+
+        // Add formatted data to the outout
+        for (int x = 0; x < results.GetLength(0); x++)
+        {
+            char padding = x == 0 ? '-' : ' ';
+
+            sb.Append('|');
+            for (int y = 0; y < results.GetLength(1); y++)
+            {
+                sb.Append($" {results[x, y].PadLeft(columnWidths[y], ' ')} |");
+            }
+            sb.AppendLine();
+
+            if (x >= results.GetLength(0) - 1 || results[x, 0] == results[x + 1, 0])
+                continue;
+
+            sb.Append('|');
+            for (int y = 0; y < results.GetLength(1); y++)
+            {
+                sb.Append($"{new string(padding, columnWidths[y] + 2)}|");
+            }
+            sb.AppendLine();
+        }
+
+        return sb.ToString();
+    }
+
+    public static void RegisterMetrics(params IMetric<BenchmarkResult>[] metrics)
+    {
+        _metrics = metrics;
     }
 
     static List<BenchmarkInfo> FindAllBenchmarks<T>(object obj)
@@ -67,27 +143,6 @@ internal class Core
         return benchmarks;
     }
 
-    static IEnumerable<string> GetHeaderInfo(int iterationCount)
-    {
-        var text = new List<string>()
-        {
-            $" Machine: {Environment.MachineName} {(Environment.Is64BitOperatingSystem ? "x64" : "x86")} ({Environment.ProcessorCount} processors)",
-            $" Operating system: {Environment.OSVersion}",
-            $" Start time: {DateTime.Now:MM/dd/yy H:mm:ss}",
-            $" Max iterations: {iterationCount}",
-            $" Debug mode: {Assembly.GetExecutingAssembly().GetCustomAttributes(false).OfType<DebuggableAttribute>().Any(x => x.IsJITTrackingEnabled)}",
-        };
-
-        var line = new string('=', text.Max(x => x.Length) + 1);
-
-        text.Insert(0, string.Empty);
-        text.Insert(1, line);
-        text.Add(line);
-        text.Add(string.Empty);
-
-        return text;
-    }
-
     static void RunAllWarmups(object obj, List<BenchmarkInfo> benchmarks, int iterationCount)
     {
         Console.WriteLine($"Running {benchmarks.Count} warmups");
@@ -110,132 +165,53 @@ internal class Core
         }
     }
 
-    static void RunAllBenchmarks(object obj, List<BenchmarkInfo> benchmarks, int iterationCount)
+    static void RunAllBenchmarks(object obj, List<BenchmarkInfo> benchmarks, int iterationCount, string[,] results)
     {
         Console.WriteLine($"Running {benchmarks.Count} benchmarks");
+
+        int idx = 1;
         foreach (var benchmark in benchmarks)
         {
             foreach (var setup in GetAllSetups<NewBenchmarks>(benchmark.Method.Name))
                 setup.Invoke(obj, null);
 
-            RunBenchmark(obj, benchmark, iterationCount);
+            RunBenchmark(obj, benchmark, iterationCount, results, idx++);
         }
     }
 
-    static void RunBenchmark(object obj, BenchmarkInfo benchmark, int iterationCount)
+    static void RunBenchmark(object obj, BenchmarkInfo benchmark, int iterationCount, string[,] results, int idx)
     {
         Console.WriteLine($"Running benchmark {benchmark.Id}");
+
+        results[idx, 0] = benchmark.Name;
+        results[idx, 1] = benchmark.Parameters?[0].ToString() ?? string.Empty;
+
+        foreach (var metric in _metrics)
+            metric.Reset();
 
         var watch = new Stopwatch();
         for (int i = 0; i < iterationCount; i++)
         {
             watch.Restart();
-            bool result = (bool)benchmark.Method.Invoke(obj, benchmark.Parameters);
+            BenchmarkResult result = (BenchmarkResult)benchmark.Method.Invoke(obj, benchmark.Parameters);
             watch.Stop();
 
-            foreach (var monitor in _monitors)
-                monitor.HandleResult(benchmark.Id, watch.Elapsed, result);
+            foreach (var metric in _metrics)
+                metric.HandleResult(result, watch.Elapsed);
+        }
+
+        for (int i = 0; i < _metrics.Length; i++)
+        {
+            results[idx, i + 2] = _metrics[i].FormatMetric();
         }
     }
 
-    static void DisplayOutput1(List<BenchmarkInfo> benchmarks, IEnumerable<string> headerInfo, bool doExport)
-    {
-        string[,] output = new string[benchmarks.Count + 1, _monitors.Count + 2];
-
-        // Add header row
-        output[0, 0] = "Method";
-        output[0, 1] = "Parameters";
-        for (int i = 0; i < _monitors.Count; i++)
-        {
-            output[0, i + 2] = _monitors[i].DisplayName;
-        }
-
-        // Add data rows
-        int row = 0, col = 0;
-        foreach (var benchmark in benchmarks)
-        {
-            output[++row, col] = benchmark.Name;
-            output[row, ++col] = benchmark.Parameters?[0].ToString() ?? string.Empty;
-            foreach (var monitor in _monitors)
-            {
-                output[row, ++col] = monitor.FormatResult(benchmark.Id);
-            }
-            col = 0;
-        }
-
-        IEnumerable<string> text = headerInfo.Concat(DisplayOutput2(output));
-
-        foreach (string t in text)
-        {
-            Console.WriteLine(t);
-        }
-
-        if (doExport)
-            ExportResults(text);
-    }
-
-    static IEnumerable<string> DisplayOutput2(string[,] output)
-    {
-        var sbs = new StringBuilder[output.GetLength(0)];
-        for (int i = 0; i < sbs.Length; i++)
-            sbs[i] = new StringBuilder("|");
-
-        for (int col = 0; col < output.GetLength(1); col++)
-        {
-            // Find maxwidth in the column
-            int maxWidth = 0;
-            for (int row = 0; row < output.GetLength(0); row++)
-            {
-                int width = output[row, col].Length;
-                if (width > maxWidth)
-                    maxWidth = width;
-            }
-
-            // Add each row's text
-            for (int row = 0; row < output.GetLength(0); row++)
-            {
-                sbs[row].Append(output[row, col].PadLeft(maxWidth + 1, ' ')).Append(" |");
-            }
-        }
-
-        string header = sbs[0].ToString();
-        var dashLine = new StringBuilder();
-        var emptyLine = new StringBuilder();
-
-        foreach (char c in header)
-        {
-            dashLine.Append(c == '|' ? '|' : '-');
-            emptyLine.Append(c == '|' ? '|' : ' ');
-        }
-
-        var text = new List<string>()
-        {
-            header,
-            dashLine.ToString()
-        };
-        text.AddRange(sbs.Skip(1).Select(x => x.ToString()));
-
-        // Add gaps
-        string lastMethod = text[2].Substring(2, text[2].IndexOf('|', 2));
-        for (int i = 2; i < text.Count; i++)
-        {
-            string currentMethod = text[i].Substring(2, text[i].IndexOf('|', 2));
-            if (currentMethod == lastMethod)
-                continue;
-
-            lastMethod = currentMethod;
-            text.Insert(i++, emptyLine.ToString());
-        }
-
-        return text;
-    }
-
-    static void ExportResults(IEnumerable<string> text)
+    static void ExportResults(string text)
     {
         string filePath = Path.Combine(BASE_DIRECTORY, "BenchmarkResults", "Latest.txt");
         Directory.CreateDirectory(Path.GetDirectoryName(filePath));
 
-        File.WriteAllLines(filePath, text);
+        File.WriteAllText(filePath, text);
     }
 
     static IEnumerable<object> GetParameters<T>(object obj, string name)
