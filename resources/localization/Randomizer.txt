@@ -40,9 +40,9 @@ popup/mud: The Mud Key remains intact.
 option/random: Random
 option/seed: Seed:
 option/preset: Preset
+option/preset/custom: Custom
 option/preset/standard: Standard
 option/preset/quick: Quick and Easy
-option/preset/custom: Custom
 option/long: Shuffle long quests
 option/shops: Shuffle shops
 option/weapon: Starting weapon

@@ -60,7 +60,7 @@ public class RandomizerMenu : ModMenu
 
         MenuSettings = settings;
         _setSeed.CurrentValue = string.Empty;
-        _setPreset.CurrentOption = 0;
+        _setPreset.CurrentOption = 1;
 
         UpdateUniqueIdText(settings.CalculateUID());
     }
@@ -83,17 +83,17 @@ public class RandomizerMenu : ModMenu
         if (option == "Preset")
             UpdateSettingsFromPresetChange();
         else if (option != "Seed")
-            _setPreset.CurrentOption = SettingsGenerator.NumberOfPresets;
+            _setPreset.CurrentOption = 0;
 
         UpdateUniqueIdText(MenuSettings.CalculateUID());
     }
 
     private void UpdateSettingsFromPresetChange()
     {
-        if (_setPreset.CurrentOption >= SettingsGenerator.NumberOfPresets)
+        if (_setPreset.CurrentOption == 0)
             return;
 
-        Preset preset = (Preset)_setPreset.CurrentOption;
+        Preset preset = (Preset)(_setPreset.CurrentOption - 1);
 
         ModLog.Info($"Changed preset to {preset}");
         MenuSettings = SettingsGenerator.CreateFromPreset(preset);
@@ -180,9 +180,9 @@ public class RandomizerMenu : ModMenu
 
         _setPreset = arrow.CreateOption("Preset", ui, new Vector2(600, 400), "option/preset",
         [
+            "option/preset/custom",
             "option/preset/standard",
             "option/preset/quick",
-            "option/preset/custom",
         ]);
 
         //UIModder.Create(new RectCreationOptions()
