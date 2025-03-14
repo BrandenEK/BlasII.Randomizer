@@ -1,37 +1,13 @@
 ﻿using BlasII.Randomizer.Benchmarks.Attributes;
 using BlasII.Randomizer.Benchmarks.Models;
-using BlasII.Randomizer.Models;
 using BlasII.Randomizer.Shuffle;
-using Newtonsoft.Json;
 
 namespace BlasII.Randomizer.Benchmarks;
 
 public class NewBenchmarks
 {
-    private readonly Dictionary<string, ItemLocation> _allItemLocations;
-    private readonly Dictionary<string, Item> _allItems;
-    private readonly Dictionary<string, Door> _allDoors;
-
     private Random _rng;
     private IShuffler _shuffler;
-
-    public NewBenchmarks()
-    {
-        string dataFolder = Path.Combine(Core.BASE_DIRECTORY, "resources", "data", "Randomizer");
-
-        _allItemLocations = LoadJsonDictionary<ItemLocation>(Path.Combine(dataFolder, "item-locations.json"));
-        _allItems = LoadJsonDictionary<Item>(Path.Combine(dataFolder, "items.json"));
-        _allDoors = LoadJsonDictionary<Door>(Path.Combine(dataFolder, "doors.json"));
-        Console.WriteLine($"Item locations: {_allItemLocations.Count}, Items: {_allItems.Count}, Doors: {_allDoors.Count}");
-    }
-
-    private Dictionary<string, T> LoadJsonDictionary<T>(string path) where T : IUnique
-    {
-        string json = File.ReadAllText(path);
-        T[] values = JsonConvert.DeserializeObject<T[]>(json);
-
-        return values.ToDictionary(x => x.Id, x => x);
-    }
 
     [BenchmarkSetup]
     private void BenchmarkSetup()
@@ -42,13 +18,13 @@ public class NewBenchmarks
     [BenchmarkSetup(nameof(Shuffle_Reverse))]
     private void BenchmarkSetup_Reverse()
     {
-        _shuffler = new PoolsItemShuffler(_allItemLocations, _allItems);
+        _shuffler = new PoolsItemShuffler(Core.ItemLocations, Core.Items);
     }
 
     [BenchmarkSetup(nameof(Shuffle_Forward))]
     private void BenchmarkSetup_Forward()
     {
-        _shuffler = new ForwardItemShuffler(_allItemLocations, _allItems);
+        _shuffler = new ForwardItemShuffler(Core.ItemLocations, Core.Items);
     }
 
     [Benchmark("Reverse Fill")]
