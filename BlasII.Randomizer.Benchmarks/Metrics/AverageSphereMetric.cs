@@ -46,15 +46,10 @@ public class AverageSphereMetric : IMetric<BenchmarkResult>
 
         while (remainingLocations.Count > 0)
         {
-            Console.WriteLine("Running sphjere: " + sphere);
-
             foreach (var location in remainingLocations)
             {
-                if (!inventory.Evaluate(location.Logic))
-                    continue;
-
-                // This location is now reachable
-                reachedLocations.Add(location);
+                if (inventory.Evaluate(location.Logic))
+                    reachedLocations.Add(location);
             }
 
             foreach (var location in reachedLocations)
