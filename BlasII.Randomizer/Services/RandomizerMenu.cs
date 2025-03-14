@@ -3,6 +3,7 @@ using BlasII.Framework.Menus.Options;
 using BlasII.Framework.UI;
 using BlasII.ModdingAPI;
 using BlasII.Randomizer.Extensions;
+using BlasII.Randomizer.Settings;
 using Il2CppTGK.Game.Components.UI;
 using Il2CppTMPro;
 using System.Text;
@@ -54,7 +55,7 @@ public class RandomizerMenu : ModMenu
     /// </summary>
     public override void OnStart()
     {
-        RandomizerSettings settings = RandomizerSettings.DEFAULT;
+        RandomizerSettings settings = SettingsGenerator.CreateFromPreset(Preset.Standard);
 
         _generatedSeed = RandomizerSettings.RANDOM_SEED;
         ModLog.Info($"Generating default seed: {_generatedSeed}");
