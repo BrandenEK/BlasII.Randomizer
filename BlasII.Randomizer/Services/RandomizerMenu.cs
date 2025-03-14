@@ -75,9 +75,9 @@ public class RandomizerMenu : ModMenu
     /// <summary>
     /// Update the Unique ID when an option is changed
     /// </summary>
-    public override void OnOptionsChanged()
+    public override void OnOptionsChanged(string option)
     {
-        base.OnOptionsChanged();
+        base.OnOptionsChanged(option);
 
         UpdateUniqueIdText(MenuSettings.CalculateUID());
     }
