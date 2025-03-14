@@ -18,6 +18,16 @@ internal class Core
         var cmd = new BenchmarkCommand();
         cmd.Process(args);
 
+
+        // New
+
+        new BenchmarkRunner()
+            .AddExporter(new ConsoleExporter())
+            .AddExporter(new FileExporter(Path.Combine(BASE_DIRECTORY, "BenchmarkResults")), cmd.ExportResults)
+            .Run(cmd.MaxIterations);
+
+        // New
+
         RegisterMetrics(new SuccessRateMetric(), new AverageTimeMetric(), new AverageSuccessTimeMetric());
         AddExporter(new ConsoleExporter());
         if (cmd.ExportResults)
