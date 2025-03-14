@@ -148,7 +148,7 @@ internal class Core
             }
 
             IEnumerable<object> parameters = bpAttribute.ParameterProperty != null
-                ? GetParameters<T>(obj, bpAttribute.ParameterProperty)
+                ? ReflectionHelper.GetParameters<T>(obj, bpAttribute.ParameterProperty)
                 : bpAttribute.Parameters ?? throw new Exception("You have to add the parameter property or the list");
 
             benchmarks.AddRange(parameters
@@ -163,7 +163,7 @@ internal class Core
         Console.WriteLine($"Running {benchmarks.Count} warmups");
         foreach (var benchmark in benchmarks)
         {
-            foreach (var setup in GetAllSetups<NewBenchmarks>(benchmark.Method.Name))
+            foreach (var setup in ReflectionHelper.GetAllSetups<NewBenchmarks>(benchmark.Method.Name))
                 setup.Invoke(obj, null);
 
             RunWarmup(obj, benchmark, iterationCount);
@@ -187,7 +187,7 @@ internal class Core
         int idx = 1;
         foreach (var benchmark in benchmarks)
         {
-            foreach (var setup in GetAllSetups<NewBenchmarks>(benchmark.Method.Name))
+            foreach (var setup in ReflectionHelper.GetAllSetups<NewBenchmarks>(benchmark.Method.Name))
                 setup.Invoke(obj, null);
 
             RunBenchmark(obj, benchmark, iterationCount, results, idx++);
@@ -219,35 +219,6 @@ internal class Core
         {
             results[idx, i + 2] = _metrics[i].FormatMetric();
         }
-    }
-
-    static void ExportResults(string text)
-    {
-        string filePath = Path.Combine(BASE_DIRECTORY, "BenchmarkResults", "Latest.txt");
-        Directory.CreateDirectory(Path.GetDirectoryName(filePath));
-
-        File.WriteAllText(filePath, text);
-    }
-
-    static IEnumerable<object> GetParameters<T>(object obj, string name)
-    {
-        PropertyInfo property = typeof(T).GetProperty(name, BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
-
-        return property == null
-            ? throw new Exception($"Failed to find property with the name {name}")
-            : (IEnumerable<object>)property.GetValue(obj);
-    }
-
-    static IEnumerable<MethodInfo> GetAllSetups<TBenchmark>(string target) where TBenchmark : class
-    {
-        return typeof(TBenchmark).GetMethods(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic)
-            .Where(x => HasValidSetupAttribute(x, target));
-    }
-
-    static bool HasValidSetupAttribute(MethodInfo method, string target)
-    {
-        BenchmarkSetupAttribute attribute = method.GetCustomAttribute<BenchmarkSetupAttribute>();
-        return attribute != null && (string.IsNullOrEmpty(attribute.Target) || attribute.Target == target);
     }
 
     public static string BASE_DIRECTORY { get; } = Assembly.GetExecutingAssembly().Location
