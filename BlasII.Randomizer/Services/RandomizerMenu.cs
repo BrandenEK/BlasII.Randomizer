@@ -45,8 +45,6 @@ public class RandomizerMenu : ModMenu
             _setStartingWeapon.CurrentOption = value.StartingWeapon + 1;
             _setShuffleLongQuests.Toggled = true;
             _setShuffleShops.Toggled = value.ShuffleShops;
-
-            _setSeed.CurrentValue = string.Empty;
         }
     }
 
@@ -61,6 +59,9 @@ public class RandomizerMenu : ModMenu
         ModLog.Info($"Generating default seed: {_generatedSeed}");
 
         MenuSettings = settings;
+        _setSeed.CurrentValue = string.Empty;
+        _setPreset.CurrentOption = 0;
+
         UpdateUniqueIdText(settings.CalculateUID());
     }
 
@@ -73,13 +74,27 @@ public class RandomizerMenu : ModMenu
     }
 
     /// <summary>
-    /// Update the Unique ID when an option is changed
+    /// Handle changing an option (Apply presets, update UID)
     /// </summary>
     public override void OnOptionsChanged(string option)
     {
         base.OnOptionsChanged(option);
 
+        if (option == "Preset")
+            UpdateSettingsFromPresetChange();
+
         UpdateUniqueIdText(MenuSettings.CalculateUID());
+    }
+
+    private void UpdateSettingsFromPresetChange()
+    {
+        if (_setPreset.CurrentOption >= SettingsGenerator.NumberOfPresets)
+            return;
+
+        Preset preset = (Preset)_setPreset.CurrentOption;
+
+        ModLog.Info($"Changed preset to {preset}");
+        MenuSettings = SettingsGenerator.CreateFromPreset(preset);
     }
 
     private void UpdateUniqueIdText(ulong id)
@@ -160,13 +175,13 @@ public class RandomizerMenu : ModMenu
 
         arrow.ArrowSize = 40;
         arrow.TextSize = 40;
-        arrow.CreateOption("Preset", ui, new Vector2(600, 400), "option/preset",
+
+        _setPreset = arrow.CreateOption("Preset", ui, new Vector2(600, 400), "option/preset",
         [
             "option/preset/standard",
             "option/preset/quick",
             "option/preset/custom",
         ]);
-
 
         //UIModder.Create(new RectCreationOptions()
         //{
@@ -200,11 +215,11 @@ public class RandomizerMenu : ModMenu
     }
 
     private TextOption _setSeed;
+    private ArrowOption _setPreset;
 
     private ArrowOption _setLogicDifficulty;
     private ArrowOption _setRequiredKeys;
     private ArrowOption _setStartingWeapon;
-
     private ToggleOption _setShuffleLongQuests;
     private ToggleOption _setShuffleShops;
 

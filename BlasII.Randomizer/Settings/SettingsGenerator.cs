@@ -1,4 +1,5 @@
-﻿
+﻿using System;
+
 namespace BlasII.Randomizer.Settings;
 
 /// <summary>
@@ -31,7 +32,12 @@ public static class SettingsGenerator
                 ShuffleLongQuests = false,
                 ShuffleShops = false,
             },
-            _ => throw new System.Exception($"Invalid preset type {preset}")
+            _ => throw new Exception($"Invalid preset type {preset}")
         };
     }
+
+    /// <summary>
+    /// The number of available presets
+    /// </summary>
+    public static int NumberOfPresets => Enum.GetNames(typeof(Preset)).Length;
 }
