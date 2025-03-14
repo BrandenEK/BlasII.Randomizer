@@ -37,7 +37,7 @@ public class NewBenchmarks
         bool result = _shuffler.Shuffle(settings.Seed, settings, map);
 
         //Console.WriteLine(message + "Shuffling seed: " + seed);
-        return new BenchmarkResult(result, map);
+        return new BenchmarkResult(result, settings, map);
     }
 
     [Benchmark("Forward Fill")]
@@ -50,7 +50,7 @@ public class NewBenchmarks
         bool result = _shuffler.Shuffle(settings.Seed, settings, map);
 
         //Console.WriteLine(message + "Shuffling seed: " + seed);
-        return new BenchmarkResult(result, map);
+        return new BenchmarkResult(result, settings, map);
     }
 
     private IEnumerable<SettingsWithDescription> SettingsParameters

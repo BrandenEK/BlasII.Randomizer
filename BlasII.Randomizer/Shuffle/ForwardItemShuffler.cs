@@ -134,10 +134,10 @@ public class ForwardItemShuffler : IShuffler
         inventory.Add(GetStartingWeaponId(settings));
 
         // Add all progression items in the pool
-        foreach (var item in progressionItems)
-        {
-            inventory.Add(item.Id);
-        }
+        //foreach (var item in progressionItems)
+        //{
+        //    inventory.Add(item.Id);
+        //}
     }
 
     /// <summary>
