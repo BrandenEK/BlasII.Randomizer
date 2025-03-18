@@ -20,5 +20,14 @@ internal class Debugger
         Console.WriteLine($"Item locations: {_itemLocations.Count}");
         Console.WriteLine($"Items: {_items.Count}");
         Console.WriteLine($"Doors: {_doors.Count}");
+
+        // Debug start
+
+        foreach (var item in _items.Values)
+        {
+            Console.WriteLine(item.Id + ": " + item.Class);
+        }
+
+        // Debug end
     }
 }
