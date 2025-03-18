@@ -90,7 +90,7 @@ public class PoolsItemShuffler : IShuffler
     /// </summary>
     private void AddItemToPool(ItemPool progressionItems, ItemPool junkItems, Item item)
     {
-        ItemPool itemPool = item.Progression ? progressionItems : junkItems;
+        ItemPool itemPool = item.Class == Item.ItemClass.Progression ? progressionItems : junkItems;
         for (int i = 0; i < item.Count; i++)
         {
             itemPool.Add(item);
