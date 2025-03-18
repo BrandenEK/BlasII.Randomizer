@@ -57,7 +57,7 @@ public class AverageSphereMetric : IMetric<BenchmarkResult>
                 remainingLocations.Remove(location);
 
                 Item item = Core.Items[mapping[location.Id]];
-                if (item.Progression)
+                if (item.Class == Item.ItemClass.Progression)
                     inventory.Add(item.Id);
             }
 

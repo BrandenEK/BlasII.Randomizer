@@ -22,9 +22,9 @@ public class Item : IUnique
     public ItemType Type { get; set; }
 
     /// <summary>
-    /// Whether this item can lead to logical progression
+    /// How this item is used for logical progression
     /// </summary>
-    public bool Progression { get; set; }
+    public ItemClass Class { get; set; }
 
     /// <summary>
     /// How many copies of this item should be added to the item pool
@@ -62,5 +62,18 @@ public class Item : IUnique
         PreMarks,
         /// <summary> An invalid or missing item </summary>
         Invalid,
+    }
+
+    /// <summary>
+    /// A classification of an item's importance
+    /// </summary>
+    public enum ItemClass
+    {
+        /// <summary> No special properties </summary>
+        Filler,
+        /// <summary> Nice to have </summary>
+        Useful,
+        /// <summary> Used for logical advancement </summary>
+        Progression,
     }
 }
