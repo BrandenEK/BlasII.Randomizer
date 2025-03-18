@@ -7,7 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlasII.Randomizer", "BlasII
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlasII.Randomizer.Tests", "BlasII.Randomizer.Tests\BlasII.Randomizer.Tests.csproj", "{8647ADE6-42D8-4C4D-A653-F33A02B0D3AB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlasII.Randomizer.Benchmarks", "BlasII.Randomizer.Benchmarks\BlasII.Randomizer.Benchmarks.csproj", "{725F19E8-27F3-49CA-8DED-AF28C98579A1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlasII.Randomizer.Benchmarks", "BlasII.Randomizer.Benchmarks\BlasII.Randomizer.Benchmarks.csproj", "{725F19E8-27F3-49CA-8DED-AF28C98579A1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlasII.Randomizer.Debug", "BlasII.Randomizer.Debug\BlasII.Randomizer.Debug.csproj", "{84773D61-1F50-4AB8-A70D-E08E504368E3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{725F19E8-27F3-49CA-8DED-AF28C98579A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{725F19E8-27F3-49CA-8DED-AF28C98579A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{725F19E8-27F3-49CA-8DED-AF28C98579A1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{84773D61-1F50-4AB8-A70D-E08E504368E3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{84773D61-1F50-4AB8-A70D-E08E504368E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{84773D61-1F50-4AB8-A70D-E08E504368E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{84773D61-1F50-4AB8-A70D-E08E504368E3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
