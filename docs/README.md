@@ -59,5 +59,8 @@ In order to prevent missable items and to make the game more fun, there are many
 ---
 
 ### Installation
-This mod is available for download through the [Blasphemous Mod Installer](https://github.com/BrandenEK/Blasphemous.Modding.Installer)
-- Required dependencies: Modding API, Menu Framework, UI Framework
+This mod is available for download through the [Blasphemous Mod Installer](https://github.com/BrandenEK/Blasphemous.Modding.Installer) <br>
+Required dependencies:
+- [Modding API](https://github.com/BrandenEK/BlasII.ModdingAPI)
+- [UI Framework](https://github.com/BrandenEK/BlasII.Framework.UI)
+- [Menu Framework](https://github.com/BrandenEK/BlasII.Framework.Menus)
