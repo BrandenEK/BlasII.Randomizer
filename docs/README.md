@@ -54,10 +54,13 @@ Seeds can be in the range of 1 to 99,999,999.  A full breakdown of all the avail
 ---
 
 ### Gameplay Differences
-In order to prevent missable items and to make the game more fun, there are many differences between a Vanilla playthrough and a Randomized playthrough.  A full list of the gameplay/questline modifications can be found [here](GAMEPLAY.md)
+In order to prevent missable items and to make the game more fun, there are many differences between a vanilla playthrough and a randomized playthrough.  A full list of the gameplay/questline modifications can be found [here](GAMEPLAY.md).
 
 ---
 
 ### Installation
-This mod is available for download through the [Blasphemous Mod Installer](https://github.com/BrandenEK/Blasphemous.Modding.Installer)
-- Required dependencies: Modding API, Menu Framework, UI Framework
+This mod is available for download through the [Blasphemous Mod Installer](https://github.com/BrandenEK/Blasphemous.Modding.Installer) <br>
+Required dependencies:
+- [Modding API](https://github.com/BrandenEK/BlasII.ModdingAPI)
+- [UI Framework](https://github.com/BrandenEK/BlasII.Framework.UI)
+- [Menu Framework](https://github.com/BrandenEK/BlasII.Framework.Menus)
