@@ -39,10 +39,10 @@
 ---
 
 ### Recommended Mods
-- Save & Quit - Prevents softlocks
-- Rando Map - Adds location info to the map screen
-- Quality of Life - Can be used to skip cutscenes, among other uses
-- Glitch Reviver - Reintoduces glitches that may be required in logic
+- [Rando Map](https://github.com/BrandenEK/BlasII.Randomizer.MapTracker) - Adds location info to the map screen
+- [Save and Quit](https://github.com/BrandenEK/BlasII.SaveAndQuit) - Prevents potential softlocks
+- [Quality of Life](https://github.com/BrandenEK/BlasII.QualityOfLife) - Can be used to skip cutscenes, among other uses
+- [Glitch Reviver](https://github.com/BrandenEK/BlasII.GlitchReviver) - Reintoduces glitches that may be required in logic
 
 ---
 
