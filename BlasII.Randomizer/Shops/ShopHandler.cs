@@ -18,7 +18,7 @@ public class ShopHandler
         if (!_shops.TryGetValue(name, out IShop shop))
             throw new System.Exception($"Invalid shop id: {name}");
 
-        if (settings.ShopMultiplier >= 4)
+        if (settings.ShopMultiplier >= 4 || settings.ShopMultiplier < 0)
             return shop.GetVanillaCosts();
 
         var costs = new List<int>();
@@ -39,11 +39,11 @@ public class ShopHandler
 
             // Get ShopValue from item extensions
             // Get price range from shop handler
-            Vector2Int range = new Vector2Int(500, 1000) / 10;
-            // Multiply range by multiplier
+            float multiplier = settings.ShopMultiplier / 2f;
+            Vector2 range = new Vector2(500, 1000) * multiplier / 10;
 
             int seed = (settings.Seed % 100000) * (shop.GetSeedValue() + index);
-            int price = new System.Random(seed).Next(range.x, range.y + 1);
+            int price = new System.Random(seed).Next((int)range.x, (int)range.y + 1);
             costs.Add(price * 10);
         }
 

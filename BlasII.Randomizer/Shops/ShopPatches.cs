@@ -75,7 +75,7 @@ class ShopWindowLogic_ShowShop_Patch
 
         // Recalculate the orbs
         foreach (int cost in costs)
-            __instance.currentShop.orbs.Add(cost);
+            shop.orbs.Add(cost);
 
         // Recalculate the cachedElements
         if (__instance.cachedElements.ContainsKey(Shop.ItemType.All))
