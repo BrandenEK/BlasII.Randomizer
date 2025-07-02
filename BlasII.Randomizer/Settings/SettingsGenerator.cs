@@ -17,6 +17,7 @@ public static class SettingsGenerator
             Preset.Standard => new RandomizerSettings()
             {
                 Seed = RandomizerSettings.RANDOM_SEED,
+                CostMultiplier = 2,
                 LogicType = 1,
                 RequiredKeys = 4,
                 StartingWeapon = -1,
@@ -26,6 +27,7 @@ public static class SettingsGenerator
             Preset.Quick => new RandomizerSettings()
             {
                 Seed = RandomizerSettings.RANDOM_SEED,
+                CostMultiplier = 1,
                 LogicType = 1,
                 RequiredKeys = 1,
                 StartingWeapon = 0,
