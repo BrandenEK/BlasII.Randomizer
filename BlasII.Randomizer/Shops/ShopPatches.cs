@@ -11,7 +11,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace BlasII.Randomizer.Patches;
+namespace BlasII.Randomizer.Shops;
 
 /// <summary>
 /// Setup the randomized items for a shop
