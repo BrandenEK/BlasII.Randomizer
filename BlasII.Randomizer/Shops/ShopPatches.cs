@@ -15,43 +15,6 @@ using UnityEngine.UI;
 namespace BlasII.Randomizer.Shops;
 
 /// <summary>
-/// Setup the randomized items for a shop
-/// </summary>
-//[HarmonyPatch(typeof(Shop), nameof(Shop.CacheData))]
-//class Shop_CacheData_Patch
-//{
-//    public static bool Prefix(Shop __instance)
-//    {
-//        return false;
-//        //// Clear all previous items from list
-//        //__instance.cachedIds.Clear();
-//        //__instance.cachedShopDataById.Clear();
-//        //__instance.cachedShopDataByType.Clear();
-//        //__instance.orbs.Clear();
-
-//        //// Get list of costs based on shop id
-//        //var costs = Main.Randomizer.ShopHandler.GetShopCosts(__instance.name, Main.Randomizer.CurrentSettings);
-
-//        //// Add orbs for each price
-//        //foreach (int cost in costs)
-//        //    __instance.orbs.Add(cost);
-//        //ModLog.Info("Updating items for: " + __instance.name);
-
-//        //var list = __instance.commonElements;
-//        //for (int i = 0; i < list.Length; i++)
-//        //{
-//        //    ModLog.Info($"Common {i}: {list[i].itemID.name} ${list[i].price}");
-//        //}
-
-//        //var dict = __instance.cachedShopDataById;
-//        //foreach (var kvp in dict)
-//        //{
-//        //    ModLog.Error(kvp.Key + ": " + $"{kvp.Value.itemID} + {kvp.Value.price} {kvp.Value.orbIdx}");
-//        //}
-//    }
-//}
-
-/// <summary>
 /// Force order recalculation of shop items
 /// </summary>
 [HarmonyPatch(typeof(ShopWindowLogic), nameof(ShopWindowLogic.UpdateTabs))]
@@ -64,20 +27,19 @@ class ShopWindowLogic_UpdateTabs_Patch
         // Get list of costs based on shop id
         var costs = Main.Randomizer.ShopHandler.GetShopCosts(__instance.currentShop.name, Main.Randomizer.CurrentSettings);
 
+        // Clear all cached values
         __instance.currentShop.cachedIds.Clear();
         __instance.currentShop.cachedShopDataById.Clear();
         __instance.currentShop.cachedShopDataByType.Clear();
         __instance.currentShop.orbs.Clear();
+
+        // Recalculate the orbs
         foreach (int cost in costs)
             __instance.currentShop.orbs.Add(cost);
 
+        // Recalculate the cachedElements
         if (__instance.cachedElements.ContainsKey(Shop.ItemType.All))
         {
-            foreach (var item in __instance.cachedElements[Shop.ItemType.All])
-            {
-                ModLog.Info($"Has: {item.orbIdx} at ${item.price}");
-            }
-
             var realList = __instance.cachedElements[Shop.ItemType.All];
             var tempList = new List<Shop.CachedShopDataItem>();
 
@@ -88,11 +50,6 @@ class ShopWindowLogic_UpdateTabs_Patch
 
             foreach (var item in tempList.OrderBy(x => x.orbIdx))
                 realList.Add(item);
-
-            foreach (var item in __instance.cachedElements[Shop.ItemType.All])
-            {
-                ModLog.Error($"Has: {item.orbIdx} at ${item.price}");
-            }
         }
     }
 }
@@ -110,20 +67,19 @@ class ShopWindowLogic_ShowShop_Patch
         // Get list of costs based on shop id
         var costs = Main.Randomizer.ShopHandler.GetShopCosts(shop.name, Main.Randomizer.CurrentSettings);
 
+        // Clear all cached values
         shop.cachedIds.Clear();
         shop.cachedShopDataById.Clear();
         shop.cachedShopDataByType.Clear();
         shop.orbs.Clear();
-        foreach (int cost in costs)
-            shop.orbs.Add(cost);
 
+        // Recalculate the orbs
+        foreach (int cost in costs)
+            __instance.currentShop.orbs.Add(cost);
+
+        // Recalculate the cachedElements
         if (__instance.cachedElements.ContainsKey(Shop.ItemType.All))
         {
-            foreach (var item in __instance.cachedElements[Shop.ItemType.All])
-            {
-                ModLog.Info($"Has: {item.orbIdx} at ${item.price}");
-            }
-
             var realList = __instance.cachedElements[Shop.ItemType.All];
             var tempList = new List<Shop.CachedShopDataItem>();
 
@@ -134,11 +90,6 @@ class ShopWindowLogic_ShowShop_Patch
 
             foreach (var item in tempList.OrderBy(x => x.orbIdx))
                 realList.Add(item);
-
-            foreach (var item in __instance.cachedElements[Shop.ItemType.All])
-            {
-                ModLog.Error($"Has: {item.orbIdx} at ${item.price}");
-            }
         }
     }
 }
