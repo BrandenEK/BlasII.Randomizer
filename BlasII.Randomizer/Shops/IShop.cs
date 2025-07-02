@@ -39,6 +39,22 @@ internal class TravelerShop : IShop
     {
         yield return 3000;
         yield return 3000;
+        if (Main.Randomizer.GetQuestBool("ST06", "Z09_VISITED")) yield return 6000;
+        if (Main.Randomizer.GetQuestBool("ST06", "Z05_VISITED")) yield return 6000;
+        if (Main.Randomizer.GetQuestBool("ST06", "Z11_VISITED")) yield return 6000;
+        if (Main.Randomizer.GetQuestBool("ST06", "Z12_VISITED")) yield return 6000;
+        if (Main.Randomizer.GetQuestBool("ST06", "Z01_VISITED")) yield return 12000;
+        if (Main.Randomizer.GetQuestBool("ST06", "Z10_VISITED")) yield return 17500;
+        // TODO: add item from dlc quest
+    }
+}
+
+internal class FakeTravelerShop : IShop
+{
+    public IEnumerable<int> GetVanillaCosts()
+    {
+        yield return 3000;
+        yield return 3000;
         if (TEMP_VALUE >= 0) yield return 6000;
         if (TEMP_VALUE >= 1) yield return 6000;
         if (TEMP_VALUE >= 2) yield return 6000;
