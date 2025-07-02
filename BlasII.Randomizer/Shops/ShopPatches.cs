@@ -7,11 +7,10 @@ using Il2CppTGK.Game.Components.UI;
 using Il2CppTGK.Game.Managers;
 using Il2CppTGK.Game.ShopSystem;
 using Il2CppTGK.UI;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace BlasII.Randomizer.Patches;
+namespace BlasII.Randomizer.Shops;
 
 /// <summary>
 /// Setup the randomized items for a shop
@@ -28,52 +27,7 @@ class Shop_CacheData_Patch
         __instance.orbs.Clear();
 
         // Get list of costs based on shop id
-        int[] costs;
-
-        switch (__instance.name)
-        {
-            // Always same items, sorted by cost
-            case "SHOPHAND":
-                costs = new int[]
-                {
-                    3000, 3000, 3000, 3000, 3000, 3000, 3000, 6000, 12000, 12000, 17500, 32000
-                };
-                break;
-            // Always same items, sorted by cost
-            case "SHOPMISSABLES":
-                costs = new int[]
-                {
-                    6000, 6000, 6000, 6000, 12000, 12000, 12000
-                };
-                break;
-            // More items added for each location, sorted by cost
-            case "SHOPITINERANT":
-                var list = new List<int>
-                {
-                    3000, 3000
-                };
-
-                if (Main.Randomizer.GetQuestBool("ST06", "Z09_VISITED"))
-                    list.Add(6000);
-                if (Main.Randomizer.GetQuestBool("ST06", "Z05_VISITED"))
-                    list.Add(6000);
-                if (Main.Randomizer.GetQuestBool("ST06", "Z11_VISITED"))
-                    list.Add(6000);
-                if (Main.Randomizer.GetQuestBool("ST06", "Z12_VISITED"))
-                    list.Add(6000);
-                if (Main.Randomizer.GetQuestBool("ST06", "Z01_VISITED"))
-                    list.Add(12000);
-                if (Main.Randomizer.GetQuestBool("ST06", "Z10_VISITED"))
-                    list.Add(17500);
-
-                costs = list.ToArray();
-                break;
-
-            default:
-                ModLog.Error("Opening invalid shop!");
-                costs = System.Array.Empty<int>();
-                break;
-        }
+        var costs = Main.Randomizer.ShopHandler.GetShopCosts(__instance.name);
 
         // Add orbs for each price
         foreach (int cost in costs)

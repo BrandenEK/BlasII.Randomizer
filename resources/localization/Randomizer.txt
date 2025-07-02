@@ -61,6 +61,12 @@ option/keys/two: Two
 option/keys/three: Three
 option/keys/four: Four
 option/keys/five: Five
+option/cost: Shop costs
+option/cost/none: Free
+option/cost/less: Cheap
+option/cost/normal: Standard
+option/cost/more: Expensive
+option/cost/vanilla: Vanilla
 
 lang: es
 

@@ -31,6 +31,13 @@ public class RandomizerSettings
     /// </summary>
     public int StartingWeapon { get; set; }
 
+    // Gameplay
+
+    /// <summary>
+    /// Determines how expensive shop items will be
+    /// </summary>
+    public int ShopMultiplier { get; set; }
+
     // Item shuffle (Pool)
 
     /// <summary>

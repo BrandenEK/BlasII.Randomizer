@@ -2,7 +2,6 @@
 using BlasII.Framework.Menus.Options;
 using BlasII.Framework.UI;
 using BlasII.ModdingAPI;
-using BlasII.Randomizer.Extensions;
 using BlasII.Randomizer.Settings;
 using Il2CppTGK.Game.Components.UI;
 using Il2CppTMPro;
@@ -34,6 +33,7 @@ public class RandomizerMenu : ModMenu
                 LogicType = 1,
                 RequiredKeys = _setRequiredKeys.CurrentOption - 1,
                 StartingWeapon = _setStartingWeapon.CurrentOption - 1,
+                ShopMultiplier = _setShopCosts.CurrentOption,
                 ShuffleLongQuests = true,
                 ShuffleShops = _setShuffleShops.Toggled,
             };
@@ -43,6 +43,7 @@ public class RandomizerMenu : ModMenu
             _setLogicDifficulty.CurrentOption = 0;
             _setRequiredKeys.CurrentOption = value.RequiredKeys + 1;
             _setStartingWeapon.CurrentOption = value.StartingWeapon + 1;
+            _setShopCosts.CurrentOption = value.ShopMultiplier;
             _setShuffleLongQuests.Toggled = true;
             _setShuffleShops.Toggled = value.ShuffleShops;
         }
@@ -170,6 +171,15 @@ public class RandomizerMenu : ModMenu
             "option/weapon/meaculpa",
         ]);
 
+        _setShopCosts = arrow.CreateOption("SC", ui, new Vector2(300, -240), "option/cost",
+        [
+            "option/cost/none",
+            "option/cost/less",
+            "option/cost/normal",
+            "option/cost/more",
+            "option/cost/vanilla",
+        ]);
+
         _setShuffleLongQuests = toggle.CreateOption("SL", ui, new Vector2(150, 70), "option/long");
         _setShuffleLongQuests.Enabled = false;
 
@@ -222,6 +232,7 @@ public class RandomizerMenu : ModMenu
     private ArrowOption _setLogicDifficulty;
     private ArrowOption _setRequiredKeys;
     private ArrowOption _setStartingWeapon;
+    private ArrowOption _setShopCosts;
     private ToggleOption _setShuffleLongQuests;
     private ToggleOption _setShuffleShops;
 

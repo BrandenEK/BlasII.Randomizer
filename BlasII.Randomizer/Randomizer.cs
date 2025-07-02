@@ -5,6 +5,8 @@ using BlasII.ModdingAPI.Helpers;
 using BlasII.ModdingAPI.Persistence;
 using BlasII.Randomizer.Handlers;
 using BlasII.Randomizer.Services;
+using BlasII.Randomizer.Settings;
+using BlasII.Randomizer.Shops;
 using BlasII.Randomizer.Shuffle;
 using BlasII.Randomizer.Storages;
 using Il2Cpp;
@@ -28,12 +30,14 @@ public class Randomizer : BlasIIMod, ISlotPersistentMod<RandomizerSlotData>, IGl
     /// <summary>
     /// The selected settings for the current run
     /// </summary>
-    public RandomizerSettings CurrentSettings { get; set; } = RandomizerSettings.DEFAULT;
+    public RandomizerSettings CurrentSettings { get; set; } = SettingsGenerator.CreateFromPreset(Preset.Standard);
 
     // Handlers
 
     /// <inheritdoc/>
     public ItemHandler ItemHandler { get; private set; }
+    /// <inheritdoc/>
+    public ShopHandler ShopHandler { get; private set; }
 
     // Storages
 
@@ -90,6 +94,7 @@ public class Randomizer : BlasIIMod, ISlotPersistentMod<RandomizerSlotData>, IGl
         ItemHandler = new ItemHandler(true
             ? new PoolsItemShuffler(ItemLocationStorage.AsDictionary, ItemStorage.AsDictionary)
             : new DebugShuffler(ItemLocationStorage.AsDictionary, "Censer"));
+        ShopHandler = new ShopHandler();
     }
 
     protected override void OnRegisterServices(ModServiceProvider provider)

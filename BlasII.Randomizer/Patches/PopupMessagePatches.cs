@@ -1,5 +1,5 @@
 ﻿using BlasII.ModdingAPI;
-using BlasII.Randomizer.Extensions;
+using BlasII.Randomizer.Settings;
 using HarmonyLib;
 using Il2CppTGK.Game.Components.UI;
 using Il2CppTGK.Game.PopupMessages;
