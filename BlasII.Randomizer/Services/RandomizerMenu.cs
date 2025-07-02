@@ -31,20 +31,20 @@ public class RandomizerMenu : ModMenu
             return new RandomizerSettings()
             {
                 Seed = _setSeed.CurrentNumericValue == 0 ? _generatedSeed : _setSeed.CurrentNumericValue,
-                CostMultiplier = _setShopCosts.CurrentOption,
                 LogicType = 1,
                 RequiredKeys = _setRequiredKeys.CurrentOption - 1,
                 StartingWeapon = _setStartingWeapon.CurrentOption - 1,
+                ShopMultiplier = _setShopCosts.CurrentOption,
                 ShuffleLongQuests = true,
                 ShuffleShops = _setShuffleShops.Toggled,
             };
         }
         set
         {
-            _setShopCosts.CurrentOption = value.CostMultiplier;
             _setLogicDifficulty.CurrentOption = 0;
             _setRequiredKeys.CurrentOption = value.RequiredKeys + 1;
             _setStartingWeapon.CurrentOption = value.StartingWeapon + 1;
+            _setShopCosts.CurrentOption = value.ShopMultiplier;
             _setShuffleLongQuests.Toggled = true;
             _setShuffleShops.Toggled = value.ShuffleShops;
         }

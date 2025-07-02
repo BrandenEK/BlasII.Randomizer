@@ -14,13 +14,6 @@ public class RandomizerSettings
     /// </summary>
     public int Seed { get; set; }
 
-    // Gameplay
-
-    /// <summary>
-    /// Determines how expensive shop items will be
-    /// </summary>
-    public int CostMultiplier { get; set; }
-
     // Item shuffle (Functionality)
 
     /// <summary>
@@ -37,6 +30,13 @@ public class RandomizerSettings
     /// Determines which weapon you will start with
     /// </summary>
     public int StartingWeapon { get; set; }
+
+    // Gameplay
+
+    /// <summary>
+    /// Determines how expensive shop items will be
+    /// </summary>
+    public int ShopMultiplier { get; set; }
 
     // Item shuffle (Pool)
 

@@ -17,20 +17,20 @@ public static class SettingsGenerator
             Preset.Standard => new RandomizerSettings()
             {
                 Seed = RandomizerSettings.RANDOM_SEED,
-                CostMultiplier = 2,
                 LogicType = 1,
                 RequiredKeys = 4,
                 StartingWeapon = -1,
+                ShopMultiplier = 2,
                 ShuffleLongQuests = false,
                 ShuffleShops = true,
             },
             Preset.Quick => new RandomizerSettings()
             {
                 Seed = RandomizerSettings.RANDOM_SEED,
-                CostMultiplier = 1,
                 LogicType = 1,
                 RequiredKeys = 1,
                 StartingWeapon = 0,
+                ShopMultiplier = 1,
                 ShuffleLongQuests = false,
                 ShuffleShops = false,
             },
