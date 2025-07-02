@@ -31,3 +31,51 @@ public class ShopHandler
         { "SHOPITINERANT", new TravelerShop() },
     };
 }
+
+//public interface IShop
+//{
+//    public IEnumerable<int> GetVanillaCosts();
+//}
+
+//public class StandardShop(int[] costs) : IShop
+//{
+//    public IEnumerable<int> GetVanillaCosts()
+//    {
+//        return costs;
+//    }
+//}
+
+//public class ConditionalShop(ConditionalCost[] costs) : IShop
+//{
+//    public IEnumerable<int> GetVanillaCosts()
+//    {
+//        foreach (var cost in costs)
+//        {
+//            if (cost.Condition())
+//                yield return cost.Cost;
+//        }
+//    }
+//}
+
+//public class ConditionalCost(int cost, Func<bool> condition)
+//{
+//    public int Cost { get; } = cost;
+
+//    public Func<bool> Condition { get; } = condition;
+//}
+
+//private readonly Dictionary<string, IShop> _shops = new()
+//{
+//    { "SHOPHAND", new StandardShop([3000, 3000, 3000, 3000, 3000, 3000, 3000, 6000, 12000, 12000, 17500, 32000]) },
+//    { "SHOPMISSABLES", new StandardShop([6000, 6000, 6000, 6000, 12000, 12000, 12000]) },
+//    { "SHOPITINERANT", new ConditionalShop([
+//        new ConditionalCost(3000, () => true),
+//        new ConditionalCost(3000, () => true),
+//        new ConditionalCost(6000, () => true),
+//        new ConditionalCost(6000, () => true),
+//        new ConditionalCost(6000, () => true),
+//        new ConditionalCost(6000, () => false),
+//        new ConditionalCost(12000, () => false),
+//        new ConditionalCost(17500, () => false),
+//    ]) },
+//};
