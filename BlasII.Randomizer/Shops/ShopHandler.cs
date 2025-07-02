@@ -1,5 +1,7 @@
-﻿using System;
+﻿using BlasII.Randomizer.Models;
 using System.Collections.Generic;
+using System.Linq;
+using UnityEngine;
 
 namespace BlasII.Randomizer.Shops;
 
@@ -11,12 +13,41 @@ public class ShopHandler
     /// <summary>
     /// Calculates the item costs for the specified shop
     /// </summary>
-    public IEnumerable<int> GetShopCosts(string name)
+    public IEnumerable<int> GetShopCosts(string name, RandomizerSettings settings)
     {
         if (!_shops.TryGetValue(name, out IShop shop))
-            throw new Exception($"Invalid shop id: {name}");
+            throw new System.Exception($"Invalid shop id: {name}");
 
-        return shop.GetVanillaCosts();
+        if (settings.ShopMultiplier >= 4)
+            return shop.GetVanillaCosts();
+
+        var costs = new List<int>();
+
+        foreach (var (vanillaCost, index) in shop.GetVanillaCosts().Select((value, i) => (value, i)))
+        {
+            string locationId = $"{name}.o{index}";
+            Item item = Main.Randomizer.ItemHandler.GetItemAtLocation(locationId);
+
+            // If invalid item, place extreme cost
+            if (!item.IsValid())
+            {
+                costs.Add(999999);
+                continue;
+            }
+
+            // Based on item value, place random cost
+
+            // Get ShopValue from item extensions
+            // Get price range from shop handler
+            Vector2Int range = new Vector2Int(500, 1000) / 10;
+            // Multiply range by multiplier
+
+            int seed = (settings.Seed % 100000) * (shop.GetSeedValue() + index);
+            int price = new System.Random(seed).Next(range.x, range.y + 1);
+            costs.Add(price * 10);
+        }
+
+        return costs;
     }
 
     public IShop TEMP_GetShop(string name)
