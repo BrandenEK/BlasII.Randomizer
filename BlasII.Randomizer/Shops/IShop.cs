@@ -63,5 +63,5 @@ internal class FakeTravelerShop : IShop
         if (TEMP_VALUE >= 5) yield return 17500;
     }
 
-    private const int TEMP_VALUE = 3;
+    private const int TEMP_VALUE = 5;
 }

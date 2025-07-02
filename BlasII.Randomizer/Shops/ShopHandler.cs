@@ -28,6 +28,6 @@ public class ShopHandler
     {
         { "SHOPHAND", new HandShop() },
         { "SHOPMISSABLES", new PatioShop() },
-        { "SHOPITINERANT", new TravelerShop() },
+        { "SHOPITINERANT", new FakeTravelerShop() },
     };
 }
