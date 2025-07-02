@@ -1,6 +1,6 @@
 ﻿using System.Text;
 
-namespace BlasII.Randomizer.Extensions;
+namespace BlasII.Randomizer.Settings;
 
 /// <summary>
 /// String formatter methods for the RandomizerSettings

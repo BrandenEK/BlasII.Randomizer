@@ -2,7 +2,6 @@
 using BlasII.Framework.Menus.Options;
 using BlasII.Framework.UI;
 using BlasII.ModdingAPI;
-using BlasII.Randomizer.Extensions;
 using BlasII.Randomizer.Settings;
 using Il2CppTGK.Game.Components.UI;
 using Il2CppTMPro;
