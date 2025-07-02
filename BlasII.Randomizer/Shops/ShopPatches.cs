@@ -51,37 +51,15 @@ namespace BlasII.Randomizer.Shops;
 //    }
 //}
 
+/// <summary>
+/// Force order recalculation of shop items
+/// </summary>
 [HarmonyPatch(typeof(ShopWindowLogic), nameof(ShopWindowLogic.UpdateTabs))]
-class x
+class ShopWindowLogic_UpdateTabs_Patch
 {
-    //public static void Prefix(ShopWindowLogic __instance)
-    //{
-    //    // Get list of costs based on shop id
-    //    var costs = Main.Randomizer.ShopHandler.GetShopCosts("SHOPHAND", Main.Randomizer.CurrentSettings);
-
-    //    if (__instance.cachedElements.ContainsKey(Shop.ItemType.All))
-    //        __instance.cachedElements[Shop.ItemType.All].Clear();
-    //    else
-    //        __instance.cachedElements[Shop.ItemType.All] = new Il2CppSystem.Collections.Generic.List<Shop.CachedShopDataItem>();
-
-    //    int index = 0;
-    //    foreach (int cost in costs)
-    //    {
-    //        ModLog.Warn("Adding " + cost);
-    //        __instance.cachedElements[Shop.ItemType.All].Add(new Shop.CachedShopDataItem()
-    //        {
-    //            itemID = AssetStorage.QuestItems["QI99"],
-    //            isOrb = true,
-    //            orbIdx = index++,
-    //            price = cost,
-    //            type = Shop.ItemType.All,
-    //        });
-    //    }
-    //}
-
     public static void Postfix(ShopWindowLogic __instance)
     {
-        ModLog.Info("Updating tabs");
+        ModLog.Info($"ShopWindowLogic.UpdateTabs ({__instance.currentShop.name})");
 
         // Get list of costs based on shop id
         var costs = Main.Randomizer.ShopHandler.GetShopCosts(__instance.currentShop.name, Main.Randomizer.CurrentSettings);
@@ -116,51 +94,18 @@ class x
                 ModLog.Error($"Has: {item.orbIdx} at ${item.price}");
             }
         }
-
-        //// Get list of costs based on shop id
-        //var costs = Main.Randomizer.ShopHandler.GetShopCosts(__instance.currentShop.name, Main.Randomizer.CurrentSettings);
-
-        //__instance.currentShop.cachedIds.Clear();
-        //__instance.currentShop.cachedShopDataById.Clear();
-        //__instance.currentShop.cachedShopDataByType.Clear();
-        //__instance.currentShop.orbs.Clear();
-        //foreach (int cost in costs)
-        //    __instance.currentShop.orbs.Add(cost);
-
-        //if (__instance.cachedElements.ContainsKey(Shop.ItemType.All))
-        //{
-        //    foreach (var item in __instance.cachedElements[Shop.ItemType.All])
-        //    {
-        //        ModLog.Info($"Has: {item.orbIdx} at ${item.price}");
-        //    }
-        //}
-
-        //__instance.cachedElements.Clear();
-        //__instance.cachedElements[Shop.ItemType.All] = new Il2CppSystem.Collections.Generic.List<Shop.CachedShopDataItem>();
-
-        //int index = 0;
-        //foreach (int cost in costs)
-        //{
-        //    ModLog.Warn("Adding " + cost);
-        //    __instance.cachedElements[Shop.ItemType.All].Add(new Shop.CachedShopDataItem()
-        //    {
-        //        itemID = AssetStorage.QuestItems["QI99"],
-        //        isOrb = true,
-        //        orbIdx = index++,
-        //        price = cost,
-        //        type = Shop.ItemType.All,
-        //    });
-        //}
     }
 }
 
-
+/// <summary>
+/// Force order recalculation of shop items
+/// </summary>
 [HarmonyPatch(typeof(ShopWindowLogic), nameof(ShopWindowLogic.ShowShop))]
-class t
+class ShopWindowLogic_ShowShop_Patch
 {
     public static void Prefix(Shop shop, ShopWindowLogic __instance)
     {
-        ModLog.Info("Showing shop: " + shop.name);
+        ModLog.Info($"ShopWindowLogic.ShowShop ({shop.name})");
 
         // Get list of costs based on shop id
         var costs = Main.Randomizer.ShopHandler.GetShopCosts(shop.name, Main.Randomizer.CurrentSettings);
@@ -195,50 +140,6 @@ class t
                 ModLog.Error($"Has: {item.orbIdx} at ${item.price}");
             }
         }
-
-
-
-        //__instance.cachedElements.Clear();
-        //__instance.cachedElements[Shop.ItemType.All] = new Il2CppSystem.Collections.Generic.List<Shop.CachedShopDataItem>();
-
-        //int index = 0;
-        //foreach (int cost in costs)
-        //{
-        //    ModLog.Warn("Adding " + cost);
-        //    __instance.cachedElements[Shop.ItemType.All].Add(new Shop.CachedShopDataItem()
-        //    {
-        //        itemID = AssetStorage.QuestItems["QI99"],
-        //        isOrb = true,
-        //        orbIdx = index++,
-        //        price = cost,
-        //        type = Shop.ItemType.All,
-        //    });
-        //}
-    }
-
-    public static void Postfix(ShopWindowLogic __instance)
-    {
-        //// Get list of costs based on shop id
-        //var costs = Main.Randomizer.ShopHandler.GetShopCosts("SHOPHAND", Main.Randomizer.CurrentSettings);
-
-        //if (__instance.cachedElements.ContainsKey(Shop.ItemType.All))
-        //    __instance.cachedElements[Shop.ItemType.All].Clear();
-        //else
-        //    __instance.cachedElements[Shop.ItemType.All] = new Il2CppSystem.Collections.Generic.List<Shop.CachedShopDataItem>();
-
-        //int index = 0;
-        //foreach (int cost in costs)
-        //{
-        //    ModLog.Warn("Adding " + cost);
-        //    __instance.cachedElements[Shop.ItemType.All].Add(new Shop.CachedShopDataItem()
-        //    {
-        //        itemID = AssetStorage.QuestItems["QI99"],
-        //        isOrb = true,
-        //        orbIdx = index++,
-        //        price = cost,
-        //        type = Shop.ItemType.All,
-        //    });
-        //}
     }
 }
 
