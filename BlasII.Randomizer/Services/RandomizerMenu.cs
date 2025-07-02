@@ -31,6 +31,7 @@ public class RandomizerMenu : ModMenu
             return new RandomizerSettings()
             {
                 Seed = _setSeed.CurrentNumericValue == 0 ? _generatedSeed : _setSeed.CurrentNumericValue,
+                CostMultiplier = _setShopCosts.CurrentOption,
                 LogicType = 1,
                 RequiredKeys = _setRequiredKeys.CurrentOption - 1,
                 StartingWeapon = _setStartingWeapon.CurrentOption - 1,
@@ -40,6 +41,7 @@ public class RandomizerMenu : ModMenu
         }
         set
         {
+            _setShopCosts.CurrentOption = value.CostMultiplier;
             _setLogicDifficulty.CurrentOption = 0;
             _setRequiredKeys.CurrentOption = value.RequiredKeys + 1;
             _setStartingWeapon.CurrentOption = value.StartingWeapon + 1;
@@ -170,6 +172,15 @@ public class RandomizerMenu : ModMenu
             "option/weapon/meaculpa",
         ]);
 
+        _setShopCosts = arrow.CreateOption("SC", ui, new Vector2(300, -240), "option/cost",
+        [
+            "option/cost/none",
+            "option/cost/less",
+            "option/cost/normal",
+            "option/cost/more",
+            "option/cost/vanilla",
+        ]);
+
         _setShuffleLongQuests = toggle.CreateOption("SL", ui, new Vector2(150, 70), "option/long");
         _setShuffleLongQuests.Enabled = false;
 
@@ -222,6 +233,7 @@ public class RandomizerMenu : ModMenu
     private ArrowOption _setLogicDifficulty;
     private ArrowOption _setRequiredKeys;
     private ArrowOption _setStartingWeapon;
+    private ArrowOption _setShopCosts;
     private ToggleOption _setShuffleLongQuests;
     private ToggleOption _setShuffleShops;
 
