@@ -1407,11 +1407,18 @@
         "count": 14
     },
     {
+        "id": "Tears[10000]",
+        "name": "10000 Tears of Atonement",
+        "type": "Tears",
+        "class": "Filler",
+        "count": 1
+    },
+    {
         "id": "Tears[5000]",
         "name": "5000 Tears of Atonement",
         "type": "Tears",
         "class": "Filler",
-        "count": 5
+        "count": 7
     },
     {
         "id": "Tears[3500]",
@@ -1440,6 +1447,13 @@
         "type": "Tears",
         "class": "Filler",
         "count": 3
+    },
+    {
+        "id": "Tears[1000]",
+        "name": "1000 Tears of Atonement",
+        "type": "Tears",
+        "class": "Filler",
+        "count": 1
     },
     {
         "id": "Tears[800]",
