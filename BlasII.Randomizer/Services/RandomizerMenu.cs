@@ -35,7 +35,6 @@ public class RandomizerMenu : ModMenu
                 StartingWeapon = _setStartingWeapon.CurrentOption - 1,
                 ShopMultiplier = _setShopCosts.CurrentOption,
                 ShuffleLongQuests = true,
-                ShuffleShops = _setShuffleShops.Toggled,
             };
         }
         set
@@ -45,7 +44,6 @@ public class RandomizerMenu : ModMenu
             _setStartingWeapon.CurrentOption = value.StartingWeapon + 1;
             _setShopCosts.CurrentOption = value.ShopMultiplier;
             _setShuffleLongQuests.Toggled = true;
-            _setShuffleShops.Toggled = value.ShuffleShops;
         }
     }
 
@@ -183,8 +181,6 @@ public class RandomizerMenu : ModMenu
         _setShuffleLongQuests = toggle.CreateOption("SL", ui, new Vector2(150, 70), "option/long");
         _setShuffleLongQuests.Enabled = false;
 
-        _setShuffleShops = toggle.CreateOption("SS", ui, new Vector2(150, -10), "option/shops");
-
         arrow.ArrowSize = 40;
         arrow.TextSize = 40;
 
@@ -234,7 +230,6 @@ public class RandomizerMenu : ModMenu
     private ArrowOption _setStartingWeapon;
     private ArrowOption _setShopCosts;
     private ToggleOption _setShuffleLongQuests;
-    private ToggleOption _setShuffleShops;
 
     private UIPixelTextWithShadow _idText;
 

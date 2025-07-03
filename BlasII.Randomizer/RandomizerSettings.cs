@@ -46,11 +46,6 @@ public class RandomizerSettings
     public bool ShuffleLongQuests { get; set; }
 
     /// <summary>
-    /// Whether locations that require a purchase can contain progression
-    /// </summary>
-    public bool ShuffleShops { get; set; }
-
-    /// <summary>
     /// The actual starting weapon with "Random" taken into account
     /// </summary>
     [JsonIgnore]
