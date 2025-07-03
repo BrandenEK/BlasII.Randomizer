@@ -62,7 +62,7 @@ internal class TravelerShop : IShop
         if (Main.Randomizer.GetQuestBool("ST06", "Z12_VISITED")) yield return 6000;
         if (Main.Randomizer.GetQuestBool("ST06", "Z01_VISITED")) yield return 12000;
         if (Main.Randomizer.GetQuestBool("ST06", "Z10_VISITED")) yield return 17500;
-        // TODO: add item from dlc quest
+        if (Main.Randomizer.GetQuestBool("ST102", "GUILLOTINE_BAD_ENDING")) yield return 20000;
 
         // New costs: 3000, 3500, 7800, 7800, 7800, 7800, 15600, 20000, 23000
     }
