@@ -1,5 +1,6 @@
 ﻿using BlasII.ModdingAPI;
 using BlasII.ModdingAPI.Assets;
+using BlasII.Randomizer.Shops;
 using Il2CppTGK.Game;
 using System;
 using UnityEngine;
@@ -94,6 +95,42 @@ public static class ItemExtensions
             Item.ItemType.PreMarks => Main.Randomizer.LocalizationHandler.Localize("currency/premarks/desc"),
 
             Item.ItemType.Invalid => "You should not see this.",
+            _ => throw new Exception($"Invalid item type: {item.Type}")
+        };
+    }
+
+    /// <summary>
+    /// Retrieves the value of this item
+    /// </summary>
+    public static ShopValue GetValue(this Item item)
+    {
+        return item.Type switch
+        {
+            Item.ItemType.RosaryBead or Item.ItemType.Prayer or Item.ItemType.Figurine or Item.ItemType.QuestItem => item.Id switch
+            {
+                "QI63" or "QI64" or "QI65" or "QI66" or "QI67" => ShopValue.BossKeys,
+                _ => item.Class switch
+                {
+                    Item.ItemClass.Filler => ShopValue.FillerInventory,
+                    Item.ItemClass.Useful => ShopValue.UsefulInventory,
+                    Item.ItemClass.Progression => ShopValue.ProgressionInventory,
+                    _ => throw new Exception($"Invalid item class: {item.Class}")
+                }
+            },
+            Item.ItemType.ProgressiveQuestItem => item.GetProgressiveItem(true).GetValue(),
+            Item.ItemType.Cherub or Item.ItemType.GoldLump => ShopValue.Cherubs,
+            Item.ItemType.Weapon or Item.ItemType.Ability => ShopValue.WeaponsAndAbilities,
+            Item.ItemType.Tears => item.GetAmount() >= 2000 ? ShopValue.HighTears : ShopValue.LowTears,
+            Item.ItemType.Marks => item.GetAmount() switch
+            {
+                1 => ShopValue.FillerInventory,
+                2 or 3 => ShopValue.UsefulInventory,
+                4 or 5 => ShopValue.ProgressionInventory,
+                _ => throw new Exception($"Invalid item amount: {item.GetAmount()}")
+            },
+            Item.ItemType.PreMarks => ShopValue.ProgressionInventory,
+
+            Item.ItemType.Invalid => ShopValue.FillerInventory,
             _ => throw new Exception($"Invalid item type: {item.Type}")
         };
     }

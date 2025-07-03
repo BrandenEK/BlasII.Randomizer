@@ -55,6 +55,11 @@ public class ShopHandler
         return _shops[name];
     }
 
+    private readonly Dictionary<ShopValue, Vector2> _priceRanges = new()
+    {
+
+    };
+
     private readonly Dictionary<string, IShop> _shops = new()
     {
         { "SHOPHAND", new HandShop() },
