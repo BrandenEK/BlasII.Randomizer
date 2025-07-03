@@ -43,8 +43,6 @@ option/preset: Preset
 option/preset/custom: Custom
 option/preset/standard: Standard
 option/preset/quick: Quick and Easy
-option/long: Shuffle long quests
-option/shops: Shuffle shops
 option/weapon: Starting weapon
 option/weapon/censer: Veredicto
 option/weapon/rosary: Ruego
@@ -67,6 +65,7 @@ option/cost/less: Cheap
 option/cost/normal: Standard
 option/cost/more: Expensive
 option/cost/vanilla: Vanilla
+option/long: Shuffle long quests
 
 lang: es
 

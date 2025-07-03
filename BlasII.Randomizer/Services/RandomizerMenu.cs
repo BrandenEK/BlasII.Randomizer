@@ -43,7 +43,7 @@ public class RandomizerMenu : ModMenu
             _setRequiredKeys.CurrentOption = value.RequiredKeys + 1;
             _setStartingWeapon.CurrentOption = value.StartingWeapon + 1;
             _setShopCosts.CurrentOption = value.ShopMultiplier;
-            _setShuffleLongQuests.Toggled = true;
+            //_setShuffleLongQuests.Toggled = true;
         }
     }
 
@@ -169,7 +169,7 @@ public class RandomizerMenu : ModMenu
             "option/weapon/meaculpa",
         ]);
 
-        _setShopCosts = arrow.CreateOption("SC", ui, new Vector2(300, -240), "option/cost",
+        _setShopCosts = arrow.CreateOption("SC", ui, new Vector2(300, 80), "option/cost",
         [
             "option/cost/none",
             "option/cost/less",
@@ -178,8 +178,8 @@ public class RandomizerMenu : ModMenu
             "option/cost/vanilla",
         ]);
 
-        _setShuffleLongQuests = toggle.CreateOption("SL", ui, new Vector2(150, 70), "option/long");
-        _setShuffleLongQuests.Enabled = false;
+        //_setShuffleLongQuests = toggle.CreateOption("SL", ui, new Vector2(150, 50), "option/long");
+        //_setShuffleLongQuests.Enabled = false;
 
         arrow.ArrowSize = 40;
         arrow.TextSize = 40;
@@ -229,7 +229,7 @@ public class RandomizerMenu : ModMenu
     private ArrowOption _setRequiredKeys;
     private ArrowOption _setStartingWeapon;
     private ArrowOption _setShopCosts;
-    private ToggleOption _setShuffleLongQuests;
+    //private ToggleOption _setShuffleLongQuests;
 
     private UIPixelTextWithShadow _idText;
 
