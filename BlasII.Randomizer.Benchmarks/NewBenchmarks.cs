@@ -59,11 +59,9 @@ public class NewBenchmarks
         {
             yield return SettingsWithDescription.CreateDefault("Default");
             yield return SettingsWithDescription.CreateDefault("More locations")
-                .SetLongQuests(true)
-                .SetShops(true);
+                .SetLongQuests(true);
             yield return SettingsWithDescription.CreateDefault("Less locations")
-                .SetLongQuests(false)
-                .SetShops(false);
+                .SetLongQuests(false);
             yield return SettingsWithDescription.CreateDefault("Start Veredicto")
                 .SetStartingWeapon(0);
             yield return SettingsWithDescription.CreateDefault("Start Ruego")
