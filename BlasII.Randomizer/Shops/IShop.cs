@@ -11,6 +11,11 @@ public interface IShop
     /// Returns a list of the item costs in the shop
     /// </summary>
     public IEnumerable<int> GetVanillaCosts();
+
+    /// <summary>
+    /// Returns a hardcoded unique number used to calculate random costs
+    /// </summary>
+    public int GetSeedValue();
 }
 
 internal class HandShop : IShop
@@ -21,6 +26,11 @@ internal class HandShop : IShop
     {
         return _costs;
     }
+
+    public int GetSeedValue()
+    {
+        return 1;
+    }
 }
 
 internal class PatioShop : IShop
@@ -30,6 +40,11 @@ internal class PatioShop : IShop
     public IEnumerable<int> GetVanillaCosts()
     {
         return _costs;
+    }
+
+    public int GetSeedValue()
+    {
+        return 16;
     }
 }
 
@@ -47,21 +62,9 @@ internal class TravelerShop : IShop
         if (Main.Randomizer.GetQuestBool("ST06", "Z10_VISITED")) yield return 17500;
         // TODO: add item from dlc quest
     }
-}
 
-internal class FakeTravelerShop : IShop
-{
-    public IEnumerable<int> GetVanillaCosts()
+    public int GetSeedValue()
     {
-        yield return 3000;
-        yield return 3000;
-        if (TEMP_VALUE >= 0) yield return 6000;
-        if (TEMP_VALUE >= 1) yield return 6000;
-        if (TEMP_VALUE >= 2) yield return 6000;
-        if (TEMP_VALUE >= 3) yield return 6000;
-        if (TEMP_VALUE >= 4) yield return 12000;
-        if (TEMP_VALUE >= 5) yield return 17500;
+        return 25;
     }
-
-    private const int TEMP_VALUE = 3;
 }
