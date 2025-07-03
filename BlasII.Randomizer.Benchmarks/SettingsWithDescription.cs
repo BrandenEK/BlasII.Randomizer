@@ -1,4 +1,5 @@
-﻿
+﻿using BlasII.Randomizer.Settings;
+
 namespace BlasII.Randomizer.Benchmarks;
 
 public class SettingsWithDescription : RandomizerSettings
@@ -12,15 +13,15 @@ public class SettingsWithDescription : RandomizerSettings
 
     public static SettingsWithDescription CreateDefault(string description)
     {
-        RandomizerSettings settings = DEFAULT;
+        RandomizerSettings settings = SettingsGenerator.CreateFromPreset(Preset.Standard);
         return new SettingsWithDescription()
         {
             Description = description,
             LogicType = settings.LogicType,
             RequiredKeys = settings.RequiredKeys,
             StartingWeapon = settings.StartingWeapon,
+            ShopMultiplier = settings.ShopMultiplier,
             ShuffleLongQuests = settings.ShuffleLongQuests,
-            ShuffleShops = settings.ShuffleShops,
         };
     }
 
@@ -48,9 +49,9 @@ public class SettingsWithDescription : RandomizerSettings
         return this;
     }
 
-    public SettingsWithDescription SetShops(bool shops)
+    public SettingsWithDescription SetShopMultiplier(int multiplier)
     {
-        ShuffleShops = shops;
+        ShopMultiplier = multiplier;
         return this;
     }
 }

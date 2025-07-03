@@ -22,7 +22,6 @@ public static class SettingsGenerator
                 StartingWeapon = -1,
                 ShopMultiplier = 2,
                 ShuffleLongQuests = false,
-                ShuffleShops = true,
             },
             Preset.Quick => new RandomizerSettings()
             {
@@ -32,7 +31,6 @@ public static class SettingsGenerator
                 StartingWeapon = 0,
                 ShopMultiplier = 1,
                 ShuffleLongQuests = false,
-                ShuffleShops = false,
             },
             _ => throw new Exception($"Invalid preset type {preset}")
         };

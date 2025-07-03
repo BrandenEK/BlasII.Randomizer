@@ -17,8 +17,8 @@ public static class ItemLocationExtensions
         //if (location.Flags.Contains('L') && !settings.ShuffleLongQuests)
         //    return false;
 
-        if (location.Flags.Contains('S') && !settings.ShuffleShops)
-            return false;
+        //if (location.Flags.Contains('S') && !settings.ShuffleShops)
+        //    return false;
 
         return true;
     }
