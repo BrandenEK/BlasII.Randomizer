@@ -1666,11 +1666,6 @@
         "logic": "wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosary + meaculpa + mudkey + ceramickey"
     },
     {
-        "id": "Z2804.i8",
-        "name": "Will be removed soon",
-        "logic": "wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosary + meaculpa + mudkey + ceramickey"
-    },
-    {
         "id": "Z2804.r0",
         "name": "Brother Asterión reward #1",
         "logic": "wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosary + meaculpa + mudkey + ceramickey"

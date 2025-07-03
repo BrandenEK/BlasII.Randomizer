@@ -51,6 +51,14 @@ class PopupMessageLogic_ShowMessageAndWait_Patch
             __instance.textCtrl.SetText(text);
             return;
         }
+
+        // When defeating Asterion, dont show retrieving the hilt
+        if (message.name == "MSG_10103")
+        {
+            string text = Main.Randomizer.LocalizationHandler.Localize("popup/boss");
+            __instance.textCtrl.SetText(text);
+            return;
+        }
     }
 }
 

@@ -65,7 +65,7 @@ class PlayMaker_AddItem_Patch
         }
 
         // Never give location if certain room or item
-        if (ROOMS_NEVER.Contains(sceneName) || ITEMS_NEVER.Contains(itemName))
+        if (ROOMS_NEVER.Contains(sceneName) || ITEMS_NEVER.Contains(itemName) || COMBO_NEVER.Any(x => x.Item1 == sceneName && x.Item2 == itemName))
         {
             __instance.Finish();
             return false;
@@ -86,6 +86,7 @@ class PlayMaker_AddItem_Patch
     private static readonly string[] ITEMS_ALWAYS = ["FG40", "FG41", "FG42", "FG43"]; // Burnt figures
     private static readonly string[] ROOMS_NEVER = []; // None
     private static readonly string[] ITEMS_NEVER = ["QI102"]; // Broken key
+    private static readonly (string, string)[] COMBO_NEVER = [("Z2804", "QI104")]; // Mea Culpa Hilt after Asterion
 }
 
 // =================
@@ -126,7 +127,7 @@ class Marks_Skip_Patch
 // =====================
 
 [HarmonyPatch(typeof(UnlockWeapon), nameof(UnlockWeapon.OnEnter))]
-class PlayMaker_UnlockWeapon_Patch
+class UnlockWeapon_OnEnter_Patch
 {
     public static bool Prefix(UnlockWeapon __instance)
     {
@@ -142,13 +143,53 @@ class PlayMaker_UnlockWeapon_Patch
     }
 }
 [HarmonyPatch(typeof(ShowWeaponPopup), nameof(ShowWeaponPopup.OnEnter))]
-class WeaponFind_Skip_Patch
+class ShowWeaponPopup_OnEnter_Patch
 {
     public static bool Prefix(ShowWeaponPopup __instance)
     {
         if (!Main.Randomizer.IsRandomizerMode)
             return true;
 
+        __instance.Finish();
+        return false;
+    }
+}
+[HarmonyPatch(typeof(ShopUnlockWeaponPopup), nameof(ShopUnlockWeaponPopup.OnEnter))]
+class ShopUnlockWeaponPopup_OnEnter_Patch
+{
+    public static bool Prefix(ShopUnlockWeaponPopup __instance)
+    {
+        if (!Main.Randomizer.IsRandomizerMode)
+            return true;
+
+        __instance.Finish();
+        return false;
+    }
+}
+[HarmonyPatch(typeof(SwapWeaponSlotsAction), nameof(SwapWeaponSlotsAction.OnEnter))]
+class SwapWeaponSlotsAction_OnEnter_Patch
+{
+    public static bool Prefix(SwapWeaponSlotsAction __instance)
+    {
+        if (!Main.Randomizer.IsRandomizerMode)
+            return true;
+
+        // TODO: Remove once I know they don't affect something else
+        ModLog.Error("Skipping SwapWeaponSlotsAction");
+        __instance.Finish();
+        return false;
+    }
+}
+[HarmonyPatch(typeof(ChangeWeaponAction), nameof(ChangeWeaponAction.OnEnter))]
+class ChangeWeaponAction_OnEnter_Patch
+{
+    public static bool Prefix(ChangeWeaponAction __instance)
+    {
+        if (!Main.Randomizer.IsRandomizerMode)
+            return true;
+
+        // TODO: Remove once I know they don't affect something else
+        ModLog.Error("Skipping ChangeWeaponAction");
         __instance.Finish();
         return false;
     }
