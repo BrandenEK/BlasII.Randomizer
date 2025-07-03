@@ -120,6 +120,12 @@
         "logic": "shoprooms >= 7"
     },
     {
+        "id": "SHOPITINERANT.o8",
+        "name": "Purchase item #9",
+        "flags": "S",
+        "logic": "shoprooms >= 7 + wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosary + meaculpa + mudkey + ceramickey"
+    },
+    {
         "id": "SHOPMISSABLES.o0",
         "name": "Purchase item #1",
         "flags": "S",
