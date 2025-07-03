@@ -68,25 +68,3 @@ internal class TravelerShop : IShop
         return 25;
     }
 }
-
-internal class FakeTravelerShop : IShop
-{
-    public IEnumerable<int> GetVanillaCosts()
-    {
-        yield return 3000;
-        yield return 3000;
-        if (TEMP_VALUE >= 0) yield return 6000;
-        if (TEMP_VALUE >= 1) yield return 6000;
-        if (TEMP_VALUE >= 2) yield return 6000;
-        if (TEMP_VALUE >= 3) yield return 6000;
-        if (TEMP_VALUE >= 4) yield return 12000;
-        if (TEMP_VALUE >= 5) yield return 17500;
-    }
-
-    public int GetSeedValue()
-    {
-        return 25;
-    }
-
-    private const int TEMP_VALUE = 5;
-}

@@ -47,11 +47,6 @@ public class ShopHandler
         return costs;
     }
 
-    public IShop TEMP_GetShop(string name)
-    {
-        return _shops[name];
-    }
-
     private readonly Dictionary<ShopValue, Vector2> _priceRanges = new()
     {
         { ShopValue.FillerInventory, new Vector2(100, 200) },
@@ -68,6 +63,6 @@ public class ShopHandler
     {
         { "SHOPHAND", new HandShop() },
         { "SHOPMISSABLES", new PatioShop() },
-        { "SHOPITINERANT", new FakeTravelerShop() },
+        { "SHOPITINERANT", new TravelerShop() },
     };
 }
