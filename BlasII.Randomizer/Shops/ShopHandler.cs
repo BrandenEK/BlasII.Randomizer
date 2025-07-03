@@ -36,14 +36,11 @@ public class ShopHandler
             }
 
             // Based on item value, place random cost
-
-            // Get ShopValue from item extensions
-            // Get price range from shop handler
             float multiplier = settings.ShopMultiplier / 2f;
-            Vector2 range = new Vector2(500, 1000) * multiplier / 10;
-
+            Vector2 range = _priceRanges[item.GetValue()] * multiplier / 10;
             int seed = (settings.Seed % 100000) * (shop.GetSeedValue() + index);
             int price = new System.Random(seed).Next((int)range.x, (int)range.y + 1);
+
             costs.Add(price * 10);
         }
 
@@ -57,7 +54,14 @@ public class ShopHandler
 
     private readonly Dictionary<ShopValue, Vector2> _priceRanges = new()
     {
-
+        { ShopValue.FillerInventory, new Vector2(100, 200) },
+        { ShopValue.UsefulInventory, new Vector2(1000, 2500) },
+        { ShopValue.ProgressionInventory, new Vector2(2500, 3500) },
+        { ShopValue.WeaponsAndAbilities, new Vector2(4000, 5000) },
+        { ShopValue.Cherubs, new Vector2(400, 800) },
+        { ShopValue.BossKeys, new Vector2(5500, 7500) },
+        { ShopValue.LowTears, new Vector2(600, 2000) },
+        { ShopValue.HighTears, new Vector2(1800, 5200) },
     };
 
     private readonly Dictionary<string, IShop> _shops = new()
