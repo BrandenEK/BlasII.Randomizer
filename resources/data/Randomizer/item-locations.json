@@ -153,19 +153,7 @@
         "id": "SHOPMISSABLES.o4",
         "name": "Purchase item #5",
         "flags": "S",
-        "logic": "censer + rapier + rosary + wallclimb + doublejump + airdash + ringclimb"
-    },
-    {
-        "id": "SHOPMISSABLES.o5",
-        "name": "Purchase item #6",
-        "flags": "S",
-        "logic": "censer + rapier + rosary + wallclimb + doublejump + airdash + ringclimb"
-    },
-    {
-        "id": "SHOPMISSABLES.o6",
-        "name": "Purchase item #7",
-        "flags": "S",
-        "logic": "censer + rapier + rosary + wallclimb + doublejump + airdash + ringclimb"
+        "logic": "censer + rapier + doublejump"
     },
     {
         "id": "Z0105.l3",

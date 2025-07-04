@@ -45,14 +45,12 @@ internal class HandShop : IShop
 
 internal class PatioShop : IShop
 { 
-    // New costs: 7800, 7800, ????, ????, 15600, 15600, ?????
+    // New costs: 7800, 7800, ????, 15600, 15600
     public IEnumerable<int> GetVanillaCosts()
     {
         yield return 6000;
         yield return 6000;
-        yield return 6000;
-        yield return 6000;
-        yield return 12000;
+        yield return 9000;
         yield return 12000;
         yield return 12000;
     }
