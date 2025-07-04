@@ -1,5 +1,4 @@
 ﻿using Basalt.LogicParser;
-using BlasII.ModdingAPI;
 using BlasII.ModdingAPI.Assets;
 using BlasII.Randomizer.Models;
 using System;
@@ -112,10 +111,6 @@ public class PoolsItemShuffler : IShuffler
     /// </summary>
     private void BalanceItemPool(ItemPool progressionItems, ItemPool junkItems, int numOfLocations)
     {
-        // TODO: Remove this
-        int numItems = progressionItems.Size + junkItems.Size;
-        ModLog.Warn($"Locations: {numOfLocations}, Items: {numItems}");
-
         // Remove tear items until pools are equal
         while (progressionItems.Size + junkItems.Size > numOfLocations)
         {
