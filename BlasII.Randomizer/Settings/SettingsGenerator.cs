@@ -21,6 +21,7 @@ public static class SettingsGenerator
                 RequiredKeys = 4,
                 StartingWeapon = -1,
                 ShopMultiplier = 2,
+                AddPenitenceRewards = true,
                 ShuffleLongQuests = false,
             },
             Preset.Quick => new RandomizerSettings()
@@ -30,6 +31,7 @@ public static class SettingsGenerator
                 RequiredKeys = 1,
                 StartingWeapon = 0,
                 ShopMultiplier = 1,
+                AddPenitenceRewards = true,
                 ShuffleLongQuests = false,
             },
             _ => throw new Exception($"Invalid preset type {preset}")

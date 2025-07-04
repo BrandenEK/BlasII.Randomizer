@@ -1,4 +1,5 @@
 ﻿using Basalt.LogicParser;
+using BlasII.ModdingAPI;
 using BlasII.ModdingAPI.Assets;
 using BlasII.Randomizer.Models;
 using System;
@@ -76,13 +77,16 @@ public class PoolsItemShuffler : IShuffler
     /// </summary>
     private void CreateItemPool(ItemPool progressionItems, ItemPool junkItems, int numOfLocations, RandomizerSettings settings)
     {
+        if (settings.AddPenitenceRewards)
+            AddPenitenceItemsToPool(junkItems);
+
         foreach (var item in _allItems.Values)
         {
             AddItemToPool(progressionItems, junkItems, item);
         }
 
         RemoveStartingItemsFromItemPool(progressionItems, settings);
-        BalanceItemPool(progressionItems, junkItems, numOfLocations);
+        BalanceItemPool(progressionItems, junkItems, numOfLocations); // Don't add any items just before this!
     }
 
     /// <summary>
@@ -95,6 +99,17 @@ public class PoolsItemShuffler : IShuffler
         {
             itemPool.Add(item);
         }
+    }
+
+    /// <summary>
+    /// Adds the six penitence reward items to the junk item pool
+    /// </summary>
+    private void AddPenitenceItemsToPool(ItemPool junkItems)
+    {
+        string[] penitenceItems = ["PR103", "PR108", "FG101", "FG105", "FG106", "FG111"];
+
+        foreach (string id in penitenceItems)
+            junkItems.Add(_allItems[id]);
     }
 
     /// <summary>
