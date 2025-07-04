@@ -41,6 +41,11 @@ public class RandomizerSettings
     // Item shuffle (Pool)
 
     /// <summary>
+    /// Should the penitence items be added to the pool
+    /// </summary>
+    public bool AddPenitenceRewards { get; set; }
+
+    /// <summary>
     /// Whether locations that require a lot of time can contain progression
     /// </summary>
     public bool ShuffleLongQuests { get; set; }

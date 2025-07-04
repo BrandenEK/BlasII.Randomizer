@@ -25,6 +25,7 @@ public static class SettingsExtensions
         sb.AppendLine($"{KEYS_NAME}: {keys}");
         sb.AppendLine($"{WEAPON_NAME}: {weapon}");
         sb.AppendLine($"{SHOPS_NAME}: {shops}");
+        sb.AppendLine($"{PENITENCE_NAME}: {settings.AddPenitenceRewards}");
         sb.AppendLine($"{QUESTS_NAME}: {settings.ShuffleLongQuests}");
 
         return sb.ToString();
@@ -48,6 +49,7 @@ public static class SettingsExtensions
         sb.AppendLine($" {KEYS_NAME}: {keys}");
         sb.AppendLine($" {WEAPON_NAME}: {weapon}");
         sb.AppendLine($" {SHOPS_NAME}: {shops}");
+        sb.AppendLine($"{PENITENCE_NAME}: {settings.AddPenitenceRewards}");
         sb.AppendLine($" {QUESTS_NAME}: {settings.ShuffleLongQuests}");
         sb.AppendLine(LINE);
 
@@ -112,6 +114,7 @@ public static class SettingsExtensions
         SetBit(ref uid, ref idx, ref flip, (settings.ShopMultiplier & 0x04) > 0);
 
         // Shuffle
+        SetBit(ref uid, ref idx, ref flip, settings.AddPenitenceRewards);
         SetBit(ref uid, ref idx, ref flip, settings.ShuffleLongQuests);
 
         return uid;
@@ -135,6 +138,7 @@ public static class SettingsExtensions
     private static readonly string KEYS_NAME = "Required keys";
     private static readonly string WEAPON_NAME = "Starting weapon";
     private static readonly string SHOPS_NAME = "Shop costs";
+    private static readonly string PENITENCE_NAME = "Add penitence rewards";
     private static readonly string QUESTS_NAME = "Shuffle long quests";
     private static readonly string[] LOGIC_OPTIONS = ["Easy", "Normal", "Hard"];
     private static readonly string[] WEAPON_OPTIONS = ["Veredicto", "Ruego", "Sarmiento", "Mea Culpa"];
