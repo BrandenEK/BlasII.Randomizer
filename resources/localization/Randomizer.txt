@@ -66,6 +66,7 @@ option/cost/less: Cheap
 option/cost/normal: Standard
 option/cost/more: Expensive
 option/cost/vanilla: Vanilla
+option/penitence: Add penitence rewards
 option/long: Shuffle long quests
 
 lang: es
