@@ -20,12 +20,21 @@ public interface IShop
 
 internal class HandShop : IShop
 {
-    private readonly int[] _costs = [3000, 3000, 3000, 3000, 3000, 3000, 3000, 6000, 12000, 12000, 17500, 32000];
-    //                    New costs: 3900, 3900, 3900, 3900, 3900, 3900, 3900, 7800, 15600, 15600, 23000, 42000
-
+    // New costs: 3900, 3900, 3900, 3900, 3900, 3900, 3900, 7800, 15600, 15600, 23000, 42000
     public IEnumerable<int> GetVanillaCosts()
     {
-        return _costs;
+        yield return 3000;
+        yield return 3000;
+        yield return 3000;
+        yield return 3000;
+        yield return 3000;
+        yield return 3000;
+        yield return 3000;
+        yield return 6000;
+        yield return 12000;
+        yield return 12000;
+        yield return 17500;
+        yield return 32000;
     }
 
     public int GetSeedValue()
@@ -35,13 +44,15 @@ internal class HandShop : IShop
 }
 
 internal class PatioShop : IShop
-{
-    private readonly int[] _costs = [6000, 6000, 6000, 6000, 12000, 12000, 12000];
-    //                    New costs: 7800, 7800, ????, ????, 15600, 15600, ?????
-
+{ 
+    // New costs: 7800, 7800, ????, 15600, 15600
     public IEnumerable<int> GetVanillaCosts()
     {
-        return _costs;
+        yield return 6000;
+        yield return 6000;
+        yield return 9000;
+        yield return 12000;
+        yield return 12000;
     }
 
     public int GetSeedValue()
@@ -52,6 +63,7 @@ internal class PatioShop : IShop
 
 internal class TravelerShop : IShop
 {
+    // New costs: 3000, 3500, 7800, 7800, 7800, 7800, 15600, 20000, 23000
     public IEnumerable<int> GetVanillaCosts()
     {
         yield return 3000;
@@ -63,8 +75,6 @@ internal class TravelerShop : IShop
         if (Main.Randomizer.GetQuestBool("ST06", "Z01_VISITED")) yield return 12000;
         if (Main.Randomizer.GetQuestBool("ST06", "Z10_VISITED")) yield return 17500;
         if (Main.Randomizer.GetQuestBool("ST102", "GUILLOTINE_BAD_ENDING")) yield return 20000;
-
-        // New costs: 3000, 3500, 7800, 7800, 7800, 7800, 15600, 20000, 23000
     }
 
     public int GetSeedValue()

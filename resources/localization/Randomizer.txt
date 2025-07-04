@@ -35,6 +35,7 @@ popup/item: You have acquired
 popup/keys: "The Mother said: 'Locate the * keys that herald the Birth."
 popup/sisters: ...
 popup/mud: The Mud Key remains intact.
+popup/boss: Good job!
 
 # Settings menu
 option/random: Random
