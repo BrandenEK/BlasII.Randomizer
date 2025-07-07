@@ -65,7 +65,7 @@ public class BlasphemousInventory
 
     // Cherub quest
 
-    [CollectableAs("Cherub")]
+    [CollectableAs("CH")]
     [ResolvableAs("cherubs")]
     int NumCherubs { get; set; }
 

@@ -296,3 +296,16 @@ class GoldenLumpsCountFix_OnPlayerSpawned_Patch
         return false;
     }
 }
+
+/// <summary>
+/// Prevent the CherubsCountFix from functioning
+/// </summary>
+[HarmonyPatch(typeof(CherubsCountFix), nameof(CherubsCountFix.PlayerSpawnManager_OnPlayerSpawned))]
+class CherubsCountFix_OnPlayerSpawned_Patch
+{
+    public static bool Prefix()
+    {
+        ModLog.Info("Preventing cherub sync");
+        return false;
+    }
+}

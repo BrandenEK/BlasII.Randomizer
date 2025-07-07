@@ -1522,40 +1522,40 @@
         "id": "Z2401.i0",
         "name": "Proximo reward",
         "flags": "L",
-        "logic": "censer + rapier + rosary + wallclimb + doublejump + airdash + ringclimb"
+        "logic": "cherubs >= 33 + wallclimb + rattle"
     },
     {
         "id": "Z2401.l0.a",
         "name": "Lower platform basin",
-        "logic": "censer + rapier + rosary + wallclimb"
+        "logic": "cherubs >= 10 + wallclimb"
     },
     {
         "id": "Z2401.l0.b",
         "name": "Middle platform basin",
-        "logic": "censer + rapier + rosary + wallclimb + doublejump + airdash + ringclimb"
+        "logic": "cherubs >= 17 + wallclimb"
     },
     {
         "id": "Z2401.l0.c",
         "name": "Upper platform basin",
-        "logic": "censer + rapier + rosary + wallclimb + doublejump + airdash + ringclimb"
+        "logic": "cherubs >= 29 + wallclimb + doublejump + airdash"
     },
     {
         "id": "Z2402.l0",
         "name": "Floor pickup",
         "flags": "L",
-        "logic": "censer + rapier + rosary + wallclimb + doublejump + airdash + ringclimb"
+        "logic": "cherubs >= 33 + wallclimb + doublejump + airdash + ringclimb"
     },
     {
         "id": "Z2402.l1",
         "name": "Floor basin",
         "flags": "L",
-        "logic": "censer + rapier + rosary + wallclimb + doublejump + airdash + ringclimb"
+        "logic": "cherubs >= 33 + wallclimb + doublejump + airdash + ringclimb"
     },
     {
         "id": "Z2402.l2",
         "name": "High ledge chest",
         "flags": "L",
-        "logic": "censer + rapier + rosary + wallclimb + doublejump + airdash + ringclimb"
+        "logic": "cherubs >= 33 + wallclimb + doublejump + airdash + ringclimb"
     },
     {
         "id": "Z2702.i0",

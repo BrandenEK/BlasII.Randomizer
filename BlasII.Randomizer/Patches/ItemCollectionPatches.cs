@@ -7,8 +7,10 @@ using Il2CppPlaymaker.Loot;
 using Il2CppPlaymaker.PrieDieu;
 using Il2CppPlaymaker.UI;
 using Il2CppTGK.Game;
+using Il2CppTGK.Game.Achievements;
 using Il2CppTGK.Game.Components.Interactables;
 using Il2CppTGK.Game.Inventory.PlayMaker;
+using Il2CppTGK.Game.Managers;
 using System.Linq;
 
 namespace BlasII.Randomizer.Patches;
@@ -277,59 +279,46 @@ class ActivateGoldFlaskAbilityAction_OnEnter_Patch
 // Caged cherubs
 // =============
 
-// They changed how cherubs work an ruined everything.  The quest flags are still used in the cherub room and maybe on the pause menu.
-// But now the CherubsManager stores collected cherubs as tokens and then syncs the quest flags.
-// However, those tokens also determines whether the cherub is collected or not.
-// In addition, the CherubCollectibleComponent.AddCherub method fires twice on scene load
+[HarmonyPatch(typeof(AddProgressTokenComponent), nameof(AddProgressTokenComponent.AddProgressToken))]
+class AddProgressTokenComponent_AddProgressToken_Patch
+{
+    public static bool Prefix(AddProgressTokenComponent __instance)
+    {
+        string locationId = $"{CoreCache.Room.CurrentRoom.Name}.c0";
+        ModLog.Custom($"AddProgressTokenComponent.AddProgressToken - {locationId}", System.Drawing.Color.Green);
 
-//[HarmonyPatch(typeof(CherubCollectibleComponent), nameof(CherubCollectibleComponent.AddCherub))]
-//class CherubCollectibleComponent_AddCherub_Patch
-//{
-//    public static bool Prefix()
-//    {
-//        string locationId = $"{CoreCache.Room.CurrentRoom.Name}.c0";
-//        **ModLog.Error("CherubCollectibleComponent.AddCherub - " + locationId);
+        if (!Main.Randomizer.IsRandomizerMode || __instance.token.achievementId.name != "AC21")
+            return true;
 
-//        if (!Main.Randomizer.IsRandomizerMode)
-//            return true;
+        Main.Randomizer.ItemHandler.GiveItemAtLocation(locationId);
+        CoreCache.CherubsManager.Synch();
+        return false;
+    }
+}
+[HarmonyPatch(typeof(ShowCherubPopup), nameof(ShowCherubPopup.OnEnter))]
+class ShowCherubPopup_OnEnter_Patch
+{
+    public static bool Prefix(ShowCherubPopup __instance)
+    {
+        if (!Main.Randomizer.IsRandomizerMode)
+            return true;
 
-//        Main.Randomizer.ItemHandler.GiveItemAtLocation(locationId);
-//        CoreCache.CherubsManager.Synch();
-//        return false;
-//    }
-//}
-//[HarmonyPatch(typeof(OperateQuestVar), nameof(OperateQuestVar.CheckInputData))]
-//class PlayMaker_OperateQuestVar_Patch
-//{
-//    public static bool Prefix(OperateQuestVar __instance)
-//    {
-//        string quest = Main.Randomizer.GetQuestName(__instance.questVar.questID, __instance.questVar.varID);
-//        if (quest != "ST16.FREED_CHERUBS")
-//            return true;
+        __instance.Finish();
+        return false;
+    }
+}
+[HarmonyPatch(typeof(CherubsManager), nameof(CherubsManager.Synch))]
+class CherubsManager_Synch_Patch
+{
+    public static void Postfix()
+    {
+        if (!Main.Randomizer.IsRandomizerMode)
+            return;
 
-//        string locationId = $"{CoreCache.Room.CurrentRoom.Name}.c0";
-//        **ModLog.Error("OperateQuestVar.CheckInputData - " + locationId);
-
-//        if (!Main.Randomizer.IsRandomizerMode)
-//            return true;
-
-//        Main.Randomizer.ItemHandler.GiveItemAtLocation(locationId);
-//        __instance.Finish();
-//        return false;
-//    }
-//}
-//[HarmonyPatch(typeof(ShowCherubPopup), nameof(ShowCherubPopup.OnEnter))]
-//class Cherub_Skip_Patch
-//{
-//    public static bool Prefix(ShowCherubPopup __instance)
-//    {
-//        if (!Main.Randomizer.IsRandomizerMode)
-//            return true;
-
-//        __instance.Finish();
-//        return false;
-//    }
-//}
+        int count = Main.Randomizer.ItemHandler.AmountItemCollected("CH");
+        Main.Randomizer.SetQuestValue("ST16", "FREED_CHERUBS", count);
+    }
+}
 
 // =====
 // Tears
