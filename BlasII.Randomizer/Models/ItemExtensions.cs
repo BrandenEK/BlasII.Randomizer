@@ -253,7 +253,10 @@ public static class ItemExtensions
                     //int currentCherubs = Main.Randomizer.GetQuestInt("ST16", "FREED_CHERUBS");
                     //Main.Randomizer.SetQuestValue("ST16", "FREED_CHERUBS", currentCherubs + 1);
 
-                    ModLog.Error("Cherubs are temporarily not shuffled :(");
+                    //ModLog.Error("Cherubs are temporarily not shuffled :(");
+                    //CoreCache.CherubsManager.Synch();
+                    int amount = Main.Randomizer.ItemHandler.AmountItemCollected(item.Id) + 1;
+                    Main.Randomizer.SetQuestValue("ST16", "FREED_CHERUBS", amount);
                     break;
                 }
             case Item.ItemType.Tears:

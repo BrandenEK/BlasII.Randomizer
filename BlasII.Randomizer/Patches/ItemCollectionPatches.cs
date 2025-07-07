@@ -284,35 +284,6 @@ class ActivateGoldFlaskAbilityAction_OnEnter_Patch
 // However, those tokens also determines whether the cherub is collected or not.
 // In addition, the CherubCollectibleComponent.AddCherub method fires twice on scene load
 
-
-//[HarmonyPatch(typeof(CherubsManager), nameof(CherubsManager.AddCherub))]
-//class CherubsManager_AddCherub_Patch
-//{
-//    public static bool Prefix(CherubsManager __instance, int token)
-//    {
-//        ModLog.Error(nameof(CherubsManager.AddCherub) + ": " + token);
-//        return false;
-//    }
-
-//    public static void Postfix(CherubsManager __instance)
-//    {
-//        ModLog.Warn("Add cherub post");
-//        __instance.Synch();
-//    }
-//}
-
-[HarmonyPatch(typeof(CherubsManager), nameof(CherubsManager.Synch))]
-class CherubsManager_Synch_Patch
-{
-    public static void Postfix(CherubsManager __instance)
-    {
-        ModLog.Warn("Synching cherubs");
-
-        int count = Main.Randomizer.ItemHandler.AmountItemCollected("CH");
-        Main.Randomizer.SetQuestValue("ST16", "FREED_CHERUBS", count);
-    }
-}
-
 [HarmonyPatch(typeof(AddProgressTokenComponent), nameof(AddProgressTokenComponent.AddProgressToken))]
 class AddProgressTokenComponent_AddProgressToken_Patch
 {
@@ -327,6 +298,30 @@ class AddProgressTokenComponent_AddProgressToken_Patch
         Main.Randomizer.ItemHandler.GiveItemAtLocation(locationId);
         CoreCache.CherubsManager.Synch();
         return false;
+    }
+}
+[HarmonyPatch(typeof(ShowCherubPopup), nameof(ShowCherubPopup.OnEnter))]
+class ShowCherubPopup_OnEnter_Patch
+{
+    public static bool Prefix(ShowCherubPopup __instance)
+    {
+        if (!Main.Randomizer.IsRandomizerMode)
+            return true;
+
+        __instance.Finish();
+        return false;
+    }
+}
+[HarmonyPatch(typeof(CherubsManager), nameof(CherubsManager.Synch))]
+class CherubsManager_Synch_Patch
+{
+    public static void Postfix()
+    {
+        if (!Main.Randomizer.IsRandomizerMode)
+            return;
+
+        int count = Main.Randomizer.ItemHandler.AmountItemCollected("CH");
+        Main.Randomizer.SetQuestValue("ST16", "FREED_CHERUBS", count);
     }
 }
 //[HarmonyPatch(typeof(AddProgressTokenComponent), nameof(AddProgressTokenComponent.AddProgressTokenIfNeeded))]
@@ -374,18 +369,6 @@ class AddProgressTokenComponent_AddProgressToken_Patch
 //        return false;
 //    }
 //}
-[HarmonyPatch(typeof(ShowCherubPopup), nameof(ShowCherubPopup.OnEnter))]
-class ShowCherubPopup_OnEnter_Patch
-{
-    public static bool Prefix(ShowCherubPopup __instance)
-    {
-        if (!Main.Randomizer.IsRandomizerMode)
-            return true;
-
-        __instance.Finish();
-        return false;
-    }
-}
 
 // =====
 // Tears
