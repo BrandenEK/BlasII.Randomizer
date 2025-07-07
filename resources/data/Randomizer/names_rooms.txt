@@ -70,23 +70,23 @@ Z05BZ04: City room 1
 Z05BZ05: City room 2
 Z05BZ06: City room 3
 # Grilles and Ruins
-Z0601: Z0601
-Z0602: Z0602
-Z0603: Z0603
-Z0604: Z0604
-Z0605: Z0605
-Z0606: Z0606
-Z0607: Z0607
-Z0608: Z0608
-Z0609: Z0609
-Z0610: Z0610
-Z0611: Z0611
-Z0612: Z0612
-Z0613: Z0613
-Z0614: Z0614
-Z0615: Z0615
-Z0616: Z0616
-Z0617: Z0617
+Z0601: City entrance
+Z0602: Western exterior
+Z0603: Western interior
+Z0604: Central exterior
+Z0605: Eastern interior
+Z0606: Eastern exterior
+Z0607: Palace entrance
+Z0608: Glass bridge room
+Z0609: Cobijada room
+Z0610: Thorns entrance
+Z0611: Western sewers
+Z0612: Central sewers
+Z0613: Sleeping daughter room
+Z0614: Eastern sewers
+Z0615: Western gauntlet
+Z0616: Golden room
+Z0617: Towers entrance
 # Palace of the Embroideries
 Z0701: Z0701
 Z0702: Z0702
