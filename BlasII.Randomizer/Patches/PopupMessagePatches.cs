@@ -65,12 +65,12 @@ class PopupMessageLogic_ShowMessageAndWait_Patch
 /// <summary>
 /// Adjust the size of the item popup based on the image
 /// </summary>
-[HarmonyPatch(typeof(ItemPopupWindowLogic), nameof(ItemPopupWindowLogic.ShowPopup))]
-class ItemPopupWindowLogic_ShowPopup_Patch
+[HarmonyPatch(typeof(ItemPopupWindowLogic), nameof(ItemPopupWindowLogic.ShowPopupInternal))]
+class ItemPopupWindowLogic_ShowPopupInternal_Patch
 {
-    public static void Prefix(ItemPopupWindowLogic __instance, Sprite image)
+    public static void Prefix(ItemPopupWindowLogic __instance, ItemPopupWindowLogic.ItemPopUpData popup)
     {
-        Vector2 size = image == null ? new Vector2(90, 90) : image.rect.size * 3;
+        Vector2 size = popup.image == null ? new Vector2(90, 90) : popup.image.rect.size * 3;
         Vector2 offset = new((90 - size.x) / 2, (90 - size.y) / 2);
 
         __instance.spriteImage.rectTransform.sizeDelta = size;
