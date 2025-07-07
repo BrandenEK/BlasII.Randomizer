@@ -42,6 +42,15 @@ internal class BasePool<T> : IEnumerable<T>
     }
 
     /// <summary>
+    /// Adds multiple elements to the end of the pool
+    /// </summary>
+    public void Add(T element, int amount)
+    {
+        for (int i = 0; i < amount; i++)
+            _elements.Add(element);
+    }
+
+    /// <summary>
     /// Shuffles the elements in the pool
     /// </summary>
     public void Shuffle()

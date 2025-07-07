@@ -14,6 +14,8 @@ public class ComponentShuffler : IShuffler
     private readonly Dictionary<string, Item> _allItems;
 
     private readonly ILocationPoolCreator _locationPoolCreator;
+    private readonly IItemPoolCreator _itemPoolCreator;
+    private readonly IPoolBalancer _poolBalancer;
 
     public ComponentShuffler(Dictionary<string, ItemLocation> locations, Dictionary<string, Item> items)
     {
@@ -21,6 +23,8 @@ public class ComponentShuffler : IShuffler
         _allItems = items;
 
         _locationPoolCreator = new LocationPoolCreator(locations.Values);
+        _itemPoolCreator = new ItemPoolCreator(items);
+        _poolBalancer = new PoolBalancer(items);
     }
 
     public bool Shuffle(int seed, RandomizerSettings settings, Dictionary<string, string> output)
@@ -29,21 +33,23 @@ public class ComponentShuffler : IShuffler
         var rng = new Random(seed);
 
         // Create pools of all locations to randomize
-        _locationPoolCreator.Create(rng, settings, out LocationPool progressionLocations, out LocationPool junkLocations);
+        _locationPoolCreator.Create(rng, settings, out LocationPool progLocations, out LocationPool junkLocations);
 
         // Create pools of all items to randomize
-        ItemPool progressionItems = new(rng), junkItems = new(rng);
-        CreateItemPool(progressionItems, junkItems, progressionLocations.Size + junkLocations.Size, settings);
+        _itemPoolCreator.Create(rng, settings, out ItemPool progItems, out ItemPool junkItems);
+
+        // Add or remove junk items to the number of locations equal the number of items
+        _poolBalancer.Balance(progLocations, junkLocations, progItems, junkItems);
 
         // Create initial inventory
         var inventory = BlasphemousInventory.CreateNewInventory(settings);
-        CreateInitialInventory(inventory, settings, progressionItems);
+        CreateInitialInventory(inventory, settings, progItems);
 
         // Place progression items at progression locations
-        FillProgressionItems(progressionLocations, progressionItems, output, inventory);
+        FillProgressionItems(progLocations, progItems, output, inventory);
 
         // Add junk items to remaining progression items and ensure they are still balanced
-        junkLocations.Combine(progressionLocations);
+        junkLocations.Combine(progLocations);
         if (junkLocations.Size != junkItems.Size)
             return false;
 
@@ -52,73 +58,6 @@ public class ComponentShuffler : IShuffler
 
         // Verify that all remaining items were placed
         return junkItems.Size == 0 && junkLocations.Size == 0;
-    }
-
-    /// <summary>
-    /// Fills the two item pools to match the number of locations
-    /// </summary>
-    private void CreateItemPool(ItemPool progressionItems, ItemPool junkItems, int numOfLocations, RandomizerSettings settings)
-    {
-        if (settings.AddPenitenceRewards)
-            AddPenitenceItemsToPool(junkItems);
-
-        foreach (var item in _allItems.Values)
-        {
-            AddItemToPool(progressionItems, junkItems, item);
-        }
-
-        RemoveStartingItemsFromItemPool(progressionItems, settings);
-        BalanceItemPool(progressionItems, junkItems, numOfLocations); // Don't add any items just before this!
-    }
-
-    /// <summary>
-    /// Takes a single item data and adds it to the correct list based on its type
-    /// </summary>
-    private void AddItemToPool(ItemPool progressionItems, ItemPool junkItems, Item item)
-    {
-        ItemPool itemPool = item.Class == Item.ItemClass.Progression ? progressionItems : junkItems;
-        for (int i = 0; i < item.Count; i++)
-        {
-            itemPool.Add(item);
-        }
-    }
-
-    /// <summary>
-    /// Adds the six penitence reward items to the junk item pool
-    /// </summary>
-    private void AddPenitenceItemsToPool(ItemPool junkItems)
-    {
-        string[] penitenceItems = ["PR103", "PR108", "FG101", "FG105", "FG106", "FG111"];
-
-        foreach (string id in penitenceItems)
-            junkItems.Add(_allItems[id]);
-    }
-
-    /// <summary>
-    /// Removes the starting weapon from the item pool
-    /// </summary>
-    private void RemoveStartingItemsFromItemPool(ItemPool items, RandomizerSettings settings)
-    {
-        // Remove the extra starting weapon
-        items.Remove(_allItems[GetStartingWeaponId(settings)]);
-    }
-
-    /// <summary>
-    /// After creating the item pool, add or remove junk items to make it equal to the number of locations
-    /// </summary>
-    private void BalanceItemPool(ItemPool progressionItems, ItemPool junkItems, int numOfLocations)
-    {
-        // Remove tear items until pools are equal
-        while (progressionItems.Size + junkItems.Size > numOfLocations)
-        {
-            junkItems.RemoveLast();
-        }
-
-        // Add tear items until pools are equal
-        while (progressionItems.Size + junkItems.Size < numOfLocations)
-        {
-            junkItems.Add(_allItems["Tears[800]"]);
-        }
     }
 
     /// <summary>
