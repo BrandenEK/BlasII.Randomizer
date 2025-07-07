@@ -16,7 +16,7 @@ public static class SettingsGenerator
         {
             Preset.Standard => new RandomizerSettings()
             {
-                Seed = RandomizerSettings.RANDOM_SEED,
+                Seed = GetRandomSeed(),
                 LogicType = 1,
                 RequiredKeys = 4,
                 StartingWeapon = -1,
@@ -26,7 +26,7 @@ public static class SettingsGenerator
             },
             Preset.Quick => new RandomizerSettings()
             {
-                Seed = RandomizerSettings.RANDOM_SEED,
+                Seed = GetRandomSeed(),
                 LogicType = 1,
                 RequiredKeys = 1,
                 StartingWeapon = 0,
@@ -38,8 +38,24 @@ public static class SettingsGenerator
         };
     }
 
-    ///// <summary>
-    ///// The number of available presets
-    ///// </summary>
-    //public static int NumberOfPresets { get; } = Enum.GetNames(typeof(Preset)).Length;
+    /// <summary>
+    /// Generates a random seed deterministically
+    /// </summary>
+    public static int GetRandomSeed(Random rng)
+    {
+        return rng.Next(1, MAX_SEED + 1);
+    }
+
+    /// <summary>
+    /// Generates a random seed undeterministically
+    /// </summary>
+    public static int GetRandomSeed()
+    {
+        return GetRandomSeed(new Random());
+    }
+
+    /// <summary>
+    /// The maximum seed allowed
+    /// </summary>
+    public const int MAX_SEED = 99_999_999;
 }

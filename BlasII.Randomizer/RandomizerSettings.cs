@@ -1,4 +1,3 @@
-using BlasII.Randomizer.Settings;
 using Newtonsoft.Json;
 using System;
 
@@ -79,20 +78,4 @@ public class RandomizerSettings
             return RequiredKeys;
         }
     }
-
-    /// <summary>
-    /// A new settings object with default properties
-    /// </summary>
-    [Obsolete("Use new SettingsGenerator instead")]
-    public static RandomizerSettings DEFAULT => SettingsGenerator.CreateFromPreset(Preset.Standard);
-
-    /// <summary>
-    /// A random seed in the valid range
-    /// </summary>
-    public static int RANDOM_SEED => new Random().Next(1, MAX_SEED + 1);
-
-    /// <summary>
-    /// The maximum seed allowed
-    /// </summary>
-    public const int MAX_SEED = 99_999_999;
 }

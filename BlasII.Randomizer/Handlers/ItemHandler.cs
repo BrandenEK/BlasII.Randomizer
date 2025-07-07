@@ -78,7 +78,7 @@ public class ItemHandler
         while (!_shuffler.Shuffle(seed, settings, _mappedItems) && currentAttempt < maxAttempts)
         {
             int failedSeed = seed;
-            seed = seedGen.Next(1, RandomizerSettings.MAX_SEED + 1);
+            seed = SettingsGenerator.GetRandomSeed(seedGen);
 
             ModLog.Warn($"Seed {failedSeed} was invalid! Trying {seed} next.");
             currentAttempt++;

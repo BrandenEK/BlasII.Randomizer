@@ -1,4 +1,5 @@
 using BlasII.Randomizer.Models;
+using BlasII.Randomizer.Settings;
 using BlasII.Randomizer.Shuffle;
 using Basalt.LogicParser;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -40,7 +41,7 @@ public class LogicTests
     [TestInitialize]
     public void CreateInventory()
     {
-        inventory = BlasphemousInventory.CreateNewInventory(RandomizerSettings.DEFAULT);
+        inventory = BlasphemousInventory.CreateNewInventory(SettingsGenerator.CreateFromPreset(Preset.Standard));
     }
 
     [TestMethod]

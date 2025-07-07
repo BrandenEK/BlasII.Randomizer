@@ -56,7 +56,7 @@ public class RandomizerMenu : ModMenu
     {
         RandomizerSettings settings = SettingsGenerator.CreateFromPreset(Preset.Standard);
 
-        _generatedSeed = RandomizerSettings.RANDOM_SEED;
+        _generatedSeed = SettingsGenerator.GetRandomSeed();
         ModLog.Info($"Generating default seed: {_generatedSeed}");
 
         MenuSettings = settings;
@@ -144,7 +144,7 @@ public class RandomizerMenu : ModMenu
             TextSize = TEXT_SIZE,
         };
 
-        _setSeed = text.CreateOption("Seed", ui, new Vector2(0, 300), "option/seed", true, false, RandomizerSettings.MAX_SEED.ToString().Length);
+        _setSeed = text.CreateOption("Seed", ui, new Vector2(0, 300), "option/seed", true, false, SettingsGenerator.MAX_SEED.ToString().Length);
 
         _setLogicDifficulty = arrow.CreateOption("LD", ui, new Vector2(-300, 80), "option/logic",
         [
