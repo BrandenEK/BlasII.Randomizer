@@ -81,12 +81,6 @@ public class RandomizerSettings
     }
 
     /// <summary>
-    /// A new settings object with default properties
-    /// </summary>
-    [Obsolete("Use new SettingsGenerator instead")]
-    public static RandomizerSettings DEFAULT => SettingsGenerator.CreateFromPreset(Preset.Standard);
-
-    /// <summary>
     /// A random seed in the valid range
     /// </summary>
     public static int RANDOM_SEED => new Random().Next(1, MAX_SEED + 1);
