@@ -9,6 +9,7 @@ using Il2CppPlaymaker.UI;
 using Il2CppTGK.Game;
 using Il2CppTGK.Game.Components.Interactables;
 using Il2CppTGK.Game.Inventory.PlayMaker;
+using Il2CppTGK.Game.Managers;
 using System.Linq;
 
 namespace BlasII.Randomizer.Patches;
@@ -282,6 +283,32 @@ class ActivateGoldFlaskAbilityAction_OnEnter_Patch
 // However, those tokens also determines whether the cherub is collected or not.
 // In addition, the CherubCollectibleComponent.AddCherub method fires twice on scene load
 
+
+[HarmonyPatch(typeof(CherubsManager), nameof(CherubsManager.AddCherub))]
+class CherubsManager_AddCherub_Patch
+{
+    public static bool Prefix(CherubsManager __instance, int token)
+    {
+        ModLog.Error(nameof(CherubsManager.AddCherub) + ": " + token);
+        return false;
+    }
+
+    public static void Postfix(CherubsManager __instance)
+    {
+        ModLog.Warn("Add cherub post");
+        __instance.Synch();
+    }
+}
+
+[HarmonyPatch(typeof(CherubsManager), nameof(CherubsManager.Synch))]
+class CherubsManager_Synch_Patch
+{
+    public static void Postfix(CherubsManager __instance)
+    {
+        ModLog.Warn("Synching cherubs");
+    }
+}
+
 //[HarmonyPatch(typeof(CherubCollectibleComponent), nameof(CherubCollectibleComponent.AddCherub))]
 //class CherubCollectibleComponent_AddCherub_Patch
 //{
@@ -318,18 +345,18 @@ class ActivateGoldFlaskAbilityAction_OnEnter_Patch
 //        return false;
 //    }
 //}
-//[HarmonyPatch(typeof(ShowCherubPopup), nameof(ShowCherubPopup.OnEnter))]
-//class Cherub_Skip_Patch
-//{
-//    public static bool Prefix(ShowCherubPopup __instance)
-//    {
-//        if (!Main.Randomizer.IsRandomizerMode)
-//            return true;
+[HarmonyPatch(typeof(ShowCherubPopup), nameof(ShowCherubPopup.OnEnter))]
+class ShowCherubPopup_OnEnter_Patch
+{
+    public static bool Prefix(ShowCherubPopup __instance)
+    {
+        if (!Main.Randomizer.IsRandomizerMode)
+            return true;
 
-//        __instance.Finish();
-//        return false;
-//    }
-//}
+        __instance.Finish();
+        return false;
+    }
+}
 
 // =====
 // Tears
