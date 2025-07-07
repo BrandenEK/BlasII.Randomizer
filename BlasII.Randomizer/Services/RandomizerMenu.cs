@@ -56,7 +56,7 @@ public class RandomizerMenu : ModMenu
     {
         RandomizerSettings settings = SettingsGenerator.CreateFromPreset(Preset.Standard);
 
-        _generatedSeed = RandomizerSettings.RANDOM_SEED;
+        _generatedSeed = SettingsGenerator.GetRandomSeed();
         ModLog.Info($"Generating default seed: {_generatedSeed}");
 
         MenuSettings = settings;

@@ -1,5 +1,6 @@
 ﻿using BlasII.Randomizer.Benchmarks.Attributes;
 using BlasII.Randomizer.Benchmarks.Models;
+using BlasII.Randomizer.Settings;
 using BlasII.Randomizer.Shuffle;
 
 namespace BlasII.Randomizer.Benchmarks;
@@ -31,7 +32,7 @@ public class NewBenchmarks
     [BenchmarkParameters(nameof(SettingsParameters))]
     private BenchmarkResult Shuffle_Reverse(RandomizerSettings settings)
     {
-        settings.Seed = _rng.Next(1, RandomizerSettings.MAX_SEED + 1);
+        settings.Seed = SettingsGenerator.GetRandomSeed(_rng);
 
         var map = new Dictionary<string, string>();
         bool result = _shuffler.Shuffle(settings.Seed, settings, map);
@@ -44,7 +45,7 @@ public class NewBenchmarks
     [BenchmarkParameters(nameof(SettingsParameters))]
     private BenchmarkResult Shuffle_Forward(RandomizerSettings settings)
     {
-        settings.Seed = _rng.Next(1, RandomizerSettings.MAX_SEED + 1);
+        settings.Seed = SettingsGenerator.GetRandomSeed(_rng);
         
         var map = new Dictionary<string, string>();
         bool result = _shuffler.Shuffle(settings.Seed, settings, map);
