@@ -84,9 +84,4 @@ public class RandomizerSettings
     /// A random seed in the valid range
     /// </summary>
     public static int RANDOM_SEED => new Random().Next(1, MAX_SEED + 1);
-
-    /// <summary>
-    /// The maximum seed allowed
-    /// </summary>
-    public const int MAX_SEED = 99_999_999;
 }
