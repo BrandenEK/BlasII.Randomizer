@@ -49,7 +49,7 @@ public static class SettingsExtensions
         sb.AppendLine($" {KEYS_NAME}: {keys}");
         sb.AppendLine($" {WEAPON_NAME}: {weapon}");
         sb.AppendLine($" {SHOPS_NAME}: {shops}");
-        sb.AppendLine($"{PENITENCE_NAME}: {settings.AddPenitenceRewards}");
+        sb.AppendLine($" {PENITENCE_NAME}: {settings.AddPenitenceRewards}");
         sb.AppendLine($" {QUESTS_NAME}: {settings.ShuffleLongQuests}");
         sb.AppendLine(LINE);
 
