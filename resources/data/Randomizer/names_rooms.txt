@@ -17,49 +17,49 @@ Z0205: City entrance
 Z0206: Repose entrance
 Z0207: Aquaducts entrance
 # Aqueduct of the Costales
-Z0301: Z0301
-Z0302: Z0302
-Z0303: Z0303
-Z0304: Z0304
-Z0305: Z0305
-Z0306: Z0306
-Z0307: Z0307
-Z0308: Z0308
-Z0310: Z0310
-Z0312: Z0312
-Z0313: Z0313
+Z0301: Southern bell room
+Z0302: Garden entrance
+Z0303: Prie Dieu room
+Z0304: Hidden symbol room
+Z0305: Spike pit room
+Z0306: Breaking bridge room
+Z0307: Western Entombments exit
+Z0308: Eastern Entombments exit
+Z0310: Entombments entrance
+Z0312: City entrance
+Z0313: Ravine entrance
 # Sacred Entombments
-Z0402: Z0402
-Z0403: Z0403
-Z0405: Z0405
-Z0406: Z0406
-Z0407: Z0407
-Z0408: Z0408
-Z0409: Z0409
-Z0410: Z0410
-Z0411: Z0411
-Z0412: Z0412
-Z0413: Z0413
-Z0414: Z0414
-Z0415: Z0415
-Z0416: Z0416
-Z0417: Z0417
-Z0418: Z0418
-Z0419: Z0419
-Z0420: Z0420
-Z0421: Z0421
-Z0423: Z0423
-Z0425: Z0425
-Z0426: Z0426
-Z0427: Z0427
-Z0428: Z0428
-Z0429: Z0429
+Z0402: Northern aquaducts entrance
+Z0403: Warp station
+Z0405: Eastern sand-riser
+Z0406: Central shaft
+Z0407: [UNNAMED]
+Z0408: Glass pit room
+Z0409: Veredicto antechamber
+Z0410: Eastern bell room
+Z0411: Useless room
+Z0412: Eastern root room
+Z0413: Exploding tunnel
+Z0414: Bell shortcut room
+Z0415: Cage secret room
+Z0416: Western prie dieu room
+Z0417: Tower entrance
+Z0418: Western sand-riser
+Z0419: Boss antechamber
+Z0420: Eastern prie dieu room
+Z0421: Boss room
+Z0423: Veredicto room
+Z0425: Southern aquaducts entrance
+Z0426: Repose entrance
+Z0427: Double gate room
+Z0428: Southern bell shaft
+Z0429: Crow station
 # City of the Blessed Name
 Z0501: West side
 Z0502: Central building
 Z0503: East side
 Z0504: Rooftops
-Z0505: Teleport room
+Z0505: Warp station
 Z0506: Cobijada room
 Z0510: Chalice room
 Z0511: Hidden chest room
