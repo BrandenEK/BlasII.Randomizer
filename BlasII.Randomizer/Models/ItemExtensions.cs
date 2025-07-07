@@ -236,25 +236,6 @@ public static class ItemExtensions
                 }
             case Item.ItemType.Cherub:
                 {
-                    //var tokens = Resources.FindObjectsOfTypeAll<AchievementProgressToken>()
-                    //    .Where(x => x.name.StartsWith("AC21 Token CH"));
-
-                    //foreach (var token in tokens)
-                    //{
-                    //    if (CoreCache.CherubsManager.IsCollected(token.id))
-                    //        continue;
-
-                    //    ModLog.Error("Adding token: " + token.id);
-                    //    CoreCache.CherubsManager.AddCherub(token.id);
-                    //    CoreCache.CherubsManager.Synch();
-                    //    break;
-                    //}
-
-                    //int currentCherubs = Main.Randomizer.GetQuestInt("ST16", "FREED_CHERUBS");
-                    //Main.Randomizer.SetQuestValue("ST16", "FREED_CHERUBS", currentCherubs + 1);
-
-                    //ModLog.Error("Cherubs are temporarily not shuffled :(");
-                    //CoreCache.CherubsManager.Synch();
                     int amount = Main.Randomizer.ItemHandler.AmountItemCollected(item.Id) + 1;
                     Main.Randomizer.SetQuestValue("ST16", "FREED_CHERUBS", amount);
                     break;

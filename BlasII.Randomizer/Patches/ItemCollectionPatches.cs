@@ -279,11 +279,6 @@ class ActivateGoldFlaskAbilityAction_OnEnter_Patch
 // Caged cherubs
 // =============
 
-// They changed how cherubs work an ruined everything.  The quest flags are still used in the cherub room and maybe on the pause menu.
-// But now the CherubsManager stores collected cherubs as tokens and then syncs the quest flags.
-// However, those tokens also determines whether the cherub is collected or not.
-// In addition, the CherubCollectibleComponent.AddCherub method fires twice on scene load
-
 [HarmonyPatch(typeof(AddProgressTokenComponent), nameof(AddProgressTokenComponent.AddProgressToken))]
 class AddProgressTokenComponent_AddProgressToken_Patch
 {
@@ -324,51 +319,6 @@ class CherubsManager_Synch_Patch
         Main.Randomizer.SetQuestValue("ST16", "FREED_CHERUBS", count);
     }
 }
-//[HarmonyPatch(typeof(AddProgressTokenComponent), nameof(AddProgressTokenComponent.AddProgressTokenIfNeeded))]
-//class t2
-//{
-//    public static void Postfix(AddProgressTokenComponent __instance)
-//    {
-//        ModLog.Error("Add progress token if needed: " + __instance.token.name);
-//    }
-//}
-
-//[HarmonyPatch(typeof(CherubCollectibleComponent), nameof(CherubCollectibleComponent.AddCherub))]
-//class CherubCollectibleComponent_AddCherub_Patch
-//{
-//    public static bool Prefix()
-//    {
-//        string locationId = $"{CoreCache.Room.CurrentRoom.Name}.c0";
-//        **ModLog.Error("CherubCollectibleComponent.AddCherub - " + locationId);
-
-//        if (!Main.Randomizer.IsRandomizerMode)
-//            return true;
-
-//        Main.Randomizer.ItemHandler.GiveItemAtLocation(locationId);
-//        CoreCache.CherubsManager.Synch();
-//        return false;
-//    }
-//}
-//[HarmonyPatch(typeof(OperateQuestVar), nameof(OperateQuestVar.CheckInputData))]
-//class PlayMaker_OperateQuestVar_Patch
-//{
-//    public static bool Prefix(OperateQuestVar __instance)
-//    {
-//        string quest = Main.Randomizer.GetQuestName(__instance.questVar.questID, __instance.questVar.varID);
-//        if (quest != "ST16.FREED_CHERUBS")
-//            return true;
-
-//        string locationId = $"{CoreCache.Room.CurrentRoom.Name}.c0";
-//        **ModLog.Error("OperateQuestVar.CheckInputData - " + locationId);
-
-//        if (!Main.Randomizer.IsRandomizerMode)
-//            return true;
-
-//        Main.Randomizer.ItemHandler.GiveItemAtLocation(locationId);
-//        __instance.Finish();
-//        return false;
-//    }
-//}
 
 // =====
 // Tears
