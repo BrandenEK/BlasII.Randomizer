@@ -7,6 +7,7 @@ using Il2CppPlaymaker.Loot;
 using Il2CppPlaymaker.PrieDieu;
 using Il2CppPlaymaker.UI;
 using Il2CppTGK.Game;
+using Il2CppTGK.Game.Achievements;
 using Il2CppTGK.Game.Components.Interactables;
 using Il2CppTGK.Game.Inventory.PlayMaker;
 using Il2CppTGK.Game.Managers;
@@ -284,21 +285,21 @@ class ActivateGoldFlaskAbilityAction_OnEnter_Patch
 // In addition, the CherubCollectibleComponent.AddCherub method fires twice on scene load
 
 
-[HarmonyPatch(typeof(CherubsManager), nameof(CherubsManager.AddCherub))]
-class CherubsManager_AddCherub_Patch
-{
-    public static bool Prefix(CherubsManager __instance, int token)
-    {
-        ModLog.Error(nameof(CherubsManager.AddCherub) + ": " + token);
-        return false;
-    }
+//[HarmonyPatch(typeof(CherubsManager), nameof(CherubsManager.AddCherub))]
+//class CherubsManager_AddCherub_Patch
+//{
+//    public static bool Prefix(CherubsManager __instance, int token)
+//    {
+//        ModLog.Error(nameof(CherubsManager.AddCherub) + ": " + token);
+//        return false;
+//    }
 
-    public static void Postfix(CherubsManager __instance)
-    {
-        ModLog.Warn("Add cherub post");
-        __instance.Synch();
-    }
-}
+//    public static void Postfix(CherubsManager __instance)
+//    {
+//        ModLog.Warn("Add cherub post");
+//        __instance.Synch();
+//    }
+//}
 
 [HarmonyPatch(typeof(CherubsManager), nameof(CherubsManager.Synch))]
 class CherubsManager_Synch_Patch
@@ -306,8 +307,36 @@ class CherubsManager_Synch_Patch
     public static void Postfix(CherubsManager __instance)
     {
         ModLog.Warn("Synching cherubs");
+
+        int count = Main.Randomizer.ItemHandler.AmountItemCollected("CH");
+        Main.Randomizer.SetQuestValue("ST16", "FREED_CHERUBS", count);
     }
 }
+
+[HarmonyPatch(typeof(AddProgressTokenComponent), nameof(AddProgressTokenComponent.AddProgressToken))]
+class AddProgressTokenComponent_AddProgressToken_Patch
+{
+    public static bool Prefix(AddProgressTokenComponent __instance)
+    {
+        string locationId = $"{CoreCache.Room.CurrentRoom.Name}.c0";
+        ModLog.Custom($"AddProgressTokenComponent.AddProgressToken - {locationId}", System.Drawing.Color.Green);
+
+        if (!Main.Randomizer.IsRandomizerMode || __instance.token.achievementId.name != "AC21")
+            return true;
+
+        Main.Randomizer.ItemHandler.GiveItemAtLocation(locationId);
+        CoreCache.CherubsManager.Synch();
+        return false;
+    }
+}
+//[HarmonyPatch(typeof(AddProgressTokenComponent), nameof(AddProgressTokenComponent.AddProgressTokenIfNeeded))]
+//class t2
+//{
+//    public static void Postfix(AddProgressTokenComponent __instance)
+//    {
+//        ModLog.Error("Add progress token if needed: " + __instance.token.name);
+//    }
+//}
 
 //[HarmonyPatch(typeof(CherubCollectibleComponent), nameof(CherubCollectibleComponent.AddCherub))]
 //class CherubCollectibleComponent_AddCherub_Patch
