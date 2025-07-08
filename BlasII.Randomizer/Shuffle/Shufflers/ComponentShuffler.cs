@@ -1,7 +1,6 @@
 ﻿using Basalt.LogicParser;
-using BlasII.ModdingAPI;
-using BlasII.ModdingAPI.Assets;
 using BlasII.Randomizer.Models;
+using BlasII.Randomizer.Shuffle.Inventory;
 using BlasII.Randomizer.Shuffle.PoolCreators;
 using System;
 using System.Collections.Generic;
@@ -16,8 +15,9 @@ public class ComponentShuffler : IShuffler
     private readonly ILocationPoolCreator _locationPoolCreator;
     private readonly IItemPoolCreator _itemPoolCreator;
     private readonly IPoolBalancer _poolBalancer;
+    private readonly IInventoryCreator _inventoryCreator;
 
-    public ComponentShuffler(Dictionary<string, ItemLocation> locations, Dictionary<string, Item> items)
+    public ComponentShuffler(Dictionary<string, ItemLocation> locations, Dictionary<string, Item> items, bool useReverseFill)
     {
         _allLocations = locations;
         _allItems = items;
@@ -25,6 +25,7 @@ public class ComponentShuffler : IShuffler
         _locationPoolCreator = new LocationPoolCreator(locations.Values);
         _itemPoolCreator = new ItemPoolCreator(items);
         _poolBalancer = new PoolBalancer(items);
+        _inventoryCreator = useReverseFill ? new ReverseInventoryCreator() : new ForwardInventoryCreator();
     }
 
     public bool Shuffle(int seed, RandomizerSettings settings, Dictionary<string, string> output)
@@ -42,8 +43,7 @@ public class ComponentShuffler : IShuffler
         _poolBalancer.Balance(progLocations, junkLocations, progItems, junkItems);
 
         // Create initial inventory
-        var inventory = BlasphemousInventory.CreateNewInventory(settings);
-        CreateInitialInventory(inventory, settings, progItems);
+        _inventoryCreator.Create(settings, progItems, out GameInventory inventory);
 
         // Place progression items at progression locations
         FillProgressionItems(progLocations, progItems, output, inventory);
@@ -58,29 +58,6 @@ public class ComponentShuffler : IShuffler
 
         // Verify that all remaining items were placed
         return junkItems.Size == 0 && junkLocations.Size == 0;
-    }
-
-    /// <summary>
-    /// Adds the starting weapon and all progression items to the initial inventory
-    /// </summary>
-    private void CreateInitialInventory(GameInventory inventory, RandomizerSettings settings, ItemPool progressionItems)
-    {
-        // Add the starting weapon
-        inventory.Add(GetStartingWeaponId(settings));
-
-        // Add all progression items in the pool
-        foreach (var item in progressionItems)
-        {
-            inventory.Add(item.Id);
-        }
-    }
-
-    /// <summary>
-    /// Calculates the item id of the chosen starting weapon
-    /// </summary>
-    private string GetStartingWeaponId(RandomizerSettings settings)
-    {
-        return ((WEAPON_IDS)settings.RealStartingWeapon).ToString();
     }
 
     /// <summary>
