@@ -6,7 +6,7 @@ using BlasII.Randomizer.Shuffle.Pools;
 using System;
 using System.Collections.Generic;
 
-namespace BlasII.Randomizer.Shuffle.Shufflers;
+namespace BlasII.Randomizer.Shuffle;
 
 public class ComponentShuffler : IShuffler
 {
