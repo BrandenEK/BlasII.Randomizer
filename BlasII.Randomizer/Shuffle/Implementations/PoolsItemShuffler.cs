@@ -1,18 +1,18 @@
 ﻿using Basalt.LogicParser;
+using BlasII.ModdingAPI;
 using BlasII.ModdingAPI.Assets;
 using BlasII.Randomizer.Models;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 
-namespace BlasII.Randomizer.Shuffle;
+namespace BlasII.Randomizer.Shuffle.Implementations;
 
-public class ForwardItemShuffler : IShuffler
+public class PoolsItemShuffler : IShuffler
 {
     private readonly Dictionary<string, ItemLocation> _allItemLocations;
     private readonly Dictionary<string, Item> _allItems;
 
-    public ForwardItemShuffler(Dictionary<string, ItemLocation> itemLocations, Dictionary<string, Item> items)
+    public PoolsItemShuffler(Dictionary<string, ItemLocation> itemLocations, Dictionary<string, Item> items)
     {
         _allItemLocations = itemLocations;
         _allItems = items;
@@ -77,13 +77,16 @@ public class ForwardItemShuffler : IShuffler
     /// </summary>
     private void CreateItemPool(ItemPool progressionItems, ItemPool junkItems, int numOfLocations, RandomizerSettings settings)
     {
+        if (settings.AddPenitenceRewards)
+            AddPenitenceItemsToPool(junkItems);
+
         foreach (var item in _allItems.Values)
         {
             AddItemToPool(progressionItems, junkItems, item);
         }
 
         RemoveStartingItemsFromItemPool(progressionItems, settings);
-        BalanceItemPool(progressionItems, junkItems, numOfLocations);
+        BalanceItemPool(progressionItems, junkItems, numOfLocations); // Don't add any items just before this!
     }
 
     /// <summary>
@@ -96,6 +99,17 @@ public class ForwardItemShuffler : IShuffler
         {
             itemPool.Add(item);
         }
+    }
+
+    /// <summary>
+    /// Adds the six penitence reward items to the junk item pool
+    /// </summary>
+    private void AddPenitenceItemsToPool(ItemPool junkItems)
+    {
+        string[] penitenceItems = ["PR103", "PR108", "FG101", "FG105", "FG106", "FG111"];
+
+        foreach (string id in penitenceItems)
+            junkItems.Add(_allItems[id]);
     }
 
     /// <summary>
@@ -134,10 +148,10 @@ public class ForwardItemShuffler : IShuffler
         inventory.Add(GetStartingWeaponId(settings));
 
         // Add all progression items in the pool
-        //foreach (var item in progressionItems)
-        //{
-        //    inventory.Add(item.Id);
-        //}
+        foreach (var item in progressionItems)
+        {
+            inventory.Add(item.Id);
+        }
     }
 
     /// <summary>
@@ -153,41 +167,33 @@ public class ForwardItemShuffler : IShuffler
     #region Shuffle
 
     /// <summary>
-    /// Calculates a subset of the given locations that are reachable with the current inventory
-    /// </summary>
-    private LocationPool FindReachableLocations(LocationPool locations, GameInventory inventory)
-    {
-        var temp = new LocationPool(locations);
-        temp.Clear();
-
-        foreach (var location in locations.Where(x => inventory.Evaluate(x.Logic)))
-        {
-            temp.Add(location);
-        }
-
-        // Not ideal, but thats how the pools are set up
-        return temp;
-    }
-
-    /// <summary>
-    /// Using a forward fill algorithm, place the last item at a random reachable location
+    /// Using a reverse fill algorithm, place the last item at a random reachable location
     /// </summary>
     private void FillProgressionItems(LocationPool locations, ItemPool items, Dictionary<string, string> output, GameInventory inventory)
     {
+        // Verify that all locations are reachable
+        foreach (var location in locations)
+        {
+            if (!inventory.Evaluate(location.Logic))
+                return;
+        }
+
         items.Shuffle();
         MovePriorityItems(items);
-        var reachableLocations = FindReachableLocations(locations, inventory);
+        var reachableLocations = new LocationPool(locations);
 
         while (reachableLocations.Size > 0 && items.Size > 0)
         {
+            Item item = items.RemoveLast();
+            inventory.Remove(item.Id);
+
+            RemoveUnreachableLocations(reachableLocations, inventory);
+            if (reachableLocations.Size == 0)
+                return;
+
             ItemLocation location = reachableLocations.RemoveRandom();
             locations.Remove(location);
-
-            Item item = items.RemoveLast();
-            inventory.Add(item.Id);
-
             output.Add(location.Id, item.Id);
-            reachableLocations = FindReachableLocations(locations, inventory);
         }
     }
 
@@ -213,7 +219,7 @@ public class ForwardItemShuffler : IShuffler
     private void MovePriorityItems(ItemPool progressionItems)
     {
         Item wallClimb = _allItems["WallClimb"];
-        progressionItems.MoveToEnd(wallClimb);
+        progressionItems.MoveToBeginning(wallClimb);
     }
 
     /// <summary>

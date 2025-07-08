@@ -1,7 +1,7 @@
 ﻿using BlasII.Randomizer.Models;
 using System.Collections.Generic;
 
-namespace BlasII.Randomizer.Shuffle;
+namespace BlasII.Randomizer.Shuffle.Implementations;
 
 public class DebugShuffler : IShuffler
 {
