@@ -18,7 +18,12 @@ internal class ForwardProgressionFiller : IFiller
     {
         items.Shuffle();
         MovePriorityItems(items);
-        var reachableLocations = FindReachableLocations(locations, inventory);
+
+        var reachableLocations = new LocationPool(locations);
+        var unreachableLocations = new LocationPool(locations);
+
+        reachableLocations.Clear();
+        UpdateReachableLocations(reachableLocations, unreachableLocations, inventory);
 
         while (reachableLocations.Size > 0 && items.Size > 0)
         {
@@ -29,7 +34,7 @@ internal class ForwardProgressionFiller : IFiller
             inventory.Add(item.Id);
 
             output.Add(location.Id, item.Id);
-            reachableLocations = FindReachableLocations(locations, inventory);
+            UpdateReachableLocations(reachableLocations, unreachableLocations, inventory);
         }
     }
 
@@ -39,17 +44,14 @@ internal class ForwardProgressionFiller : IFiller
         progressionItems.MoveToEnd(wallClimb);
     }
 
-    private LocationPool FindReachableLocations(LocationPool locations, GameInventory inventory)
+    private void UpdateReachableLocations(LocationPool reachable, LocationPool unreachable, GameInventory inventory)
     {
-        var temp = new LocationPool(locations);
-        temp.Clear();
+        var newLocations = unreachable.Where(x => inventory.Evaluate(x.Logic)).ToArray();
 
-        foreach (var location in locations.Where(x => inventory.Evaluate(x.Logic)))
+        foreach (var location in newLocations)
         {
-            temp.Add(location);
+            unreachable.Remove(location);
+            reachable.Add(location);
         }
-
-        // Not ideal, but thats how the pools are set up
-        return temp;
     }
 }
