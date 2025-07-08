@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace BlasII.Randomizer.Shuffle.PoolCreators;
+namespace BlasII.Randomizer.Shuffle.Pools;
 
 internal class LocationPoolCreator : ILocationPoolCreator
 {

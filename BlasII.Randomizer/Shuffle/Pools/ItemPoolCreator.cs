@@ -3,7 +3,7 @@ using BlasII.Randomizer.Models;
 using System;
 using System.Collections.Generic;
 
-namespace BlasII.Randomizer.Shuffle.PoolCreators;
+namespace BlasII.Randomizer.Shuffle.Pools;
 
 internal class ItemPoolCreator : IItemPoolCreator
 {
