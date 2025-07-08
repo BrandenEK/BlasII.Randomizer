@@ -2,6 +2,7 @@
 using BlasII.Randomizer.Benchmarks.Models;
 using BlasII.Randomizer.Settings;
 using BlasII.Randomizer.Shuffle;
+using BlasII.Randomizer.Shuffle.Implementations;
 
 namespace BlasII.Randomizer.Benchmarks;
 
@@ -19,13 +20,13 @@ public class NewBenchmarks
     [BenchmarkSetup(nameof(Shuffle_Reverse))]
     private void BenchmarkSetup_Reverse()
     {
-        _shuffler = new PoolsItemShuffler(Core.ItemLocations, Core.Items);
+        _shuffler = new ComponentShuffler(Core.ItemLocations, Core.Items, true);
     }
 
     [BenchmarkSetup(nameof(Shuffle_Forward))]
     private void BenchmarkSetup_Forward()
     {
-        _shuffler = new ForwardItemShuffler(Core.ItemLocations, Core.Items);
+        _shuffler = new ComponentShuffler(Core.ItemLocations, Core.Items, false);
     }
 
     [Benchmark("Reverse Fill")]

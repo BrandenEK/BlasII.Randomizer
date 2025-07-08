@@ -1,0 +1,57 @@
+﻿using Basalt.LogicParser;
+using BlasII.Randomizer.Models;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace BlasII.Randomizer.Shuffle.Fill;
+
+internal class ForwardProgressionFiller : IFiller
+{
+    private readonly Dictionary<string, Item> _items;
+
+    public ForwardProgressionFiller(Dictionary<string, Item> items)
+    {
+        _items = items;
+    }
+
+    public void Fill(LocationPool locations, ItemPool items, Dictionary<string, string> output, GameInventory inventory)
+    {
+        items.Shuffle();
+        MovePriorityItems(items);
+
+        var reachableLocations = new LocationPool(locations);
+        var unreachableLocations = new LocationPool(locations);
+
+        reachableLocations.Clear();
+        UpdateReachableLocations(reachableLocations, unreachableLocations, inventory);
+
+        while (reachableLocations.Size > 0 && items.Size > 0)
+        {
+            ItemLocation location = reachableLocations.RemoveRandom();
+            locations.Remove(location);
+
+            Item item = items.RemoveLast();
+            inventory.Add(item.Id);
+
+            output.Add(location.Id, item.Id);
+            UpdateReachableLocations(reachableLocations, unreachableLocations, inventory);
+        }
+    }
+
+    private void MovePriorityItems(ItemPool progressionItems)
+    {
+        Item wallClimb = _items["WallClimb"];
+        progressionItems.MoveToEnd(wallClimb);
+    }
+
+    private void UpdateReachableLocations(LocationPool reachable, LocationPool unreachable, GameInventory inventory)
+    {
+        var newLocations = unreachable.Where(x => inventory.Evaluate(x.Logic)).ToArray();
+
+        foreach (var location in newLocations)
+        {
+            unreachable.Remove(location);
+            reachable.Add(location);
+        }
+    }
+}
