@@ -7,7 +7,7 @@ using BlasII.Randomizer.Handlers;
 using BlasII.Randomizer.Services;
 using BlasII.Randomizer.Settings;
 using BlasII.Randomizer.Shops;
-using BlasII.Randomizer.Shuffle;
+using BlasII.Randomizer.Shuffle.Implementations;
 using BlasII.Randomizer.Storages;
 using Il2Cpp;
 using Il2CppTGK.Game;
@@ -92,7 +92,7 @@ public class Randomizer : BlasIIMod, ISlotPersistentMod<RandomizerSlotData>, IGl
 
         // Initialize handlers
         ItemHandler = new ItemHandler(true
-            ? new PoolsItemShuffler(ItemLocationStorage.AsDictionary, ItemStorage.AsDictionary)
+            ? new ComponentShuffler(ItemLocationStorage.AsDictionary, ItemStorage.AsDictionary, true)
             : new DebugShuffler(ItemLocationStorage.AsDictionary, "Censer"));
         ShopHandler = new ShopHandler();
     }
