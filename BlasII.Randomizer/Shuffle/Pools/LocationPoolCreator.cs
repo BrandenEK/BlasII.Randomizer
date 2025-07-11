@@ -1,4 +1,5 @@
 ﻿using BlasII.Randomizer.Models;
+using BlasII.Randomizer.Shuffle.Models;
 using System;
 using System.Collections.Generic;
 

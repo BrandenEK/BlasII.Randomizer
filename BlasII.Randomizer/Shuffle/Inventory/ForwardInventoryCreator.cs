@@ -1,5 +1,6 @@
 ﻿using Basalt.LogicParser;
 using BlasII.ModdingAPI.Assets;
+using BlasII.Randomizer.Shuffle.Models;
 
 namespace BlasII.Randomizer.Shuffle.Inventory;
 

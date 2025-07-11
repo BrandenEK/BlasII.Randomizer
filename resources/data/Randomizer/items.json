@@ -353,7 +353,7 @@
         "id": "PR101",
         "name": "Prayer of the Penitent One",
         "type": "Prayer",
-        "class": "Useful",
+        "class": "Progression",
         "count": 1
     },
     {
@@ -1193,7 +1193,7 @@
         "id": "QI69",
         "name": "Incense of the Envoys",
         "type": "QuestItem",
-        "class": "Filler",
+        "class": "Progression",
         "count": 1
     },
     {

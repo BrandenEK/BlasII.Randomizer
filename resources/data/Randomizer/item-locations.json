@@ -863,6 +863,7 @@
     {
         "id": "Z1064.i0",
         "name": "Incense reward",
+        "flags": "V",
         "logic": "wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosary + meaculpa + mudkey + ceramickey"
     },
     {

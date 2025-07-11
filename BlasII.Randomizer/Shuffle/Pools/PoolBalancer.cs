@@ -1,4 +1,5 @@
 ﻿using BlasII.Randomizer.Models;
+using BlasII.Randomizer.Shuffle.Models;
 using System.Collections.Generic;
 
 namespace BlasII.Randomizer.Shuffle.Pools;
@@ -24,6 +25,7 @@ internal class PoolBalancer : IPoolBalancer
         {
             AddTearItems(junkItems, -difference);
         }
+
     }
 
     private void RemoveTearItems(ItemPool pool, int amount)
