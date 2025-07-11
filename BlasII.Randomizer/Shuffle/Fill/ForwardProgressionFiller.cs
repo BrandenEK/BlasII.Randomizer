@@ -46,6 +46,9 @@ internal class ForwardProgressionFiller : IFiller
             output.Add(location.Id, item.Id);
             UpdateReachableLocations(reachableLocations, unreachableLocations, locks, output, inventory);
         }
+
+        if (unreachableLocations.Size > 0)
+            Console.WriteLine("More unreachable locations: " + unreachableLocations.Size);
     }
 
     private void MovePriorityItems(ItemPool progressionItems)
