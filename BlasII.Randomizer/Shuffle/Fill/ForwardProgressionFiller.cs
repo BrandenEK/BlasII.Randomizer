@@ -40,8 +40,8 @@ internal class ForwardProgressionFiller : IFiller
             Item item = items.RemoveLast();
             inventory.Add(item.Id);
 
-            //Console.ForegroundColor = ConsoleColor.Yellow;
-            //Console.WriteLine("new pass: " + item.Id);
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine("new pass: " + item.Id);
 
             output.Add(location.Id, item.Id);
             UpdateReachableLocations(reachableLocations, unreachableLocations, locks, output, inventory);
@@ -63,19 +63,19 @@ internal class ForwardProgressionFiller : IFiller
 
         while (refresh)
         {
-            //Console.ForegroundColor = ConsoleColor.Green;
-            //Console.WriteLine("Checking reachability");
-            
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("Checking reachability");
+
             refresh = false;
 
-            if (Update1(reachable, unreachable, inventory))
+            if (CheckPoolLocations(reachable, unreachable, inventory))
                 refresh = true;
-            if (Update2(locks, output, inventory))
+            if (CheckLockedLocations(locks, output, inventory))
                 refresh = true;
         }
     }
 
-    private bool Update1(LocationPool reachable, LocationPool unreachable, GameInventory inventory)
+    private bool CheckPoolLocations(LocationPool reachable, LocationPool unreachable, GameInventory inventory)
     {
         var newLocations = unreachable.Where(x => inventory.Evaluate(x.Logic)).ToArray();
 
@@ -84,14 +84,14 @@ internal class ForwardProgressionFiller : IFiller
             unreachable.Remove(location);
             reachable.Add(location);
 
-            //Console.ForegroundColor = ConsoleColor.Blue;
-            //Console.WriteLine("New reachable: " + location.Id);
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.WriteLine("New reachable: " + location.Id);
         }
 
         return false;
     }
 
-    private bool Update2(List<Lock> locks, Dictionary<string, string> output, GameInventory inventory)
+    private bool CheckLockedLocations(List<Lock> locks, Dictionary<string, string> output, GameInventory inventory)
     {
         bool refresh = false;
 
@@ -102,8 +102,8 @@ internal class ForwardProgressionFiller : IFiller
             if (!inventory.Evaluate(lck.Location.Logic))
                 continue;
 
-            //Console.ForegroundColor = ConsoleColor.Red;
-            //Console.WriteLine("Placing locked item: " + lck.Location.Id);
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("Placing locked item: " + lck.Location.Id);
 
             output.Add(lck.Location.Id, lck.Item.Id);
             inventory.Add(lck.Item.Id);

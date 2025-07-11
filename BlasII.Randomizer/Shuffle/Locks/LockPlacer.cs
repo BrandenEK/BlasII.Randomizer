@@ -20,11 +20,8 @@ internal class LockPlacer : ILockPlacer
         // Only works if the item is marked as progression!
         locks =
         [
-            //Z1064.i0
-            new Lock(_locations["Z0105.l3"], _items["QI69"]), // Incense of the Envoys
+            new Lock(_locations["Z1064.i0"], _items["QI69"]), // Incense of the Envoys
             new Lock(_locations["Z2834.l0"], _items["PR101"]), // Prayer of the Penitent One
-
-            //new Lock(_locations["Z0406.l4"], _items["AirJump"]), // test
         ];
 
         foreach (var lck in locks)
