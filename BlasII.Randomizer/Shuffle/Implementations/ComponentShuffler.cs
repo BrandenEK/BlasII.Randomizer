@@ -54,6 +54,10 @@ public class ComponentShuffler : IShuffler
         // Lock certain items & locations and remove them from the pool
         _lockPlacer.Place(settings, progLocations, progItems, out List<Lock> locks);
 
+        // Verify that an equal number of locations and items were removed
+        if (progLocations.Size + junkLocations.Size != progItems.Size + junkItems.Size)
+            return false;
+
         // Create initial inventory
         _inventoryCreator.Create(settings, progItems, out GameInventory inventory);
 
