@@ -31,7 +31,7 @@ public class ComponentShuffler : IShuffler
         _locationPoolCreator = new LocationPoolCreator(locations.Values);
         _itemPoolCreator = new ItemPoolCreator(items);
         _poolBalancer = new PoolBalancer(items);
-        _lockPlacer = new LockPlacer();
+        _lockPlacer = new LockPlacer(locations, items);
         _inventoryCreator = useReverseFill ? new ReverseInventoryCreator() : new ForwardInventoryCreator();
         _progressionFiller = useReverseFill ? new ReverseProgressionFiller(_allItems) : new ForwardProgressionFiller(_allItems);
         _junkFiller = new JunkFiller();
@@ -52,7 +52,7 @@ public class ComponentShuffler : IShuffler
         _poolBalancer.Balance(progLocations, junkLocations, progItems, junkItems);
 
         // Lock certain items & locations and remove them from the pool
-        _lockPlacer.Place(progLocations, progItems, out List<Lock> locks);
+        _lockPlacer.Place(settings, progLocations, progItems, out List<Lock> locks);
 
         // Create initial inventory
         _inventoryCreator.Create(settings, progItems, out GameInventory inventory);

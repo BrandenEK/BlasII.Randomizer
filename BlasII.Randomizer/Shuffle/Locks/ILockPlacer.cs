@@ -5,5 +5,5 @@ namespace BlasII.Randomizer.Shuffle.Locks;
 
 internal interface ILockPlacer
 {
-    public void Place(LocationPool locations, ItemPool items, out List<Lock> locks);
+    public void Place(RandomizerSettings settings, LocationPool locations, ItemPool items, out List<Lock> locks);
 }
