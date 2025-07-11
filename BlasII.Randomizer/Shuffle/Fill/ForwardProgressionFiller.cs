@@ -40,15 +40,15 @@ internal class ForwardProgressionFiller : IFiller
             Item item = items.RemoveLast();
             inventory.Add(item.Id);
 
-            Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine("new pass: " + item.Id);
+            //Console.ForegroundColor = ConsoleColor.Yellow;
+            //Console.WriteLine("new pass: " + item.Id);
 
             output.Add(location.Id, item.Id);
             UpdateReachableLocations(reachableLocations, unreachableLocations, locks, output, inventory);
         }
 
-        if (unreachableLocations.Size > 0)
-            Console.WriteLine("More unreachable locations: " + unreachableLocations.Size);
+        if (items.Size == 0 && unreachableLocations.Size > 0)
+            throw new ShuffleException($"There were {unreachableLocations.Size} unreachable locations after progression fill");
     }
 
     private void MovePriorityItems(ItemPool progressionItems)
@@ -83,8 +83,8 @@ internal class ForwardProgressionFiller : IFiller
 
         while (refresh)
         {
-            Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine("Checking reachability");
+            //Console.ForegroundColor = ConsoleColor.Green;
+            //Console.WriteLine("Checking reachability");
             
             refresh = false;
 
@@ -104,8 +104,8 @@ internal class ForwardProgressionFiller : IFiller
             unreachable.Remove(location);
             reachable.Add(location);
 
-            Console.ForegroundColor = ConsoleColor.Blue;
-            Console.WriteLine("New reachable: " + location.Id);
+            //Console.ForegroundColor = ConsoleColor.Blue;
+            //Console.WriteLine("New reachable: " + location.Id);
         }
 
         return false;
@@ -122,8 +122,8 @@ internal class ForwardProgressionFiller : IFiller
             if (!inventory.Evaluate(lck.Location.Logic))
                 continue;
 
-            Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine("Placing locked item: " + lck.Location.Id);
+            //Console.ForegroundColor = ConsoleColor.Red;
+            //Console.WriteLine("Placing locked item: " + lck.Location.Id);
 
             output.Add(lck.Location.Id, lck.Item.Id);
             inventory.Add(lck.Item.Id);

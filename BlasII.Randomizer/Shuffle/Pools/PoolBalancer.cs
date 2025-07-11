@@ -26,8 +26,6 @@ internal class PoolBalancer : IPoolBalancer
             AddTearItems(junkItems, -difference);
         }
 
-        progItems.Remove(_items["GL"]);
-        junkItems.Add(_items["Tears[800]"]);
     }
 
     private void RemoveTearItems(ItemPool pool, int amount)

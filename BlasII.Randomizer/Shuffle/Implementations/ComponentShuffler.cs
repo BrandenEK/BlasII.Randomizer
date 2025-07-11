@@ -31,13 +31,27 @@ public class ComponentShuffler : IShuffler
         _locationPoolCreator = new LocationPoolCreator(locations.Values);
         _itemPoolCreator = new ItemPoolCreator(items);
         _poolBalancer = new PoolBalancer(items);
-        _lockPlacer = new LockPlacer(locations, items);
+        _lockPlacer = useReverseFill ? new FakeLockPlacer() : new LockPlacer(locations, items);
         _inventoryCreator = useReverseFill ? new ReverseInventoryCreator() : new ForwardInventoryCreator();
         _progressionFiller = useReverseFill ? new ReverseProgressionFiller(_allItems) : new ForwardProgressionFiller(_allItems);
         _junkFiller = new JunkFiller();
     }
 
     public bool Shuffle(int seed, RandomizerSettings settings, Dictionary<string, string> output)
+    {
+        try
+        {
+            ShuffleInternal(seed, settings, output);
+            return true;
+        }
+        catch (ShuffleException ex)
+        {
+            //Console.WriteLine(ex.Message);
+            return false;
+        }
+    }
+
+    private void ShuffleInternal(int seed, RandomizerSettings settings, Dictionary<string, string> output)
     {
         output.Clear();
         var rng = new Random(seed);
@@ -56,7 +70,7 @@ public class ComponentShuffler : IShuffler
 
         // Verify that an equal number of locations and items were removed
         if (progLocations.Size + junkLocations.Size != progItems.Size + junkItems.Size)
-            return false;
+            throw new ShuffleException("The pools were unbalanced after placing locks");
 
         // Create initial inventory
         _inventoryCreator.Create(settings, progItems, out GameInventory inventory);
@@ -64,21 +78,22 @@ public class ComponentShuffler : IShuffler
         // Place progression items at progression locations
         _progressionFiller.FillProgression(progLocations, progItems, locks, output, inventory);
 
-        // Verify all locks have been placed
+        // Verify that all locks have been placed
         if (locks.Count > 0)
-            return false;
+            throw new ShuffleException("Not all locks were placed after progression fill");
 
         // Add junk items to remaining progression items
         junkLocations.Combine(progLocations);
 
         // Verify that the pools are still balanced
         if (junkLocations.Size != junkItems.Size)
-            return false;
+            throw new ShuffleException("The pools were unbalanced after progression fill");
 
         // Place junk items at junk locations and remaining progression locations
         _junkFiller.FillJunk(junkLocations, junkItems, output);
 
         // Verify that all remaining items were placed
-        return junkItems.Size == 0 && junkLocations.Size == 0;
+        if (junkItems.Size != 0 || junkLocations.Size != 0)
+            throw new ShuffleException("There were remaining items/locations after junk fill");
     }
 }
