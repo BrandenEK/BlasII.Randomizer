@@ -1,6 +1,7 @@
 ﻿using Basalt.LogicParser;
 using BlasII.Randomizer.Models;
 using BlasII.Randomizer.Shuffle.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -41,6 +42,7 @@ internal class ForwardProgressionFiller : IFiller
 
             output.Add(location.Id, item.Id);
             UpdateReachableLocations(reachableLocations, unreachableLocations, inventory);
+            ProcessLocks(locks, output, inventory);
         }
     }
 
@@ -58,6 +60,23 @@ internal class ForwardProgressionFiller : IFiller
         {
             unreachable.Remove(location);
             reachable.Add(location);
+        }
+    }
+
+    private void ProcessLocks(List<Lock> locks, Dictionary<string, string> output, GameInventory inventory)
+    {
+        for (int i = 0; i < locks.Count; i++)
+        {
+            Lock lck = locks[i];
+
+            if (!inventory.Evaluate(lck.Location.Logic))
+                continue;
+
+            Console.WriteLine("Placing locked item: " + lck.Location.Id);
+            output.Add(lck.Location.Id, lck.Item.Id);
+            inventory.Add(lck.Item.Id);
+
+            locks.RemoveAt(i--);
         }
     }
 }
