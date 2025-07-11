@@ -7,7 +7,7 @@ namespace BlasII.Randomizer.Shuffle.Fill;
 
 internal class JunkFiller : IFiller
 {
-    public void Fill(LocationPool locations, ItemPool items, Dictionary<string, string> output, GameInventory inventory)
+    public void FillJunk(LocationPool locations, ItemPool items, Dictionary<string, string> output)
     {
         items.Shuffle();
 
@@ -18,5 +18,10 @@ internal class JunkFiller : IFiller
 
             output.Add(location.Id, item.Id);
         }
+    }
+
+    public void FillProgression(LocationPool locations, ItemPool items, List<Lock> locks, Dictionary<string, string> output, GameInventory inventory)
+    {
+        throw new System.NotImplementedException();
     }
 }

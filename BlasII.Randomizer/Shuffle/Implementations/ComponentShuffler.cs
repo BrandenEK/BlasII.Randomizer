@@ -62,7 +62,7 @@ public class ComponentShuffler : IShuffler
         _inventoryCreator.Create(settings, progItems, out GameInventory inventory);
 
         // Place progression items at progression locations
-        _progressionFiller.Fill(progLocations, progItems, output, inventory);
+        _progressionFiller.FillProgression(progLocations, progItems, locks, output, inventory);
 
         // Add junk items to remaining progression items and ensure they are still balanced
         junkLocations.Combine(progLocations);
@@ -70,7 +70,7 @@ public class ComponentShuffler : IShuffler
             return false;
 
         // Place junk items at junk locations and remaining progression locations
-        _junkFiller.Fill(junkLocations, junkItems, output, inventory);
+        _junkFiller.FillJunk(junkLocations, junkItems, output);
 
         // Verify that all remaining items were placed
         return junkItems.Size == 0 && junkLocations.Size == 0;
