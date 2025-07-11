@@ -91,9 +91,9 @@ public class Randomizer : BlasIIMod, ISlotPersistentMod<RandomizerSlotData>, IGl
         ExtraInfoStorage = new ExtraInfoStorage();
 
         // Initialize handlers
-        ItemHandler = new ItemHandler(false
+        ItemHandler = new ItemHandler(true
             ? new ComponentShuffler(ItemLocationStorage.AsDictionary, ItemStorage.AsDictionary, false)
-            : new DebugShuffler(ItemLocationStorage.AsDictionary, "RB01"));
+            : new DebugShuffler(ItemLocationStorage.AsDictionary, "Censer"));
         ShopHandler = new ShopHandler();
     }
 
