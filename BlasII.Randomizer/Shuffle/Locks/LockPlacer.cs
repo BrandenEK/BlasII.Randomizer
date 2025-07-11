@@ -25,6 +25,7 @@ internal class LockPlacer : ILockPlacer
 
         // Add global locks
         locks.Add(new Lock(_locations["Z1064.i0"], _items["QI69"])); // Incense of the Envoys
+        locks.Add(new Lock(_locations["Z2834.l0"], _items["PR101"])); // Prayer of the Penitent One
 
         foreach (var lck in locks)
         {
