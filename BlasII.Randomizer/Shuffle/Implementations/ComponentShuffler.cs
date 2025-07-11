@@ -2,6 +2,7 @@
 using BlasII.Randomizer.Models;
 using BlasII.Randomizer.Shuffle.Fill;
 using BlasII.Randomizer.Shuffle.Inventory;
+using BlasII.Randomizer.Shuffle.Locks;
 using BlasII.Randomizer.Shuffle.Models;
 using BlasII.Randomizer.Shuffle.Pools;
 using System;
@@ -17,6 +18,7 @@ public class ComponentShuffler : IShuffler
     private readonly ILocationPoolCreator _locationPoolCreator;
     private readonly IItemPoolCreator _itemPoolCreator;
     private readonly IPoolBalancer _poolBalancer;
+    private readonly ILockPlacer _lockPlacer;
     private readonly IInventoryCreator _inventoryCreator;
     private readonly IFiller _progressionFiller;
     private readonly IFiller _junkFiller;
@@ -29,6 +31,7 @@ public class ComponentShuffler : IShuffler
         _locationPoolCreator = new LocationPoolCreator(locations.Values);
         _itemPoolCreator = new ItemPoolCreator(items);
         _poolBalancer = new PoolBalancer(items);
+        _lockPlacer = new LockPlacer();
         _inventoryCreator = useReverseFill ? new ReverseInventoryCreator() : new ForwardInventoryCreator();
         _progressionFiller = useReverseFill ? new ReverseProgressionFiller(_allItems) : new ForwardProgressionFiller(_allItems);
         _junkFiller = new JunkFiller();
@@ -47,6 +50,9 @@ public class ComponentShuffler : IShuffler
 
         // Add or remove junk items to the number of locations equal the number of items
         _poolBalancer.Balance(progLocations, junkLocations, progItems, junkItems);
+
+        // Lock certain items & locations and remove them from the pool
+        _lockPlacer.Place(progLocations, progItems, out List<Lock> locks);
 
         // Create initial inventory
         _inventoryCreator.Create(settings, progItems, out GameInventory inventory);
