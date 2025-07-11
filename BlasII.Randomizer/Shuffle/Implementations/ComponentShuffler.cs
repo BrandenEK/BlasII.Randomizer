@@ -64,8 +64,14 @@ public class ComponentShuffler : IShuffler
         // Place progression items at progression locations
         _progressionFiller.FillProgression(progLocations, progItems, locks, output, inventory);
 
-        // Add junk items to remaining progression items and ensure they are still balanced
+        // Verify all locks have been placed
+        if (locks.Count > 0)
+            return false;
+
+        // Add junk items to remaining progression items
         junkLocations.Combine(progLocations);
+
+        // Verify that the pools are still balanced
         if (junkLocations.Size != junkItems.Size)
             return false;
 
