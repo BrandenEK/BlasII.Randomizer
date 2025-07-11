@@ -41,7 +41,6 @@
 ### Recommended Mods
 - [Rando Map](https://github.com/BrandenEK/BlasII.Randomizer.MapTracker) - Adds location info to the map screen
 - [Save and Quit](https://github.com/BrandenEK/BlasII.SaveAndQuit) - Prevents potential softlocks
-- [Quality of Life](https://github.com/BrandenEK/BlasII.QualityOfLife) - Can be used to skip cutscenes, among other uses
 - [Glitch Reviver](https://github.com/BrandenEK/BlasII.GlitchReviver) - Reintoduces glitches that may be required in logic
 
 ---
@@ -64,3 +63,4 @@ Required dependencies:
 - [Modding API](https://github.com/BrandenEK/BlasII.ModdingAPI)
 - [UI Framework](https://github.com/BrandenEK/BlasII.Framework.UI)
 - [Menu Framework](https://github.com/BrandenEK/BlasII.Framework.Menus)
+- [Quality of Life](https://github.com/BrandenEK/BlasII.QualityOfLife)
