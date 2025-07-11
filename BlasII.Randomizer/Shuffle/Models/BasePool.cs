@@ -1,9 +1,8 @@
-﻿using BlasII.Randomizer.Models;
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 
-namespace BlasII.Randomizer.Shuffle;
+namespace BlasII.Randomizer.Shuffle.Models;
 
 internal class BasePool<T> : IEnumerable<T>
 {
@@ -149,18 +148,4 @@ internal class BasePool<T> : IEnumerable<T>
 
     public IEnumerator<T> GetEnumerator() => _elements.GetEnumerator();
     IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
-}
-
-internal class ItemPool : BasePool<Item>
-{
-    public ItemPool(Random rng) : base(rng) { }
-
-    public ItemPool(ItemPool pool) : base(pool) { }
-}
-
-internal class LocationPool : BasePool<ItemLocation>
-{
-    public LocationPool(Random rng) : base(rng) { }
-
-    public LocationPool(LocationPool pool) : base(pool) { }
 }

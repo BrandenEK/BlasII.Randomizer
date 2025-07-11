@@ -1,5 +1,6 @@
 ﻿using Basalt.LogicParser;
 using BlasII.Randomizer.Models;
+using BlasII.Randomizer.Shuffle.Models;
 using System.Collections.Generic;
 using System.Linq;
 

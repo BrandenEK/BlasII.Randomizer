@@ -1,4 +1,5 @@
-﻿
+﻿using BlasII.Randomizer.Shuffle.Models;
+
 namespace BlasII.Randomizer.Shuffle.Pools;
 
 internal interface IPoolBalancer

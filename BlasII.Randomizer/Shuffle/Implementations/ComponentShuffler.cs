@@ -2,6 +2,7 @@
 using BlasII.Randomizer.Models;
 using BlasII.Randomizer.Shuffle.Fill;
 using BlasII.Randomizer.Shuffle.Inventory;
+using BlasII.Randomizer.Shuffle.Models;
 using BlasII.Randomizer.Shuffle.Pools;
 using System;
 using System.Collections.Generic;

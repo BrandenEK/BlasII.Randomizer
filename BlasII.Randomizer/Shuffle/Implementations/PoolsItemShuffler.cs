@@ -2,6 +2,7 @@
 using BlasII.ModdingAPI;
 using BlasII.ModdingAPI.Assets;
 using BlasII.Randomizer.Models;
+using BlasII.Randomizer.Shuffle.Models;
 using System;
 using System.Collections.Generic;
 

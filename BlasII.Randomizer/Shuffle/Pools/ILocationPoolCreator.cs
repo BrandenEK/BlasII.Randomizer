@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BlasII.Randomizer.Shuffle.Models;
+using System;
 
 namespace BlasII.Randomizer.Shuffle.Pools;
 
