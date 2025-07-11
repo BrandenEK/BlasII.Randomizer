@@ -148,7 +148,6 @@ public class Randomizer : BlasIIMod, ISlotPersistentMod<RandomizerSlotData>, IGl
         ModLog.Info($"Performing shuffle for seed {CurrentSettings.Seed}");
         ItemHandler.ShuffleItems(CurrentSettings.Seed, CurrentSettings);
 
-        AllowPrieDieuWarp();
         SetQuestValue("ST00", "WEAPON_EVENT", true);
         SetQuestValue("ST00", "INTRO", true);
         IsNewGame = true;
@@ -195,17 +194,6 @@ public class Randomizer : BlasIIMod, ISlotPersistentMod<RandomizerSlotData>, IGl
     public void LoadGlobal(RandomizerGlobalData data)
     {
         TotalSeedsGenerated = data.SeedsGenerated;
-    }
-
-    private void AllowPrieDieuWarp()
-    {
-        foreach (var upgrade in CoreCache.PrieDieuManager.config.upgrades)
-        {
-            if (upgrade.name == "TeleportToHUBUpgrade")
-                continue;
-
-            CoreCache.PrieDieuManager.Upgrade(upgrade);
-        }
     }
 
     private void DisplaySettings()
