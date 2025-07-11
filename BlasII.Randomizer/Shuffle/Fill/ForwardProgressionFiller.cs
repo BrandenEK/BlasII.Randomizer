@@ -59,26 +59,6 @@ internal class ForwardProgressionFiller : IFiller
 
     private void UpdateReachableLocations(LocationPool reachable, LocationPool unreachable, List<Lock> locks, Dictionary<string, string> output, GameInventory inventory)
     {
-        //var newLocations = unreachable.Where(x => inventory.Evaluate(x.Logic)).ToArray();
-
-        //foreach (var location in newLocations)
-        //{
-        //    unreachable.Remove(location);
-        //    reachable.Add(location);
-
-        //    Console.ForegroundColor = ConsoleColor.Blue;
-        //    Console.WriteLine("New reachable: " + location.Id);
-
-        //    if (!RemoveLockIfExists(locks, location, out Lock lck))
-        //        continue;
-
-        //    output.Add(lck.Location.Id, lck.Item.Id);
-        //    inventory.Add(lck.Item.Id);
-
-        //    Console.ForegroundColor = ConsoleColor.Red;
-        //    Console.WriteLine("Adding locked item: " + lck.Item.Id);
-        //}
-
         bool refresh = true;
 
         while (refresh)
@@ -134,37 +114,4 @@ internal class ForwardProgressionFiller : IFiller
 
         return refresh;
     }
-
-    //private bool RemoveLockIfExists(List<Lock> locks, ItemLocation location, out Lock lck)
-    //{
-    //    for (int i = 0; i < locks.Count; i++)
-    //    {
-    //        if (locks[i].Location == location)
-    //        {
-    //            lck = locks[i];
-    //            locks.RemoveAt(i);
-    //            return true;
-    //        }
-    //    }
-
-    //    lck = null;
-    //    return false;
-    //}
-
-    //private void ProcessLocks(List<Lock> locks, Dictionary<string, string> output, GameInventory inventory)
-    //{
-    //    for (int i = 0; i < locks.Count; i++)
-    //    {
-    //        Lock lck = locks[i];
-
-    //        if (!inventory.Evaluate(lck.Location.Logic))
-    //            continue;
-
-    //        Console.WriteLine("Placing locked item: " + lck.Location.Id);
-    //        output.Add(lck.Location.Id, lck.Item.Id);
-    //        inventory.Add(lck.Item.Id);
-
-    //        locks.RemoveAt(i--);
-    //    }
-    //}
 }
