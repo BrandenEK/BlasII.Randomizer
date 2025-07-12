@@ -72,6 +72,8 @@ public class NewBenchmarks
                 .SetStartingWeapon(2);
             yield return SettingsWithDescription.CreateDefault("Start MeaCulpa")
                 .SetStartingWeapon(3);
+            yield return SettingsWithDescription.CreateDefault("Vanilla cherubs")
+                .SetShuffleCherubs(false);
         }
     }
 }

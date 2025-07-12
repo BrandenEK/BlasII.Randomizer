@@ -21,6 +21,8 @@ public class SettingsWithDescription : RandomizerSettings
             RequiredKeys = settings.RequiredKeys,
             StartingWeapon = settings.StartingWeapon,
             ShopMultiplier = settings.ShopMultiplier,
+            AddPenitenceRewards = settings.AddPenitenceRewards,
+            ShuffleCherubs = settings.ShuffleCherubs,
             ShuffleLongQuests = settings.ShuffleLongQuests,
         };
     }
@@ -43,15 +45,27 @@ public class SettingsWithDescription : RandomizerSettings
         return this;
     }
 
-    public SettingsWithDescription SetLongQuests(bool quests)
-    {
-        ShuffleLongQuests = quests;
-        return this;
-    }
-
     public SettingsWithDescription SetShopMultiplier(int multiplier)
     {
         ShopMultiplier = multiplier;
+        return this;
+    }
+
+    public SettingsWithDescription SetAddPenitenceRewards(bool addPenitenceRewards)
+    {
+        AddPenitenceRewards = addPenitenceRewards;
+        return this;
+    }
+
+    public SettingsWithDescription SetShuffleCherubs(bool shuffleCherubs)
+    {
+        ShuffleCherubs = shuffleCherubs;
+        return this;
+    }
+
+    public SettingsWithDescription SetShuffleLongQuests(bool quests)
+    {
+        ShuffleLongQuests = quests;
         return this;
     }
 }
