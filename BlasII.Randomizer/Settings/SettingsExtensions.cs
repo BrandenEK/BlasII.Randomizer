@@ -26,7 +26,8 @@ public static class SettingsExtensions
         sb.AppendLine($"{WEAPON_NAME}: {weapon}");
         sb.AppendLine($"{SHOPS_NAME}: {shops}");
         sb.AppendLine($"{PENITENCE_NAME}: {settings.AddPenitenceRewards}");
-        sb.AppendLine($"{QUESTS_NAME}: {settings.ShuffleLongQuests}");
+        sb.AppendLine($"{CHERUB_NAME}: {settings.ShuffleCherubs}");
+        //sb.AppendLine($"{QUESTS_NAME}: {settings.ShuffleLongQuests}");
 
         return sb.ToString();
     }
@@ -50,7 +51,8 @@ public static class SettingsExtensions
         sb.AppendLine($" {WEAPON_NAME}: {weapon}");
         sb.AppendLine($" {SHOPS_NAME}: {shops}");
         sb.AppendLine($" {PENITENCE_NAME}: {settings.AddPenitenceRewards}");
-        sb.AppendLine($" {QUESTS_NAME}: {settings.ShuffleLongQuests}");
+        sb.AppendLine($" {CHERUB_NAME}: {settings.ShuffleCherubs}");
+        //sb.AppendLine($" {QUESTS_NAME}: {settings.ShuffleLongQuests}");
         sb.AppendLine(LINE);
 
         return sb.ToString();
@@ -115,7 +117,8 @@ public static class SettingsExtensions
 
         // Shuffle
         SetBit(ref uid, ref idx, ref flip, settings.AddPenitenceRewards);
-        SetBit(ref uid, ref idx, ref flip, settings.ShuffleLongQuests);
+        SetBit(ref uid, ref idx, ref flip, settings.ShuffleCherubs);
+        //SetBit(ref uid, ref idx, ref flip, settings.ShuffleLongQuests);
 
         return uid;
     }
@@ -139,6 +142,7 @@ public static class SettingsExtensions
     private static readonly string WEAPON_NAME = "Starting weapon";
     private static readonly string SHOPS_NAME = "Shop costs";
     private static readonly string PENITENCE_NAME = "Add penitence rewards";
+    private static readonly string CHERUB_NAME = "Shuffle cherubs";
     private static readonly string QUESTS_NAME = "Shuffle long quests";
     private static readonly string[] LOGIC_OPTIONS = ["Easy", "Normal", "Hard"];
     private static readonly string[] WEAPON_OPTIONS = ["Veredicto", "Ruego", "Sarmiento", "Mea Culpa"];

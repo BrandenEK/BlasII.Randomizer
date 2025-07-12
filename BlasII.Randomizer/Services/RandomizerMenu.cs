@@ -35,6 +35,7 @@ public class RandomizerMenu : ModMenu
                 StartingWeapon = _setStartingWeapon.CurrentOption - 1,
                 ShopMultiplier = _setShopCosts.CurrentOption,
                 AddPenitenceRewards = _setAddPenitence.Toggled,
+                ShuffleCherubs = _setShuffleCherubs.Toggled,
                 ShuffleLongQuests = true,
             };
         }
@@ -45,6 +46,7 @@ public class RandomizerMenu : ModMenu
             _setStartingWeapon.CurrentOption = value.StartingWeapon + 1;
             _setShopCosts.CurrentOption = value.ShopMultiplier;
             _setAddPenitence.Toggled = value.AddPenitenceRewards;
+            _setShuffleCherubs.Toggled = value.ShuffleCherubs;
             //_setShuffleLongQuests.Toggled = true;
         }
     }
@@ -171,7 +173,7 @@ public class RandomizerMenu : ModMenu
             "option/weapon/meaculpa",
         ]);
 
-        _setShopCosts = arrow.CreateOption("SC", ui, new Vector2(300, 80), "option/cost",
+        _setShopCosts = arrow.CreateOption("SH", ui, new Vector2(300, 80), "option/cost",
         [
             "option/cost/none",
             "option/cost/less",
@@ -181,6 +183,8 @@ public class RandomizerMenu : ModMenu
         ]);
 
         _setAddPenitence = toggle.CreateOption("AP", ui, new Vector2(150, -20), "option/penitence");
+
+        _setShuffleCherubs = toggle.CreateOption("SC", ui, new Vector2(150, -100), "option/cherubs");
 
         //_setShuffleLongQuests = toggle.CreateOption("SL", ui, new Vector2(150, 50), "option/long");
         //_setShuffleLongQuests.Enabled = false;
@@ -234,6 +238,7 @@ public class RandomizerMenu : ModMenu
     private ArrowOption _setStartingWeapon;
     private ArrowOption _setShopCosts;
     private ToggleOption _setAddPenitence;
+    private ToggleOption _setShuffleCherubs;
     //private ToggleOption _setShuffleLongQuests;
 
     private UIPixelTextWithShadow _idText;

@@ -67,6 +67,7 @@ option/cost/normal: Standard
 option/cost/more: Expensive
 option/cost/vanilla: Vanilla
 option/penitence: Add penitence rewards
+option/cherubs: Shuffle cherubs
 option/long: Shuffle long quests
 
 lang: es

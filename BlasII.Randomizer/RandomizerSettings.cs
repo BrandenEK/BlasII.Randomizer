@@ -45,6 +45,11 @@ public class RandomizerSettings
     public bool AddPenitenceRewards { get; set; }
 
     /// <summary>
+    /// Should the cherub locations have randomized items
+    /// </summary>
+    public bool ShuffleCherubs { get; set; }
+
+    /// <summary>
     /// Whether locations that require a lot of time can contain progression
     /// </summary>
     public bool ShuffleLongQuests { get; set; }
