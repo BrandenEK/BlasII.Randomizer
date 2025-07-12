@@ -22,4 +22,12 @@ public static class ItemLocationExtensions
 
         return true;
     }
+
+    /// <summary>
+    /// Checks if the location is marked with the specified flag
+    /// </summary>
+    public static bool HasFlag(this ItemLocation location, char flag)
+    {
+        return !string.IsNullOrEmpty(location.Flags) && location.Flags.Contains(flag);
+    }
 }

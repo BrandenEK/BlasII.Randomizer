@@ -1,6 +1,7 @@
 ﻿using BlasII.Randomizer.Models;
 using BlasII.Randomizer.Shuffle.Models;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace BlasII.Randomizer.Shuffle.Locks;
 
@@ -23,6 +24,10 @@ internal class LockPlacer : ILockPlacer
             new Lock(_locations["Z1064.i0"], _items["QI69"]), // Incense of the Envoys
             new Lock(_locations["Z2834.l0"], _items["PR101"]), // Prayer of the Penitent One
         ];
+
+        Item cherub = _items["CH"];
+        foreach (ItemLocation location in locations.Where(x => x.HasFlag('C')))
+            locks.Add(new Lock(location, cherub));
 
         foreach (var lck in locks)
         {
