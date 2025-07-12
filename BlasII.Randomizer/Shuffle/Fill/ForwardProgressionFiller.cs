@@ -1,7 +1,6 @@
 ﻿using Basalt.LogicParser;
 using BlasII.Randomizer.Models;
 using BlasII.Randomizer.Shuffle.Models;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -40,9 +39,6 @@ internal class ForwardProgressionFiller : IFiller
             Item item = items.RemoveLast();
             inventory.Add(item.Id);
 
-            Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine("new pass: " + item.Id);
-
             output.Add(location.Id, item.Id);
             UpdateReachableLocations(reachableLocations, unreachableLocations, locks, output, inventory);
         }
@@ -63,9 +59,6 @@ internal class ForwardProgressionFiller : IFiller
 
         while (refresh)
         {
-            Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine("Checking reachability");
-
             refresh = false;
 
             if (CheckPoolLocations(reachable, unreachable, inventory))
@@ -83,9 +76,6 @@ internal class ForwardProgressionFiller : IFiller
         {
             unreachable.Remove(location);
             reachable.Add(location);
-
-            Console.ForegroundColor = ConsoleColor.Blue;
-            Console.WriteLine("New reachable: " + location.Id);
         }
 
         return false;
@@ -101,9 +91,6 @@ internal class ForwardProgressionFiller : IFiller
 
             if (!inventory.Evaluate(lck.Location.Logic))
                 continue;
-
-            Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine("Placing locked item: " + lck.Location.Id);
 
             output.Add(lck.Location.Id, lck.Item.Id);
             inventory.Add(lck.Item.Id);

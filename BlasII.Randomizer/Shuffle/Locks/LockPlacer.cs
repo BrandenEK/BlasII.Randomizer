@@ -1,6 +1,7 @@
 ﻿using BlasII.Randomizer.Models;
 using BlasII.Randomizer.Shuffle.Models;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace BlasII.Randomizer.Shuffle.Locks;
 
@@ -18,16 +19,30 @@ internal class LockPlacer : ILockPlacer
     public void Place(RandomizerSettings settings, LocationPool locations, ItemPool items, out List<Lock> locks)
     {
         // Only works if the item is marked as progression!
-        locks =
-        [
-            new Lock(_locations["Z1064.i0"], _items["QI69"]), // Incense of the Envoys
-            new Lock(_locations["Z2834.l0"], _items["PR101"]), // Prayer of the Penitent One
-        ];
+        locks = new List<Lock>();
+
+        PlaceDefaultLocks(locks);
+
+        if (!settings.ShuffleCherubs)
+            PlaceCherubLocks(locks);
 
         foreach (var lck in locks)
         {
             locations.Remove(lck.Location);
             items.Remove(lck.Item);
         }
+    }
+
+    private void PlaceDefaultLocks(List<Lock> locks)
+    {
+        locks.Add(new Lock(_locations["Z1064.i0"], _items["QI69"])); // Incense of the Envoys
+        locks.Add(new Lock(_locations["Z2834.l0"], _items["PR101"])); // Prayer of the Penitent One
+    }
+
+    private void PlaceCherubLocks(List<Lock> locks)
+    {
+        Item cherub = _items["CH"];
+        foreach (ItemLocation location in _locations.Values.Where(x => x.HasFlag('C')))
+            locks.Add(new Lock(location, cherub));
     }
 }
