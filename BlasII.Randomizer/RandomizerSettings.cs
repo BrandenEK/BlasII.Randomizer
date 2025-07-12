@@ -16,7 +16,7 @@ public class RandomizerSettings
     // Item shuffle (Functionality)
 
     /// <summary>
-    /// Determines whether more difficult tricks will be required in logic
+    /// Determines what skips and techniques may be required in the logic
     /// </summary>
     public int LogicType { get; set; }
 
