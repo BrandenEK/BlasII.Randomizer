@@ -34,6 +34,7 @@
 ### Useful Info
 - Currently only works with game version 2.2.0
 - Pressing 'F8' will display a list of your current settings
+- Prie dieus are auto-upgraded and can be used to warp to the starting room
 - A spoiler will be generated in the savegames folder
 
 ---
