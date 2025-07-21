@@ -1365,98 +1365,98 @@
         "count": 33
     },
     {
-        "id": "Marks[5]",
+        "id": "MM|5",
         "name": "5 Marks of Martyrdom",
         "type": "Marks",
         "class": "Useful",
         "count": 2
     },
     {
-        "id": "Marks[4]",
+        "id": "MM|4",
         "name": "4 Marks of Martyrdom",
         "type": "Marks",
         "class": "Useful",
         "count": 3
     },
     {
-        "id": "Marks[3]",
+        "id": "MM|3",
         "name": "3 Marks of Martyrdom",
         "type": "Marks",
         "class": "Useful",
         "count": 4
     },
     {
-        "id": "Marks[2]",
+        "id": "MM|2",
         "name": "2 Marks of Martyrdom",
         "type": "Marks",
         "class": "Useful",
         "count": 3
     },
     {
-        "id": "Marks[1]",
+        "id": "MM|1",
         "name": "1 Mark of Martyrdom",
         "type": "Marks",
         "class": "Useful",
         "count": 35
     },
     {
-        "id": "PreMarks[1]",
+        "id": "MP|1",
         "name": "1 Mark of the Preceptor",
         "type": "PreMarks",
         "class": "Useful",
         "count": 14
     },
     {
-        "id": "Tears[10000]",
+        "id": "TA|10000",
         "name": "10000 Tears of Atonement",
         "type": "Tears",
         "class": "Filler",
         "count": 1
     },
     {
-        "id": "Tears[5000]",
+        "id": "TA|5000",
         "name": "5000 Tears of Atonement",
         "type": "Tears",
         "class": "Filler",
         "count": 7
     },
     {
-        "id": "Tears[3500]",
+        "id": "TA|3500",
         "name": "3500 Tears of Atonement",
         "type": "Tears",
         "class": "Filler",
         "count": 3
     },
     {
-        "id": "Tears[2000]",
+        "id": "TA|2000",
         "name": "2000 Tears of Atonement",
         "type": "Tears",
         "class": "Filler",
         "count": 5
     },
     {
-        "id": "Tears[1800]",
+        "id": "TA|1800",
         "name": "1800 Tears of Atonement",
         "type": "Tears",
         "class": "Filler",
         "count": 2
     },
     {
-        "id": "Tears[1200]",
+        "id": "TA|1200",
         "name": "1200 Tears of Atonement",
         "type": "Tears",
         "class": "Filler",
         "count": 3
     },
     {
-        "id": "Tears[1000]",
+        "id": "TA|1000",
         "name": "1000 Tears of Atonement",
         "type": "Tears",
         "class": "Filler",
         "count": 1
     },
     {
-        "id": "Tears[800]",
+        "id": "TA|800",
         "name": "800 Tears of Atonement",
         "type": "Tears",
         "class": "Filler",
