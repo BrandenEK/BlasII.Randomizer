@@ -229,14 +229,14 @@ public class Randomizer : BlasIIMod, ISlotPersistentMod<RandomizerSlotData>, IGl
         if (window == null || !window.isShowing)
             return;
 
-        bool pressedPause = InputHandler.GetButtonDown(ModdingAPI.Input.ButtonType.Inventory)
+        bool gameInput = InputHandler.GetButtonDown(ModdingAPI.Input.ButtonType.Inventory)
             || InputHandler.GetButtonDown(ModdingAPI.Input.ButtonType.Pause);
 
-        bool pressedUI = InputHandler.GetButtonDown(ModdingAPI.Input.ButtonType.UIConfirm)
+        bool shopInput = InputHandler.GetButtonDown(ModdingAPI.Input.ButtonType.UIConfirm)
+            || InputHandler.GetButtonDown(ModdingAPI.Input.ButtonType.UICancel)
             || InputHandler.GetAxis(ModdingAPI.Input.AxisType.UIVertical) != 0;
 
-        bool inShop = CoreCache.Shop.IsShowing;
-        if (!inShop && pressedPause || inShop && pressedUI)
+        if (gameInput || CoreCache.Shop.IsShowing && shopInput)
         {
             window.Close();
         }
