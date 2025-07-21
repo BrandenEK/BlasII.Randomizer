@@ -3,7 +3,6 @@ using BlasII.Randomizer.Settings;
 using HarmonyLib;
 using Il2CppPlaymaker.UI;
 using Il2CppTGK.Game.Components.UI;
-using Il2CppTGK.Game.Managers;
 using Il2CppTGK.Game.PopupMessages;
 using System.Linq;
 using UnityEngine;
@@ -29,19 +28,18 @@ class PopupMessageLogic_ShowMessageAndWait_Patch
             return;
         }
 
-        // When pressing display button, show the current settings
+        // When pressing the display button, show the current settings
         if (message.name == "TESTPOPUP")
         {
             string text = Main.Randomizer.CurrentSettings.FormatInfo();
             __instance.textCtrl.SetText(text);
-            __instance.OnClose();
             return;
         }
     }
 }
 
 /// <summary>
-/// Remove display message when interacting with certain objects
+/// Skip display message when interacting with certain objects
 /// </summary>
 [HarmonyPatch(typeof(ShowPopupMessage), nameof(ShowPopupMessage.OnEnter))]
 class ShowPopupMessage_OnEnter_Patch
@@ -50,9 +48,6 @@ class ShowPopupMessage_OnEnter_Patch
     {
         string message = __instance.messageId?.name ?? "INVALID_id";
         
-        // TODO: remove this line
-        ModLog.Error($"Trying to show popup: {message}");
-
         if (!SKIPPED_MESSAGES.Contains(message))
             return true;
 
@@ -64,25 +59,9 @@ class ShowPopupMessage_OnEnter_Patch
     private static readonly string[] SKIPPED_MESSAGES =
     [
         "MSG_10101_id", // Mud key breaking
-        // Mea Culpa Hilt loss
+        "MSG_10102_id", // Mea Culpa Hilt loss
         "MSG_10103_id", // Mea Culpa Hilt retrieval
     ];
-}
-
-
-[HarmonyPatch(typeof(UINavigationHelper), nameof(UINavigationHelper.ShowPopupMessage), typeof(PopupMessageID), typeof(bool))]
-class UINavigationHelper_ShowPopupMessage_Patch
-{
-    public static bool Prefix(PopupMessageID popupMessageID)
-    {
-        //ModLog.Error($"Trying to show popup: {popupMessageID.name}");
-
-        //MSG_10103_id
-        //if (popupMessageID.name == "TESTPOPUP_id")
-        //    return false;
-
-        return true;
-    }
 }
 
 /// <summary>
