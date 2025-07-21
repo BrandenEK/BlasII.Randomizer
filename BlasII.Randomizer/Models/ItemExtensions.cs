@@ -266,8 +266,7 @@ public static class ItemExtensions
     /// </summary>
     private static int GetAmount(this Item item)
     {
-        int leftBracket = item.Id.IndexOf('['), rightBracket = item.Id.IndexOf(']');
-        return int.Parse(item.Id.Substring(leftBracket + 1, rightBracket - leftBracket - 1));
+        return int.Parse(item.Id[3..]);
     }
 
     /// <summary>
