@@ -12,7 +12,7 @@ namespace BlasII.Randomizer.Patches;
 [HarmonyPatch(typeof(MainMenuWindowLogic), nameof(MainMenuWindowLogic.PopulateSlotInfo))]
 class MainMenuWindowLogic_PopulateSlotInfo_Patch
 {
-    public static void Postfix(MainMenuWindowLogic __instance, SlotInfo info)
+    public static void Postfix(SlotInfo info)
     {
         info.canConvertNGPlus = false;
     }
@@ -64,7 +64,7 @@ class UISelectableMainMenuSlot_SetSlotInfo_Patch
 [HarmonyPatch(typeof(MainMenuWindowLogic), nameof(MainMenuWindowLogic.GetSlotInfo))]
 class MainMenuWindowLogic_GetSlotInfo_Patch
 {
-    public static void Postfix(MainMenuWindowLogic __instance, int index, Task<SlotInfo> __result)
+    public static void Postfix(int index, Task<SlotInfo> __result)
     {
         ModLog.Info($"Replacing slot info for slot {index}");
         bool isrando = Main.Randomizer.IsSlotLoaded;
@@ -92,7 +92,7 @@ class MainMenuWindowLogic_GetSlotInfo_Patch
     {
         int result = 0;
 
-        result |= Main.Randomizer.ItemHandler.CollectedItems.Count;
+        result |= Main.Randomizer.ItemHandler.CollectedLocations.Count;
         result |= (Main.Randomizer.ItemHandler.MappedItems.Count << 16);
 
         return result;
