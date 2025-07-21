@@ -8,11 +8,11 @@ namespace BlasII.Randomizer.Shuffle.Fill;
 
 internal class ForwardProgressionFiller : IFiller
 {
-    private readonly Dictionary<string, Item> _items;
+    private readonly Item _wallclimbItem;
 
-    public ForwardProgressionFiller(Dictionary<string, Item> items)
+    public ForwardProgressionFiller(Item wallclimbItem)
     {
-        _items = items;
+        _wallclimbItem = wallclimbItem;
     }
 
     public void FillJunk(LocationPool locations, ItemPool items, Dictionary<string, string> output)
@@ -49,8 +49,7 @@ internal class ForwardProgressionFiller : IFiller
 
     private void MovePriorityItems(ItemPool progressionItems)
     {
-        Item wallClimb = _items["WallClimb"];
-        progressionItems.MoveToEnd(wallClimb);
+        progressionItems.MoveToEnd(_wallclimbItem);
     }
 
     private void UpdateReachableLocations(LocationPool reachable, LocationPool unreachable, List<Lock> locks, Dictionary<string, string> output, GameInventory inventory)

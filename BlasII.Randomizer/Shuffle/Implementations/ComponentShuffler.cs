@@ -12,9 +12,6 @@ namespace BlasII.Randomizer.Shuffle.Implementations;
 
 public class ComponentShuffler : IShuffler
 {
-    private readonly Dictionary<string, ItemLocation> _allLocations;
-    private readonly Dictionary<string, Item> _allItems;
-
     private readonly ILocationPoolCreator _locationPoolCreator;
     private readonly IItemPoolCreator _itemPoolCreator;
     private readonly IPoolBalancer _poolBalancer;
@@ -25,15 +22,15 @@ public class ComponentShuffler : IShuffler
 
     public ComponentShuffler(Dictionary<string, ItemLocation> locations, Dictionary<string, Item> items, bool useReverseFill)
     {
-        _allLocations = locations;
-        _allItems = items;
+        Item fillerItem = items["TA|800"];
+        Item wallclimbItem = items["WallClimb"];
 
         _locationPoolCreator = new LocationPoolCreator(locations.Values);
         _itemPoolCreator = new ItemPoolCreator(items);
-        _poolBalancer = new PoolBalancer(items["TA|800"]);
+        _poolBalancer = new PoolBalancer(fillerItem);
         _lockPlacer = useReverseFill ? new FakeLockPlacer() : new LockPlacer(locations, items);
         _inventoryCreator = useReverseFill ? new ReverseInventoryCreator() : new ForwardInventoryCreator();
-        _progressionFiller = useReverseFill ? new ReverseProgressionFiller(items) : new ForwardProgressionFiller(items);
+        _progressionFiller = useReverseFill ? new ReverseProgressionFiller(wallclimbItem) : new ForwardProgressionFiller(wallclimbItem);
         _junkFiller = new JunkFiller();
     }
 
