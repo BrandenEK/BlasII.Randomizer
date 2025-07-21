@@ -13,6 +13,7 @@ using Il2Cpp;
 using Il2CppTGK.Game;
 using Il2CppTGK.Game.Components.Abilities;
 using Il2CppTGK.Game.Components.Interactables;
+using Il2CppTGK.Game.Components.UI;
 using Il2CppTGK.Game.PopupMessages;
 using System.Collections.Generic;
 using System.Linq;
@@ -111,6 +112,8 @@ public class Randomizer : BlasIIMod, ISlotPersistentMod<RandomizerSlotData>, IGl
     {
         if (!SceneHelper.GameSceneLoaded)
             return;
+
+        ProcessItemInput();
 
         if (InputHandler.GetKeyDown("DisplaySettings"))
         {
@@ -217,6 +220,26 @@ public class Randomizer : BlasIIMod, ISlotPersistentMod<RandomizerSlotData>, IGl
     {
         var message = Resources.FindObjectsOfTypeAll<PopupMessageID>().First(x => x.name == "TESTPOPUP_id");
         CoreCache.UINavigationHelper.ShowPopupMessage(message, false);
+    }
+
+    private void ProcessItemInput()
+    {
+        ItemPopupWindowLogic window = CoreCache.UINavigationHelper.itemPopupWindowLogic;
+
+        if (window == null || !window.isShowing)
+            return;
+
+        bool pressedPause = InputHandler.GetButtonDown(ModdingAPI.Input.ButtonType.Inventory)
+            || InputHandler.GetButtonDown(ModdingAPI.Input.ButtonType.Pause);
+
+        bool pressedUI = InputHandler.GetButtonDown(ModdingAPI.Input.ButtonType.UIConfirm)
+            || InputHandler.GetAxis(ModdingAPI.Input.AxisType.UIVertical) != 0;
+
+        bool inShop = CoreCache.Shop.IsShowing;
+        if (!inShop && pressedPause || inShop && pressedUI)
+        {
+            window.Close();
+        }
     }
 
     /// <summary>
