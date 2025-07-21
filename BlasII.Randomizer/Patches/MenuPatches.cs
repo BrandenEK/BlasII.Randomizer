@@ -19,7 +19,7 @@ class MainMenuWindowLogic_PopulateSlotInfo_Patch
 }
 
 /// <summary>
-/// Loads the collected keys and updates the slot UI
+/// Updates the slot UI with collected keys
 /// </summary>
 [HarmonyPatch(typeof(UISelectableSlotDoves), nameof(UISelectableSlotDoves.UpdateSelected))]
 class UISelectableSlotDoves_UpdateSelected_Patch
@@ -34,24 +34,23 @@ class UISelectableSlotDoves_UpdateSelected_Patch
     }
 }
 
-
+/// <summary>
+/// Updates the slot UI with collected items
+/// </summary>
 [HarmonyPatch(typeof(UISelectableMainMenuSlot), nameof(UISelectableMainMenuSlot.SetSlotInfo))]
-class UISelectableMainMenuSlot_UpdatePercent_Patchxxxxxxx
+class UISelectableMainMenuSlot_SetSlotInfo_Patch
 {
-    public static void Postfix(UISelectableMainMenuSlot __instance)
+    public static void Postfix(UISelectableMainMenuSlot __instance, SlotInfo info)
     {
-        ModLog.Warn("set slot info");
-        ModLog.Info(__instance.gamePercent.normalText.fontSize);
-        ModLog.Info(__instance.gamePercent.normalText.lineSpacing);
+        int current = info.percentValue & 0xFFFF;
+        int total = (info.percentValue >> 16) & 0xFFFF;
+        string text = $"<voffset=10px>{current.ToString().PadLeft(total.ToString().Length)}<voffset=0px>/<voffset=-10px>{total}";
 
-        //string text = "<line-height=25%>9 <space=2em> \n<line-height=25%>/\n <space=5em> 329";
-        string text = "<voffset=10px>  9<voffset=10px>/<voffset=-10px>329";
-
-        __instance.gamePercent.SetText(text);// $"100/329");
-        __instance.gamePercent.shadowText.fontSize = 30;
-        __instance.gamePercent.normalText.fontSize = 30;
-        //__instance.gamePercent.shadowText.lineSpacing = -5f;
-        //__instance.gamePercent.normalText.line = -5f;
+        __instance.gamePercent.SetText(text);
+        __instance.gamePercent.shadowText.rectTransform.anchoredPosition = new UnityEngine.Vector2(-8, 0);
+        __instance.gamePercent.normalText.rectTransform.anchoredPosition = new UnityEngine.Vector2(0, 4);
+        __instance.gamePercent.shadowText.fontSize = 32;
+        __instance.gamePercent.normalText.fontSize = 32;
         __instance.gamePercent.shadowText.m_lineHeight = 0.25f;
         __instance.gamePercent.normalText.m_lineHeight = 0.25f;
         __instance.gamePercent.shadowText.richText = true;
@@ -59,34 +58,19 @@ class UISelectableMainMenuSlot_UpdatePercent_Patchxxxxxxx
     }
 }
 
-[HarmonyPatch(typeof(UISelectableMainMenuSlot), nameof(UISelectableMainMenuSlot.UpdatePercent))]
-class UISelectableMainMenuSlot_UpdatePercent_Patch
-{
-    public static void Postfix(UISelectableMainMenuSlot __instance)
-    {
-        ModLog.Warn("update percent");
-        __instance.gamePercent.SetText($"100/329");
-    }
-}
-
 /// <summary>
-/// Saves the collected keys to SlotInfo
+/// Updates the SlotInfo with randomizer data
 /// </summary>
 [HarmonyPatch(typeof(MainMenuWindowLogic), nameof(MainMenuWindowLogic.GetSlotInfo))]
 class MainMenuWindowLogic_GetSlotInfo_Patch
 {
     public static void Postfix(MainMenuWindowLogic __instance, int index, Task<SlotInfo> __result)
     {
-
-        // TODO: remove these
-        ModLog.Info(Main.Randomizer.ItemHandler.CollectedItems.Count);
-        ModLog.Info(__result.Result.doves);
-
         ModLog.Info($"Replacing slot info for slot {index}");
         bool isrando = Main.Randomizer.IsSlotLoaded;
 
-        int doves = isrando ? GetDoves() : 0;
-        __result.Result.doves = doves;
+        __result.Result.doves = isrando ? GetDoves() : 0;
+        __result.Result.percentValue = isrando ? GetItems() : 0;
 
         Main.Randomizer.IsSlotLoaded = false;
     }
@@ -102,6 +86,16 @@ class MainMenuWindowLogic_GetSlotInfo_Patch
         }
 
         return doves;
+    }
+
+    private static int GetItems()
+    {
+        int result = 0;
+
+        result |= Main.Randomizer.ItemHandler.CollectedItems.Count;
+        result |= (Main.Randomizer.ItemHandler.MappedItems.Count << 16);
+
+        return result;
     }
 }
 
