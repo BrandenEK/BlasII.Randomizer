@@ -73,6 +73,11 @@ public class Randomizer : BlasIIMod, ISlotPersistentMod<RandomizerSlotData>, IGl
     /// </summary>
     public bool IsNewGame { get; private set; } = false;
 
+    /// <summary>
+    /// Used by the menu patches to skip empty saves
+    /// </summary>
+    public bool IsSlotLoaded { get; set; } = false;
+
     protected override void OnInitialize()
     {
         InputHandler.RegisterDefaultKeybindings(new Dictionary<string, KeyCode>()
@@ -182,6 +187,8 @@ public class Randomizer : BlasIIMod, ISlotPersistentMod<RandomizerSlotData>, IGl
 
         CurrentSettings = data.settings;
         ModLog.Info($"Loaded file with {data.collectedLocations.Count} collected locations");
+
+        IsSlotLoaded = true;
     }
 
     public void ResetSlot()
@@ -189,6 +196,8 @@ public class Randomizer : BlasIIMod, ISlotPersistentMod<RandomizerSlotData>, IGl
         ItemHandler.MappedItems.Clear();
         ItemHandler.CollectedLocations.Clear();
         ItemHandler.CollectedItems.Clear();
+
+        IsSlotLoaded = false;
     }
 
     public RandomizerGlobalData SaveGlobal()

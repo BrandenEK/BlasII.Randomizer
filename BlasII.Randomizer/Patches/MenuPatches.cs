@@ -42,12 +42,22 @@ class MainMenuWindowLogic_GetSlotInfo_Patch
 {
     public static void Postfix(MainMenuWindowLogic __instance, int index, Task<SlotInfo> __result)
     {
-        ModLog.Error($"Overwriting slot info for slot {index}");
 
         // TODO: remove these
         ModLog.Info(Main.Randomizer.ItemHandler.CollectedItems.Count);
         ModLog.Info(__result.Result.doves);
 
+        ModLog.Info($"Replacing slot info for slot {index}");
+        bool isrando = Main.Randomizer.IsSlotLoaded;
+
+        int doves = isrando ? GetDoves() : 0;
+        __result.Result.doves = doves;
+
+        Main.Randomizer.IsSlotLoaded = false;
+    }
+
+    private static int GetDoves()
+    {
         int doves = 0;
 
         for (int i = 0; i < 5; i++)
@@ -56,7 +66,7 @@ class MainMenuWindowLogic_GetSlotInfo_Patch
                 doves |= (1 << i);
         }
 
-        __result.Result.doves = doves;
+        return doves;
     }
 }
 
