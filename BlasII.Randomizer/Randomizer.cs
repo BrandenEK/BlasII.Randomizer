@@ -111,6 +111,13 @@ public class Randomizer : BlasIIMod, ISlotPersistentMod<RandomizerSlotData>, IGl
         {
             DisplaySettings();
         }
+
+#if DEBUG
+        if (UnityEngine.Input.GetKeyDown(KeyCode.P))
+        {
+            ModLog.Error("DEBUG INPUT");
+        }
+#endif
     }
 
     protected override void OnSceneLoaded(string sceneName)
@@ -140,6 +147,7 @@ public class Randomizer : BlasIIMod, ISlotPersistentMod<RandomizerSlotData>, IGl
         else if (sceneName == "Z2716")
             LoadTriggerRemovalRoom("trigger", "SPGEO_INTERACTABLE_GUILLOTINE");
 
+        // This might not be needed anymore?
         CoreCache.Shop.cachedInstancedShops.Clear();
     }
 
