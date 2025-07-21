@@ -34,6 +34,41 @@ class UISelectableSlotDoves_UpdateSelected_Patch
     }
 }
 
+
+[HarmonyPatch(typeof(UISelectableMainMenuSlot), nameof(UISelectableMainMenuSlot.SetSlotInfo))]
+class UISelectableMainMenuSlot_UpdatePercent_Patchxxxxxxx
+{
+    public static void Postfix(UISelectableMainMenuSlot __instance)
+    {
+        ModLog.Warn("set slot info");
+        ModLog.Info(__instance.gamePercent.normalText.fontSize);
+        ModLog.Info(__instance.gamePercent.normalText.lineSpacing);
+
+        //string text = "<line-height=25%>9 <space=2em> \n<line-height=25%>/\n <space=5em> 329";
+        string text = "<voffset=10px>  9<voffset=10px>/<voffset=-10px>329";
+
+        __instance.gamePercent.SetText(text);// $"100/329");
+        __instance.gamePercent.shadowText.fontSize = 30;
+        __instance.gamePercent.normalText.fontSize = 30;
+        //__instance.gamePercent.shadowText.lineSpacing = -5f;
+        //__instance.gamePercent.normalText.line = -5f;
+        __instance.gamePercent.shadowText.m_lineHeight = 0.25f;
+        __instance.gamePercent.normalText.m_lineHeight = 0.25f;
+        __instance.gamePercent.shadowText.richText = true;
+        __instance.gamePercent.normalText.richText = true;
+    }
+}
+
+[HarmonyPatch(typeof(UISelectableMainMenuSlot), nameof(UISelectableMainMenuSlot.UpdatePercent))]
+class UISelectableMainMenuSlot_UpdatePercent_Patch
+{
+    public static void Postfix(UISelectableMainMenuSlot __instance)
+    {
+        ModLog.Warn("update percent");
+        __instance.gamePercent.SetText($"100/329");
+    }
+}
+
 /// <summary>
 /// Saves the collected keys to SlotInfo
 /// </summary>
