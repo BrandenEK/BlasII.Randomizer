@@ -122,7 +122,7 @@ public class ForwardItemShuffler : IShuffler
         // Add tear items until pools are equal
         while (progressionItems.Size + junkItems.Size < numOfLocations)
         {
-            junkItems.Add(_allItems["Tears[800]"]);
+            junkItems.Add(_allItems["TA|800"]);
         }
     }
 

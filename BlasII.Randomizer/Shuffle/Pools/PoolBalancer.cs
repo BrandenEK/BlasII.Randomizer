@@ -1,16 +1,15 @@
 ﻿using BlasII.Randomizer.Models;
 using BlasII.Randomizer.Shuffle.Models;
-using System.Collections.Generic;
 
 namespace BlasII.Randomizer.Shuffle.Pools;
 
 internal class PoolBalancer : IPoolBalancer
 {
-    private readonly Dictionary<string, Item> _items;
+    private readonly Item _fillerItem;
 
-    public PoolBalancer(Dictionary<string, Item> items)
+    public PoolBalancer(Item fillerItem)
     {
-        _items = items;
+        _fillerItem = fillerItem;
     }
 
     public void Balance(LocationPool progLocations, LocationPool junkLocations, ItemPool progItems, ItemPool junkItems)
@@ -25,7 +24,6 @@ internal class PoolBalancer : IPoolBalancer
         {
             AddTearItems(junkItems, -difference);
         }
-
     }
 
     private void RemoveTearItems(ItemPool pool, int amount)
@@ -36,6 +34,6 @@ internal class PoolBalancer : IPoolBalancer
 
     private void AddTearItems(ItemPool pool, int amount)
     {
-        pool.Add(_items["Tears[800]"], amount);
+        pool.Add(_fillerItem, amount);
     }
 }

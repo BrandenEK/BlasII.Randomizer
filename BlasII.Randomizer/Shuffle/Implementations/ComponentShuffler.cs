@@ -30,10 +30,10 @@ public class ComponentShuffler : IShuffler
 
         _locationPoolCreator = new LocationPoolCreator(locations.Values);
         _itemPoolCreator = new ItemPoolCreator(items);
-        _poolBalancer = new PoolBalancer(items);
+        _poolBalancer = new PoolBalancer(items["TA|800"]);
         _lockPlacer = useReverseFill ? new FakeLockPlacer() : new LockPlacer(locations, items);
         _inventoryCreator = useReverseFill ? new ReverseInventoryCreator() : new ForwardInventoryCreator();
-        _progressionFiller = useReverseFill ? new ReverseProgressionFiller(_allItems) : new ForwardProgressionFiller(_allItems);
+        _progressionFiller = useReverseFill ? new ReverseProgressionFiller(items) : new ForwardProgressionFiller(items);
         _junkFiller = new JunkFiller();
     }
 
