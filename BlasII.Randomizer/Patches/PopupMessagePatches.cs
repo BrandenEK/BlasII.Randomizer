@@ -1,8 +1,10 @@
 ﻿using BlasII.ModdingAPI;
 using BlasII.Randomizer.Settings;
 using HarmonyLib;
+using Il2CppPlaymaker.UI;
 using Il2CppTGK.Game.Components.UI;
 using Il2CppTGK.Game.PopupMessages;
+using System.Linq;
 using UnityEngine;
 
 namespace BlasII.Randomizer.Patches;
@@ -26,40 +28,40 @@ class PopupMessageLogic_ShowMessageAndWait_Patch
             return;
         }
 
-        // When pressing display button, show the current settings
+        // When pressing the display button, show the current settings
         if (message.name == "TESTPOPUP")
         {
             string text = Main.Randomizer.CurrentSettings.FormatInfo();
             __instance.textCtrl.SetText(text);
             return;
         }
-
-        // When talking to cobijada mother, dont display upgrade type
-        if (message.name == "MSG_2501" ||
-            message.name == "MSG_2502" ||
-            message.name == "MSG_2503")
-        {
-            string text = Main.Randomizer.LocalizationHandler.Localize("popup/sisters");
-            __instance.textCtrl.SetText(text);
-            return;
-        }
-
-        // When opening a mud door, dont show the removal
-        if (message.name == "MSG_10101")
-        {
-            string text = Main.Randomizer.LocalizationHandler.Localize("popup/mud");
-            __instance.textCtrl.SetText(text);
-            return;
-        }
-
-        // When defeating Asterion, dont show retrieving the hilt
-        if (message.name == "MSG_10103")
-        {
-            string text = Main.Randomizer.LocalizationHandler.Localize("popup/boss");
-            __instance.textCtrl.SetText(text);
-            return;
-        }
     }
+}
+
+/// <summary>
+/// Skip display message when interacting with certain objects
+/// </summary>
+[HarmonyPatch(typeof(ShowPopupMessage), nameof(ShowPopupMessage.OnEnter))]
+class ShowPopupMessage_OnEnter_Patch
+{
+    public static bool Prefix(ShowPopupMessage __instance)
+    {
+        string message = __instance.messageId?.name ?? "INVALID_id";
+        
+        if (!SKIPPED_MESSAGES.Contains(message))
+            return true;
+
+        ModLog.Info($"Skipping popup: {message}");
+        __instance.Finish();
+        return false;
+    }
+
+    private static readonly string[] SKIPPED_MESSAGES =
+    [
+        "MSG_10101_id", // Mud key breaking
+        "MSG_10102_id", // Mea Culpa Hilt loss
+        "MSG_10103_id", // Mea Culpa Hilt retrieval
+    ];
 }
 
 /// <summary>

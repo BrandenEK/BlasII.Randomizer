@@ -33,9 +33,6 @@ currency/premarks/desc: Ancient mark used to unlock skills and enhancements for 
 # Gameplay changes
 popup/item: You have acquired
 popup/keys: "The Mother said: 'Locate the * keys that herald the Birth."
-popup/sisters: ...
-popup/mud: The Mud Key remains intact.
-popup/boss: Good job!
 dialog/travel: Travel to starting room
 
 # Settings menu
