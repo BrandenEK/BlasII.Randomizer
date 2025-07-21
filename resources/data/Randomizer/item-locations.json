@@ -1281,7 +1281,7 @@
         "id": "Z1905.c0",
         "name": "Bell door cherub",
         "flags": "C",
-        "logic": "censer"
+        "logic": "wallclimb + censer"
     },
     {
         "id": "Z1906.i1",
