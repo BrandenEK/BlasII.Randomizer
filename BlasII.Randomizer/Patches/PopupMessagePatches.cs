@@ -37,32 +37,6 @@ class PopupMessageLogic_ShowMessageAndWait_Patch
             __instance.OnClose();
             return;
         }
-
-        // When talking to cobijada mother, dont display upgrade type
-        if (message.name == "MSG_2501" ||
-            message.name == "MSG_2502" ||
-            message.name == "MSG_2503")
-        {
-            string text = Main.Randomizer.LocalizationHandler.Localize("popup/sisters");
-            __instance.textCtrl.SetText(text);
-            return;
-        }
-
-        // When opening a mud door, dont show the removal
-        if (message.name == "MSG_10101")
-        {
-            string text = Main.Randomizer.LocalizationHandler.Localize("popup/mud");
-            __instance.textCtrl.SetText(text);
-            return;
-        }
-
-        // When defeating Asterion, dont show retrieving the hilt
-        if (message.name == "MSG_10103")
-        {
-            string text = Main.Randomizer.LocalizationHandler.Localize("popup/boss");
-            __instance.textCtrl.SetText(text);
-            return;
-        }
     }
 }
 
