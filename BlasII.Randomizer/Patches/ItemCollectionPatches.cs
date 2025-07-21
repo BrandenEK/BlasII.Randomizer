@@ -284,10 +284,13 @@ class AddProgressTokenComponent_AddProgressToken_Patch
 {
     public static bool Prefix(AddProgressTokenComponent __instance)
     {
+        if (__instance.token.achievementId.name != "AC21")
+            return true;
+
         string locationId = $"{CoreCache.Room.CurrentRoom.Name}.c0";
         ModLog.Custom($"AddProgressTokenComponent.AddProgressToken - {locationId}", System.Drawing.Color.Green);
 
-        if (!Main.Randomizer.IsRandomizerMode || __instance.token.achievementId.name != "AC21")
+        if (!Main.Randomizer.IsRandomizerMode)
             return true;
 
         Main.Randomizer.ItemHandler.GiveItemAtLocation(locationId);
