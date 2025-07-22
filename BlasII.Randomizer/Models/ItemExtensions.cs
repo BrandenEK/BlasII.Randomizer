@@ -259,6 +259,7 @@ public static class ItemExtensions
         }
 
         Main.Randomizer.ItemHandler.SetItemCollected(item.Id);
+        Main.Randomizer.MessageHandler.Broadcast("ITEM", item.Id);
     }
 
     /// <summary>
