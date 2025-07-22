@@ -1,5 +1,4 @@
-﻿using BlasII.ModdingAPI;
-using HarmonyLib;
+﻿using HarmonyLib;
 using Il2CppTGK.Game.Managers;
 
 namespace BlasII.Randomizer.Patches;
@@ -15,24 +14,16 @@ class MapPersistenceData_v3_Patch
     [HarmonyPatch(nameof(MapManager.MapPersistenceData_v3.WriteDataToStream))]
     public static void WriteDataToStream_Patch(MapManager.MapPersistenceData_v3 __instance)
     {
-        ModLog.Error("write to stream map");
-
         // Encrypt zone
-        ModLog.Info("Before: " + __instance.storedZoneId);
         __instance.storedZoneId ^= SAVE_MASK;
-        ModLog.Info("After: " + __instance.storedZoneId);
     }
 
     [HarmonyPostfix]
     [HarmonyPatch(nameof(MapManager.MapPersistenceData_v3.ReadDataFromStream))]
     public static void ReadDataFromStream_Patch(MapManager.MapPersistenceData_v3 __instance)
     {
-        ModLog.Error("Read from stream map");
-
         // Decrypt zone
-        ModLog.Info("Before: " + __instance.storedZoneId);
         __instance.storedZoneId ^= SAVE_MASK;
-        ModLog.Info("After: " + __instance.storedZoneId);
     }
 
     private const int SAVE_MASK = 0x72341904;
