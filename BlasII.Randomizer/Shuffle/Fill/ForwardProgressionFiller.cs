@@ -91,8 +91,10 @@ internal class ForwardProgressionFiller : IFiller
             if (!inventory.Evaluate(lck.Location.Logic))
                 continue;
 
-            output.Add(lck.Location.Id, lck.Item.Id);
-            inventory.Add(lck.Item.Id);
+            if (lck.Type.HasFlag(Lock.LockType.AddToInventory))
+                inventory.Add(lck.Item.Id);
+            if (lck.Type.HasFlag(Lock.LockType.AddToOutput))
+                output.Add(lck.Location.Id, lck.Item.Id);
 
             locks.RemoveAt(i--);
             refresh = true;

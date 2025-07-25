@@ -35,14 +35,14 @@ internal class LockPlacer : ILockPlacer
 
     private void PlaceDefaultLocks(List<Lock> locks)
     {
-        locks.Add(new Lock(_locations["Z1064.i0"], _items["QI69"])); // Incense of the Envoys
-        locks.Add(new Lock(_locations["Z2834.l0"], _items["PR101"])); // Prayer of the Penitent One
+        locks.Add(new Lock(_locations["Z1064.i0"], _items["QI69"], Lock.LockType.AddToBoth)); // Incense of the Envoys
+        locks.Add(new Lock(_locations["Z2834.l0"], _items["PR101"], Lock.LockType.AddToBoth)); // Prayer of the Penitent One
     }
 
     private void PlaceCherubLocks(List<Lock> locks)
     {
         Item cherub = _items["CH"];
         foreach (ItemLocation location in _locations.Values.Where(x => x.HasFlag('C')))
-            locks.Add(new Lock(location, cherub));
+            locks.Add(new Lock(location, cherub, Lock.LockType.AddToInventory));
     }
 }
