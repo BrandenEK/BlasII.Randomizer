@@ -83,7 +83,8 @@ public class Randomizer : BlasIIMod, ISlotPersistentMod<RandomizerSlotData>, IGl
     {
         InputHandler.RegisterDefaultKeybindings(new Dictionary<string, KeyCode>()
         {
-            { "DisplaySettings", KeyCode.F8 }
+            { "DisplaySettings", KeyCode.F8 },
+            { "RespawnPlayer", KeyCode.F9 },
         });
         LocalizationHandler.RegisterDefaultLanguage("en");
 
@@ -116,9 +117,9 @@ public class Randomizer : BlasIIMod, ISlotPersistentMod<RandomizerSlotData>, IGl
         ProcessItemInput();
 
         if (InputHandler.GetKeyDown("DisplaySettings"))
-        {
-            DisplaySettings();
-        }
+            Keybind_Settings();
+        if (InputHandler.GetKeyDown("RespawnPlayer"))
+            Keybind_Respawn();
 
 #if DEBUG
         if (UnityEngine.Input.GetKeyDown(KeyCode.P))
@@ -216,10 +217,20 @@ public class Randomizer : BlasIIMod, ISlotPersistentMod<RandomizerSlotData>, IGl
         TotalSeedsGenerated = data.SeedsGenerated;
     }
 
-    private void DisplaySettings()
+    private void Keybind_Settings()
     {
+        ModLog.Info("Displaying settings");
+
         var message = Resources.FindObjectsOfTypeAll<PopupMessageID>().First(x => x.name == "TESTPOPUP_id");
         CoreCache.UINavigationHelper.ShowPopupMessage(message, false);
+    }
+
+    private void Keybind_Respawn()
+    {
+        ModLog.Info("Respawning player");
+
+        CoreCache.UINavigationHelper.ShowLoadingWindow();
+        CoreCache.PlayerSpawn.SpawnFromPrieDieu();
     }
 
     private void ProcessItemInput()
