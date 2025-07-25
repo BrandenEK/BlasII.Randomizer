@@ -118,7 +118,7 @@ public class Randomizer : BlasIIMod, ISlotPersistentMod<RandomizerSlotData>, IGl
         ProcessKeybindInput();
 
 #if DEBUG
-        if (UnityEngine.Input.GetKeyDown(KeyCode.P))
+        if (UnityEngine.Input.GetKeyDown(KeyCode.Tilde))
         {
             ModLog.Error("DEBUG INPUT");
         }
@@ -418,5 +418,15 @@ public class Randomizer : BlasIIMod, ISlotPersistentMod<RandomizerSlotData>, IGl
     {
         var input = CoreCache.Quest.GetInputQuestVar(questId, varId);
         CoreCache.Quest.SetQuestVarValue(input.questID, input.varID, value);
+    }
+
+    // DLC
+
+    public bool IsDlcOwned(string name)
+    {
+        //var dlclist = CoreCache.DLCManager._config._DLCList._innerList;
+
+        var dlc = CoreCache.DLCManager.FindDLCByName(name);
+        return CoreCache.DLCManager.IsOwned(dlc);
     }
 }
