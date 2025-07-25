@@ -33,15 +33,16 @@
 
 ### Useful Info
 - Currently only works with game version 2.2.0
-- Pressing 'F8' will display a list of your current settings
 - Prie dieus are auto-upgraded and can be used to warp to the starting room
 - A spoiler will be generated in the savegames folder
+- Pressing 'F8' will display a list of your current settings
+- Pressing 'F9' will respawn you from your last prie dieu
 
 ---
 
 ### Recommended Mods
 - [Rando Map](https://github.com/BrandenEK/BlasII.Randomizer.MapTracker) - Adds location info to the map screen
-- [Save and Quit](https://github.com/BrandenEK/BlasII.SaveAndQuit) - Prevents potential softlocks
+- [Save and Quit](https://github.com/BrandenEK/BlasII.SaveAndQuit) - Allows saving your progress from anywhere
 - [Glitch Reviver](https://github.com/BrandenEK/BlasII.GlitchReviver) - Reintoduces glitches that may be required in logic
 
 ---
