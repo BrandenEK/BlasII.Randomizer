@@ -240,8 +240,8 @@ public class Randomizer : BlasIIMod, ISlotPersistentMod<RandomizerSlotData>, IGl
 
         if (InputHandler.GetKeyDown("DisplaySettings"))
             Keybind_Settings();
-        if (InputHandler.GetKeyDown("RespawnPlayer"))
-            Keybind_Respawn();
+        //if (InputHandler.GetKeyDown("RespawnPlayer"))
+        //    Keybind_Respawn();
     }
 
     private void Keybind_Settings()
@@ -254,7 +254,7 @@ public class Randomizer : BlasIIMod, ISlotPersistentMod<RandomizerSlotData>, IGl
 
     private void Keybind_Respawn()
     {
-        ModLog.Info("Respawning player");
+        ModLog.Info("Respawning player"); // Not sure if this works so I am temporarily disabling it
 
         CoreCache.UINavigationHelper.ShowLoadingWindow();
         CoreCache.PlayerSpawn.SpawnFromPrieDieu();

@@ -6,5 +6,5 @@ namespace BlasII.Randomizer.Storages;
 public class ItemLocationStorage : BaseInfoStorage<ItemLocation>
 {
     /// <inheritdoc/>
-    public ItemLocationStorage() : base("item-locations.json", "item locations") { }
+    public ItemLocationStorage() : base("itemlocations.json", "item locations") { }
 }
