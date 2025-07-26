@@ -610,7 +610,7 @@
     {
         "id": "Z0815.i0",
         "name": "Honey man reward",
-        "logic": "wallclimb + rapier"
+        "logic": "wallclimb + glasswalk + rosary + rapier"
     },
     {
         "id": "Z0817.l0",
