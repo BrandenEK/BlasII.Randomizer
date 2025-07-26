@@ -129,31 +129,31 @@
         "id": "SHOPMISSABLES.o0",
         "name": "Purchase item #1",
         "flags": "S",
-        "logic": "censer + rapier + doublejump"
+        "logic": "censer + rosary + rapier + doublejump"
     },
     {
         "id": "SHOPMISSABLES.o1",
         "name": "Purchase item #2",
         "flags": "S",
-        "logic": "censer + rapier + doublejump"
+        "logic": "censer + rosary + rapier + doublejump"
     },
     {
         "id": "SHOPMISSABLES.o2",
         "name": "Purchase item #3",
         "flags": "S",
-        "logic": "censer + rapier + doublejump"
+        "logic": "censer + rosary + rapier + doublejump"
     },
     {
         "id": "SHOPMISSABLES.o3",
         "name": "Purchase item #4",
         "flags": "S",
-        "logic": "censer + rapier + doublejump"
+        "logic": "censer + rosary + rapier + doublejump"
     },
     {
         "id": "SHOPMISSABLES.o4",
         "name": "Purchase item #5",
         "flags": "S",
-        "logic": "censer + rapier + doublejump"
+        "logic": "censer + rosary + rapier + doublejump"
     },
     {
         "id": "Z0105.l3",
@@ -610,7 +610,7 @@
     {
         "id": "Z0815.i0",
         "name": "Honey man reward",
-        "logic": "wallclimb + rapier"
+        "logic": "wallclimb + glasswalk + rosary + rapier"
     },
     {
         "id": "Z0817.l0",
