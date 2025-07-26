@@ -32,11 +32,11 @@
 ---
 
 ### Useful Info
-- Currently only works with game version 2.2.0
+- Currently only works with game version 2.2.0 and the Mea Culpa DLC
 - Prie dieus are auto-upgraded and can be used to warp to the starting room
 - A spoiler will be generated in the savegames folder
 - Pressing 'F8' will display a list of your current settings
-- Pressing 'F9' will respawn you from your last prie dieu
+<!--- Pressing 'F9' will respawn you from your last prie dieu-->
 
 ---
 
