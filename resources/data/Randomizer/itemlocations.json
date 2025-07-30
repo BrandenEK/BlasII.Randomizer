@@ -123,37 +123,37 @@
         "id": "SHOPITINERANT.o8",
         "name": "Purchase item #9",
         "flags": "S",
-        "logic": "shoprooms >= 7 + wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosary + meaculpa + mudkey + ceramickey"
+        "logic": "shoprooms >= 7 + wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosaryfx + meaculpa + mudkey + ceramickey"
     },
     {
         "id": "SHOPMISSABLES.o0",
         "name": "Purchase item #1",
         "flags": "S",
-        "logic": "censer + rosary + rapier + doublejump"
+        "logic": "censer + rosaryfx + rapier + doublejump"
     },
     {
         "id": "SHOPMISSABLES.o1",
         "name": "Purchase item #2",
         "flags": "S",
-        "logic": "censer + rosary + rapier + doublejump"
+        "logic": "censer + rosaryfx + rapier + doublejump"
     },
     {
         "id": "SHOPMISSABLES.o2",
         "name": "Purchase item #3",
         "flags": "S",
-        "logic": "censer + rosary + rapier + doublejump"
+        "logic": "censer + rosaryfx + rapier + doublejump"
     },
     {
         "id": "SHOPMISSABLES.o3",
         "name": "Purchase item #4",
         "flags": "S",
-        "logic": "censer + rosary + rapier + doublejump"
+        "logic": "censer + rosaryfx + rapier + doublejump"
     },
     {
         "id": "SHOPMISSABLES.o4",
         "name": "Purchase item #5",
         "flags": "S",
-        "logic": "censer + rosary + rapier + doublejump"
+        "logic": "censer + rosaryfx + rapier + doublejump"
     },
     {
         "id": "Z0105.l3",
@@ -197,12 +197,12 @@
     {
         "id": "Z0204.l3",
         "name": "Ruego root chest",
-        "logic": "doublejump + rosary"
+        "logic": "doublejump + rosaryfx"
     },
     {
         "id": "Z0204.l4",
         "name": "Arena pickup",
-        "logic": "doublejump + rosary"
+        "logic": "doublejump + rosaryfx"
     },
     {
         "id": "Z0301.l10",
@@ -253,7 +253,7 @@
     {
         "id": "Z0307.l8",
         "name": "Ruego root basin",
-        "logic": "wallclimb + censer + rosary"
+        "logic": "wallclimb + censer + rosaryfx"
     },
     {
         "id": "Z0308.c0",
@@ -321,7 +321,7 @@
     {
         "id": "Z0412.l2",
         "name": "Ruego root chest",
-        "logic": "wallclimb + (censer | doublejump) + rosary"
+        "logic": "wallclimb + (censer | doublejump) + rosaryfx"
     },
     {
         "id": "Z0413.l0",
@@ -346,7 +346,7 @@
     {
         "id": "Z0417.l4",
         "name": "Ruego root chest",
-        "logic": "wallclimb + rapier + doublejump + rosary"
+        "logic": "wallclimb + rapier + doublejump + rosaryfx"
     },
     {
         "id": "Z0421.r8",
@@ -402,7 +402,7 @@
         "id": "Z0506.i0",
         "name": "Cobijada reward",
         "flags": "L",
-        "logic": "wallclimb + doublejump + airdash + censer + rosary + rapier + tributes >= 3"
+        "logic": "wallclimb + doublejump + airdash + censer + rosaryfx + rapier + tributes >= 3"
     },
     {
         "id": "Z0511.l0",
@@ -458,12 +458,12 @@
     {
         "id": "Z0605.l10",
         "name": "Upper ruego root basin",
-        "logic": "wallclimb + doublejump + ringclimb + rosary"
+        "logic": "wallclimb + doublejump + ringclimb + rosaryfx"
     },
     {
         "id": "Z0605.l11",
         "name": "Lower ruego root basin",
-        "logic": "wallclimb + rosary + (doublejump | airdash)"
+        "logic": "wallclimb + rosaryfx + (doublejump | airdash)"
     },
     {
         "id": "Z0608.c0",
@@ -474,7 +474,7 @@
     {
         "id": "Z0611.l2",
         "name": "Gated chest",
-        "logic": "censer + rapier + rosary + doublejump"
+        "logic": "censer + rapier + rosaryfx + doublejump"
     },
     {
         "id": "Z0611.r2",
@@ -489,7 +489,7 @@
     {
         "id": "Z0614.l6",
         "name": "Gated pickup",
-        "logic": "censer + rapier + rosary + doublejump + ringclimb"
+        "logic": "censer + rapier + rosaryfx + doublejump + ringclimb"
     },
     {
         "id": "Z0614.l7",
@@ -504,12 +504,12 @@
     {
         "id": "Z0616.l14",
         "name": "Bell door lump",
-        "logic": "wallclimb + censer + rosary"
+        "logic": "wallclimb + censer + rosaryfx"
     },
     {
         "id": "Z0617.l8",
         "name": "Gated chest",
-        "logic": "wallclimb + doublejump + airdash + censer + rosary + rapier"
+        "logic": "wallclimb + doublejump + airdash + censer + rosaryfx + rapier"
     },
     {
         "id": "Z0707.i2",
@@ -536,7 +536,7 @@
     {
         "id": "Z0721.i2",
         "name": "Combat arena",
-        "logic": "wallclimb + rapier + rosary"
+        "logic": "wallclimb + rapier + rosaryfx"
     },
     {
         "id": "Z0722.i0.a",
@@ -561,7 +561,7 @@
     {
         "id": "Z0728.i2",
         "name": "Combat arena",
-        "logic": "wallclimb + rosary"
+        "logic": "wallclimb + rosaryfx"
     },
     {
         "id": "Z0730.l2",
@@ -610,7 +610,7 @@
     {
         "id": "Z0815.i0",
         "name": "Honey man reward",
-        "logic": "wallclimb + glasswalk + rosary + rapier"
+        "logic": "wallclimb + glasswalk + rosaryfx + rapier"
     },
     {
         "id": "Z0817.l0",
@@ -691,12 +691,12 @@
     {
         "id": "Z0901.l1",
         "name": "Upper ledge basin",
-        "logic": "wallclimb + rosary + ringclimb + doublejump"
+        "logic": "wallclimb + rosaryfx + ringclimb + doublejump"
     },
     {
         "id": "Z0901.l3",
         "name": "Lower ledge pickup",
-        "logic": "wallclimb + rosary"
+        "logic": "wallclimb + rosaryfx"
     },
     {
         "id": "Z0903.l2",
@@ -711,17 +711,17 @@
     {
         "id": "Z0908.l9",
         "name": "Mirror pickup",
-        "logic": "wallclimb + rosary + censer + rapier"
+        "logic": "wallclimb + rosaryfx + censer + rapier"
     },
     {
         "id": "Z0909.l5",
         "name": "Ethereal platform chest",
-        "logic": "wallclimb + rosary"
+        "logic": "wallclimb + rosaryfx"
     },
     {
         "id": "Z0912.l8",
         "name": "Ruego root chest",
-        "logic": "wallclimb + rosary + rapier"
+        "logic": "wallclimb + rosaryfx + rapier"
     },
     {
         "id": "Z0913.l1",
@@ -732,13 +732,13 @@
     {
         "id": "Z0915.l9",
         "name": "Ethereal door chest",
-        "logic": "wallclimb + rosary"
+        "logic": "wallclimb + rosaryfx"
     },
     {
         "id": "Z0921.r14",
         "name": "Defeat Lesmes & Infanta",
         "flags": "B",
-        "logic": "wallclimb + rosary"
+        "logic": "wallclimb + rosaryfx"
     },
     {
         "id": "Z0923.c0",
@@ -750,24 +750,24 @@
         "id": "Z0926.a0",
         "name": "Ability statue",
         "flags": "A",
-        "logic": "wallclimb + rosary + doublejump + rapier"
+        "logic": "wallclimb + rosaryfx + doublejump + rapier"
     },
     {
         "id": "Z0927.l4",
         "name": "Ethereal door basin",
-        "logic": "wallclimb + rosary"
+        "logic": "wallclimb + rosaryfx"
     },
     {
         "id": "Z0928.c0",
         "name": "Low floating cherub",
         "flags": "C",
-        "logic": "wallclimb + rosary"
+        "logic": "wallclimb + rosaryfx"
     },
     {
         "id": "Z0929.w0",
         "name": "Ruego statue",
         "flags": "W",
-        "logic": "wallclimb + rosary + doublejump + airdash"
+        "logic": "wallclimb + rosaryfx + doublejump + airdash"
     },
     {
         "id": "Z1003.l0",
@@ -777,12 +777,12 @@
     {
         "id": "Z1004.l10",
         "name": "Gated pickup",
-        "logic": "wallclimb + doublejump + censer + rapier + rosary"
+        "logic": "wallclimb + doublejump + censer + rapier + rosaryfx"
     },
     {
         "id": "Z1007.l2",
         "name": "Ruego root pickup",
-        "logic": "wallclimb + doublejump + censer + rapier + rosary"
+        "logic": "wallclimb + doublejump + censer + rapier + rosaryfx"
     },
     {
         "id": "Z1011.l4",
@@ -792,50 +792,50 @@
     {
         "id": "Z1015.l0",
         "name": "Eastern chest",
-        "logic": "wallclimb + doublejump + censer + rapier + rosary"
+        "logic": "wallclimb + doublejump + censer + rapier + rosaryfx"
     },
     {
         "id": "Z1015.l1",
         "name": "Western chest",
-        "logic": "wallclimb + doublejump + airdash + ringclimb + censer + rapier + rosary"
+        "logic": "wallclimb + doublejump + airdash + ringclimb + censer + rapier + rosaryfx"
     },
     {
         "id": "Z1017.w0",
         "name": "Veredicto statue",
         "flags": "W",
-        "logic": "wallclimb + doublejump + censer + rapier + rosary"
+        "logic": "wallclimb + doublejump + censer + rapier + rosaryfx"
     },
     {
         "id": "Z1018.l3",
         "name": "Gated pickup",
-        "logic": "wallclimb + doublejump + airdash + ringclimb + censer + rapier + rosary"
+        "logic": "wallclimb + doublejump + airdash + ringclimb + censer + rapier + rosaryfx"
     },
     {
         "id": "Z1019.c0",
         "name": "Low floating cherub",
         "flags": "C",
-        "logic": "wallclimb + doublejump + censer + rapier + rosary"
+        "logic": "wallclimb + doublejump + censer + rapier + rosaryfx"
     },
     {
         "id": "Z1019.l9",
         "name": "Chain dash chest",
-        "logic": "wallclimb + doublejump + airdash + censer + rapier + rosary"
+        "logic": "wallclimb + doublejump + airdash + censer + rapier + rosaryfx"
     },
     {
         "id": "Z1023.c0",
         "name": "Sky high cherub",
         "flags": "C",
-        "logic": "wallclimb + doublejump + airdash + censer + rapier + rosary"
+        "logic": "wallclimb + doublejump + airdash + censer + rapier + rosaryfx"
     },
     {
         "id": "Z1023.l8",
         "name": "Scion ledge pickup",
-        "logic": "wallclimb + doublejump + airdash + ringclimb + censer + rapier + rosary"
+        "logic": "wallclimb + doublejump + airdash + ringclimb + censer + rapier + rosaryfx"
     },
     {
         "id": "Z1045.l0",
         "name": "Floor pickup",
-        "logic": "wallclimb + doublejump + censer + rapier + rosary"
+        "logic": "wallclimb + doublejump + censer + rapier + rosaryfx"
     },
     {
         "id": "Z1050.c0",
@@ -852,19 +852,19 @@
         "id": "Z1058.c0",
         "name": "Low floating cherub",
         "flags": "C",
-        "logic": "wallclimb + doublejump + censer + rapier + rosary"
+        "logic": "wallclimb + doublejump + censer + rapier + rosaryfx"
     },
     {
         "id": "Z1063.w0",
         "name": "Sarmiento statue",
         "flags": "W",
-        "logic": "wallclimb + doublejump + ringclimb + censer + rapier + rosary"
+        "logic": "wallclimb + doublejump + ringclimb + censer + rapier + rosaryfx"
     },
     {
         "id": "Z1064.i0",
         "name": "Incense reward",
         "flags": "V",
-        "logic": "wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosary + meaculpa + mudkey + ceramickey"
+        "logic": "wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosaryfx + meaculpa + mudkey + ceramickey"
     },
     {
         "id": "Z1065.l4",
@@ -874,40 +874,40 @@
     {
         "id": "Z1067.l9",
         "name": "Mirror lump",
-        "logic": "wallclimb + doublejump + airdash + censer + rapier + rosary"
+        "logic": "wallclimb + doublejump + airdash + censer + rapier + rosaryfx"
     },
     {
         "id": "Z1103.l1",
         "name": "Upper ledge basin",
-        "logic": "wallclimb + doublejump + airdash + rosary"
+        "logic": "wallclimb + doublejump + airdash + rosaryfx"
     },
     {
         "id": "Z1107.l5",
         "name": "Chain dash chest",
-        "logic": "wallclimb + doublejump + airdash + rosary + rapier"
+        "logic": "wallclimb + doublejump + airdash + rosaryfx + rapier"
     },
     {
         "id": "Z1109.l0",
         "name": "Floor pickup",
-        "logic": "wallclimb + doublejump + airdash + rosary + rapier + censer"
+        "logic": "wallclimb + doublejump + airdash + rosaryfx + rapier + censer"
     },
     {
         "id": "Z1113.i8",
         "name": "Basilica boss key",
         "flags": "B",
-        "logic": "wallclimb + doublejump + airdash + rosary + rapier + censer"
+        "logic": "wallclimb + doublejump + airdash + rosaryfx + rapier + censer"
     },
     {
         "id": "Z1113.r8",
         "name": "Defeat Benedicta of the Endless Orison",
         "flags": "B",
-        "logic": "wallclimb + doublejump + airdash + rosary + rapier + censer"
+        "logic": "wallclimb + doublejump + airdash + rosaryfx + rapier + censer"
     },
     {
         "id": "Z1114.c0",
         "name": "Low floating cherub",
         "flags": "C",
-        "logic": "wallclimb + doublejump + airdash + rosary + rapier + censer"
+        "logic": "wallclimb + doublejump + airdash + rosaryfx + rapier + censer"
     },
     {
         "id": "Z1202.c0",
@@ -962,23 +962,23 @@
         "id": "Z1303.c0",
         "name": "Glass bridge cherub",
         "flags": "C",
-        "logic": "wallclimb + doublejump + airdash + ringclimb + rosary + censer + rapier"
+        "logic": "wallclimb + doublejump + airdash + ringclimb + rosaryfx + censer + rapier"
     },
     {
         "id": "Z1304.c0",
         "name": "Sky high cherub",
         "flags": "C",
-        "logic": "wallclimb + doublejump + airdash + ringclimb + rosary + censer + rapier"
+        "logic": "wallclimb + doublejump + airdash + ringclimb + rosaryfx + censer + rapier"
     },
     {
         "id": "Z1307.l7",
         "name": "Ruego root basin",
-        "logic": "wallclimb + doublejump + airdash + ringclimb + rosary"
+        "logic": "wallclimb + doublejump + airdash + ringclimb + rosaryfx"
     },
     {
         "id": "Z1308.l7",
         "name": "Ruego root pickup",
-        "logic": "wallclimb + doublejump + airdash + ringclimb + rosary + censer + rapier"
+        "logic": "wallclimb + doublejump + airdash + ringclimb + rosaryfx + censer + rapier"
     },
     {
         "id": "Z1310.l0",
@@ -988,7 +988,7 @@
     {
         "id": "Z1311.l7",
         "name": "Ruego root chest",
-        "logic": "wallclimb + doublejump + airdash + ringclimb + rosary + censer"
+        "logic": "wallclimb + doublejump + airdash + ringclimb + rosaryfx + censer"
     },
     {
         "id": "Z1312.l4",
@@ -998,29 +998,29 @@
     {
         "id": "Z1314.l6",
         "name": "Gated pickup",
-        "logic": "wallclimb + doublejump + airdash + ringclimb + rosary + censer + rapier"
+        "logic": "wallclimb + doublejump + airdash + ringclimb + rosaryfx + censer + rapier"
     },
     {
         "id": "Z1326.i0",
         "name": "Cursed letter #1",
-        "logic": "wallclimb + doublejump + airdash + ringclimb + rosary + censer + rapier + letter1"
+        "logic": "wallclimb + doublejump + airdash + ringclimb + rosaryfx + censer + rapier + letter1"
     },
     {
         "id": "Z1327.i7",
         "name": "Alhambra boss key",
         "flags": "B",
-        "logic": "wallclimb + doublejump + airdash + ringclimb + rosary + censer + rapier + holyoil"
+        "logic": "wallclimb + doublejump + airdash + ringclimb + rosaryfx + censer + rapier + holyoil"
     },
     {
         "id": "Z1327.l3",
         "name": "Yerma corpse",
-        "logic": "wallclimb + doublejump + airdash + ringclimb + rosary + censer + rapier + holyoil"
+        "logic": "wallclimb + doublejump + airdash + ringclimb + rosaryfx + censer + rapier + holyoil"
     },
     {
         "id": "Z1327.r7",
         "name": "Defeat Svsona, Fermosa Fembra",
         "flags": "B",
-        "logic": "wallclimb + doublejump + airdash + ringclimb + rosary + censer + rapier + holyoil"
+        "logic": "wallclimb + doublejump + airdash + ringclimb + rosaryfx + censer + rapier + holyoil"
     },
     {
         "id": "Z1329.l0",
@@ -1030,7 +1030,7 @@
     {
         "id": "Z1330.l5",
         "name": "Bell door basin",
-        "logic": "wallclimb + doublejump + airdash + ringclimb + rosary + censer + rapier"
+        "logic": "wallclimb + doublejump + airdash + ringclimb + rosaryfx + censer + rapier"
     },
     {
         "id": "Z1404.c0",
@@ -1041,7 +1041,7 @@
     {
         "id": "Z1404.l15",
         "name": "Gated pickup",
-        "logic": "wallclimb + censer + rapier + rosary + doublejump"
+        "logic": "wallclimb + censer + rapier + rosaryfx + doublejump"
     },
     {
         "id": "Z1404.l8",
@@ -1082,7 +1082,7 @@
     {
         "id": "Z1422.l8",
         "name": "Ruego root pickup",
-        "logic": "wallclimb + censer + rapier + rosary"
+        "logic": "wallclimb + censer + rapier + rosaryfx"
     },
     {
         "id": "Z1424.l3",
@@ -1127,44 +1127,44 @@
     {
         "id": "Z1507.i0",
         "name": "Crisanta reward",
-        "logic": "wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosary + meaculpa + mudkey + ceramickey"
+        "logic": "wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosaryfx + meaculpa + mudkey + ceramickey"
     },
     {
         "id": "Z1602.l2",
         "name": "Mirror ledge basin",
-        "logic": "wallclimb + doublejump + airdash + rosary"
+        "logic": "wallclimb + doublejump + airdash + rosaryfx"
     },
     {
         "id": "Z1603.i2",
         "name": "Combat arena",
-        "logic": "wallclimb + doublejump + airdash + rosary"
+        "logic": "wallclimb + doublejump + airdash + rosaryfx"
     },
     {
         "id": "Z1605.c0",
         "name": "Scion cherub",
         "flags": "C",
-        "logic": "wallclimb + doublejump + airdash + rosary + rapier + ringclimb"
+        "logic": "wallclimb + doublejump + airdash + rosaryfx + rapier + ringclimb"
     },
     {
         "id": "Z1605.l5",
         "name": "Scion ledge basin",
-        "logic": "wallclimb + doublejump + airdash + rosary + rapier + ringclimb"
+        "logic": "wallclimb + doublejump + airdash + rosaryfx + rapier + ringclimb"
     },
     {
         "id": "Z1610.l4",
         "name": "Hidden alcove pickup",
-        "logic": "wallclimb + doublejump + airdash + rosary + rapier"
+        "logic": "wallclimb + doublejump + airdash + rosaryfx + rapier"
     },
     {
         "id": "Z1615.a0",
         "name": "Ability statue",
         "flags": "A",
-        "logic": "wallclimb + doublejump + airdash + rosary + rapier"
+        "logic": "wallclimb + doublejump + airdash + rosaryfx + rapier"
     },
     {
         "id": "Z1616.i1",
         "name": "Cesareo reward",
-        "logic": "wallclimb + doublejump + airdash + rosary + rapier + ringclimb + waxseeds >= 6"
+        "logic": "wallclimb + doublejump + airdash + rosaryfx + rapier + ringclimb + waxseeds >= 6"
     },
     {
         "id": "Z1619.l6",
@@ -1180,24 +1180,24 @@
         "id": "Z1622.i6",
         "name": "Tower boss key",
         "flags": "B",
-        "logic": "wallclimb + doublejump + airdash + rosary + rapier + ringclimb"
+        "logic": "wallclimb + doublejump + airdash + rosaryfx + rapier + ringclimb"
     },
     {
         "id": "Z1622.r6",
         "name": "Defeat Sínodo, Hymn of the Thousand Voices",
         "flags": "B",
-        "logic": "wallclimb + doublejump + airdash + rosary + rapier + ringclimb"
+        "logic": "wallclimb + doublejump + airdash + rosaryfx + rapier + ringclimb"
     },
     {
         "id": "Z1623.c0",
         "name": "Low floating cherub",
         "flags": "C",
-        "logic": "wallclimb + doublejump + airdash + rosary + rapier"
+        "logic": "wallclimb + doublejump + airdash + rosaryfx + rapier"
     },
     {
         "id": "Z1625.i2",
         "name": "Combat arena",
-        "logic": "wallclimb + doublejump + airdash + rosary + rapier + ringclimb"
+        "logic": "wallclimb + doublejump + airdash + rosaryfx + rapier + ringclimb"
     },
     {
         "id": "Z1701.c0",
@@ -1239,33 +1239,33 @@
     {
         "id": "Z1801.l1",
         "name": "Scion ledge pickup",
-        "logic": "wallclimb + doublejump + airdash + ringclimb + censer + rapier + rosary + bosskeys >= 5"
+        "logic": "wallclimb + doublejump + airdash + ringclimb + censer + rapier + rosaryfx + bosskeys >= 5"
     },
     {
         "id": "Z1802.l7",
         "name": "Mirror ledge pickup",
-        "logic": "wallclimb + doublejump + airdash + ringclimb + censer + rapier + rosary + bosskeys >= 5"
+        "logic": "wallclimb + doublejump + airdash + ringclimb + censer + rapier + rosaryfx + bosskeys >= 5"
     },
     {
         "id": "Z1803.l7",
         "name": "Mirror ledge pickup",
-        "logic": "wallclimb + doublejump + airdash + ringclimb + censer + rapier + rosary + bosskeys >= 5"
+        "logic": "wallclimb + doublejump + airdash + ringclimb + censer + rapier + rosaryfx + bosskeys >= 5"
     },
     {
         "id": "Z1804.l2",
         "name": "Scion ledge pickup",
-        "logic": "wallclimb + doublejump + airdash + ringclimb + censer + rapier + rosary + bosskeys >= 5"
+        "logic": "wallclimb + doublejump + airdash + ringclimb + censer + rapier + rosaryfx + bosskeys >= 5"
     },
     {
         "id": "Z1808.i6",
         "name": "Crisanta corpse",
-        "logic": "wallclimb + doublejump + airdash + ringclimb + censer + rapier + rosary + bosskeys >= 5"
+        "logic": "wallclimb + doublejump + airdash + ringclimb + censer + rapier + rosaryfx + bosskeys >= 5"
     },
     {
         "id": "Z1808.r6",
         "name": "Defeat Eviterno, First of the Penitents",
         "flags": "B",
-        "logic": "wallclimb + doublejump + airdash + ringclimb + censer + rapier + rosary + bosskeys >= 5"
+        "logic": "wallclimb + doublejump + airdash + ringclimb + censer + rapier + rosaryfx + bosskeys >= 5"
     },
     {
         "id": "Z1901.l0",
@@ -1366,54 +1366,54 @@
     {
         "id": "Z2104.l7",
         "name": "Ethereal door chest",
-        "logic": "wallclimb + doublejump + airdash + rosary + censer"
+        "logic": "wallclimb + doublejump + airdash + rosaryfx + censer"
     },
     {
         "id": "Z2106.l4",
         "name": "Ruego root basin",
-        "logic": "wallclimb + doublejump + airdash + rosary"
+        "logic": "wallclimb + doublejump + airdash + rosaryfx"
     },
     {
         "id": "Z2112.l0",
         "name": "Floor chest",
-        "logic": "wallclimb + doublejump + airdash + rosary"
+        "logic": "wallclimb + doublejump + airdash + rosaryfx"
     },
     {
         "id": "Z2115.c0",
         "name": "Sky high cherub",
         "flags": "C",
-        "logic": "wallclimb + doublejump + airdash + rosary"
+        "logic": "wallclimb + doublejump + airdash + rosaryfx"
     },
     {
         "id": "Z2116.l2",
         "name": "Scion ledge pickup",
-        "logic": "wallclimb + doublejump + airdash + rosary + ringclimb"
+        "logic": "wallclimb + doublejump + airdash + rosaryfx + ringclimb"
     },
     {
         "id": "Z2117.c0",
         "name": "Hidden alcove cherub",
         "flags": "C",
-        "logic": "wallclimb + doublejump + airdash + rosary"
+        "logic": "wallclimb + doublejump + airdash + rosaryfx"
     },
     {
         "id": "Z2117.l1",
         "name": "Hidden alcove pickup",
-        "logic": "wallclimb + doublejump + airdash + rosary"
+        "logic": "wallclimb + doublejump + airdash + rosaryfx"
     },
     {
         "id": "Z2119.i0",
         "name": "Regula final reward",
-        "logic": "wallclimb + doublejump + airdash + rosary + regulacloth"
+        "logic": "wallclimb + doublejump + airdash + rosaryfx + regulacloth"
     },
     {
         "id": "Z2120.i2",
         "name": "Regula initial reward",
-        "logic": "wallclimb + doublejump + airdash + rosary"
+        "logic": "wallclimb + doublejump + airdash + rosaryfx"
     },
     {
         "id": "Z2123.l2",
         "name": "Chain dash pickup",
-        "logic": "wallclimb + doublejump + airdash + rosary"
+        "logic": "wallclimb + doublejump + airdash + rosaryfx"
     },
     {
         "id": "Z2127.l21",
@@ -1463,61 +1463,61 @@
     {
         "id": "Z2149.l0",
         "name": "Floor lump",
-        "logic": "wallclimb + doublejump + censer + rapier + rosary"
+        "logic": "wallclimb + doublejump + censer + rapier + rosaryfx"
     },
     {
         "id": "Z2150.i0.a",
         "name": "Traitor reward #1",
-        "logic": "wallclimb + doublejump + censer + rapier + rosary + goldlumps >= 10"
+        "logic": "wallclimb + doublejump + censer + rapier + rosaryfx + goldlumps >= 10"
     },
     {
         "id": "Z2150.i0.b",
         "name": "Traitor reward #2",
-        "logic": "wallclimb + doublejump + censer + rapier + rosary + goldlumps >= 20"
+        "logic": "wallclimb + doublejump + censer + rapier + rosaryfx + goldlumps >= 20"
     },
     {
         "id": "Z2301.l16",
         "name": "High ledge pickup",
-        "logic": "wallclimb + (doublejump | airdash) + censer + rapier + rosary"
+        "logic": "wallclimb + (doublejump | airdash) + censer + rapier + rosaryfx"
     },
     {
         "id": "Z2304.r15",
         "name": "Defeat Afilaor, Sentinel of the Emery",
         "flags": "B",
-        "logic": "wallclimb + censer + rapier + rosary"
+        "logic": "wallclimb + censer + rapier + rosaryfx"
     },
     {
         "id": "Z2306.c0",
         "name": "Sky high cherub",
         "flags": "C",
-        "logic": "wallclimb + doublejump + censer + rapier + rosary"
+        "logic": "wallclimb + doublejump + censer + rapier + rosaryfx"
     },
     {
         "id": "Z2308.a0",
         "name": "Ability statue",
         "flags": "A",
-        "logic": "wallclimb + censer + rapier + rosary"
+        "logic": "wallclimb + censer + rapier + rosaryfx"
     },
     {
         "id": "Z2310.w0",
         "name": "Ruego statue",
         "flags": "W",
-        "logic": "wallclimb + doublejump + censer + rapier + rosary"
+        "logic": "wallclimb + doublejump + censer + rapier + rosaryfx"
     },
     {
         "id": "Z2311.l8",
         "name": "Upper ledge chest",
-        "logic": "wallclimb + doublejump + censer + rapier + rosary"
+        "logic": "wallclimb + doublejump + censer + rapier + rosaryfx"
     },
     {
         "id": "Z2314.l10",
         "name": "Platforming basin",
-        "logic": "wallclimb + doublejump + glasswalk + censer + rapier + rosary + meaculpa"
+        "logic": "wallclimb + doublejump + glasswalk + censer + rapier + rosaryfx + meaculpa"
     },
     {
         "id": "Z2317.l2",
         "name": "Gated lump",
-        "logic": "wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosary"
+        "logic": "wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosaryfx"
     },
     {
         "id": "Z2401.i0",
@@ -1561,176 +1561,176 @@
     {
         "id": "Z2702.i0",
         "name": "Lacrimatory grave",
-        "logic": "wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosary + meaculpa + mudkey + ceramickey"
+        "logic": "wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosaryfx + meaculpa + mudkey + ceramickey"
     },
     {
         "id": "Z2703.l1",
         "name": "High ledge lump",
-        "logic": "wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosary + meaculpa + mudkey + ceramickey"
+        "logic": "wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosaryfx + meaculpa + mudkey + ceramickey"
     },
     {
         "id": "Z2704.l6",
         "name": "Hidden wall lump",
-        "logic": "wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosary + meaculpa + mudkey + ceramickey"
+        "logic": "wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosaryfx + meaculpa + mudkey + ceramickey"
     },
     {
         "id": "Z2704.l7",
         "name": "Thorn ledge basin",
-        "logic": "wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosary + meaculpa + mudkey + ceramickey"
+        "logic": "wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosaryfx + meaculpa + mudkey + ceramickey"
     },
     {
         "id": "Z2705.i6",
         "name": "Lacrimatory grave",
-        "logic": "wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosary + meaculpa + mudkey + ceramickey"
+        "logic": "wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosaryfx + meaculpa + mudkey + ceramickey"
     },
     {
         "id": "Z2705.l5",
         "name": "Thorn ledge basin",
-        "logic": "wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosary + meaculpa + mudkey + ceramickey"
+        "logic": "wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosaryfx + meaculpa + mudkey + ceramickey"
     },
     {
         "id": "Z2706.l10",
         "name": "Glass bridge chest",
-        "logic": "wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosary + meaculpa + mudkey + ceramickey"
+        "logic": "wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosaryfx + meaculpa + mudkey + ceramickey"
     },
     {
         "id": "Z2708.l9",
         "name": "Urn puzzle lump",
-        "logic": "wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosary + meaculpa + mudkey + ceramickey"
+        "logic": "wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosaryfx + meaculpa + mudkey + ceramickey"
     },
     {
         "id": "Z2712.l14",
         "name": "Gated lump",
-        "logic": "wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosary + meaculpa + mudkey + ceramickey"
+        "logic": "wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosaryfx + meaculpa + mudkey + ceramickey"
     },
     {
         "id": "Z2716.l5",
         "name": "Prisoner corpse",
-        "logic": "wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosary + meaculpa + mudkey + ceramickey"
+        "logic": "wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosaryfx + meaculpa + mudkey + ceramickey"
     },
     {
         "id": "Z2719.l5",
         "name": "Platforming basin",
-        "logic": "wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosary + meaculpa + mudkey + ceramickey"
+        "logic": "wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosaryfx + meaculpa + mudkey + ceramickey"
     },
     {
         "id": "Z2724.l12",
         "name": "Ethereal door chest",
-        "logic": "wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosary + meaculpa + mudkey + ceramickey"
+        "logic": "wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosaryfx + meaculpa + mudkey + ceramickey"
     },
     {
         "id": "Z2731.l2",
         "name": "Thorn basin",
-        "logic": "wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosary + meaculpa + mudkey + ceramickey"
+        "logic": "wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosaryfx + meaculpa + mudkey + ceramickey"
     },
     {
         "id": "Z2735.r7",
         "name": "Defeat Sor Cautiva del Silencio",
         "flags": "B",
-        "logic": "wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosary + meaculpa + mudkey + ceramickey"
+        "logic": "wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosaryfx + meaculpa + mudkey + ceramickey"
     },
     {
         "id": "Z2741.i0",
         "name": "Mud woman reward",
-        "logic": "wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosary + meaculpa + mudkey + ceramickey"
+        "logic": "wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosaryfx + meaculpa + mudkey + ceramickey"
     },
     {
         "id": "Z2743.i0",
         "name": "Mud woman reward",
-        "logic": "wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosary + meaculpa + mudkey + ceramickey"
+        "logic": "wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosaryfx + meaculpa + mudkey + ceramickey"
     },
     {
         "id": "Z2744.l21",
         "name": "Platforming basin",
-        "logic": "wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosary + meaculpa + mudkey + ceramickey"
+        "logic": "wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosaryfx + meaculpa + mudkey + ceramickey"
     },
     {
         "id": "Z2746.i0",
         "name": "Final lacrimatory grave",
-        "logic": "wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosary + meaculpa + mudkey + ceramickey"
+        "logic": "wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosaryfx + meaculpa + mudkey + ceramickey"
     },
     {
         "id": "Z2801.l9",
         "name": "Gated lump",
-        "logic": "wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosary + meaculpa + mudkey + ceramickey"
+        "logic": "wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosaryfx + meaculpa + mudkey + ceramickey"
     },
     {
         "id": "Z2804.r0",
         "name": "Brother Asterión reward #1",
-        "logic": "wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosary + meaculpa + mudkey + ceramickey"
+        "logic": "wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosaryfx + meaculpa + mudkey + ceramickey"
     },
     {
         "id": "Z2804.w0",
         "name": "Brother Asterión reward #2",
         "flags": "W",
-        "logic": "wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosary + meaculpa + mudkey + ceramickey"
+        "logic": "wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosaryfx + meaculpa + mudkey + ceramickey"
     },
     {
         "id": "Z2814.w0",
         "name": "Mea Culpa statue",
         "flags": "W",
-        "logic": "wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosary + meaculpa + mudkey + ceramickey"
+        "logic": "wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosaryfx + meaculpa + mudkey + ceramickey"
     },
     {
         "id": "Z2815.l13",
         "name": "Upper ledge chest",
-        "logic": "wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosary + meaculpa + mudkey + ceramickey"
+        "logic": "wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosaryfx + meaculpa + mudkey + ceramickey"
     },
     {
         "id": "Z2816.i7",
         "name": "Lacrimatory grave",
-        "logic": "wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosary + meaculpa + mudkey + ceramickey"
+        "logic": "wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosaryfx + meaculpa + mudkey + ceramickey"
     },
     {
         "id": "Z2823.l22",
         "name": "Thorn lump",
-        "logic": "wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosary + meaculpa + mudkey + ceramickey"
+        "logic": "wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosaryfx + meaculpa + mudkey + ceramickey"
     },
     {
         "id": "Z2827.r7",
         "name": "Defeat Brother Asterión",
         "flags": "B",
-        "logic": "wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosary + meaculpa + mudkey + ceramickey"
+        "logic": "wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosaryfx + meaculpa + mudkey + ceramickey"
     },
     {
         "id": "Z2828.i17",
         "name": "Lacrimatory grave",
-        "logic": "wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosary + meaculpa + mudkey + ceramickey"
+        "logic": "wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosaryfx + meaculpa + mudkey + ceramickey"
     },
     {
         "id": "Z2828.l15",
         "name": "Thorn basin",
-        "logic": "wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosary + meaculpa + mudkey + ceramickey"
+        "logic": "wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosaryfx + meaculpa + mudkey + ceramickey"
     },
     {
         "id": "Z2828.l16",
         "name": "Thorn lump",
-        "logic": "wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosary + meaculpa + mudkey + ceramickey"
+        "logic": "wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosaryfx + meaculpa + mudkey + ceramickey"
     },
     {
         "id": "Z2828.l18",
         "name": "Scion lump",
-        "logic": "wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosary + meaculpa + mudkey + ceramickey"
+        "logic": "wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosaryfx + meaculpa + mudkey + ceramickey"
     },
     {
         "id": "Z2829.l23",
         "name": "Thorn basin",
-        "logic": "wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosary + meaculpa + mudkey + ceramickey"
+        "logic": "wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosaryfx + meaculpa + mudkey + ceramickey"
     },
     {
         "id": "Z2834.l0",
         "name": "Martyr pickup",
         "flags": "V",
-        "logic": "wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosary + meaculpa + mudkey + ceramickey"
+        "logic": "wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosaryfx + meaculpa + mudkey + ceramickey"
     },
     {
         "id": "Z2835.i0",
         "name": "Mud woman reward",
-        "logic": "wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosary + meaculpa + mudkey + ceramickey"
+        "logic": "wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosaryfx + meaculpa + mudkey + ceramickey"
     },
     {
         "id": "Z2835.l12",
         "name": "Thorn ledge basin",
-        "logic": "wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosary + meaculpa + mudkey + ceramickey"
+        "logic": "wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosaryfx + meaculpa + mudkey + ceramickey"
     }
 ]
