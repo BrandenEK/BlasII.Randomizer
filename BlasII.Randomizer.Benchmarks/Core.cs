@@ -19,7 +19,7 @@ internal class Core
         cmd.Process(args);
 
         string dataFolder = Path.Combine(BASE_DIRECTORY, "resources", "data", "Randomizer");
-        ItemLocations = LoadJsonDictionary<ItemLocation>(Path.Combine(dataFolder, "item-locations.json"));
+        ItemLocations = LoadJsonDictionary<ItemLocation>(Path.Combine(dataFolder, "itemlocations.json"));
         Items = LoadJsonDictionary<Item>(Path.Combine(dataFolder, "items.json"));
         Doors = LoadJsonDictionary<Door>(Path.Combine(dataFolder, "doors.json"));
         Console.WriteLine($"Item locations: {ItemLocations.Count}, Items: {Items.Count}, Doors: {Doors.Count}");

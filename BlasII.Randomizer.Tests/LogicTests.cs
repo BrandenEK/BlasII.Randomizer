@@ -29,7 +29,7 @@ public class LogicTests
         foreach (var item in JsonConvert.DeserializeObject<Item[]>(items))
             _allItems.Add(item.Id, item);
 
-        string itemLocations = File.ReadAllText(dataFolder + "item-locations.json");
+        string itemLocations = File.ReadAllText(dataFolder + "itemlocations.json");
         foreach (var itemLocation in JsonConvert.DeserializeObject<ItemLocation[]>(itemLocations))
             _allItemLocations.Add(itemLocation.Id, itemLocation);
 
