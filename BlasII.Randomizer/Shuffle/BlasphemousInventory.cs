@@ -19,16 +19,22 @@ public class BlasphemousInventory
     int CenserLevel { get; set; }
     [ResolvableAs("censer")]
     bool HasCenser => CenserLevel > 0;
+    [ResolvableAs("censerfx")]
+    bool HasCenserEffect => CenserLevel > 0; // or liberated
 
     [CollectableAs("RosaryBlade")]
     int RosaryLevel { get; set; }
     [ResolvableAs("rosary")]
     bool HasRosary => RosaryLevel > 0;
+    [ResolvableAs("rosaryfx")]
+    bool HasRosaryEffect => RosaryLevel > 0 || MeaCulpaLevel > 0;
 
     [CollectableAs("Rapier")]
     int RapierLevel { get; set; }
     [ResolvableAs("rapier")]
     bool HasRapier => RapierLevel > 0;
+    [ResolvableAs("rapierfx")]
+    bool HasRapierEffect => RapierLevel > 0; // or liberated
 
     [CollectableAs("MeaCulpa")]
     int MeaCulpaLevel { get; set; }
