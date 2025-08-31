@@ -28,6 +28,11 @@ public class ItemDisplayer
         }
     }
 
+    private void ShowInternal(DisplayInfo info)
+    {
+        _currentCoroutine = MelonCoroutines.Start(FadeCoroutine(info));
+    }
+
     public void OnExitGame()
     {
         _itemQueue.Clear();
@@ -39,17 +44,17 @@ public class ItemDisplayer
         }
     }
 
-    private void ShowInternal(DisplayInfo info)
+    private IEnumerator FadeCoroutine(DisplayInfo info)
     {
+        // Hold min fade
+        _display.UpdateAlpha(ALPHA_MIN);
+        yield return GenericCoroutine(FADE_HIDE, _ => { });
+
+        // Start showing
         _display.UpdateDisplay(info);
         CoreCache.AudioManager.InstantiateEvent("event:/SFX/UI/Get Item Popup");
         CoreCache.AudioManager.PlayOneShot("event:/SFX/UI/Get Item Popup");
 
-        _currentCoroutine = MelonCoroutines.Start(FadeCoroutine());
-    }
-
-    private IEnumerator FadeCoroutine()
-    {
         // Fade in
         yield return GenericCoroutine(FADE_DURATION, percent => _display.UpdateAlpha(Mathf.Lerp(ALPHA_MIN, ALPHA_MAX, percent)));
         _display.UpdateAlpha(ALPHA_MAX);
@@ -60,9 +65,6 @@ public class ItemDisplayer
         // Fade out
         yield return GenericCoroutine(FADE_DURATION, percent => _display.UpdateAlpha(Mathf.Lerp(ALPHA_MAX, ALPHA_MIN, percent)));
         _display.UpdateAlpha(ALPHA_MIN);
-
-        // Hold min fade
-        yield return GenericCoroutine(FADE_HIDE, _ => { });
 
         // Check for next in queue
         if (_itemQueue.Count > 0)
