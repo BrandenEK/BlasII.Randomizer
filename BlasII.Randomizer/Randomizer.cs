@@ -122,7 +122,6 @@ public class Randomizer : BlasIIMod, ISlotPersistentMod<RandomizerSlotData>, IGl
         if (!SceneHelper.GameSceneLoaded)
             return;
 
-        ProcessItemInput();
         ProcessKeybindInput();
 
 #if DEBUG
@@ -224,26 +223,6 @@ public class Randomizer : BlasIIMod, ISlotPersistentMod<RandomizerSlotData>, IGl
     public void LoadGlobal(RandomizerGlobalData data)
     {
         TotalSeedsGenerated = data.SeedsGenerated;
-    }
-
-    private void ProcessItemInput()
-    {
-        ItemPopupWindowLogic window = CoreCache.UINavigationHelper.itemPopupWindowLogic;
-
-        if (window == null || !window.isShowing)
-            return;
-
-        bool gameInput = InputHandler.GetButtonDown(ModdingAPI.Input.ButtonType.Inventory)
-            || InputHandler.GetButtonDown(ModdingAPI.Input.ButtonType.Pause);
-
-        bool shopInput = InputHandler.GetButtonDown(ModdingAPI.Input.ButtonType.UIConfirm)
-            || InputHandler.GetButtonDown(ModdingAPI.Input.ButtonType.UICancel)
-            || InputHandler.GetAxis(ModdingAPI.Input.AxisType.UIVertical) != 0;
-
-        if (gameInput || CoreCache.Shop.IsShowing && shopInput)
-        {
-            window.Close();
-        }
     }
 
     private void ProcessKeybindInput()
