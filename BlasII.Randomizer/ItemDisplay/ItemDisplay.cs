@@ -1,13 +1,14 @@
 ﻿using BlasII.Randomizer.Models;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace BlasII.Randomizer.ItemDisplay;
 
 public class ItemDisplay
 {
-    private readonly Queue<int> _itemQueue = [];
+    private readonly Queue<DisplayInfo> _itemQueue = [];
 
-    public void Show(Item item)
+    public void Show(string message, string item, Sprite image)
     {
 
     }

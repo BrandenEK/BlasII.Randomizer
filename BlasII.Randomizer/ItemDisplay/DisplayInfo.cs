@@ -2,11 +2,11 @@
 
 namespace BlasII.Randomizer.ItemDisplay;
 
-public class DisplayInfo(string message, string itemName, Sprite image)
+public class DisplayInfo(string message, string item, Sprite image)
 {
     public string Message { get; } = message;
 
-    public string ItemName { get; } = itemName;
+    public string Item { get; } = item;
 
     public Sprite Image { get; } = image;
 }
