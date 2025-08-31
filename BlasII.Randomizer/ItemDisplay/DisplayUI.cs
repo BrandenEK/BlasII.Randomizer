@@ -1,6 +1,7 @@
 ﻿using BlasII.Framework.UI;
 using BlasII.ModdingAPI;
 using BlasII.ModdingAPI.Files;
+using Il2CppTGK.Game.Components.UI;
 using Il2CppTMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -13,8 +14,8 @@ public class DisplayUI
 
     private RectTransform _object;
     private Image _iconImage;
-    private TextMeshProUGUI _messageText;
-    private TextMeshProUGUI _nameText;
+    private UIPixelTextWithShadow _messageText;
+    private UIPixelTextWithShadow _nameText;
 
     public DisplayUI()
     {
@@ -48,14 +49,17 @@ public class DisplayUI
             return;
 
         _iconImage.sprite = info.Image;
-        _messageText.text = info.Message;
-        _nameText.text = info.Item;
+        _messageText.SetText(info.Message);
+        _nameText.SetText(info.Item);
 
-        float textWidth = Mathf.Min(Mathf.Max(_messageText.preferredWidth, _nameText.preferredWidth, BACK_MIN_WIDTH - TEXT_POS), BACK_MAX_WIDTH);
+        float maxWidth = Mathf.Max(_messageText.shadowText.preferredWidth, _nameText.shadowText.preferredWidth, BACK_MIN_WIDTH - TEXT_POS);
+        float textWidth = Mathf.Min(maxWidth, BACK_MAX_WIDTH);
 
         _object.sizeDelta = new Vector2(textWidth + TEXT_POS + 10, BACK_HEIGHT);
-        _messageText.rectTransform.sizeDelta = new Vector2(textWidth, TEXT_HEIGHT);
-        _nameText.rectTransform.sizeDelta = new Vector2(textWidth, TEXT_HEIGHT);
+        _messageText.shadowText.rectTransform.sizeDelta = new Vector2(textWidth, TEXT_HEIGHT);
+        _messageText.normalText.rectTransform.sizeDelta = new Vector2(textWidth, TEXT_HEIGHT);
+        _nameText.shadowText.rectTransform.sizeDelta = new Vector2(textWidth, TEXT_HEIGHT);
+        _nameText.normalText.rectTransform.sizeDelta = new Vector2(textWidth, TEXT_HEIGHT);
     }
 
     private void CreateDisplay()
@@ -110,8 +114,9 @@ public class DisplayUI
             FontSize = 32,
             UseRichText = true,
             WordWrap = false
-        });
-        _messageText.overflowMode = TextOverflowModes.Ellipsis;
+        }).AddShadow();
+        _messageText.shadowText.overflowMode = TextOverflowModes.Ellipsis;
+        _messageText.normalText.overflowMode = TextOverflowModes.Ellipsis;
 
         _nameText = UIModder.Create(new RectCreationOptions()
         {
@@ -130,8 +135,9 @@ public class DisplayUI
             FontSize = 32,
             UseRichText = true,
             WordWrap = false
-        });
-        _nameText.overflowMode = TextOverflowModes.Ellipsis;
+        }).AddShadow();
+        _nameText.shadowText.overflowMode = TextOverflowModes.Ellipsis;
+        _nameText.normalText.overflowMode = TextOverflowModes.Ellipsis;
 
         _object = holder;
     }
