@@ -61,7 +61,7 @@ public class ItemHandler
     public void DisplayItem(Item item)
     {
         string message = Main.Randomizer.LocalizationHandler.Localize("popup/item");
-        Main.Randomizer.ItemDisplayer.Show(message, item.GetName(), item.GetSprite());
+        Main.Randomizer.ItemDisplayer.Show(message, item);
     }
 
     /// <summary>
