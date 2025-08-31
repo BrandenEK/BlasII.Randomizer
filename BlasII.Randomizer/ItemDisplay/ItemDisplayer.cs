@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace BlasII.Randomizer.ItemDisplay;
@@ -24,4 +25,36 @@ public class ItemDisplayer
         _itemQueue.Clear();
         // Hide popup
     }
+
+    private IEnumerator FadeCoroutine()
+    {
+        float timer;
+
+        timer = 0f;
+        while (timer < FADE_DURATION)
+        {
+            timer += Time.deltaTime;
+            _display.UpdateAlpha(Mathf.Lerp(ALPHA_MIN, ALPHA_MAX, timer / FADE_DURATION));
+            yield return null;
+        }
+        _display.UpdateAlpha(ALPHA_MAX);
+
+        yield return new WaitForSecondsRealtime(FADE_HOLD);
+
+        timer = 0f;
+        while (timer < FADE_DURATION)
+        {
+            timer += Time.deltaTime;
+            _display.UpdateAlpha(Mathf.Lerp(ALPHA_MAX, ALPHA_MIN, timer / FADE_DURATION));
+            yield return null;
+        }
+        _display.UpdateAlpha(ALPHA_MIN);
+
+        yield return new WaitForSecondsRealtime(FADE_HOLD);
+    }
+
+    private float FADE_DURATION = 3f;
+    private float FADE_HOLD = 1f;
+    private float ALPHA_MIN = 0f;
+    private float ALPHA_MAX = 0.9f;
 }

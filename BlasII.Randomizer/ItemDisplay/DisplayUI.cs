@@ -13,6 +13,7 @@ public class DisplayUI
     private readonly Sprite _backgroundSprite;
 
     private RectTransform _object;
+    private CanvasGroup _group;
     private Image _iconImage;
     private UIPixelTextWithShadow _messageText;
     private UIPixelTextWithShadow _nameText;
@@ -63,6 +64,14 @@ public class DisplayUI
         _iconImage.rectTransform.sizeDelta = info.Image.rect.size * 2;
     }
 
+    public void UpdateAlpha(float alpha)
+    {
+        if (!EnsureObjectExists())
+            return;
+
+        _group.alpha = alpha;
+    }
+
     private void CreateDisplay()
     {
         var holder = UIModder.Create(new RectCreationOptions()
@@ -82,10 +91,6 @@ public class DisplayUI
         });
         background.type = Image.Type.Tiled;
         background.pixelsPerUnitMultiplier = 3;
-
-        // TEMP !!!
-        var group = holder.gameObject.AddComponent<CanvasGroup>();
-        group.alpha = 0.9f;
 
         var imageHolder = UIModder.Create(new RectCreationOptions()
         {
@@ -146,6 +151,9 @@ public class DisplayUI
         }).AddShadow();
         _nameText.shadowText.overflowMode = TextOverflowModes.Ellipsis;
         _nameText.normalText.overflowMode = TextOverflowModes.Ellipsis;
+
+        _group = holder.gameObject.AddComponent<CanvasGroup>();
+        _group.alpha = 0.9f; // Set to 0
 
         _object = holder;
     }
