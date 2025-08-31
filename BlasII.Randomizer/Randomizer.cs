@@ -129,6 +129,7 @@ public class Randomizer : BlasIIMod, ISlotPersistentMod<RandomizerSlotData>, IGl
         if (UnityEngine.Input.GetKeyDown(KeyCode.P))
         {
             ModLog.Error("DEBUG INPUT");
+            ItemHandler.DisplayItem(ItemStorage["PR18"]);
         }
 #endif
     }
@@ -173,6 +174,11 @@ public class Randomizer : BlasIIMod, ISlotPersistentMod<RandomizerSlotData>, IGl
         SetQuestValue("ST00", "INTRO", true);
         IsNewGame = true;
         TotalSeedsGenerated++;
+    }
+
+    protected override void OnExitGame()
+    {
+        ItemDisplayer.OnExitGame();
     }
 
     public RandomizerSlotData SaveSlot()

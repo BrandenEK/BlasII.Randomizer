@@ -75,6 +75,11 @@ class ItemPopupWindowLogic_ShowPopupInternal_Patch
         Vector2 size = popup.image == null ? new Vector2(90, 90) : popup.image.rect.size * 3;
         Vector2 offset = new((90 - size.x) / 2, (90 - size.y) / 2);
 
+        ModLog.Error(__instance.fadeInTime);
+        ModLog.Error(__instance.fadeOutTime);
+        ModLog.Error(__instance.popupShowTime);
+        ModLog.Error(__instance.endTime);
+
         __instance.spriteImage.rectTransform.sizeDelta = size;
         __instance.spriteImage.rectTransform.anchoredPosition = offset;
     }

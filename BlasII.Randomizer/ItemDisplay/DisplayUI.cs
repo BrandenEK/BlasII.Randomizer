@@ -153,7 +153,7 @@ public class DisplayUI
         _nameText.normalText.overflowMode = TextOverflowModes.Ellipsis;
 
         _group = holder.gameObject.AddComponent<CanvasGroup>();
-        _group.alpha = 0.9f; // Set to 0
+        _group.alpha = 0f;
 
         _object = holder;
     }
