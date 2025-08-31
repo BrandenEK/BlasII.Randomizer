@@ -105,7 +105,7 @@ public class DisplayUI
         }).AddText(new TextCreationOptions()
         {
             Alignment = TextAlignmentOptions.Center,
-            Color = Color.blue,
+            Color = new Color32(0xF8, 0xE4, 0xC6, 0xFF),
             Font = UIModder.Fonts.Blasphemous,
             FontSize = 32,
             UseRichText = true,
@@ -125,7 +125,7 @@ public class DisplayUI
         }).AddText(new TextCreationOptions()
         {
             Alignment = TextAlignmentOptions.Center,
-            Color = Color.blue,
+            Color = new Color32(0xFF, 0xE3, 0x8F, 0xFF),
             Font = UIModder.Fonts.Blasphemous,
             FontSize = 32,
             UseRichText = true,
