@@ -1,6 +1,5 @@
 ﻿using BlasII.Framework.UI;
 using BlasII.ModdingAPI;
-using BlasII.ModdingAPI.Assets;
 using BlasII.ModdingAPI.Files;
 using Il2CppTMPro;
 using UnityEngine;
@@ -12,7 +11,7 @@ public class DisplayUI
 {
     private readonly Sprite _backgroundSprite;
 
-    private GameObject _object;
+    private RectTransform _object;
     private Image _iconImage;
     private TextMeshProUGUI _messageText;
     private TextMeshProUGUI _nameText;
@@ -45,9 +44,18 @@ public class DisplayUI
 
     public void UpdateDisplay(DisplayInfo info)
     {
+        if (!EnsureObjectExists())
+            return;
+
         _iconImage.sprite = info.Image;
         _messageText.text = info.Message;
         _nameText.text = info.Item;
+
+        float textWidth = Mathf.Min(Mathf.Max(_messageText.preferredWidth, _nameText.preferredWidth, BACK_MIN_WIDTH - TEXT_POS), BACK_MAX_WIDTH);
+
+        _object.sizeDelta = new Vector2(textWidth + TEXT_POS + 10, BACK_HEIGHT);
+        _messageText.rectTransform.sizeDelta = new Vector2(textWidth, TEXT_HEIGHT);
+        _nameText.rectTransform.sizeDelta = new Vector2(textWidth, TEXT_HEIGHT);
     }
 
     private void CreateDisplay()
@@ -70,10 +78,9 @@ public class DisplayUI
         background.type = Image.Type.Tiled;
         background.pixelsPerUnitMultiplier = 3;
 
+        // TEMP !!!
         var group = holder.gameObject.AddComponent<CanvasGroup>();
         group.alpha = 1f;
-
-        var bead = AssetStorage.Beads["RB01"];
 
         _iconImage = UIModder.Create(new RectCreationOptions()
         {
@@ -84,10 +91,7 @@ public class DisplayUI
             YRange = Vector2.zero,
             Pivot = Vector2.zero,
             Position = new Vector2(ICON_POS, 25),
-        }).AddImage(new ImageCreationOptions()
-        {
-            Sprite = bead.image
-        });
+        }).AddImage();
 
         _messageText = UIModder.Create(new RectCreationOptions()
         {
@@ -101,8 +105,7 @@ public class DisplayUI
         }).AddText(new TextCreationOptions()
         {
             Alignment = TextAlignmentOptions.Center,
-            Color = Color.white,
-            Contents = "Obtained",
+            Color = Color.blue,
             Font = UIModder.Fonts.Blasphemous,
             FontSize = 32,
             UseRichText = true,
@@ -122,8 +125,7 @@ public class DisplayUI
         }).AddText(new TextCreationOptions()
         {
             Alignment = TextAlignmentOptions.Center,
-            Color = Color.yellow,
-            Contents = bead.caption,
+            Color = Color.blue,
             Font = UIModder.Fonts.Blasphemous,
             FontSize = 32,
             UseRichText = true,
@@ -131,12 +133,7 @@ public class DisplayUI
         });
         _nameText.overflowMode = TextOverflowModes.Ellipsis;
 
-        float textWidth = Mathf.Min(Mathf.Max(_messageText.preferredWidth, _nameText.preferredWidth, BACK_MIN_WIDTH - TEXT_POS), BACK_MAX_WIDTH);
-        holder.sizeDelta = new Vector2(textWidth + TEXT_POS + 10, BACK_HEIGHT);
-        _messageText.rectTransform.sizeDelta = new Vector2(textWidth, TEXT_HEIGHT);
-        _nameText.rectTransform.sizeDelta = new Vector2(textWidth, TEXT_HEIGHT);
-
-        _object = holder.gameObject;
+        _object = holder;
     }
 
     private const int BACK_MIN_WIDTH = 450;

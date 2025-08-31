@@ -4,6 +4,7 @@ using BlasII.ModdingAPI.Assets;
 using BlasII.ModdingAPI.Helpers;
 using BlasII.ModdingAPI.Persistence;
 using BlasII.Randomizer.Handlers;
+using BlasII.Randomizer.ItemDisplay;
 using BlasII.Randomizer.Services;
 using BlasII.Randomizer.Settings;
 using BlasII.Randomizer.Shops;
@@ -56,6 +57,10 @@ public class Randomizer : BlasIIMod, ISlotPersistentMod<RandomizerSlotData>, IGl
     public NameStorage NameStorage { get; private set; }
     /// <inheritdoc/>
     public ExtraInfoStorage ExtraInfoStorage { get; private set; }
+
+    // New things
+
+    public ItemDisplay ItemDisplay { get; private set; }
 
     // Properties
 
