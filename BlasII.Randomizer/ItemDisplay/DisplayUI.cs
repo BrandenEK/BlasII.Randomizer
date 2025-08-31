@@ -60,6 +60,7 @@ public class DisplayUI
         _messageText.normalText.rectTransform.sizeDelta = new Vector2(textWidth, TEXT_HEIGHT);
         _nameText.shadowText.rectTransform.sizeDelta = new Vector2(textWidth, TEXT_HEIGHT);
         _nameText.normalText.rectTransform.sizeDelta = new Vector2(textWidth, TEXT_HEIGHT);
+        _iconImage.rectTransform.sizeDelta = info.Image.rect.size * 2;
     }
 
     private void CreateDisplay()
@@ -84,17 +85,24 @@ public class DisplayUI
 
         // TEMP !!!
         var group = holder.gameObject.AddComponent<CanvasGroup>();
-        group.alpha = 1f;
+        group.alpha = 0.9f;
 
-        _iconImage = UIModder.Create(new RectCreationOptions()
+        var imageHolder = UIModder.Create(new RectCreationOptions()
         {
-            Name = "IconImage",
+            Name = "IconHolder",
             Parent = holder,
             Size = new Vector2(ICON_SIZE, ICON_SIZE),
             XRange = Vector2.zero,
             YRange = Vector2.zero,
             Pivot = Vector2.zero,
             Position = new Vector2(ICON_POS, 25),
+        });
+
+        _iconImage = UIModder.Create(new RectCreationOptions()
+        {
+            Name = "IconImage",
+            Parent = imageHolder,
+            Size = new Vector2(ICON_SIZE, ICON_SIZE),
         }).AddImage();
 
         _messageText = UIModder.Create(new RectCreationOptions()
