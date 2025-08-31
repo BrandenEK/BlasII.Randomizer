@@ -60,11 +60,14 @@ public class ItemHandler
 
     public void DisplayItem(Item item)
     {
-        CoreCache.UINavigationHelper.ShowItemPopup(
-            Main.Randomizer.LocalizationHandler.Localize("popup/item"),
-            item.GetName(),
-            item.GetSprite(),
-            false);
+        string message = Main.Randomizer.LocalizationHandler.Localize("popup/item");
+        Main.Randomizer.ItemDisplayer.Show(message, item.GetName(), item.GetSprite());
+
+        //CoreCache.UINavigationHelper.ShowItemPopup(
+        //    Main.Randomizer.LocalizationHandler.Localize("popup/item"),
+        //    item.GetName(),
+        //    item.GetSprite(),
+        //    false);
     }
 
     /// <summary>

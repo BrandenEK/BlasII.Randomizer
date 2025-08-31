@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace BlasII.Randomizer.ItemDisplay;
 
-public class ItemDisplay
+public class ItemDisplayer
 {
     private readonly DisplayUI _display = new();
     private readonly Queue<DisplayInfo> _itemQueue = [];

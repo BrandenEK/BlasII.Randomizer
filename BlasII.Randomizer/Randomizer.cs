@@ -60,7 +60,7 @@ public class Randomizer : BlasIIMod, ISlotPersistentMod<RandomizerSlotData>, IGl
 
     // New things
 
-    public ItemDisplay ItemDisplay { get; private set; }
+    public ItemDisplayer ItemDisplayer { get; private set; }
 
     // Properties
 
@@ -107,6 +107,9 @@ public class Randomizer : BlasIIMod, ISlotPersistentMod<RandomizerSlotData>, IGl
             ? new ComponentShuffler(ItemLocationStorage.AsDictionary, ItemStorage.AsDictionary, false)
             : new DebugShuffler(ItemLocationStorage.AsDictionary, "Censer"));
         ShopHandler = new ShopHandler();
+
+        // Initialize new things
+        ItemDisplayer = new ItemDisplayer();
     }
 
     protected override void OnRegisterServices(ModServiceProvider provider)
