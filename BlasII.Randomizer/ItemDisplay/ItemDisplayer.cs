@@ -1,5 +1,4 @@
 ﻿using BlasII.ModdingAPI.Helpers;
-using BlasII.Randomizer.Models;
 using Il2CppTGK.Game;
 using MelonLoader;
 using System.Collections;
@@ -15,9 +14,9 @@ public class ItemDisplayer
 
     private object _currentCoroutine;
 
-    public void Show(string message, Item item)
+    public void Show(string message, string item, Sprite image)
     {
-        var info = new DisplayInfo(message, item.GetName(), item.GetSprite());
+        var info = new DisplayInfo(message, item, image);
 
         if (_currentCoroutine != null)
         {
