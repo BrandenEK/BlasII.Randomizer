@@ -1,122 +1,471 @@
 [
     {
-        "id": "Z01[B]"
+        "id": "Z0101[DOOR_E_22-41]",
+        "name": "East door",
+        "type": "Normal",
+        "direction": "Right",
+        "exit": "Z0102[DOOR_W_23-41]"
     },
     {
-        "id": "Z01[W]"
+        "id": "Z0102[DOOR_E_24-41]",
+        "name": "East door",
+        "type": "Normal",
+        "direction": "Right",
+        "exit": "Z0103[DOOR_W_25-41]"
     },
     {
-        "id": "Z01[E]"
+        "id": "Z0102[DOOR_W_23-41]",
+        "name": "West door",
+        "type": "Normal",
+        "direction": "Left",
+        "exit": "Z0101[DOOR_E_22-41]"
     },
     {
-        "id": "Z02[W]"
+        "id": "Z0103[DOOR_W_25-41]",
+        "name": "Southwest door",
+        "type": "Normal",
+        "direction": "Left",
+        "exit": "Z0102[DOOR_E_24-41]"
     },
     {
-        "id": "Z02[E]"
+        "id": "Z0103[DOOR_W_25-42]",
+        "name": "Northwest door",
+        "type": "Normal",
+        "direction": "Left",
+        "exit": "Z0109[DOOR_E_24-42]"
     },
     {
-        "id": "Z02[N]"
+        "id": "Z0103[E]",
+        "name": "East door",
+        "type": "Normal",
+        "direction": "Right",
+        "exit": "Z0105[W]"
     },
     {
-        "id": "Z03[SW]"
+        "id": "Z0105[DOOR_E_30-43]",
+        "name": "Southeast door",
+        "type": "Normal",
+        "direction": "Right",
+        "exit": "Z0106[DOOR_W_31-43]"
     },
     {
-        "id": "Z03[S]"
+        "id": "Z0105[left]",
+        "name": "Northeast door",
+        "type": "Zone",
+        "direction": "Right",
+        "exit": "Z0426[left]"
     },
     {
-        "id": "Z03[SE]"
+        "id": "Z0105[W]",
+        "name": "West door",
+        "type": "Normal",
+        "direction": "Left",
+        "exit": "Z0103[E]"
     },
     {
-        "id": "Z04[NE]"
+        "id": "Z0106[DOOR_E_32-43]",
+        "name": "East door",
+        "type": "Normal",
+        "direction": "Right",
+        "exit": "Z0107[DOOR_W_33-43]"
     },
     {
-        "id": "Z04[SW]"
+        "id": "Z0106[DOOR_W_31-43]",
+        "name": "West door",
+        "type": "Normal",
+        "direction": "Left",
+        "exit": "Z0105[DOOR_E_30-43]"
     },
     {
-        "id": "Z05[W]"
+        "id": "Z0107[DOOR_W_33-43]",
+        "name": "West door",
+        "type": "Normal",
+        "direction": "Left",
+        "exit": "Z0106[DOOR_E_32-43]"
     },
     {
-        "id": "Z05[T]"
+        "id": "Z0107[E]",
+        "name": "East door",
+        "type": "Zone",
+        "direction": "Right",
+        "exit": "Z0206[W]"
     },
     {
-        "id": "Z06[W]"
+        "id": "Z0108[DOOR_E_23-43]",
+        "name": "East door",
+        "type": "Normal",
+        "direction": "Right",
+        "exit": "Z0109[DOOR_W_24-43]"
     },
     {
-        "id": "Z06[SW]"
+        "id": "Z0108[W]",
+        "name": "West door",
+        "type": "Zone",
+        "direction": "Left",
+        "exit": "Z1626[E]"
     },
     {
-        "id": "Z06[S]"
+        "id": "Z0109[DOOR_E_24-42]",
+        "name": "Southeast door",
+        "type": "Normal",
+        "direction": "Right",
+        "exit": "Z0103[DOOR_W_25-42]"
     },
     {
-        "id": "Z07[W]"
+        "id": "Z0109[DOOR_W_24-43]",
+        "name": "Northwest door",
+        "type": "Normal",
+        "direction": "Left",
+        "exit": "Z0108[DOOR_E_23-43]"
     },
     {
-        "id": "Z08[W]"
+        "id": "Z0201[DOOR_E_33-42]",
+        "name": "East door",
+        "type": "Normal",
+        "direction": "Right",
+        "exit": "Z0202[DOOR_W_34-42]"
     },
     {
-        "id": "Z08[P]"
+        "id": "Z0201[W]",
+        "name": "West door",
+        "type": "Normal",
+        "direction": "Left",
+        "exit": "Z0206[E]"
     },
     {
-        "id": "Z09[W]"
+        "id": "Z0202[DOOR_E_36-42]",
+        "name": "East door",
+        "type": "Normal",
+        "direction": "Right",
+        "exit": "Z0203[DOOR_W_37-42]"
     },
     {
-        "id": "Z09[N]"
+        "id": "Z0202[DOOR_W_34-42]",
+        "name": "West door",
+        "type": "Normal",
+        "direction": "Left",
+        "exit": "Z0201[DOOR_E_33-42]"
     },
     {
-        "id": "Z10[S]"
+        "id": "Z0203[DOOR_E_39-43]",
+        "name": "East door",
+        "type": "Normal",
+        "direction": "Right",
+        "exit": "Z0204[DOOR_W_40-43]"
     },
     {
-        "id": "Z10[W]"
+        "id": "Z0203[DOOR_W_37-42]",
+        "name": "West door",
+        "type": "Normal",
+        "direction": "Left",
+        "exit": "Z0202[DOOR_E_36-42]"
     },
     {
-        "id": "Z11[S]"
+        "id": "Z0204[DOOR_E_43-44]",
+        "name": "East door",
+        "type": "Normal",
+        "direction": "Right",
+        "exit": "Z0205[DOOR_W_44-44]"
     },
     {
-        "id": "Z12[E]"
+        "id": "Z0204[DOOR_W_40-43]",
+        "name": "Southwest door",
+        "type": "Normal",
+        "direction": "Left",
+        "exit": "Z0203[DOOR_E_39-43]"
     },
     {
-        "id": "Z12[W]"
+        "id": "Z0204[W_Up]",
+        "name": "Northwest door",
+        "type": "Normal",
+        "direction": "Left",
+        "exit": "Z0207[E]"
     },
     {
-        "id": "Z13[W]"
+        "id": "Z0205[DOOR_E_45-44]",
+        "name": "East door",
+        "type": "Zone",
+        "direction": "Right",
+        "exit": "Z0501[DOOR_W_46-44]"
     },
     {
-        "id": "Z13[E]"
+        "id": "Z0205[DOOR_W_44-44]",
+        "name": "West door",
+        "type": "Normal",
+        "direction": "Left",
+        "exit": "Z0204[DOOR_E_43-44]"
     },
     {
-        "id": "Z14[N]"
+        "id": "Z0206[E]",
+        "name": "East door",
+        "type": "Normal",
+        "direction": "Right",
+        "exit": "Z0201[W]"
     },
     {
-        "id": "Z16[S]"
+        "id": "Z0206[W]",
+        "name": "West door",
+        "type": "Normal",
+        "direction": "Left",
+        "exit": "Z0107[E]"
     },
     {
-        "id": "Z16[P]"
+        "id": "Z0207[E]",
+        "name": "East door",
+        "type": "Normal",
+        "direction": "Right",
+        "exit": "Z0204[W_Up]"
     },
     {
-        "id": "Z17[W]"
+        "id": "Z0207[N]",
+        "name": "North ladder",
+        "type": "Zone",
+        "direction": "Up",
+        "exit": "Z0313[S]"
     },
     {
-        "id": "Z18[S]"
+        "id": "Z0301[E]",
+        "name": "East door",
+        "type": "Normal",
+        "direction": "Right",
+        "exit": "Z0312[W]"
     },
     {
-        "id": "Z19[N]"
+        "id": "Z0301[N]",
+        "name": "North ladder",
+        "type": "Normal",
+        "direction": "Up",
+        "exit": "Z0302[S]"
     },
     {
-        "id": "Z19[P]"
+        "id": "Z0301[W]",
+        "name": "West door",
+        "type": "Normal",
+        "direction": "Left",
+        "exit": "Z0308[E]"
     },
     {
-        "id": "Z20[N]"
+        "id": "Z0302[0302_E_Up]",
+        "name": "East door",
+        "type": "Zone",
+        "direction": "Right",
+        "exit": "Z2401[W]"
     },
     {
-        "id": "Z20[E]"
+        "id": "Z0302[S]",
+        "name": "South ladder",
+        "type": "Normal",
+        "direction": "Down",
+        "exit": "Z0301[N]"
     },
     {
-        "id": "Z21[N]"
+        "id": "Z0302[W_Up]",
+        "name": "Northwest door",
+        "type": "Normal",
+        "direction": "Left",
+        "exit": "Z0303[E_Up]"
     },
     {
-        "id": "Z23[N]"
+        "id": "Z0302[W]",
+        "name": "Southwest door",
+        "type": "Normal",
+        "direction": "Left",
+        "exit": "Z0303[E]"
     },
     {
-        "id": "Z24[W]"
+        "id": "Z0303[E_Up]",
+        "name": "Northeast door",
+        "type": "Normal",
+        "direction": "Right",
+        "exit": "Z0302[W_Up]"
+    },
+    {
+        "id": "Z0303[E]",
+        "name": "Southeast door",
+        "type": "Normal",
+        "direction": "Right",
+        "exit": "Z0302[W]"
+    },
+    {
+        "id": "Z0303[N]",
+        "name": "North ladder",
+        "type": "Normal",
+        "direction": "Up",
+        "exit": "Z0305[S]"
+    },
+    {
+        "id": "Z0303[NW]",
+        "name": "Northwest door",
+        "type": "Normal",
+        "direction": "Left",
+        "exit": "Z0304[NE]"
+    },
+    {
+        "id": "Z0303[SW]",
+        "name": "Southwest door",
+        "type": "Normal",
+        "direction": "Left",
+        "exit": "Z0304[SE]"
+    },
+    {
+        "id": "Z0304[NE]",
+        "name": "Northeast door",
+        "type": "Normal",
+        "direction": "Right",
+        "exit": "Z0303[NW]"
+    },
+    {
+        "id": "Z0304[S_L]",
+        "name": "South door 1",
+        "type": "Normal",
+        "direction": "Down",
+        "exit": "Z0307[N_L]"
+    },
+    {
+        "id": "Z0304[S_R]",
+        "name": "South door 2",
+        "type": "Normal",
+        "direction": "Down",
+        "exit": "Z0307[N_R]"
+    },
+    {
+        "id": "Z0304[SE]",
+        "name": "Southeast door",
+        "type": "Normal",
+        "direction": "Right",
+        "exit": "Z0303[SW]"
+    },
+    {
+        "id": "Z0305[S]",
+        "name": "South ladder",
+        "type": "Normal",
+        "direction": "Down",
+        "exit": "Z0303[N]"
+    },
+    {
+        "id": "Z0305[W]",
+        "name": "West door",
+        "type": "Normal",
+        "direction": "Left",
+        "exit": "Z0306[E]"
+    },
+    {
+        "id": "Z0306[E]",
+        "name": "East door",
+        "type": "Normal",
+        "direction": "Right",
+        "exit": "Z0305[W]"
+    },
+    {
+        "id": "Z0306[W]",
+        "name": "West door",
+        "type": "Normal",
+        "direction": "Left",
+        "exit": "Z0310[E]"
+    },
+    {
+        "id": "Z0307[E]",
+        "name": "East door",
+        "type": "Normal",
+        "direction": "Right",
+        "exit": "Z0308[W]"
+    },
+    {
+        "id": "Z0307[N_L]",
+        "name": "North door 1",
+        "type": "Normal",
+        "direction": "Up",
+        "exit": "Z0304[S_L]"
+    },
+    {
+        "id": "Z0307[N_R]",
+        "name": "North door 2",
+        "type": "Normal",
+        "direction": "Up",
+        "exit": "Z0304[S_R]"
+    },
+    {
+        "id": "Z0307[W]",
+        "name": "West door",
+        "type": "Zone",
+        "direction": "Left",
+        "exit": "Z0425[E]"
+    },
+    {
+        "id": "Z0308[E]",
+        "name": "East door",
+        "type": "Normal",
+        "direction": "Right",
+        "exit": "Z0301[W]"
+    },
+    {
+        "id": "Z0308[S_L]",
+        "name": "South door 1",
+        "type": "Normal",
+        "direction": "Down",
+        "exit": "Z0313[N_L]"
+    },
+    {
+        "id": "Z0308[S_R]",
+        "name": "South door 2",
+        "type": "Normal",
+        "direction": "Down",
+        "exit": "Z0313[N_R]"
+    },
+    {
+        "id": "Z0308[W]",
+        "name": "West door",
+        "type": "Normal",
+        "direction": "Left",
+        "exit": "Z0307[E]"
+    },
+    {
+        "id": "Z0310[E]",
+        "name": "East door",
+        "type": "Normal",
+        "direction": "Right",
+        "exit": "Z0306[W]"
+    },
+    {
+        "id": "Z0310[W]",
+        "name": "West door",
+        "type": "Zone",
+        "direction": "Left",
+        "exit": "Z0402[NE]"
+    },
+    {
+        "id": "Z0312[E]",
+        "name": "Southeast door",
+        "type": "Zone",
+        "direction": "Right",
+        "exit": "Z0501[NW]"
+    },
+    {
+        "id": "Z0312[W]",
+        "name": "Northwest door",
+        "type": "Normal",
+        "direction": "Left",
+        "exit": "Z0301[E]"
+    },
+    {
+        "id": "Z0313[N_L]",
+        "name": "North door 1",
+        "type": "Normal",
+        "direction": "Up",
+        "exit": "Z0308[S_L]"
+    },
+    {
+        "id": "Z0313[N_R]",
+        "name": "North door 2",
+        "type": "Normal",
+        "direction": "Up",
+        "exit": "Z0308[S_R]"
+    },
+    {
+        "id": "Z0313[S]",
+        "name": "South ladder",
+        "type": "Zone",
+        "direction": "Down",
+        "exit": "Z0207[N]"
     }
 ]

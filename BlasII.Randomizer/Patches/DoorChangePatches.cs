@@ -15,7 +15,10 @@ class DoorInteractable_ChangeScene_Patch
     public static void Prefix(DoorInteractable __instance)
     {
         string doorId = $"{CoreCache.Room.CurrentRoom.Name}[{__instance.entryId}]";
-        ModLog.Info("Entering door: " + doorId);
+
+        string nextDoor = $"{__instance.destinationScene}[{__instance.destinationEntryId}]";
+
+        ModLog.Info($"Entering door: {doorId} --> {nextDoor}");
 
         // Temp until all door transitions are handled through data
         if (doorId == "Z0101[-]")
@@ -28,5 +31,23 @@ class DoorInteractable_ChangeScene_Patch
             ModLog.Info("Avoiding susona dream room");
             __instance.destinationScene = "Z1328";
         }
+
+        //string newId = $"{CoreCache.Room.CurrentRoom.Name}.d{__instance.transform.GetSiblingIndex()}";
+        //ModLog.Error("Entering door id: " + newId);
+        //ModLog.Error($"Destination: {__instance.destinationScene}[{__instance.destinationEntryId}]");
+
+        //foreach (var door in UnityEngine.Object.FindObjectsOfType<DoorInteractable>(true))
+        //{
+        //    string scene = door.gameObject.scene.name;
+        //    int index = door.transform.GetSiblingIndex();
+
+        //    if (door.name == "ELEVATOR_DESTINATION")
+        //    {
+        //        ModLog.Info(door.transform.parent.name);
+        //        index = door.transform.parent.GetSiblingIndex();
+        //    }
+
+        //    ModLog.Warn($"Found door: {scene}.d{index}  {door.name}");
+        //}
     }
 }

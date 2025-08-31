@@ -16,7 +16,9 @@ using Il2CppTGK.Game.Components.Interactables;
 using Il2CppTGK.Game.Components.UI;
 using Il2CppTGK.Game.PopupMessages;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Text;
 using UnityEngine;
 
 namespace BlasII.Randomizer;
@@ -79,6 +81,10 @@ public class Randomizer : BlasIIMod, ISlotPersistentMod<RandomizerSlotData>, IGl
     /// </summary>
     public bool IsSlotLoaded { get; set; } = false;
 
+    //private List<string> doors;
+    //private List<string> allRooms;
+    //private int curridx = 0;
+
     protected override void OnInitialize()
     {
         InputHandler.RegisterDefaultKeybindings(new Dictionary<string, KeyCode>()
@@ -102,6 +108,20 @@ public class Randomizer : BlasIIMod, ISlotPersistentMod<RandomizerSlotData>, IGl
             ? new ComponentShuffler(ItemLocationStorage.AsDictionary, ItemStorage.AsDictionary, false)
             : new DebugShuffler(ItemLocationStorage.AsDictionary, "Censer"));
         ShopHandler = new ShopHandler();
+
+        //string[] data = File.ReadAllLines(FileHandler.RootFolder + "/doors.txt");
+        //doors = new List<string>(data);
+        //ModLog.Info($"Loaded {doors.Count} doors");
+
+        //allRooms = new List<string>();
+        //foreach (string room in CoreCache.Room.GetAllRoomsName())
+        //{
+        //    allRooms.Add(room);
+        //}
+        //ModLog.Info($"Loaded {allRooms.Count} rooms");
+
+        //string path = FileHandler.RootFolder + "/rooms.txt";
+        //File.WriteAllLines(path, allRooms.OrderBy(x => x));
     }
 
     protected override void OnRegisterServices(ModServiceProvider provider)
@@ -118,9 +138,22 @@ public class Randomizer : BlasIIMod, ISlotPersistentMod<RandomizerSlotData>, IGl
         ProcessKeybindInput();
 
 #if DEBUG
+        //if (UnityEngine.Input.GetKeyDown(KeyCode.L))
+        //{
+        //    string nextroom = allRooms[curridx++];
+        //    ModLog.Warn($"Loading next room: {nextroom}");
+
+        //    CoreCache.PlayerSpawn.TeleportPlayer(new Il2CppTGK.Game.PlayerSpawn.SceneEntryID()
+        //    {
+        //        scene = nextroom.ToUpper(),
+        //        entryId = 0
+        //    }, false, null);
+        //}
         if (UnityEngine.Input.GetKeyDown(KeyCode.P))
         {
             ModLog.Error("DEBUG INPUT");
+            //File.WriteAllLines(FileHandler.RootFolder + "/doors.txt", doors.OrderBy(x => x));
+            //ModLog.Info($"Saved {doors.Count} doors");
         }
 #endif
     }
@@ -151,6 +184,15 @@ public class Randomizer : BlasIIMod, ISlotPersistentMod<RandomizerSlotData>, IGl
             LoadChapelRoom();
         else if (sceneName == "Z2716")
             LoadTriggerRemovalRoom("trigger", "SPGEO_INTERACTABLE_GUILLOTINE");
+
+        //foreach (var door in Object.FindObjectsOfType<DoorInteractable>())
+        //{
+        //    //string id = $"{sceneName}.d{door.transform.GetSiblingIndex()}";
+        //    string id = $"{sceneName}[{door.entryId}]";
+        //    ModLog.Info($"Found new door: {id}");
+        //    if (!doors.Contains(id))
+        //        doors.Add(id);
+        //}
 
         // This might not be needed anymore?
         CoreCache.Shop.cachedInstancedShops.Clear();
@@ -215,6 +257,27 @@ public class Randomizer : BlasIIMod, ISlotPersistentMod<RandomizerSlotData>, IGl
 
     private void ProcessItemInput()
     {
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            //CoreCache.Input.ClearAllInputBlocks();
+            //CoreCache.Input.ClearInputMask();
+
+            //ModLog.Warn(CoreCache.Input.inputMask.ToString("X8"));
+            //foreach (var def in CoreCache.Input.blockableInputs)
+            //{
+            //    ModLog.Error(def.name);
+            //}
+
+            //var window = CoreCache.UINavigationHelper.itemPopupWindowLogic;
+            //if (window == null)
+            //    return;
+
+            //ModLog.Info(window.GetIl2CppType().Name + ": " + window.currentInput?.name);
+        }
+        //ModLog.Info("ui nav showing: " + CoreCache.UINavigationHelper.IsShowingReward);
+        //ModLog.Info("ui mna window: " + CoreCache.UIManager.ObtainForemostWindow()?.GetIl2CppType().Name);
+
+        return;
         ItemPopupWindowLogic window = CoreCache.UINavigationHelper.itemPopupWindowLogic;
 
         if (window == null || !window.isShowing)

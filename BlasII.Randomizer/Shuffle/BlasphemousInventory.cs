@@ -13,6 +13,148 @@ namespace BlasII.Randomizer.Shuffle;
 /// </summary>
 public class BlasphemousInventory
 {
+    // Prayers
+
+    [CollectableAs("PR01")]
+    [ResolvableAs("galera")]
+    bool VerseGalera { get; set; }
+    [CollectableAs("PR04")]
+    [ResolvableAs("bmiracle")]
+    bool VerseMiracle { get; set; }
+    [CollectableAs("PR07")]
+    [ResolvableAs("liviana")]
+    bool VerseLiviana { get; set; }
+    [CollectableAs("PR08")]
+    [ResolvableAs("martinete")]
+    bool VerseMartinete { get; set; }
+    [CollectableAs("PR09")]
+    [ResolvableAs("rosa")]
+    bool VerseRosa { get; set; }
+    [CollectableAs("PR10")]
+    [ResolvableAs("zejel")]
+    bool VerseZejel { get; set; }
+    [CollectableAs("PR11")]
+    [ResolvableAs("serrana")]
+    bool VerseSerrana { get; set; }
+    [CollectableAs("PR12")]
+    [ResolvableAs("bcrown")]
+    bool VerseCrown { get; set; }
+    [CollectableAs("PR101")]
+    [ResolvableAs("penitent")]
+    bool VersePenitent { get; set; }
+    [CollectableAs("PR105")]
+    [ResolvableAs("praviana")]
+    bool VersePraviana { get; set; }
+    [CollectableAs("PR106")]
+    [ResolvableAs("cabal")]
+    bool VerseCabal { get; set; }
+    [CollectableAs("PR107")]
+    [ResolvableAs("rodena")]
+    bool VerseRodena { get; set; }
+    [CollectableAs("PR108")]
+    [ResolvableAs("bchalice")]
+    bool VerseChalice { get; set; }
+
+    [CollectableAs("PR02")]
+    [ResolvableAs("debla")]
+    bool ChantDebla { get; set; }
+    [CollectableAs("PR14")]
+    [ResolvableAs("jabera")]
+    bool ChantJabera { get; set; }
+    [CollectableAs("PR17")]
+    [ResolvableAs("mirabras")]
+    bool ChantMirabras { get; set; }
+    [CollectableAs("PR102")]
+    [ResolvableAs("carcelera")]
+    bool ChantCarcelera { get; set; }
+    [CollectableAs("PR104")]
+    [ResolvableAs("cante")]
+    bool ChantCante { get; set; }
+
+    // Figures
+
+    [CollectableAs("FG30", "FG31", "FG32", "FG33")]
+    [ResolvableAs("goldfigures")]
+    int GoldFigures { get; set; }
+    [CollectableAs("FG112")]
+    bool FigureLiberated { get; set; }
+
+    // Quest items
+
+    [CollectableAs("QI01", "QI02", "QI03", "QI11", "QI12")]
+    [ResolvableAs("tools")]
+    int NumTools { get; set; }
+
+    [CollectableAs("QI05")]
+    [ResolvableAs("regulacloth")]
+    bool RegulaCloth { get; set; }
+
+    [CollectableAs("QI07")]
+    [ResolvableAs("elderscroll")]
+    bool ElderScroll { get; set; }
+    [CollectableAs("QI08")]
+    [ResolvableAs("eldercloth")]
+    bool ElderCloth { get; set; }
+
+    [CollectableAs("QI14")]
+    [ResolvableAs("letter1")]
+    bool LetterOne { get; set; }
+    [CollectableAs("QI16")]
+    [ResolvableAs("letter2")]
+    bool LetterTwo { get; set; }
+    [CollectableAs("QI18")]
+    [ResolvableAs("letter3")]
+    bool LetterThree { get; set; }
+    [CollectableAs("QI20")]
+    [ResolvableAs("letter4")]
+    bool LetterFour { get; set; }
+    [CollectableAs("QI22")]
+    [ResolvableAs("letter5")]
+    bool LetterFive { get; set; }
+
+    [CollectableAs("QI28")]
+    [ResolvableAs("brokenkey")]
+    bool BrokenKey { get; set; }
+
+    [CollectableAs("QI29", "QI30", "QI31")]
+    [ResolvableAs("tributes")]
+    int NumTributes { get; set; }
+
+    [CollectableAs("QI37", "QI38", "QI39", "QI40", "QI41")]
+    [ResolvableAs("kisses")]
+    int NumKisses { get; set; }
+
+    [CollectableAs("QI54")]
+    [ResolvableAs("rattle")]
+    bool Rattle { get; set; }
+
+    [CollectableAs("QI56", "QI57", "QI58", "QI59", "QI60", "QI61")]
+    [ResolvableAs("waxseeds")]
+    int NumWaxSeeds { get; set; }
+
+    [CollectableAs("QI63", "QI64", "QI65", "QI66", "QI67")]
+    [ResolvableAs("bosskeys")]
+    int NumBossKeys { get; set; }
+
+    [CollectableAs("QI68")]
+    [ResolvableAs("holyoil")]
+    bool HolyOil { get; set; }
+
+    [CollectableAs("QI101")]
+    [ResolvableAs("mudkey")]
+    bool MudKey { get; set; }
+    [CollectableAs("QI103")]
+    [ResolvableAs("ceramickey")]
+    bool CeramicKey { get; set; }
+
+    [CollectableAs("UL")]
+    [ResolvableAs("lullabies")]
+    int NumLullabies { get; set; }
+
+    [CollectableAs("GL")]
+    [ResolvableAs("goldlumps")]
+    int GoldLumps { get; set; }
+
     // Weapons
 
     [CollectableAs("Censer")]
@@ -20,21 +162,21 @@ public class BlasphemousInventory
     [ResolvableAs("censer")]
     bool HasCenser => CenserLevel > 0;
     [ResolvableAs("censerfx")]
-    bool HasCenserEffect => CenserLevel > 0; // or liberated
+    bool HasCenserEffect => HasCenser || HasMeaCulpa && FigureLiberated;
 
     [CollectableAs("RosaryBlade")]
     int RosaryLevel { get; set; }
     [ResolvableAs("rosary")]
     bool HasRosary => RosaryLevel > 0;
     [ResolvableAs("rosaryfx")]
-    bool HasRosaryEffect => RosaryLevel > 0 || MeaCulpaLevel > 0;
+    bool HasRosaryEffect => HasRosary || HasMeaCulpa;
 
     [CollectableAs("Rapier")]
     int RapierLevel { get; set; }
     [ResolvableAs("rapier")]
     bool HasRapier => RapierLevel > 0;
     [ResolvableAs("rapierfx")]
-    bool HasRapierEffect => RapierLevel > 0; // or liberated
+    bool HasRapierEffect => HasRapier || HasMeaCulpa && FigureLiberated;
 
     [CollectableAs("MeaCulpa")]
     int MeaCulpaLevel { get; set; }
@@ -63,117 +205,35 @@ public class BlasphemousInventory
     [ResolvableAs("glasswalk")]
     bool GlassWalk { get; set; }
 
-    // Bosses
-
-    [CollectableAs("QI63", "QI64", "QI65", "QI66", "QI67")]
-    [ResolvableAs("bosskeys")]
-    int NumBossKeys { get; set; }
-
-    // Cherub quest
+    // Cherubs
 
     [CollectableAs("CH")]
     [ResolvableAs("cherubs")]
     int NumCherubs { get; set; }
 
-    [CollectableAs("QI54")]
-    [ResolvableAs("rattle")]
-    bool Rattle { get; set; }
+    // Glitches
 
-    // Elder quest
+    [ResolvableAs("hover")]
+    bool CanHover => GLITCHLEVEL > 0 && HasMeaCulpa;
 
-    [CollectableAs("QI07")]
-    [ResolvableAs("elderscroll")]
-    bool ElderScroll { get; set; }
+    [ResolvableAs("mirabrasdive")]
+    bool CanMirabrasDive => GLITCHLEVEL > 1 && ChantMirabras && HasRosaryEffect && (HasCenser || HasRapier);
 
-    [CollectableAs("QI08")]
-    [ResolvableAs("eldercloth")]
-    bool ElderCloth { get; set; }
+    // Tricks
 
-    // Gold quest
+    [ResolvableAs("airignite")]
+    bool CanAirIgnite => LOGICLEVEL > 0 && CenserLevel >= 1;
 
-    [CollectableAs("GL")]
-    [ResolvableAs("goldlumps")]
-    int GoldLumps { get; set; }
+    [ResolvableAs("typhoon")]
+    bool CanTyphoon => LOGICLEVEL > 0 && CenserLevel >= 2;
 
-    // Hand quest
+    [ResolvableAs("upslash")]
+    bool CanUpslash => LOGICLEVEL > 0 && (RosaryLevel >= 1 || MeaCulpaLevel >= 1);
 
-    [CollectableAs("QI37", "QI38", "QI39", "QI40", "QI41")]
-    [ResolvableAs("kisses")]
-    int NumKisses { get; set; }
+    // Jabera and Cancelera require hard logic
 
-    [CollectableAs("QI28")]
-    [ResolvableAs("brokenkey")]
-    bool BrokenKey { get; set; }
 
-    // Letter quest
-
-    [CollectableAs("QI14")]
-    [ResolvableAs("letter1")]
-    bool LetterOne { get; set; }
-
-    [CollectableAs("QI16")]
-    [ResolvableAs("letter2")]
-    bool LetterTwo { get; set; }
-
-    [CollectableAs("QI18")]
-    [ResolvableAs("letter3")]
-    bool LetterThree { get; set; }
-
-    [CollectableAs("QI20")]
-    [ResolvableAs("letter4")]
-    bool LetterFour { get; set; }
-
-    [CollectableAs("QI22")]
-    [ResolvableAs("letter5")]
-    bool LetterFive { get; set; }
-
-    // Lullaby quest
-
-    [CollectableAs("UL")]
-    [ResolvableAs("lullabies")]
-    int NumLullabies { get; set; }
-
-    // Mud quest
-
-    [CollectableAs("QI101")]
-    [ResolvableAs("mudkey")]
-    bool MudKey { get; set; }
-
-    [CollectableAs("QI103")]
-    [ResolvableAs("ceramickey")]
-    bool CeramicKey { get; set; }
-
-    // Regula quest
-
-    [CollectableAs("QI05")]
-    [ResolvableAs("regulacloth")]
-    bool RegulaCloth { get; set; }
-
-    // Sculptor quest
-
-    [CollectableAs("QI01", "QI02", "QI03", "QI11", "QI12")]
-    [ResolvableAs("tools")]
-    int NumTools { get; set; }
-
-    // Tribute quest
-
-    [CollectableAs("QI29", "QI30", "QI31")]
-    [ResolvableAs("tributes")]
-    int NumTributes { get; set; }
-
-    // Wax quest
-
-    [CollectableAs("QI56", "QI57", "QI58", "QI59", "QI60", "QI61")]
-    [ResolvableAs("waxseeds")]
-    int NumWaxSeeds { get; set; }
-
-    // Yerma quest
-
-    [CollectableAs("QI68")]
-    [ResolvableAs("holyoil")]
-    bool HolyOil { get; set; }
-
-    // Rooms
+    // Rooms (Will be removed soon and replaced with events)
 
     [ResolvableAs("daughterrooms")]
     int DaughterRooms
@@ -232,4 +292,6 @@ public class BlasphemousInventory
     }
 
     private readonly RandomizerSettings _settings;
+    private const int LOGICLEVEL = 0;
+    private const int GLITCHLEVEL = 0;
 }
