@@ -1,4 +1,5 @@
-﻿using Il2CppTGK.Game;
+﻿using BlasII.ModdingAPI.Helpers;
+using Il2CppTGK.Game;
 using MelonLoader;
 using System.Collections;
 using System.Collections.Generic;
@@ -27,14 +28,15 @@ public class ItemDisplayer
         }
     }
 
-    //public void OnUpdate()
-    //{
-    //    // Update popup
-    //}
-
     public void OnExitGame()
     {
         _itemQueue.Clear();
+
+        if (_currentCoroutine != null)
+        {
+            MelonCoroutines.Stop(_currentCoroutine);
+            _currentCoroutine = null;
+        }
     }
 
     private void ShowInternal(DisplayInfo info)
@@ -48,37 +50,19 @@ public class ItemDisplayer
 
     private IEnumerator FadeCoroutine()
     {
-        float timer;
-
         // Fade in
-        timer = 0f;
-        while (timer < FADE_DURATION)
-        {
-            if (!CoreCache.Time.IsRootPaused())
-                timer += Time.deltaTime;
-
-            _display.UpdateAlpha(Mathf.Lerp(ALPHA_MIN, ALPHA_MAX, timer / FADE_DURATION));
-            yield return null;
-        }
+        yield return GenericCoroutine(FADE_DURATION, percent => _display.UpdateAlpha(Mathf.Lerp(ALPHA_MIN, ALPHA_MAX, percent)));
         _display.UpdateAlpha(ALPHA_MAX);
 
         // Hold max fade
-        yield return new WaitForSeconds(FADE_SHOW);
+        yield return GenericCoroutine(FADE_SHOW, _ => { });
 
         // Fade out
-        timer = 0f;
-        while (timer < FADE_DURATION)
-        {
-            if (!CoreCache.Time.IsRootPaused())
-                timer += Time.deltaTime;
-
-            _display.UpdateAlpha(Mathf.Lerp(ALPHA_MAX, ALPHA_MIN, timer / FADE_DURATION));
-            yield return null;
-        }
+        yield return GenericCoroutine(FADE_DURATION, percent => _display.UpdateAlpha(Mathf.Lerp(ALPHA_MAX, ALPHA_MIN, percent)));
         _display.UpdateAlpha(ALPHA_MIN);
 
         // Hold min fade
-        yield return new WaitForSeconds(FADE_HIDE);
+        yield return GenericCoroutine(FADE_HIDE, _ => { });
 
         // Check for next in queue
         if (_itemQueue.Count > 0)
@@ -91,12 +75,23 @@ public class ItemDisplayer
         }
     }
 
+    private IEnumerator GenericCoroutine(float duration, System.Action<float> action)
+    {
+        float timer = 0f;
+
+        while (timer < duration)
+        {
+            if (SceneHelper.GameSceneLoaded && !CoreCache.Time.IsRootPaused())
+                timer += Time.deltaTime;
+
+            action(timer / duration);
+            yield return null;
+        }
+    }
+
     private const float FADE_DURATION = 0.75f;
-    private const float FADE_SHOW = 10f;
+    private const float FADE_SHOW = 2f;
     private const float FADE_HIDE = 0.5f;
-    //private const float FADE_DURATION = 1f;
-    //private const float FADE_SHOW = 1.5f;
-    //private const float FADE_HIDE = 0.5f;
     private const float ALPHA_MIN = 0f;
     private const float ALPHA_MAX = 0.9f;
 }
