@@ -5,7 +5,6 @@ using Il2CppPlaymaker.UI;
 using Il2CppTGK.Game.Components.UI;
 using Il2CppTGK.Game.PopupMessages;
 using System.Linq;
-using UnityEngine;
 
 namespace BlasII.Randomizer.Patches;
 
@@ -62,25 +61,4 @@ class ShowPopupMessage_OnEnter_Patch
         "MSG_10102_id", // Mea Culpa Hilt loss
         "MSG_10103_id", // Mea Culpa Hilt retrieval
     ];
-}
-
-/// <summary>
-/// Adjust the size of the item popup based on the image
-/// </summary>
-[HarmonyPatch(typeof(ItemPopupWindowLogic), nameof(ItemPopupWindowLogic.ShowPopupInternal))]
-class ItemPopupWindowLogic_ShowPopupInternal_Patch
-{
-    public static void Prefix(ItemPopupWindowLogic __instance, ItemPopupWindowLogic.ItemPopUpData popup)
-    {
-        Vector2 size = popup.image == null ? new Vector2(90, 90) : popup.image.rect.size * 3;
-        Vector2 offset = new((90 - size.x) / 2, (90 - size.y) / 2);
-
-        ModLog.Error(__instance.fadeInTime);
-        ModLog.Error(__instance.fadeOutTime);
-        ModLog.Error(__instance.popupShowTime);
-        ModLog.Error(__instance.endTime);
-
-        __instance.spriteImage.rectTransform.sizeDelta = size;
-        __instance.spriteImage.rectTransform.anchoredPosition = offset;
-    }
 }

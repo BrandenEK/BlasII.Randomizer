@@ -126,10 +126,9 @@ public class Randomizer : BlasIIMod, ISlotPersistentMod<RandomizerSlotData>, IGl
         ProcessKeybindInput();
 
 #if DEBUG
-        if (UnityEngine.Input.GetKeyDown(KeyCode.P))
+        if (UnityEngine.Input.GetKeyDown(KeyCode.Tilde))
         {
             ModLog.Error("DEBUG INPUT");
-            ItemHandler.DisplayItem(ItemStorage["PR18"]);
         }
 #endif
     }
