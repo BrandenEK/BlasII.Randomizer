@@ -182,7 +182,7 @@ public static class ItemExtensions
                         CoreCache.AbilitiesUnlockManager.SetAbility(AssetStorage.Abilities[ABILITY_IDS.GoldFlask], true);
 
                     var currentItem = item.GetProgressiveItem(false);
-                    if (!currentItem.IsValid())
+                    if (!currentItem.IsValid() || item.Id == "ST")
                         break;
 
                     // Remove current item if you have one
@@ -278,8 +278,9 @@ public static class ItemExtensions
     {
         string[] itemIds = item.Id switch
         {
-            "UL" => ItemGroups.Lullabies,
             "IL" => ItemGroups.Lacrimatorios,
+            "ST" => ItemGroups.SculptorTools,
+            "UL" => ItemGroups.Lullabies,
             _ => throw new Exception($"Invalid {Item.ItemType.ProgressiveQuestItem}: {item.Id}")
         };
 
