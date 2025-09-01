@@ -61,7 +61,16 @@ public class DisplayUI
         _messageText.normalText.rectTransform.sizeDelta = new Vector2(textWidth, TEXT_HEIGHT);
         _nameText.shadowText.rectTransform.sizeDelta = new Vector2(textWidth, TEXT_HEIGHT);
         _nameText.normalText.rectTransform.sizeDelta = new Vector2(textWidth, TEXT_HEIGHT);
-        _iconImage.rectTransform.sizeDelta = info.Image.rect.size * 2;
+
+        int multiplier = 1;
+        while (true)
+        {
+            Vector2 newSize = info.Image.rect.size * ++multiplier;
+
+            if (newSize.x > ICON_SIZE || newSize.y > ICON_SIZE || multiplier > 5)
+                break;
+        }
+        _iconImage.rectTransform.sizeDelta = info.Image.rect.size * (multiplier - 1);
     }
 
     public void UpdateAlpha(float alpha)
