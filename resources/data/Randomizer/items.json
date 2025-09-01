@@ -234,14 +234,14 @@
         "id": "PR01",
         "name": "Galera of the Living Briar",
         "type": "Prayer",
-        "class": "Useful",
+        "class": "Progression",
         "count": 1
     },
     {
         "id": "PR02",
         "name": "Debla of the Lights",
         "type": "Prayer",
-        "class": "Useful",
+        "class": "Progression",
         "count": 1
     },
     {
@@ -255,7 +255,7 @@
         "id": "PR04",
         "name": "Bleeding Miracle",
         "type": "Prayer",
-        "class": "Useful",
+        "class": "Progression",
         "count": 1
     },
     {
@@ -276,49 +276,49 @@
         "id": "PR07",
         "name": "Liviana of the Blighted Blades",
         "type": "Prayer",
-        "class": "Useful",
+        "class": "Progression",
         "count": 1
     },
     {
         "id": "PR08",
         "name": "Martinete of Forge and Thunder",
         "type": "Prayer",
-        "class": "Useful",
+        "class": "Progression",
         "count": 1
     },
     {
         "id": "PR09",
         "name": "Rosa of the Three Stars",
         "type": "Prayer",
-        "class": "Useful",
+        "class": "Progression",
         "count": 1
     },
     {
         "id": "PR10",
         "name": "Zejel of the Cruelest Thorn",
         "type": "Prayer",
-        "class": "Useful",
+        "class": "Progression",
         "count": 1
     },
     {
         "id": "PR11",
         "name": "Serrana of the Kindled Hearth",
         "type": "Prayer",
-        "class": "Useful",
+        "class": "Progression",
         "count": 1
     },
     {
         "id": "PR12",
         "name": "Bleeding Crown",
         "type": "Prayer",
-        "class": "Useful",
+        "class": "Progression",
         "count": 1
     },
     {
         "id": "PR14",
         "name": "Jabera to the Poison of Jealousy",
         "type": "Prayer",
-        "class": "Useful",
+        "class": "Progression",
         "count": 1
     },
     {
@@ -339,7 +339,7 @@
         "id": "PR17",
         "name": "Mirabras of the Return to Port",
         "type": "Prayer",
-        "class": "Filler",
+        "class": "Progression",
         "count": 1
     },
     {
@@ -360,7 +360,7 @@
         "id": "PR102",
         "name": "Carcelera of Tender Relief",
         "type": "Prayer",
-        "class": "Useful",
+        "class": "Progression",
         "count": 1
     },
     {
@@ -374,35 +374,35 @@
         "id": "PR104",
         "name": "Cante Jondo of the Polluted Heart",
         "type": "Prayer",
-        "class": "Useful",
+        "class": "Progression",
         "count": 1
     },
     {
         "id": "PR105",
         "name": "Praviana of the Golden Dawn",
         "type": "Prayer",
-        "class": "Useful",
+        "class": "Progression",
         "count": 1
     },
     {
         "id": "PR106",
         "name": "Cabal of the Deep Wound",
         "type": "Prayer",
-        "class": "Useful",
+        "class": "Progression",
         "count": 1
     },
     {
         "id": "PR107",
         "name": "Rondeña to the Unyielding Pledge",
         "type": "Prayer",
-        "class": "Useful",
+        "class": "Progression",
         "count": 1
     },
     {
         "id": "PR108",
         "name": "Bleeding Chalice",
         "type": "Prayer",
-        "class": "Useful",
+        "class": "Progression",
         "count": 0
     },
     {
@@ -753,21 +753,21 @@
         "name": "Tears of Sap",
         "type": "QuestItem",
         "class": "Progression",
-        "count": 1
+        "count": 0
     },
     {
         "id": "QI02",
         "name": "Immaculate Mother-of-Pearl Gouge",
         "type": "QuestItem",
         "class": "Progression",
-        "count": 1
+        "count": 0
     },
     {
         "id": "QI03",
         "name": "Oils of the Blessed Mixture",
         "type": "QuestItem",
         "class": "Progression",
-        "count": 1
+        "count": 0
     },
     {
         "id": "QI04",
@@ -823,14 +823,14 @@
         "name": "Silver Shell File",
         "type": "QuestItem",
         "class": "Progression",
-        "count": 1
+        "count": 0
     },
     {
         "id": "QI12",
         "name": "Sculptor's Resonant Gavel",
         "type": "QuestItem",
         "class": "Progression",
-        "count": 1
+        "count": 0
     },
     {
         "id": "QI14",
@@ -934,28 +934,28 @@
         "id": "QI32",
         "name": "Abandoned Rosary Knot",
         "type": "QuestItem",
-        "class": "Progression",
+        "class": "Useful",
         "count": 1
     },
     {
         "id": "QI33",
         "name": "Abandoned Rosary Knot",
         "type": "QuestItem",
-        "class": "Progression",
+        "class": "Useful",
         "count": 1
     },
     {
         "id": "QI34",
         "name": "Abandoned Rosary Knot",
         "type": "QuestItem",
-        "class": "Progression",
+        "class": "Useful",
         "count": 1
     },
     {
         "id": "QI35",
         "name": "Abandoned Rosary Knot",
         "type": "QuestItem",
-        "class": "Progression",
+        "class": "Useful",
         "count": 1
     },
     {
@@ -1274,17 +1274,24 @@
         "count": 0
     },
     {
-        "id": "UL",
-        "name": "Piece of the Lullaby",
+        "id": "IL",
+        "name": "Imperfectus Lacrimatorio",
+        "type": "ProgressiveQuestItem",
+        "class": "Useful",
+        "count": 5
+    },
+    {
+        "id": "ST",
+        "name": "Sculptor Tool",
         "type": "ProgressiveQuestItem",
         "class": "Progression",
         "count": 5
     },
     {
-        "id": "IL",
-        "name": "Imperfectus Lacrimatorio",
+        "id": "UL",
+        "name": "Piece of the Lullaby",
         "type": "ProgressiveQuestItem",
-        "class": "Useful",
+        "class": "Progression",
         "count": 5
     },
     {
