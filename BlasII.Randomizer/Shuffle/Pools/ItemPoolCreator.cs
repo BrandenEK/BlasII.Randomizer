@@ -1,6 +1,7 @@
 ﻿using BlasII.ModdingAPI.Assets;
 using BlasII.Randomizer.Models;
 using BlasII.Randomizer.Shuffle.Models;
+using BlasII.Randomizer.Storages;
 using System;
 using System.Collections.Generic;
 
@@ -34,9 +35,7 @@ internal class ItemPoolCreator : IItemPoolCreator
 
     private void AddPenitenceItemsToPool(ItemPool junk)
     {
-        string[] penitenceItems = ["PR103", "PR108", "FG101", "FG105", "FG106", "FG111"];
-
-        foreach (string id in penitenceItems)
+        foreach (string id in ItemGroups.ChallengeRewards)
             junk.Add(_items[id]);
     }
 

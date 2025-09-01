@@ -1,6 +1,7 @@
 ﻿using BlasII.ModdingAPI;
 using BlasII.ModdingAPI.Assets;
 using BlasII.Randomizer.Shops;
+using BlasII.Randomizer.Storages;
 using Il2CppTGK.Game;
 using System;
 using UnityEngine;
@@ -277,8 +278,8 @@ public static class ItemExtensions
     {
         string[] itemIds = item.Id switch
         {
-            "UL" => ["QI23", "QI24", "QI25", "QI26", "QI27"],
-            "IL" => ["QI106", "QI107", "QI108", "QI110", "QI111"],
+            "UL" => ItemGroups.Lullabies,
+            "IL" => ItemGroups.Lacrimatorios,
             _ => throw new Exception($"Invalid {Item.ItemType.ProgressiveQuestItem}: {item.Id}")
         };
 
