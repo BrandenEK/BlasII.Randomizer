@@ -4,6 +4,7 @@ using BlasII.ModdingAPI.Assets;
 using BlasII.ModdingAPI.Helpers;
 using BlasII.ModdingAPI.Persistence;
 using BlasII.Randomizer.Handlers;
+using BlasII.Randomizer.ItemDisplay;
 using BlasII.Randomizer.Services;
 using BlasII.Randomizer.Settings;
 using BlasII.Randomizer.Shops;
@@ -57,6 +58,10 @@ public class Randomizer : BlasIIMod, ISlotPersistentMod<RandomizerSlotData>, IGl
     /// <inheritdoc/>
     public ExtraInfoStorage ExtraInfoStorage { get; private set; }
 
+    // New things
+
+    public ItemDisplayer ItemDisplayer { get; private set; }
+
     // Properties
 
     /// <summary>
@@ -102,6 +107,9 @@ public class Randomizer : BlasIIMod, ISlotPersistentMod<RandomizerSlotData>, IGl
             ? new ComponentShuffler(ItemLocationStorage.AsDictionary, ItemStorage.AsDictionary, false)
             : new DebugShuffler(ItemLocationStorage.AsDictionary, "Censer"));
         ShopHandler = new ShopHandler();
+
+        // Initialize new things
+        ItemDisplayer = new ItemDisplayer();
     }
 
     protected override void OnRegisterServices(ModServiceProvider provider)
@@ -114,11 +122,10 @@ public class Randomizer : BlasIIMod, ISlotPersistentMod<RandomizerSlotData>, IGl
         if (!SceneHelper.GameSceneLoaded)
             return;
 
-        ProcessItemInput();
         ProcessKeybindInput();
 
 #if DEBUG
-        if (UnityEngine.Input.GetKeyDown(KeyCode.P))
+        if (UnityEngine.Input.GetKeyDown(KeyCode.Tilde))
         {
             ModLog.Error("DEBUG INPUT");
         }
@@ -167,6 +174,11 @@ public class Randomizer : BlasIIMod, ISlotPersistentMod<RandomizerSlotData>, IGl
         TotalSeedsGenerated++;
     }
 
+    protected override void OnExitGame()
+    {
+        ItemDisplayer.OnExitGame();
+    }
+
     public RandomizerSlotData SaveSlot()
     {
         ModLog.Info($"Saved file with {ItemHandler.CollectedLocations.Count} collected locations");
@@ -211,26 +223,6 @@ public class Randomizer : BlasIIMod, ISlotPersistentMod<RandomizerSlotData>, IGl
     public void LoadGlobal(RandomizerGlobalData data)
     {
         TotalSeedsGenerated = data.SeedsGenerated;
-    }
-
-    private void ProcessItemInput()
-    {
-        ItemPopupWindowLogic window = CoreCache.UINavigationHelper.itemPopupWindowLogic;
-
-        if (window == null || !window.isShowing)
-            return;
-
-        bool gameInput = InputHandler.GetButtonDown(ModdingAPI.Input.ButtonType.Inventory)
-            || InputHandler.GetButtonDown(ModdingAPI.Input.ButtonType.Pause);
-
-        bool shopInput = InputHandler.GetButtonDown(ModdingAPI.Input.ButtonType.UIConfirm)
-            || InputHandler.GetButtonDown(ModdingAPI.Input.ButtonType.UICancel)
-            || InputHandler.GetAxis(ModdingAPI.Input.AxisType.UIVertical) != 0;
-
-        if (gameInput || CoreCache.Shop.IsShowing && shopInput)
-        {
-            window.Close();
-        }
     }
 
     private void ProcessKeybindInput()
