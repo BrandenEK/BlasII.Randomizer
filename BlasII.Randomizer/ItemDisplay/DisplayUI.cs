@@ -15,9 +15,6 @@ public class DisplayUI
     private readonly Sprite _lightSprite;
 
     private RectTransform _object;
-    private RectTransform _left;
-    private RectTransform _right;
-
     private CanvasGroup _group;
     private Image _iconImage;
     private Image _lightImage;
@@ -67,8 +64,6 @@ public class DisplayUI
         float textWidth = Mathf.Min(maxWidth, BACK_MAX_WIDTH - EXTRA_WIDTH);
 
         _object.sizeDelta = new Vector2(textWidth + EXTRA_WIDTH, BACK_HEIGHT);
-
-        _right.sizeDelta = new Vector2(textWidth, TEXT_HEIGHT);
         _lightImage.rectTransform.sizeDelta = new Vector2(textWidth, LIGHT_HEIGHT);
         _messageText.shadowText.rectTransform.sizeDelta = new Vector2(textWidth, TEXT_HEIGHT);
         _messageText.normalText.rectTransform.sizeDelta = new Vector2(textWidth, TEXT_HEIGHT);
@@ -119,9 +114,9 @@ public class DisplayUI
 
         // Left side
 
-        _left = UIModder.Create(new RectCreationOptions()
+        var leftholder = UIModder.Create(new RectCreationOptions()
         {
-            Name = "Left",
+            Name = "LeftHolder",
             Parent = holder,
             Size = new Vector2(ICON_HEIGHT, ICON_HEIGHT),
             XRange = Vector2.zero,
@@ -133,29 +128,11 @@ public class DisplayUI
         _iconImage = UIModder.Create(new RectCreationOptions()
         {
             Name = "IconImage",
-            Parent = _left,
+            Parent = leftholder,
             Size = new Vector2(ICON_HEIGHT, ICON_HEIGHT),
         }).AddImage();
 
         // Right side
-
-        _right = UIModder.Create(new RectCreationOptions()
-        {
-            Name = "Right",
-            Parent = holder,
-            Size = new Vector2(100, TEXT_HEIGHT),
-            XRange = Vector2.zero,
-            YRange = Vector2.zero,
-            Pivot = Vector2.zero,
-            Position = new Vector2(TEXT_POS_X, TEXT_POS_Y),
-        });
-
-        //var light = _right.AddImage(new ImageCreationOptions()
-        //{
-        //    Sprite = _lightSprite
-        //});
-        //light.type = Image.Type.Tiled;
-        //light.pixelsPerUnitMultiplier = 3;
 
         _lightImage = UIModder.Create(new RectCreationOptions()
         {
@@ -176,7 +153,12 @@ public class DisplayUI
         _messageText = UIModder.Create(new RectCreationOptions()
         {
             Name = "MessageText",
-            Parent = _right,
+            Parent = holder,
+            Size = new Vector2(100, TEXT_HEIGHT),
+            XRange = Vector2.zero,
+            YRange = Vector2.zero,
+            Pivot = Vector2.zero,
+            Position = new Vector2(TEXT_POS_X, TEXT_POS_Y),
         }).AddText(new TextCreationOptions()
         {
             Alignment = TextAlignmentOptions.Top,
@@ -192,7 +174,12 @@ public class DisplayUI
         _nameText = UIModder.Create(new RectCreationOptions()
         {
             Name = "NameText",
-            Parent = _right,
+            Parent = holder,
+            Size = new Vector2(100, TEXT_HEIGHT),
+            XRange = Vector2.zero,
+            YRange = Vector2.zero,
+            Pivot = Vector2.zero,
+            Position = new Vector2(TEXT_POS_X, TEXT_POS_Y),
         }).AddText(new TextCreationOptions()
         {
             Alignment = TextAlignmentOptions.Bottom,
