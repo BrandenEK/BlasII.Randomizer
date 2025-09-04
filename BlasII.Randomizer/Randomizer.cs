@@ -125,9 +125,13 @@ public class Randomizer : BlasIIMod, ISlotPersistentMod<RandomizerSlotData>, IGl
         ProcessKeybindInput();
 
 #if DEBUG
-        if (UnityEngine.Input.GetKeyDown(KeyCode.Tilde))
+        if (UnityEngine.Input.GetKeyDown(KeyCode.KeypadMinus))
         {
             ModLog.Error("DEBUG INPUT");
+
+            int length = UnityEngine.Random.RandomRangeInt(3, 45);
+            string text = new string('A', length);
+            ItemDisplayer.Show("Received <color=#AAAA00>from</color> Player2", text, null);
         }
 #endif
     }

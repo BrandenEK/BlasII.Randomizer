@@ -95,5 +95,5 @@ public class ItemDisplayer
     private const float FADE_SHOW = 2f;
     private const float FADE_HIDE = 0.5f;
     private const float ALPHA_MIN = 0f;
-    private const float ALPHA_MAX = 0.9f;
+    private const float ALPHA_MAX = 1f;
 }
