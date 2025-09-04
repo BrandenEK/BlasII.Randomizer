@@ -20,6 +20,7 @@ public class DisplayUI
 
     private CanvasGroup _group;
     private Image _iconImage;
+    private Image _lightImage;
     private UIPixelTextWithShadow _messageText;
     private UIPixelTextWithShadow _nameText;
 
@@ -66,16 +67,13 @@ public class DisplayUI
         float textWidth = Mathf.Min(maxWidth, BACK_MAX_WIDTH - EXTRA_WIDTH);
 
         _object.sizeDelta = new Vector2(textWidth + EXTRA_WIDTH, BACK_HEIGHT);
-        _right.sizeDelta = new Vector2(textWidth, TEXT_HEIGHT);
 
+        _right.sizeDelta = new Vector2(textWidth, TEXT_HEIGHT);
+        _lightImage.rectTransform.sizeDelta = new Vector2(textWidth, LIGHT_HEIGHT);
         _messageText.shadowText.rectTransform.sizeDelta = new Vector2(textWidth, TEXT_HEIGHT);
         _messageText.normalText.rectTransform.sizeDelta = new Vector2(textWidth, TEXT_HEIGHT);
         _nameText.shadowText.rectTransform.sizeDelta = new Vector2(textWidth, TEXT_HEIGHT);
         _nameText.normalText.rectTransform.sizeDelta = new Vector2(textWidth, TEXT_HEIGHT);
-
-        ModLog.Info(textWidth);
-        ModLog.Info(_nameText.shadowText.preferredWidth);
-        ModLog.Info(_nameText.shadowText.rectTransform.sizeDelta.x);
 
         if (info.Image == null)
             return;
@@ -152,33 +150,33 @@ public class DisplayUI
             Position = new Vector2(TEXT_POS_X, TEXT_POS_Y),
         });
 
-        var light = _right.AddImage(new ImageCreationOptions()
-        {
-            Sprite = _lightSprite
-        });
-        light.type = Image.Type.Tiled;
-        light.pixelsPerUnitMultiplier = 3;
-
-        //var light = UIModder.Create(new RectCreationOptions()
-        //{
-        //    Name = "Light",
-        //    Parent = _right,
-        //    XRange = new Vector2(0, 1),
-        //    YRange = new Vector2(0, 1),
-        //    Pivot = Vector2.zero,
-        //}).AddImage(new ImageCreationOptions()
+        //var light = _right.AddImage(new ImageCreationOptions()
         //{
         //    Sprite = _lightSprite
         //});
         //light.type = Image.Type.Tiled;
         //light.pixelsPerUnitMultiplier = 3;
 
+        _lightImage = UIModder.Create(new RectCreationOptions()
+        {
+            Name = "LightImage",
+            Parent = holder,
+            Size = new Vector2(100, LIGHT_HEIGHT),
+            XRange = Vector2.zero,
+            YRange = Vector2.zero,
+            Pivot = Vector2.zero,
+            Position = new Vector2(LIGHT_POS_X, LIGHT_POS_Y),
+        }).AddImage(new ImageCreationOptions()
+        {
+            Sprite = _lightSprite
+        });
+        _lightImage.type = Image.Type.Tiled;
+        _lightImage.pixelsPerUnitMultiplier = 3;
+
         _messageText = UIModder.Create(new RectCreationOptions()
         {
             Name = "MessageText",
             Parent = _right,
-            //XRange = new Vector2(0, 1),
-            //YRange = new Vector2(0.6f, 0.6f),
         }).AddText(new TextCreationOptions()
         {
             Alignment = TextAlignmentOptions.Top,
@@ -190,15 +188,11 @@ public class DisplayUI
         }).AddShadow();
         _messageText.shadowText.overflowMode = TextOverflowModes.Ellipsis;
         _messageText.normalText.overflowMode = TextOverflowModes.Ellipsis;
-        //_messageText.normalText.rectTransform.anchorMin = new Vector2(0, 0.5f);
-        //_messageText.normalText.rectTransform.anchorMax = new Vector2(1, 0.5f);
 
         _nameText = UIModder.Create(new RectCreationOptions()
         {
             Name = "NameText",
             Parent = _right,
-            //XRange = new Vector2(0, 1),
-            //YRange = new Vector2(0.4f, 0.4f),
         }).AddText(new TextCreationOptions()
         {
             Alignment = TextAlignmentOptions.Bottom,
@@ -210,8 +204,6 @@ public class DisplayUI
         }).AddShadow();
         _nameText.shadowText.overflowMode = TextOverflowModes.Ellipsis;
         _nameText.normalText.overflowMode = TextOverflowModes.Ellipsis;
-        //_nameText.normalText.rectTransform.anchorMin = new Vector2(0, 0.5f);
-        //_nameText.normalText.rectTransform.anchorMax = new Vector2(1, 0.5f);
 
         _group = holder.gameObject.AddComponent<CanvasGroup>();
         _group.alpha = 0f;
@@ -223,11 +215,14 @@ public class DisplayUI
     private const int BACK_MAX_WIDTH = 900;
     private const int BACK_HEIGHT = 110;
     private const int BACK_OFFSET = 40;
-    private const int TEXT_POS_X = 146;
-    private const int TEXT_POS_Y = 19;
-    private const int TEXT_HEIGHT = 72;
     private const int ICON_POS_X = 64;
     private const int ICON_POS_Y = 25;
     private const int ICON_HEIGHT = 60;
+    private const int LIGHT_POS_X = 146;
+    private const int LIGHT_POS_Y = 12;
+    private const int LIGHT_HEIGHT = 85;
+    private const int TEXT_POS_X = 146;
+    private const int TEXT_POS_Y = 19;
+    private const int TEXT_HEIGHT = 72;
     private const int EXTRA_WIDTH = 200;
 }
