@@ -131,7 +131,7 @@ public class Randomizer : BlasIIMod, ISlotPersistentMod<RandomizerSlotData>, IGl
 
             int length = UnityEngine.Random.RandomRangeInt(3, 45);
             string text = new string('A', length);
-            ItemDisplayer.Show("Received <color=#AAAA00>from</color> Player2", text, null);
+            ItemDisplayer.Show("Received <color=#AAAA00>from</color> Player2", text, AssetStorage.QuestItems["QI01"].image);
         }
 #endif
     }
