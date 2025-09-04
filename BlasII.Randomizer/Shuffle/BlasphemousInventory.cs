@@ -151,7 +151,7 @@ public class BlasphemousInventory
 
     // Sculptor quest
 
-    [CollectableAs("QI01", "QI02", "QI03", "QI11", "QI12")]
+    [CollectableAs("ST")]
     [ResolvableAs("tools")]
     int NumTools { get; set; }
 
