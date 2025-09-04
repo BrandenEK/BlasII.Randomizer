@@ -15,6 +15,9 @@ public class DisplayUI
     private readonly Sprite _lightSprite;
 
     private RectTransform _object;
+    private RectTransform _left;
+    private RectTransform _right;
+
     private CanvasGroup _group;
     private Image _iconImage;
     private UIPixelTextWithShadow _messageText;
@@ -24,7 +27,7 @@ public class DisplayUI
     {
         Main.Randomizer.FileHandler.LoadDataAsSprite(Path.Combine("img", "popupframe.png"), out _frameSprite, new SpriteImportOptions()
         {
-            Border = new Vector4(308, 0, 24, 0)
+            Border = new Vector4(360, 0, 70, 0)
         });
         Main.Randomizer.FileHandler.LoadDataAsSprite(Path.Combine("img", "popuplight.png"), out _lightSprite, new SpriteImportOptions()
         {
@@ -59,21 +62,23 @@ public class DisplayUI
         _messageText.SetText(info.Message);
         _nameText.SetText(info.Item);
 
-        float maxWidth = Mathf.Max(_messageText.shadowText.preferredWidth, _nameText.shadowText.preferredWidth, BACK_MIN_WIDTH - TEXT_POS);
+        float maxWidth = Mathf.Max(_messageText.shadowText.preferredWidth, _nameText.shadowText.preferredWidth, BACK_MIN_WIDTH - EXTRA_WIDTH);
         float textWidth = Mathf.Min(maxWidth, BACK_MAX_WIDTH);
 
-        _object.sizeDelta = new Vector2(textWidth + TEXT_POS + 10, BACK_HEIGHT);
-        _messageText.shadowText.rectTransform.sizeDelta = new Vector2(textWidth, TEXT_HEIGHT);
-        _messageText.normalText.rectTransform.sizeDelta = new Vector2(textWidth, TEXT_HEIGHT);
-        _nameText.shadowText.rectTransform.sizeDelta = new Vector2(textWidth, TEXT_HEIGHT);
-        _nameText.normalText.rectTransform.sizeDelta = new Vector2(textWidth, TEXT_HEIGHT);
+        _object.sizeDelta = new Vector2(textWidth + EXTRA_WIDTH, BACK_HEIGHT);
+        _right.sizeDelta = new Vector2(textWidth, CONTENT_HEIGHT);
+
+        //_messageText.shadowText.rectTransform.sizeDelta = new Vector2(textWidth, TEXT_HEIGHT);
+        //_messageText.normalText.rectTransform.sizeDelta = new Vector2(textWidth, TEXT_HEIGHT);
+        //_nameText.shadowText.rectTransform.sizeDelta = new Vector2(textWidth, TEXT_HEIGHT);
+        //_nameText.normalText.rectTransform.sizeDelta = new Vector2(textWidth, TEXT_HEIGHT);
 
         int multiplier = 1;
         while (true)
         {
             Vector2 newSize = info.Image.rect.size * ++multiplier;
 
-            if (newSize.x > ICON_SIZE || newSize.y > ICON_SIZE || multiplier > 5)
+            if (newSize.x > CONTENT_HEIGHT || newSize.y > CONTENT_HEIGHT || multiplier > 5)
                 break;
         }
         _iconImage.rectTransform.sizeDelta = info.Image.rect.size * (multiplier - 1);
@@ -107,52 +112,64 @@ public class DisplayUI
         frame.type = Image.Type.Tiled;
         frame.pixelsPerUnitMultiplier = 3;
 
-        var light = UIModder.Create(new RectCreationOptions()
-        {
-            Name = "RandoItemDisplay",
-            Parent = holder,
-            Size = new Vector2(300, 85),
-            XRange = Vector2.zero,
-            YRange = Vector2.zero,
-            Pivot = Vector2.zero,
-            Position = new Vector2(100, 12),
-        }).AddImage(new ImageCreationOptions()
-        {
-            Sprite = _lightSprite
-        });
-        light.type = Image.Type.Tiled;
-        light.pixelsPerUnitMultiplier = 3;
+        //var light = UIModder.Create(new RectCreationOptions()
+        //{
+        //    Name = "x",
+        //    Parent = holder,
+        //    Size = new Vector2(300, 85),
+        //    XRange = Vector2.zero,
+        //    YRange = Vector2.zero,
+        //    Pivot = Vector2.zero,
+        //    Position = new Vector2(100, 12),
+        //}).AddImage(new ImageCreationOptions()
+        //{
+        //    Sprite = _lightSprite
+        //});
+        //light.type = Image.Type.Tiled;
+        //light.pixelsPerUnitMultiplier = 3;
 
-        var imageHolder = UIModder.Create(new RectCreationOptions()
+        // Left side
+
+        _left = UIModder.Create(new RectCreationOptions()
         {
-            Name = "IconHolder",
+            Name = "Left",
             Parent = holder,
-            Size = new Vector2(ICON_SIZE, ICON_SIZE),
+            Size = new Vector2(CONTENT_HEIGHT, CONTENT_HEIGHT),
             XRange = Vector2.zero,
             YRange = Vector2.zero,
             Pivot = Vector2.zero,
-            Position = new Vector2(ICON_POS, 25),
+            Position = new Vector2(ICON_POSX, CONTENT_POSY),
         });
 
         _iconImage = UIModder.Create(new RectCreationOptions()
         {
             Name = "IconImage",
-            Parent = imageHolder,
-            Size = new Vector2(ICON_SIZE, ICON_SIZE),
+            Parent = _left,
+            Size = new Vector2(CONTENT_HEIGHT, CONTENT_HEIGHT),
         }).AddImage();
+
+        // Right side
+
+        _right = UIModder.Create(new RectCreationOptions()
+        {
+            Name = "Right",
+            Parent = holder,
+            Size = new Vector2(100, CONTENT_HEIGHT),
+            XRange = Vector2.zero,
+            YRange = Vector2.zero,
+            Pivot = Vector2.zero,
+            Position = new Vector2(TEXT_POSX, CONTENT_POSY),
+        });
 
         _messageText = UIModder.Create(new RectCreationOptions()
         {
             Name = "MessageText",
-            Parent = holder,
-            Size = new Vector2(100, 40),
-            XRange = Vector2.zero,
-            YRange = Vector2.zero,
-            Pivot = Vector2.zero,
-            Position = new Vector2(TEXT_POS, 56),
+            Parent = _right,
+            XRange = new Vector2(0, 1),
+            YRange = new Vector2(0, 1),
         }).AddText(new TextCreationOptions()
         {
-            Alignment = TextAlignmentOptions.Center,
+            Alignment = TextAlignmentOptions.Top,
             Color = new Color32(0xF8, 0xE4, 0xC6, 0xFF),
             Font = UIModder.Fonts.Blasphemous,
             FontSize = 32,
@@ -165,15 +182,12 @@ public class DisplayUI
         _nameText = UIModder.Create(new RectCreationOptions()
         {
             Name = "NameText",
-            Parent = holder,
-            Size = new Vector2(100, 40),
-            XRange = Vector2.zero,
-            YRange = Vector2.zero,
-            Pivot = Vector2.zero,
-            Position = new Vector2(TEXT_POS, 14),
+            Parent = _right,
+            XRange = new Vector2(0, 1),
+            YRange = new Vector2(0, 1),
         }).AddText(new TextCreationOptions()
         {
-            Alignment = TextAlignmentOptions.Center,
+            Alignment = TextAlignmentOptions.Bottom,
             Color = new Color32(0xFF, 0xE3, 0x8F, 0xFF),
             Font = UIModder.Fonts.Blasphemous,
             FontSize = 32,
@@ -193,8 +207,11 @@ public class DisplayUI
     private const int BACK_MAX_WIDTH = 800;
     private const int BACK_HEIGHT = 110;
     private const int BACK_OFFSET = 40;
-    private const int TEXT_POS = 112;
-    private const int TEXT_HEIGHT = 40;
-    private const int ICON_POS = 24;
-    private const int ICON_SIZE = 60;
+    private const int CONTENT_POSY = 25;
+    private const int CONTENT_HEIGHT = 60;
+    private const int TEXT_POSX = 146;
+    //private const int TEXT_HEIGHT = 40;
+    private const int ICON_POSX = 64;
+    private const int EXTRA_WIDTH = 200;
+    //private const int ICON_SIZE = 60;
 }
