@@ -1,5 +1,6 @@
 ﻿using BlasII.ModdingAPI;
 using BlasII.ModdingAPI.Files;
+using System.IO;
 using UnityEngine;
 
 namespace BlasII.Randomizer.Storages;
@@ -12,7 +13,7 @@ public class CustomIconStorage : BaseSpriteStorage<CustomIconStorage.IconType>
     /// </summary>
     public CustomIconStorage()
     {
-        Main.Randomizer.FileHandler.LoadDataAsFixedSpritesheet("randoicons.png", new Vector2(30, 30),
+        Main.Randomizer.FileHandler.LoadDataAsFixedSpritesheet(Path.Combine("img", "items.png"), new Vector2(30, 30),
             out Sprite[] images, new SpriteImportOptions() { PixelsPerUnit = 32 });
 
         for (int i = 0; i < images.Length; i++)

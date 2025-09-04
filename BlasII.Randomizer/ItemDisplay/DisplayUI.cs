@@ -3,6 +3,7 @@ using BlasII.ModdingAPI;
 using BlasII.ModdingAPI.Files;
 using Il2CppTGK.Game.Components.UI;
 using Il2CppTMPro;
+using System.IO;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -20,7 +21,7 @@ public class DisplayUI
 
     public DisplayUI()
     {
-        Main.Randomizer.FileHandler.LoadDataAsSprite("randopopup.png", out _backgroundSprite, new SpriteImportOptions()
+        Main.Randomizer.FileHandler.LoadDataAsSprite(Path.Combine("img", "popupframe.png"), out _backgroundSprite, new SpriteImportOptions()
         {
             Border = new Vector4(308, 0, 24, 0)
         });
