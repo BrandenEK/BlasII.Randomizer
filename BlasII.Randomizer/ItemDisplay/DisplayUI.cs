@@ -66,7 +66,7 @@ public class DisplayUI
         float textWidth = Mathf.Min(maxWidth, BACK_MAX_WIDTH);
 
         _object.sizeDelta = new Vector2(textWidth + EXTRA_WIDTH, BACK_HEIGHT);
-        _right.sizeDelta = new Vector2(textWidth, CONTENT_HEIGHT);
+        _right.sizeDelta = new Vector2(textWidth, TEXT_HEIGHT);
 
         //_messageText.shadowText.rectTransform.sizeDelta = new Vector2(textWidth, TEXT_HEIGHT);
         //_messageText.normalText.rectTransform.sizeDelta = new Vector2(textWidth, TEXT_HEIGHT);
@@ -78,7 +78,7 @@ public class DisplayUI
         {
             Vector2 newSize = info.Image.rect.size * ++multiplier;
 
-            if (newSize.x > CONTENT_HEIGHT || newSize.y > CONTENT_HEIGHT || multiplier > 5)
+            if (newSize.x > ICON_HEIGHT || newSize.y > ICON_HEIGHT || multiplier > 5)
                 break;
         }
         _iconImage.rectTransform.sizeDelta = info.Image.rect.size * (multiplier - 1);
@@ -134,18 +134,18 @@ public class DisplayUI
         {
             Name = "Left",
             Parent = holder,
-            Size = new Vector2(CONTENT_HEIGHT, CONTENT_HEIGHT),
+            Size = new Vector2(ICON_HEIGHT, ICON_HEIGHT),
             XRange = Vector2.zero,
             YRange = Vector2.zero,
             Pivot = Vector2.zero,
-            Position = new Vector2(ICON_POSX, CONTENT_POSY),
+            Position = new Vector2(ICON_POS_X, ICON_POS_Y),
         });
 
         _iconImage = UIModder.Create(new RectCreationOptions()
         {
             Name = "IconImage",
             Parent = _left,
-            Size = new Vector2(CONTENT_HEIGHT, CONTENT_HEIGHT),
+            Size = new Vector2(ICON_HEIGHT, ICON_HEIGHT),
         }).AddImage();
 
         // Right side
@@ -154,19 +154,26 @@ public class DisplayUI
         {
             Name = "Right",
             Parent = holder,
-            Size = new Vector2(100, CONTENT_HEIGHT),
+            Size = new Vector2(100, TEXT_HEIGHT),
             XRange = Vector2.zero,
             YRange = Vector2.zero,
             Pivot = Vector2.zero,
-            Position = new Vector2(TEXT_POSX, CONTENT_POSY),
+            Position = new Vector2(TEXT_POS_X, TEXT_POS_Y),
         });
+
+        var light = _right.AddImage(new ImageCreationOptions()
+        {
+            Sprite = _lightSprite
+        });
+        light.type = Image.Type.Tiled;
+        light.pixelsPerUnitMultiplier = 3;
 
         _messageText = UIModder.Create(new RectCreationOptions()
         {
             Name = "MessageText",
             Parent = _right,
             XRange = new Vector2(0, 1),
-            YRange = new Vector2(0, 1),
+            YRange = new Vector2(0.75f, 0.75f),
         }).AddText(new TextCreationOptions()
         {
             Alignment = TextAlignmentOptions.Top,
@@ -184,7 +191,7 @@ public class DisplayUI
             Name = "NameText",
             Parent = _right,
             XRange = new Vector2(0, 1),
-            YRange = new Vector2(0, 1),
+            YRange = new Vector2(0.25f, 0.25f),
         }).AddText(new TextCreationOptions()
         {
             Alignment = TextAlignmentOptions.Bottom,
@@ -207,11 +214,11 @@ public class DisplayUI
     private const int BACK_MAX_WIDTH = 800;
     private const int BACK_HEIGHT = 110;
     private const int BACK_OFFSET = 40;
-    private const int CONTENT_POSY = 25;
-    private const int CONTENT_HEIGHT = 60;
-    private const int TEXT_POSX = 146;
-    //private const int TEXT_HEIGHT = 40;
-    private const int ICON_POSX = 64;
+    private const int TEXT_POS_X = 146;
+    private const int TEXT_POS_Y = 12;
+    private const int TEXT_HEIGHT = 85;
+    private const int ICON_POS_X = 64;
+    private const int ICON_POS_Y = 25;
+    private const int ICON_HEIGHT = 60;
     private const int EXTRA_WIDTH = 200;
-    //private const int ICON_SIZE = 60;
 }
