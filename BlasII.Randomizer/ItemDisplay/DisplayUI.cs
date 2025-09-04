@@ -11,7 +11,8 @@ namespace BlasII.Randomizer.ItemDisplay;
 
 public class DisplayUI
 {
-    private readonly Sprite _backgroundSprite;
+    private readonly Sprite _frameSprite;
+    private readonly Sprite _lightSprite;
 
     private RectTransform _object;
     private CanvasGroup _group;
@@ -21,9 +22,13 @@ public class DisplayUI
 
     public DisplayUI()
     {
-        Main.Randomizer.FileHandler.LoadDataAsSprite(Path.Combine("img", "popupframe.png"), out _backgroundSprite, new SpriteImportOptions()
+        Main.Randomizer.FileHandler.LoadDataAsSprite(Path.Combine("img", "popupframe.png"), out _frameSprite, new SpriteImportOptions()
         {
             Border = new Vector4(308, 0, 24, 0)
+        });
+        Main.Randomizer.FileHandler.LoadDataAsSprite(Path.Combine("img", "popuplight.png"), out _lightSprite, new SpriteImportOptions()
+        {
+            Border = new Vector4(130, 0, 130, 0)
         });
     }
 
@@ -95,12 +100,28 @@ public class DisplayUI
             Position = new Vector2(-BACK_OFFSET, BACK_OFFSET),
         });
 
-        var background = holder.AddImage(new ImageCreationOptions()
+        var frame = holder.AddImage(new ImageCreationOptions()
         {
-            Sprite = _backgroundSprite
+            Sprite = _frameSprite
         });
-        background.type = Image.Type.Tiled;
-        background.pixelsPerUnitMultiplier = 3;
+        frame.type = Image.Type.Tiled;
+        frame.pixelsPerUnitMultiplier = 3;
+
+        var light = UIModder.Create(new RectCreationOptions()
+        {
+            Name = "RandoItemDisplay",
+            Parent = holder,
+            Size = new Vector2(300, 85),
+            XRange = Vector2.zero,
+            YRange = Vector2.zero,
+            Pivot = Vector2.zero,
+            Position = new Vector2(100, 12),
+        }).AddImage(new ImageCreationOptions()
+        {
+            Sprite = _lightSprite
+        });
+        light.type = Image.Type.Tiled;
+        light.pixelsPerUnitMultiplier = 3;
 
         var imageHolder = UIModder.Create(new RectCreationOptions()
         {
