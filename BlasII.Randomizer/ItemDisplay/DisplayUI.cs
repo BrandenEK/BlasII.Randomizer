@@ -105,12 +105,11 @@ public class DisplayUI
             Position = new Vector2(-BACK_OFFSET, BACK_OFFSET),
         });
 
-        var frame = holder.AddImage(new ImageCreationOptions()
+        holder.AddImage(new ImageCreationOptions()
         {
-            Sprite = _frameSprite
+            Sprite = _frameSprite,
+            Type = Image.Type.Tiled,
         });
-        frame.type = Image.Type.Tiled;
-        frame.pixelsPerUnitMultiplier = 3;
 
         // Left side
 
@@ -145,10 +144,9 @@ public class DisplayUI
             Position = new Vector2(LIGHT_POS_X, LIGHT_POS_Y),
         }).AddImage(new ImageCreationOptions()
         {
-            Sprite = _lightSprite
+            Sprite = _lightSprite,
+            Type = Image.Type.Tiled,
         });
-        _lightImage.type = Image.Type.Tiled;
-        _lightImage.pixelsPerUnitMultiplier = 3;
 
         _messageText = UIModder.Create(new RectCreationOptions()
         {
@@ -166,10 +164,9 @@ public class DisplayUI
             Font = UIModder.Fonts.Blasphemous,
             FontSize = 32,
             UseRichText = true,
-            WordWrap = false
+            WordWrap = false,
+            OverflowMode = TextOverflowModes.Ellipsis,
         }).AddShadow();
-        _messageText.shadowText.overflowMode = TextOverflowModes.Ellipsis;
-        _messageText.normalText.overflowMode = TextOverflowModes.Ellipsis;
 
         _nameText = UIModder.Create(new RectCreationOptions()
         {
@@ -187,10 +184,9 @@ public class DisplayUI
             Font = UIModder.Fonts.Blasphemous,
             FontSize = 32,
             UseRichText = true,
-            WordWrap = false
+            WordWrap = false,
+            OverflowMode = TextOverflowModes.Ellipsis,
         }).AddShadow();
-        _nameText.shadowText.overflowMode = TextOverflowModes.Ellipsis;
-        _nameText.normalText.overflowMode = TextOverflowModes.Ellipsis;
 
         _group = holder.gameObject.AddComponent<CanvasGroup>();
         _group.alpha = 0f;

@@ -14,7 +14,6 @@ using Il2Cpp;
 using Il2CppTGK.Game;
 using Il2CppTGK.Game.Components.Abilities;
 using Il2CppTGK.Game.Components.Interactables;
-using Il2CppTGK.Game.Components.UI;
 using Il2CppTGK.Game.PopupMessages;
 using System.Collections.Generic;
 using System.Linq;
