@@ -237,6 +237,7 @@ public class RandomizerMenu : ModMenu
             Name = "HelpText",
             Parent = ui,
             Position = new Vector2(0, -130),
+            Size = new Vector2(400, 100),
             Pivot = new Vector2(1, 0),
             XRange = Vector2.one,
             YRange = Vector2.zero,
@@ -248,18 +249,20 @@ public class RandomizerMenu : ModMenu
             FontSize = 42,
             UseRichText = true,
         }).AddShadow();
+
+        AddClickable(_helpText.normalText.rectTransform, false, () =>
+        {
+            ModLog.Info("click");
+        });
     }
 
     private void FixFontUnderline()
     {
-        float offset = UIModder.Fonts.Blasphemous.faceInfo.underlineOffset;
-        ModLog.Info("OFfset: " + offset);
+        ModLog.Warn("Fixing blasphemous font underline offset");
+
         FaceInfo info = UIModder.Fonts.Blasphemous.faceInfo.MemberwiseClone().Cast<FaceInfo>();
         info.underlineOffset = -1.8f;
         UIModder.Fonts.Blasphemous.faceInfo = info;
-
-        offset = UIModder.Fonts.Blasphemous.faceInfo.underlineOffset;
-        ModLog.Info("OFfset: " + offset);
     }
 
     private TextOption _setSeed;
