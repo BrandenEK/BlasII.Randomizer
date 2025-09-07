@@ -279,6 +279,12 @@ public class Randomizer : BlasIIMod, ISlotPersistentMod<RandomizerSlotData>, IGl
         // Give lance
         AssetStorage.PlayerInventory.AddItemAsync(AssetStorage.QuestItems["QI70"]);
 
+        // Fill orb xp
+        if (CurrentSettings.MartyrdomExperience == 2 || CurrentSettings.MartyrdomExperience == 3)
+        {
+            AssetStorage.PlayerStats.SetCurrentUpgrades(AssetStorage.RangeStats["OrbExperience"], 40);
+        }
+
         // TEMPORARY: lock certain abilities because I have no idea how they persist
         var abilities = new ABILITY_IDS[] { ABILITY_IDS.AirDash, ABILITY_IDS.AirJump, ABILITY_IDS.GlassWalk, ABILITY_IDS.GoldFlask, ABILITY_IDS.MagicRingClimb, ABILITY_IDS.WallClimb };
         foreach (var ability in abilities.Select(x => AssetStorage.Abilities[x]))

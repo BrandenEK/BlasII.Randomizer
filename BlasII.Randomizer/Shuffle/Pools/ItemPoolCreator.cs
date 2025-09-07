@@ -1,4 +1,6 @@
-﻿using BlasII.ModdingAPI.Assets;
+﻿using BlasII.ModdingAPI;
+using BlasII.ModdingAPI.Assets;
+using BlasII.Randomizer.Gameplay.OrbExperience;
 using BlasII.Randomizer.Models;
 using BlasII.Randomizer.Shuffle.Models;
 using BlasII.Randomizer.Storages;
@@ -27,7 +29,16 @@ internal class ItemPoolCreator : IItemPoolCreator
         foreach (var item in _items.Values)
         {
             ItemPool pool = item.Class == Item.ItemClass.Progression ? progression : junk;
-            pool.Add(item, item.Count);
+            int count = item.Count;
+
+            if (item.Type == Item.ItemType.Marks)
+            {
+                count = settings.MartyrdomExperience == 2
+                    ? _orbAmounts[item.Id].BetterCount
+                    : _orbAmounts[item.Id].VanillaCount;
+            }
+
+            pool.Add(item, count);
         }
 
         RemoveStartingItemsFromPool(progression, settings);
@@ -45,4 +56,13 @@ internal class ItemPoolCreator : IItemPoolCreator
         string weaponId = ((WEAPON_IDS)settings.RealStartingWeapon).ToString();
         items.Remove(_items[weaponId]);
     }
+
+    private static readonly Dictionary<string, OrbAmount> _orbAmounts = new()
+    {
+        { "MM|1", new OrbAmount(35, 17) },
+        { "MM|2", new OrbAmount(3, 10) },
+        { "MM|3", new OrbAmount(4, 8) },
+        { "MM|4", new OrbAmount(3, 6) },
+        { "MM|5", new OrbAmount(2, 6) },
+    };
 }
