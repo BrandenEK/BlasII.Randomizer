@@ -5,6 +5,7 @@ using BlasII.ModdingAPI;
 using BlasII.Randomizer.Settings;
 using Il2CppTGK.Game.Components.UI;
 using Il2CppTMPro;
+using System.Diagnostics;
 using System.Text;
 using UnityEngine;
 using UnityEngine.TextCore;
@@ -250,10 +251,7 @@ public class RandomizerMenu : ModMenu
             UseRichText = true,
         }).AddShadow();
 
-        AddClickable(_helpText.normalText.rectTransform, false, () =>
-        {
-            ModLog.Info("click");
-        });
+        AddClickable(_helpText.normalText.rectTransform, false, OpenGithubLink);
     }
 
     private void FixFontUnderline()
@@ -263,6 +261,17 @@ public class RandomizerMenu : ModMenu
         FaceInfo info = UIModder.Fonts.Blasphemous.faceInfo.MemberwiseClone().Cast<FaceInfo>();
         info.underlineOffset = -1.8f;
         UIModder.Fonts.Blasphemous.faceInfo = info;
+    }
+
+    private void OpenGithubLink()
+    {
+        ModLog.Info("Opening github link to settings info");
+
+        Process.Start(new ProcessStartInfo()
+        {
+            FileName = "https://github.com/BrandenEK/BlasII.Randomizer/blob/main/docs/SETTINGS.md",
+            UseShellExecute = true,
+        });
     }
 
     private TextOption _setSeed;
