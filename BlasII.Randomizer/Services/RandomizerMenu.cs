@@ -281,6 +281,7 @@ public class RandomizerMenu : ModMenu
     private ArrowOption _setRequiredKeys;
     private ArrowOption _setStartingWeapon;
     private ArrowOption _setShopCosts;
+    private ArrowOption _setMarksExperience;
     private ToggleOption _setAddPenitence;
     private ToggleOption _setShuffleCherubs;
     //private ToggleOption _setShuffleLongQuests;

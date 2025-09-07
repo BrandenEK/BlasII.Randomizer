@@ -37,6 +37,11 @@ public class RandomizerSettings
     /// </summary>
     public int ShopMultiplier { get; set; }
 
+    /// <summary>
+    /// Determines how martyrdom XP is acquired
+    /// </summary>
+    public int MartyrdomExperience { get; set; }
+
     // Item shuffle (Pool)
 
     /// <summary>
