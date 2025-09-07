@@ -174,7 +174,7 @@
         "id": "Z0203.c0",
         "name": "Scion cherub",
         "flags": "C",
-        "logic": "doublejump + censer + ringclimb"
+        "logic": "doublejump + censer + wallclimb + ringclimb"
     },
     {
         "id": "Z0203.l6",
@@ -1213,7 +1213,7 @@
     {
         "id": "Z1715.l0",
         "name": "Floor pickup",
-        "logic": "censer + rapier + doublejump + ringclimb"
+        "logic": "censer + rapier + doublejump + ringclimb + glasswalk + rosaryfx"
     },
     {
         "id": "Z1718.l0",
