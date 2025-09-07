@@ -7,6 +7,7 @@ using Il2CppTGK.Game.Components.UI;
 using Il2CppTMPro;
 using System.Text;
 using UnityEngine;
+using UnityEngine.TextCore;
 
 namespace BlasII.Randomizer.Services;
 
@@ -123,6 +124,8 @@ public class RandomizerMenu : ModMenu
     /// <inheritdoc/>
     protected override void CreateUI(Transform ui)
     {
+        FixFontUnderline();
+
         var toggle = new ToggleCreator(this)
         {
             BoxSize = 55,
@@ -228,6 +231,35 @@ public class RandomizerMenu : ModMenu
             FontSize = 42,
             UseRichText = true,
         }).AddShadow();
+
+        _helpText = UIModder.Create(new RectCreationOptions()
+        {
+            Name = "HelpText",
+            Parent = ui,
+            Position = new Vector2(0, -130),
+            Pivot = new Vector2(1, 0),
+            XRange = Vector2.one,
+            YRange = Vector2.zero,
+        }).AddText(new TextCreationOptions()
+        {
+            Contents = "<u>Click here for more info</u>",
+            Color = SILVER,
+            Alignment = TextAlignmentOptions.Right,
+            FontSize = 42,
+            UseRichText = true,
+        }).AddShadow();
+    }
+
+    private void FixFontUnderline()
+    {
+        float offset = UIModder.Fonts.Blasphemous.faceInfo.underlineOffset;
+        ModLog.Info("OFfset: " + offset);
+        FaceInfo info = UIModder.Fonts.Blasphemous.faceInfo.MemberwiseClone().Cast<FaceInfo>();
+        info.underlineOffset = -1.8f;
+        UIModder.Fonts.Blasphemous.faceInfo = info;
+
+        offset = UIModder.Fonts.Blasphemous.faceInfo.underlineOffset;
+        ModLog.Info("OFfset: " + offset);
     }
 
     private TextOption _setSeed;
@@ -242,6 +274,7 @@ public class RandomizerMenu : ModMenu
     //private ToggleOption _setShuffleLongQuests;
 
     private UIPixelTextWithShadow _idText;
+    private UIPixelTextWithShadow _helpText;
 
     private const int TEXT_SIZE = 55;
     private const int ID_DIGITS = 12;
