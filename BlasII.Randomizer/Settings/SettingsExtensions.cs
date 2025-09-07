@@ -156,7 +156,7 @@ public static class SettingsExtensions
     private static readonly string[] LOGIC_OPTIONS = ["Easy", "Normal", "Hard"];
     private static readonly string[] WEAPON_OPTIONS = ["Veredicto", "Ruego", "Sarmiento", "Mea Culpa"];
     private static readonly string[] SHOP_OPTIONS = ["Free", "Cheap", "Standard", "Expensive", "Vanilla"];
-    private static readonly string[] MARK_OPTIONS = ["Vanilla", "Double XP", "From items", "From Bosses"];
+    private static readonly string[] MARK_OPTIONS = ["Vanilla", "Double XP", "From items", "From bosses"];
 
     private static readonly byte[] BIT_ORDER =
     [

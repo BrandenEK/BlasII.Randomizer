@@ -37,6 +37,7 @@ dialog/travel: Travel to starting room
 
 # Settings menu
 option/random: Random
+option/vanilla: Vanilla
 option/seed: Seed:
 option/preset: Preset
 option/preset/custom: Custom
@@ -63,7 +64,10 @@ option/cost/none: Free
 option/cost/less: Cheap
 option/cost/normal: Standard
 option/cost/more: Expensive
-option/cost/vanilla: Vanilla
+option/marks: Martyrdom XP
+option/marks/double: Double XP
+option/marks/items: From items
+option/marks/bosses: From bosses
 option/penitence: Add penitence rewards
 option/cherubs: Shuffle cherubs
 option/long: Shuffle long quests
