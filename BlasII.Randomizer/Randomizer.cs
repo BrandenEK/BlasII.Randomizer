@@ -128,9 +128,17 @@ public class Randomizer : BlasIIMod, ISlotPersistentMod<RandomizerSlotData>, IGl
         {
             ModLog.Error("DEBUG INPUT");
 
-            int length = UnityEngine.Random.RandomRangeInt(3, 45);
-            string text = new string('A', length);
-            ItemDisplayer.Show("Received <color=#AAAA00>from</color> Player2", text, AssetStorage.QuestItems["QI01"].image);
+            var orbStat = AssetStorage.RangeStats["OrbExperience"];
+            //AssetStorage.PlayerStats.Upgrade(orbStat);
+
+            AssetStorage.PlayerStats.SetCurrentUpgrades(orbStat, 40);
+
+            AssetStorage.PlayerStats.AddRewardOrbs(5, false, 0);
+            CoreCache.UINavigationHelper.ShowOrbsPopup(5, false);
+
+            //int length = UnityEngine.Random.RandomRangeInt(3, 45);
+            //string text = new string('A', length);
+            //ItemDisplayer.Show("Received <color=#AAAA00>from</color> Player2", text, AssetStorage.QuestItems["QI01"].image);
         }
 #endif
     }
