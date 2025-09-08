@@ -73,15 +73,8 @@ public class DisplayUI
         if (info.Image == null)
             return;
 
-        int multiplier = 1;
-        while (true)
-        {
-            Vector2 newSize = info.Image.rect.size * ++multiplier;
-
-            if (newSize.x > ICON_HEIGHT || newSize.y > ICON_HEIGHT || multiplier > 5)
-                break;
-        }
-        _iconImage.rectTransform.sizeDelta = info.Image.rect.size * (multiplier - 1);
+        float multiplier = 2.2f;
+        _iconImage.rectTransform.sizeDelta = info.Image.rect.size * multiplier;
     }
 
     public void UpdateAlpha(float alpha)
