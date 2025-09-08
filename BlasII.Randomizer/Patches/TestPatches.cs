@@ -10,11 +10,4 @@ using UnityEngine;
 
 namespace BlasII.Randomizer.Patches;
 
-[HarmonyPatch(typeof(BossDeathEffectManager), nameof(BossDeathEffectManager.DeactivateColorGrad))]
-class t
-{
-    public static void Postfix()
-    {
-        CoreCache.UINavigationHelper.ShowOrbsPopup(5, false);
-    }
-}
+
