@@ -127,10 +127,6 @@ public class Randomizer : BlasIIMod, ISlotPersistentMod<RandomizerSlotData>, IGl
         if (UnityEngine.Input.GetKeyDown(KeyCode.KeypadMinus))
         {
             ModLog.Error("DEBUG INPUT");
-
-            int length = UnityEngine.Random.RandomRangeInt(3, 45);
-            string text = new string('A', length);
-            ItemDisplayer.Show("Received <color=#AAAA00>from</color> Player2", text, AssetStorage.QuestItems["QI01"].image);
         }
 #endif
     }
@@ -270,6 +266,12 @@ public class Randomizer : BlasIIMod, ISlotPersistentMod<RandomizerSlotData>, IGl
 
         // Give lance
         AssetStorage.PlayerInventory.AddItemAsync(AssetStorage.QuestItems["QI70"]);
+
+        // Fill orb xp
+        if (CurrentSettings.MartyrdomExperience == 2 || CurrentSettings.MartyrdomExperience == 3)
+        {
+            AssetStorage.PlayerStats.SetCurrentUpgrades(AssetStorage.RangeStats["OrbExperience"], 40);
+        }
 
         // TEMPORARY: lock certain abilities because I have no idea how they persist
         var abilities = new ABILITY_IDS[] { ABILITY_IDS.AirDash, ABILITY_IDS.AirJump, ABILITY_IDS.GlassWalk, ABILITY_IDS.GoldFlask, ABILITY_IDS.MagicRingClimb, ABILITY_IDS.WallClimb };

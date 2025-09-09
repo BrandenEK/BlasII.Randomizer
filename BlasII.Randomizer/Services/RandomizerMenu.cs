@@ -36,6 +36,7 @@ public class RandomizerMenu : ModMenu
                 RequiredKeys = _setRequiredKeys.CurrentOption - 1,
                 StartingWeapon = _setStartingWeapon.CurrentOption - 1,
                 ShopMultiplier = _setShopCosts.CurrentOption,
+                MartyrdomExperience = _setMarksExperience.CurrentOption,
                 AddPenitenceRewards = _setAddPenitence.Toggled,
                 ShuffleCherubs = _setShuffleCherubs.Toggled,
                 ShuffleLongQuests = true,
@@ -47,6 +48,7 @@ public class RandomizerMenu : ModMenu
             _setRequiredKeys.CurrentOption = value.RequiredKeys + 1;
             _setStartingWeapon.CurrentOption = value.StartingWeapon + 1;
             _setShopCosts.CurrentOption = value.ShopMultiplier;
+            _setMarksExperience.CurrentOption = value.MartyrdomExperience;
             _setAddPenitence.Toggled = value.AddPenitenceRewards;
             _setShuffleCherubs.Toggled = value.ShuffleCherubs;
             //_setShuffleLongQuests.Toggled = true;
@@ -140,6 +142,7 @@ public class RandomizerMenu : ModMenu
             TextColor = SILVER,
             TextColorAlt = YELLOW,
             TextSize = TEXT_SIZE,
+            ElementSpacing = 140,
         };
 
         var text = new TextCreator(this)
@@ -183,12 +186,20 @@ public class RandomizerMenu : ModMenu
             "option/cost/less",
             "option/cost/normal",
             "option/cost/more",
-            "option/cost/vanilla",
+            "option/vanilla",
         ]);
 
-        _setAddPenitence = toggle.CreateOption("AP", ui, new Vector2(150, -20), "option/penitence");
+        _setMarksExperience = arrow.CreateOption("ME", ui, new Vector2(300, -80), "option/marks",
+        [
+            "option/vanilla",
+            "option/marks/double",
+            "option/marks/items",
+            "option/marks/bosses",
+        ]);
 
-        _setShuffleCherubs = toggle.CreateOption("SC", ui, new Vector2(150, -100), "option/cherubs");
+        _setAddPenitence = toggle.CreateOption("AP", ui, new Vector2(150, -200), "option/penitence");
+
+        _setShuffleCherubs = toggle.CreateOption("SC", ui, new Vector2(150, -280), "option/cherubs");
 
         //_setShuffleLongQuests = toggle.CreateOption("SL", ui, new Vector2(150, 50), "option/long");
         //_setShuffleLongQuests.Enabled = false;
@@ -281,6 +292,7 @@ public class RandomizerMenu : ModMenu
     private ArrowOption _setRequiredKeys;
     private ArrowOption _setStartingWeapon;
     private ArrowOption _setShopCosts;
+    private ArrowOption _setMarksExperience;
     private ToggleOption _setAddPenitence;
     private ToggleOption _setShuffleCherubs;
     //private ToggleOption _setShuffleLongQuests;
