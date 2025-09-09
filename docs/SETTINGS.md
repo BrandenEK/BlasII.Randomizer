@@ -1,28 +1,22 @@
 # Randomizer settings
 
-## Core settings
-
-### Logic difficulty
+## Logic difficulty
 Determines what skips and techniques may be required in the logic.  Currently the only option is 'Normal'
 
-### Required keys
+## Required keys
 Determines how many keys are required to open the door to Crimson Rains.  All five will still be present in the item pool, and logic still expects all keys to be available before opening the door.
 
-### Starting weapon
+## Starting weapon
 Determines which weapon you will start with
 
-## Gameplay settings
-
-### Shop costs
+## Shop costs
 Determines how expensive shop items will be
 
-### Martyrdom XP
+## Martyrdom XP
 Determines how you acquire the 40 additional marks that are normally given by defeating enemies
 
-## Item pool settings
-
-### Add penitence rewards
+## Add penitence rewards
 Should the penitence items be added to the pool
 
-### Shuffle cherubs
+## Shuffle cherubs
 Should the cherub locations have randomized items
