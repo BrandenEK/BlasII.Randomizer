@@ -35,9 +35,11 @@ Determines how you acquire the 40 additional marks that are normally given by de
 ---
 
 ### Add penitence rewards
-Should the penitence items be added to the pool
+Determines if the six domine rewards should be shuffled into the item pool.  If they are shuffled, they will replace the six lowest-value tear items in the pool.
+- Enabled: The six items can be acquired as randomized items
+- Disabled: THe six items will be unobtainable
 
 ---
 
 ### Shuffle cherubs
-Should the cherub locations have randomized items
+Determines if the 33 cherub locations should be randomized.
