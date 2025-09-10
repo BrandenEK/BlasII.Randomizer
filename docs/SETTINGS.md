@@ -1,7 +1,5 @@
 # Randomizer settings
 
----
-
 ### Logic difficulty
 Determines what skips and techniques may be required in the logic.  Currently the only option is 'Normal'
 
@@ -19,11 +17,20 @@ Determines which weapon you will start with
 
 ### Shop costs
 Determines how expensive shop items will be
+- Free
+- Cheap
+- Standard
+- Expensive
+- Vanilla
 
 ---
 
 ### Martyrdom XP
 Determines how you acquire the 40 additional marks that are normally given by defeating enemies
+- Vanilla
+- Double XP
+- From items
+- From bosses
 
 ---
 
