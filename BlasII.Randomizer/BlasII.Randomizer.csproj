@@ -9,7 +9,7 @@
     <Authors>Damocles</Authors>
     <Company>Damocles</Company>
     <Description>An item randomizer for the game Blasphemous 2</Description>
-    <Version>2.4.2</Version>
+    <Version>2.5.0</Version>
     
     <TargetName>Randomizer</TargetName>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
