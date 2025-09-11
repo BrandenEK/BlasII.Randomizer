@@ -346,7 +346,7 @@
     {
         "id": "Z0417.l4",
         "name": "Ruego root chest",
-        "logic": "wallclimb + rapier + doublejump + rosaryfx"
+        "logic": "wallclimb + doublejump + airdash + ringclimb + censer + rosaryfx + rapier"
     },
     {
         "id": "Z0421.r8",
@@ -363,7 +363,7 @@
     {
         "id": "Z0427.l6",
         "name": "Gated chest",
-        "logic": "doublejump + airdash + glasswalk + wallclimb + censer"
+        "logic": "doublejump + airdash + ringclimb + glasswalk + wallclimb + censer"
     },
     {
         "id": "Z0501.c0",
