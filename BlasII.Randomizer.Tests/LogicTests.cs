@@ -1,12 +1,8 @@
-using BlasII.Randomizer.Models;
 using BlasII.Randomizer.Settings;
 using BlasII.Randomizer.Shuffle;
 using Basalt.LogicParser;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
-using System.IO;
 using System.Text;
 
 namespace BlasII.Randomizer.Tests;
@@ -14,29 +10,7 @@ namespace BlasII.Randomizer.Tests;
 [TestClass]
 public class LogicTests
 {
-    private static readonly Dictionary<string, Item> _allItems = new();
-    private static readonly Dictionary<string, ItemLocation> _allItemLocations = new();
-    private static readonly Dictionary<string, Door> _allDoors = new();
-
     private GameInventory inventory;
-
-    [ClassInitialize]
-    public static void LoadJsonData(TestContext context)
-    {
-        string dataFolder = "../../../../resources/data/Randomizer/";
-
-        string items = File.ReadAllText(dataFolder + "items.json");
-        foreach (var item in JsonConvert.DeserializeObject<Item[]>(items))
-            _allItems.Add(item.Id, item);
-
-        string itemLocations = File.ReadAllText(dataFolder + "itemlocations.json");
-        foreach (var itemLocation in JsonConvert.DeserializeObject<ItemLocation[]>(itemLocations))
-            _allItemLocations.Add(itemLocation.Id, itemLocation);
-
-        string doors = File.ReadAllText(dataFolder + "doors.json");
-        foreach (var door in JsonConvert.DeserializeObject<Door[]>(doors))
-            _allDoors.Add(door.Id, door);
-    }
 
     [TestInitialize]
     public void CreateInventory()
@@ -75,7 +49,7 @@ public class LogicTests
         var sb = new StringBuilder(Environment.NewLine);
         bool invalid = false;
 
-        foreach (var itemLocation in _allItemLocations.Values)
+        foreach (var itemLocation in DataStorage.ItemLocations)
         {
             try
             {
