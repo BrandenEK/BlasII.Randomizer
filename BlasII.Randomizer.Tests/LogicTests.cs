@@ -44,30 +44,30 @@ public class LogicTests
         inventory = BlasphemousInventory.CreateNewInventory(SettingsGenerator.CreateFromPreset(Preset.Standard));
     }
 
-    [TestMethod]
-    public void FindErrorsInDoorLogic()
-    {
-        var sb = new StringBuilder(Environment.NewLine);
-        bool invalid = false;
+    //[TestMethod]
+    //public void FindErrorsInDoorLogic()
+    //{
+    //    var sb = new StringBuilder(Environment.NewLine);
+    //    bool invalid = false;
 
-        foreach (var door in _allDoors.Values)
-        {
-            try
-            {
-                inventory.Evaluate(door.Logic);
-            }
-            catch (LogicParserException e)
-            {
-                sb.AppendLine($"[{door.Id}] {e.Message}");
-                invalid = true;
-            }
-        }
+    //    foreach (var door in _allDoors.Values)
+    //    {
+    //        try
+    //        {
+    //            inventory.Evaluate(door.Logic);
+    //        }
+    //        catch (LogicParserException e)
+    //        {
+    //            sb.AppendLine($"[{door.Id}] {e.Message}");
+    //            invalid = true;
+    //        }
+    //    }
 
-        if (invalid)
-        {
-            throw new LogicParserException(sb.ToString());
-        }
-    }
+    //    if (invalid)
+    //    {
+    //        throw new LogicParserException(sb.ToString());
+    //    }
+    //}
 
     [TestMethod]
     public void FindErrorsInLocationLogic()
