@@ -53,6 +53,7 @@
         "name": "Northeast door",
         "type": "Zone",
         "direction": "Right",
+        "flags": "Z",
         "exit": "Z0426[left]"
     },
     {
@@ -88,6 +89,7 @@
         "name": "East door",
         "type": "Zone",
         "direction": "Right",
+        "flags": "Z",
         "exit": "Z0206[W]"
     },
     {
@@ -102,6 +104,7 @@
         "name": "West door",
         "type": "Zone",
         "direction": "Left",
+        "flags": "Z",
         "exit": "Z1626[E]"
     },
     {
@@ -186,6 +189,7 @@
         "name": "East door",
         "type": "Zone",
         "direction": "Right",
+        "flags": "Z",
         "exit": "Z0501[DOOR_W_46-44]"
     },
     {
@@ -207,6 +211,7 @@
         "name": "West door",
         "type": "Zone",
         "direction": "Left",
+        "flags": "Z",
         "exit": "Z0107[E]"
     },
     {
@@ -221,6 +226,7 @@
         "name": "North ladder",
         "type": "Zone",
         "direction": "Up",
+        "flags": "Z",
         "exit": "Z0313[S]"
     },
     {
@@ -249,6 +255,7 @@
         "name": "East door",
         "type": "Zone",
         "direction": "Right",
+        "flags": "Z",
         "exit": "Z2401[W]"
     },
     {
@@ -389,6 +396,7 @@
         "name": "West door",
         "type": "Zone",
         "direction": "Left",
+        "flags": "Z",
         "exit": "Z0425[E]"
     },
     {
@@ -431,6 +439,7 @@
         "name": "West door",
         "type": "Zone",
         "direction": "Left",
+        "flags": "Z",
         "exit": "Z0402[NE]"
     },
     {
@@ -438,6 +447,7 @@
         "name": "Southeast door",
         "type": "Zone",
         "direction": "Right",
+        "flags": "Z",
         "exit": "Z0501[NW]"
     },
     {
@@ -466,6 +476,7 @@
         "name": "South ladder",
         "type": "Zone",
         "direction": "Down",
+        "flags": "Z",
         "exit": "Z0207[N]"
     },
     {
@@ -473,6 +484,7 @@
         "name": "East door",
         "type": "Zone",
         "direction": "Right",
+        "flags": "Z",
         "exit": "Z0310[W]"
     },
     {
@@ -788,6 +800,7 @@
         "name": "West door",
         "type": "Zone",
         "direction": "Left",
+        "flags": "Z",
         "exit": "Z1624[DOOR_E_22-50]"
     },
     {
@@ -879,6 +892,7 @@
         "name": "East door",
         "type": "Zone",
         "direction": "Right",
+        "flags": "Z",
         "exit": "Z0307[W]"
     },
     {
@@ -907,6 +921,7 @@
         "name": "West door",
         "type": "Zone",
         "direction": "Left",
+        "flags": "Z",
         "exit": "Z0105[left]"
     },
     {
@@ -949,6 +964,7 @@
         "name": "Bird cage",
         "type": "Zone",
         "direction": "BirdLeft",
+        "flags": "Z",
         "exit": "Z2801[WingedCage01B]"
     },
     {
@@ -963,6 +979,7 @@
         "name": "Southwest door",
         "type": "Zone",
         "direction": "Left",
+        "flags": "Z",
         "exit": "Z0205[DOOR_E_45-44]"
     },
     {
@@ -998,6 +1015,7 @@
         "name": "Northwest door",
         "type": "Zone",
         "direction": "Left",
+        "flags": "Z",
         "exit": "Z0312[E]"
     },
     {
@@ -1005,6 +1023,7 @@
         "name": "South door",
         "type": "Zone",
         "direction": "Down",
+        "flags": "Z",
         "exit": "Z1913[N]"
     },
     {
@@ -1040,6 +1059,7 @@
         "name": "South door",
         "type": "Zone",
         "direction": "Down",
+        "flags": "Z",
         "exit": "Z1901[DOOR_N_51-43]"
     },
     {
@@ -1096,6 +1116,7 @@
         "name": "East door",
         "type": "Zone",
         "direction": "Right",
+        "flags": "Z",
         "exit": "Z0601[W]"
     },
     {
@@ -1103,6 +1124,7 @@
         "name": "East door",
         "type": "Zone",
         "direction": "Left",
+        "flags": "Z",
         "exit": "Z1050[E]"
     },
     {
@@ -1124,6 +1146,7 @@
         "name": "West door",
         "type": "Zone",
         "direction": "Right",
+        "flags": "Z",
         "exit": "Z1050[W]"
     },
     {
@@ -1208,6 +1231,7 @@
         "name": "West door",
         "type": "Zone",
         "direction": "Left",
+        "flags": "Z",
         "exit": "Z0503[SE]"
     },
     {
@@ -1362,6 +1386,7 @@
         "name": "East door",
         "type": "Zone",
         "direction": "Right",
+        "flags": "Z",
         "exit": "Z0732[W]"
     },
     {
@@ -1369,6 +1394,7 @@
         "name": "East door",
         "type": "Zone",
         "direction": "Right",
+        "flags": "Z",
         "exit": "Z0701[DOOR_W]"
     },
     {
@@ -1425,6 +1451,7 @@
         "name": "East door",
         "type": "Zone",
         "direction": "Right",
+        "flags": "Z",
         "exit": "Z0801[DOOR_W]"
     },
     {
@@ -1453,6 +1480,7 @@
         "name": "West door",
         "type": "Zone",
         "direction": "Left",
+        "flags": "Z",
         "exit": "Z1720[U_E]"
     },
     {
@@ -1488,6 +1516,7 @@
         "name": "West door",
         "type": "Zone",
         "direction": "Left",
+        "flags": "Z",
         "exit": "Z1707[E_N]"
     },
     {
@@ -1523,6 +1552,7 @@
         "name": "North door",
         "type": "Zone",
         "direction": "Left",
+        "flags": "Z",
         "exit": "Z1066[DOOR_E_59-53]"
     },
     {
@@ -1537,6 +1567,7 @@
         "name": "West door",
         "type": "Zone",
         "direction": "Left",
+        "flags": "Z",
         "exit": "Z0607[DOOR_E]"
     },
     {
@@ -1677,6 +1708,7 @@
         "name": "East door",
         "type": "Zone",
         "direction": "Right",
+        "flags": "Z",
         "exit": "Z0816[W_down]"
     },
     {
@@ -1719,6 +1751,7 @@
         "name": "East door",
         "type": "Zone",
         "direction": "Right",
+        "flags": "Z",
         "exit": "Z0842[old]"
     },
     {
@@ -2111,6 +2144,7 @@
         "name": "West door",
         "type": "Zone",
         "direction": "Left",
+        "flags": "Z",
         "exit": "Z0606[E]"
     },
     {
@@ -2118,6 +2152,7 @@
         "name": "West door",
         "type": "Zone",
         "direction": "Left",
+        "flags": "Z",
         "exit": "Z0610[DOOR_E]"
     },
     {
@@ -2314,6 +2349,7 @@
         "name": "East door",
         "type": "Zone",
         "direction": "Right",
+        "flags": "Z",
         "exit": "Z0924[DOOR_W_79-52]"
     },
     {
@@ -2363,6 +2399,7 @@
         "name": "Southwest door",
         "type": "Zone",
         "direction": "Left",
+        "flags": "Z",
         "exit": "Z0707[E]"
     },
     {
@@ -2370,6 +2407,7 @@
         "name": "Northwest door",
         "type": "Zone",
         "direction": "Left",
+        "flags": "Z",
         "exit": "Z0903[E_down]"
     },
     {
@@ -2412,6 +2450,7 @@
         "name": "Elevator",
         "type": "Zone",
         "direction": "ElevatorUp",
+        "flags": "Z",
         "exit": "Z1335[ELEVATOR_Z1335_to_Z0819]"
     },
     {
@@ -2601,6 +2640,7 @@
         "name": "West door",
         "type": "Zone",
         "direction": "Left",
+        "flags": "Z",
         "exit": "Z0913[new]"
     },
     {
@@ -2629,6 +2669,7 @@
         "name": "Southwest door",
         "type": "Zone",
         "direction": "Left",
+        "flags": "Z",
         "exit": "Z2707[z27]"
     },
     {
@@ -2839,6 +2880,7 @@
         "name": "West door",
         "type": "Zone",
         "direction": "Left",
+        "flags": "Z",
         "exit": "Z0709[old]"
     },
     {
@@ -2951,6 +2993,7 @@
         "name": "Southeast door",
         "type": "Zone",
         "direction": "Right",
+        "flags": "Z",
         "exit": "Z0816[W_up]"
     },
     {
@@ -3175,6 +3218,7 @@
         "name": "East door",
         "type": "Zone",
         "direction": "Right",
+        "flags": "Z",
         "exit": "Z0829[new]"
     },
     {
@@ -3245,6 +3289,7 @@
         "name": "East door",
         "type": "Zone",
         "direction": "Right",
+        "flags": "Z",
         "exit": "Z1101[DOOR_W_87-58]"
     },
     {
@@ -3273,6 +3318,7 @@
         "name": "West door",
         "type": "Zone",
         "direction": "Left",
+        "flags": "Z",
         "exit": "Z1103[DOOR_E_89-58]"
     },
     {
@@ -3322,6 +3368,7 @@
         "name": "West door",
         "type": "Zone",
         "direction": "Left",
+        "flags": "Z",
         "exit": "Z0813[E]"
     },
     {
@@ -3798,6 +3845,7 @@
         "name": "East door",
         "type": "Zone",
         "direction": "Right",
+        "flags": "Z",
         "exit": "Z2501[W2]"
     },
     {
@@ -3819,6 +3867,7 @@
         "name": "West door",
         "type": "Zone",
         "direction": "Left",
+        "flags": "Z",
         "exit": "Z2501[E2]"
     },
     {
@@ -3896,6 +3945,7 @@
         "name": "East door",
         "type": "Zone",
         "direction": "Right",
+        "flags": "Z",
         "exit": "Z1333[DOOR_W_58-63]"
     },
     {
@@ -3924,6 +3974,7 @@
         "name": "Southeast door",
         "type": "Zone",
         "direction": "Right",
+        "flags": "Z",
         "exit": "Z0504[E]"
     },
     {
@@ -3931,6 +3982,7 @@
         "name": "Southwest door",
         "type": "Zone",
         "direction": "Left",
+        "flags": "Z",
         "exit": "Z0504[W]"
     },
     {
@@ -3952,6 +4004,7 @@
         "name": "West door",
         "type": "Zone",
         "direction": "Left",
+        "flags": "Z",
         "exit": "Z2401[E1]"
     },
     {
@@ -3973,6 +4026,7 @@
         "name": "West door",
         "type": "Zone",
         "direction": "Left",
+        "flags": "Z",
         "exit": "Z2401[E2]"
     },
     {
@@ -4022,6 +4076,7 @@
         "name": "West door",
         "type": "Zone",
         "direction": "Left",
+        "flags": "VZ",
         "exit": "Z2501[E1]"
     },
     {
@@ -4043,6 +4098,7 @@
         "name": "East door",
         "type": "Zone",
         "direction": "Right",
+        "flags": "Z",
         "exit": "Z0617[DOOR_W_60-53]"
     },
     {
@@ -4078,6 +4134,7 @@
         "name": "West door",
         "type": "Zone",
         "direction": "Left",
+        "flags": "Z",
         "exit": "Z0918[DOOR_E_86-58]"
     },
     {
@@ -4113,6 +4170,7 @@
         "name": "East door",
         "type": "Zone",
         "direction": "Right",
+        "flags": "Z",
         "exit": "Z0919[DOOR_W_90-58]"
     },
     {
@@ -4302,6 +4360,7 @@
         "name": "East door",
         "type": "Zone",
         "direction": "Right",
+        "flags": "Z",
         "exit": "Z2004[DOOR_W_34-33]"
     },
     {
@@ -4519,6 +4578,7 @@
         "name": "West door",
         "type": "Zone",
         "direction": "Left",
+        "flags": "Z",
         "exit": "Z2123[DOOR_E_24-33]"
     },
     {
@@ -4575,6 +4635,7 @@
         "name": "Northwest door",
         "type": "Zone",
         "direction": "Left",
+        "flags": "Z",
         "exit": "Z1623[DOOR_E_22-37]"
     },
     {
@@ -4610,6 +4671,7 @@
         "name": "South door",
         "type": "Zone",
         "direction": "Down",
+        "flags": "Z",
         "exit": "Z2101[DOOR_N_30-32]"
     },
     {
@@ -5205,6 +5267,7 @@
         "name": "West door",
         "type": "Zone",
         "direction": "Left",
+        "flags": "Z",
         "exit": "Z1045[1045_E]"
     },
     {
@@ -5226,6 +5289,7 @@
         "name": "Elevator",
         "type": "Zone",
         "direction": "ElevatorDown",
+        "flags": "Z",
         "exit": "Z0819[ELEVATOR_Z0819_to_Z1335]"
     },
     {
@@ -5471,6 +5535,7 @@
         "name": "Northeast door",
         "type": "Zone",
         "direction": "Right",
+        "flags": "Z",
         "exit": "Z1920[DOOR_W_56-34]"
     },
     {
@@ -5604,6 +5669,7 @@
         "name": "East door",
         "type": "Zone",
         "direction": "Right",
+        "flags": "Z",
         "exit": "Z2317[left]"
     },
     {
@@ -5618,6 +5684,7 @@
         "name": "West door",
         "type": "Zone",
         "direction": "Left",
+        "flags": "Z",
         "exit": "Z2005[E]"
     },
     {
@@ -5674,6 +5741,7 @@
         "name": "South door 1",
         "type": "Zone",
         "direction": "Down",
+        "flags": "Z",
         "exit": "Z2301[N_Left]"
     },
     {
@@ -5681,6 +5749,7 @@
         "name": "South door 2",
         "type": "Zone",
         "direction": "Down",
+        "flags": "Z",
         "exit": "Z2301[N_Right]"
     },
     {
@@ -5716,6 +5785,7 @@
         "name": "East door",
         "type": "Zone",
         "direction": "Right",
+        "flags": "Z",
         "exit": "Z1721[DOOR_W_64-34]"
     },
     {
@@ -5758,6 +5828,7 @@
         "name": "West door",
         "type": "Zone",
         "direction": "Left",
+        "flags": "Z",
         "exit": "Z2115[DOOR_E_18-33]"
     },
     {
@@ -6136,6 +6207,7 @@
         "name": "East door",
         "type": "Zone",
         "direction": "Right",
+        "flags": "Z",
         "exit": "Z1214[DOOR_W_23-37]"
     },
     {
@@ -6150,6 +6222,7 @@
         "name": "East door",
         "type": "Zone",
         "direction": "Right",
+        "flags": "Z",
         "exit": "Z0417[DOOR_W_23-50]"
     },
     {
@@ -6171,6 +6244,7 @@
         "name": "East door",
         "type": "Zone",
         "direction": "Right",
+        "flags": "Z",
         "exit": "Z0108[W]"
     },
     {
@@ -6206,6 +6280,7 @@
         "name": "Bird cage",
         "type": "Zone",
         "direction": "BirdLeft",
+        "flags": "Z",
         "exit": "Z2828[WingedCage05B]"
     },
     {
@@ -6227,6 +6302,7 @@
         "name": "West door",
         "type": "Zone",
         "direction": "Left",
+        "flags": "Z",
         "exit": "Z1909[E]"
     },
     {
@@ -6360,6 +6436,7 @@
         "name": "East door 4",
         "type": "Zone",
         "direction": "Right",
+        "flags": "Z",
         "exit": "Z0614[W]"
     },
     {
@@ -6507,6 +6584,7 @@
         "name": "West door",
         "type": "Zone",
         "direction": "Left",
+        "flags": "Z",
         "exit": "Z2601[E]"
     },
     {
@@ -6514,6 +6592,7 @@
         "name": "Northeast door",
         "type": "Zone",
         "direction": "Right",
+        "flags": "Z",
         "exit": "Z0611[W]"
     },
     {
@@ -6521,6 +6600,7 @@
         "name": "West door",
         "type": "Zone",
         "direction": "Left",
+        "flags": "Z",
         "exit": "Z1430[DOOR_E_63-34]"
     },
     {
@@ -6542,6 +6622,7 @@
         "name": "East door",
         "type": "Zone",
         "direction": "Right",
+        "flags": "Z",
         "exit": "Z2745[mud]"
     },
     {
@@ -6549,6 +6630,7 @@
         "name": "North door",
         "type": "Vanilla",
         "direction": "Up",
+        "flags": "V",
         "exit": "Z1802[DOOR_S_50-71]"
     },
     {
@@ -6556,6 +6638,7 @@
         "name": "West door",
         "type": "Vanilla",
         "direction": "Left",
+        "flags": "V",
         "exit": "Z1810[Up]"
     },
     {
@@ -6563,6 +6646,7 @@
         "name": "North door",
         "type": "Vanilla",
         "direction": "Up",
+        "flags": "V",
         "exit": "Z1803[DOOR_S_50-75]"
     },
     {
@@ -6570,6 +6654,7 @@
         "name": "South door",
         "type": "Vanilla",
         "direction": "Down",
+        "flags": "V",
         "exit": "Z1801[DOOR_N_50-70]"
     },
     {
@@ -6577,6 +6662,7 @@
         "name": "North door",
         "type": "Vanilla",
         "direction": "Up",
+        "flags": "V",
         "exit": "Z1804[DOOR_S_51-79]"
     },
     {
@@ -6584,6 +6670,7 @@
         "name": "South door",
         "type": "Vanilla",
         "direction": "Down",
+        "flags": "V",
         "exit": "Z1802[DOOR_N_50-74]"
     },
     {
@@ -6591,6 +6678,7 @@
         "name": "South door",
         "type": "Vanilla",
         "direction": "Down",
+        "flags": "V",
         "exit": "Z1803[DOOR_N_51-78]"
     },
     {
@@ -6598,6 +6686,7 @@
         "name": "West door",
         "type": "Vanilla",
         "direction": "Left",
+        "flags": "V",
         "exit": "Z1805[DOOR_E_50-83]"
     },
     {
@@ -6605,6 +6694,7 @@
         "name": "East door",
         "type": "Vanilla",
         "direction": "Right",
+        "flags": "V",
         "exit": "Z1804[DOOR_W_51-83]"
     },
     {
@@ -6612,6 +6702,7 @@
         "name": "West door",
         "type": "Vanilla",
         "direction": "Left",
+        "flags": "V",
         "exit": "Z1806[DOOR_E_49-83]"
     },
     {
@@ -6619,6 +6710,7 @@
         "name": "Southeast door",
         "type": "Vanilla",
         "direction": "Right",
+        "flags": "V",
         "exit": "Z1805[DOOR_W_50-83]"
     },
     {
@@ -6626,6 +6718,7 @@
         "name": "Northeast door",
         "type": "Vanilla",
         "direction": "Right",
+        "flags": "V",
         "exit": "Z1807[DOOR_W_50-84]"
     },
     {
@@ -6633,6 +6726,7 @@
         "name": "East door",
         "type": "Vanilla",
         "direction": "Right",
+        "flags": "V",
         "exit": "Z1808[DOOR_W_51-84]"
     },
     {
@@ -6640,6 +6734,7 @@
         "name": "West door",
         "type": "Vanilla",
         "direction": "Left",
+        "flags": "V",
         "exit": "Z1806[DOOR_E_49-84]"
     },
     {
@@ -6647,6 +6742,7 @@
         "name": "West door",
         "type": "Vanilla",
         "direction": "Left",
+        "flags": "V",
         "exit": "Z1807[DOOR_E_50-84]"
     },
     {
@@ -6654,6 +6750,7 @@
         "name": "Southeast door",
         "type": "Zone",
         "direction": "Right",
+        "flags": "VZ",
         "exit": "Z2501[W1]"
     },
     {
@@ -6661,6 +6758,7 @@
         "name": "Northeast door",
         "type": "Vanilla",
         "direction": "Right",
+        "flags": "V",
         "exit": "Z1801[Down]"
     },
     {
@@ -6675,6 +6773,7 @@
         "name": "North door",
         "type": "Zone",
         "direction": "Up",
+        "flags": "Z",
         "exit": "Z0502[DOOR_S_51-44]"
     },
     {
@@ -6822,6 +6921,7 @@
         "name": "East door",
         "type": "Zone",
         "direction": "Right",
+        "flags": "Z",
         "exit": "Z1701[W]"
     },
     {
@@ -6885,6 +6985,7 @@
         "name": "North door",
         "type": "Zone",
         "direction": "Up",
+        "flags": "Z",
         "exit": "Z0501[S]"
     },
     {
@@ -6913,6 +7014,7 @@
         "name": "Elevator",
         "type": "Zone",
         "direction": "ElevatorDown",
+        "flags": "Z",
         "exit": "Z2005[ELEVATOR_Z2005_to_Z1915]"
     },
     {
@@ -6962,6 +7064,7 @@
         "name": "West door",
         "type": "Zone",
         "direction": "Left",
+        "flags": "Z",
         "exit": "Z1417[DOOR_E_55-34]"
     },
     {
@@ -7018,6 +7121,7 @@
         "name": "West door",
         "type": "Zone",
         "direction": "Left",
+        "flags": "Z",
         "exit": "Z1201[DOOR_E_Z1201]"
     },
     {
@@ -7032,6 +7136,7 @@
         "name": "East door",
         "type": "Zone",
         "direction": "Right",
+        "flags": "Z",
         "exit": "Z1425[DOOR_W_Z1425]"
     },
     {
@@ -7039,6 +7144,7 @@
         "name": "Elevator",
         "type": "Zone",
         "direction": "ElevatorUp",
+        "flags": "Z",
         "exit": "Z1915[ELEVATOR_Z1915_to_Z2005]"
     },
     {
@@ -7046,6 +7152,7 @@
         "name": "North door",
         "type": "Zone",
         "direction": "Up",
+        "flags": "Z",
         "exit": "Z1217[DOOR_S_30-33]"
     },
     {
@@ -7277,6 +7384,7 @@
         "name": "East door",
         "type": "Zone",
         "direction": "Right",
+        "flags": "Z",
         "exit": "Z1601[DOOR_W_19-33]"
     },
     {
@@ -7396,6 +7504,7 @@
         "name": "East door",
         "type": "Zone",
         "direction": "Right",
+        "flags": "Z",
         "exit": "Z1211[DOOR_W_25-33]"
     },
     {
@@ -7620,6 +7729,7 @@
         "name": "East door",
         "type": "Zone",
         "direction": "Right",
+        "flags": "Z",
         "exit": "Z2305[new]"
     },
     {
@@ -7844,6 +7954,7 @@
         "name": "North door 1",
         "type": "Zone",
         "direction": "Up",
+        "flags": "Z",
         "exit": "Z1426[S_Left]"
     },
     {
@@ -7851,6 +7962,7 @@
         "name": "North door 2",
         "type": "Zone",
         "direction": "Up",
+        "flags": "Z",
         "exit": "Z1426[S_Right]"
     },
     {
@@ -7907,6 +8019,7 @@
         "name": "Northwest door",
         "type": "Zone",
         "direction": "Left",
+        "flags": "Z",
         "exit": "Z2135[new]"
     },
     {
@@ -8075,6 +8188,7 @@
         "name": "West door",
         "type": "Zone",
         "direction": "Left",
+        "flags": "Z",
         "exit": "Z1424[left]"
     },
     {
@@ -8082,6 +8196,7 @@
         "name": "Northeast door",
         "type": "Zone",
         "direction": "Right",
+        "flags": "Z",
         "exit": "Z1059[1014_W]"
     },
     {
@@ -8089,6 +8204,7 @@
         "name": "Southeast door",
         "type": "Zone",
         "direction": "Right",
+        "flags": "Z",
         "exit": "Z1060[DOOR_W_44-53]"
     },
     {
@@ -8103,6 +8219,7 @@
         "name": "West door",
         "type": "Zone",
         "direction": "Left",
+        "flags": "Z",
         "exit": "Z0302[0302_E_Up]"
     },
     {
@@ -8117,6 +8234,7 @@
         "name": "Northeast door",
         "type": "Zone",
         "direction": "Right",
+        "flags": "VZ",
         "exit": "Z1064[W]"
     },
     {
@@ -8124,6 +8242,7 @@
         "name": "Southeast door",
         "type": "Zone",
         "direction": "Right",
+        "flags": "Z",
         "exit": "Z1022[DOOR_W_51-64]"
     },
     {
@@ -8131,6 +8250,7 @@
         "name": "Northwest door",
         "type": "Zone",
         "direction": "Left",
+        "flags": "VZ",
         "exit": "Z1810[DOOR_E_50-66]"
     },
     {
@@ -8138,6 +8258,7 @@
         "name": "Southwest door",
         "type": "Zone",
         "direction": "Left",
+        "flags": "Z",
         "exit": "Z1021[DOOR_E_50-64]"
     },
     {
@@ -8145,6 +8266,7 @@
         "name": "East door",
         "type": "Zone",
         "direction": "Right",
+        "flags": "Z",
         "exit": "Z1720[DOOR_W_57-40]"
     },
     {
@@ -8271,6 +8393,7 @@
         "name": "East door",
         "type": "Zone",
         "direction": "Right",
+        "flags": "Z",
         "exit": "Z0830[z27]"
     },
     {
@@ -8908,6 +9031,7 @@
         "name": "West door",
         "type": "Zone",
         "direction": "Left",
+        "flags": "Z",
         "exit": "Z1722[mud]"
     },
     {
@@ -9013,6 +9137,7 @@
         "name": "East bird cage",
         "type": "Zone",
         "direction": "BirdRight",
+        "flags": "Z",
         "exit": "Z0429[WingedCage01A]"
     },
     {
@@ -9468,6 +9593,7 @@
         "name": "Bird cage",
         "type": "Zone",
         "direction": "BirdRight",
+        "flags": "Z",
         "exit": "Z1628[WingedCage05A]"
     },
     {
