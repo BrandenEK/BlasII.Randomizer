@@ -74,15 +74,49 @@ public class DoorTests
         var sb = new StringBuilder();
         bool invalid = false;
 
+        var checks = new HashSet<Door>();
+
         foreach (var entrance in DataStorage.Doors)
         {
             Door exit = DataStorage.GetDoor(entrance.Exit);
 
-            sb.AppendLine($"{entrance.Id} <--> {exit.Id}");
-            invalid = true;
+            // The exit door does not lead back to the entrance
+            if (exit.Exit != entrance.Id)
+            {
+                sb.AppendLine($"{entrance.Id} != {exit.Id}'s exit");
+                invalid = true;
+                continue;
+            }
+
+            // The exit door has a different type
+            if (entrance.Type != exit.Type)
+            {
+                sb.AppendLine($"{entrance.Id} is {entrance.Type}, but {exit.Id} is {exit.Type}");
+                invalid = true;
+            }
+
+            // The exit door doesn't have the oppsite direction
+            if (entrance.Direction != GetOppositeDirection(exit))
+            {
+                sb.AppendLine($"{entrance.Id} is {entrance.Direction}, but {exit.Id} is {exit.Direction}");
+                invalid = true;
+            }
+
+
+            //if (checks.Contains(entrance) || checks.Contains(exit))
+            //    continue;
+
+            //checks.Add(entrance);
+            //checks.Contains(exit);
         }
 
         if (invalid)
             throw new System.Exception(sb.ToString());
+    }
+
+    private Door.DoorDirection GetOppositeDirection(Door door)
+    {
+        int direction = (int)door.Direction;
+        return (Door.DoorDirection)(direction % 2 == 0 ? direction + 1 : direction - 1);
     }
 }
