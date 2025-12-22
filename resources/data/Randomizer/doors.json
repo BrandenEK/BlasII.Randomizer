@@ -205,7 +205,7 @@
     {
         "id": "Z0206[W]",
         "name": "West door",
-        "type": "Normal",
+        "type": "Zone",
         "direction": "Left",
         "exit": "Z0107[E]"
     },
@@ -4495,9 +4495,9 @@
     },
     {
         "id": "Z1210[DOOR_S_27-36]",
-        "name": "North door",
+        "name": "South door",
         "type": "Normal",
-        "direction": "Up",
+        "direction": "Down",
         "exit": "Z1209[DOOR_N_27-35]"
     },
     {
@@ -6960,7 +6960,7 @@
     {
         "id": "Z1920[DOOR_W_56-34]",
         "name": "West door",
-        "type": "Normal",
+        "type": "Zone",
         "direction": "Left",
         "exit": "Z1417[DOOR_E_55-34]"
     },
