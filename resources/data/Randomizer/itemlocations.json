@@ -797,7 +797,7 @@
     {
         "id": "Z1015.l1",
         "name": "Western chest",
-        "logic": "wallclimb + doublejump + airdash + ringclimb + censer + rapier + rosaryfx"
+        "logic": "cherubs >= 24 + wallclimb + doublejump"
     },
     {
         "id": "Z1017.w0",
@@ -924,34 +924,34 @@
         "id": "Z1205.w0",
         "name": "Veredicto statue",
         "flags": "W",
-        "logic": "wallclimb + doublejump + airdash + censer"
+        "logic": "wallclimb + doublejump + airdash + censer + rapier"
     },
     {
         "id": "Z1209.l1",
         "name": "Lower ledge chest",
-        "logic": "wallclimb + doublejump + airdash"
+        "logic": "wallclimb + doublejump + airdash + rapier"
     },
     {
         "id": "Z1209.l2",
         "name": "Upper ledge basin",
-        "logic": "wallclimb + doublejump + airdash"
+        "logic": "wallclimb + doublejump + airdash + rapier"
     },
     {
         "id": "Z1210.l2",
         "name": "Scion ledge basin",
-        "logic": "wallclimb + doublejump + airdash + ringclimb"
+        "logic": "wallclimb + doublejump + airdash + ringclimb + rapier"
     },
     {
         "id": "Z1216.i9",
         "name": "Cathedral boss key",
         "flags": "B",
-        "logic": "wallclimb + doublejump + airdash"
+        "logic": "wallclimb + doublejump + airdash + rapier"
     },
     {
         "id": "Z1216.r9",
         "name": "Defeat Odón of the Confraternity of Salt",
         "flags": "B",
-        "logic": "wallclimb + doublejump + airdash"
+        "logic": "wallclimb + doublejump + airdash + rapier"
     },
     {
         "id": "Z1219.l13",
@@ -1356,64 +1356,64 @@
     {
         "id": "Z2102.l0",
         "name": "Floor chest",
-        "logic": "wallclimb + doublejump + airdash"
+        "logic": "wallclimb + doublejump + airdash + rapier"
     },
     {
         "id": "Z2103.l0",
         "name": "Spike pit basin",
-        "logic": "wallclimb + doublejump + airdash"
+        "logic": "wallclimb + doublejump + airdash + rapier"
     },
     {
         "id": "Z2104.l7",
         "name": "Ethereal door chest",
-        "logic": "wallclimb + doublejump + airdash + rosaryfx + censer"
+        "logic": "wallclimb + doublejump + airdash + rosaryfx + censer + rapier"
     },
     {
         "id": "Z2106.l4",
         "name": "Ruego root basin",
-        "logic": "wallclimb + doublejump + airdash + rosaryfx"
+        "logic": "wallclimb + doublejump + airdash + rosaryfx + rapier"
     },
     {
         "id": "Z2112.l0",
         "name": "Floor chest",
-        "logic": "wallclimb + doublejump + airdash + rosaryfx"
+        "logic": "wallclimb + doublejump + airdash + rosaryfx + rapier"
     },
     {
         "id": "Z2115.c0",
         "name": "Sky high cherub",
         "flags": "C",
-        "logic": "wallclimb + doublejump + airdash + rosaryfx"
+        "logic": "wallclimb + doublejump + airdash + rosaryfx + rapier"
     },
     {
         "id": "Z2116.l2",
         "name": "Scion ledge pickup",
-        "logic": "wallclimb + doublejump + airdash + rosaryfx + ringclimb"
+        "logic": "wallclimb + doublejump + airdash + rosaryfx + ringclimb + rapier"
     },
     {
         "id": "Z2117.c0",
         "name": "Hidden alcove cherub",
         "flags": "C",
-        "logic": "wallclimb + doublejump + airdash + rosaryfx"
+        "logic": "wallclimb + doublejump + airdash + rosaryfx + rapier"
     },
     {
         "id": "Z2117.l1",
         "name": "Hidden alcove pickup",
-        "logic": "wallclimb + doublejump + airdash + rosaryfx"
+        "logic": "wallclimb + doublejump + airdash + rosaryfx + rapier"
     },
     {
         "id": "Z2119.i0",
         "name": "Regula final reward",
-        "logic": "wallclimb + doublejump + airdash + rosaryfx + regulacloth"
+        "logic": "wallclimb + doublejump + airdash + rosaryfx + regulacloth + rapier"
     },
     {
         "id": "Z2120.i2",
         "name": "Regula initial reward",
-        "logic": "wallclimb + doublejump + airdash + rosaryfx"
+        "logic": "wallclimb + doublejump + airdash + rosaryfx + rapier"
     },
     {
         "id": "Z2123.l2",
         "name": "Chain dash pickup",
-        "logic": "wallclimb + doublejump + airdash + rosaryfx"
+        "logic": "wallclimb + doublejump + airdash + rosaryfx + rapier"
     },
     {
         "id": "Z2127.l21",
