@@ -67,4 +67,22 @@ public class DoorTests
         // Just list all invalid pairs
         throw new System.Exception(string.Join(',', _directions.Select(x => $"{x.Key}: {x.Value}")));
     }
+
+    [TestMethod]
+    public void TestDoorPairs()
+    {
+        var sb = new StringBuilder();
+        bool invalid = false;
+
+        foreach (var entrance in DataStorage.Doors)
+        {
+            Door exit = DataStorage.GetDoor(entrance.Exit);
+
+            sb.AppendLine($"{entrance.Id} <--> {exit.Id}");
+            invalid = true;
+        }
+
+        if (invalid)
+            throw new System.Exception(sb.ToString());
+    }
 }

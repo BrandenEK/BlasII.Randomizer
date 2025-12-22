@@ -17,6 +17,10 @@ public class DataStorage
     public static IEnumerable<ItemLocation> ItemLocations => _itemLocations.Values;
     public static IEnumerable<Door> Doors => _doors.Values;
 
+    public static Item GetItem(string id) => _items[id];
+    public static ItemLocation GetItemLocation(string id) => _itemLocations[id];
+    public static Door GetDoor(string id) => _doors[id];
+
     [AssemblyInitialize]
     public static void LoadJsonData(TestContext _)
     {
