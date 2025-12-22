@@ -26,10 +26,10 @@ public class DoorTests
                 continue;
             }
 
-            // The exit door has a different type
-            if (entrance.Type != exit.Type)
+            // The exit door has different flags
+            if (entrance.Flags != exit.Flags)
             {
-                sb.AppendLine($"{entrance.Id} is {entrance.Type}, but {exit.Id} is {exit.Type}");
+                sb.AppendLine($"{entrance.Id} is {entrance.Flags}, but {exit.Id} is {exit.Flags}");
                 invalid = true;
             }
 
