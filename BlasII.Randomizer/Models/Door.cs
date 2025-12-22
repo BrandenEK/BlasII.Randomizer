@@ -22,11 +22,6 @@ public class Door : IUnique
     public string Flags { get; set; }
 
     /// <summary>
-    /// TEMP
-    /// </summary>
-    public DoorType Type { get; set; }
-
-    /// <summary>
     /// Determines how this door will be matched to others
     /// </summary>
     public DoorDirection Direction { get; set; }
@@ -35,15 +30,6 @@ public class Door : IUnique
     /// This door's vanilla connection
     /// </summary>
     public string Exit { get; set; }
-
-    // TEMP: Change this to flags
-    public enum DoorType
-    {
-        Vanilla,
-        Normal,
-        Zone,
-        Dlc,
-    }
 
     /// <summary>
     /// Possible directions for a door
