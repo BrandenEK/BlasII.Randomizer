@@ -8,21 +8,26 @@ namespace BlasII.Randomizer.Tests;
 [TestClass]
 public class DoorTests
 {
-    [TestMethod]
-    public void TestValidDirections()
-    {
-        var directions = new Dictionary<Door.DoorDirection, int>();
+    private static readonly Dictionary<Door.DoorDirection, int> _directions = new();
 
+    [ClassInitialize]
+    public static void SetupDirections(TestContext context)
+    {
         foreach (var door in DataStorage.Doors)
         {
             Door.DoorDirection d = door.Direction;
 
-            if (!directions.ContainsKey(d))
-                directions.Add(d, 1);
+            if (!_directions.ContainsKey(d))
+                _directions.Add(d, 1);
             else
-                directions[d]++;
+                _directions[d]++;
         }
+    }
 
-        throw new System.Exception(string.Join(',', directions.Select(x => $"{x.Key}: {x.Value}")));
+    [TestMethod]
+    public void TestValidDirections()
+    {
+        // Just list all invalid pairs
+        throw new System.Exception(string.Join(',', _directions.Select(x => $"{x.Key}: {x.Value}")));
     }
 }
