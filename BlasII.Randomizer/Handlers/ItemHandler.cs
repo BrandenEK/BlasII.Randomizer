@@ -158,6 +158,20 @@ public class ItemHandler
         return _collectedLocations.Contains(locationId);
     }
 
+    /// <summary>
+    /// Gets the current amount of total items
+    /// </summary>
+    public int TotalItemsDisplay => MappedItems
+        .Select(x => Main.Randomizer.ItemLocationStorage[x.Key])
+        .Count(x => x.ContributesPercentage(Main.Randomizer.CurrentSettings));
+
+    /// <summary>
+    /// Gets the current amount of collected items
+    /// </summary>
+    public int CollectedItemsDisplay => CollectedLocations
+        .Select(x => Main.Randomizer.ItemLocationStorage[x])
+        .Count(x => x.ContributesPercentage(Main.Randomizer.CurrentSettings));
+
     // Save data
 
     public Dictionary<string, string> MappedItems

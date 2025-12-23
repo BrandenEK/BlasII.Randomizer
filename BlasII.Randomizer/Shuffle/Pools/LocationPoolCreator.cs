@@ -21,8 +21,7 @@ internal class LocationPoolCreator : ILocationPoolCreator
 
         foreach (var location in _locations)
         {
-            LocationPool pool = location.ShouldBeShuffled(settings) ? progression : junk;
-            pool.Add(location);
+            progression.Add(location);
         }
     }
 }

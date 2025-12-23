@@ -69,8 +69,7 @@ public class ForwardItemShuffler : IShuffler
     /// </summary>
     private void AddLocationToPool(LocationPool progressionLocations, LocationPool junkLocations, ItemLocation location, RandomizerSettings settings)
     {
-        LocationPool locationPool = location.ShouldBeShuffled(settings) ? progressionLocations : junkLocations;
-        locationPool.Add(location);
+        progressionLocations.Add(location);
     }
 
     /// <summary>
