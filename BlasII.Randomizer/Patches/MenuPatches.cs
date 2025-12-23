@@ -92,8 +92,8 @@ class MainMenuWindowLogic_GetSlotInfo_Patch
     {
         int result = 0;
 
-        result |= Main.Randomizer.ItemHandler.CollectedLocations.Count;
-        result |= (Main.Randomizer.ItemHandler.MappedItems.Count << 16);
+        result |= Main.Randomizer.ItemHandler.CollectedItemsDisplay;
+        result |= (Main.Randomizer.ItemHandler.TotalItemsDisplay << 16);
 
         return result;
     }
