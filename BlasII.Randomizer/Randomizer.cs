@@ -240,7 +240,7 @@ public class Randomizer : BlasIIMod, ISlotPersistentMod<RandomizerSlotData>, IGl
         ModLog.Info("Displaying settings");
 
         var message = Resources.FindObjectsOfTypeAll<PopupMessageID>().First(x => x.name == "TESTPOPUP_id");
-        CoreCache.UINavigationHelper.ShowPopupMessage(message, false);
+        CoreCache.UINavigationHelper.ShowPopupMessageAsync(message, false, new Il2CppSystem.Threading.CancellationToken());
     }
 
     private void Keybind_Respawn()

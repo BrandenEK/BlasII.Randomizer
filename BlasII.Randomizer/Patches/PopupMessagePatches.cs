@@ -11,8 +11,8 @@ namespace BlasII.Randomizer.Patches;
 /// <summary>
 /// Change display message when interacting with certain objects
 /// </summary>
-[HarmonyPatch(typeof(PopupMessageLogic), nameof(PopupMessageLogic.ShowMessageAndWait))]
-class PopupMessageLogic_ShowMessageAndWait_Patch
+[HarmonyPatch(typeof(PopupMessageLogic), nameof(PopupMessageLogic.ShowMessageAndWaitAsync))]
+class PopupMessageLogic_ShowMessageAndWaitAsync_Patch
 {
     public static void Postfix(PopupMessageLogic __instance, PopupMessage message)
     {

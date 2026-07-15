@@ -154,8 +154,8 @@ class ShopWindowLogic_OnCreateListItem_Patch
 /// <summary>
 /// When displaying an orb item, instantly hide it
 /// </summary>
-[HarmonyPatch(typeof(OrbsRewardPopupLogic), nameof(OrbsRewardPopupLogic.ShowPopup))]
-class OrbsRewardPopupLogic_ShowPopup_Patch
+[HarmonyPatch(typeof(OrbsRewardPopupLogic), nameof(OrbsRewardPopupLogic.ShowPopupAsync))]
+class OrbsRewardPopupLogic_ShowPopupAsync_Patch
 {
     public static void Prefix(OrbsRewardPopupLogic __instance)
     {
