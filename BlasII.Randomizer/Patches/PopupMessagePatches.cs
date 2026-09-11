@@ -11,31 +11,33 @@ namespace BlasII.Randomizer.Patches;
 /// <summary>
 /// Change display message when interacting with certain objects
 /// </summary>
-[HarmonyPatch(typeof(PopupMessageLogic), nameof(PopupMessageLogic.ShowMessageAndWaitAsync))]
-class PopupMessageLogic_ShowMessageAndWaitAsync_Patch
-{
-    public static void Postfix(PopupMessageLogic __instance, PopupMessage message)
-    {
-        ModLog.Info("Showing popup: " + message.name);
 
-        // When reading the CR door, show how many keys you must find
-        if (message.name == "MSG_0003")
-        {
-            string text = Main.Randomizer.LocalizationHandler.Localize("popup/keys")
-                .Replace("*", Main.Randomizer.CurrentSettings.RealRequiredKeys.ToString());
-            __instance.textCtrl.SetText(text);
-            return;
-        }
+// When this method is patched, even without anything, and a popup is shown, it crashes the game...
 
-        // When pressing the display button, show the current settings
-        if (message.name == "TESTPOPUP")
-        {
-            string text = Main.Randomizer.CurrentSettings.FormatInfo();
-            __instance.textCtrl.SetText(text);
-            return;
-        }
-    }
-}
+//[HarmonyPatch(typeof(PopupMessageLogic), nameof(PopupMessageLogic.ShowMessageAndWaitAsync))]
+//class PopupMessageLogic_ShowMessageAndWaitAsync_Patch
+//{
+//    public static void Prefix(PopupMessageLogic __instance, PopupMessage message)
+//    {
+//        ModLog.Info("Showing popup: " + message?.name);
+
+//        // When reading the CR door, show how many keys you must find
+//        if (message?.name == "MSG_0003")
+//        {
+//            string text = Main.Randomizer.LocalizationHandler.Localize("popup/keys").Replace("*", Main.Randomizer.CurrentSettings.RealRequiredKeys.ToString());
+//            __instance.textCtrl.SetText(text);
+//            return;
+//        }
+
+//        // When pressing the display button, show the current settings
+//        if (message?.name == "TESTPOPUP")
+//        {
+//            string text = Main.Randomizer.CurrentSettings.FormatInfo();
+//            __instance.textCtrl.SetText(text);
+//            return;
+//        }
+//    }
+//}
 
 /// <summary>
 /// Skip display message when interacting with certain objects
