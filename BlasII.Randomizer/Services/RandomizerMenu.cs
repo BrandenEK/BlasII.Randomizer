@@ -110,16 +110,25 @@ public class RandomizerMenu : ModMenu
     {
         var sb = new StringBuilder();
         ulong targetBase = (ulong)ID_CHARS.Length;
+        int idx = 0;
 
         do
         {
             sb.Append($" {ID_CHARS[(int)(id % targetBase)]}");
             id /= targetBase;
+
+            if (++idx % 4 == 0 && idx != ID_DIGITS)
+                sb.Append(" -");
         }
         while (id > 0);
 
         while (sb.Length < ID_DIGITS * 2)
+        {
             sb.Append(" 0");
+
+            if (++idx % 4 == 0 && idx != ID_DIGITS)
+                sb.Append(" -");
+        }
 
         _idText.SetText($"Unique ID:<color=#B3E5B3>{sb}");
     }
