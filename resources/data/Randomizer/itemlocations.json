@@ -410,6 +410,12 @@
         "logic": "wallclimb + doublejump + ringclimb + censer"
     },
     {
+        "id": "Z0513.i0",
+        "name": "DLC lamp",
+        "flags": "T",
+        "logic": "doublejump"
+    },
+    {
         "id": "Z05BZ01.i0.a",
         "name": "Confessor initial reward"
     },
@@ -1624,9 +1630,15 @@
         "logic": "wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosaryfx + meaculpa + mudkey + ceramickey"
     },
     {
+        "id": "Z2735.i7",
+        "name": "Sor Cautiva reward",
+        "flags": "MB",
+        "logic": "wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosaryfx + meaculpa + mudkey + ceramickey"
+    },
+    {
         "id": "Z2735.r7",
         "name": "Defeat Sor Cautiva del Silencio",
-        "flags": "B",
+        "flags": "MB",
         "logic": "wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosaryfx + meaculpa + mudkey + ceramickey"
     },
     {
@@ -1687,9 +1699,15 @@
         "logic": "wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosaryfx + meaculpa + mudkey + ceramickey"
     },
     {
+        "id": "Z2827.i7",
+        "name": "Brother Asterion reward",
+        "flags": "MB",
+        "logic": "wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosaryfx + meaculpa + mudkey + ceramickey"
+    },
+    {
         "id": "Z2827.r7",
         "name": "Defeat Brother Asterión",
-        "flags": "B",
+        "flags": "MB",
         "logic": "wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosaryfx + meaculpa + mudkey + ceramickey"
     },
     {
@@ -1732,5 +1750,317 @@
         "id": "Z2835.l12",
         "name": "Thorn ledge basin",
         "logic": "wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosaryfx + meaculpa + mudkey + ceramickey"
+    },
+    {
+        "id": "Z2904.i0",
+        "name": "DLC item",
+        "flags": "T",
+        "logic": "wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosaryfx + whip"
+    },
+    {
+        "id": "Z2913.l0",
+        "name": "DLC item",
+        "flags": "T",
+        "logic": "wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosaryfx + whip"
+    },
+    {
+        "id": "Z3002.l5",
+        "name": "DLC basin",
+        "flags": "T",
+        "logic": "wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosaryfx + whip"
+    },
+    {
+        "id": "Z3002.l6",
+        "name": "DLC item",
+        "flags": "T",
+        "logic": "wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosaryfx + whip"
+    },
+    {
+        "id": "Z3004.l5",
+        "name": "DLC item",
+        "flags": "T",
+        "logic": "wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosaryfx + whip"
+    },
+    {
+        "id": "Z3007.l5",
+        "name": "DLC item",
+        "flags": "T",
+        "logic": "wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosaryfx + whip"
+    },
+    {
+        "id": "Z3008.l11",
+        "name": "DLC basin",
+        "flags": "T",
+        "logic": "wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosaryfx + whip"
+    },
+    {
+        "id": "Z3012.l6",
+        "name": "DLC item",
+        "flags": "T",
+        "logic": "wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosaryfx + whip"
+    },
+    {
+        "id": "Z3014.l8",
+        "name": "DLC item",
+        "flags": "T",
+        "logic": "wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosaryfx + whip"
+    },
+    {
+        "id": "Z3016.l1",
+        "name": "DLC item",
+        "flags": "T",
+        "logic": "wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosaryfx + whip"
+    },
+    {
+        "id": "Z3017.l0",
+        "name": "DLC item",
+        "flags": "T",
+        "logic": "wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosaryfx + whip"
+    },
+    {
+        "id": "Z3018.l13",
+        "name": "DLC basin",
+        "flags": "T",
+        "logic": "wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosaryfx + whip"
+    },
+    {
+        "id": "Z3020.l0",
+        "name": "DLC basin",
+        "flags": "T",
+        "logic": "wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosaryfx + whip"
+    },
+    {
+        "id": "Z3024.l4",
+        "name": "DLC item",
+        "flags": "T",
+        "logic": "wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosaryfx + whip"
+    },
+    {
+        "id": "Z3024.l5",
+        "name": "DLC item",
+        "flags": "T",
+        "logic": "wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosaryfx + whip"
+    },
+    {
+        "id": "Z3027.w0",
+        "name": "DLC weapon",
+        "flags": "T",
+        "logic": "wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosaryfx + whip"
+    },
+    {
+        "id": "Z3101.l4",
+        "name": "DLC item",
+        "flags": "T",
+        "logic": "wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosaryfx + whip"
+    },
+    {
+        "id": "Z3105.l2",
+        "name": "DLC item",
+        "flags": "T",
+        "logic": "wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosaryfx + whip"
+    },
+    {
+        "id": "Z3107.l6",
+        "name": "DLC basin",
+        "flags": "T",
+        "logic": "wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosaryfx + whip"
+    },
+    {
+        "id": "Z3107.l8",
+        "name": "DLC item",
+        "flags": "T",
+        "logic": "wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosaryfx + whip"
+    },
+    {
+        "id": "Z3110.l16",
+        "name": "DLC item",
+        "flags": "T",
+        "logic": "wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosaryfx + whip"
+    },
+    {
+        "id": "Z3111.l2",
+        "name": "DLC item",
+        "flags": "T",
+        "logic": "wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosaryfx + whip"
+    },
+    {
+        "id": "Z3114.l15",
+        "name": "DLC basin",
+        "flags": "T",
+        "logic": "wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosaryfx + whip"
+    },
+    {
+        "id": "Z3115.l1",
+        "name": "DLC item",
+        "flags": "T",
+        "logic": "wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosaryfx + whip"
+    },
+    {
+        "id": "Z3116.l9",
+        "name": "DLC basin",
+        "flags": "T",
+        "logic": "wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosaryfx + whip"
+    },
+    {
+        "id": "Z3118.l6",
+        "name": "DLC item",
+        "flags": "T",
+        "logic": "wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosaryfx + whip"
+    },
+    {
+        "id": "Z3120.l5",
+        "name": "DLC basin",
+        "flags": "T",
+        "logic": "wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosaryfx + whip"
+    },
+    {
+        "id": "Z3122.l5",
+        "name": "DLC item",
+        "flags": "T",
+        "logic": "wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosaryfx + whip"
+    },
+    {
+        "id": "Z3123.l4",
+        "name": "DLC item",
+        "flags": "T",
+        "logic": "wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosaryfx + whip"
+    },
+    {
+        "id": "Z3124.l0",
+        "name": "DLC basin",
+        "flags": "T",
+        "logic": "wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosaryfx + whip"
+    },
+    {
+        "id": "Z3127.l0",
+        "name": "DLC basin",
+        "flags": "T",
+        "logic": "wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosaryfx + whip"
+    },
+    {
+        "id": "Z3201.l10",
+        "name": "DLC basin",
+        "flags": "T",
+        "logic": "wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosaryfx + whip"
+    },
+    {
+        "id": "Z3201.l13",
+        "name": "DLC item",
+        "flags": "T",
+        "logic": "wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosaryfx + whip"
+    },
+    {
+        "id": "Z3204.l2",
+        "name": "DLC item",
+        "flags": "T",
+        "logic": "wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosaryfx + whip"
+    },
+    {
+        "id": "Z3205.i0",
+        "name": "DLC boss",
+        "flags": "TB",
+        "logic": "wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosaryfx + whip"
+    },
+    {
+        "id": "Z3207.l5",
+        "name": "DLC basin",
+        "flags": "T",
+        "logic": "wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosaryfx + whip"
+    },
+    {
+        "id": "Z3210.l7",
+        "name": "DLC item",
+        "flags": "T",
+        "logic": "wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosaryfx + whip"
+    },
+    {
+        "id": "Z3211.l2",
+        "name": "DLC item",
+        "flags": "T",
+        "logic": "wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosaryfx + whip"
+    },
+    {
+        "id": "Z3213.l14",
+        "name": "DLC basin",
+        "flags": "T",
+        "logic": "wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosaryfx + whip"
+    },
+    {
+        "id": "Z3215.l0",
+        "name": "DLC basin",
+        "flags": "T",
+        "logic": "wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosaryfx + whip"
+    },
+    {
+        "id": "Z3219.l1",
+        "name": "DLC basin",
+        "flags": "T",
+        "logic": "wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosaryfx + whip"
+    },
+    {
+        "id": "Z3225.l0",
+        "name": "DLC basin",
+        "flags": "T",
+        "logic": "wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosaryfx + whip"
+    },
+    {
+        "id": "Z3227.l2",
+        "name": "DLC item",
+        "flags": "T",
+        "logic": "wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosaryfx + whip"
+    },
+    {
+        "id": "Z3229.l0",
+        "name": "DLC item",
+        "flags": "T",
+        "logic": "wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosaryfx + whip"
+    },
+    {
+        "id": "Z3230.l6",
+        "name": "DLC basin",
+        "flags": "T",
+        "logic": "wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosaryfx + whip"
+    },
+    {
+        "id": "Z3232.l7",
+        "name": "DLC item",
+        "flags": "T",
+        "logic": "wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosaryfx + whip"
+    },
+    {
+        "id": "Z3237.l1",
+        "name": "DLC item",
+        "flags": "T",
+        "logic": "wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosaryfx + whip"
+    },
+    {
+        "id": "Z3239.w0",
+        "name": "DLC weapon",
+        "flags": "T",
+        "logic": "wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosaryfx + whip"
+    },
+    {
+        "id": "Z3602.l0",
+        "name": "DLC item",
+        "flags": "T",
+        "logic": "wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosaryfx + whip"
+    },
+    {
+        "id": "Z3603.l5",
+        "name": "DLC basin",
+        "flags": "T",
+        "logic": "wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosaryfx + whip"
+    },
+    {
+        "id": "Z3605.l0",
+        "name": "DLC basin",
+        "flags": "T",
+        "logic": "wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosaryfx + whip"
+    },
+    {
+        "id": "Z3607.l2",
+        "name": "DLC item",
+        "flags": "T",
+        "logic": "wallclimb + doublejump + airdash + ringclimb + glasswalk + censer + rapier + rosaryfx + whip"
     }
 ]
