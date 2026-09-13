@@ -60,6 +60,8 @@ public class Item : IUnique
         Marks,
         /// <summary> A certain amount of Marks of the Preceptor </summary>
         PreMarks,
+        /// <summary> A certain amount of Marks of the Embrujo </summary>
+        EmbMarks,
         /// <summary> An invalid or missing item </summary>
         Invalid,
     }
