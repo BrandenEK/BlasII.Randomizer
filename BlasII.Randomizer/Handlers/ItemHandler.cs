@@ -161,16 +161,21 @@ public class ItemHandler
     /// <summary>
     /// Gets the current amount of total items
     /// </summary>
-    public int TotalItemsDisplay => MappedItems
-        .Select(x => Main.Randomizer.ItemLocationStorage[x.Key])
-        .Count(x => x.ContributesPercentage(Main.Randomizer.CurrentSettings));
+    public int TotalItemsDisplay => MappedItems.Keys.Count(CountsTowardPercentage);
 
     /// <summary>
     /// Gets the current amount of collected items
     /// </summary>
-    public int CollectedItemsDisplay => CollectedLocations
-        .Select(x => Main.Randomizer.ItemLocationStorage[x])
-        .Count(x => x.ContributesPercentage(Main.Randomizer.CurrentSettings));
+    public int CollectedItemsDisplay => CollectedLocations.Count(CountsTowardPercentage);
+
+    /// <summary>
+    /// Checks whether a location should be counted in the item percentage
+    /// </summary>
+    private static bool CountsTowardPercentage(string locationId)
+    {
+        return Main.Randomizer.ItemLocationStorage.TryGetValue(locationId, out ItemLocation location)
+            && location.ContributesPercentage(Main.Randomizer.CurrentSettings);
+    }
 
     // Save data
 
