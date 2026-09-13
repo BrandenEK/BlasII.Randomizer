@@ -143,6 +143,10 @@ public class BlasphemousInventory
     [ResolvableAs("ceramickey")]
     bool CeramicKey { get; set; }
 
+    [CollectableAs("QI201")]
+    [ResolvableAs("lamp")]
+    bool Lamp { get; set; }
+
     [CollectableAs("UL")]
     [ResolvableAs("lullabies")]
     int NumLullabies { get; set; }
@@ -162,7 +166,7 @@ public class BlasphemousInventory
     [ResolvableAs("censer")]
     bool HasCenser => CenserLevel > 0;
     [ResolvableAs("censerfx")]
-    bool HasCenserEffect => HasCenser || HasMeaCulpa && FigureLiberated;
+    bool HasCenserEffect => HasCenser || HasWhip || HasMeaCulpa && FigureLiberated;
 
     [CollectableAs("RosaryBlade")]
     int RosaryLevel { get; set; }
@@ -182,6 +186,11 @@ public class BlasphemousInventory
     int MeaCulpaLevel { get; set; }
     [ResolvableAs("meaculpa")]
     bool HasMeaCulpa => MeaCulpaLevel > 0;
+
+    [CollectableAs("Whip")]
+    int WhipLevel { get; set; }
+    [ResolvableAs("whip")]
+    bool HasWhip => WhipLevel > 0;
 
     // Abilities
 
