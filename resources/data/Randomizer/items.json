@@ -413,6 +413,34 @@
         "count": 1
     },
     {
+        "id": "PR201",
+        "name": "Carcelera of Bitter Blood",
+        "type": "Prayer",
+        "class": "Useful",
+        "count": 1
+    },
+    {
+        "id": "PR202",
+        "name": "Garrotín of the Forgotten Ones",
+        "type": "Prayer",
+        "class": "Useful",
+        "count": 1
+    },
+    {
+        "id": "PR203",
+        "name": "Vidalita of the Blind Eyes",
+        "type": "Prayer",
+        "class": "Useful",
+        "count": 1
+    },
+    {
+        "id": "PR204",
+        "name": "Jaleo of the Injured Dawn",
+        "type": "Prayer",
+        "class": "Useful",
+        "count": 1
+    },
+    {
         "id": "FG01",
         "name": "The Anointed One",
         "type": "Figurine",
@@ -744,6 +772,69 @@
     {
         "id": "FG113",
         "name": "The Aide",
+        "type": "Figurine",
+        "class": "Filler",
+        "count": 1
+    },
+    {
+        "id": "FG201",
+        "name": "Eliseo",
+        "type": "Figurine",
+        "class": "Filler",
+        "count": 1
+    },
+    {
+        "id": "FG202",
+        "name": "The Ascension",
+        "type": "Figurine",
+        "class": "Filler",
+        "count": 1
+    },
+    {
+        "id": "FG203",
+        "name": "The Judicious One",
+        "type": "Figurine",
+        "class": "Filler",
+        "count": 1
+    },
+    {
+        "id": "FG204",
+        "name": "Crescencia",
+        "type": "Figurine",
+        "class": "Filler",
+        "count": 1
+    },
+    {
+        "id": "FG205",
+        "name": "The Perfidy",
+        "type": "Figurine",
+        "class": "Filler",
+        "count": 1
+    },
+    {
+        "id": "FG206",
+        "name": "The Grief",
+        "type": "Figurine",
+        "class": "Filler",
+        "count": 1
+    },
+    {
+        "id": "FG207",
+        "name": "Cartography of the Bones",
+        "type": "Figurine",
+        "class": "Filler",
+        "count": 1
+    },
+    {
+        "id": "FG208",
+        "name": "Inner Voice",
+        "type": "Figurine",
+        "class": "Filler",
+        "count": 1
+    },
+    {
+        "id": "FG209",
+        "name": "Lady of the Mist",
         "type": "Figurine",
         "class": "Filler",
         "count": 1
@@ -1274,11 +1365,123 @@
         "count": 0
     },
     {
+        "id": "QI112",
+        "name": "Camafeo of Sister Captive",
+        "type": "QuestItem",
+        "class": "Filler",
+        "count": 1
+    },
+    {
+        "id": "QI113",
+        "name": "Brother Asterion's Mask",
+        "type": "QuestItem",
+        "class": "Filler",
+        "count": 1
+    },
+    {
+        "id": "QI201",
+        "name": "Lamp of the Whisper of the Mist",
+        "type": "QuestItem",
+        "class": "Progression",
+        "count": 1
+    },
+    {
+        "id": "QI202",
+        "name": "Broken Ring of Sealed Eyes",
+        "type": "QuestItem",
+        "class": "Progression",
+        "count": 0
+    },
+    {
+        "id": "QI203",
+        "name": "Broken Ring of Sealed Lips",
+        "type": "QuestItem",
+        "class": "Progression",
+        "count": 0
+    },
+    {
+        "id": "QI204",
+        "name": "Piece of cracked ceramic",
+        "type": "QuestItem",
+        "class": "Useful",
+        "count": 4
+    },
+    {
+        "id": "QI207",
+        "name": "Piece of rusted silver",
+        "type": "QuestItem",
+        "class": "Useful",
+        "count": 4
+    },
+    {
+        "id": "QI210",
+        "name": "Old Piece of Gold",
+        "type": "QuestItem",
+        "class": "Useful",
+        "count": 4
+    },
+    {
+        "id": "QI213",
+        "name": "Fragment of Leg of Virtue",
+        "type": "QuestItem",
+        "class": "Filler",
+        "count": 0
+    },
+    {
+        "id": "QI214",
+        "name": "Urn of the Penitent of Virtue",
+        "type": "QuestItem",
+        "class": "Filler",
+        "count": 0
+    },
+    {
+        "id": "QI215",
+        "name": "Complete Ring of the Perfidy",
+        "type": "QuestItem",
+        "class": "Progression",
+        "count": 0
+    },
+    {
+        "id": "QI216",
+        "name": "Fragment of Helm of Virtue",
+        "type": "QuestItem",
+        "class": "Filler",
+        "count": 0
+    },
+    {
+        "id": "QI217",
+        "name": "Fragment of Breastplate of Virtue",
+        "type": "QuestItem",
+        "class": "Filler",
+        "count": 0
+    },
+    {
+        "id": "QI218",
+        "name": "Crescencia's Veil",
+        "type": "QuestItem",
+        "class": "Filler",
+        "count": 1
+    },
+    {
+        "id": "FV",
+        "name": "Fragment of Virtue",
+        "type": "ProgressiveQuestItem",
+        "class": "Filler",
+        "count": 3
+    },
+    {
         "id": "IL",
         "name": "Imperfectus Lacrimatorio",
         "type": "ProgressiveQuestItem",
         "class": "Useful",
         "count": 5
+    },
+    {
+        "id": "RP",
+        "name": "Ring of the Perfidy",
+        "type": "ProgressiveQuestItem",
+        "class": "Progression",
+        "count": 2
     },
     {
         "id": "ST",
@@ -1325,6 +1528,13 @@
     {
         "id": "MeaCulpa",
         "name": "Mea Culpa",
+        "type": "Weapon",
+        "class": "Progression",
+        "count": 2
+    },
+    {
+        "id": "Whip",
+        "name": "Embrujo",
         "type": "Weapon",
         "class": "Progression",
         "count": 2
@@ -1412,6 +1622,13 @@
         "type": "PreMarks",
         "class": "Useful",
         "count": 14
+    },
+    {
+        "id": "ME|1",
+        "name": "1 Mark of the Embrujo",
+        "type": "EmbMarks",
+        "class": "Useful",
+        "count": 19
     },
     {
         "id": "TA|10000",
