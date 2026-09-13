@@ -40,6 +40,7 @@ public static class ItemExtensions
             Item.ItemType.Tears => Main.Randomizer.EmbeddedIconStorage.GetImage("Tears"),
             Item.ItemType.Marks => Main.Randomizer.EmbeddedIconStorage.GetImage("Marks"),
             Item.ItemType.PreMarks => Main.Randomizer.EmbeddedIconStorage.GetImage("PreMarks"),
+            Item.ItemType.EmbMarks => Main.Randomizer.EmbeddedIconStorage.GetImage("EmbMarks"),
 
             Item.ItemType.Invalid => Main.Randomizer.CustomIconStorage.GetImage(Storages.CustomIconStorage.IconType.Invalid),
             _ => throw new Exception($"Invalid item type: {item.Type}")
@@ -67,6 +68,7 @@ public static class ItemExtensions
             Item.ItemType.Tears => item.GetAmount() + " " + Main.Randomizer.LocalizationHandler.Localize("currency/tears/name"),
             Item.ItemType.Marks => item.GetAmount() + " " + Main.Randomizer.LocalizationHandler.Localize("currency/marks/name"),
             Item.ItemType.PreMarks => item.GetAmount() + " " + Main.Randomizer.LocalizationHandler.Localize("currency/premarks/name"),
+            Item.ItemType.EmbMarks => item.GetAmount() + " " + Main.Randomizer.LocalizationHandler.Localize("currency/embmarks/name"),
 
             Item.ItemType.Invalid => "Invalid Item",
             _ => throw new Exception($"Invalid item type: {item.Type}")
@@ -94,6 +96,7 @@ public static class ItemExtensions
             Item.ItemType.Tears => Main.Randomizer.LocalizationHandler.Localize("currency/tears/desc"),
             Item.ItemType.Marks => Main.Randomizer.LocalizationHandler.Localize("currency/marks/desc"),
             Item.ItemType.PreMarks => Main.Randomizer.LocalizationHandler.Localize("currency/premarks/desc"),
+            Item.ItemType.EmbMarks => Main.Randomizer.LocalizationHandler.Localize("currency/embmarks/desc"),
 
             Item.ItemType.Invalid => "You should not see this.",
             _ => throw new Exception($"Invalid item type: {item.Type}")
@@ -130,6 +133,7 @@ public static class ItemExtensions
                 _ => throw new Exception($"Invalid item amount: {item.GetAmount()}")
             },
             Item.ItemType.PreMarks => ShopValue.ProgressionInventory,
+            Item.ItemType.EmbMarks => ShopValue.ProgressionInventory,
 
             Item.ItemType.Invalid => ShopValue.FillerInventory,
             _ => throw new Exception($"Invalid item type: {item.Type}")
@@ -252,9 +256,13 @@ public static class ItemExtensions
                     break;
                 }
             case Item.ItemType.PreMarks:
-
                 {
                     AssetStorage.PlayerStats.AddToCurrentValue(AssetStorage.ValueStats["MarksPreceptor"], item.GetAmount());
+                    break;
+                }
+            case Item.ItemType.EmbMarks:
+                {
+                    AssetStorage.PlayerStats.AddToCurrentValue(AssetStorage.ValueStats["DLC2Coins"], item.GetAmount());
                     break;
                 }
         }

@@ -9,6 +9,8 @@ weapon/rapier/name: Sarmiento & Centella
 weapon/rapier/desc: A lightning fast pair of blades that reward flawless defense and unrelenting offense, can activate magic mirrors.
 weapon/meaculpa/name: Mea Culpa
 weapon/meaculpa/desc: The blade of guilt, reborn from it and blood. Launches a projectile that allows warping through thorned surfaces.
+weapon/whip/name: Embrujo
+weapon/whip/desc: [TEMP] GET LOCALIZATION
 weapon/upgrade/name: upgrade
 weapon/upgrade/desc: An upgrade for
 ability/wallclimb/name: Ivy of Ascension
@@ -29,6 +31,8 @@ currency/marks/name: Marks of Martyrdom
 currency/marks/desc: Used to enhance weapons or learn new weapon actions via the weapon stories, also used to further Altarpiece capacity.
 currency/premarks/name: Marks of the Preceptor
 currency/premarks/desc: Ancient mark used to unlock skills and enhancements for Mea Culpa.
+currency/embmarks/name: Marks of the Embrujo
+currency/embmarks/desc: [TEMP] GET LOCALIZATION
 
 # Gameplay changes
 popup/item: You have acquired
