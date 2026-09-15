@@ -19,7 +19,7 @@
 [@BrandenEK](https://github.com/BrandenEK), [@LuceScarlet](https://github.com/LuceScarlet), [@ObsessiveBadguy](https://github.com/ObsessiveBadguy), [@Xanathar865](https://github.com/Xanathar865)
 
 ***- Artwork -*** <br>
-[@JimmyDiamonds](https://github.com/JimmyDiamonds), [@rcvrdt](https://github.com/rcvrdt), [@LuceScarlet](https://github.com/LuceScarlet)
+[@JimmyDiamonds](https://github.com/JimmyDiamonds), [@rcvrdt](https://github.com/rcvrdt), [@LuceScarlet](https://github.com/LuceScarlet), [@Arere800](https://github.com/Arere800)
 <!-- Expected: Luce -->
 
 ***- Translations -*** <br>
@@ -32,30 +32,37 @@
 ---
 
 ### Useful Info
-- Currently only works with game version 2.2.0
-- Pressing 'F8' will display a list of your current settings
+- Currently only works with game version 2.2.0 and the Mea Culpa DLC
+- Prie dieus are auto-upgraded and can be used to warp to the starting room
 - A spoiler will be generated in the savegames folder
+- Pressing 'F8' will display a list of your current settings
+<!--- Pressing 'F9' will respawn you from your last prie dieu-->
 
 ---
 
 ### Recommended Mods
-- Save & Quit - Prevents softlocks
-- Rando Map - Adds location info to the map screen
-- Quality of Life - Can be used to skip cutscenes, among other uses
-- Glitch Reviver - Reintoduces glitches that may be required in logic
+- [Rando Map](https://github.com/BrandenEK/BlasII.Randomizer.MapTracker) - Adds location info to the map screen
+- [Save and Quit](https://github.com/BrandenEK/BlasII.SaveAndQuit) - Allows saving your progress from anywhere
+- [Glitch Reviver](https://github.com/BrandenEK/BlasII.GlitchReviver) - Reintoduces glitches that may be required in logic
 
 ---
 
 ### Randomizer Settings
-Seeds can be in the range of 1 to 99,999,999.  A full breakdown of all the available settings can be found [here](SETTINGS.md)
+Seeds can be in the range of 1 to 99,999,999.  A full breakdown of all the available settings can be found [here](SETTINGS.md).  There are also a variety of presets that can be selected:
+- Standard - Designed for the average player
+- Quick and Easy - A shorter playthrough with easier options
 
 ---
 
 ### Gameplay Differences
-In order to prevent missable items and to make the game more fun, there are many differences between a Vanilla playthrough and a Randomized playthrough.  A full list of the gameplay/questline modifications can be found [here](GAMEPLAY.md)
+In order to prevent missable items and to make the game more fun, there are many differences between a vanilla playthrough and a randomized playthrough.  A full list of the gameplay/questline modifications can be found [here](GAMEPLAY.md).
 
 ---
 
 ### Installation
-This mod is available for download through the [Blasphemous Mod Installer](https://github.com/BrandenEK/Blasphemous.Modding.Installer)
-- Required dependencies: Modding API, Menu Framework, UI Framework
+This mod is available for download through the [Blasphemous Mod Installer](https://github.com/BrandenEK/Blasphemous.Modding.Installer) <br>
+Required dependencies:
+- [Modding API](https://github.com/BrandenEK/BlasII.ModdingAPI)
+- [UI Framework](https://github.com/BrandenEK/BlasII.Framework.UI)
+- [Menu Framework](https://github.com/BrandenEK/BlasII.Framework.Menus)
+- [Quality of Life](https://github.com/BrandenEK/BlasII.QualityOfLife)

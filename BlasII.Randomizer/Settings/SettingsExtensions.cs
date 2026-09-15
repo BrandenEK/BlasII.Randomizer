@@ -1,6 +1,6 @@
 ﻿using System.Text;
 
-namespace BlasII.Randomizer.Extensions;
+namespace BlasII.Randomizer.Settings;
 
 /// <summary>
 /// String formatter methods for the RandomizerSettings
@@ -15,6 +15,8 @@ public static class SettingsExtensions
         string logic = LOGIC_OPTIONS[settings.LogicType];
         string keys = settings.RequiredKeys == -1 ? "Random" : settings.RequiredKeys.ToString();
         string weapon = settings.StartingWeapon == -1 ? "Random" : WEAPON_OPTIONS[settings.StartingWeapon];
+        string shops = SHOP_OPTIONS[settings.ShopMultiplier];
+        string marks = MARK_OPTIONS[settings.MartyrdomExperience];
 
         var sb = new StringBuilder();
         sb.AppendLine("RANDOMIZER SETTINGS");
@@ -23,8 +25,11 @@ public static class SettingsExtensions
         sb.AppendLine($"{LOGIC_NAME}: {logic}");
         sb.AppendLine($"{KEYS_NAME}: {keys}");
         sb.AppendLine($"{WEAPON_NAME}: {weapon}");
-        sb.AppendLine($"{QUESTS_NAME}: {settings.ShuffleLongQuests}");
-        sb.AppendLine($"{SHOPS_NAME}: {settings.ShuffleShops}");
+        sb.AppendLine($"{SHOPS_NAME}: {shops}");
+        sb.AppendLine($"{MARKS_NAME}: {marks}");
+        sb.AppendLine($"{PENITENCE_NAME}: {settings.AddPenitenceRewards}");
+        sb.AppendLine($"{CHERUB_NAME}: {settings.ShuffleCherubs}");
+        //sb.AppendLine($"{QUESTS_NAME}: {settings.ShuffleLongQuests}");
 
         return sb.ToString();
     }
@@ -37,6 +42,8 @@ public static class SettingsExtensions
         string logic = LOGIC_OPTIONS[settings.LogicType];
         string keys = settings.RequiredKeys == -1 ? $"[{settings.RealRequiredKeys}]" : settings.RequiredKeys.ToString();
         string weapon = settings.StartingWeapon == -1 ? $"[{WEAPON_OPTIONS[settings.RealStartingWeapon]}]" : WEAPON_OPTIONS[settings.StartingWeapon];
+        string shops = SHOP_OPTIONS[settings.ShopMultiplier];
+        string marks = MARK_OPTIONS[settings.MartyrdomExperience];
 
         var sb = new StringBuilder();
         sb.AppendLine($"{SEED_NAME}: {settings.Seed}");
@@ -45,8 +52,11 @@ public static class SettingsExtensions
         sb.AppendLine($" {LOGIC_NAME}: {logic}");
         sb.AppendLine($" {KEYS_NAME}: {keys}");
         sb.AppendLine($" {WEAPON_NAME}: {weapon}");
-        sb.AppendLine($" {QUESTS_NAME}: {settings.ShuffleLongQuests}");
-        sb.AppendLine($" {SHOPS_NAME}: {settings.ShuffleShops}");
+        sb.AppendLine($" {SHOPS_NAME}: {shops}");
+        sb.AppendLine($" {MARKS_NAME}: {marks}");
+        sb.AppendLine($" {PENITENCE_NAME}: {settings.AddPenitenceRewards}");
+        sb.AppendLine($" {CHERUB_NAME}: {settings.ShuffleCherubs}");
+        //sb.AppendLine($" {QUESTS_NAME}: {settings.ShuffleLongQuests}");
         sb.AppendLine(LINE);
 
         return sb.ToString();
@@ -104,9 +114,19 @@ public static class SettingsExtensions
         SetBit(ref uid, ref idx, ref flip, (settings.StartingWeapon + 1 & 0x02) > 0);
         SetBit(ref uid, ref idx, ref flip, (settings.StartingWeapon + 1 & 0x04) > 0);
 
+        // ShopMultiplier
+        SetBit(ref uid, ref idx, ref flip, (settings.ShopMultiplier & 0x01) > 0);
+        SetBit(ref uid, ref idx, ref flip, (settings.ShopMultiplier & 0x02) > 0);
+        SetBit(ref uid, ref idx, ref flip, (settings.ShopMultiplier & 0x04) > 0);
+
+        // MartyrdomExperience
+        SetBit(ref uid, ref idx, ref flip, (settings.MartyrdomExperience & 0x01) > 0);
+        SetBit(ref uid, ref idx, ref flip, (settings.MartyrdomExperience & 0x02) > 0);
+
         // Shuffle
-        SetBit(ref uid, ref idx, ref flip, settings.ShuffleLongQuests);
-        SetBit(ref uid, ref idx, ref flip, settings.ShuffleShops);
+        SetBit(ref uid, ref idx, ref flip, settings.AddPenitenceRewards);
+        SetBit(ref uid, ref idx, ref flip, settings.ShuffleCherubs);
+        //SetBit(ref uid, ref idx, ref flip, settings.ShuffleLongQuests);
 
         return uid;
     }
@@ -128,10 +148,15 @@ public static class SettingsExtensions
     private static readonly string LOGIC_NAME = "Logic difficulty";
     private static readonly string KEYS_NAME = "Required keys";
     private static readonly string WEAPON_NAME = "Starting weapon";
+    private static readonly string SHOPS_NAME = "Shop costs";
+    private static readonly string MARKS_NAME = "Martyrdom XP";
+    private static readonly string PENITENCE_NAME = "Add penitence rewards";
+    private static readonly string CHERUB_NAME = "Shuffle cherubs";
     private static readonly string QUESTS_NAME = "Shuffle long quests";
-    private static readonly string SHOPS_NAME = "Shuffle shops";
     private static readonly string[] LOGIC_OPTIONS = ["Easy", "Normal", "Hard"];
     private static readonly string[] WEAPON_OPTIONS = ["Veredicto", "Ruego", "Sarmiento", "Mea Culpa"];
+    private static readonly string[] SHOP_OPTIONS = ["Free", "Cheap", "Standard", "Expensive", "Vanilla"];
+    private static readonly string[] MARK_OPTIONS = ["Vanilla", "Double XP", "From items", "From bosses"];
 
     private static readonly byte[] BIT_ORDER =
     [

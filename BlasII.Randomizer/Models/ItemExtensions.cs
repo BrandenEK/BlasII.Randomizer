@@ -1,5 +1,7 @@
 ﻿using BlasII.ModdingAPI;
 using BlasII.ModdingAPI.Assets;
+using BlasII.Randomizer.Shops;
+using BlasII.Randomizer.Storages;
 using Il2CppTGK.Game;
 using System;
 using UnityEngine;
@@ -38,6 +40,7 @@ public static class ItemExtensions
             Item.ItemType.Tears => Main.Randomizer.EmbeddedIconStorage.GetImage("Tears"),
             Item.ItemType.Marks => Main.Randomizer.EmbeddedIconStorage.GetImage("Marks"),
             Item.ItemType.PreMarks => Main.Randomizer.EmbeddedIconStorage.GetImage("PreMarks"),
+            Item.ItemType.EmbMarks => Main.Randomizer.EmbeddedIconStorage.GetImage("EmbMarks"),
 
             Item.ItemType.Invalid => Main.Randomizer.CustomIconStorage.GetImage(Storages.CustomIconStorage.IconType.Invalid),
             _ => throw new Exception($"Invalid item type: {item.Type}")
@@ -65,6 +68,7 @@ public static class ItemExtensions
             Item.ItemType.Tears => item.GetAmount() + " " + Main.Randomizer.LocalizationHandler.Localize("currency/tears/name"),
             Item.ItemType.Marks => item.GetAmount() + " " + Main.Randomizer.LocalizationHandler.Localize("currency/marks/name"),
             Item.ItemType.PreMarks => item.GetAmount() + " " + Main.Randomizer.LocalizationHandler.Localize("currency/premarks/name"),
+            Item.ItemType.EmbMarks => item.GetAmount() + " " + Main.Randomizer.LocalizationHandler.Localize("currency/embmarks/name"),
 
             Item.ItemType.Invalid => "Invalid Item",
             _ => throw new Exception($"Invalid item type: {item.Type}")
@@ -92,8 +96,46 @@ public static class ItemExtensions
             Item.ItemType.Tears => Main.Randomizer.LocalizationHandler.Localize("currency/tears/desc"),
             Item.ItemType.Marks => Main.Randomizer.LocalizationHandler.Localize("currency/marks/desc"),
             Item.ItemType.PreMarks => Main.Randomizer.LocalizationHandler.Localize("currency/premarks/desc"),
+            Item.ItemType.EmbMarks => Main.Randomizer.LocalizationHandler.Localize("currency/embmarks/desc"),
 
             Item.ItemType.Invalid => "You should not see this.",
+            _ => throw new Exception($"Invalid item type: {item.Type}")
+        };
+    }
+
+    /// <summary>
+    /// Retrieves the value of this item
+    /// </summary>
+    public static ShopValue GetValue(this Item item)
+    {
+        return item.Type switch
+        {
+            Item.ItemType.RosaryBead or Item.ItemType.Prayer or Item.ItemType.Figurine or Item.ItemType.QuestItem => item.Id switch
+            {
+                "QI63" or "QI64" or "QI65" or "QI66" or "QI67" => ShopValue.BossKeys,
+                _ => item.Class switch
+                {
+                    Item.ItemClass.Filler => ShopValue.FillerInventory,
+                    Item.ItemClass.Useful => ShopValue.UsefulInventory,
+                    Item.ItemClass.Progression => ShopValue.ProgressionInventory,
+                    _ => throw new Exception($"Invalid item class: {item.Class}")
+                }
+            },
+            Item.ItemType.ProgressiveQuestItem => item.GetProgressiveItem(true).GetValue(),
+            Item.ItemType.Cherub or Item.ItemType.GoldLump => ShopValue.Cherubs,
+            Item.ItemType.Weapon or Item.ItemType.Ability => ShopValue.WeaponsAndAbilities,
+            Item.ItemType.Tears => item.GetAmount() >= 2000 ? ShopValue.HighTears : ShopValue.LowTears,
+            Item.ItemType.Marks => item.GetAmount() switch
+            {
+                1 => ShopValue.FillerInventory,
+                2 or 3 => ShopValue.UsefulInventory,
+                4 or 5 => ShopValue.ProgressionInventory,
+                _ => throw new Exception($"Invalid item amount: {item.GetAmount()}")
+            },
+            Item.ItemType.PreMarks => ShopValue.ProgressionInventory,
+            Item.ItemType.EmbMarks => ShopValue.ProgressionInventory,
+
+            Item.ItemType.Invalid => ShopValue.FillerInventory,
             _ => throw new Exception($"Invalid item type: {item.Type}")
         };
     }
@@ -144,7 +186,7 @@ public static class ItemExtensions
                         CoreCache.AbilitiesUnlockManager.SetAbility(AssetStorage.Abilities[ABILITY_IDS.GoldFlask], true);
 
                     var currentItem = item.GetProgressiveItem(false);
-                    if (!currentItem.IsValid())
+                    if (!currentItem.IsValid() || item.Id == "ST")
                         break;
 
                     // Remove current item if you have one
@@ -199,24 +241,8 @@ public static class ItemExtensions
                 }
             case Item.ItemType.Cherub:
                 {
-                    //var tokens = Resources.FindObjectsOfTypeAll<AchievementProgressToken>()
-                    //    .Where(x => x.name.StartsWith("AC21 Token CH"));
-
-                    //foreach (var token in tokens)
-                    //{
-                    //    if (CoreCache.CherubsManager.IsCollected(token.id))
-                    //        continue;
-
-                    //    ModLog.Error("Adding token: " + token.id);
-                    //    CoreCache.CherubsManager.AddCherub(token.id);
-                    //    CoreCache.CherubsManager.Synch();
-                    //    break;
-                    //}
-
-                    //int currentCherubs = Main.Randomizer.GetQuestInt("ST16", "FREED_CHERUBS");
-                    //Main.Randomizer.SetQuestValue("ST16", "FREED_CHERUBS", currentCherubs + 1);
-
-                    ModLog.Error("Cherubs are temporarily not shuffled :(");
+                    int amount = Main.Randomizer.ItemHandler.AmountItemCollected(item.Id) + 1;
+                    Main.Randomizer.SetQuestValue("ST16", "FREED_CHERUBS", amount);
                     break;
                 }
             case Item.ItemType.Tears:
@@ -230,14 +256,19 @@ public static class ItemExtensions
                     break;
                 }
             case Item.ItemType.PreMarks:
-
                 {
                     AssetStorage.PlayerStats.AddToCurrentValue(AssetStorage.ValueStats["MarksPreceptor"], item.GetAmount());
+                    break;
+                }
+            case Item.ItemType.EmbMarks:
+                {
+                    AssetStorage.PlayerStats.AddToCurrentValue(AssetStorage.ValueStats["DLC2Coins"], item.GetAmount());
                     break;
                 }
         }
 
         Main.Randomizer.ItemHandler.SetItemCollected(item.Id);
+        Main.Randomizer.MessageHandler.Broadcast("ITEM", item.Id);
     }
 
     /// <summary>
@@ -245,8 +276,7 @@ public static class ItemExtensions
     /// </summary>
     private static int GetAmount(this Item item)
     {
-        int leftBracket = item.Id.IndexOf('['), rightBracket = item.Id.IndexOf(']');
-        return int.Parse(item.Id.Substring(leftBracket + 1, rightBracket - leftBracket - 1));
+        return int.Parse(item.Id[3..]);
     }
 
     /// <summary>
@@ -256,8 +286,9 @@ public static class ItemExtensions
     {
         string[] itemIds = item.Id switch
         {
-            "UL" => ["QI23", "QI24", "QI25", "QI26", "QI27"],
-            "IL" => ["QI106", "QI107", "QI108", "QI110", "QI111"],
+            "IL" => ItemGroups.Lacrimatorios,
+            "ST" => ItemGroups.SculptorTools,
+            "UL" => ItemGroups.Lullabies,
             _ => throw new Exception($"Invalid {Item.ItemType.ProgressiveQuestItem}: {item.Id}")
         };
 

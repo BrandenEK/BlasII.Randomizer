@@ -7,8 +7,10 @@ using Il2CppPlaymaker.Loot;
 using Il2CppPlaymaker.PrieDieu;
 using Il2CppPlaymaker.UI;
 using Il2CppTGK.Game;
+using Il2CppTGK.Game.Achievements;
 using Il2CppTGK.Game.Components.Interactables;
 using Il2CppTGK.Game.Inventory.PlayMaker;
+using Il2CppTGK.Game.Managers;
 using System.Linq;
 
 namespace BlasII.Randomizer.Patches;
@@ -65,7 +67,7 @@ class PlayMaker_AddItem_Patch
         }
 
         // Never give location if certain room or item
-        if (ROOMS_NEVER.Contains(sceneName) || ITEMS_NEVER.Contains(itemName))
+        if (ROOMS_NEVER.Contains(sceneName) || ITEMS_NEVER.Contains(itemName) || COMBO_NEVER.Any(x => x.Item1 == sceneName && x.Item2 == itemName))
         {
             __instance.Finish();
             return false;
@@ -86,6 +88,7 @@ class PlayMaker_AddItem_Patch
     private static readonly string[] ITEMS_ALWAYS = ["FG40", "FG41", "FG42", "FG43"]; // Burnt figures
     private static readonly string[] ROOMS_NEVER = []; // None
     private static readonly string[] ITEMS_NEVER = ["QI102"]; // Broken key
+    private static readonly (string, string)[] COMBO_NEVER = [("Z2804", "QI104")]; // Mea Culpa Hilt after Asterion
 }
 
 // =================
@@ -126,7 +129,7 @@ class Marks_Skip_Patch
 // =====================
 
 [HarmonyPatch(typeof(UnlockWeapon), nameof(UnlockWeapon.OnEnter))]
-class PlayMaker_UnlockWeapon_Patch
+class UnlockWeapon_OnEnter_Patch
 {
     public static bool Prefix(UnlockWeapon __instance)
     {
@@ -142,13 +145,53 @@ class PlayMaker_UnlockWeapon_Patch
     }
 }
 [HarmonyPatch(typeof(ShowWeaponPopup), nameof(ShowWeaponPopup.OnEnter))]
-class WeaponFind_Skip_Patch
+class ShowWeaponPopup_OnEnter_Patch
 {
     public static bool Prefix(ShowWeaponPopup __instance)
     {
         if (!Main.Randomizer.IsRandomizerMode)
             return true;
 
+        __instance.Finish();
+        return false;
+    }
+}
+[HarmonyPatch(typeof(ShopUnlockWeaponPopup), nameof(ShopUnlockWeaponPopup.OnEnter))]
+class ShopUnlockWeaponPopup_OnEnter_Patch
+{
+    public static bool Prefix(ShopUnlockWeaponPopup __instance)
+    {
+        if (!Main.Randomizer.IsRandomizerMode)
+            return true;
+
+        __instance.Finish();
+        return false;
+    }
+}
+[HarmonyPatch(typeof(SwapWeaponSlotsAction), nameof(SwapWeaponSlotsAction.OnEnter))]
+class SwapWeaponSlotsAction_OnEnter_Patch
+{
+    public static bool Prefix(SwapWeaponSlotsAction __instance)
+    {
+        if (!Main.Randomizer.IsRandomizerMode)
+            return true;
+
+        // TODO: Remove once I know they don't affect something else
+        ModLog.Error("Skipping SwapWeaponSlotsAction");
+        __instance.Finish();
+        return false;
+    }
+}
+[HarmonyPatch(typeof(ChangeWeaponAction), nameof(ChangeWeaponAction.OnEnter))]
+class ChangeWeaponAction_OnEnter_Patch
+{
+    public static bool Prefix(ChangeWeaponAction __instance)
+    {
+        if (!Main.Randomizer.IsRandomizerMode)
+            return true;
+
+        // TODO: Remove once I know they don't affect something else
+        ModLog.Error("Skipping ChangeWeaponAction");
         __instance.Finish();
         return false;
     }
@@ -236,59 +279,49 @@ class ActivateGoldFlaskAbilityAction_OnEnter_Patch
 // Caged cherubs
 // =============
 
-// They changed how cherubs work an ruined everything.  The quest flags are still used in the cherub room and maybe on the pause menu.
-// But now the CherubsManager stores collected cherubs as tokens and then syncs the quest flags.
-// However, those tokens also determines whether the cherub is collected or not.
-// In addition, the CherubCollectibleComponent.AddCherub method fires twice on scene load
+[HarmonyPatch(typeof(AddProgressTokenComponent), nameof(AddProgressTokenComponent.AddProgressToken))]
+class AddProgressTokenComponent_AddProgressToken_Patch
+{
+    public static bool Prefix(AddProgressTokenComponent __instance)
+    {
+        if (__instance.token.achievementId.name != "AC21")
+            return true;
 
-//[HarmonyPatch(typeof(CherubCollectibleComponent), nameof(CherubCollectibleComponent.AddCherub))]
-//class CherubCollectibleComponent_AddCherub_Patch
-//{
-//    public static bool Prefix()
-//    {
-//        string locationId = $"{CoreCache.Room.CurrentRoom.Name}.c0";
-//        **ModLog.Error("CherubCollectibleComponent.AddCherub - " + locationId);
+        string locationId = $"{CoreCache.Room.CurrentRoom.Name}.c0";
+        ModLog.Custom($"AddProgressTokenComponent.AddProgressToken - {locationId}", System.Drawing.Color.Green);
 
-//        if (!Main.Randomizer.IsRandomizerMode)
-//            return true;
+        if (!Main.Randomizer.IsRandomizerMode)
+            return true;
 
-//        Main.Randomizer.ItemHandler.GiveItemAtLocation(locationId);
-//        CoreCache.CherubsManager.Synch();
-//        return false;
-//    }
-//}
-//[HarmonyPatch(typeof(OperateQuestVar), nameof(OperateQuestVar.CheckInputData))]
-//class PlayMaker_OperateQuestVar_Patch
-//{
-//    public static bool Prefix(OperateQuestVar __instance)
-//    {
-//        string quest = Main.Randomizer.GetQuestName(__instance.questVar.questID, __instance.questVar.varID);
-//        if (quest != "ST16.FREED_CHERUBS")
-//            return true;
+        Main.Randomizer.ItemHandler.GiveItemAtLocation(locationId);
+        CoreCache.CherubsManager.Synch();
+        return false;
+    }
+}
+[HarmonyPatch(typeof(ShowCherubPopup), nameof(ShowCherubPopup.OnEnter))]
+class ShowCherubPopup_OnEnter_Patch
+{
+    public static bool Prefix(ShowCherubPopup __instance)
+    {
+        if (!Main.Randomizer.IsRandomizerMode)
+            return true;
 
-//        string locationId = $"{CoreCache.Room.CurrentRoom.Name}.c0";
-//        **ModLog.Error("OperateQuestVar.CheckInputData - " + locationId);
+        __instance.Finish();
+        return false;
+    }
+}
+[HarmonyPatch(typeof(CherubsManager), nameof(CherubsManager.Synch))]
+class CherubsManager_Synch_Patch
+{
+    public static void Postfix()
+    {
+        if (!Main.Randomizer.IsRandomizerMode)
+            return;
 
-//        if (!Main.Randomizer.IsRandomizerMode)
-//            return true;
-
-//        Main.Randomizer.ItemHandler.GiveItemAtLocation(locationId);
-//        __instance.Finish();
-//        return false;
-//    }
-//}
-//[HarmonyPatch(typeof(ShowCherubPopup), nameof(ShowCherubPopup.OnEnter))]
-//class Cherub_Skip_Patch
-//{
-//    public static bool Prefix(ShowCherubPopup __instance)
-//    {
-//        if (!Main.Randomizer.IsRandomizerMode)
-//            return true;
-
-//        __instance.Finish();
-//        return false;
-//    }
-//}
+        int count = Main.Randomizer.ItemHandler.AmountItemCollected("CH");
+        Main.Randomizer.SetQuestValue("ST16", "FREED_CHERUBS", count);
+    }
+}
 
 // =====
 // Tears

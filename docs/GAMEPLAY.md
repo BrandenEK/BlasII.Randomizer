@@ -55,3 +55,9 @@
 
 ### Mud Woman
 - The mud key will never break after use
+
+---
+
+### The Prisoner
+- You can not choose to spare him
+- One item is obtainable from his corpse, one is obtainable from the traveling merchant

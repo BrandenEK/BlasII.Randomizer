@@ -4,8 +4,11 @@ using BlasII.ModdingAPI.Assets;
 using BlasII.ModdingAPI.Helpers;
 using BlasII.ModdingAPI.Persistence;
 using BlasII.Randomizer.Handlers;
+using BlasII.Randomizer.ItemDisplay;
 using BlasII.Randomizer.Services;
-using BlasII.Randomizer.Shuffle;
+using BlasII.Randomizer.Settings;
+using BlasII.Randomizer.Shops;
+using BlasII.Randomizer.Shuffle.Implementations;
 using BlasII.Randomizer.Storages;
 using Il2Cpp;
 using Il2CppTGK.Game;
@@ -28,12 +31,14 @@ public class Randomizer : BlasIIMod, ISlotPersistentMod<RandomizerSlotData>, IGl
     /// <summary>
     /// The selected settings for the current run
     /// </summary>
-    public RandomizerSettings CurrentSettings { get; set; } = RandomizerSettings.DEFAULT;
+    public RandomizerSettings CurrentSettings { get; set; } = SettingsGenerator.CreateFromPreset(Preset.Standard);
 
     // Handlers
 
     /// <inheritdoc/>
     public ItemHandler ItemHandler { get; private set; }
+    /// <inheritdoc/>
+    public ShopHandler ShopHandler { get; private set; }
 
     // Storages
 
@@ -52,6 +57,10 @@ public class Randomizer : BlasIIMod, ISlotPersistentMod<RandomizerSlotData>, IGl
     /// <inheritdoc/>
     public ExtraInfoStorage ExtraInfoStorage { get; private set; }
 
+    // New things
+
+    public ItemDisplayer ItemDisplayer { get; private set; }
+
     // Properties
 
     /// <summary>
@@ -69,11 +78,17 @@ public class Randomizer : BlasIIMod, ISlotPersistentMod<RandomizerSlotData>, IGl
     /// </summary>
     public bool IsNewGame { get; private set; } = false;
 
+    /// <summary>
+    /// Used by the menu patches to skip empty saves
+    /// </summary>
+    public bool IsSlotLoaded { get; set; } = false;
+
     protected override void OnInitialize()
     {
         InputHandler.RegisterDefaultKeybindings(new Dictionary<string, KeyCode>()
         {
-            { "DisplaySettings", KeyCode.F8 }
+            { "DisplaySettings", KeyCode.F8 },
+            { "RespawnPlayer", KeyCode.F9 },
         });
         LocalizationHandler.RegisterDefaultLanguage("en");
 
@@ -88,8 +103,12 @@ public class Randomizer : BlasIIMod, ISlotPersistentMod<RandomizerSlotData>, IGl
 
         // Initialize handlers
         ItemHandler = new ItemHandler(true
-            ? new PoolsItemShuffler(ItemLocationStorage.AsDictionary, ItemStorage.AsDictionary)
+            ? new ComponentShuffler(ItemLocationStorage.AsDictionary, ItemStorage.AsDictionary, false)
             : new DebugShuffler(ItemLocationStorage.AsDictionary, "Censer"));
+        ShopHandler = new ShopHandler();
+
+        // Initialize new things
+        ItemDisplayer = new ItemDisplayer();
     }
 
     protected override void OnRegisterServices(ModServiceProvider provider)
@@ -102,10 +121,14 @@ public class Randomizer : BlasIIMod, ISlotPersistentMod<RandomizerSlotData>, IGl
         if (!SceneHelper.GameSceneLoaded)
             return;
 
-        if (InputHandler.GetKeyDown("DisplaySettings"))
+        ProcessKeybindInput();
+
+#if DEBUG
+        if (UnityEngine.Input.GetKeyDown(KeyCode.KeypadMinus))
         {
-            DisplaySettings();
+            ModLog.Error("DEBUG INPUT");
         }
+#endif
     }
 
     protected override void OnSceneLoaded(string sceneName)
@@ -114,8 +137,6 @@ public class Randomizer : BlasIIMod, ISlotPersistentMod<RandomizerSlotData>, IGl
             LoadWeaponDisplayRoom();
         else if (sceneName == "Z0206")
             LoadTriggerRemovalRoom("Event Trigger", "NPC10_ST22_ANUNCIADA");
-        else if (sceneName == "Z0402")
-            LoadTemporaryClothRoom();
         else if (sceneName == "Z0419")
             LoadYermaRoom();
         else if (sceneName == "Z0420")
@@ -135,6 +156,7 @@ public class Randomizer : BlasIIMod, ISlotPersistentMod<RandomizerSlotData>, IGl
         else if (sceneName == "Z2716")
             LoadTriggerRemovalRoom("trigger", "SPGEO_INTERACTABLE_GUILLOTINE");
 
+        // This might not be needed anymore?
         CoreCache.Shop.cachedInstancedShops.Clear();
     }
 
@@ -143,11 +165,15 @@ public class Randomizer : BlasIIMod, ISlotPersistentMod<RandomizerSlotData>, IGl
         ModLog.Info($"Performing shuffle for seed {CurrentSettings.Seed}");
         ItemHandler.ShuffleItems(CurrentSettings.Seed, CurrentSettings);
 
-        AllowPrieDieuWarp();
         SetQuestValue("ST00", "WEAPON_EVENT", true);
         SetQuestValue("ST00", "INTRO", true);
         IsNewGame = true;
         TotalSeedsGenerated++;
+    }
+
+    protected override void OnExitGame()
+    {
+        ItemDisplayer.OnExitGame();
     }
 
     public RandomizerSlotData SaveSlot()
@@ -170,6 +196,8 @@ public class Randomizer : BlasIIMod, ISlotPersistentMod<RandomizerSlotData>, IGl
 
         CurrentSettings = data.settings;
         ModLog.Info($"Loaded file with {data.collectedLocations.Count} collected locations");
+
+        IsSlotLoaded = true;
     }
 
     public void ResetSlot()
@@ -177,6 +205,8 @@ public class Randomizer : BlasIIMod, ISlotPersistentMod<RandomizerSlotData>, IGl
         ItemHandler.MappedItems.Clear();
         ItemHandler.CollectedLocations.Clear();
         ItemHandler.CollectedItems.Clear();
+
+        IsSlotLoaded = false;
     }
 
     public RandomizerGlobalData SaveGlobal()
@@ -192,21 +222,31 @@ public class Randomizer : BlasIIMod, ISlotPersistentMod<RandomizerSlotData>, IGl
         TotalSeedsGenerated = data.SeedsGenerated;
     }
 
-    private void AllowPrieDieuWarp()
+    private void ProcessKeybindInput()
     {
-        foreach (var upgrade in CoreCache.PrieDieuManager.config.upgrades)
-        {
-            if (upgrade.name == "TeleportToHUBUpgrade")
-                continue;
+        if (InputHandler.InputBlocked)
+            return;
 
-            CoreCache.PrieDieuManager.Upgrade(upgrade);
-        }
+        if (InputHandler.GetKeyDown("DisplaySettings"))
+            Keybind_Settings();
+        //if (InputHandler.GetKeyDown("RespawnPlayer"))
+        //    Keybind_Respawn();
     }
 
-    private void DisplaySettings()
+    private void Keybind_Settings()
     {
+        ModLog.Info("Displaying settings");
+
         var message = Resources.FindObjectsOfTypeAll<PopupMessageID>().First(x => x.name == "TESTPOPUP_id");
-        CoreCache.UINavigationHelper.ShowPopupMessage(message, false);
+        CoreCache.UINavigationHelper.ShowPopupMessageAsync(message, false, new Il2CppSystem.Threading.CancellationToken());
+    }
+
+    private void Keybind_Respawn()
+    {
+        ModLog.Info("Respawning player"); // Not sure if this works so I am temporarily disabling it
+
+        CoreCache.UINavigationHelper.ShowLoadingWindow();
+        CoreCache.PlayerSpawn.SpawnFromPrieDieu();
     }
 
     /// <summary>
@@ -224,6 +264,12 @@ public class Randomizer : BlasIIMod, ISlotPersistentMod<RandomizerSlotData>, IGl
 
         // Give lance
         AssetStorage.PlayerInventory.AddItemAsync(AssetStorage.QuestItems["QI70"]);
+
+        // Fill orb xp
+        if (CurrentSettings.MartyrdomExperience == 2 || CurrentSettings.MartyrdomExperience == 3)
+        {
+            AssetStorage.PlayerStats.SetCurrentUpgrades(AssetStorage.RangeStats["OrbExperience"], 40);
+        }
 
         // TEMPORARY: lock certain abilities because I have no idea how they persist
         var abilities = new ABILITY_IDS[] { ABILITY_IDS.AirDash, ABILITY_IDS.AirJump, ABILITY_IDS.GlassWalk, ABILITY_IDS.GoldFlask, ABILITY_IDS.MagicRingClimb, ABILITY_IDS.WallClimb };
@@ -272,26 +318,6 @@ public class Randomizer : BlasIIMod, ISlotPersistentMod<RandomizerSlotData>, IGl
                 Object.Destroy(statue.GetComponent<BoxCollider2D>());
                 Object.Destroy(statue.GetComponent<PlayMakerFSM>());
                 statue.transform.Find("sprite").GetComponent<Animator>().Play(disabledAnimations[weapon]);
-            }
-        }
-    }
-
-    /// <summary>
-    /// Temporary fix to the cloth bug in SE
-    /// </summary>
-    private void LoadTemporaryClothRoom()
-    {
-        if (!Main.Randomizer.ItemHandler.IsLocationCollected("Z0402.l13"))
-            return;
-
-        foreach (var loot in Object.FindObjectsOfType<LootInteractable>())
-        {
-            int index = loot.transform.GetSiblingIndex();
-            if (index == 13)
-            {
-                loot.gameObject.SetActive(false);
-                ModLog.Info("[TEMP] Hiding duplicate cloth item");
-                return;
             }
         }
     }

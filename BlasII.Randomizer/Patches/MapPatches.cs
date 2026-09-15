@@ -18,8 +18,8 @@ class MapWindowLogic_UpdateUIElements_Patch
         if (cherubHolder == null)
             return;
 
-        int currentItems = Main.Randomizer.ItemHandler.CollectedLocations.Count;
-        int totalItems = Main.Randomizer.ItemHandler.MappedItems.Count;
+        int currentItems = Main.Randomizer.ItemHandler.CollectedItemsDisplay;
+        int totalItems = Main.Randomizer.ItemHandler.TotalItemsDisplay;
 
         var leftText = cherubHolder.GetChild(0).GetChild(0).GetComponent<UIPixelTextWithShadow>();
         leftText.SetText(currentItems.ToString());

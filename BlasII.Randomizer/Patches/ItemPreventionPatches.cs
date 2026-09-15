@@ -180,12 +180,6 @@ class QuestManager_GetVarBool_Patch
             __result = Main.Randomizer.ItemHandler.IsLocationCollected("Z05BZ01.l0")
                 && Main.Randomizer.ItemHandler.IsLocationCollected("Z05BZ01.l16");
         }
-
-        // Only accept cobijada 9 sisters reward
-        else if (scene == "Z0506" && Enumerable.Range(1, 3).Any(x => quest == $"ST25.UPGRADE{x}_UNLOCKED"))
-        {
-            __result = true;
-        }
     }
 
     private static int OwnedKeys
@@ -293,6 +287,19 @@ class GoldenLumpsCountFix_OnPlayerSpawned_Patch
     public static bool Prefix()
     {
         ModLog.Info("Preventing gold lump sync");
+        return false;
+    }
+}
+
+/// <summary>
+/// Prevent the CherubsCountFix from functioning
+/// </summary>
+[HarmonyPatch(typeof(CherubsCountFix), nameof(CherubsCountFix.PlayerSpawnManager_OnPlayerSpawned))]
+class CherubsCountFix_OnPlayerSpawned_Patch
+{
+    public static bool Prefix()
+    {
+        ModLog.Info("Preventing cherub sync");
         return false;
     }
 }

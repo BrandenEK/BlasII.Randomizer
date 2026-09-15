@@ -1,6 +1,6 @@
 using BlasII.ModdingAPI;
-using BlasII.Randomizer.Extensions;
 using BlasII.Randomizer.Models;
+using BlasII.Randomizer.Settings;
 using BlasII.Randomizer.Shuffle;
 using Il2CppTGK.Game;
 using System.Collections.Generic;
@@ -60,11 +60,8 @@ public class ItemHandler
 
     public void DisplayItem(Item item)
     {
-        CoreCache.UINavigationHelper.ShowItemPopup(
-            Main.Randomizer.LocalizationHandler.Localize("popup/item"),
-            item.GetName(),
-            item.GetSprite(),
-            false);
+        string message = Main.Randomizer.LocalizationHandler.Localize("popup/item");
+        Main.Randomizer.ItemDisplayer.Show(message, item.GetName(), item.GetSprite());
     }
 
     /// <summary>
@@ -78,7 +75,7 @@ public class ItemHandler
         while (!_shuffler.Shuffle(seed, settings, _mappedItems) && currentAttempt < maxAttempts)
         {
             int failedSeed = seed;
-            seed = seedGen.Next(1, RandomizerSettings.MAX_SEED + 1);
+            seed = SettingsGenerator.GetRandomSeed(seedGen);
 
             ModLog.Warn($"Seed {failedSeed} was invalid! Trying {seed} next.");
             currentAttempt++;
@@ -160,6 +157,20 @@ public class ItemHandler
     {
         return _collectedLocations.Contains(locationId);
     }
+
+    /// <summary>
+    /// Gets the current amount of total items
+    /// </summary>
+    public int TotalItemsDisplay => MappedItems
+        .Select(x => Main.Randomizer.ItemLocationStorage[x.Key])
+        .Count(x => x.ContributesPercentage(Main.Randomizer.CurrentSettings));
+
+    /// <summary>
+    /// Gets the current amount of collected items
+    /// </summary>
+    public int CollectedItemsDisplay => CollectedLocations
+        .Select(x => Main.Randomizer.ItemLocationStorage[x])
+        .Count(x => x.ContributesPercentage(Main.Randomizer.CurrentSettings));
 
     // Save data
 

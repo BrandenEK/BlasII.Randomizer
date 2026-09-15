@@ -8,77 +8,89 @@ using Il2CppTGK.Game.Managers;
 using Il2CppTGK.Game.ShopSystem;
 using Il2CppTGK.UI;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace BlasII.Randomizer.Patches;
+namespace BlasII.Randomizer.Shops;
 
 /// <summary>
-/// Setup the randomized items for a shop
+/// Force order recalculation of shop items
 /// </summary>
-[HarmonyPatch(typeof(Shop), nameof(Shop.CacheData))]
-class Shop_CacheData_Patch
+[HarmonyPatch(typeof(ShopWindowLogic), nameof(ShopWindowLogic.UpdateTabs))]
+class ShopWindowLogic_UpdateTabs_Patch
 {
-    public static void Postfix(Shop __instance)
+    public static void Postfix(ShopWindowLogic __instance)
     {
-        // Clear all previous items from list
-        __instance.cachedIds.Clear();
-        __instance.cachedShopDataById.Clear();
-        __instance.cachedShopDataByType.Clear();
-        __instance.orbs.Clear();
+        ModLog.Info($"ShopWindowLogic.UpdateTabs ({__instance.currentShop.name})");
 
         // Get list of costs based on shop id
-        int[] costs;
+        var costs = Main.Randomizer.ShopHandler.GetShopCosts(__instance.currentShop.name, Main.Randomizer.CurrentSettings);
 
-        switch (__instance.name)
-        {
-            // Always same items, sorted by cost
-            case "SHOPHAND":
-                costs = new int[]
-                {
-                    3000, 3000, 3000, 3000, 3000, 3000, 3000, 6000, 12000, 12000, 17500, 32000
-                };
-                break;
-            // Always same items, sorted by cost
-            case "SHOPMISSABLES":
-                costs = new int[]
-                {
-                    6000, 6000, 6000, 6000, 12000, 12000, 12000
-                };
-                break;
-            // More items added for each location, sorted by cost
-            case "SHOPITINERANT":
-                var list = new List<int>
-                {
-                    3000, 3000
-                };
+        // Clear all cached values
+        __instance.currentShop.cachedIds.Clear();
+        __instance.currentShop.cachedShopDataById.Clear();
+        __instance.currentShop.cachedShopDataByType.Clear();
+        __instance.currentShop.orbs.Clear();
 
-                if (Main.Randomizer.GetQuestBool("ST06", "Z09_VISITED"))
-                    list.Add(6000);
-                if (Main.Randomizer.GetQuestBool("ST06", "Z05_VISITED"))
-                    list.Add(6000);
-                if (Main.Randomizer.GetQuestBool("ST06", "Z11_VISITED"))
-                    list.Add(6000);
-                if (Main.Randomizer.GetQuestBool("ST06", "Z12_VISITED"))
-                    list.Add(6000);
-                if (Main.Randomizer.GetQuestBool("ST06", "Z01_VISITED"))
-                    list.Add(12000);
-                if (Main.Randomizer.GetQuestBool("ST06", "Z10_VISITED"))
-                    list.Add(17500);
-
-                costs = list.ToArray();
-                break;
-
-            default:
-                ModLog.Error("Opening invalid shop!");
-                costs = System.Array.Empty<int>();
-                break;
-        }
-
-        // Add orbs for each price
+        // Recalculate the orbs
         foreach (int cost in costs)
-            __instance.orbs.Add(cost);
-        ModLog.Info("Updating items for: " + __instance.name);
+            __instance.currentShop.orbs.Add(cost);
+
+        // Recalculate the cachedElements
+        if (__instance.cachedElements.ContainsKey(Shop.ItemType.All))
+        {
+            var realList = __instance.cachedElements[Shop.ItemType.All];
+            var tempList = new List<Shop.CachedShopDataItem>();
+
+            foreach (var item in realList)
+                tempList.Add(item);
+
+            realList.Clear();
+
+            foreach (var item in tempList.OrderBy(x => x.orbIdx))
+                realList.Add(item);
+        }
+    }
+}
+
+/// <summary>
+/// Force order recalculation of shop items
+/// </summary>
+[HarmonyPatch(typeof(ShopWindowLogic), nameof(ShopWindowLogic.ShowShop))]
+class ShopWindowLogic_ShowShop_Patch
+{
+    public static void Prefix(Shop shop, ShopWindowLogic __instance)
+    {
+        ModLog.Info($"ShopWindowLogic.ShowShop ({shop.name})");
+
+        // Get list of costs based on shop id
+        var costs = Main.Randomizer.ShopHandler.GetShopCosts(shop.name, Main.Randomizer.CurrentSettings);
+
+        // Clear all cached values
+        shop.cachedIds.Clear();
+        shop.cachedShopDataById.Clear();
+        shop.cachedShopDataByType.Clear();
+        shop.orbs.Clear();
+
+        // Recalculate the orbs
+        foreach (int cost in costs)
+            shop.orbs.Add(cost);
+
+        // Recalculate the cachedElements
+        if (__instance.cachedElements.ContainsKey(Shop.ItemType.All))
+        {
+            var realList = __instance.cachedElements[Shop.ItemType.All];
+            var tempList = new List<Shop.CachedShopDataItem>();
+
+            foreach (var item in realList)
+                tempList.Add(item);
+
+            realList.Clear();
+
+            foreach (var item in tempList.OrderBy(x => x.orbIdx))
+                realList.Add(item);
+        }
     }
 }
 
@@ -142,8 +154,8 @@ class ShopWindowLogic_OnCreateListItem_Patch
 /// <summary>
 /// When displaying an orb item, instantly hide it
 /// </summary>
-[HarmonyPatch(typeof(OrbsRewardPopupLogic), nameof(OrbsRewardPopupLogic.ShowPopup))]
-class OrbsRewardPopupLogic_ShowPopup_Patch
+[HarmonyPatch(typeof(OrbsRewardPopupLogic), nameof(OrbsRewardPopupLogic.ShowPopupAsync))]
+class OrbsRewardPopupLogic_ShowPopupAsync_Patch
 {
     public static void Prefix(OrbsRewardPopupLogic __instance)
     {

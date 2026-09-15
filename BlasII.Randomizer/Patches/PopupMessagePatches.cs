@@ -1,71 +1,66 @@
 ﻿using BlasII.ModdingAPI;
-using BlasII.Randomizer.Extensions;
+using BlasII.Randomizer.Settings;
 using HarmonyLib;
+using Il2CppPlaymaker.UI;
 using Il2CppTGK.Game.Components.UI;
 using Il2CppTGK.Game.PopupMessages;
-using UnityEngine;
+using System.Linq;
 
 namespace BlasII.Randomizer.Patches;
 
 /// <summary>
 /// Change display message when interacting with certain objects
 /// </summary>
-[HarmonyPatch(typeof(PopupMessageLogic), nameof(PopupMessageLogic.ShowMessageAndWait))]
-class PopupMessageLogic_ShowMessageAndWait_Patch
-{
-    public static void Postfix(PopupMessageLogic __instance, PopupMessage message)
-    {
-        ModLog.Info("Showing popup: " + message.name);
 
-        // When reading the CR door, show how many keys you must find
-        if (message.name == "MSG_0003")
-        {
-            string text = Main.Randomizer.LocalizationHandler.Localize("popup/keys")
-                .Replace("*", Main.Randomizer.CurrentSettings.RealRequiredKeys.ToString());
-            __instance.textCtrl.SetText(text);
-            return;
-        }
+// When this method is patched, even without anything, and a popup is shown, it crashes the game...
 
-        // When pressing display button, show the current settings
-        if (message.name == "TESTPOPUP")
-        {
-            string text = Main.Randomizer.CurrentSettings.FormatInfo();
-            __instance.textCtrl.SetText(text);
-            return;
-        }
+//[HarmonyPatch(typeof(PopupMessageLogic), nameof(PopupMessageLogic.ShowMessageAndWaitAsync))]
+//class PopupMessageLogic_ShowMessageAndWaitAsync_Patch
+//{
+//    public static void Prefix(PopupMessageLogic __instance, PopupMessage message)
+//    {
+//        ModLog.Info("Showing popup: " + message?.name);
 
-        // When talking to cobijada mother, dont display upgrade type
-        if (message.name == "MSG_2501" ||
-            message.name == "MSG_2502" ||
-            message.name == "MSG_2503")
-        {
-            string text = Main.Randomizer.LocalizationHandler.Localize("popup/sisters");
-            __instance.textCtrl.SetText(text);
-            return;
-        }
+//        // When reading the CR door, show how many keys you must find
+//        if (message?.name == "MSG_0003")
+//        {
+//            string text = Main.Randomizer.LocalizationHandler.Localize("popup/keys").Replace("*", Main.Randomizer.CurrentSettings.RealRequiredKeys.ToString());
+//            __instance.textCtrl.SetText(text);
+//            return;
+//        }
 
-        // When opening a mud door, dont show the removal
-        if (message.name == "MSG_10101")
-        {
-            string text = Main.Randomizer.LocalizationHandler.Localize("popup/mud");
-            __instance.textCtrl.SetText(text);
-            return;
-        }
-    }
-}
+//        // When pressing the display button, show the current settings
+//        if (message?.name == "TESTPOPUP")
+//        {
+//            string text = Main.Randomizer.CurrentSettings.FormatInfo();
+//            __instance.textCtrl.SetText(text);
+//            return;
+//        }
+//    }
+//}
 
 /// <summary>
-/// Adjust the size of the item popup based on the image
+/// Skip display message when interacting with certain objects
 /// </summary>
-[HarmonyPatch(typeof(ItemPopupWindowLogic), nameof(ItemPopupWindowLogic.ShowPopup))]
-class ItemPopupWindowLogic_ShowPopup_Patch
+[HarmonyPatch(typeof(ShowPopupMessage), nameof(ShowPopupMessage.OnEnter))]
+class ShowPopupMessage_OnEnter_Patch
 {
-    public static void Prefix(ItemPopupWindowLogic __instance, Sprite image)
+    public static bool Prefix(ShowPopupMessage __instance)
     {
-        Vector2 size = image == null ? new Vector2(90, 90) : image.rect.size * 3;
-        Vector2 offset = new((90 - size.x) / 2, (90 - size.y) / 2);
+        string message = __instance.messageId?.name ?? "INVALID_id";
+        
+        if (!SKIPPED_MESSAGES.Contains(message))
+            return true;
 
-        __instance.spriteImage.rectTransform.sizeDelta = size;
-        __instance.spriteImage.rectTransform.anchoredPosition = offset;
+        ModLog.Info($"Skipping popup: {message}");
+        __instance.Finish();
+        return false;
     }
+
+    private static readonly string[] SKIPPED_MESSAGES =
+    [
+        "MSG_10101_id", // Mud key breaking
+        "MSG_10102_id", // Mea Culpa Hilt loss
+        "MSG_10103_id", // Mea Culpa Hilt retrieval
+    ];
 }

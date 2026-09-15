@@ -16,7 +16,7 @@ public class RandomizerSettings
     // Item shuffle (Functionality)
 
     /// <summary>
-    /// Determines whether more difficult tricks will be required in logic
+    /// Determines what skips and techniques may be required in the logic
     /// </summary>
     public int LogicType { get; set; }
 
@@ -30,17 +30,34 @@ public class RandomizerSettings
     /// </summary>
     public int StartingWeapon { get; set; }
 
+    // Gameplay
+
+    /// <summary>
+    /// Determines how expensive shop items will be
+    /// </summary>
+    public int ShopMultiplier { get; set; }
+
+    /// <summary>
+    /// Determines how martyrdom XP is acquired
+    /// </summary>
+    public int MartyrdomExperience { get; set; }
+
     // Item shuffle (Pool)
+
+    /// <summary>
+    /// Should the penitence items be added to the pool
+    /// </summary>
+    public bool AddPenitenceRewards { get; set; }
+
+    /// <summary>
+    /// Should the cherub locations have randomized items
+    /// </summary>
+    public bool ShuffleCherubs { get; set; }
 
     /// <summary>
     /// Whether locations that require a lot of time can contain progression
     /// </summary>
     public bool ShuffleLongQuests { get; set; }
-
-    /// <summary>
-    /// Whether locations that require a purchase can contain progression
-    /// </summary>
-    public bool ShuffleShops { get; set; }
 
     /// <summary>
     /// The actual starting weapon with "Random" taken into account
@@ -71,27 +88,4 @@ public class RandomizerSettings
             return RequiredKeys;
         }
     }
-
-    /// <summary>
-    /// A new settings object with default properties
-    /// </summary>
-    public static RandomizerSettings DEFAULT => new()
-    {
-        Seed = RANDOM_SEED,
-        LogicType = 1,
-        RequiredKeys = 4,
-        StartingWeapon = -1,
-        ShuffleLongQuests = false,
-        ShuffleShops = true,
-    };
-
-    /// <summary>
-    /// A random seed in the valid range
-    /// </summary>
-    public static int RANDOM_SEED => new Random().Next(1, MAX_SEED + 1);
-
-    /// <summary>
-    /// The maximum seed allowed
-    /// </summary>
-    public const int MAX_SEED = 99_999_999;
 }

@@ -38,6 +38,7 @@ public class EmbeddedIconStorage : BaseSpriteStorage<string>
         { "UI-general-save-slot-sword-icon", "RosaryBlade" },
         { "UI-general-save-slot-rapier-icon" , "Rapier" },
         { "UI-general-save-slot-meaculpa-icon" , "MeaCulpa" },
+        { "UI-general-save-slot-whip-icon" , "Whip" },
         // Abilities
         { "UI-stats-progression-skill-wallclimb-icon" , "WallClimb" },
         { "UI-stats-progression-skill-doublejump-icon" , "AirJump" },
@@ -48,6 +49,7 @@ public class EmbeddedIconStorage : BaseSpriteStorage<string>
         { "UI-general-elements-tears-icon" , "Tears" },
         { "UI-general-elements-mark-icon-small" , "Marks" },
         { "UI-general-elements-MOP-icon-small" , "PreMarks" },
+        { "UI-general-elements-DLC02coins-icon" , "EmbMarks" },
         { "cherub-counter-pop-up-icon" , "Cherub" },
     };
 }
