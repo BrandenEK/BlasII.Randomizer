@@ -27,7 +27,7 @@ class LootInteractable_Use_Patch
         string locationId = __instance.CalculateId();
         ModLog.Custom("LootInteractable.UseLootByInteractor - " + locationId, System.Drawing.Color.Green);
 
-        if (!Main.Randomizer.IsRandomizerMode)
+        if (!Main.Randomizer.IsRandomizerMode || !Main.Randomizer.ItemHandler.IsRandomizedLocation(locationId))
             return;
 
         Main.Randomizer.ItemHandler.GiveItemAtLocation(locationId);
@@ -42,7 +42,7 @@ class LootInteractableST103_Use_Patch
         string locationId = __instance.CalculateId();
         ModLog.Custom("LootInteractableST103.UseLootByInteractor - " + locationId, System.Drawing.Color.Green);
 
-        if (!Main.Randomizer.IsRandomizerMode)
+        if (!Main.Randomizer.IsRandomizerMode || !Main.Randomizer.ItemHandler.IsRandomizedLocation(locationId))
             return true;
 
         // This is necessary to force the actual interaction to take place
@@ -76,7 +76,7 @@ class PlayMaker_AddItem_Patch
         string locationId = __instance.CalculateId();
         ModLog.Custom($"AddItem.OnEnter - {locationId} ({itemName})", System.Drawing.Color.Green);
 
-        if (!Main.Randomizer.IsRandomizerMode)
+        if (!Main.Randomizer.IsRandomizerMode || !Main.Randomizer.ItemHandler.IsRandomizedLocation(locationId))
             return true;
 
         Main.Randomizer.ItemHandler.GiveItemAtLocation(locationId);
@@ -103,7 +103,7 @@ class PlayMaker_GiveReward_Patch
         string locationId = __instance.CalculateId();
         ModLog.Custom("GiveReward.OnEnter - " + locationId, System.Drawing.Color.Green);
 
-        if (!Main.Randomizer.IsRandomizerMode)
+        if (!Main.Randomizer.IsRandomizerMode || !Main.Randomizer.ItemHandler.IsRandomizedLocation(locationId))
             return true;
 
         Main.Randomizer.ItemHandler.GiveItemAtLocation(locationId);
@@ -136,7 +136,7 @@ class UnlockWeapon_OnEnter_Patch
         string locationId = __instance.CalculateId();
         ModLog.Custom("UnlockWeapon.OnEnter - " + locationId, System.Drawing.Color.Green);
 
-        if (!Main.Randomizer.IsRandomizerMode)
+        if (!Main.Randomizer.IsRandomizerMode || !Main.Randomizer.ItemHandler.IsRandomizedLocation(locationId))
             return true;
 
         Main.Randomizer.ItemHandler.GiveItemAtLocation(locationId);
@@ -209,7 +209,7 @@ class PlayMaker_UpgradeWeapon_Patch
         string locationId = __instance.CalculateId();
         ModLog.Custom("UpgradeWeaponTier.OnEnter - " + locationId, System.Drawing.Color.Green);
 
-        if (!Main.Randomizer.IsRandomizerMode)
+        if (!Main.Randomizer.IsRandomizerMode || !Main.Randomizer.ItemHandler.IsRandomizedLocation(locationId))
             return true;
 
         Main.Randomizer.ItemHandler.GiveItemAtLocation(locationId);
@@ -242,7 +242,7 @@ class PlayMaker_UnlockAbility_Patch
         string locationId = __instance.CalculateId();
         ModLog.Custom("UnlockAbility.OnEnter - " + locationId, System.Drawing.Color.Green);
 
-        if (!Main.Randomizer.IsRandomizerMode)
+        if (!Main.Randomizer.IsRandomizerMode || !Main.Randomizer.ItemHandler.IsRandomizedLocation(locationId))
             return true;
 
         Main.Randomizer.ItemHandler.GiveItemAtLocation(locationId);
@@ -290,7 +290,7 @@ class AddProgressTokenComponent_AddProgressToken_Patch
         string locationId = $"{CoreCache.Room.CurrentRoom.Name}.c0";
         ModLog.Custom($"AddProgressTokenComponent.AddProgressToken - {locationId}", System.Drawing.Color.Green);
 
-        if (!Main.Randomizer.IsRandomizerMode)
+        if (!Main.Randomizer.IsRandomizerMode || !Main.Randomizer.ItemHandler.IsRandomizedLocation(locationId))
             return true;
 
         Main.Randomizer.ItemHandler.GiveItemAtLocation(locationId);

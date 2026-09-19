@@ -24,6 +24,14 @@ public class ItemHandler
         _shuffler = shuffler;
     }
 
+    /// <summary>
+    /// Checks whether this location takes part in the current shuffle
+    /// </summary>
+    public bool IsRandomizedLocation(string locationId)
+    {
+        return _mappedItems.ContainsKey(locationId);
+    }
+
     public Item GetItemAtLocation(string locationId)
     {
         if (_mappedItems.TryGetValue(locationId, out string item))
