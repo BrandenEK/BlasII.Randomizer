@@ -187,6 +187,7 @@ public class RandomizerMenu : ModMenu
             "option/weapon/rosary",
             "option/weapon/rapier",
             "option/weapon/meaculpa",
+            "option/weapon/embrujo",
         ]);
 
         _setShopCosts = arrow.CreateOption("SH", ui, new Vector2(300, 80), "option/cost",

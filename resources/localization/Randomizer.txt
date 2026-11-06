@@ -52,6 +52,7 @@ option/weapon/censer: Veredicto
 option/weapon/rosary: Ruego
 option/weapon/rapier: Sarmiento
 option/weapon/meaculpa: Mea Culpa
+option/weapon/embrujo: Embrujo
 option/logic: Logic difficulty
 option/logic/easy: Easy
 option/logic/normal: Normal
