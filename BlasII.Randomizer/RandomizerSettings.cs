@@ -67,8 +67,10 @@ public class RandomizerSettings
     {
         get
         {
+            if (StartingWeapon == -2)
+                return new Random(Seed).Next(0, 5);
             if (StartingWeapon == -1)
-                return new Random(Seed).Next(0, 4);
+                return new Random(Seed).Next(0, 3);
 
             return StartingWeapon;
         }

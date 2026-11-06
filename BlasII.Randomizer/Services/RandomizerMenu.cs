@@ -34,7 +34,7 @@ public class RandomizerMenu : ModMenu
                 Seed = _setSeed.CurrentNumericValue == 0 ? _generatedSeed : _setSeed.CurrentNumericValue,
                 LogicType = 1,
                 RequiredKeys = _setRequiredKeys.CurrentOption - 1,
-                StartingWeapon = _setStartingWeapon.CurrentOption - 1,
+                StartingWeapon = _setStartingWeapon.CurrentOption - 2,
                 ShopMultiplier = _setShopCosts.CurrentOption,
                 MartyrdomExperience = _setMarksExperience.CurrentOption,
                 AddPenitenceRewards = _setAddPenitence.Toggled,
@@ -46,7 +46,7 @@ public class RandomizerMenu : ModMenu
         {
             _setLogicDifficulty.CurrentOption = 0;
             _setRequiredKeys.CurrentOption = value.RequiredKeys + 1;
-            _setStartingWeapon.CurrentOption = value.StartingWeapon + 1;
+            _setStartingWeapon.CurrentOption = value.StartingWeapon + 2;
             _setShopCosts.CurrentOption = value.ShopMultiplier;
             _setMarksExperience.CurrentOption = value.MartyrdomExperience;
             _setAddPenitence.Toggled = value.AddPenitenceRewards;
@@ -183,10 +183,12 @@ public class RandomizerMenu : ModMenu
         _setStartingWeapon = arrow.CreateOption("SW", ui, new Vector2(-300, -240), "option/weapon",
         [
             "option/random",
+            "option/randomog",
             "option/weapon/censer",
             "option/weapon/rosary",
             "option/weapon/rapier",
             "option/weapon/meaculpa",
+            "option/weapon/embrujo",
         ]);
 
         _setShopCosts = arrow.CreateOption("SH", ui, new Vector2(300, 80), "option/cost",

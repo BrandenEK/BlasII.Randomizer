@@ -41,6 +41,7 @@ dialog/travel: Travel to starting room
 
 # Settings menu
 option/random: Random
+option/randomog: Random OG
 option/vanilla: Vanilla
 option/seed: Seed:
 option/preset: Preset
@@ -52,6 +53,7 @@ option/weapon/censer: Veredicto
 option/weapon/rosary: Ruego
 option/weapon/rapier: Sarmiento
 option/weapon/meaculpa: Mea Culpa
+option/weapon/embrujo: Embrujo
 option/logic: Logic difficulty
 option/logic/easy: Easy
 option/logic/normal: Normal

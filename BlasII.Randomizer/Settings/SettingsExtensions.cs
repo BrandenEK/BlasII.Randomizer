@@ -14,7 +14,7 @@ public static class SettingsExtensions
     {
         string logic = LOGIC_OPTIONS[settings.LogicType];
         string keys = settings.RequiredKeys == -1 ? "Random" : settings.RequiredKeys.ToString();
-        string weapon = settings.StartingWeapon == -1 ? "Random" : WEAPON_OPTIONS[settings.StartingWeapon];
+        string weapon = settings.StartingWeapon < 0 ? "Random" : WEAPON_OPTIONS[settings.StartingWeapon];
         string shops = SHOP_OPTIONS[settings.ShopMultiplier];
         string marks = MARK_OPTIONS[settings.MartyrdomExperience];
 
@@ -41,7 +41,7 @@ public static class SettingsExtensions
     {
         string logic = LOGIC_OPTIONS[settings.LogicType];
         string keys = settings.RequiredKeys == -1 ? $"[{settings.RealRequiredKeys}]" : settings.RequiredKeys.ToString();
-        string weapon = settings.StartingWeapon == -1 ? $"[{WEAPON_OPTIONS[settings.RealStartingWeapon]}]" : WEAPON_OPTIONS[settings.StartingWeapon];
+        string weapon = settings.StartingWeapon < 0 ? $"[{WEAPON_OPTIONS[settings.RealStartingWeapon]}]" : WEAPON_OPTIONS[settings.StartingWeapon];
         string shops = SHOP_OPTIONS[settings.ShopMultiplier];
         string marks = MARK_OPTIONS[settings.MartyrdomExperience];
 
@@ -110,9 +110,9 @@ public static class SettingsExtensions
         SetBit(ref uid, ref idx, ref flip, (settings.RequiredKeys + 1 & 0x04) > 0);
 
         // StartingWeapon
-        SetBit(ref uid, ref idx, ref flip, (settings.StartingWeapon + 1 & 0x01) > 0);
-        SetBit(ref uid, ref idx, ref flip, (settings.StartingWeapon + 1 & 0x02) > 0);
-        SetBit(ref uid, ref idx, ref flip, (settings.StartingWeapon + 1 & 0x04) > 0);
+        SetBit(ref uid, ref idx, ref flip, (settings.StartingWeapon + 2 & 0x01) > 0);
+        SetBit(ref uid, ref idx, ref flip, (settings.StartingWeapon + 2 & 0x02) > 0);
+        SetBit(ref uid, ref idx, ref flip, (settings.StartingWeapon + 2 & 0x04) > 0);
 
         // ShopMultiplier
         SetBit(ref uid, ref idx, ref flip, (settings.ShopMultiplier & 0x01) > 0);
@@ -154,7 +154,7 @@ public static class SettingsExtensions
     private static readonly string CHERUB_NAME = "Shuffle cherubs";
     private static readonly string QUESTS_NAME = "Shuffle long quests";
     private static readonly string[] LOGIC_OPTIONS = ["Easy", "Normal", "Hard"];
-    private static readonly string[] WEAPON_OPTIONS = ["Veredicto", "Ruego", "Sarmiento", "Mea Culpa"];
+    private static readonly string[] WEAPON_OPTIONS = ["Veredicto", "Ruego", "Sarmiento", "Mea Culpa", "Embrujo"];
     private static readonly string[] SHOP_OPTIONS = ["Free", "Cheap", "Standard", "Expensive", "Vanilla"];
     private static readonly string[] MARK_OPTIONS = ["Vanilla", "Double XP", "From items", "From bosses"];
 
