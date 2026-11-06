@@ -1467,6 +1467,7 @@
         "name": "Fragment of Virtue",
         "type": "ProgressiveQuestItem",
         "class": "Filler",
+        "progStyle": 2,
         "count": 3
     },
     {
@@ -1474,6 +1475,7 @@
         "name": "Imperfectus Lacrimatorio",
         "type": "ProgressiveQuestItem",
         "class": "Useful",
+        "progStyle": 3,
         "count": 5
     },
     {
@@ -1481,6 +1483,7 @@
         "name": "Ring of the Perfidy",
         "type": "ProgressiveQuestItem",
         "class": "Progression",
+        "progStyle": 3,
         "count": 2
     },
     {
@@ -1488,6 +1491,7 @@
         "name": "Sculptor Tool",
         "type": "ProgressiveQuestItem",
         "class": "Progression",
+        "progStyle": 0,
         "count": 5
     },
     {
@@ -1495,6 +1499,7 @@
         "name": "Piece of the Lullaby",
         "type": "ProgressiveQuestItem",
         "class": "Progression",
+        "progStyle": 1,
         "count": 5
     },
     {
