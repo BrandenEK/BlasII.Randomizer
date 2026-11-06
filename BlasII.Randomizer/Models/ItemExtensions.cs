@@ -173,24 +173,7 @@ public static class ItemExtensions
                 }
             case Item.ItemType.ProgressiveQuestItem:
                 {
-                    var nextItem = item.GetProgressiveItem(true);
-                    if (!nextItem.IsValid())
-                    {
-                        ModLog.Error($"Attempting to add invalid level of item {item.Id}");
-                        break;
-                    }
-
-                    // Add next item if there is one
-                    AssetStorage.PlayerInventory.AddItemAsync(AssetStorage.QuestItems[nextItem.Id]);
-                    if (nextItem.Id == "QI111")
-                        CoreCache.AbilitiesUnlockManager.SetAbility(AssetStorage.Abilities[ABILITY_IDS.GoldFlask], true);
-
-                    var currentItem = item.GetProgressiveItem(false);
-                    if (!currentItem.IsValid() || item.Id == "ST")
-                        break;
-
-                    // Remove current item if you have one
-                    AssetStorage.PlayerInventory.RemoveItem(AssetStorage.QuestItems[currentItem.Id]);
+                    item.GiveProgItemOld();
                     break;
                 }
             case Item.ItemType.GoldLump:
@@ -269,6 +252,41 @@ public static class ItemExtensions
 
         Main.Randomizer.ItemHandler.SetItemCollected(item.Id);
         Main.Randomizer.MessageHandler.Broadcast("ITEM", item.Id);
+    }
+
+    private static void GiveProgItemOld(this Item item)
+    {
+        var nextItem = item.GetProgressiveItem(true);
+        if (!nextItem.IsValid())
+        {
+            ModLog.Error($"Attempting to add invalid level of item {item.Id}");
+            return;
+        }
+
+        // Add next item if there is one
+        AssetStorage.PlayerInventory.AddItemAsync(AssetStorage.QuestItems[nextItem.Id]);
+        if (nextItem.Id == "QI111")
+            CoreCache.AbilitiesUnlockManager.SetAbility(AssetStorage.Abilities[ABILITY_IDS.GoldFlask], true);
+
+        var currentItem = item.GetProgressiveItem(false);
+        if (!currentItem.IsValid() || item.Id == "ST")
+            return;
+
+        // Remove current item if you have one
+        AssetStorage.PlayerInventory.RemoveItem(AssetStorage.QuestItems[currentItem.Id]);
+    }
+
+    private static void GiveProgItemNew(this Item item)
+    {
+        // Get the static NewLullabies object
+
+        // Get the next level and make sure its valid
+
+        // If so,
+        // add the item itself
+        // Perform all functions
+        // Remove the previous item
+        // Grant abilities
     }
 
     /// <summary>

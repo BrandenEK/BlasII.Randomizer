@@ -27,7 +27,25 @@ public class ProgressiveItemData(string id, params ProgressiveItemLevel[] levels
 {
     public string Id { get; } = id;
 
-    public ProgressiveItemLevel[] Levels { get; } = levels;
+    private readonly ProgressiveItemLevel[] _levels = levels;
+
+    public ProgressiveItemLevel CurrentProgressiveLevel
+    {
+        get
+        {
+            int level = Main.Randomizer.ItemHandler.AmountItemCollected(Id) - 1;
+            return level >= 0 && level < _levels.Length ? _levels[level] : new ProgressiveItemLevel("INVALID");
+        }
+    }
+
+    public ProgressiveItemLevel NextProgressiveLevel
+    {
+        get
+        {
+            int level = Main.Randomizer.ItemHandler.AmountItemCollected(Id);
+            return level >= 0 && level < _levels.Length ? _levels[level] : new ProgressiveItemLevel("INVALID");
+        }
+    }
 }
 
 public class ProgressiveItemLevel(string id, params List<IFunction> functions)
