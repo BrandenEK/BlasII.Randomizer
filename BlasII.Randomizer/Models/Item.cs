@@ -22,9 +22,14 @@ public class Item : IUnique
     public ItemType Type { get; set; }
 
     /// <summary>
-    /// How this item is used for logical progression
+    /// Determines how this item is used for logical progression
     /// </summary>
     public ItemClass Class { get; set; }
+
+    /// <summary>
+    /// Determines what style of progressive quest item
+    /// </summary>
+    public ItemProgStyle ProgStyle { get; set; }
 
     /// <summary>
     /// How many copies of this item should be added to the item pool
@@ -77,5 +82,19 @@ public class Item : IUnique
         Useful,
         /// <summary> Used for logical advancement </summary>
         Progression,
+    }
+
+    /// <summary>
+    /// A classification of how ProgressiveQuestItems should be handled
+    /// </summary>
+    [System.Flags]
+    public enum ItemProgStyle
+    {
+        /// <summary> No special handling </summary>
+        None = 0x0,
+        /// <summary> Removes the previous item when a new one is acquired </summary>
+        RemovePrevious = 0x1,
+        /// <summary> Changes to a different item when the last one is acquired </summary>
+        ConvertLast = 0x2
     }
 }
