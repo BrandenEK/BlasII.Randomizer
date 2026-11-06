@@ -41,6 +41,7 @@ dialog/travel: Travel to starting room
 
 # Settings menu
 option/random: Random
+option/randomog: Random OG
 option/vanilla: Vanilla
 option/seed: Seed:
 option/preset: Preset
