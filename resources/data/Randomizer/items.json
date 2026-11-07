@@ -1404,21 +1404,42 @@
         "name": "Piece of cracked ceramic",
         "type": "QuestItem",
         "class": "Useful",
-        "count": 4
+        "count": 0
+    },
+    {
+        "id": "QI205",
+        "name": "Ceramic Offering",
+        "type": "QuestItem",
+        "class": "Useful",
+        "count": 0
     },
     {
         "id": "QI207",
         "name": "Piece of rusted silver",
         "type": "QuestItem",
         "class": "Useful",
-        "count": 4
+        "count": 0
+    },
+    {
+        "id": "QI208",
+        "name": "Silver Offering",
+        "type": "QuestItem",
+        "class": "Useful",
+        "count": 0
     },
     {
         "id": "QI210",
         "name": "Old Piece of Gold",
         "type": "QuestItem",
         "class": "Useful",
-        "count": 4
+        "count": 0
+    },
+    {
+        "id": "QI211",
+        "name": "Gold Offering",
+        "type": "QuestItem",
+        "class": "Useful",
+        "count": 0
     },
     {
         "id": "QI213",
@@ -1463,11 +1484,25 @@
         "count": 1
     },
     {
+        "id": "CO",
+        "name": "Ceramic Offering",
+        "type": "ProgressiveQuestItem",
+        "class": "Useful",
+        "count": 4
+    },
+    {
         "id": "FV",
         "name": "Fragment of Virtue",
         "type": "ProgressiveQuestItem",
         "class": "Filler",
         "count": 3
+    },
+    {
+        "id": "GO",
+        "name": "Gold Offering",
+        "type": "ProgressiveQuestItem",
+        "class": "Useful",
+        "count": 4
     },
     {
         "id": "IL",
@@ -1482,6 +1517,13 @@
         "type": "ProgressiveQuestItem",
         "class": "Progression",
         "count": 2
+    },
+    {
+        "id": "SO",
+        "name": "Silver Offering",
+        "type": "ProgressiveQuestItem",
+        "class": "Useful",
+        "count": 4
     },
     {
         "id": "ST",
