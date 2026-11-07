@@ -1,5 +1,4 @@
-﻿using BlasII.ModdingAPI;
-using BlasII.ModdingAPI.Assets;
+﻿using BlasII.ModdingAPI.Assets;
 using Il2CppTGK.Game;
 using System.Collections.Generic;
 
@@ -24,7 +23,6 @@ public class AddItemFunction(string item) : IFunction
     /// <inheritdoc/>
     public void Execute()
     {
-        ModLog.Warn("Adding item " + item);
         AssetStorage.PlayerInventory.AddItemAsync(AssetStorage.QuestItems[item]);
     }
 }
@@ -37,7 +35,6 @@ public class RemoveItemFunction(string item) : IFunction
     /// <inheritdoc/>
     public void Execute()
     {
-        ModLog.Warn("Removing item " + item);
         AssetStorage.PlayerInventory.RemoveItem(AssetStorage.QuestItems[item]);
     }
 }
@@ -52,7 +49,6 @@ public class RemoveItemsFunction(params List<string> items) : IFunction
     {
         foreach (string item in items)
         {
-            ModLog.Warn("Removing item " + item);
             AssetStorage.PlayerInventory.RemoveItem(AssetStorage.QuestItems[item]);
         }
     }
@@ -66,7 +62,6 @@ public class ChangeItemFunction(string item) : IFunction
     /// <inheritdoc/>
     public void Execute()
     {
-        ModLog.Warn($"Changing item into {item}");
         AssetStorage.PlayerInventory.AddItemAsync(AssetStorage.QuestItems[item]);
         Main.Randomizer.ItemHandler.DisplayItem(Main.Randomizer.ItemStorage[item]);
     }
@@ -80,7 +75,6 @@ public class GrantAbilityFunction(ABILITY_IDS ability) : IFunction
     /// <inheritdoc/>
     public void Execute()
     {
-        ModLog.Warn($"Granting ability {ability}");
         CoreCache.AbilitiesUnlockManager.SetAbility(AssetStorage.Abilities[ability], true);
     }
 }
