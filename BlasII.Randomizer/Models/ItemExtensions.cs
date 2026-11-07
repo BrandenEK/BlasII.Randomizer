@@ -181,7 +181,6 @@ public static class ItemExtensions
                         break;
                     }
 
-                    AssetStorage.PlayerInventory.AddItemAsync(AssetStorage.QuestItems[nextLevel.Id]);
                     nextLevel.PerformFunctions();
                     break;
                 }

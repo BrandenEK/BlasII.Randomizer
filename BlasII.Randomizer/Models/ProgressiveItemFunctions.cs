@@ -17,6 +17,19 @@ public interface IFunction
 }
 
 /// <summary>
+/// Adds an item to the inventory
+/// </summary>
+public class AddItemFunction(string item) : IFunction
+{
+    /// <inheritdoc/>
+    public void Execute()
+    {
+        ModLog.Warn("Adding item " + item);
+        AssetStorage.PlayerInventory.AddItemAsync(AssetStorage.QuestItems[item]);
+    }
+}
+
+/// <summary>
 /// Removes a single item from the inventory
 /// </summary>
 public class RemoveItemFunction(string item) : IFunction
@@ -42,6 +55,20 @@ public class RemoveItemsFunction(params List<string> items) : IFunction
             ModLog.Warn("Removing item " + item);
             AssetStorage.PlayerInventory.RemoveItem(AssetStorage.QuestItems[item]);
         }
+    }
+}
+
+/// <summary>
+/// Changes the item into a different one
+/// </summary>
+public class ChangeItemFunction(string item) : IFunction
+{
+    /// <inheritdoc/>
+    public void Execute()
+    {
+        ModLog.Warn($"Changing item into {item}");
+        AssetStorage.PlayerInventory.AddItemAsync(AssetStorage.QuestItems[item]);
+        Main.Randomizer.ItemHandler.DisplayItem(Main.Randomizer.ItemStorage[item]);
     }
 }
 
