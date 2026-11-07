@@ -173,7 +173,10 @@ public static class ItemExtensions
                 }
             case Item.ItemType.ProgressiveQuestItem:
                 {
-                    item.GiveProgItemOld();
+                    if (item.Id == "UL")
+                        item.GiveProgItemNew();
+                    else
+                        item.GiveProgItemOld();
                     break;
                 }
             case Item.ItemType.GoldLump:
@@ -278,15 +281,19 @@ public static class ItemExtensions
 
     private static void GiveProgItemNew(this Item item)
     {
-        // Get the static NewLullabies object
+        // Get this based on ID
+        var data = ItemGroups.NewLullabies;
+        var nextLevel = data.NextProgressiveLevel;
 
-        // Get the next level and make sure its valid
+        if (!nextLevel.IsValid)
+        {
+            ModLog.Error($"Attempting to add invalid level of item {item.Id}");
+            return;
+        }
 
-        // If so,
-        // add the item itself
-        // Perform all functions
-        // Remove the previous item
-        // Grant abilities
+        ModLog.Warn("Giving prog item " + nextLevel.Id);
+        AssetStorage.PlayerInventory.AddItemAsync(AssetStorage.QuestItems[nextLevel.Id]);
+        nextLevel.PerformFunctions();
     }
 
     /// <summary>

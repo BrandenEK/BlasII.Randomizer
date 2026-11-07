@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using BlasII.ModdingAPI;
+using BlasII.ModdingAPI.Assets;
+using System.Collections.Generic;
 
 namespace BlasII.Randomizer.Storages;
 
@@ -17,10 +19,10 @@ public static class ItemGroups
 
     public static ProgressiveItemData NewLullabies = new ProgressiveItemData("UL",
         new ProgressiveItemLevel("QI23"),
-        new ProgressiveItemLevel("QI24", new RemovePrevious()),
-        new ProgressiveItemLevel("QI25", new RemovePrevious()),
-        new ProgressiveItemLevel("QI26", new RemovePrevious()),
-        new ProgressiveItemLevel("QI27", new RemovePrevious()));
+        new ProgressiveItemLevel("QI24", new RemoveItem("QI23")),
+        new ProgressiveItemLevel("QI25", new RemoveItem("QI24")),
+        new ProgressiveItemLevel("QI26", new RemoveItem("QI25")),
+        new ProgressiveItemLevel("QI27", new RemoveItem("QI26")));
 }
 
 public class ProgressiveItemData(string id, params ProgressiveItemLevel[] levels)
@@ -52,18 +54,43 @@ public class ProgressiveItemLevel(string id, params List<IFunction> functions)
 {
     public string Id { get; } = id;
 
-    public List<IFunction> Functions { get; } = functions;
+    private readonly List<IFunction> _functions = functions;
+
+    public void PerformFunctions()
+    {
+        foreach (var function in _functions)
+            function.Execute();
+    }
+
+    public bool IsValid => Id != "INVALID";
 }
 
 public interface IFunction
 {
-    public void Grant(ProgressiveItemData data, int current);
+    public void Execute();
 }
 
-public class RemovePrevious : IFunction
+public class RemoveItem(string item) : IFunction
 {
-    public void Grant(ProgressiveItemData data, int current)
+    private readonly string _item = item;
+
+    public void Execute()
     {
-        // Remove the previous level
+        ModLog.Warn("Removing item " + _item);
+        AssetStorage.PlayerInventory.RemoveItem(AssetStorage.QuestItems[_item]);
+    }
+}
+
+public class RemoveItems(params List<string> items) : IFunction
+{
+    private readonly List<string> _items = items;
+
+    public void Execute()
+    {
+        foreach (string item in _items)
+        {
+            ModLog.Warn("Removing item " + item);
+            AssetStorage.PlayerInventory.RemoveItem(AssetStorage.QuestItems[item]);
+        }
     }
 }
