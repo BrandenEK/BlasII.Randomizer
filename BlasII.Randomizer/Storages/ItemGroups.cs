@@ -11,12 +11,6 @@ namespace BlasII.Randomizer.Storages;
 /// </summary>
 public static class ItemGroups
 {
-    public static string[] Lullabies { get; } = ["QI23", "QI24", "QI25", "QI26", "QI27"];
-
-    public static string[] Lacrimatorios { get; } = ["QI106", "QI107", "QI108", "QI110", "QI111"];
-
-    public static string[] SculptorTools { get; } = ["QI12", "QI02", "QI11", "QI03", "QI01"];
-
     public static string[] ChallengeRewards { get; } = ["PR103", "PR108", "FG101", "FG105", "FG106", "FG111"];
 }
 
@@ -43,6 +37,20 @@ public class ProgressiveItemData(string id, params ProgressiveItemLevel[] levels
             return level >= 0 && level < _levels.Length ? _levels[level] : new ProgressiveItemLevel("INVALID");
         }
     }
+
+    public bool TryGetNextProgressiveLevel(out ProgressiveItemLevel nextLevel)
+    {
+        int level = Main.Randomizer.ItemHandler.AmountItemCollected(Id);
+
+        if (level >= 0 && level < _levels.Length)
+        {
+            nextLevel = _levels[level];
+            return true;
+        }
+
+        nextLevel = new ProgressiveItemLevel("INVALID");
+        return false;
+    }
 }
 
 public class ProgressiveItemLevel(string id, params List<IFunction> functions)
@@ -56,8 +64,6 @@ public class ProgressiveItemLevel(string id, params List<IFunction> functions)
         foreach (var function in _functions)
             function.Execute();
     }
-
-    public bool IsValid => Id != "INVALID";
 }
 
 public interface IFunction

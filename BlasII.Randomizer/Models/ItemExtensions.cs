@@ -174,9 +174,8 @@ public static class ItemExtensions
             case Item.ItemType.ProgressiveQuestItem:
                 {
                     var data = item.GetProgressiveData();
-                    var nextLevel = data.NextProgressiveLevel;
 
-                    if (!nextLevel.IsValid)
+                    if (!data.TryGetNextProgressiveLevel(out var nextLevel))
                     {
                         ModLog.Error($"Attempting to add invalid level of item {item.Id}");
                         return;
