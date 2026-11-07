@@ -173,10 +173,23 @@ public static class ItemExtensions
                 }
             case Item.ItemType.ProgressiveQuestItem:
                 {
-                    //if (item.Id == "UL")
-                        item.GiveProgItemNew();
-                    //else
-                    //    item.GiveProgItemOld();
+                    var data = item.Id switch // Get this from a dictionary or something
+                    {
+                        "IL" => ItemGroups.NewLacrimatorios,
+                        "ST" => ItemGroups.NewSculptorTools,
+                        "UL" => ItemGroups.NewLullabies,
+                        _ => throw new Exception($"Invalid progressive questitem id: {item.Id}")
+                    };
+                    var nextLevel = data.NextProgressiveLevel;
+
+                    if (!nextLevel.IsValid)
+                    {
+                        ModLog.Error($"Attempting to add invalid level of item {item.Id}");
+                        return;
+                    }
+
+                    AssetStorage.PlayerInventory.AddItemAsync(AssetStorage.QuestItems[nextLevel.Id]);
+                    nextLevel.PerformFunctions();
                     break;
                 }
             case Item.ItemType.GoldLump:
@@ -255,51 +268,6 @@ public static class ItemExtensions
 
         Main.Randomizer.ItemHandler.SetItemCollected(item.Id);
         Main.Randomizer.MessageHandler.Broadcast("ITEM", item.Id);
-    }
-
-    private static void GiveProgItemOld(this Item item)
-    {
-        var nextItem = item.GetProgressiveItem(true);
-        if (!nextItem.IsValid())
-        {
-            ModLog.Error($"Attempting to add invalid level of item {item.Id}");
-            return;
-        }
-
-        // Add next item if there is one
-        AssetStorage.PlayerInventory.AddItemAsync(AssetStorage.QuestItems[nextItem.Id]);
-        if (nextItem.Id == "QI111")
-            CoreCache.AbilitiesUnlockManager.SetAbility(AssetStorage.Abilities[ABILITY_IDS.GoldFlask], true);
-
-        var currentItem = item.GetProgressiveItem(false);
-        if (!currentItem.IsValid() || item.Id == "ST")
-            return;
-
-        // Remove current item if you have one
-        AssetStorage.PlayerInventory.RemoveItem(AssetStorage.QuestItems[currentItem.Id]);
-    }
-
-    private static void GiveProgItemNew(this Item item)
-    {
-        // Get this based on ID
-        var data = item.Id switch
-        {
-            "IL" => ItemGroups.NewLacrimatorios,
-            "ST" => ItemGroups.NewSculptorTools,
-            "UL" => ItemGroups.NewLullabies,
-            _ => throw new Exception($"Invalid progressive questitem id: {item.Id}")
-        };
-        var nextLevel = data.NextProgressiveLevel;
-
-        if (!nextLevel.IsValid)
-        {
-            ModLog.Error($"Attempting to add invalid level of item {item.Id}");
-            return;
-        }
-
-        ModLog.Warn("Giving prog item " + nextLevel.Id);
-        AssetStorage.PlayerInventory.AddItemAsync(AssetStorage.QuestItems[nextLevel.Id]);
-        nextLevel.PerformFunctions();
     }
 
     /// <summary>
