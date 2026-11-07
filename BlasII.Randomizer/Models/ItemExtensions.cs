@@ -173,10 +173,10 @@ public static class ItemExtensions
                 }
             case Item.ItemType.ProgressiveQuestItem:
                 {
-                    if (item.Id == "UL")
+                    //if (item.Id == "UL")
                         item.GiveProgItemNew();
-                    else
-                        item.GiveProgItemOld();
+                    //else
+                    //    item.GiveProgItemOld();
                     break;
                 }
             case Item.ItemType.GoldLump:
@@ -282,7 +282,12 @@ public static class ItemExtensions
     private static void GiveProgItemNew(this Item item)
     {
         // Get this based on ID
-        var data = ItemGroups.NewLullabies;
+        var data = item.Id switch
+        {
+            "UL" => ItemGroups.NewLullabies,
+            "ST" => ItemGroups.NewSculptorTools,
+            _ => throw new Exception($"Invalid progressive questitem id: {item.Id}")
+        };
         var nextLevel = data.NextProgressiveLevel;
 
         if (!nextLevel.IsValid)

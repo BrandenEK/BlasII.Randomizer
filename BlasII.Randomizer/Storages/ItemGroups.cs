@@ -23,6 +23,13 @@ public static class ItemGroups
         new ProgressiveItemLevel("QI25", new RemoveItem("QI24")),
         new ProgressiveItemLevel("QI26", new RemoveItem("QI25")),
         new ProgressiveItemLevel("QI27", new RemoveItem("QI26")));
+
+    public static ProgressiveItemData NewSculptorTools = new ProgressiveItemData("ST",
+        new ProgressiveItemLevel("QI12"),
+        new ProgressiveItemLevel("QI02"),
+        new ProgressiveItemLevel("QI11"),
+        new ProgressiveItemLevel("QI03"),
+        new ProgressiveItemLevel("QI01"));
 }
 
 public class ProgressiveItemData(string id, params ProgressiveItemLevel[] levels)
