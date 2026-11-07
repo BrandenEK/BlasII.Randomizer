@@ -7,10 +7,22 @@ namespace BlasII.Randomizer.Models;
 /// </summary>
 public static class ProgressiveItemExtensions
 {
+    private static readonly ProgressiveItemData _ceramics = new ProgressiveItemData("CO",
+        new ProgressiveItemLevel("QI204", new AddItemFunction("QI204")),
+        new ProgressiveItemLevel("QI204", new AddItemFunction("QI204")),
+        new ProgressiveItemLevel("QI204", new AddItemFunction("QI204")),
+        new ProgressiveItemLevel("QI204", new ChangeItemFunction("QI205"), new RemoveItemsFunction("QI204", "QI204", "QI204")));
+
     private static readonly ProgressiveItemData _fragments = new ProgressiveItemData("FV",
         new ProgressiveItemLevel("QI213", new AddItemFunction("QI213")),
         new ProgressiveItemLevel("QI216", new AddItemFunction("QI216")),
         new ProgressiveItemLevel("QI217", new ChangeItemFunction("QI214"), new RemoveItemsFunction("QI213", "QI216", "QI217")));
+
+    private static readonly ProgressiveItemData _golds = new ProgressiveItemData("GO",
+        new ProgressiveItemLevel("QI210", new AddItemFunction("QI210")),
+        new ProgressiveItemLevel("QI210", new AddItemFunction("QI210")),
+        new ProgressiveItemLevel("QI210", new AddItemFunction("QI210")),
+        new ProgressiveItemLevel("QI210", new ChangeItemFunction("QI211"), new RemoveItemsFunction("QI210", "QI210", "QI210")));
 
     private static readonly ProgressiveItemData _lacrimatorios = new ProgressiveItemData("IL",
         new ProgressiveItemLevel("QI106", new AddItemFunction("QI106")),
@@ -22,6 +34,12 @@ public static class ProgressiveItemExtensions
     private static readonly ProgressiveItemData _rings = new ProgressiveItemData("RP",
         new ProgressiveItemLevel("QI202", new AddItemFunction("QI202")),
         new ProgressiveItemLevel("QI203", new ChangeItemFunction("QI215"), new RemoveItemFunction("QI202")));
+
+    private static readonly ProgressiveItemData _silvers = new ProgressiveItemData("SO",
+        new ProgressiveItemLevel("QI207", new AddItemFunction("QI207")),
+        new ProgressiveItemLevel("QI207", new AddItemFunction("QI207")),
+        new ProgressiveItemLevel("QI207", new AddItemFunction("QI207")),
+        new ProgressiveItemLevel("QI207", new ChangeItemFunction("QI208"), new RemoveItemsFunction("QI207", "QI207", "QI207")));
 
     private static readonly ProgressiveItemData _sculptorTools = new ProgressiveItemData("ST",
         new ProgressiveItemLevel("QI12", new AddItemFunction("QI12")),
@@ -44,9 +62,12 @@ public static class ProgressiveItemExtensions
     {
         return item.Id switch
         {
+            "CO" => _ceramics,
             "FV" => _fragments,
+            "GO" => _golds,
             "IL" => _lacrimatorios,
             "RP" => _rings,
+            "SO" => _silvers,
             "ST" => _sculptorTools,
             "UL" => _lullabies,
             _ => throw new System.Exception($"Invalid progressive questitem id: {item.Id}")
