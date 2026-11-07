@@ -42,7 +42,7 @@ public static class ItemExtensions
             Item.ItemType.PreMarks => Main.Randomizer.EmbeddedIconStorage.GetImage("PreMarks"),
             Item.ItemType.EmbMarks => Main.Randomizer.EmbeddedIconStorage.GetImage("EmbMarks"),
 
-            Item.ItemType.Invalid => Main.Randomizer.CustomIconStorage.GetImage(CustomIconStorage.IconType.Invalid),
+            Item.ItemType.Invalid => Main.Randomizer.CustomIconStorage.GetImage(Storages.CustomIconStorage.IconType.Invalid),
             _ => throw new Exception($"Invalid item type: {item.Type}")
         };
     }
