@@ -1,5 +1,4 @@
 ﻿using BlasII.ModdingAPI.Assets;
-using BlasII.Randomizer.Storages;
 
 namespace BlasII.Randomizer.Models;
 
@@ -10,10 +9,10 @@ public static class ProgressiveItemExtensions
 {
     private static readonly ProgressiveItemData _lullabies = new ProgressiveItemData("UL",
         new ProgressiveItemLevel("QI23"),
-        new ProgressiveItemLevel("QI24", new RemoveItem("QI23")),
-        new ProgressiveItemLevel("QI25", new RemoveItem("QI24")),
-        new ProgressiveItemLevel("QI26", new RemoveItem("QI25")),
-        new ProgressiveItemLevel("QI27", new RemoveItem("QI26")));
+        new ProgressiveItemLevel("QI24", new RemoveItemFunction("QI23")),
+        new ProgressiveItemLevel("QI25", new RemoveItemFunction("QI24")),
+        new ProgressiveItemLevel("QI26", new RemoveItemFunction("QI25")),
+        new ProgressiveItemLevel("QI27", new RemoveItemFunction("QI26")));
 
     private static readonly ProgressiveItemData _sculptorTools = new ProgressiveItemData("ST",
         new ProgressiveItemLevel("QI12"),
@@ -24,10 +23,10 @@ public static class ProgressiveItemExtensions
 
     private static readonly ProgressiveItemData _lacrimatorios = new ProgressiveItemData("IL",
         new ProgressiveItemLevel("QI106"),
-        new ProgressiveItemLevel("QI107", new RemoveItem("QI106")),
-        new ProgressiveItemLevel("QI108", new RemoveItem("QI107")),
-        new ProgressiveItemLevel("QI110", new RemoveItem("QI108")),
-        new ProgressiveItemLevel("QI111", new RemoveItems("QI109", "QI110"), new GrantAbility(ABILITY_IDS.GoldFlask)));
+        new ProgressiveItemLevel("QI107", new RemoveItemFunction("QI106")),
+        new ProgressiveItemLevel("QI108", new RemoveItemFunction("QI107")),
+        new ProgressiveItemLevel("QI110", new RemoveItemFunction("QI108")),
+        new ProgressiveItemLevel("QI111", new RemoveItemsFunction("QI109", "QI110"), new GrantAbilityFunction(ABILITY_IDS.GoldFlask)));
 
     /// <summary>
     /// Gets the progressive data for the specified item
