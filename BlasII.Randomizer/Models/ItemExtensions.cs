@@ -284,8 +284,9 @@ public static class ItemExtensions
         // Get this based on ID
         var data = item.Id switch
         {
-            "UL" => ItemGroups.NewLullabies,
+            "IL" => ItemGroups.NewLacrimatorios,
             "ST" => ItemGroups.NewSculptorTools,
+            "UL" => ItemGroups.NewLullabies,
             _ => throw new Exception($"Invalid progressive questitem id: {item.Id}")
         };
         var nextLevel = data.NextProgressiveLevel;

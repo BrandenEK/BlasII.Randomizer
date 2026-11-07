@@ -1,5 +1,6 @@
 ﻿using BlasII.ModdingAPI;
 using BlasII.ModdingAPI.Assets;
+using Il2CppTGK.Game;
 using System.Collections.Generic;
 
 namespace BlasII.Randomizer.Storages;
@@ -30,6 +31,13 @@ public static class ItemGroups
         new ProgressiveItemLevel("QI11"),
         new ProgressiveItemLevel("QI03"),
         new ProgressiveItemLevel("QI01"));
+
+    public static ProgressiveItemData NewLacrimatorios = new ProgressiveItemData("IL",
+        new ProgressiveItemLevel("QI106"),
+        new ProgressiveItemLevel("QI107", new RemoveItem("QI106")),
+        new ProgressiveItemLevel("QI108", new RemoveItem("QI107")),
+        new ProgressiveItemLevel("QI110", new RemoveItem("QI108")),
+        new ProgressiveItemLevel("QI111", new RemoveItems("QI109", "QI110"), new GrantAbility(ABILITY_IDS.GoldFlask)));
 }
 
 public class ProgressiveItemData(string id, params ProgressiveItemLevel[] levels)
@@ -79,25 +87,31 @@ public interface IFunction
 
 public class RemoveItem(string item) : IFunction
 {
-    private readonly string _item = item;
 
     public void Execute()
     {
-        ModLog.Warn("Removing item " + _item);
-        AssetStorage.PlayerInventory.RemoveItem(AssetStorage.QuestItems[_item]);
+        ModLog.Warn("Removing item " + item);
+        AssetStorage.PlayerInventory.RemoveItem(AssetStorage.QuestItems[item]);
     }
 }
 
 public class RemoveItems(params List<string> items) : IFunction
 {
-    private readonly List<string> _items = items;
-
     public void Execute()
     {
-        foreach (string item in _items)
+        foreach (string item in items)
         {
             ModLog.Warn("Removing item " + item);
             AssetStorage.PlayerInventory.RemoveItem(AssetStorage.QuestItems[item]);
         }
+    }
+}
+
+public class GrantAbility(ABILITY_IDS ability) : IFunction
+{
+    public void Execute()
+    {
+        ModLog.Warn($"Granting ability {ability}");
+        CoreCache.AbilitiesUnlockManager.SetAbility(AssetStorage.Abilities[ability], true);
     }
 }
