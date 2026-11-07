@@ -178,7 +178,7 @@ public static class ItemExtensions
                     if (!data.TryGetNextProgressiveLevel(out var nextLevel))
                     {
                         ModLog.Error($"Attempting to add invalid level of item {item.Id}");
-                        return;
+                        break;
                     }
 
                     AssetStorage.PlayerInventory.AddItemAsync(AssetStorage.QuestItems[nextLevel.Id]);
