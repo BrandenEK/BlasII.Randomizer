@@ -147,6 +147,17 @@ public class BlasphemousInventory
     [ResolvableAs("lamp")]
     bool Lamp { get; set; }
 
+    [CollectableAs("RP")]
+    int NumRings { get; set; }
+    [ResolvableAs("brokenring")]
+    bool BrokenRing => NumRings >= 1;
+    [ResolvableAs("completering")]
+    bool CompleteRing => NumRings >= 2;
+
+    [CollectableAs("ST")]
+    [ResolvableAs("tools")]
+    int NumTools { get; set; }
+
     [CollectableAs("UL")]
     [ResolvableAs("lullabies")]
     int NumLullabies { get; set; }
@@ -154,10 +165,6 @@ public class BlasphemousInventory
     [CollectableAs("GL")]
     [ResolvableAs("goldlumps")]
     int GoldLumps { get; set; }
-
-    [CollectableAs("ST")]
-    [ResolvableAs("tools")]
-    int NumTools { get; set; }
 
     // Weapons
 
