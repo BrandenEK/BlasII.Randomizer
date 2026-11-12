@@ -169,6 +169,7 @@ public class ItemHandler
     /// Gets the current amount of collected items
     /// </summary>
     public int CollectedItemsDisplay => CollectedLocations
+        .Where(x => Main.Randomizer.ItemLocationStorage.ContainsId(x))
         .Select(x => Main.Randomizer.ItemLocationStorage[x])
         .Count(x => x.ContributesPercentage(Main.Randomizer.CurrentSettings));
 

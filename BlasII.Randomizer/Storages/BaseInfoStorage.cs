@@ -53,6 +53,14 @@ public abstract class BaseInfoStorage<TValue> where TValue : class, IUnique
     }
 
     /// <summary>
+    /// Checks if the storage contains the specified ID
+    /// </summary>
+    public bool ContainsId(string id)
+    {
+        return _values.ContainsKey(id);
+    }
+
+    /// <summary>
     /// Tries to return the specified info
     /// </summary>
     public bool TryGetValue(string id, out TValue value)
