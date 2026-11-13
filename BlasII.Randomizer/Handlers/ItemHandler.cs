@@ -162,6 +162,7 @@ public class ItemHandler
     /// Gets the current amount of total items
     /// </summary>
     public int TotalItemsDisplay => MappedItems
+        .Where(x => Main.Randomizer.ItemLocationStorage.ContainsId(x.Key))
         .Select(x => Main.Randomizer.ItemLocationStorage[x.Key])
         .Count(x => x.ContributesPercentage(Main.Randomizer.CurrentSettings));
 
