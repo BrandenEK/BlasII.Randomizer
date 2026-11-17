@@ -23,4 +23,9 @@ Z23: Beneath Her Sacred Grounds
 Z24: Garden of the High Choirs
 Z27: Icebound Mausoleum
 Z28: Santa Vigilia
+Z29: Usurped Halls
+Z30: Geometry of Knowledge
+Z31: Stone Entrails
+Z32: The Vibrating of the Organs
+Z36: Castle of the Mist
 SHO: Shops
