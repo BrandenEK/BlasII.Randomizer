@@ -21,7 +21,7 @@ public class EmbeddedIconStorage : BaseSpriteStorage<string>
             _images.Add(type, sprite);
         }
 
-        ModLog.Info($"Loaded {_images.Count} embedded images!");
+        ModLog.Info($"Loaded {_images.Count} embedded images");
     }
 
     private IEnumerable<Sprite> FindAllSprites()

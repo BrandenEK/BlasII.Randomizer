@@ -18,7 +18,7 @@ public class CustomIconStorage : BaseSpriteStorage<CustomIconStorage.IconType>
 
         for (int i = 0; i < images.Length; i++)
             _images.Add((IconType)i, images[i]);
-        ModLog.Info($"Loaded {_images.Count} custom images!");
+        ModLog.Info($"Loaded {_images.Count} custom images");
     }
 
     public enum IconType

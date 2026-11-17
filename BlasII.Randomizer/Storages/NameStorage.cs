@@ -35,7 +35,7 @@ public class NameStorage
             .Select(x => x.Split(':'))
             .ToDictionary(x => x[0].Trim(), x => x[1].Trim());
 
-        ModLog.Info($"Loaded {nameDict.Count} {type} names!");
+        ModLog.Info($"Loaded {nameDict.Count} {type} names");
         return nameDict;
     }
 
