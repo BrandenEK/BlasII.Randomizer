@@ -102,7 +102,15 @@ class Check_WeaponUnlocked_Patch
             return false;
         }
 
-        return true;
+        if (!Main.Randomizer.ExtraInfoStorage.TryGetQuestBypassInfo(scene, weapon, out QuestBypassInfo info))
+            return true;
+
+        bool collected = info.ItemOverride();
+        ModLog.Warn($"Result from overriding item check: {collected}");
+
+        __instance.Fsm.Event(collected ? __instance.isUnlocked : __instance.isNotUnlocked);
+        __instance.Finish();
+        return false;
     }
 }
 
