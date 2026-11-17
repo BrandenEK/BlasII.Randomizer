@@ -25,7 +25,7 @@ public abstract class BaseInfoStorage<TValue> where TValue : class, IUnique
         foreach (TValue value in values)
             _values.Add(value.Id, value);
         
-        ModLog.Info($"Loaded {_values.Count} {type}!");
+        ModLog.Info($"Loaded {_values.Count} {type}");
     }
 
     /// <summary>
