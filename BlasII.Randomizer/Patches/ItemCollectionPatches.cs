@@ -58,7 +58,7 @@ class PlayMaker_AddItem_Patch
     public static bool Prefix(AddItem __instance)
     {
         string sceneName = CoreCache.Room.CurrentRoom?.Name;
-        string itemName = __instance.itemID.name;
+        string itemName = __instance.itemID?.name;
 
         // Always give location if certain room or item
         if (ROOMS_ALWAYS.Contains(sceneName) || ITEMS_ALWAYS.Contains(itemName))

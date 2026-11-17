@@ -21,7 +21,7 @@ class Check_ItemOwned_Patch
     public static bool Prefix(IsItemOwned __instance)
     {
         string scene = CoreCache.Room.CurrentRoom?.Name;
-        string item = __instance.itemID.name;
+        string item = __instance.itemID?.name;
 
         ModLog.Warn($"{__instance.Owner.name} is checking for item: {item}");
 
@@ -64,7 +64,7 @@ class RemoveItem_OnEnter_Patch
     public static bool Prefix(RemoveItem __instance)
     {
         string scene = CoreCache.Room.CurrentRoom?.Name;
-        string item = __instance.itemID.name;
+        string item = __instance.itemID?.name;
 
         ModLog.Warn($"{__instance.Owner.name} is trying to remove item: {item}");
 
@@ -102,7 +102,15 @@ class Check_WeaponUnlocked_Patch
             return false;
         }
 
-        return true;
+        if (!Main.Randomizer.ExtraInfoStorage.TryGetQuestBypassInfo(scene, weapon, out QuestBypassInfo info))
+            return true;
+
+        bool collected = info.ItemOverride();
+        ModLog.Warn($"Result from overriding item check: {collected}");
+
+        __instance.Fsm.Event(collected ? __instance.isUnlocked : __instance.isNotUnlocked);
+        __instance.Finish();
+        return false;
     }
 }
 

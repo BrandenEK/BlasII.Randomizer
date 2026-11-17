@@ -645,7 +645,7 @@
         "logic": "wallclimb + glasswalk + doublejump + airdash"
     },
     {
-        "id": "Z0830.l7",
+        "id": "Z0830.l6",
         "name": "Hidden wall chest",
         "logic": "wallclimb + glasswalk + doublejump"
     },
