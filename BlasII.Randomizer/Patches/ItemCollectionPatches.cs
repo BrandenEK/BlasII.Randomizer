@@ -239,6 +239,15 @@ class PlayMaker_UnlockAbility_Patch
 {
     public static bool Prefix(UnlockAbility __instance)
     {
+        string sceneName = CoreCache.Room.CurrentRoom?.Name;
+
+        // Prevent giving ability in the whip room
+        if (sceneName == "Z3027")
+        {
+            __instance.Finish();
+            return false;
+        }
+
         string locationId = __instance.CalculateId();
         ModLog.Custom("UnlockAbility.OnEnter - " + locationId, System.Drawing.Color.Green);
 
