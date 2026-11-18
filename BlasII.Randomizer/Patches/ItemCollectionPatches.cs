@@ -241,8 +241,12 @@ class PlayMaker_UnlockAbility_Patch
     {
         string sceneName = CoreCache.Room.CurrentRoom?.Name;
 
-        // Prevent giving ability in the whip room
-        if (sceneName == "Z3027")
+        if (ROOMS_ALWAYS.Contains(sceneName))
+        {
+            return true;
+        }
+
+        if (ROOMS_NEVER.Contains(sceneName))
         {
             __instance.Finish();
             return false;
@@ -258,6 +262,9 @@ class PlayMaker_UnlockAbility_Patch
         __instance.Finish();
         return false;
     }
+
+    private static readonly string[] ROOMS_ALWAYS = ["Z3126"]; // Fog breathing room
+    private static readonly string[] ROOMS_NEVER = ["Z3027"]; // Whip room
 }
 [HarmonyPatch(typeof(ShowUnlockAbilityPopup), nameof(ShowUnlockAbilityPopup.OnEnter))]
 class Ability_Skip_Patch
