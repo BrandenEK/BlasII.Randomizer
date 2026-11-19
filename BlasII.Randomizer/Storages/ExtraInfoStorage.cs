@@ -94,6 +94,9 @@ public class ExtraInfoStorage
         new QuestBypassInfo("Z2746", "QI110", () => Enumerable.Range(1, 4).All(x => Main.Randomizer.GetQuestBool("ST105", $"TOMB{x}_FINISHED"))),
         new QuestBypassInfo("Z2746", "QI111", () => Main.Randomizer.ItemHandler.IsLocationCollected("Z2746.i0")),
 
+        // Lamp of the Lady
+        new QuestBypassInfo("Z0513", "QI201", () => Main.Randomizer.ItemHandler.IsLocationCollected("Z0513.i0")),
+
         // Whip
         new QuestBypassInfo("Z3027", "Whip", () => Main.Randomizer.ItemHandler.IsLocationCollected("Z3027.w0")),
     ];

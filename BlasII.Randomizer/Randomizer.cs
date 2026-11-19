@@ -133,28 +133,21 @@ public class Randomizer : BlasIIMod, ISlotPersistentMod<RandomizerSlotData>, IGl
 
     protected override void OnSceneLoaded(string sceneName)
     {
-        if (sceneName == "Z0102")
-            LoadWeaponDisplayRoom();
-        else if (sceneName == "Z0206")
-            LoadTriggerRemovalRoom("Event Trigger", "NPC10_ST22_ANUNCIADA");
-        else if (sceneName == "Z0419")
-            LoadYermaRoom();
-        else if (sceneName == "Z0420")
-            LoadTriggerRemovalRoom("trigger area", "Arena triggered template and gates");
-        else if (sceneName == "Z1323")
-            LoadYermaRoom();
-        else if (sceneName == "Z1506")
-            LoadWeaponSelectRoom();
-        else if (sceneName == "Z1612")
-            LoadYermaRoom();
-        else if (sceneName == "Z2301")
-            LoadYermaRoom();
-        else if (sceneName == "Z2401")
-            LoadCherubRoom();
-        else if (sceneName == "Z2501")
-            LoadChapelRoom();
-        else if (sceneName == "Z2716")
-            LoadTriggerRemovalRoom("trigger", "SPGEO_INTERACTABLE_GUILLOTINE");
+        switch (sceneName)
+        {
+            case "Z0102": LoadWeaponDisplayRoom(); break;
+            case "Z0206": LoadTriggerRemovalRoom("Event Trigger", "NPC10_ST22_ANUNCIADA"); break;
+            case "Z0420": LoadTriggerRemovalRoom("trigger area", "Arena triggered template and gates"); break;
+            case "Z1506": LoadWeaponSelectRoom(); break;
+            case "Z2401": LoadCherubRoom(); break;
+            case "Z2501": LoadChapelRoom(); break;
+            case "Z2716": LoadTriggerRemovalRoom("trigger", "SPGEO_INTERACTABLE_GUILLOTINE"); break;
+            case "Z3204": LoadStackableRemovalRoom(); break;
+            case "Z0419": case "Z1323": case "Z1612": case "Z2301": LoadYermaRoom(); break;
+            case "Z3002": case "Z3024": case "Z3101": case "Z3123": LoadStackableRemovalRoom(); break;
+            case "Z3004": case "Z3016": case "Z3118": case "Z3210": LoadStackableRemovalRoom(); break;
+            case "Z3007": case "Z3107": case "Z3122": case "Z3211": LoadStackableRemovalRoom(); break;
+        }
 
         // This might not be needed anymore?
         CoreCache.Shop.cachedInstancedShops.Clear();
@@ -365,6 +358,22 @@ public class Randomizer : BlasIIMod, ISlotPersistentMod<RandomizerSlotData>, IGl
 
         ModLog.Info($"Removing trigger: {parent}/{trigger}");
         Object.Destroy(collider);
+    }
+
+    private void LoadStackableRemovalRoom()
+    {
+        var triggers = Object.FindObjectsOfType<PlayMakerTrigger>();
+
+        var stackable = triggers.FirstOrDefault(x => x.name.StartsWith("INT_QUEST_ITEM_PICKUP_"));
+
+        if (stackable == null)
+        {
+            ModLog.Warn("Failed to find stackable pickup");
+            return;
+        }
+
+        ModLog.Info("Removing stackable pickup");
+        Object.Destroy(stackable);
     }
 
     // Quests

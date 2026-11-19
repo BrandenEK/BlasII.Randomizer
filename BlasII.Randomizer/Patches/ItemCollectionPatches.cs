@@ -24,6 +24,13 @@ class LootInteractable_Use_Patch
 {
     public static void Prefix(LootInteractable __instance)
     {
+        string sceneName = CoreCache.Room.CurrentRoom?.Name;
+        string objectName = __instance.gameObject.name;
+
+        // Disregard skin pickups
+        if ((sceneName == "Z1050" || sceneName == "Z1302") && objectName == "INT_QUEST_ITEM_PICKUP")
+            return;
+
         string locationId = __instance.CalculateId();
         ModLog.Custom("LootInteractable.UseLootByInteractor - " + locationId, System.Drawing.Color.Green);
 
@@ -239,6 +246,19 @@ class PlayMaker_UnlockAbility_Patch
 {
     public static bool Prefix(UnlockAbility __instance)
     {
+        string sceneName = CoreCache.Room.CurrentRoom?.Name;
+
+        if (ROOMS_ALWAYS.Contains(sceneName))
+        {
+            return true;
+        }
+
+        if (ROOMS_NEVER.Contains(sceneName))
+        {
+            __instance.Finish();
+            return false;
+        }
+
         string locationId = __instance.CalculateId();
         ModLog.Custom("UnlockAbility.OnEnter - " + locationId, System.Drawing.Color.Green);
 
@@ -249,6 +269,9 @@ class PlayMaker_UnlockAbility_Patch
         __instance.Finish();
         return false;
     }
+
+    private static readonly string[] ROOMS_ALWAYS = ["Z3126"]; // Fog breathing room
+    private static readonly string[] ROOMS_NEVER = ["Z3027"]; // Whip room
 }
 [HarmonyPatch(typeof(ShowUnlockAbilityPopup), nameof(ShowUnlockAbilityPopup.OnEnter))]
 class Ability_Skip_Patch
