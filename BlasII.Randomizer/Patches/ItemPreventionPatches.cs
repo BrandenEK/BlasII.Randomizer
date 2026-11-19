@@ -189,7 +189,7 @@ class QuestManager_GetVarBool_Patch
                 && Main.Randomizer.ItemHandler.IsLocationCollected("Z05BZ01.l16");
         }
 
-        // Keep Cresencia's man there until you get his item
+        // Keep Eliseo there until you get his item
         // This doesn't work, because you have to be able to kill the boss before getting the nails.  But then quest flags keep getting reset for some reason
         //else if (scene == "Z2904" || scene == "Z3119" || scene == "Z3202" || scene == "Z3203" && quest == "Bosses.BS201_DEAD")
         //{

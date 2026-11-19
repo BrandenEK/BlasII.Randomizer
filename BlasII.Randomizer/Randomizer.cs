@@ -155,6 +155,14 @@ public class Randomizer : BlasIIMod, ISlotPersistentMod<RandomizerSlotData>, IGl
             LoadChapelRoom();
         else if (sceneName == "Z2716")
             LoadTriggerRemovalRoom("trigger", "SPGEO_INTERACTABLE_GUILLOTINE");
+        else if (sceneName == "Z3002" || sceneName == "Z3024" || sceneName == "Z3101" || sceneName == "Z3123")
+            LoadStackableRemovalRoom();
+        else if (sceneName == "Z3004" || sceneName == "Z3016" || sceneName == "Z3118" || sceneName == "Z3210")
+            LoadStackableRemovalRoom();
+        else if (sceneName == "Z3007" || sceneName == "Z3107" || sceneName == "Z3122" || sceneName == "Z3211")
+            LoadStackableRemovalRoom();
+        else if (sceneName == "Z3204")
+            LoadStackableRemovalRoom();
 
         // This might not be needed anymore?
         CoreCache.Shop.cachedInstancedShops.Clear();
@@ -365,6 +373,22 @@ public class Randomizer : BlasIIMod, ISlotPersistentMod<RandomizerSlotData>, IGl
 
         ModLog.Info($"Removing trigger: {parent}/{trigger}");
         Object.Destroy(collider);
+    }
+
+    private void LoadStackableRemovalRoom()
+    {
+        var triggers = Object.FindObjectsOfType<PlayMakerTrigger>();
+
+        var stackable = triggers.FirstOrDefault(x => x.name.StartsWith("INT_QUEST_ITEM_PICKUP_"));
+
+        if (stackable == null)
+        {
+            ModLog.Warn("Failed to find stackable pickup");
+            return;
+        }
+
+        ModLog.Info("Removing stackable pickup");
+        Object.Destroy(stackable);
     }
 
     // Quests
