@@ -24,6 +24,13 @@ class LootInteractable_Use_Patch
 {
     public static void Prefix(LootInteractable __instance)
     {
+        string sceneName = CoreCache.Room.CurrentRoom?.Name;
+        string objectName = __instance.gameObject.name;
+
+        // Disregard skin pickups
+        if ((sceneName == "Z1050" || sceneName == "Z1302") && objectName == "INT_QUEST_ITEM_PICKUP")
+            return;
+
         string locationId = __instance.CalculateId();
         ModLog.Custom("LootInteractable.UseLootByInteractor - " + locationId, System.Drawing.Color.Green);
 
